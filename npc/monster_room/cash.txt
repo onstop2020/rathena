@@ -1,0 +1,67 @@
+-	script	cashSystem	-1,{
+OnPCLoginEvent:
+	// Get aid
+	.@playerAccountID = getcharid(3);
+	.@cashToGive = getd("#donate" + .@playerAccountID);
+	
+	if(.@cashToGive > 0){
+		//dispbottom "Storage: " + .@cashToGive;
+		
+		#CASHPOINTS += .@cashToGive;
+		dispbottom "คุณได้รับ " + .@cashToGive + " Cash จากการบริจาค Cash ขณะนี้ " + #CASHPOINTS + " Cash";
+		set getd("#donate" + .@playerAccountID),0;
+		
+		//dispbottom "Storage: " + getd("#donate" + .@playerAccountID);
+	}
+	end;
+
+OnInit:
+	bindatcmd "d",strnpcinfo(3) + "::OnDonate",99,99;
+	end;
+	
+OnDonate:
+	menu "เพิ่ม Cash ให้ ID ผู้บริจาค",L_AddCash,"เช็ค Cash ที่ผู้บริจาคยังไม่ได้รับ",L_CheckCash;
+	end;
+	
+	L_AddCash:
+	mes "ระบุ Account ID ของผู้บริจาค";
+	input .@i;
+	
+	query_sql("select userid from `login` WHERE account_id = '" + .@i + "'", .@a$);
+	query_sql("select `value` from `acc_reg_num` WHERE account_id = '" + .@i + "' and `key` = '#CASHPOINTS'", .@acash);
+	query_sql("select `value` from `acc_reg_num` WHERE account_id = '" + .@i + "' and `key` = '#donate" + .@i + "'", .@acashstorage);
+	mes "ID: " + .@a$;
+	mes "Cash: " + .@acash;
+	mes "Cash ที่ยังไม่ได้รับ: " + .@acashstorage;
+	
+	next;
+	input .@addCash;
+	
+	query_sql("select userid from `login` WHERE account_id = '" + .@i + "'", .@a$);
+	query_sql("select `value` from `acc_reg_num` WHERE account_id = '" + .@i + "' and `key` = '#CASHPOINTS'", .@acash);
+	query_sql("select `value` from `acc_reg_num` WHERE account_id = '" + .@i + "' and `key` = '#donate" + .@i + "'", .@acashstorage);
+	mes "ID: " + .@a$;
+	mes "Cash: " + .@acash;
+	mes "Cash ที่ยังไม่ได้รับ: " + .@acashstorage + " (+" + .@addCash + ")";
+	next;
+	menu "ยืนยัน",-;
+	
+	.@oldCashStorage = getd("#donate" + .@i);
+	set getd("#donate" + .@i),getd("#donate" + .@i) + .@addCash;
+	mes "ID: " + .@a$;
+	mes "Cash: " + .@acash;
+	mes "Cash ที่ยังไม่ได้รับ: " + (.@oldCashStorage + .@addCash) + " (เดิม " + .@oldCashStorage + ")";
+	close;
+	
+	L_CheckCash:
+	mes "ระบุ Account ID ของผู้บริจาค";
+	input .@i;
+	
+	query_sql("select userid from `login` WHERE account_id = '" + .@i + "'", .@a$);
+	query_sql("select `value` from `acc_reg_num` WHERE account_id = '" + .@i + "' and `key` = '#CASHPOINTS'", .@acash);
+	query_sql("select `value` from `acc_reg_num` WHERE account_id = '" + .@i + "' and `key` = '#donate" + .@i + "'", .@acashstorage);
+	mes "ID: " + .@a$;
+	mes "Cash: " + .@acash;
+	mes "Cash ที่ยังไม่ได้รับ: " + .@acashstorage;
+	close;
+}
