@@ -1,0 +1,345 @@
+prontera,157,198,5	script	Monster Room Warper	4_F_KAFRA1,{
+	menu "Level 1-10 (มอนโจมตีเบากว่า 50)",L_1,"Level 11-20 (มอนโจมตีเบากว่า 200)",L_2,"Level 21-30 (มอนโจมตีเบากว่า 300)",L_3,"Level 31-40 (มอนโจมตีเบากว่า 400)",L_4,"Level 41-50 (มอนโจมตีเบากว่า 500)",L_5
+	,"Level 51-60",L_6,"Level 61-70",L_7,"Level 71-80",L_8,"Level 81-90",L_9,"Level 91-100",L_10
+	,"Level 101-110",L_11,"Level 111-120",L_12,"Level 121-130",L_13,"Level 131-140",L_14,"Level 141-150",L_15
+	,"Level 161-170",L_16,"Level 171-180",L_17,"Level 181-190",L_18,"Level 191-200",L_19,"All MvP",L_20;
+	end;
+
+	L_1:
+	warp "pvp_n_1-1",0,0;
+	end;
+	L_2:
+	warp "pvp_n_1-2",0,0;
+	end;
+	L_3:
+	warp "pvp_n_1-3",0,0;
+	end;
+	L_4:
+	warp "pvp_n_1-4",0,0;
+	end;
+	L_5:
+	warp "pvp_n_1-5",0,0;
+	end;
+	L_6:
+	warp "pvp_y_1-1",0,0;
+	end;
+	L_7:
+	warp "pvp_y_1-2",0,0;
+	end;
+	L_8:
+	warp "pvp_y_1-3",0,0;
+	end;
+	L_9:
+	warp "pvp_y_1-4",0,0;
+	end;
+	L_10:
+	warp "pvp_y_1-5",0,0;
+	end;
+	L_11:
+	warp "guild_vs1",0,0;
+	end;
+	L_12:
+	warp "guild_vs2",0,0;
+	end;
+	L_13:
+	warp "guild_vs3",0,0;
+	end;
+	L_14:
+	warp "guild_vs4",0,0;
+	end;
+	L_15:
+	warp "guild_vs5",0,0;
+	end;
+	L_16:
+	warp "guild_vs2-1",0,0;
+	end;
+	L_17:
+	warp "guild_vs2-2",0,0;
+	end;
+	L_18:
+	warp "tha_t11",0,0;
+	end;
+	L_19:
+	warp "tha_t12",0,0;
+	end;
+	L_20:
+	warp "thana_boss",0,0;
+	end;
+	
+OnInit:
+	freeloop(1);
+
+	// Fetch monster info
+	deletearray $mr1id[0],getarraysize($mr1id);
+	deletearray $mr2id[0],getarraysize($mr2id);
+	deletearray $mr3id[0],getarraysize($mr3id);
+	deletearray $mr4id[0],getarraysize($mr4id);
+	deletearray $mr5id[0],getarraysize($mr5id);
+	deletearray $mr6id[0],getarraysize($mr6id);
+	deletearray $mr7id[0],getarraysize($mr7id);
+	deletearray $mr8id[0],getarraysize($mr8id);
+	deletearray $mr9id[0],getarraysize($mr9id);
+	deletearray $mr10id[0],getarraysize($mr10id);
+	deletearray $mr11id[0],getarraysize($mr11id);
+	deletearray $mr12id[0],getarraysize($mr12id);
+	deletearray $mr13id[0],getarraysize($mr13id);
+	deletearray $mr14id[0],getarraysize($mr14id);
+	deletearray $mr15id[0],getarraysize($mr15id);
+	deletearray $mr16id[0],getarraysize($mr16id);
+	deletearray $mr17id[0],getarraysize($mr17id);
+	deletearray $mr18id[0],getarraysize($mr18id);
+	deletearray $mr19id[0],getarraysize($mr19id);
+	deletearray $mr20id[0],getarraysize($mr20id);
+	deletearray $allMvp[0],getarraysize($allMvp);
+	
+	.@lowestMonsterId = 1001;
+	.@highestMonsterId = 3790;
+	
+	for(.@i = .@lowestMonsterId; .@i < .@highestMonsterId; .@i++){
+		
+		.@monsterExp = getmonsterinfo(.@i,MOB_BASEEXP);
+		if(.@monsterExp<=0)
+		continue;
+		
+		.@monsterLevel = getmonsterinfo(.@i,MOB_LV);
+		.@monsterMvpExp = getmonsterinfo(.@i,MOB_MVPEXP);
+		
+		.@monsterAttack = getmonsterinfo(.@i,MOB_ATK1);
+		
+		if(.@monsterLevel > 0){
+			if(.@monsterLevel <= 10 && .@monsterAttack < 50)
+			setarray $mr1id[getarraysize($mr1id)],.@i;
+			else if(.@monsterLevel > 11 && .@monsterLevel <= 20 && .@monsterAttack < 200)
+			setarray $mr2id[getarraysize($mr2id)],.@i;
+			else if(.@monsterLevel > 21 && .@monsterLevel <= 30 && .@monsterAttack < 300)
+			setarray $mr3id[getarraysize($mr3id)],.@i;
+			else if(.@monsterLevel > 31 && .@monsterLevel <= 40 && .@monsterAttack < 400)
+			setarray $mr4id[getarraysize($mr4id)],.@i;
+			else if(.@monsterLevel > 41 && .@monsterLevel <= 50 && .@monsterAttack < 500)
+			setarray $mr5id[getarraysize($mr5id)],.@i;
+			else if(.@monsterLevel > 51 && .@monsterLevel <= 60)
+			setarray $mr6id[getarraysize($mr6id)],.@i;
+			else if(.@monsterLevel > 61 && .@monsterLevel <= 70)
+			setarray $mr7id[getarraysize($mr7id)],.@i;
+			else if(.@monsterLevel > 71 && .@monsterLevel <= 80)
+			setarray $mr8id[getarraysize($mr8id)],.@i;
+			else if(.@monsterLevel > 81 && .@monsterLevel <= 90)
+			setarray $mr9id[getarraysize($mr9id)],.@i;
+			else if(.@monsterLevel > 91 && .@monsterLevel <= 100)
+			setarray $mr10id[getarraysize($mr10id)],.@i;
+			else if(.@monsterLevel > 101 && .@monsterLevel <= 110)
+			setarray $mr11id[getarraysize($mr11id)],.@i;
+			else if(.@monsterLevel > 111 && .@monsterLevel <= 120)
+			setarray $mr12id[getarraysize($mr12id)],.@i;
+			else if(.@monsterLevel > 121 && .@monsterLevel <= 130)
+			setarray $mr13id[getarraysize($mr13id)],.@i;
+			else if(.@monsterLevel > 131 && .@monsterLevel <= 140)
+			setarray $mr14id[getarraysize($mr14id)],.@i;
+			else if(.@monsterLevel > 141 && .@monsterLevel <= 150)
+			setarray $mr15id[getarraysize($mr15id)],.@i;
+			else if(.@monsterLevel > 151 && .@monsterLevel <= 160)
+			setarray $mr16id[getarraysize($mr16id)],.@i;
+			else if(.@monsterLevel > 161 && .@monsterLevel <= 170)
+			setarray $mr17id[getarraysize($mr17id)],.@i;
+			else if(.@monsterLevel > 171 && .@monsterLevel <= 180)
+			setarray $mr18id[getarraysize($mr18id)],.@i;
+			else
+			setarray $mr19id[getarraysize($mr19id)],.@i;
+		}
+		if(.@monsterMvpExp > 0)
+		setarray $allMvp[getarraysize($allMvp)],.@i;
+	}
+	
+	// Clean all variables
+	$mr1 = 30;
+	$mr2 = 30;
+	$mr3 = 30;
+	$mr4 = 30;
+	$mr5 = 30;
+	$mr6 = 30;
+	$mr7 = 30;
+	$mr8 = 30;
+	$mr9 = 30;
+	$mr10 = 30;
+	$mr11 = 30;
+	$mr12 = 30;
+	$mr13 = 30;
+	$mr14 = 30;
+	$mr15 = 30;
+	$mr16 = 30;
+	$mr17 = 30;
+	$mr18 = 30;
+	$mr19 = 30;
+	$mr20 = 30;
+	
+	$killed_mr1 = 0;
+	$killed_mr2 = 0;
+	$killed_mr3 = 0;
+	$killed_mr4 = 0;
+	$killed_mr5 = 0;
+	$killed_mr6 = 0;
+	$killed_mr7 = 0;
+	$killed_mr8 = 0;
+	$killed_mr9 = 0;
+	$killed_mr10 = 0;
+	$killed_mr11 = 0;
+	$killed_mr12 = 0;
+	$killed_mr13 = 0;
+	$killed_mr14 = 0;
+	$killed_mr15 = 0;
+	$killed_mr16 = 0;
+	$killed_mr17 = 0;
+	$killed_mr18 = 0;
+	$killed_mr19 = 0;
+	$killed_mr20 = 0;
+	
+	$respawn_mr1 = 0;
+	$respawn_mr2 = 0;
+	$respawn_mr3 = 0;
+	$respawn_mr4 = 0;
+	$respawn_mr5 = 0;
+	$respawn_mr6 = 0;
+	$respawn_mr7 = 0;
+	$respawn_mr8 = 0;
+	$respawn_mr9 = 0;
+	$respawn_mr10 = 0;
+	$respawn_mr11 = 0;
+	$respawn_mr12 = 0;
+	$respawn_mr13 = 0;
+	$respawn_mr14 = 0;
+	$respawn_mr15 = 0;
+	$respawn_mr16 = 0;
+	$respawn_mr17 = 0;
+	$respawn_mr18 = 0;
+	$respawn_mr19 = 0;
+	$respawn_mr20 = 0;
+	
+	$mr1name$ = "pvp_n_1-1";
+	$mr2name$ = "pvp_n_1-2";
+	$mr3name$ = "pvp_n_1-3";
+	$mr4name$ = "pvp_n_1-4";
+	$mr5name$ = "pvp_n_1-5";
+	$mr6name$ = "pvp_y_1-1";
+	$mr7name$ = "pvp_y_1-2";
+	$mr8name$ = "pvp_y_1-3";
+	$mr9name$ = "pvp_y_1-4";
+	$mr10name$ = "pvp_y_1-5";
+	$mr11name$ = "guild_vs1";
+	$mr12name$ = "guild_vs2";
+	$mr13name$ = "guild_vs3";
+	$mr14name$ = "guild_vs4";
+	$mr15name$ = "guild_vs5";
+	$mr16name$ = "guild_vs2-1";
+	$mr17name$ = "guild_vs2-2";
+	$mr18name$ = "tha_t11";
+	$mr19name$ = "tha_t12";
+	$mr20name$ = "thana_boss";
+	
+	for(.@i = 1; .@i <= 20; .@i++)
+	callfunc("SpawnMonsterInRoom",.@i);
+	
+	freeloop(0);
+	
+	waitingroom "1.) เก็บ Level",0;
+	
+	initnpctimer;
+	startnpctimer;
+	end;
+
+OnTimer30000:
+	//debugmes "Respawn at " + gettimetick(1);
+	freeloop(1);
+	for(.@i = 1; .@i <= 20; .@i++)
+	callfunc("SpawnMonsterInRoom",.@i,0);
+	freeloop(0);
+	setnpctimer 0;
+	end;
+	
+OnMonsterDead:
+	for(.@i = 1; .@i <= 20; .@i++){
+		if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
+			set getd("$killed_mr" + .@i),getd("$killed_mr" + .@i) + 30;
+			if(getd("$killed_mr" + .@i) >= getd("$mr" + .@i)){
+				set getd("$killed_mr" + .@i),0;
+				set getd("$respawn_mr" + .@i),0;
+				if(getd("$mr" + .@i) < 300)
+				set getd("$mr" + .@i),getd("$mr" + .@i) + 30;
+
+				callfunc("SpawnMonsterInRoom",.@i);
+			}
+			break;
+		}
+	}
+	//debugmes "On map: " + strcharinfo(3) + ", Killed: " + getd("$killed_mr" + .@i) + "/" + getd("$mr" + .@i);
+	end;
+}
+
+function	script	SpawnMonsterInRoom	{
+	.@room = getarg(0);
+	.@isInit = getarg(1,1);
+	//debugmes "isInit: " + .@isInit;
+	//debugmes "Spawn at room: " + .@room;
+	
+	.@mapName$ = getd("$mr" + .@room + "name$");
+	//debugmes "Map name: " + .@mapName$;
+
+	if(getd("$killed_mr" + .@room) <= 0 && !.@isInit)
+	return;
+
+	if(.@isInit)
+	.@maxMonster = getd("$mr" + .@room);
+	else{
+		.@maxMonster = getd("$killed_mr" + .@room) - getd("$respawn_mr" + .@room);
+		set getd("$respawn_mr" + .@room),getd("$respawn_mr" + .@room) + .@maxMonster;
+	}
+	//debugmes "Max monster: " + .@maxMonster;
+	
+	/*if(.@room >= 20)
+	debugmes "Monster type: " + getarraysize($allMvp);
+	else
+	debugmes "Monster type: " + getarraysize(getd("$mr" + .@room + "id"));*/
+	
+	for(.@i = 0; .@i < .@maxMonster; .@i++){
+		if(.@room == 1)
+		monster .@mapName$,0,0,"--ja--",$mr1id[rand(0,getarraysize($mr1id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 2)
+		monster .@mapName$,0,0,"--ja--",$mr2id[rand(0,getarraysize($mr2id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 3)
+		monster .@mapName$,0,0,"--ja--",$mr3id[rand(0,getarraysize($mr3id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 4)
+		monster .@mapName$,0,0,"--ja--",$mr4id[rand(0,getarraysize($mr4id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 5)
+		monster .@mapName$,0,0,"--ja--",$mr5id[rand(0,getarraysize($mr5id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 6)
+		monster .@mapName$,0,0,"--ja--",$mr6id[rand(0,getarraysize($mr6id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 7)
+		monster .@mapName$,0,0,"--ja--",$mr7id[rand(0,getarraysize($mr7id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 8)
+		monster .@mapName$,0,0,"--ja--",$mr8id[rand(0,getarraysize($mr8id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 9)
+		monster .@mapName$,0,0,"--ja--",$mr9id[rand(0,getarraysize($mr9id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 10)
+		monster .@mapName$,0,0,"--ja--",$mr10id[rand(0,getarraysize($mr10id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 11)
+		monster .@mapName$,0,0,"--ja--",$mr11id[rand(0,getarraysize($mr11id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 12)
+		monster .@mapName$,0,0,"--ja--",$mr12id[rand(0,getarraysize($mr12id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 13)
+		monster .@mapName$,0,0,"--ja--",$mr13id[rand(0,getarraysize($mr13id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 14)
+		monster .@mapName$,0,0,"--ja--",$mr14id[rand(0,getarraysize($mr14id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 15)
+		monster .@mapName$,0,0,"--ja--",$mr15id[rand(0,getarraysize($mr15id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 16)
+		monster .@mapName$,0,0,"--ja--",$mr16id[rand(0,getarraysize($mr16id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 17)
+		monster .@mapName$,0,0,"--ja--",$mr17id[rand(0,getarraysize($mr17id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 18)
+		monster .@mapName$,0,0,"--ja--",$mr18id[rand(0,getarraysize($mr18id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 19)
+		monster .@mapName$,0,0,"--ja--",$mr19id[rand(0,getarraysize($mr19id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 20)
+		monster .@mapName$,0,0,"--ja--",$allMvp[rand(0,getarraysize($allMvp)-1)],1,"Monster Room Warper::OnMonsterDead";
+	}
+	return;
+}
