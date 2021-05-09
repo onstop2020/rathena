@@ -7033,7 +7033,7 @@ Body:
     WeaponLevel: 3
     EquipLevelMin: 70
   - Id: 1445
-    AegisName: [Rental]_Hunting_Spear
+    AegisName: "[Rental]_Hunting_Spear"
     Name: "[Rental] Hunting Spear"
     Type: Weapon
     SubType: 1hSpear
