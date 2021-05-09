@@ -1,0 +1,15 @@
+-	script	pvpMan	-1,{
+	menu "PvP",-,"PvP Party",L_Party;
+	warp "pvp_y_7-2",0,0;
+	end;
+
+	L_Party:
+	warp "pvp_y_8-2",0,0;
+	end;
+}
+
+prontera,147,174,5	duplicate(pvpMan)	PvP	4_F_KAFRA1
+
+pvp_y_7-2	mapflag	pvp
+pvp_y_7-2	mapflag	pvp_noparty
+pvp_y_8-2	mapflag	pvp

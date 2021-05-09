@@ -69,4 +69,4 @@
 	end;
 }
 
-prontera,157,198,5	duplicate(serverInfomation)	ข้อมูล Server	4_F_KAFRA1
+prontera,157,181,5	duplicate(serverInfomation)	ข้อมูล Server	4_F_KAFRA1

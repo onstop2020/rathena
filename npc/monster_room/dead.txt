@@ -1,6 +1,8 @@
 -	script	deadSystem	-1,{
 OnPCDieEvent:
-// Check PvP, PvP Party maps name here
+	// Check PvP, PvP Party maps name here
+	if(strcharinfo(3) == "pvp_y_7-2" || strcharinfo(3) == "pvp_y_8-2")
+	end;
 
 	clearitem;
 	atcommand "@job 0";
@@ -9,5 +11,7 @@ OnPCDieEvent:
 	atcommand "@reset";
 	StatusPoint = 48;
 	SkillPoint = 0;
+	
+	warp "prontera",156,191;
 	end;
 }
