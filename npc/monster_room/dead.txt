@@ -1,0 +1,13 @@
+-	script	deadSystem	-1,{
+OnPCDieEvent:
+// Check PvP, PvP Party maps name here
+
+	clearitem;
+	atcommand "@job 0";
+	atcommand "@lvup -999";
+	atcommand "@joblvup -999";
+	atcommand "@reset";
+	StatusPoint = 48;
+	SkillPoint = 0;
+	end;
+}

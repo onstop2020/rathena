@@ -1,0 +1,88 @@
+-	script	expSystem	-1,{
+OnPCLoginEvent:
+	// Check exp multiplier tier
+	if(#expMultiplierBuy > 0){
+		// Remove old exp buff
+		bonus_script_clear 1;
+		// Add new exp buff
+		.@expMultiplier = #expMultiplierBuy * 100;
+		bonus_script "{ bonus2 bExpAddClass,Class_All," + .@expMultiplier + "; }",86400;
+	}
+	// Infomation for player
+	dispbottom "EXP x" + (1 + #expMultiplierBuy);
+	end;
+}
+
+// Buy more exp multiplier
+-	script	expSeller	-1,{
+	// Check is max
+	if(#expMultiplierBuy >= $maxExpBuyCount){
+		mes "คุณได้ซื้อคูณ EXP ถึงขึ้นสูงสุดแล้ว";
+		close;
+	}
+	mes "สวัสดี! คุณต้องการอัตราการคูณ EXP ที่มากขึ้นอยู่หรือเปล่า? ถ้าใช่ล่ะก็ซื้อกับข้าได้เลย (คูณทั้ง ID)";
+	next;
+	mes "คุณมี " + #CASHPOINTS + " Cash";
+	mes "ราคาต่อคูณ " + $cashPerExpBuy + " Cash";
+	next;
+	menu "ซื้อ 1 คูณ",L_One,"กรอกคูณเอง",L_Input;
+	
+	L_One:
+	.@targetToBuyCount = 1;
+	goto L_Trade;
+	end;
+	
+	L_Input:
+	mes "ใส่จำนวนคูณที่ต้องการได้เลย";
+	next;
+	input .@i;
+	// Check is overload
+	if((#expMultiplierBuy + .@i) > $maxExpBuyCount)
+	.@targetToBuyCount = ($maxExpBuyCount - #expMultiplierBuy);
+	else
+	.@targetToBuyCount = .@i;
+	goto L_Trade;
+	end;
+	
+	L_Trade:
+	.@price = .@targetToBuyCount * $cashPerExpBuy;
+	mes "คุณต้องการซื้อ " + .@targetToBuyCount + " คูณ";
+	mes "ราคา " + .@price + " Cash?";
+	next;
+	menu "ยืนยัน",-,"ยกเลิก",L_Cancel;
+	if(#CASHPOINTS < .@price){
+		mes "คุณมี Cash ไม่เพียงพอ";
+		mes "ต้องการ " + .@price + " Cash";
+		close;
+	}
+	else{
+		#CASHPOINTS -= .@price;
+		#expMultiplierBuy += .@targetToBuyCount;
+		mes "เยี่ยมเลย! อัตราการคูณขณะนี้";
+		mes "x" + (1 + #expMultiplierBuy);
+		
+		// Re-Add exp buff here
+		
+		// Check exp multiplier tier
+		if(#expMultiplierBuy > 0){
+			// Remove old exp buff
+			bonus_script_clear 1;
+			// Add new exp buff
+			.@expMultiplier = #expMultiplierBuy * 100;
+			bonus_script "{ bonus2 bExpAddClass,Class_All," + .@expMultiplier + "; }",86400;
+		}
+		// Infomation for player
+		dispbottom "EXP x" + (1 + #expMultiplierBuy);
+		
+		close;
+	}
+	
+	L_Cancel:
+	mes "ยกเลิกเรียบร้อยแล้ว";
+	close;
+	
+OnInit:
+	$maxExpBuyCount = 1000000;
+	$cashPerExpBuy = 10;
+	end;
+}
