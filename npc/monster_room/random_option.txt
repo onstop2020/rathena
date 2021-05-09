@@ -1,0 +1,119 @@
+-	script	randomOptionSeller	-1,{
+	mes "โอกาสได้ช่องที่ 1: 100%";
+	mes "โอกาสได้ช่องที่ 2: 90%";
+	mes "ติดช่อง 2 โอกาสติดช่อง 3: 85%";
+	mes "ติดช่อง 3 โอกาสติดช่อง 4: 80%";
+	mes "ติดช่อง 4 โอกาสติดช่อง 5: 75%";
+	mes "*เมื่อนำอุปกรณ์เดิม มาสุ่ม Random Option อีกครั้ง Random Option เดิมทั้งหมดจะโดนลบทุกแถว ก่อนเริ่มกระบวนการสุ่มครั้งใหม่";
+	next;
+	
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
+	
+	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
+		if(getequipisequiped(.@indices[.@i])) {
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			.@equipped = 1;
+		}
+		.@menu$ = .@menu$ + ":";
+	}
+	
+	if (.@equipped == 0) {
+		mes "เจ้าไม่ได้สวมใส่ อุปกรณ์สวมใส่ใด ๆ เลย ข้าไม่สามารถทำอะไรได้";
+		close;
+	}
+	
+	.@part = .@indices[select(.@menu$)];
+
+	if(!getequipisequiped(.@part)) {
+		mes "เจ้าเลือกช่องที่ ไม่ได้สวมใส่อะไรอยู่เลย";
+		emotion ET_FRET;
+		close;
+	}
+	
+	.@selectedItemId = getequipid(.@part);
+	menu "สุ่มค่าความแรง 1-10 (1,000z)",L_10,"สุ่มค่าความแรง 1-50 (10,000z)",L_50,"สุ่มค่าความแรง 1-100 (100,000z)",L_100;
+	
+	L_10:
+	.@price = 1000;
+	.@maxRandomize = 10;
+	goto L_Trade;
+
+	L_50:
+	.@price = 10000;
+	.@maxRandomize = 50;
+	goto L_Trade;
+
+	L_100:
+	.@price = 100000;
+	.@maxRandomize = 100;
+	goto L_Trade;
+
+	L_Trade:
+	if(Zeny < .@price) {
+		mes "เจ้ามี Zeny ไม่เพียงพอ";
+		close;
+	}
+	Zeny = Zeny - .@price;
+
+	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
+		emotion ET_FRET;
+		mes "เหมือนว่าเจ้าจะสลับอุปกรณ์ ระหว่างข้าดำเนินการอยู่นะ";
+		close;
+	}
+	
+	.@stack = 0;
+	
+	setrandomoption(.@part,0,callfunc("GetRandomOptionId"),rand(1,.@maxRandomize),0);
+
+	.@chanceIndex1 = rand(0,100);
+	if(.@chanceIndex1 < 90){
+		.@stack++;
+		setrandomoption(.@part,1,callfunc("GetRandomOptionId"),rand(1,.@maxRandomize),0);
+		.@chanceIndex2 = rand(0,100);
+		if(.@chanceIndex2 < 85){
+			.@stack++;
+			setrandomoption(.@part,2,callfunc("GetRandomOptionId"),rand(1,.@maxRandomize),0);
+			.@chanceIndex3 = rand(0,100);
+			if(.@chanceIndex3 < 80){
+				.@stack++;
+				setrandomoption(.@part,3,callfunc("GetRandomOptionId"),rand(1,.@maxRandomize),0);
+				.@chanceIndex4 = rand(0,100);
+				if(.@chanceIndex4 < 75){
+					.@stack++;
+					setrandomoption(.@part,4,callfunc("GetRandomOptionId"),rand(1,.@maxRandomize),0);
+				}
+			}
+		}
+	}
+	
+	mes "เรียบร้อยละ ดูเอาเองเด้อ";
+	mes "ได้รับ Random Option " + (1 + .@stack) + " ช่อง";
+	if(.@stack<1)
+	setrandomoption(.@part,1,1,0,0);
+	if(.@stack<2)
+	setrandomoption(.@part,2,1,0,0);
+	if(.@stack<3)
+	setrandomoption(.@part,3,1,0,0);
+	if(.@stack<4)
+	setrandomoption(.@part,4,1,0,0);
+	
+	emotion ET_SMILE;
+	
+	mes "เรียบร้อยละ ดูเอาเองเด้อ";
+	close;
+	
+OnInit:
+	waitingroom "3.) ทำให้ อุปกรณ์สวมใส่ โหด",0;
+	end;
+}
+
+function	script	GetRandomOptionId	{
+	.@optId = rand(1,220);
+	freeloop(1);
+	while(.@optId == 86 || .@optId == 173 || .@optId == 174 || .@optId == 204 || .@optId == 205 || .@optId == 218)
+	.@optId = rand(1,220);
+	freeloop(0);
+	return .@optId;
+}
+
+prontera,147,193,5	duplicate(randomOptionSeller)	Random Option	4_F_KAFRA1

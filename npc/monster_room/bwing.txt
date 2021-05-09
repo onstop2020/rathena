@@ -1,0 +1,6 @@
+-	script	butterflyWingHelper	-1,{
+OnPCLoginEvent:
+	if(countitem(602) <= 0)
+	getitem 602,1;
+	end;
+}

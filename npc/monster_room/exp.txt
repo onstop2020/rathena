@@ -9,7 +9,7 @@ OnPCLoginEvent:
 		bonus_script "{ bonus2 bExpAddClass,Class_All," + .@expMultiplier + "; }",86400;
 	}
 	// Infomation for player
-	dispbottom "EXP x" + (1 + #expMultiplierBuy);
+	dispbottom "EXP x" + callfunc("F_InsertComma",(1 + #expMultiplierBuy));
 	end;
 }
 
@@ -17,15 +17,19 @@ OnPCLoginEvent:
 -	script	expSeller	-1,{
 	// Check is max
 	if(#expMultiplierBuy >= $maxExpBuyCount){
-		mes "เธเธธเธ“เนเธ”เนเธเธทเนเธญเธเธนเธ“ EXP เธ–เธถเธเธเธถเนเธเธชเธนเธเธชเธธเธ”เนเธฅเนเธง";
+		mes "คุณได้ซื้อคูณ EXP ถึงขึ้นสูงสุดแล้ว";
+		mes "อัตราการคูณขณะนี้";
+		mes "x" + callfunc("F_InsertComma",(1 + #expMultiplierBuy));
 		close;
 	}
-	mes "เธชเธงเธฑเธชเธ”เธต! เธเธธเธ“เธ•เนเธญเธเธเธฒเธฃเธญเธฑเธ•เธฃเธฒเธเธฒเธฃเธเธนเธ“ EXP เธ—เธตเนเธกเธฒเธเธเธถเนเธเธญเธขเธนเนเธซเธฃเธทเธญเน€เธเธฅเนเธฒ? เธ–เนเธฒเนเธเนเธฅเนเธฐเธเนเธเธทเนเธญเธเธฑเธเธเนเธฒเนเธ”เนเน€เธฅเธข (เธเธนเธ“เธ—เธฑเนเธ ID)";
+	mes "สวัสดี! คุณต้องการอัตราการคูณ EXP ที่มากขึ้นอยู่หรือเปล่า? ถ้าใช่ล่ะก็ซื้อกับข้าได้เลย (คูณทั้ง ID)";
 	next;
-	mes "เธเธธเธ“เธกเธต " + #CASHPOINTS + " Cash";
-	mes "เธฃเธฒเธเธฒเธ•เนเธญเธเธนเธ“ " + $cashPerExpBuy + " Cash";
+	mes "อัตราการคูณขณะนี้";
+	mes "x" + callfunc("F_InsertComma",(1 + #expMultiplierBuy));
+	mes "คุณมี " + callfunc("F_InsertComma",#CASHPOINTS) + " Cash";
+	mes "ราคาต่อคูณ " + callfunc("F_InsertComma",$cashPerExpBuy) + " Cash";
 	next;
-	menu "เธเธทเนเธญ 1 เธเธนเธ“",L_One,"เธเธฃเธญเธเธเธนเธ“เน€เธญเธ",L_Input;
+	menu "ซื้อ 1 คูณ",L_One,"กรอกคูณเอง",L_Input;
 	
 	L_One:
 	.@targetToBuyCount = 1;
@@ -33,9 +37,11 @@ OnPCLoginEvent:
 	end;
 	
 	L_Input:
-	mes "เนเธชเนเธเธณเธเธงเธเธเธนเธ“เธ—เธตเนเธ•เนเธญเธเธเธฒเธฃเนเธ”เนเน€เธฅเธข";
+	mes "ใส่จำนวนคูณที่ต้องการได้เลย";
 	next;
 	input .@i;
+	if(.@i<=0)
+	goto L_Cancel;
 	// Check is overload
 	if((#expMultiplierBuy + .@i) > $maxExpBuyCount)
 	.@targetToBuyCount = ($maxExpBuyCount - #expMultiplierBuy);
@@ -46,20 +52,20 @@ OnPCLoginEvent:
 	
 	L_Trade:
 	.@price = .@targetToBuyCount * $cashPerExpBuy;
-	mes "เธเธธเธ“เธ•เนเธญเธเธเธฒเธฃเธเธทเนเธญ " + .@targetToBuyCount + " เธเธนเธ“";
-	mes "เธฃเธฒเธเธฒ " + .@price + " Cash?";
+	mes "คุณต้องการซื้อ " + callfunc("F_InsertComma",.@targetToBuyCount) + " คูณ";
+	mes "ราคา " + callfunc("F_InsertComma",.@price) + " Cash?";
 	next;
-	menu "เธขเธทเธเธขเธฑเธ",-,"เธขเธเน€เธฅเธดเธ",L_Cancel;
+	menu "ยืนยัน",-,"ยกเลิก",L_Cancel;
 	if(#CASHPOINTS < .@price){
-		mes "เธเธธเธ“เธกเธต Cash เนเธกเนเน€เธเธตเธขเธเธเธญ";
-		mes "เธ•เนเธญเธเธเธฒเธฃ " + .@price + " Cash";
+		mes "คุณมี Cash ไม่เพียงพอ";
+		mes "ต้องการ " + callfunc("F_InsertComma",.@price) + " Cash";
 		close;
 	}
 	else{
 		#CASHPOINTS -= .@price;
 		#expMultiplierBuy += .@targetToBuyCount;
-		mes "เน€เธขเธตเนเธขเธกเน€เธฅเธข! เธญเธฑเธ•เธฃเธฒเธเธฒเธฃเธเธนเธ“เธเธ“เธฐเธเธตเน";
-		mes "x" + (1 + #expMultiplierBuy);
+		mes "เยี่ยมเลย! อัตราการคูณขณะนี้";
+		mes "x" + callfunc("F_InsertComma",(1 + #expMultiplierBuy));
 		
 		// Re-Add exp buff here
 		
@@ -72,17 +78,19 @@ OnPCLoginEvent:
 			bonus_script "{ bonus2 bExpAddClass,Class_All," + .@expMultiplier + "; }",86400;
 		}
 		// Infomation for player
-		dispbottom "EXP x" + (1 + #expMultiplierBuy);
+		dispbottom "EXP x" + callfunc("F_InsertComma",(1 + #expMultiplierBuy));
 		
 		close;
 	}
 	
 	L_Cancel:
-	mes "เธขเธเน€เธฅเธดเธเน€เธฃเธตเธขเธเธฃเนเธญเธขเนเธฅเนเธง";
+	mes "ยกเลิกเรียบร้อยแล้ว";
 	close;
 	
 OnInit:
-	$maxExpBuyCount = 1000000;
+	$maxExpBuyCount = 999999;
 	$cashPerExpBuy = 10;
 	end;
 }
+
+prontera,162,193,5	duplicate(expSeller)	คูณ EXP	4_F_KAFRA1

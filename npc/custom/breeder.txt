@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-prontera,124,201,1	script	เช่าทุกอย่าง	726,{
+prontera,151,193,5	script	เช่าทุกอย่าง	726,{
 	if (ismounting()) {
 		message strcharinfo(0),"คุณต้องถอดพาหนะเก่าก่อน";
 		end;
