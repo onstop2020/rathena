@@ -1,0 +1,6 @@
+-	script	storage	-1,{
+	openstorage;
+	end;
+}
+
+prontera,145,193,5	duplicate(storage)	คลังเก็บของ	4_F_KAFRA1
