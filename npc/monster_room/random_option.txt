@@ -31,7 +31,7 @@
 	}
 	
 	.@selectedItemId = getequipid(.@part);
-	menu "สุ่มค่าความแรง 1-10 (100z)",L_10,"สุ่มค่าความแรง 1-50 (10,000z)",L_50,"สุ่มค่าความแรง 1-100 (100,000z)",L_100;
+	menu "สุ่มค่าความแรง 1-10 (100z)",L_10,"สุ่มค่าความแรง 1-50 (10,000z)",L_50,"สุ่มค่าความแรง 1-100 (100,000z)",L_100,"ถอด Option ธาตุทุกอย่าง",L_DeleteElemental;
 	
 	L_10:
 	.@price = 100;
@@ -99,9 +99,38 @@
 	
 	emotion ET_SMILE;
 	
-	mes "เรียบร้อยละ ดูเอาเองเด้อ";
 	close;
+
+	L_DeleteElemental:
+	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
+		emotion ET_FRET;
+		mes "เหมือนว่าเจ้าจะสลับอุปกรณ์ ระหว่างข้าดำเนินการอยู่นะ";
+		close;
+	}
+
+	mes "เรียบร้อยละ ดูเอาเองเด้อ";
 	
+	.@index0 = getequiprandomoption(.@part,0,ROA_ID);
+	.@index1 = getequiprandomoption(.@part,1,ROA_ID);
+	.@index2 = getequiprandomoption(.@part,2,ROA_ID);
+	.@index3 = getequiprandomoption(.@part,3,ROA_ID);
+	.@index4 = getequiprandomoption(.@part,4,ROA_ID);
+	
+	if((.@index0 >= 76 && .@index0 <= 85) || (.@index0 >= 175 && .@index0 <= 184))
+	setrandomoption(.@part,1,1,0,0);
+	if((.@index1 >= 76 && .@index1 <= 85) || (.@index1 >= 175 && .@index1 <= 184))
+	setrandomoption(.@part,1,1,0,0);
+	if((.@index2 >= 76 && .@index2 <= 85) || (.@index2 >= 175 && .@index2 <= 184))
+	setrandomoption(.@part,2,1,0,0);
+	if((.@index3 >= 76 && .@index3 <= 85) || (.@index3 >= 175 && .@index3 <= 184))
+	setrandomoption(.@part,3,1,0,0);
+	if((.@index4 >= 76 && .@index4 <= 85) || (.@index4 >= 175 && .@index4 <= 184))
+	setrandomoption(.@part,4,1,0,0);
+	
+	emotion ET_SMILE;
+	
+	close;
+
 OnInit:
 	waitingroom "3.) ทำให้ อุปกรณ์สวมใส่ โหด",0;
 	end;
