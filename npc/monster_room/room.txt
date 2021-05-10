@@ -258,7 +258,7 @@ OnTimer30000:
 OnMonsterDead:
 	for(.@i = 1; .@i <= 20; .@i++){
 		if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
-			set getd("$killed_mr" + .@i),getd("$killed_mr" + .@i) + 30;
+			set getd("$killed_mr" + .@i),getd("$killed_mr" + .@i) + 1;
 			if(getd("$killed_mr" + .@i) >= getd("$mr" + .@i)){
 				set getd("$killed_mr" + .@i),0;
 				set getd("$respawn_mr" + .@i),0;

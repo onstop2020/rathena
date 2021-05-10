@@ -12,6 +12,8 @@ OnPCDieEvent:
 	else
 	getitem 1681,1;
 	getitem 2301,1;
+	if(countitem(602) <= 0)
+	getitem 602,1;
 	atcommand "@lvup -999";
 	atcommand "@joblvup -999";
 	atcommand "@reset";
