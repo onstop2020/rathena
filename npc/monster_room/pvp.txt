@@ -8,7 +8,7 @@
 	end;
 }
 
-prontera,147,174,5	duplicate(pvpMan)	PvP	4_F_KAFRA1
+prontera,147,174,5	duplicate(pvpMan)	PvP	831
 
 pvp_y_7-2	mapflag	pvp
 pvp_y_7-2	mapflag	pvp_noparty

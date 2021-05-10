@@ -93,4 +93,4 @@ OnInit:
 	end;
 }
 
-prontera,162,193,5	duplicate(expSeller)	¤Ù³ EXP	4_F_KAFRA1
+prontera,162,193,5	duplicate(expSeller)	¤Ù³ EXP	704

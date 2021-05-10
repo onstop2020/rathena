@@ -16,4 +16,4 @@
 	close;
 }
 
-prontera,154,181,5	duplicate(donateInfomation)	บริจาค	4_F_KAFRA1
+prontera,154,181,5	duplicate(donateInfomation)	บริจาค	837

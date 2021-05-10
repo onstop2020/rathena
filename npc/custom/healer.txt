@@ -30,4 +30,4 @@
 
 // Duplicates
 //============================================================
-prontera,160,193,4	duplicate(Healer)	¿×é¹¿Ù¾ÅÑ§ªÕÇÔµ#prt	909
+prontera,160,193,4	duplicate(Healer)	¿×é¹¿Ù¾ÅÑ§ªÕÇÔµ#prt	677

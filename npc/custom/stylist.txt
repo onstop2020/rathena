@@ -86,4 +86,4 @@
 	close;
 }
 
-prontera,149,193,5	duplicate(CharacterSuitController)	 แต่งตัว	878
+prontera,149,193,5	duplicate(CharacterSuitController)	 แต่งตัว	894

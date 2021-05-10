@@ -55,4 +55,4 @@ OnInit:
 	end;
 }
 
-prontera,164,193,5	duplicate(zenySeller)	ซื้อ Zeny	4_F_KAFRA1
+prontera,164,193,5	duplicate(zenySeller)	ซื้อ Zeny	803

@@ -145,4 +145,4 @@ function	script	GetRandomOptionId	{
 	return .@optId;
 }
 
-prontera,147,193,5	duplicate(randomOptionSeller)	Random Option	4_F_KAFRA1
+prontera,147,193,5	duplicate(randomOptionSeller)	Random Option	933

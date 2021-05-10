@@ -3,4 +3,4 @@
 	end;
 }
 
-prontera,145,193,5	duplicate(storage)	คลังเก็บของ	4_F_KAFRA1
+prontera,145,193,5	duplicate(storage)	คลังเก็บของ	979
