@@ -3353,10 +3353,14 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 		case SP_NEAR_ATK_DEF:
 			if(sd->state.lr_flag != 2)
 				sd->bonus.near_attack_def_rate += val;
+			if (sd->bonus.near_attack_def_rate > 99) // [Start]
+				sd->bonus.near_attack_def_rate = 99; // [Start]
 			break;
 		case SP_LONG_ATK_DEF:
 			if(sd->state.lr_flag != 2)
 				sd->bonus.long_attack_def_rate += val;
+			if (sd->bonus.long_attack_def_rate > 99) // [Start]
+				sd->bonus.long_attack_def_rate = 99; // [Start]
 			break;
 		case SP_DOUBLE_RATE:
 			if(sd->state.lr_flag == 0 && sd->bonus.double_rate < val)
@@ -3398,10 +3402,14 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 		case SP_MAGIC_ATK_DEF:
 			if(sd->state.lr_flag != 2)
 				sd->bonus.magic_def_rate += val;
+			if (sd->bonus.magic_def_rate > 99) // [Start]
+				sd->bonus.magic_def_rate = 99; // [Start]
 			break;
 		case SP_MISC_ATK_DEF:
 			if(sd->state.lr_flag != 2)
 				sd->bonus.misc_def_rate += val;
+			if (sd->bonus.misc_def_rate > 99) // [Start]
+				sd->bonus.misc_def_rate = 99; // [Start]
 			break;
 		case SP_IGNORE_MDEF_ELE:
 			PC_BONUS_CHK_ELEMENT(val,SP_IGNORE_MDEF_ELE);
@@ -3494,19 +3502,19 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 			if(sd->state.lr_flag == 2)
 				break;
 			val+= sd->special_state.no_magic_damage;
-			sd->special_state.no_magic_damage = cap_value(val,0,100);
+			sd->special_state.no_magic_damage = cap_value(val,0,99); // [Start]
 			break;
 		case SP_NO_WEAPON_DAMAGE:
 			if(sd->state.lr_flag == 2)
 				break;
 			val+= sd->special_state.no_weapon_damage;
-			sd->special_state.no_weapon_damage = cap_value(val,0,100);
+			sd->special_state.no_weapon_damage = cap_value(val,0,99); // [Start]
 			break;
 		case SP_NO_MISC_DAMAGE:
 			if(sd->state.lr_flag == 2)
 				break;
 			val+= sd->special_state.no_misc_damage;
-			sd->special_state.no_misc_damage = cap_value(val,0,100);
+			sd->special_state.no_misc_damage = cap_value(val,0,99); // [Start]
 			break;
 		case SP_NO_GEMSTONE:
 			if(sd->state.lr_flag != 2 && sd->special_state.no_gemstone != 2)
@@ -3839,16 +3847,22 @@ void pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 		PC_BONUS_CHK_ELEMENT(type2,SP_SUBELE);
 		if(sd->state.lr_flag != 2)
 			sd->indexed_bonus.subele_script[type2] += val;
+		if (sd->indexed_bonus.subele_script[type2] > 99) // [Start]
+			sd->indexed_bonus.subele_script[type2] = 99; // [Start]
 		break;
 	case SP_SUBRACE: // bonus2 bSubRace,r,x;
 		PC_BONUS_CHK_RACE(type2,SP_SUBRACE);
 		if(sd->state.lr_flag != 2)
 			sd->indexed_bonus.subrace[type2]+=val;
+		if (sd->indexed_bonus.subrace[type2] > 99) // [Start]
+			sd->indexed_bonus.subrace[type2] = 99; // [Start]
 		break;
 	case SP_SUBCLASS: // bonus2 bSubClass,c,x;
 		PC_BONUS_CHK_CLASS(type2,SP_SUBCLASS);
 		if(sd->state.lr_flag != 2)
 			sd->indexed_bonus.subclass[type2]+=val;
+		if (sd->indexed_bonus.subclass[type2] > 99) // [Start]
+			sd->indexed_bonus.subclass[type2] = 99; // [Start]
 		break;
 	case SP_ADDEFF: // bonus2 bAddEff,eff,n;
 		PC_BONUS_CHK_SC(type2,SP_ADDEFF);
@@ -4090,16 +4104,22 @@ void pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 		PC_BONUS_CHK_SIZE(type2,SP_SUBSIZE);
 		if(sd->state.lr_flag != 2)
 			sd->indexed_bonus.subsize[type2]+=val;
+		if (sd->indexed_bonus.subsize[type2] > 99) // [Start]
+			sd->indexed_bonus.subsize[type2] = 99; // [Start]
 		break;
 	case SP_MAGIC_SUBSIZE: // bonus2 bMagicSubSize,s,x;
 		PC_BONUS_CHK_SIZE(type2,SP_MAGIC_SUBSIZE);
 		if(sd->state.lr_flag != 2)
 			sd->indexed_bonus.magic_subsize[type2]+=val;
+		if (sd->indexed_bonus.magic_subsize[type2] > 99) // [Start]
+			sd->indexed_bonus.magic_subsize[type2] = 99; // [Start]
 		break;
 	case SP_SUBRACE2: // bonus2 bSubRace2,mr,x;
 		PC_BONUS_CHK_RACE2(type2,SP_SUBRACE2);
 		if(sd->state.lr_flag != 2)
 			sd->indexed_bonus.subrace2[type2]+=val;
+		if (sd->indexed_bonus.subrace2[type2] > 99) // [Start]
+			sd->indexed_bonus.subrace2[type2] = 99; // [Start]
 		break;
 	case SP_ADD_ITEM_HEAL_RATE: // bonus2 bAddItemHealRate,iid,n;
 		if(sd->state.lr_flag == 2)
@@ -4330,6 +4350,8 @@ void pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 	case SP_SUBDEF_ELE: // bonus2 bSubDefEle,e,x;
 		PC_BONUS_CHK_ELEMENT(type2,SP_SUBDEF_ELE);
 		sd->indexed_bonus.subdefele[type2] += val;
+		if (sd->indexed_bonus.subdefele[type2] > 99) // [Start]
+			sd->indexed_bonus.subdefele[type2] = 99; // [Start]
 		break;
 	case SP_COMA_CLASS: // bonus2 bComaClass,c,n;
 		PC_BONUS_CHK_CLASS(type2,SP_COMA_CLASS);
@@ -4364,6 +4386,8 @@ void pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 	case SP_MAGIC_SUBDEF_ELE: // bonus2 bMagicSubDefEle,e,x;
 		PC_BONUS_CHK_ELEMENT(type2, SP_MAGIC_SUBDEF_ELE);
 		sd->indexed_bonus.magic_subdefele[type2] += val;
+		if (sd->indexed_bonus.magic_subdefele[type2] > 99) // [Start]
+			sd->indexed_bonus.magic_subdefele[type2] = 99; // [Start]
 		break;
 	default:
 		if (current_equip_combo_pos > 0) {
