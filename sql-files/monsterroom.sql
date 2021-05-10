@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80021
  Source Host           : localhost:3306
- Source Schema         : monsterroom
+ Source Schema         : mr
 
  Target Server Type    : MySQL
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 09/05/2021 15:05:18
+ Date: 10/05/2021 22:33:34
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `acc_reg_num`  (
   `value` bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (`account_id`, `key`, `index`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of acc_reg_num
@@ -45,7 +45,7 @@ CREATE TABLE `acc_reg_str`  (
   `value` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`account_id`, `key`, `index`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of acc_reg_str
@@ -72,7 +72,7 @@ CREATE TABLE `achievement`  (
   `rewarded` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`char_id`, `id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of achievement
@@ -93,7 +93,7 @@ CREATE TABLE `atcommandlog`  (
   PRIMARY KEY (`atcommand_id`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of atcommandlog
@@ -140,7 +140,7 @@ CREATE TABLE `auction`  (
   `unique_id` bigint UNSIGNED NOT NULL DEFAULT 0,
   `enchantgrade` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`auction_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of auction
@@ -158,7 +158,7 @@ CREATE TABLE `bonus_script`  (
   `type` tinyint UNSIGNED NOT NULL DEFAULT 0,
   `icon` smallint NOT NULL DEFAULT -1,
   PRIMARY KEY (`char_id`, `type`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of bonus_script
@@ -178,7 +178,7 @@ CREATE TABLE `branchlog`  (
   PRIMARY KEY (`branch_id`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of branchlog
@@ -195,7 +195,7 @@ CREATE TABLE `buyingstore_items`  (
   `amount` smallint UNSIGNED NOT NULL,
   `price` int UNSIGNED NOT NULL,
   PRIMARY KEY (`buyingstore_id`, `index`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of buyingstore_items
@@ -220,7 +220,7 @@ CREATE TABLE `buyingstores`  (
   `sit` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1',
   `autotrade` tinyint NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of buyingstores
@@ -264,7 +264,7 @@ CREATE TABLE `cart_inventory`  (
   `enchantgrade` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of cart_inventory
@@ -284,7 +284,7 @@ CREATE TABLE `cashlog`  (
   `map` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `type`(`type`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cashlog
@@ -366,7 +366,7 @@ CREATE TABLE `char`  (
   INDEX `party_id`(`party_id`) USING BTREE,
   INDEX `guild_id`(`guild_id`) USING BTREE,
   INDEX `online`(`online`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 150000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 150000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of char
@@ -383,7 +383,7 @@ CREATE TABLE `char_reg_num`  (
   `value` bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (`char_id`, `key`, `index`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of char_reg_num
@@ -400,7 +400,7 @@ CREATE TABLE `char_reg_str`  (
   `value` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`char_id`, `key`, `index`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of char_reg_str
@@ -427,7 +427,7 @@ CREATE TABLE `charlog`  (
   `hair_color` int NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of charlog
@@ -452,7 +452,7 @@ CREATE TABLE `chatlog`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `src_accountid`(`src_accountid`) USING BTREE,
   INDEX `src_charid`(`src_charid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of chatlog
@@ -469,7 +469,7 @@ CREATE TABLE `clan`  (
   `mapname` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `max_member` smallint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`clan_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of clan
@@ -490,7 +490,7 @@ CREATE TABLE `clan_alliance`  (
   `name` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`clan_id`, `alliance_id`) USING BTREE,
   INDEX `alliance_id`(`alliance_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of clan_alliance
@@ -515,7 +515,7 @@ CREATE TABLE `db_roulette`  (
   `amount` smallint UNSIGNED NOT NULL DEFAULT 1,
   `flag` smallint UNSIGNED NOT NULL DEFAULT 1,
   PRIMARY KEY (`index`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of db_roulette
@@ -544,7 +544,7 @@ CREATE TABLE `elemental`  (
   `hit` smallint UNSIGNED NOT NULL DEFAULT 0,
   `life_time` bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (`ele_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of elemental
@@ -567,7 +567,7 @@ CREATE TABLE `feedinglog`  (
   `x` smallint UNSIGNED NOT NULL,
   `y` smallint UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of feedinglog
@@ -581,7 +581,7 @@ CREATE TABLE `friends`  (
   `char_id` int NOT NULL DEFAULT 0,
   `friend_id` int NOT NULL DEFAULT 0,
   PRIMARY KEY (`char_id`, `friend_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of friends
@@ -598,7 +598,7 @@ CREATE TABLE `global_acc_reg_num`  (
   `value` bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (`account_id`, `key`, `index`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of global_acc_reg_num
@@ -615,7 +615,7 @@ CREATE TABLE `global_acc_reg_str`  (
   `value` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`account_id`, `key`, `index`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of global_acc_reg_str
@@ -646,7 +646,7 @@ CREATE TABLE `guild`  (
   PRIMARY KEY (`guild_id`, `char_id`) USING BTREE,
   UNIQUE INDEX `guild_id`(`guild_id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of guild
@@ -663,7 +663,7 @@ CREATE TABLE `guild_alliance`  (
   `name` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`guild_id`, `alliance_id`) USING BTREE,
   INDEX `alliance_id`(`alliance_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of guild_alliance
@@ -694,7 +694,7 @@ CREATE TABLE `guild_castle`  (
   `visibleG7` int UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`castle_id`) USING BTREE,
   INDEX `guild_id`(`guild_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of guild_castle
@@ -710,7 +710,7 @@ CREATE TABLE `guild_expulsion`  (
   `name` varchar(24) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `mes` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`guild_id`, `name`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of guild_expulsion
@@ -727,7 +727,7 @@ CREATE TABLE `guild_member`  (
   `position` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`guild_id`, `char_id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of guild_member
@@ -744,7 +744,7 @@ CREATE TABLE `guild_position`  (
   `mode` smallint UNSIGNED NOT NULL DEFAULT 0,
   `exp_mode` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`guild_id`, `position`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of guild_position
@@ -759,7 +759,7 @@ CREATE TABLE `guild_skill`  (
   `id` smallint UNSIGNED NOT NULL DEFAULT 0,
   `lv` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`guild_id`, `id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of guild_skill
@@ -803,7 +803,7 @@ CREATE TABLE `guild_storage`  (
   `enchantgrade` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `guild_id`(`guild_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of guild_storage
@@ -849,7 +849,7 @@ CREATE TABLE `guild_storage_log`  (
   `enchantgrade` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `guild_id`(`guild_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of guild_storage_log
@@ -885,7 +885,7 @@ CREATE TABLE `homunculus`  (
   `vaporize` tinyint NOT NULL DEFAULT 0,
   `autofeed` tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (`homun_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of homunculus
@@ -902,7 +902,7 @@ CREATE TABLE `hotkey`  (
   `itemskill_id` int UNSIGNED NOT NULL DEFAULT 0,
   `skill_lvl` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`char_id`, `hotkey`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of hotkey
@@ -918,7 +918,7 @@ CREATE TABLE `interlog`  (
   `log` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `time`(`time`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of interlog
@@ -964,7 +964,7 @@ CREATE TABLE `inventory`  (
   `enchantgrade` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of inventory
@@ -980,7 +980,7 @@ CREATE TABLE `ipbanlist`  (
   `rtime` datetime NOT NULL,
   `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`list`, `btime`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ipbanlist
@@ -1014,12 +1014,12 @@ CREATE TABLE `login`  (
   PRIMARY KEY (`account_id`) USING BTREE,
   UNIQUE INDEX `web_auth_token_key`(`web_auth_token`) USING BTREE,
   INDEX `name`(`userid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 2000000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 2000000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of login
 -- ----------------------------
-INSERT INTO `login` VALUES (1, 'monsteroomid', 'monsterroompw', 'S', 'athena@athena.com', 0, 0, 0, 0, 0, NULL, '', NULL, 0, '', 0, 0, 0, NULL, 0);
+INSERT INTO `login` VALUES (1, 'mrid', 'mrpw', 'S', 'athena@athena.com', 0, 0, 0, 0, 0, NULL, '', NULL, 0, '', 0, 0, 0, NULL, 0);
 
 -- ----------------------------
 -- Table structure for loginlog
@@ -1032,7 +1032,7 @@ CREATE TABLE `loginlog`  (
   `rcode` tinyint NOT NULL DEFAULT 0,
   `log` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   INDEX `ip`(`ip`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of loginlog
@@ -1055,7 +1055,7 @@ CREATE TABLE `mail`  (
   `zeny` int UNSIGNED NOT NULL DEFAULT 0,
   `type` smallint NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of mail
@@ -1096,7 +1096,7 @@ CREATE TABLE `mail_attachments`  (
   `bound` tinyint UNSIGNED NOT NULL DEFAULT 0,
   `enchantgrade` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`, `index`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of mail_attachments
@@ -1111,7 +1111,7 @@ CREATE TABLE `mapreg`  (
   `index` int UNSIGNED NOT NULL DEFAULT 0,
   `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`varname`, `index`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of mapreg
@@ -1128,7 +1128,7 @@ CREATE TABLE `market`  (
   `amount` smallint UNSIGNED NOT NULL,
   `flag` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`name`, `nameid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of market
@@ -1146,7 +1146,7 @@ CREATE TABLE `memo`  (
   `y` smallint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`memo_id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of memo
@@ -1165,7 +1165,7 @@ CREATE TABLE `mercenary`  (
   `kill_counter` int NOT NULL,
   `life_time` bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (`mer_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of mercenary
@@ -1185,7 +1185,7 @@ CREATE TABLE `mercenary_owner`  (
   `sword_calls` int NOT NULL DEFAULT 0,
   `sword_faith` int NOT NULL DEFAULT 0,
   PRIMARY KEY (`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of mercenary_owner
@@ -1204,7 +1204,7 @@ CREATE TABLE `mvplog`  (
   `mvpexp` bigint UNSIGNED NOT NULL DEFAULT 0,
   `map` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`mvp_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of mvplog
@@ -1225,7 +1225,7 @@ CREATE TABLE `npclog`  (
   PRIMARY KEY (`npc_id`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE,
   INDEX `char_id`(`char_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of npclog
@@ -1243,7 +1243,7 @@ CREATE TABLE `party`  (
   `leader_id` int UNSIGNED NOT NULL DEFAULT 0,
   `leader_char` int UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`party_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of party
@@ -1268,7 +1268,7 @@ CREATE TABLE `pet`  (
   `incubate` int UNSIGNED NOT NULL DEFAULT 0,
   `autofeed` tinyint NOT NULL DEFAULT 0,
   PRIMARY KEY (`pet_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of pet
@@ -1310,7 +1310,7 @@ CREATE TABLE `picklog`  (
   `bound` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `type`(`type`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of picklog
@@ -1329,7 +1329,7 @@ CREATE TABLE `quest`  (
   `count2` mediumint UNSIGNED NOT NULL DEFAULT 0,
   `count3` mediumint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`char_id`, `quest_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of quest
@@ -1345,7 +1345,7 @@ CREATE TABLE `sales`  (
   `end` datetime NOT NULL,
   `amount` int NOT NULL,
   PRIMARY KEY (`nameid`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of sales
@@ -1365,7 +1365,7 @@ CREATE TABLE `sc_data`  (
   `val3` int NOT NULL DEFAULT 0,
   `val4` int NOT NULL DEFAULT 0,
   PRIMARY KEY (`char_id`, `type`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of sc_data
@@ -1381,7 +1381,7 @@ CREATE TABLE `skill`  (
   `lv` tinyint UNSIGNED NOT NULL DEFAULT 0,
   `flag` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`char_id`, `id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of skill
@@ -1396,7 +1396,7 @@ CREATE TABLE `skill_homunculus`  (
   `id` int NOT NULL,
   `lv` smallint NOT NULL,
   PRIMARY KEY (`homun_id`, `id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of skill_homunculus
@@ -1412,7 +1412,7 @@ CREATE TABLE `skillcooldown`  (
   `skill` smallint UNSIGNED NOT NULL DEFAULT 0,
   `tick` bigint NOT NULL,
   PRIMARY KEY (`char_id`, `skill`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of skillcooldown
@@ -1456,7 +1456,7 @@ CREATE TABLE `storage`  (
   `enchantgrade` tinyint UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `account_id`(`account_id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of storage
@@ -1473,7 +1473,7 @@ CREATE TABLE `vending_items`  (
   `amount` smallint UNSIGNED NOT NULL,
   `price` int UNSIGNED NOT NULL,
   PRIMARY KEY (`vending_id`, `index`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = FIXED;
 
 -- ----------------------------
 -- Records of vending_items
@@ -1497,7 +1497,7 @@ CREATE TABLE `vendings`  (
   `sit` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1',
   `autotrade` tinyint NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of vendings
@@ -1517,7 +1517,7 @@ CREATE TABLE `zenylog`  (
   `map` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `type`(`type`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of zenylog
