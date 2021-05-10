@@ -5,7 +5,13 @@ OnPCDieEvent:
 	end;
 
 	clearitem;
-	atcommand "@job 0";
+	if(Class != 4218 && Class != 4220){
+		getitem 1201,1;
+		atcommand "@job 0";
+	}
+	else
+	getitem 1681,1;
+	getitem 2301,1;
 	atcommand "@lvup -999";
 	atcommand "@joblvup -999";
 	atcommand "@reset";
@@ -21,5 +27,8 @@ OnPCDieEvent:
 	}
 	
 	warp "prontera",156,191;
+	
+	announce strcharinfo(0) + " ตาย!",bc_all,0xFF2828;
+	
 	end;
 }
