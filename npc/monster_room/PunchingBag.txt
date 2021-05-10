@@ -40,7 +40,7 @@ OnTimer5000:
 	initnpctimer;
 }
 
-prontera,216,79,0	duplicate(PunchingBag#0)	PunchingBag#1	844
-prontera,224,70,0	duplicate(PunchingBag#0)	PunchingBag#2	844
-prontera,216,58,0	duplicate(PunchingBag#0)	PunchingBag#3	844
-prontera,224,58,0	duplicate(PunchingBag#0)	PunchingBag#4	844
+prontera,145,198,0	duplicate(PunchingBag#0)	PunchingBag#1	844
+prontera,145,200,0	duplicate(PunchingBag#0)	PunchingBag#2	844
+prontera,145,202,0	duplicate(PunchingBag#0)	PunchingBag#3	844
+prontera,145,204,0	duplicate(PunchingBag#0)	PunchingBag#4	844
