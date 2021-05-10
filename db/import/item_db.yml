@@ -544,11 +544,27 @@ Header:
 #    Gender: Female
 
 Body:
-  - Id: 50001
-    AegisName: Choko_Gangjeong
-    Name: Choko Gangjeong
+  - Id: 50003
+    AegisName: 1000_Cash
+    Name: 1000 Cash
     Type: Healing
     Buy: 1
-    Weight: 10
     Script: |
-      percentheal 10,10;
+      delitem 50003,1;
+      #CASHPOINTS += 1000;
+  - Id: 50002
+    AegisName: 100_Cash
+    Name: 100 Cash
+    Type: Healing
+    Buy: 1
+    Script: |
+      delitem 50002,1;
+      #CASHPOINTS += 100;
+  - Id: 50001
+    AegisName: 10_Cash
+    Name: 10 Cash
+    Type: Healing
+    Buy: 1
+    Script: |
+      delitem 50001,1;
+      #CASHPOINTS += 10;
