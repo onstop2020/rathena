@@ -9407,7 +9407,7 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 10
-    EquipLevelMin: 85
+    EquipLevelMin: 1
     Script: |
       percentheal 100,100;
   - Id: 12705
