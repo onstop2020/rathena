@@ -1,8 +1,24 @@
 prontera,157,198,5	script	Monster Room Warper	967,{
-	menu "Level 1-5 (มอนโจมตีเบากว่า 50)",L_1,"Level 6-20 (มอนโจมตีเบากว่า 200)",L_2,"Level 21-30 (มอนโจมตีเบากว่า 300)",L_3,"Level 31-40 (มอนโจมตีเบากว่า 400)",L_4,"Level 41-50 (มอนโจมตีเบากว่า 500)",L_5
-	,"Level 51-60",L_6,"Level 61-70",L_7,"Level 71-80",L_8,"Level 81-90",L_9,"Level 91-100",L_10
-	,"Level 101-110",L_11,"Level 111-120",L_12,"Level 121-130",L_13,"Level 131-140",L_14,"Level 141-150",L_15
-	,"Level 161-170",L_16,"Level 171-180",L_17,"Level 181-190",L_18,"Level 191-200",L_19,"All MvP",L_20;
+	menu "(Max " + $mr1 + ") Level 1-5 (มอนตีเบากว่า 50)",L_1
+	,"(Max " + $mr2 + ") Level 6-20 (มอนตีเบากว่า 200)",L_2
+	,"(Max " + $mr3 + ") Level 21-30 (มอนตีเบากว่า 300)",L_3
+	,"(Max " + $mr4 + ") Level 31-40 (มอนตีเบากว่า 400)",L_4
+	,"(Max " + $mr5 + ") Level 41-50 (มอนตีเบากว่า 500)",L_5
+	,"(Max " + $mr6 + ") Level 51-60",L_6
+	,"(Max " + $mr7 + ") Level 61-70",L_7
+	,"(Max " + $mr8 + ") Level 71-80",L_8
+	,"(Max " + $mr9 + ") Level 81-90",L_9
+	,"(Max " + $mr10 + ") Level 91-100",L_10
+	,"(Max " + $mr11 + ") Level 101-110",L_11
+	,"(Max " + $mr12 + ") Level 111-120",L_12
+	,"(Max " + $mr13 + ") Level 121-130",L_13
+	,"(Max " + $mr14 + ") Level 131-140",L_14
+	,"(Max " + $mr15 + ") Level 141-150",L_15
+	,"(Max " + $mr16 + ") Level 161-170",L_16
+	,"(Max " + $mr17 + ") Level 171-180",L_17
+	,"(Max " + $mr18 + ") Level 181-190",L_18
+	,"(Max " + $mr19 + ") Level 191-200",L_19
+	,"(Max " + $mr20 + ") All MvP",L_20;
 	end;
 
 	L_1:
