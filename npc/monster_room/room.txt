@@ -1,5 +1,5 @@
 prontera,157,198,5	script	Monster Room Warper	967,{
-	menu "Level 1-10 (มอนโจมตีเบากว่า 50)",L_1,"Level 11-20 (มอนโจมตีเบากว่า 200)",L_2,"Level 21-30 (มอนโจมตีเบากว่า 300)",L_3,"Level 31-40 (มอนโจมตีเบากว่า 400)",L_4,"Level 41-50 (มอนโจมตีเบากว่า 500)",L_5
+	menu "Level 1-10 (มอนโจมตีเบากว่า 25)",L_1,"Level 11-20 (มอนโจมตีเบากว่า 200)",L_2,"Level 21-30 (มอนโจมตีเบากว่า 300)",L_3,"Level 31-40 (มอนโจมตีเบากว่า 400)",L_4,"Level 41-50 (มอนโจมตีเบากว่า 500)",L_5
 	,"Level 51-60",L_6,"Level 61-70",L_7,"Level 71-80",L_8,"Level 81-90",L_9,"Level 91-100",L_10
 	,"Level 101-110",L_11,"Level 111-120",L_12,"Level 121-130",L_13,"Level 131-140",L_14,"Level 141-150",L_15
 	,"Level 161-170",L_16,"Level 171-180",L_17,"Level 181-190",L_18,"Level 191-200",L_19,"All MvP",L_20;
@@ -107,7 +107,7 @@ OnInit:
 		.@monsterAttack = getmonsterinfo(.@i,MOB_ATK1);
 		
 		if(.@monsterLevel > 0){
-			if(.@monsterLevel <= 10 && .@monsterAttack < 50)
+			if(.@monsterLevel <= 10 && .@monsterAttack < 25)
 			setarray $mr1id[getarraysize($mr1id)],.@i;
 			else if(.@monsterLevel > 11 && .@monsterLevel <= 20 && .@monsterAttack < 200)
 			setarray $mr2id[getarraysize($mr2id)],.@i;
