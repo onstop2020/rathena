@@ -1,5 +1,5 @@
 prontera,157,198,5	script	Monster Room Warper	967,{
-	menu "Level 1-10 (มอนโจมตีเบากว่า 25)",L_1,"Level 11-20 (มอนโจมตีเบากว่า 200)",L_2,"Level 21-30 (มอนโจมตีเบากว่า 300)",L_3,"Level 31-40 (มอนโจมตีเบากว่า 400)",L_4,"Level 41-50 (มอนโจมตีเบากว่า 500)",L_5
+	menu "Level 1-5 (มอนโจมตีเบากว่า 50)",L_1,"Level 6-20 (มอนโจมตีเบากว่า 200)",L_2,"Level 21-30 (มอนโจมตีเบากว่า 300)",L_3,"Level 31-40 (มอนโจมตีเบากว่า 400)",L_4,"Level 41-50 (มอนโจมตีเบากว่า 500)",L_5
 	,"Level 51-60",L_6,"Level 61-70",L_7,"Level 71-80",L_8,"Level 81-90",L_9,"Level 91-100",L_10
 	,"Level 101-110",L_11,"Level 111-120",L_12,"Level 121-130",L_13,"Level 131-140",L_14,"Level 141-150",L_15
 	,"Level 161-170",L_16,"Level 171-180",L_17,"Level 181-190",L_18,"Level 191-200",L_19,"All MvP",L_20;
@@ -107,41 +107,41 @@ OnInit:
 		.@monsterAttack = getmonsterinfo(.@i,MOB_ATK1);
 		
 		if(.@monsterLevel > 0){
-			if(.@monsterLevel <= 10 && .@monsterAttack < 25)
+			if(.@monsterLevel <= 5 && .@monsterAttack < 50)
 			setarray $mr1id[getarraysize($mr1id)],.@i;
-			else if(.@monsterLevel > 11 && .@monsterLevel <= 20 && .@monsterAttack < 200)
+			else if(.@monsterLevel > 5 && .@monsterLevel <= 20 && .@monsterAttack < 200)
 			setarray $mr2id[getarraysize($mr2id)],.@i;
-			else if(.@monsterLevel > 21 && .@monsterLevel <= 30 && .@monsterAttack < 300)
+			else if(.@monsterLevel > 20 && .@monsterLevel <= 30 && .@monsterAttack < 300)
 			setarray $mr3id[getarraysize($mr3id)],.@i;
-			else if(.@monsterLevel > 31 && .@monsterLevel <= 40 && .@monsterAttack < 400)
+			else if(.@monsterLevel > 30 && .@monsterLevel <= 40 && .@monsterAttack < 400)
 			setarray $mr4id[getarraysize($mr4id)],.@i;
-			else if(.@monsterLevel > 41 && .@monsterLevel <= 50 && .@monsterAttack < 500)
+			else if(.@monsterLevel > 40 && .@monsterLevel <= 50 && .@monsterAttack < 500)
 			setarray $mr5id[getarraysize($mr5id)],.@i;
-			else if(.@monsterLevel > 51 && .@monsterLevel <= 60)
+			else if(.@monsterLevel > 50 && .@monsterLevel <= 60)
 			setarray $mr6id[getarraysize($mr6id)],.@i;
-			else if(.@monsterLevel > 61 && .@monsterLevel <= 70)
+			else if(.@monsterLevel > 60 && .@monsterLevel <= 70)
 			setarray $mr7id[getarraysize($mr7id)],.@i;
-			else if(.@monsterLevel > 71 && .@monsterLevel <= 80)
+			else if(.@monsterLevel > 70 && .@monsterLevel <= 80)
 			setarray $mr8id[getarraysize($mr8id)],.@i;
-			else if(.@monsterLevel > 81 && .@monsterLevel <= 90)
+			else if(.@monsterLevel > 80 && .@monsterLevel <= 90)
 			setarray $mr9id[getarraysize($mr9id)],.@i;
-			else if(.@monsterLevel > 91 && .@monsterLevel <= 100)
+			else if(.@monsterLevel > 90 && .@monsterLevel <= 100)
 			setarray $mr10id[getarraysize($mr10id)],.@i;
-			else if(.@monsterLevel > 101 && .@monsterLevel <= 110)
+			else if(.@monsterLevel > 100 && .@monsterLevel <= 110)
 			setarray $mr11id[getarraysize($mr11id)],.@i;
-			else if(.@monsterLevel > 111 && .@monsterLevel <= 120)
+			else if(.@monsterLevel > 110 && .@monsterLevel <= 120)
 			setarray $mr12id[getarraysize($mr12id)],.@i;
-			else if(.@monsterLevel > 121 && .@monsterLevel <= 130)
+			else if(.@monsterLevel > 120 && .@monsterLevel <= 130)
 			setarray $mr13id[getarraysize($mr13id)],.@i;
-			else if(.@monsterLevel > 131 && .@monsterLevel <= 140)
+			else if(.@monsterLevel > 130 && .@monsterLevel <= 140)
 			setarray $mr14id[getarraysize($mr14id)],.@i;
-			else if(.@monsterLevel > 141 && .@monsterLevel <= 150)
+			else if(.@monsterLevel > 140 && .@monsterLevel <= 150)
 			setarray $mr15id[getarraysize($mr15id)],.@i;
-			else if(.@monsterLevel > 151 && .@monsterLevel <= 160)
+			else if(.@monsterLevel > 150 && .@monsterLevel <= 160)
 			setarray $mr16id[getarraysize($mr16id)],.@i;
-			else if(.@monsterLevel > 161 && .@monsterLevel <= 170)
+			else if(.@monsterLevel > 160 && .@monsterLevel <= 170)
 			setarray $mr17id[getarraysize($mr17id)],.@i;
-			else if(.@monsterLevel > 171 && .@monsterLevel <= 180)
+			else if(.@monsterLevel > 170 && .@monsterLevel <= 180)
 			setarray $mr18id[getarraysize($mr18id)],.@i;
 			else
 			setarray $mr19id[getarraysize($mr19id)],.@i;
