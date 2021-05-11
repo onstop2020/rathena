@@ -112,6 +112,9 @@ OnInit:
 	.@highestMonsterId = 3790;
 	
 	for(.@i = .@lowestMonsterId; .@i < .@highestMonsterId; .@i++){
+		// Error monster id
+		if(.@i == 2336)
+		continue;
 		
 		.@monsterExp = getmonsterinfo(.@i,MOB_BASEEXP);
 		if(.@monsterExp<=0)
@@ -252,6 +255,10 @@ OnTimer30000:
 	
 OnMonsterDead:
 	for(.@i = 1; .@i <= 20; .@i++){
+		// All MvP map check
+		if(strcharinfo(3) == $mr20name$)
+		mvpKiller++;
+		
 		if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
 			set getd("$killed_mr" + .@i),getd("$killed_mr" + .@i) + 1;
 			if(getd("$killed_mr" + .@i) >= getd("$mr" + .@i)){

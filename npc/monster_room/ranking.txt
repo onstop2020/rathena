@@ -1,0 +1,20 @@
+-	script	ranking	-1,{
+	menu "เช็คอันดับ Level",L_Level;
+	//menu "เช็คอันดับ Level",L_Level,"เช็คอันดับ MvP Killer",L_MvPKiller;
+	
+	L_Level:
+	query_sql("SELECT `name`,`base_level` FROM `char` ORDER BY `base_level` DESC LIMIT 10",.@name$,.@blvl);
+	mes "อันดับ Level";
+	for(.@i = 0; .@i < getarraysize(.@name$); .@i++)
+	mes (.@i + 1) + ".) " + .@name$[.@i] + " (Level " + .@blvl[.@i] + ")";
+	close;
+	
+	L_MvPKiller:
+	end;
+	
+OnInit:
+	waitingroom "จัดอันดับ",0;
+	end;
+}
+
+prontera,144,174,5	duplicate(ranking)	จัดอันดับ	837
