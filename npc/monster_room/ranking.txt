@@ -1,6 +1,5 @@
 -	script	ranking	-1,{
-	menu "เช็คอันดับ Level",L_Level;
-	//menu "เช็คอันดับ Level",L_Level,"เช็คอันดับ MvP Killer",L_MvPKiller;
+	menu "เช็คอันดับ Level",L_Level,"เช็คอันดับ MvP Map Killer",L_MvPKiller;
 	
 	L_Level:
 	query_sql("SELECT `name`,`base_level` FROM `char` ORDER BY `base_level` DESC LIMIT 10",.@name$,.@blvl);
@@ -10,7 +9,16 @@
 	close;
 	
 	L_MvPKiller:
-	end;
+	query_sql("SELECT `char_id`,`value` FROM `char_reg_num` WHERE `key` = 'mvpMapKiller' ORDER BY `value` DESC LIMIT 10",.@charId,.@killCount);
+	if(getarraysize(.@charId) <= 0)
+	mes "ยังไม่มีข้อมูล";
+	else{
+		mes "อันดับ MvP Map Killer";
+		for(.@i = 0; .@i < getarraysize(.@charId); .@i++)
+		mes (.@i + 1) + ".) " + strcharinfo(0,.@charId[.@i]) + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
+	}
+	
+	close;
 	
 OnInit:
 	waitingroom "จัดอันดับ",0;

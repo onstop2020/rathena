@@ -254,11 +254,10 @@ OnTimer30000:
 	end;
 	
 OnMonsterDead:
+	// All MvP map check
+	if(strcharinfo(3) == $mr20name$)
+	mvpMapKiller++;
 	for(.@i = 1; .@i <= 20; .@i++){
-		// All MvP map check
-		if(strcharinfo(3) == $mr20name$)
-		mvpKiller++;
-		
 		if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
 			set getd("$killed_mr" + .@i),getd("$killed_mr" + .@i) + 1;
 			if(getd("$killed_mr" + .@i) >= getd("$mr" + .@i)){

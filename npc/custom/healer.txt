@@ -14,16 +14,59 @@
 //============================================================
 
 -	script	Healer	-1,{
-	.@Delay = 1;	// Heal delay, in seconds
+	.@Delay = 1;
 
-	if (@HD > gettimetick(2))
-		end;
+	if (@HD > gettimetick(2)){
+		mes "Buff อยู่ขั้นที่ " + upgradeBuff;
+		next;
+		menu "ไม่ทำอะไร",-,"Upgrade Buff",L_UpgradeBuff;
+		close;
+	}
+	
 	specialeffect2 EF_HEAL2;
 	percentheal 100,100;
 	identifyall;
 	repairall;
+	if(upgradeBuff >= 1)
+	sc_start SC_INCREASEAGI,600000,10;
+	if(upgradeBuff >= 2)
+	sc_start SC_BLESSING,600000,10;
 	if (.@Delay)
-		@HD = gettimetick(2) + .@Delay;
+	@HD = gettimetick(2) + .@Delay;
+	end;
+	
+	L_UpgradeBuff:
+	if(upgradeBuff >= .maxBuffUpgrade){
+		mes "ตอนนี้ Upgrade ถึงขั้นสูงสุดแล้ว โปรดรออัปเดตภายหลัง";
+		close;
+	}
+	.@sumPrice = .basePrice;
+	if(upgradeBuff > 0){
+		.@sumUpgradeCount = upgradeBuff;
+		while(.@sumUpgradeCount > 0){
+			.@sumUpgradeCount--;
+			.@sumPrice = .@sumPrice * .priceMultiplier;
+		}
+	}
+	menu "จ่าย " + callfunc("F_InsertComma",.@sumPrice) + "z",-;
+	if(Zeny >= .@sumPrice){
+		Zeny -= .@sumPrice;
+		upgradeBuff++;
+		mes "เรียบร้อยแล้ว";
+		mes "Buff อยู่ขั้นที่ " + upgradeBuff;
+		close;
+	}
+	else{
+		mes "เจ้ามี Zeny ไม่เพียงพอ";
+		mes "ต้องการ  " + callfunc("F_InsertComma",.@sumPrice) + "z";
+		close;
+	}
+	
+OnInit:
+	.maxBuffUpgrade = 2;
+	.basePrice = 50;
+	.priceMultiplier = 10;
+	waitingroom "กดรัว ๆ เพื่อ Upgrade Buff",0;
 	end;
 }
 
