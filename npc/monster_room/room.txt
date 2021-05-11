@@ -193,27 +193,6 @@ OnInit:
 	$killed_mr19 = 0;
 	$killed_mr20 = 0;
 	
-	$respawn_mr1 = 0;
-	$respawn_mr2 = 0;
-	$respawn_mr3 = 0;
-	$respawn_mr4 = 0;
-	$respawn_mr5 = 0;
-	$respawn_mr6 = 0;
-	$respawn_mr7 = 0;
-	$respawn_mr8 = 0;
-	$respawn_mr9 = 0;
-	$respawn_mr10 = 0;
-	$respawn_mr11 = 0;
-	$respawn_mr12 = 0;
-	$respawn_mr13 = 0;
-	$respawn_mr14 = 0;
-	$respawn_mr15 = 0;
-	$respawn_mr16 = 0;
-	$respawn_mr17 = 0;
-	$respawn_mr18 = 0;
-	$respawn_mr19 = 0;
-	$respawn_mr20 = 0;
-	
 	$mr1name$ = "pvp_n_1-1";
 	$mr2name$ = "pvp_n_1-2";
 	$mr3name$ = "pvp_n_1-3";
@@ -261,7 +240,6 @@ OnMonsterDead:
 			set getd("$killed_mr" + .@i),getd("$killed_mr" + .@i) + 1;
 			if(getd("$killed_mr" + .@i) >= getd("$mr" + .@i)){
 				set getd("$killed_mr" + .@i),0;
-				set getd("$respawn_mr" + .@i),0;
 				if(getd("$mr" + .@i) < 300)
 				set getd("$mr" + .@i),getd("$mr" + .@i) + 30;
 
@@ -283,14 +261,13 @@ function	script	SpawnMonsterInRoom	{
 	.@mapName$ = getd("$mr" + .@room + "name$");
 	//debugmes "Map name: " + .@mapName$;
 
-	if(getd("$killed_mr" + .@room) <= 0 && !.@isInit)
-	return;
-
 	if(.@isInit)
 	.@maxMonster = getd("$mr" + .@room);
 	else{
-		.@maxMonster = getd("$killed_mr" + .@room) - getd("$respawn_mr" + .@room);
-		set getd("$respawn_mr" + .@room),getd("$respawn_mr" + .@room) + .@maxMonster;
+		//debugmes "1: " + (getd("$mr" + .@room));
+		//debugmes "2: " + (.@currentMonsterCount);
+		.@currentMonsterCount = getmapunits(BL_MOB,.@mapName$);
+		.@maxMonster = getd("$mr" + .@room) - .@currentMonsterCount;
 	}
 	//debugmes "Max monster: " + .@maxMonster;
 	
@@ -300,6 +277,7 @@ function	script	SpawnMonsterInRoom	{
 	debugmes "Monster type: " + getarraysize(getd("$mr" + .@room + "id"));*/
 	
 	for(.@i = 0; .@i < .@maxMonster; .@i++){
+		//debugmes "Spawn " + .@i;
 		if(.@room == 1)
 		monster .@mapName$,0,0,"--ja--",$mr1id[rand(0,getarraysize($mr1id)-1)],1,"Monster Room Warper::OnMonsterDead";
 		else if(.@room == 2)
