@@ -117,7 +117,7 @@ OnInit:
 		continue;
 		
 		.@monsterExp = getmonsterinfo(.@i,MOB_BASEEXP);
-		if(.@monsterExp<=0)
+		if(.@monsterExp < 150)
 		continue;
 		
 		.@monsterLevel = getmonsterinfo(.@i,MOB_LV);
