@@ -1549,7 +1549,6 @@ Body:
       Taekwon: true
       Thief: true
       Wizard: true
-    EquipLevelMin: 40
     Flags:
       BuyingStore: true
     Script: |
@@ -1575,7 +1574,6 @@ Body:
       Swordman: true
       Taekwon: true
       Wizard: true
-    EquipLevelMin: 85
     Flags:
       BuyingStore: true
     Script: |
@@ -1973,7 +1971,6 @@ Body:
     Name: Status Reset Coupon
     Type: Cash
     Buy: 1
-    EquipLevelMin: 1
     Script: |
       resetstatus;
   - Id: 6721
@@ -1981,7 +1978,6 @@ Body:
     Name: Status Reset Coupon
     Type: Cash
     Buy: 1
-    EquipLevelMin: 1
     Script: |
       resetstatus;
   - Id: 7037
@@ -2247,7 +2243,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 20
-    EquipLevelMin: 100
     Flags:
       BuyingStore: true
     Script: |
@@ -2258,7 +2253,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 50
-    EquipLevelMin: 100
     Flags:
       BuyingStore: true
     Script: |
@@ -2269,7 +2263,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    EquipLevelMin: 100
     Flags:
       BuyingStore: true
     Delay:
@@ -2283,7 +2276,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 120
-    EquipLevelMin: 110
     Flags:
       BuyingStore: true
     Delay:
@@ -2297,7 +2289,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 140
-    EquipLevelMin: 120
     Flags:
       BuyingStore: true
     Delay:
@@ -2311,7 +2302,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 150
-    EquipLevelMin: 120
     Flags:
       BuyingStore: true
     Delay:
@@ -2325,7 +2315,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    EquipLevelMin: 120
     Flags:
       BuyingStore: true
     Script: |
@@ -2948,7 +2937,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 70
-    EquipLevelMin: 60
     Delay:
       Duration: 1000
     Script: |
@@ -2959,7 +2947,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    EquipLevelMin: 60
     Delay:
       Duration: 1000
     Script: |
@@ -2970,7 +2957,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 140
-    EquipLevelMin: 60
     Delay:
       Duration: 1000
     Script: |
@@ -2981,7 +2967,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    EquipLevelMin: 60
     Delay:
       Duration: 10000
     Script: |
@@ -5497,7 +5482,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 100
-    EquipLevelMin: 20
     Script: |
       sc_start SC_INCALLSTATUS,600000,3;
   - Id: 12248
@@ -5582,7 +5566,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    EquipLevelMin: 50
     Script: |
       percentheal 25,25;
   - Id: 12258
@@ -9162,7 +9145,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 100
-    EquipLevelMin: 130
     Flags:
       BuyingStore: true
     Script: |
@@ -9173,7 +9155,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 100
-    EquipLevelMin: 95
     Flags:
       BuyingStore: true
     Script: |
@@ -9407,7 +9388,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       percentheal 100,100;
   - Id: 12705
@@ -9416,7 +9396,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 100
-    EquipLevelMin: 90
     Script: |
       sc_start SC_EXPBOOST,1800000,100;
   - Id: 12706
@@ -10203,7 +10182,6 @@ Body:
     Name: Mercenary Casting
     Type: Usable
     Buy: 1
-    EquipLevelMin: 20
     Script: |
       getitem 12160,5;
       getitem 12170,5;
@@ -10214,13 +10192,11 @@ Body:
     Name: Mother Love Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 1
   - Id: 12809
     AegisName: Level_Up_Box
     Name: Level Up Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 120
     Script: |
       getitem 12263,5;
       getitem 12264,5;
@@ -10299,13 +10275,11 @@ Body:
     Name: Old Ore Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 60
   - Id: 12817
     AegisName: Old_Card_Album_
     Name: Old Card Album
     Type: Usable
     Buy: 1
-    EquipLevelMin: 80
     Script: |
       getrandgroupitem(IG_CardAlbum,1);
       getitem 12818,1;
@@ -10314,7 +10288,6 @@ Body:
     Name: High Weapon Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 100
     Script: |
       getrandgroupitem(IG_Advanced_Weapons_Box,1);
       getitem 12809,1;
@@ -10323,7 +10296,6 @@ Body:
     Name: Zherlthsh Tck Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 150
     Script: |
       getitem 6184,1;
   - Id: 12820
@@ -10439,43 +10411,36 @@ Body:
     Name: Iron Treasure Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 10
   - Id: 12839
     AegisName: bronze_Treasure_Box
     Name: bronze Treasure Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 20
   - Id: 12840
     AegisName: Silver_Treasure_Box
     Name: Silver Treasure Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 30
   - Id: 12841
     AegisName: Golden_Treasure_Box
     Name: Golden Treasure Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 40
   - Id: 12842
     AegisName: Platinum_Treasure_Box
     Name: Platinum Treasure Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 50
   - Id: 12843
     AegisName: Pearl_Treasure_Box
     Name: Pearl Treasure Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 60
   - Id: 12844
     AegisName: Diamond_Treasure_Box
     Name: Diamond Treasure Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 70
   - Id: 12845
     AegisName: WOB_Amatsu
     Name: Amatsu_Butterfly_Wing
@@ -20654,7 +20619,6 @@ Body:
       Taekwon: true
       Thief: true
       Wizard: true
-    EquipLevelMin: 40
     Script: |
       sc_start SC_ASPDPOTION1,1800000,6;
   - Id: 14511
@@ -20678,7 +20642,6 @@ Body:
       Swordman: true
       Taekwon: true
       Wizard: true
-    EquipLevelMin: 85
     Script: |
       sc_start SC_ASPDPOTION2,1800000,9;
   - Id: 14512
@@ -21778,7 +21741,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -21789,7 +21751,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -22323,7 +22284,6 @@ Body:
     Name: Valkyrie's Gift Box
     Type: Cash
     Buy: 1
-    EquipLevelMin: 1
     Script: |
       getitem 5826,1;
   - Id: 16251
@@ -22450,7 +22410,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem 5580,1;
   - Id: 16267
@@ -22993,7 +22952,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem 12415,10;
   - Id: 16380
@@ -23002,7 +22960,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem 12415,30;
   - Id: 16381
@@ -23799,7 +23756,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem 5575,1;
   - Id: 16576
@@ -23996,7 +23952,6 @@ Body:
     Name: Half Brynhild Box
     Type: Usable
     Buy: 1
-    EquipLevelMin: 47
     Script: |
       rentitem 15023,604800;
   - Id: 16631
@@ -24071,7 +24026,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem 12578,10;
   - Id: 16658
@@ -24122,7 +24076,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       rentitem 2869,20160000;
   - Id: 16670
@@ -26424,7 +26377,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -26517,7 +26469,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Valerian_Scroll);
   - Id: 17231
@@ -26633,7 +26584,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Immortal_Egg);
   - Id: 17244
@@ -26713,7 +26663,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Sapphire_Egg);
   - Id: 17256
@@ -26954,7 +26903,6 @@ Body:
     Name: Status Reset Coupon Box
     Type: Cash
     Buy: 1
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",6720,6721),1;
   - Id: 17307
@@ -26963,7 +26911,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -26981,7 +26928,6 @@ Body:
     Name: Half Brynhild box1
     Type: Usable
     Buy: 1
-    EquipLevelMin: 47
     Script: |
       rentitem 15023,86400;
   - Id: 17314
@@ -27014,7 +26960,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -27025,7 +26970,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -27054,7 +26998,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -27081,7 +27024,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -27392,7 +27334,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -27421,7 +27362,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -27463,7 +27403,6 @@ Body:
     Name: Blessing Midgard Lucky Egg
     Type: Cash
     Buy: 1
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -27516,7 +27455,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -27581,7 +27519,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -28312,7 +28249,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Idn_Wisdom_Egg);
   - Id: 22521
@@ -28320,7 +28256,6 @@ Body:
     Name: Level Up Box
     Type: Cash
     Buy: 1
-    EquipLevelMin: 80
     Script: |
       /*TODO*/
   - Id: 22522
@@ -28328,7 +28263,6 @@ Body:
     Name: Level Up Box(100)
     Type: Cash
     Buy: 1
-    EquipLevelMin: 100
     Script: |
       getgroupitem(IG_Level_Up_Box100);
   - Id: 22523
@@ -28336,7 +28270,6 @@ Body:
     Name: Level Up Box(120)
     Type: Cash
     Buy: 1
-    EquipLevelMin: 120
     Script: |
       getgroupitem(IG_Level_Up_Box120);
   - Id: 22524
@@ -28344,7 +28277,6 @@ Body:
     Name: Level Up Box(130)
     Type: Cash
     Buy: 1
-    EquipLevelMin: 130
     Script: |
       getgroupitem(IG_Level_Up_Box130);
   - Id: 22525
@@ -28352,7 +28284,6 @@ Body:
     Name: Level Up Box(140)
     Type: Cash
     Buy: 1
-    EquipLevelMin: 140
     Script: |
       getgroupitem(IG_Level_Up_Box140);
   - Id: 22526
@@ -28360,7 +28291,6 @@ Body:
     Name: Level Up Box(150)
     Type: Cash
     Buy: 1
-    EquipLevelMin: 150
     Script: |
       getgroupitem(IG_Level_Up_Box150);
   - Id: 22527
@@ -28368,7 +28298,6 @@ Body:
     Name: Level Up Box(160)
     Type: Cash
     Buy: 1
-    EquipLevelMin: 160
     Script: |
       getgroupitem(IG_Level_Up_Box160);
   - Id: 22528
@@ -28393,7 +28322,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 200
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Christmas_Box);
   - Id: 22531
@@ -28402,7 +28330,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 200
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Special_Christmas_Box);
   - Id: 22532
@@ -28411,7 +28338,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 200
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Santa_Gift);
   - Id: 22533
@@ -28420,7 +28346,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 200
-    EquipLevelMin: 1
     Script: |
       /*TODO*/
   - Id: 22534
@@ -28429,7 +28354,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 1000
-    EquipLevelMin: 1
     Flags:
       BuyingStore: true
     Script: |
@@ -28456,7 +28380,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 100
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -29101,7 +29024,6 @@ Body:
     Name: Death's Chest
     Type: Usable
     Buy: 1
-    EquipLevelMin: 170
     Flags:
       BuyingStore: true
     Script: |
@@ -29129,7 +29051,6 @@ Body:
     Type: Delayconsume
     Buy: 1
     Weight: 1
-    EquipLevelMin: 100
     Flags:
       BuyingStore: true
     Delay:
@@ -29485,7 +29406,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",6116,6117,6118,6129,6130,6130,6132,6133,6134,6135,6136,6137,6138,6139,6140,6141,6142,6143),1;
   - Id: 22770
@@ -29564,7 +29484,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 100
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Gift_Buff_Set);
   - Id: 22781
@@ -29573,7 +29492,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 200
-    EquipLevelMin: 1
     Script: |
       getitem 547,20;
   - Id: 22782
@@ -29582,7 +29500,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 200
-    EquipLevelMin: 1
     Script: |
       getitem 547,30;
   - Id: 22783
@@ -29591,7 +29508,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 200
-    EquipLevelMin: 1
     Script: |
       getitem 547,1;
       getitem 985,10;
@@ -29601,7 +29517,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 200
-    EquipLevelMin: 1
     Script: |
       getitem 547,1;
       getitem 12017,10;
@@ -29623,7 +29538,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",6228,6232,22813,19937,17314, 6635),1;
   - Id: 22813
@@ -29632,7 +29546,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",24180,24181,24182,24183,24184,24185),1;
   - Id: 22822
@@ -29641,7 +29554,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 100
-    EquipLevelMin: 1
     Script: |
       sc_start SC_DRESSUP,600000,1;
   - Id: 22823
@@ -29658,7 +29570,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",6636,6637,6638,6639,6640,6641,6642,6643,6644,6645,6740,6741,6742,6743,6744,6745,6790,6791,6792,6908),1;
   - Id: 22827
@@ -29675,7 +29586,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",22829,6232,6228,24208,24209,17474),1;
   - Id: 22829
@@ -29684,7 +29594,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",4488,4497,4486,4480,4485,4539,4487,4494,4538,4489,4490,4482,4503,4483,4491),1;
   - Id: 22837
@@ -29693,7 +29602,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 50
-    EquipLevelMin: 50
     Script: |
       getitem 673,5;
   - Id: 22838
@@ -29702,7 +29610,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Something_Candy_Holder);
   - Id: 22842
@@ -29711,7 +29618,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",22846,6228,6232,24223,24227,17474),1;
   - Id: 22843
@@ -29736,7 +29642,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getitem callfunc("F_Rand",4488,4497,4486,4480,4485,4539,4487,4494,4538,4489,4490,4482,4503,22846),1;
   - Id: 22846
@@ -29879,7 +29784,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box5);
   - Id: 22869
@@ -29888,7 +29792,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 100
-    EquipLevelMin: 50
     Script: |
       RouletteBronze++;
   - Id: 22873
@@ -30036,7 +29939,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box6);
   - Id: 22953
@@ -30045,7 +29947,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box7);
   - Id: 22979
@@ -30078,7 +29979,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box8);
   - Id: 23012
@@ -30154,7 +30054,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box9);
   - Id: 23076
@@ -30201,7 +30100,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box10);
   - Id: 23087
@@ -30310,7 +30208,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box11);
   - Id: 23175
@@ -30388,7 +30285,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Flags:
       Container: true
     Script: |
@@ -30558,7 +30454,6 @@ Body:
       Blacksmith: true
     Classes:
       All_Third: true
-    EquipLevelMin: 100
     Delay:
       Duration: 180000
     Script: |
@@ -30569,8 +30464,6 @@ Body:
     Name: Novice Fly Wing
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 1
-    EquipLevelMax: 98
     Script: |
       itemskill "AL_TELEPORT",1;
   - Id: 23281
@@ -30629,7 +30522,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box12);
   - Id: 23307
@@ -30704,7 +30596,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box13);
   - Id: 23545
@@ -30737,7 +30628,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box14);
   - Id: 23665
@@ -30826,7 +30716,6 @@ Body:
     Type: Cash
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box15);
   - Id: 23706
@@ -31639,7 +31528,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box19);
   - Id: 100053
@@ -31768,7 +31656,6 @@ Body:
     Name: Noblesses Refine Ticket
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 100
     Script: |
       /*upgradeui 100128;*/
   - Id: 100129
@@ -31776,7 +31663,6 @@ Body:
     Name: Imperial Refine Ticket
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 125
     Script: |
       /*upgradeui 100129;*/
   - Id: 100130
@@ -31784,7 +31670,6 @@ Body:
     Name: Grace Refine Ticket
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 150
     Script: |
       /*upgradeui 100130;*/
   - Id: 100131
@@ -31792,7 +31677,6 @@ Body:
     Name: Imperial Physical Modification Permit (Garment)
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 125
     Script: |
       /*upgradeui 100131;*/
   - Id: 100132
@@ -31800,7 +31684,6 @@ Body:
     Name: Imperial Magical Modification Permit (Garment)
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 125
     Script: |
       /*upgradeui 100132;*/
   - Id: 100133
@@ -31808,7 +31691,6 @@ Body:
     Name: Grace Physical Modification Permit (Garment)
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 150
     Script: |
       /*upgradeui 100133;*/
   - Id: 100134
@@ -31816,7 +31698,6 @@ Body:
     Name: Grace Magical Modification Permit (Garment)
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 150
     Script: |
       /*upgradeui 100134;*/
   - Id: 100135
@@ -31824,7 +31705,6 @@ Body:
     Name: Imperial Physical Modification Permit (Armor)
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 125
     Script: |
       /*upgradeui 100135;*/
   - Id: 100136
@@ -31832,7 +31712,6 @@ Body:
     Name: Imperial Magical Modification Permit (Armor)
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 125
     Script: |
       /*upgradeui 100136;*/
   - Id: 100137
@@ -31840,7 +31719,6 @@ Body:
     Name: Grace Physical Modification Permit (Armor)
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 150
     Script: |
       /*upgradeui 100137;*/
   - Id: 100138
@@ -31848,7 +31726,6 @@ Body:
     Name: Grace Magical Modification Permit (Armor)
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 150
     Script: |
       /*upgradeui 100138;*/
   - Id: 100142
@@ -31933,7 +31810,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box20);
   - Id: 100205
@@ -32148,7 +32024,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 10
-    EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Enchant_Stone_Box21);
   - Id: 100321
@@ -32230,7 +32105,6 @@ Body:
     Name: Booster Weapon Upgrade Package
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 100
     Script: |
       /* upgradeui 100340; */
   - Id: 100341
@@ -32238,7 +32112,6 @@ Body:
     Name: Illusion (Bound) Upgrade Package
     Type: Delayconsume
     Buy: 1
-    EquipLevelMin: 130
     Script: |
       /* upgradeui 100341; */
   - Id: 100354
@@ -32591,7 +32464,6 @@ Body:
       Blacksmith: true
     Classes:
       All_Third: true
-    EquipLevelMin: 100
     Delay:
       Duration: 180000
     Script: |
@@ -32915,7 +32787,6 @@ Body:
     Type: Delayconsume
     Buy: 1
     Weight: 10
-    EquipLevelMin: 180
     Flags:
       BuyingStore: true
     Script: |
@@ -32926,7 +32797,6 @@ Body:
     Type: Delayconsume
     Buy: 1
     Weight: 10
-    EquipLevelMin: 180
     Flags:
       BuyingStore: true
     Script: |
@@ -32937,7 +32807,6 @@ Body:
     Type: Delayconsume
     Buy: 1
     Weight: 10
-    EquipLevelMin: 180
     Flags:
       BuyingStore: true
     Script: |
@@ -32948,7 +32817,6 @@ Body:
     Type: Delayconsume
     Buy: 1
     Weight: 10
-    EquipLevelMin: 180
     Flags:
       BuyingStore: true
     Script: |
@@ -33043,7 +32911,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 2
-    EquipLevelMin: 120
     Script: |
       itemheal rand(655,675),0;
   - Id: 1100004
@@ -33052,7 +32919,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 2
-    EquipLevelMin: 120
     Script: |
       itemheal 0,rand(340,360);
   - Id: 1100005
@@ -33061,6 +32927,5 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 2
-    EquipLevelMin: 180
     Script: |
       itemheal rand(2730,2750),0;
