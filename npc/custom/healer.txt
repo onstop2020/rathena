@@ -31,6 +31,12 @@
 	sc_start SC_INCREASEAGI,600000,10;
 	if(upgradeBuff >= 2)
 	sc_start SC_BLESSING,600000,10;
+	if(upgradeBuff >= 3)
+	sc_start SC_ANGELUS,600000,10;
+	if(upgradeBuff >= 4)
+	sc_start SC_IMPOSITIO,600000,5;
+	if(upgradeBuff >= 5)
+	sc_start SC_SUFFRAGIUM,600000,3;
 	if (.@Delay)
 	@HD = gettimetick(2) + .@Delay;
 	end;
@@ -48,6 +54,12 @@
 			.@sumPrice = .@sumPrice * .priceMultiplier;
 		}
 	}
+	if(upgradeBuff < 10 && .@sumPrice > .maxPriceBelow10)
+	.@sumPrice = .maxPriceBelow10;
+	else if(upgradeBuff < 20 && .@sumPrice > .maxPriceBelow20)
+	.@sumPrice = .maxPriceBelow20;
+	else if(upgradeBuff < 30 && .@sumPrice > .maxPriceBelow30)
+	.@sumPrice = .maxPriceBelow30;
 	menu "จ่าย " + callfunc("F_InsertComma",.@sumPrice) + "z",-;
 	if(Zeny >= .@sumPrice){
 		Zeny -= .@sumPrice;
@@ -63,9 +75,12 @@
 	}
 	
 OnInit:
-	.maxBuffUpgrade = 2;
+	.maxBuffUpgrade = 5;
 	.basePrice = 50;
 	.priceMultiplier = 10;
+	.maxPriceBelow10 = 50000;
+	.maxPriceBelow20 = 500000;
+	.maxPriceBelow30 = 5000000;
 	waitingroom "กดรัว ๆ เพื่อ Upgrade Buff",0;
 	end;
 }
