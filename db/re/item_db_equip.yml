@@ -9326,8 +9326,8 @@ Body:
     SubType: Mace
     Buy: 1
     Weight: 10
-    Attack: 5000
-    MagicAttack: 10000
+    Attack: 50
+    MagicAttack: 10
     Range: 2
     Locations:
       Right_Hand: true
