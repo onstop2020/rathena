@@ -24,9 +24,10 @@
 	}
 	
 	specialeffect2 EF_HEAL2;
-	percentheal 100,100;
+	
 	identifyall;
 	repairall;
+	
 	if(upgradeBuff >= 1)
 	sc_start SC_INCREASEAGI,600000,10;
 	if(upgradeBuff >= 2)
@@ -37,12 +38,37 @@
 	sc_start SC_IMPOSITIO,600000,5;
 	if(upgradeBuff >= 5)
 	sc_start SC_SUFFRAGIUM,600000,3;
+	if(upgradeBuff >= 6)
+	sc_start SC_KYRIE,600000,10;
+	if(upgradeBuff >= 7)
+	sc_start SC_MAGNIFICAT,600000,5;
+
+	percentheal 100,100;
+
 	if (.@Delay)
 	@HD = gettimetick(2) + .@Delay;
 	end;
 	
 	L_UpgradeBuff:
+	
+	mes "Buff ที่คุณจะได้รับขณะนี้";
+	if(upgradeBuff >= 1)
+	mes "Increase AGI";
+	if(upgradeBuff >= 2)
+	mes "Blessing";
+	if(upgradeBuff >= 3)
+	mes "Angelus";
+	if(upgradeBuff >= 4)
+	mes "Impositio";
+	if(upgradeBuff >= 5)
+	mes "Suffragium";
+	if(upgradeBuff >= 6)
+	mes "Kyrie Eleison";
+	if(upgradeBuff >= 7)
+	mes "Magnificat";
+
 	if(upgradeBuff >= .maxBuffUpgrade){
+		next;
 		mes "ตอนนี้ Upgrade ถึงขั้นสูงสุดแล้ว โปรดรออัปเดตภายหลัง";
 		close;
 	}
@@ -60,6 +86,7 @@
 	.@sumPrice = .maxPriceBelow20;
 	else if(upgradeBuff < 30 && .@sumPrice > .maxPriceBelow30)
 	.@sumPrice = .maxPriceBelow30;
+	next;
 	menu "จ่าย " + callfunc("F_InsertComma",.@sumPrice) + "z",-;
 	if(Zeny >= .@sumPrice){
 		Zeny -= .@sumPrice;
@@ -75,7 +102,7 @@
 	}
 	
 OnInit:
-	.maxBuffUpgrade = 5;
+	.maxBuffUpgrade = 7;
 	.basePrice = 50;
 	.priceMultiplier = 10;
 	.maxPriceBelow10 = 50000;

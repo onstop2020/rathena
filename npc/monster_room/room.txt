@@ -1,4 +1,4 @@
-prontera,157,198,5	script	Monster Room Warper	967,{
+prontera,157,196,5	script	Monster Room Warper	967,{
 	menu "(Max " + $mr1 + ") Level 1-5 (มอนตีเบากว่า 50)",L_1
 	,"(Max " + $mr2 + ") Level 6-20 (มอนตีเบากว่า 200)",L_2
 	,"(Max " + $mr3 + ") Level 21-30 (มอนตีเบากว่า 300)",L_3
