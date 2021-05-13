@@ -709,6 +709,7 @@ Body:
     Option: DEC_SPELL_CAST_TIME
     Script: |
       bonus bVariableCastrate,-(getrandomoptinfo(ROA_VALUE));
+      bonus bFixedCastrate,-(getrandomoptinfo(ROA_VALUE));
   - Id: 171
     Option: DEC_SPELL_DELAY_TIME
     Script: |
