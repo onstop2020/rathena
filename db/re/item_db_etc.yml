@@ -2104,13 +2104,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 25
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
   - Id: 1751
@@ -2121,13 +2114,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2140,13 +2126,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2159,13 +2138,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 40
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
   - Id: 1754
@@ -2176,13 +2148,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2195,13 +2160,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2214,13 +2172,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2233,13 +2184,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2252,13 +2196,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2271,13 +2208,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2291,13 +2221,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2310,13 +2233,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2329,13 +2245,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2348,13 +2257,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2368,13 +2270,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 10
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2387,13 +2282,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 50
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
   - Id: 1766
@@ -2404,13 +2292,6 @@ Body:
     Buy: 1
     Weight: 3
     Attack: 50
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2423,13 +2304,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2442,13 +2316,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2461,13 +2328,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2480,13 +2340,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
   - Id: 1771
@@ -2497,8 +2350,6 @@ Body:
     Buy: 1
     Weight: 5
     Attack: 30
-    Jobs:
-      Assassin: true
     Locations:
       Ammo: true
   - Id: 1772
@@ -2509,13 +2360,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 50
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     Script: |
@@ -2529,13 +2373,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 45
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
   - Id: 1774
@@ -2546,13 +2383,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 35
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
   - Id: 1775
@@ -2563,13 +2393,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 45
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
   - Id: 1776
@@ -2580,13 +2403,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
   - Id: 4001
@@ -24033,9 +23849,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 25
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
   - Id: 13201
@@ -24046,9 +23859,6 @@ Body:
     Buy: 1
     Weight: 2
     Attack: 15
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24061,9 +23871,6 @@ Body:
     Buy: 1
     Weight: 2
     Attack: 30
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24138,9 +23945,6 @@ Body:
     Buy: 1
     Weight: 5
     Attack: 50
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24203,9 +24007,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 50
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24218,9 +24019,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24233,9 +24031,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24248,9 +24043,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24263,9 +24055,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24278,9 +24067,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24293,9 +24079,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 15
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24308,9 +24091,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24383,9 +24163,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24398,9 +24175,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24413,9 +24187,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24428,9 +24199,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24444,9 +24212,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     Script: |
@@ -24460,9 +24225,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 10
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
   - Id: 13251
@@ -24473,9 +24235,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
   - Id: 13252
@@ -24486,9 +24245,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 45
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
   - Id: 13253
@@ -24499,9 +24255,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 70
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
   - Id: 13254
@@ -24512,9 +24265,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 100
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
   - Id: 13255
@@ -24525,9 +24275,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -24540,9 +24287,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -24555,9 +24299,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -24570,9 +24311,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -24585,9 +24323,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -24600,10 +24335,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 1
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 13261
@@ -24613,10 +24344,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 1
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 13262
@@ -24626,10 +24353,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 1
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 13263
@@ -24639,10 +24362,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 1
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 13264
@@ -24652,10 +24371,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 1
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 13265
@@ -24665,10 +24380,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 13266
@@ -24678,10 +24389,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 13267
@@ -24691,10 +24398,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 13268
@@ -24704,10 +24407,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 10
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24719,10 +24418,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 10
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24734,10 +24429,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24749,10 +24440,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24764,10 +24451,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24788,10 +24471,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 10
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24803,10 +24482,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 10
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24818,10 +24493,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 20
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24833,10 +24504,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 40
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24848,10 +24515,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 80
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24863,10 +24526,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 20
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24878,10 +24537,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 40
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24893,10 +24548,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 80
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24908,10 +24559,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 70
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24924,10 +24571,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24940,10 +24583,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24955,10 +24594,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24970,10 +24605,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -24985,10 +24616,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -25000,10 +24627,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -25015,10 +24638,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -25030,10 +24649,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -25045,10 +24660,6 @@ Body:
     SubType: Throwweapon
     Buy: 1
     Weight: 50
-    Jobs:
-      Alchemist: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -25061,9 +24672,6 @@ Body:
     Buy: 1
     Weight: 5
     Attack: 110
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -25077,9 +24685,6 @@ Body:
     Buy: 1
     Weight: 20
     Attack: 50
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -25093,9 +24698,6 @@ Body:
     Buy: 1
     Weight: 20
     Attack: 50
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -25109,9 +24711,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 50
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     Script: |
@@ -25155,11 +24754,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 100
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 18001
@@ -25170,11 +24764,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 120
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -25187,11 +24776,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 120
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -25204,11 +24788,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 120
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
     Script: |
@@ -25221,11 +24800,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 250
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Locations:
       Ammo: true
   - Id: 22519

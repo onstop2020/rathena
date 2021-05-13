@@ -1523,32 +1523,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 150
-    Jobs:
-      Alchemist: true
-      Archer: true
-      Assassin: true
-      Blacksmith: true
-      Crusader: true
-      Gunslinger: true
-      Hunter: true
-      KagerouOboro: true
-      Knight: true
-      Mage: true
-      Merchant: true
-      Monk: true
-      Ninja: true
-      Novice: true
-      Rebellion: true
-      Rogue: true
-      Sage: true
-      SoulLinker: true
-      StarGladiator: true
-      Summoner: true
-      SuperNovice: true
-      Swordman: true
-      Taekwon: true
-      Thief: true
-      Wizard: true
     Flags:
       BuyingStore: true
     Script: |
@@ -1559,21 +1533,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 200
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
-      Crusader: true
-      Gunslinger: true
-      Knight: true
-      Mage: true
-      Merchant: true
-      Rebellion: true
-      Rogue: true
-      SoulLinker: true
-      StarGladiator: true
-      Swordman: true
-      Taekwon: true
-      Wizard: true
     Flags:
       BuyingStore: true
     Script: |
@@ -6785,10 +6744,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 1
-    Jobs:
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Flags:
       BuyingStore: true
     Script: |
@@ -6801,10 +6756,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 1
-    Jobs:
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Flags:
       BuyingStore: true
     Script: |
@@ -6817,10 +6768,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 1
-    Jobs:
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Flags:
       BuyingStore: true
     Script: |
@@ -9635,10 +9582,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    Jobs:
-      Knight: true
-    Classes:
-      All_Third: true
     Flags:
       BuyingStore: true
     Script: |
@@ -9649,10 +9592,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    Jobs:
-      Knight: true
-    Classes:
-      All_Third: true
     Flags:
       BuyingStore: true
     Script: |
@@ -9663,10 +9602,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    Jobs:
-      Knight: true
-    Classes:
-      All_Third: true
     Flags:
       BuyingStore: true
     Script: |
@@ -9677,10 +9612,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    Jobs:
-      Knight: true
-    Classes:
-      All_Third: true
     Flags:
       BuyingStore: true
     Script: |
@@ -9691,10 +9622,6 @@ Body:
     Type: Healing
     Buy: 1
     Weight: 100
-    Jobs:
-      Knight: true
-    Classes:
-      All_Third: true
     Flags:
       BuyingStore: true
     Script: |
@@ -20593,32 +20520,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 20
-    Jobs:
-      Alchemist: true
-      Archer: true
-      Assassin: true
-      Blacksmith: true
-      Crusader: true
-      Gunslinger: true
-      Hunter: true
-      KagerouOboro: true
-      Knight: true
-      Mage: true
-      Merchant: true
-      Monk: true
-      Ninja: true
-      Novice: true
-      Rebellion: true
-      Rogue: true
-      Sage: true
-      SoulLinker: true
-      StarGladiator: true
-      Summoner: true
-      SuperNovice: true
-      Swordman: true
-      Taekwon: true
-      Thief: true
-      Wizard: true
     Script: |
       sc_start SC_ASPDPOTION1,1800000,6;
   - Id: 14511
@@ -20627,21 +20528,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 20
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
-      Crusader: true
-      Gunslinger: true
-      Knight: true
-      Mage: true
-      Merchant: true
-      Rebellion: true
-      Rogue: true
-      SoulLinker: true
-      StarGladiator: true
-      Swordman: true
-      Taekwon: true
-      Wizard: true
     Script: |
       sc_start SC_ASPDPOTION2,1800000,9;
   - Id: 14512
@@ -28398,8 +28284,6 @@ Body:
     Type: Delayconsume
     Buy: 1
     Weight: 10
-    Classes:
-      All_Third: true
     Delay:
       Duration: 5000
       Status: Reuse_Limit_Luxanima
@@ -28425,9 +28309,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 200
-    Jobs:
-      Mage: true
-      Swordman: true
     Script: |
       sc_start SC_ASPDPOTION2,1800000,9;
   - Id: 22544
@@ -30450,10 +30331,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 300
-    Jobs:
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Delay:
       Duration: 180000
     Script: |
@@ -32460,10 +32337,6 @@ Body:
     Type: Usable
     Buy: 1
     Weight: 300
-    Jobs:
-      Blacksmith: true
-    Classes:
-      All_Third: true
     Delay:
       Duration: 180000
     Script: |
