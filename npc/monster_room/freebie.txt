@@ -1,0 +1,14 @@
+-	script	freebieSystem	-1,{
+OnPCLoginEvent:
+	if(getcharid(3) <= 2000034 && !#fb1){
+		#fb1 = 1;
+		
+		Zeny += 2000000;
+		
+		dispbottom "คุณได้รับการชดเชย สำหรับผู้เล่นที่เล่นก่อน ( 13 May 2021 )";
+		dispbottom "* เนื่องจากมีอาการเด้งหลายครั้ง";
+		dispbottom "---";
+		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",2000000) + "z";
+	}
+	end;
+}
