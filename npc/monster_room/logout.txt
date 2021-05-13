@@ -1,0 +1,5 @@
+-	script	logout	-1,{
+OnPCLogoutEvent:
+	warp "prontera",156,191;
+	end;
+}
