@@ -43,6 +43,7 @@
 	dispbottom "showzeny";
 	dispbottom "autoloot";
 	dispbottom "alootid";
+	dispbottom "autoloottype";
 	dispbottom "autotrade";
 	dispbottom "who";
 	dispbottom "who2";
