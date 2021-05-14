@@ -1,0 +1,171 @@
+-	script	viewSet	-1,{
+OnPCLoginEvent:
+	setlook LOOK_HEAD_TOP,head1;
+	setlook LOOK_HEAD_MID,head2;
+	setlook LOOK_HEAD_BOTTOM,head3;
+	setlook LOOK_ROBE,head4;
+	end;
+}
+
+-	script	viewChanger	-1,{
+	if(!head1Bought || !head2Bought || !head3Bought || !head4Bought)
+	mes "*จ่ายเมนูละรอบ \nจากนั้นจะสามารถใช้เมนูนั้น ได้ตลอดไปต่อตัวละคร";
+	else
+	mes "วัยรุ่นทำไรอะ?";
+	next;
+	.@head1String$ = head1Bought ? "" : " (" + callfunc("F_InsertComma",.priceHead1) + "z)";
+	.@head2String$ = head2Bought ? "" : " (" + callfunc("F_InsertComma",.priceHead2) + "z)";
+	.@head3String$ = head3Bought ? "" : " (" + callfunc("F_InsertComma",.priceHead3) + "z)";
+	.@head4String$ = head4Bought ? "" : " (" + callfunc("F_InsertComma",.priceHead4) + "z)";
+	menu "หมวก 1" + .@head1String$,L_Head1
+	,"หมวก 2" + .@head2String$,L_Head2
+	,"หมวก 3" + .@head3String$,L_Head3
+	,"ผ้าคลุม" + .@head4String$,L_Head4;
+	end;
+	
+	L_Head1:
+	if(!head1Bought){
+		menu "จ่ายเงิน",-;
+		if(Zeny < .priceHead1)
+		goto L_NotEnoughZeny;
+		Zeny -= .priceHead1;
+		head1Bought = 1;
+	}
+	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
+	input .@i;
+	if(.@i >= .lowestHat && .@i <= .highestHat)
+	setlook LOOK_HEAD_TOP,.@i;
+	else{
+		.@i = 0;
+		setlook LOOK_HEAD_TOP,.@i;
+	}
+	head1 = .@i;
+	end;
+	
+	L_Head2:
+	if(!head2Bought){
+		menu "จ่ายเงิน",-;
+		if(Zeny < .priceHead2)
+		goto L_NotEnoughZeny;
+		Zeny -= .priceHead2;
+		head2Bought = 1;
+	}
+	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
+	input .@i;
+	if(.@i >= .lowestHat && .@i <= .highestHat)
+	setlook LOOK_HEAD_MID,.@i;
+	else{
+		.@i = 0;
+		setlook LOOK_HEAD_MID,.@i;
+	}
+	head2 = .@i;
+	end;
+	
+	L_Head3:
+	if(!head3Bought){
+		menu "จ่ายเงิน",-;
+		if(Zeny < .priceHead3)
+		goto L_NotEnoughZeny;
+		Zeny -= .priceHead3;
+		head3Bought = 1;
+	}
+	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
+	input .@i;
+	if(.@i >= .lowestHat && .@i <= .highestHat)
+	setlook LOOK_HEAD_BOTTOM,.@i;
+	else{
+		.@i = 0;
+		setlook LOOK_HEAD_BOTTOM,.@i;
+	}
+	head3 = .@i;
+	end;
+	
+	L_Head4:
+	if(!head4Bought){
+		menu "จ่ายเงิน",-;
+		if(Zeny < .priceHead4)
+		goto L_NotEnoughZeny;
+		Zeny -= .priceHead4;
+		head4Bought = 1;
+	}
+	mes "มีผ้าคลุมเลข " + .lowestHat4 + "-" + .highestHat4 + " ถ้าเด้งก็แก้เด้งเอานะ";
+	input .@i;
+	if(.@i >= .lowestHat4 && .@i <= .highestHat4)
+	setlook LOOK_ROBE,.@i;
+	else{
+		.@i = 0;
+		setlook LOOK_ROBE,.@i;
+	}
+	head4 = .@i;
+	end;
+	
+	L_NotEnoughZeny:
+	mes "ดูเหมือนเจ้าจะมี Zeny ไม่เพียงพอ";
+	close;
+	
+OnInit:
+	.priceHead1 = 10000;
+	.priceHead2 = 500000;
+	.priceHead3 = 1000000;
+	.priceHead4 = 2000000;
+	.lowestHat = 1;
+	.highestHat = 2129;
+	.lowestHat4 = 1;
+	.highestHat4 = 110;
+	end;
+}
+
+-	script	howToFixError1	-1,{
+	end;
+OnInit:
+	waitingroom "วิธีแก้ตัวเด้ง",0;
+
+	end;
+}
+
+-	script	howToFixError2	-1,{
+	end;
+OnInit:
+	waitingroom "1.) เข้า ID กาก ๆ เช่น 1234 1234",0;
+	end;
+}
+
+-	script	howToFixError3	-1,{
+	end;
+OnInit:
+	waitingroom "2.) หา NPC ชื่อ แต่งตัว",0;
+	end;
+}
+
+-	script	howToFixError4	-1,{
+	end;
+OnInit:
+	waitingroom "3.) แล้วเข้าเมนู แก้ตัวเด้ง",0;
+	end;
+}
+
+-	script	howToFixError5	-1,{
+	end;
+OnInit:
+	waitingroom "4.) ใส่ ID PW จากนั้นกดถอดของ",0;
+	end;
+}
+
+-	script	backToTown	-1,{
+	warp "prontera",156,191;
+	end;
+}
+
+-	script	goToDress	-1,{
+	warp "prt_in",240,162;
+	end;
+}
+
+prontera,143,193,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
+prt_in,244,168,5	duplicate(viewChanger)	แต่งทุกอย่าง	1681
+prt_in,248,165,5	duplicate(howToFixError1)	วิธีแก้ตัวเด้ง#1	10005
+prt_in,250,165,5	duplicate(howToFixError2)	วิธีแก้ตัวเด้ง#2	10005
+prt_in,252,165,5	duplicate(howToFixError3)	วิธีแก้ตัวเด้ง#3	10005
+prt_in,254,165,5	duplicate(howToFixError4)	วิธีแก้ตัวเด้ง#4	10005
+prt_in,256,165,5	duplicate(howToFixError5)	วิธีแก้ตัวเด้ง#5	10005
+prt_in,235,163,5	duplicate(backToTown)	กลับเมือง	101
