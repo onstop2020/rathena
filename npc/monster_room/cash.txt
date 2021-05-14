@@ -58,7 +58,7 @@ OnDonate:
 	if(.@acashstorage <= 0)
 	query_sql "INSERT INTO `acc_reg_num` (`account_id`, `key`, `index`, `value`) VALUES ('" + .@i + "', '#donate', '0', '" + .@sum + "')";
 	else
-	query_sql "UPDATE `acc_reg_num` SET `value` = " + .@sum + " WHERE `account_id` = " + .@i + "";
+	query_sql "UPDATE `acc_reg_num` SET `value` = " + .@sum + " WHERE `account_id` = " + .@i + "and `key` = '#donate'";
 	mes "AID: " + .@i;
 	mes "ID: " + .@a$;
 	mes "Cash: " + .@acash;
