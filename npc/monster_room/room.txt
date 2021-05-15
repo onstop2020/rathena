@@ -1,5 +1,7 @@
 prontera,157,196,3	script	Monster Room Warper	967,{
-	menu "(Max " + $mr1 + ") Level 1-5 (มอนตีเบากว่า 50)",L_1
+	menu "เก็บอาวุธอัตโนมัติ (ที่สุ่มทุกอย่าง)",L_AutoLootWeapon
+	,"เก็บอุปกรณ์สวมใส่อัตโนมัติ (ที่สุ่มทุกอย่าง)",L_AutoLootEquipment
+	,"(Max " + $mr1 + ") Level 1-5 (มอนตีเบากว่า 50)",L_1
 	,"(Max " + $mr2 + ") Level 6-20 (มอนตีเบากว่า 200)",L_2
 	,"(Max " + $mr3 + ") Level 21-30 (มอนตีเบากว่า 300)",L_3
 	,"(Max " + $mr4 + ") Level 31-40 (มอนตีเบากว่า 400)",L_4
@@ -21,7 +23,16 @@ prontera,157,196,3	script	Monster Room Warper	967,{
 	,"(Max " + $mr20 + ") All MvP",L_20
 	,"(Max " + $mr21 + ") All Monster",L_21;
 	end;
-
+	
+	L_AutoLootWeapon:
+	autoLootWeapon = !autoLootWeapon;
+	message strcharinfo(0),autoLootWeapon ? "เก็บอาวุธจากการสุ่ม อัตโนมัติ: On" : "เก็บอาวุธจากการสุ่ม อัตโนมัติ: Off";
+	end;
+	L_AutoLootEquipment:
+	autoLootEquipment = !autoLootEquipment;
+	message strcharinfo(0),autoLootEquipment ? "เก็บอุปกรณ์สวมใส่จากการสุ่ม อัตโนมัติ: On" : "เก็บอุปกรณ์สวมใส่จากการสุ่ม อัตโนมัติ: Off";
+	end;
+	
 	L_1:
 	warp "pvp_n_1-1",0,0;
 	end;
@@ -279,9 +290,9 @@ OnMonsterDead:
 	
 	// Just drop 1 type per killed (Otherwise it's too many drop on the floor?)
 	if(rand(0,1))
-	.@allArmorDropChance = 0;
+	.@allArmorDropChance = -1;
 	else
-	.@allWeaponDropChance = 0;
+	.@allWeaponDropChance = -1;
 	
 	// All MvP map check
 	if(strcharinfo(3) == $mr20name$){
@@ -296,15 +307,23 @@ OnMonsterDead:
 	//debugmes "Random: " + .@rand;
 	
 	if(.@rand <= .@allWeaponDropChance){
-		getmapxy(.@mn$,.@x,.@y);
-		makeitem $allWeaponId[rand(0,$allWeaponIdArraySize - 1)],1,strcharinfo(3),.@x,.@y;
+		if(autoLootWeapon)
+		getitem $allWeaponId[rand(0,$allWeaponIdArraySize - 1)],1;
+		else{
+			getmapxy(.@mn$,.@x,.@y);
+			makeitem $allWeaponId[rand(0,$allWeaponIdArraySize - 1)],1,strcharinfo(3),.@x,.@y;
+		}
 	}
 	
 	.@rand = rand(0,100);
 	
 	if(.@rand <= .@allArmorDropChance){
-		getmapxy(.@mn$,.@x,.@y);
-		makeitem $allArmorId[rand(0,$allArmorIdArraySize - 1)],1,strcharinfo(3),.@x,.@y;
+		if(autoLootEquipment)
+		getitem $allArmorId[rand(0,$allArmorIdArraySize - 1)],1;
+		else{
+			getmapxy(.@mn$,.@x,.@y);
+			makeitem $allArmorId[rand(0,$allArmorIdArraySize - 1)],1,strcharinfo(3),.@x,.@y;
+		}
 	}
 	
 	for(.@i = 1; .@i <= $maxRoom; .@i++){
