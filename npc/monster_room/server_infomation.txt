@@ -49,6 +49,7 @@
 	dispbottom "who2";
 	dispbottom "who3";
 	dispbottom "load";
+	dispbottom "mi";
 	dispbottom " ";
 	dispbottom "=== ข้อมูลไร้สาระ ===";
 	dispbottom "-Warg + Falcon พร้อมกันได้";
@@ -69,7 +70,6 @@
 	dispbottom "-ช่องโจมตีนับเป็นวงกลมไม่ใช่สี่เหลี่ยม";
 	dispbottom "-ไม่มีการผูกมัด Item กับตัวใดตัวนึง";
 	dispbottom "-คุยกับ NPC ทิ้งไว้ได้ไม่ค้าง";
-	dispbottom "-อาจเด้ง ๆ บ้างแจ้งทิ้งไว้ว่างเดียวมาแก้";
 	end;
 }
 

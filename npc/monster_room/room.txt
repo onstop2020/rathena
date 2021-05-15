@@ -1,6 +1,7 @@
 prontera,157,196,3	script	Monster Room Warper	967,{
 	menu "เก็บอาวุธอัตโนมัติ (ที่สุ่มทุกอย่าง)",L_AutoLootWeapon
 	,"เก็บอุปกรณ์สวมใส่อัตโนมัติ (ที่สุ่มทุกอย่าง)",L_AutoLootEquipment
+	,"ตั้งเวลาอมตะตอนโหลด Map",L_AdjustLoadTime
 	,"(Max " + $mr1 + ") Level 1-5 (มอนตีเบากว่า 50)",L_1
 	,"(Max " + $mr2 + ") Level 6-20 (มอนตีเบากว่า 200)",L_2
 	,"(Max " + $mr3 + ") Level 21-30 (มอนตีเบากว่า 300)",L_3
@@ -32,68 +33,89 @@ prontera,157,196,3	script	Monster Room Warper	967,{
 	autoLootEquipment = !autoLootEquipment;
 	message strcharinfo(0),autoLootEquipment ? "เก็บอุปกรณ์สวมใส่จากการสุ่ม อัตโนมัติ: On" : "เก็บอุปกรณ์สวมใส่จากการสุ่ม อัตโนมัติ: Off";
 	end;
-	
+
 	L_1:
+	callsub(L_WarpBegin);
 	warp "pvp_n_1-1",0,0;
 	end;
 	L_2:
+	callsub(L_WarpBegin);
 	warp "pvp_n_1-2",0,0;
 	end;
 	L_3:
+	callsub(L_WarpBegin);
 	warp "pvp_n_1-3",0,0;
 	end;
 	L_4:
+	callsub(L_WarpBegin);
 	warp "pvp_n_1-4",0,0;
 	end;
 	L_5:
+	callsub(L_WarpBegin);
 	warp "pvp_n_1-5",0,0;
 	end;
 	L_6:
+	callsub(L_WarpBegin);
 	warp "pvp_y_1-1",0,0;
 	end;
 	L_7:
+	callsub(L_WarpBegin);
 	warp "pvp_y_1-2",0,0;
 	end;
 	L_8:
+	callsub(L_WarpBegin);
 	warp "pvp_y_1-3",0,0;
 	end;
 	L_9:
+	callsub(L_WarpBegin);
 	warp "pvp_y_1-4",0,0;
 	end;
 	L_10:
+	callsub(L_WarpBegin);
 	warp "pvp_y_1-5",0,0;
 	end;
 	L_11:
+	callsub(L_WarpBegin);
 	warp "guild_vs1",0,0;
 	end;
 	L_12:
+	callsub(L_WarpBegin);
 	warp "guild_vs2",0,0;
 	end;
 	L_13:
+	callsub(L_WarpBegin);
 	warp "guild_vs3",0,0;
 	end;
 	L_14:
+	callsub(L_WarpBegin);
 	warp "guild_vs4",0,0;
 	end;
 	L_15:
+	callsub(L_WarpBegin);
 	warp "guild_vs5",0,0;
 	end;
 	L_16:
+	callsub(L_WarpBegin);
 	warp "guild_vs2-1",0,0;
 	end;
 	L_17:
+	callsub(L_WarpBegin);
 	warp "guild_vs2-2",0,0;
 	end;
 	L_18:
+	callsub(L_WarpBegin);
 	warp "tha_t11",0,0;
 	end;
 	L_19:
+	callsub(L_WarpBegin);
 	warp "tha_t12",0,0;
 	end;
 	L_20:
+	callsub(L_WarpBegin);
 	warp "thana_boss",0,0;
 	end;
 	L_21:
+	callsub(L_WarpBegin);
 	warp "job4_tro",0,0;
 	end;
 	
@@ -340,6 +362,60 @@ OnMonsterDead:
 		}
 	}
 	//debugmes "On map: " + strcharinfo(3) + ", Killed: " + getd("$killed_mr" + .@i) + "/" + getd("$mr" + .@i);
+	end;
+	
+	L_AdjustLoadTime:
+	mes "ตั้งระยะเวลาอมตะเพื่อใช้ในการ Load Map";
+	next;
+	menu "ปิดการใช้งาน อมตะ",L_Load0
+	,"เปิดการใช้งาน อมตะ 1 วินาที",L_Load1
+	,"เปิดการใช้งาน อมตะ 2 วินาที",L_Load2
+	,"เปิดการใช้งาน อมตะ 3 วินาที",L_Load3
+	,"เปิดการใช้งาน อมตะ 4 วินาที",L_Load4
+	,"เปิดการใช้งาน อมตะ 5 วินาที",L_Load5;
+	
+	L_Load0:
+	loadTimer = 0;
+	message strcharinfo(0),"ปิดการใช้งาน อมตะ เรียบร้อยแล้ว";
+	end;
+	
+	L_Load1:
+	loadTimer = 1;
+	goto L_LoadTrade;
+	
+	L_Load2:
+	loadTimer = 2;
+	goto L_LoadTrade;
+	
+	L_Load3:
+	loadTimer = 3;
+	goto L_LoadTrade;
+	
+	L_Load4:
+	loadTimer = 4;
+	goto L_LoadTrade;
+	
+	L_Load5:
+	loadTimer = 5;
+	goto L_LoadTrade;
+	
+	L_LoadTrade:
+	message strcharinfo(0),"เปิดการใช้งาน อมตะ " + loadTimer + " วินาที เรียบร้อยแล้ว";
+	end;
+	
+	L_WarpBegin:
+	if(loadTimer <= 0)
+	return;
+	setpcblock PCBLOCK_ALL,true;
+	addtimer loadTimer * 1000,strnpcinfo(3) + "::OnLoaded5Second";
+	return;
+	
+OnLoaded5Second:
+	setpcblock PCBLOCK_ALL,false;
+	end;
+	
+OnPCLoginEvent:
+	setpcblock PCBLOCK_ALL,false;
 	end;
 }
 
