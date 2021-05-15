@@ -34,12 +34,12 @@ OnPCLoginEvent:
 	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
 	input .@i;
 	if(.@i >= .lowestHat && .@i <= .highestHat)
-	setlook LOOK_HEAD_TOP,.@i;
+	changelook LOOK_HEAD_TOP,.@i;
 	else{
 		.@i = 0;
-		setlook LOOK_HEAD_TOP,.@i;
+		changelook LOOK_HEAD_TOP,.@i;
 	}
-	head1 = .@i;
+	@head1 = .@i;
 	end;
 	
 	L_Head2:
@@ -53,12 +53,12 @@ OnPCLoginEvent:
 	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
 	input .@i;
 	if(.@i >= .lowestHat && .@i <= .highestHat)
-	setlook LOOK_HEAD_MID,.@i;
+	changelook LOOK_HEAD_MID,.@i;
 	else{
 		.@i = 0;
-		setlook LOOK_HEAD_MID,.@i;
+		changelook LOOK_HEAD_MID,.@i;
 	}
-	head2 = .@i;
+	@head2 = .@i;
 	end;
 	
 	L_Head3:
@@ -72,12 +72,12 @@ OnPCLoginEvent:
 	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
 	input .@i;
 	if(.@i >= .lowestHat && .@i <= .highestHat)
-	setlook LOOK_HEAD_BOTTOM,.@i;
+	changelook LOOK_HEAD_BOTTOM,.@i;
 	else{
 		.@i = 0;
-		setlook LOOK_HEAD_BOTTOM,.@i;
+		changelook LOOK_HEAD_BOTTOM,.@i;
 	}
-	head3 = .@i;
+	@head3 = .@i;
 	end;
 	
 	L_Head4:
@@ -91,12 +91,12 @@ OnPCLoginEvent:
 	mes "มีผ้าคลุมเลข " + .lowestHat4 + "-" + .highestHat4 + " ถ้าเด้งก็แก้เด้งเอานะ";
 	input .@i;
 	if(.@i >= .lowestHat4 && .@i <= .highestHat4)
-	setlook LOOK_ROBE,.@i;
+	changelook LOOK_ROBE,.@i;
 	else{
 		.@i = 0;
-		setlook LOOK_ROBE,.@i;
+		changelook LOOK_ROBE,.@i;
 	}
-	head4 = .@i;
+	@head4 = .@i;
 	end;
 	
 	L_NotEnoughZeny:
@@ -115,39 +115,19 @@ OnInit:
 	end;
 }
 
--	script	howToFixError1	-1,{
+-	script	saveView	-1,{
+	message strcharinfo(0),"บันทึก เรียบร้อยแล้ว";
+	head1 = @head1;
+	head2 = @head2;
+	head3 = @head3;
+	head4 = @head4;
+	setlook LOOK_HEAD_TOP,head1;
+	setlook LOOK_HEAD_MID,head2;
+	setlook LOOK_HEAD_BOTTOM,head3;
+	setlook LOOK_ROBE,head4;
 	end;
 OnInit:
-	waitingroom "วิธีแก้ตัวเด้ง",0;
-
-	end;
-}
-
--	script	howToFixError2	-1,{
-	end;
-OnInit:
-	waitingroom "1.) เข้า ID กาก ๆ เช่น 1234 1234",0;
-	end;
-}
-
--	script	howToFixError3	-1,{
-	end;
-OnInit:
-	waitingroom "2.) หา NPC ชื่อ แต่งตัว",0;
-	end;
-}
-
--	script	howToFixError4	-1,{
-	end;
-OnInit:
-	waitingroom "3.) แล้วเข้าเมนู แก้ตัวเด้ง",0;
-	end;
-}
-
--	script	howToFixError5	-1,{
-	end;
-OnInit:
-	waitingroom "4.) ใส่ ID PW จากนั้นกดถอดของ",0;
+	waitingroom "บันทึกการแต่งตัวจัดเต็ม",0;
 	end;
 }
 
@@ -163,9 +143,5 @@ OnInit:
 
 prontera,143,193,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
 prt_in,244,168,5	duplicate(viewChanger)	แต่งทุกอย่าง	1681
-prt_in,248,165,5	duplicate(howToFixError1)	วิธีแก้ตัวเด้ง#1	10005
-prt_in,250,165,5	duplicate(howToFixError2)	วิธีแก้ตัวเด้ง#2	10005
-prt_in,252,165,5	duplicate(howToFixError3)	วิธีแก้ตัวเด้ง#3	10005
-prt_in,254,165,5	duplicate(howToFixError4)	วิธีแก้ตัวเด้ง#4	10005
-prt_in,256,165,5	duplicate(howToFixError5)	วิธีแก้ตัวเด้ง#5	10005
+prt_in,248,165,3	duplicate(saveView)	บันทึก	1680
 prt_in,235,163,5	duplicate(backToTown)	กลับเมือง	101

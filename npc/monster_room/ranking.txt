@@ -9,13 +9,18 @@
 	close;
 	
 	L_MvPKiller:
+	mes "กำลังปรับปรุง";
+	close;
+	
 	query_sql("SELECT `char_id`,`value` FROM `char_reg_num` WHERE `key` = 'mvpMapKiller' ORDER BY `value` DESC LIMIT 10",.@charId,.@killCount);
 	if(getarraysize(.@charId) <= 0)
 	mes "ยังไม่มีข้อมูล";
 	else{
 		mes "อันดับ MvP Map Killer";
-		for(.@i = 0; .@i < getarraysize(.@charId); .@i++)
-		mes (.@i + 1) + ".) " + strcharinfo(0,.@charId[.@i]) + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
+		for(.@i = 0; .@i < getarraysize(.@charId); .@i++){
+			.@rankName$ = strcharinfo(0,.@charId[.@i]);
+			mes (.@i + 1) + ".) " + .@rankName$ + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
+		}
 	}
 	
 	close;

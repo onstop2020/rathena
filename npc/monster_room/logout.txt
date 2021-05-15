@@ -1,5 +1,13 @@
 -	script	logout	-1,{
 OnPCLogoutEvent:
+
+	// Unexpected Error
+	if(!playerattached())
+	end;
+
+	if(strcharinfo(3) == "prt_in")
+	end;
+
 	warp "prontera",156,191;
 	end;
 }

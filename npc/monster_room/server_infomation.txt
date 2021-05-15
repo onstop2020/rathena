@@ -73,4 +73,4 @@
 	end;
 }
 
-prontera,157,181,5	duplicate(serverInfomation)	ข้อมูล Server	837
+prontera,157,181,3	duplicate(serverInfomation)	ข้อมูล Server	837
