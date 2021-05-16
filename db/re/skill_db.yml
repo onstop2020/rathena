@@ -1561,7 +1561,6 @@ Body:
     FixedCastTime: 200
     Requires:
       SpCost: 10
-      State: Water
   - Id: 32
     Name: AL_CRUCIS
     Description: Signum Crucis
@@ -3533,7 +3532,6 @@ Body:
           Amount: 25
         - Level: 10
           Amount: 25
-      State: Water
     Unit:
       Id: Dummyskill
       Layout:
@@ -7050,7 +7048,6 @@ Body:
           Amount: 28
         - Level: 10
           Amount: 30
-      State: Shield
   - Id: 250
     Name: CR_SHIELDCHARGE
     Description: Smite
@@ -7078,7 +7075,6 @@ Body:
     Duration2: 5000
     Requires:
       SpCost: 10
-      State: Shield
   - Id: 251
     Name: CR_SHIELDBOOMERANG
     Description: Shield Boomerang
@@ -7105,7 +7101,6 @@ Body:
     AfterCastActDelay: 700
     Requires:
       SpCost: 12
-      State: Shield
   - Id: 252
     Name: CR_REFLECTSHIELD
     Description: Shield Reflect
@@ -7139,7 +7134,6 @@ Body:
           Amount: 75
         - Level: 10
           Amount: 80
-      State: Shield
   - Id: 253
     Name: CR_HOLYCROSS
     Description: Holy Cross
@@ -7307,7 +7301,6 @@ Body:
     Duration1: 180000
     Requires:
       SpCost: 30
-      State: Shield
   - Id: 258
     Name: CR_SPEARQUICKEN
     Description: Spear Quicken
@@ -13201,7 +13194,6 @@ Body:
           Amount: 37
         - Level: 5
           Amount: 40
-      State: Shield
   - Id: 481
     Name: HP_MANARECHARGE
     Description: Mana Recharge
@@ -17215,7 +17207,6 @@ Body:
     Duration1: 300000
     Requires:
       SpCost: 15
-      State: Shield
   - Id: 1003
     Name: AS_SONICACCEL
     Description: Sonic Acceleration
@@ -23207,7 +23198,6 @@ Body:
           Amount: 26
         - Level: 10
           Amount: 28
-      State: Shield
   - Id: 2311
     Name: LG_REFLECTDAMAGE
     Description: Reflect Damage Reduction
@@ -23232,7 +23222,6 @@ Body:
           Amount: 90
         - Level: 5
           Amount: 100
-      State: Shield
   - Id: 2312
     Name: LG_PINPOINTATTACK
     Description: Pinpoint Attack
@@ -23297,7 +23286,6 @@ Body:
     Cooldown: 2000
     Requires:
       SpCost: 50
-      State: Shield
   - Id: 2316
     Name: LG_EXEEDBREAK
     Description: Exceed Break
@@ -23674,7 +23662,6 @@ Body:
           Amount: 76
         - Level: 5
           Amount: 84
-      State: Shield
   - Id: 2324
     Name: LG_HESPERUSLIT
     Description: Hesperus Lit
@@ -35772,7 +35759,6 @@ Body:
     Duration1: 180000
     Requires:
       SpCost: 30
-      State: Shield
   - Id: 8220
     Name: ML_AUTOGUARD
     Description: Guard
