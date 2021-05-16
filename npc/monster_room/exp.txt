@@ -93,4 +93,4 @@ OnInit:
 	end;
 }
 
-prontera,162,193,3	duplicate(expSeller)	¤Ù³ EXP	704
+prontera,164,193,3	duplicate(expSeller)	¤Ù³ EXP	704

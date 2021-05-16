@@ -3,4 +3,4 @@
 	end;
 }
 
-prontera,145,193,5	duplicate(storage)	คลังเก็บของ	10005
+prontera,142,180,5	duplicate(storage)	คลังเก็บของ	10005

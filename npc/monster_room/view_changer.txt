@@ -159,6 +159,6 @@ OnInit:
 	end;
 }
 
-prontera,143,193,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
+prontera,138,184,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
 prt_in,244,168,5	duplicate(viewChanger)	แต่งทุกอย่าง	1681
 prt_in,235,163,5	duplicate(backToTown)	กลับเมือง	101

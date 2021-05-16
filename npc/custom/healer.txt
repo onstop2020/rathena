@@ -49,6 +49,10 @@
 	sc_start SC_KYRIE,600000,10;
 	if(upgradeBuff >= 7)
 	sc_start SC_MAGNIFICAT,600000,5;
+	if(upgradeBuff >= 8)
+	sc_start SC_GLORIA,600000,5;
+	if(upgradeBuff >= 9)
+	sc_start SC_SLOWPOISON,600000,4;
 
 	percentheal 100,100;
 
@@ -73,6 +77,10 @@
 	mes "Kyrie Eleison";
 	if(upgradeBuff >= 7)
 	mes "Magnificat";
+	if(upgradeBuff >= 8)
+	mes "Gloria";
+	if(upgradeBuff >= 9)
+	mes "Slow Poison";
 
 	if(upgradeBuff >= .maxBuffUpgrade){
 		next;
@@ -109,7 +117,7 @@
 	}
 	
 OnInit:
-	.maxBuffUpgrade = 7;
+	.maxBuffUpgrade = 9;
 	.basePrice = 50;
 	.priceMultiplier = 10;
 	.maxPriceBelow10 = 50000;
