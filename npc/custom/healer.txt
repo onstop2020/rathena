@@ -25,6 +25,13 @@
 	
 	specialeffect2 EF_HEAL2;
 	
+	if(gethominfo(0) > 0){
+		addhomintimacy 100000;
+		atcommand "@homhungry 100";
+		homevolution;
+		hommutate;
+	}
+	
 	identifyall;
 	repairall;
 	
