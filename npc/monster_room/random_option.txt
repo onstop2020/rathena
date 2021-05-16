@@ -117,7 +117,7 @@
 	.@index4 = getequiprandomoption(.@part,4,ROA_ID);
 	
 	if((.@index0 >= 76 && .@index0 <= 85) || (.@index0 >= 175 && .@index0 <= 184))
-	setrandomoption(.@part,1,1,0,0);
+	setrandomoption(.@part,0,1,0,0);
 	if((.@index1 >= 76 && .@index1 <= 85) || (.@index1 >= 175 && .@index1 <= 184))
 	setrandomoption(.@part,1,1,0,0);
 	if((.@index2 >= 76 && .@index2 <= 85) || (.@index2 >= 175 && .@index2 <= 184))
