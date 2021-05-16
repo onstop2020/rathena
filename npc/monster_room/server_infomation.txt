@@ -59,7 +59,7 @@
 	dispbottom "-ไม่มี Pet";
 	dispbottom "-เปลี่ยน อุปกรณ์สวมใส่ ตอนคุยกับ NPC ไม่ได้";
 	dispbottom "-MvP ตายไม่มีหลุมศพ";
-	dispbottom "-ไม่มี Delay สำหรับ Monster มองเห็นคน Teleport หาก Teleport ลงตรงนั้น";
+	dispbottom "-ตั้ง Delay อมตะได้ 0~5 วินาทีใช้สำหรับตอน Warp Loading ไป Map อื่น";
 	dispbottom "-Max ASPD 199";
 	dispbottom "-Max Status 130 ทุกอาชีพ";
 	dispbottom "-ร่าย Skill ทะลุกำแพงได้";

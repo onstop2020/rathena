@@ -12,6 +12,8 @@ OnPCLoginEvent:
 	mes "*จ่ายเมนูละรอบ \nจากนั้นจะสามารถใช้เมนูนั้น ได้ตลอดไปต่อตัวละคร";
 	else
 	mes "วัยรุ่นทำไรอะ?";
+	mes " ";
+	mes "*เลขหมวกที่ปลอดภัย (เช็คให้แล้วว่าไม่เด้ง) คือ 1-603";
 	next;
 	.@head1String$ = head1Bought ? "" : " (" + callfunc("F_InsertComma",.priceHead1) + "z)";
 	.@head2String$ = head2Bought ? "" : " (" + callfunc("F_InsertComma",.priceHead2) + "z)";
@@ -24,85 +26,115 @@ OnPCLoginEvent:
 	end;
 	
 	L_Head1:
-	if(!head1Bought){
-		menu "จ่ายเงิน",-;
-		if(Zeny < .priceHead1)
-		goto L_NotEnoughZeny;
-		Zeny -= .priceHead1;
-		head1Bought = 1;
-	}
-	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
-	input .@i;
-	if(.@i >= .lowestHat && .@i <= .highestHat)
-	changelook LOOK_HEAD_TOP,.@i;
-	else{
-		.@i = 0;
-		changelook LOOK_HEAD_TOP,.@i;
-	}
-	@head1 = .@i;
-	end;
+	.@mode = 1;
+	goto L_Trade;
 	
 	L_Head2:
-	if(!head2Bought){
-		menu "จ่ายเงิน",-;
-		if(Zeny < .priceHead2)
-		goto L_NotEnoughZeny;
-		Zeny -= .priceHead2;
-		head2Bought = 1;
-	}
-	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
-	input .@i;
-	if(.@i >= .lowestHat && .@i <= .highestHat)
-	changelook LOOK_HEAD_MID,.@i;
-	else{
-		.@i = 0;
-		changelook LOOK_HEAD_MID,.@i;
-	}
-	@head2 = .@i;
-	end;
+	.@mode = 2;
+	goto L_Trade;
 	
 	L_Head3:
-	if(!head3Bought){
-		menu "จ่ายเงิน",-;
-		if(Zeny < .priceHead3)
-		goto L_NotEnoughZeny;
-		Zeny -= .priceHead3;
-		head3Bought = 1;
-	}
-	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat + " ถ้าเด้งก็แก้เด้งเอานะ";
-	input .@i;
-	if(.@i >= .lowestHat && .@i <= .highestHat)
-	changelook LOOK_HEAD_BOTTOM,.@i;
-	else{
-		.@i = 0;
-		changelook LOOK_HEAD_BOTTOM,.@i;
-	}
-	@head3 = .@i;
-	end;
+	.@mode = 3;
+	goto L_Trade;
 	
 	L_Head4:
-	if(!head4Bought){
+	.@mode = 4;
+	goto L_Trade;
+	
+	L_Trade:
+	if(!getd("head" + .@mode + "Bought")){
 		menu "จ่ายเงิน",-;
-		if(Zeny < .priceHead4)
+		if(Zeny < getd(".priceHead" + .@mode))
 		goto L_NotEnoughZeny;
-		Zeny -= .priceHead4;
-		head4Bought = 1;
+		Zeny -= getd(".priceHead" + .@mode);
+		set getd("head" + .@mode + "Bought"),1;
 	}
-	mes "มีผ้าคลุมเลข " + .lowestHat4 + "-" + .highestHat4 + " ถ้าเด้งก็แก้เด้งเอานะ";
+	if(.@mode == 4)
+	mes "มีผ้าคลุมเลข " + .lowestHat4 + "-" + .highestHat4;
+	else
+	mes "มีหมวกเลข " + .lowestHat + "-" + .highestHat;
+	next;
+	menu "ดูไปเรื่อย ๆ",-,"ใส่เลขเอง",L_Input;
+	.@i = getd("head" + .@mode);
+	if(.i > 0)
+	.@i = .i;
+	.@isNoInput = 1;
+	L_Input:
+	if(!.@isNoInput)
 	input .@i;
-	if(.@i >= .lowestHat4 && .@i <= .highestHat4)
-	changelook LOOK_ROBE,.@i;
-	else{
-		.@i = 0;
+	L_Continue:
+	if(.@isNoInput)
+	.@i++;
+
+	// Error handler
+	for(.@allHeadNotAvailable = 0; .@allHeadNotAvailable < getarraysize($headNotAvailable); .@allHeadNotAvailable++){
+		if(.@i == $headNotAvailable[.@allHeadNotAvailable])
+		.@i++;
+	}
+	
+	.aid = getcharid(3);
+	.i = .@i;
+	initnpctimer;
+	startnpctimer;
+	if(.@i >= .lowestHat && .@i <= .highestHat){
+		if(.@mode == 1)
+		changelook LOOK_HEAD_TOP,.@i;
+		else if(.@mode == 2)
+		changelook LOOK_HEAD_MID,.@i;
+		else if(.@mode == 3)
+		changelook LOOK_HEAD_BOTTOM,.@i;
+		else if(.@mode == 4)
 		changelook LOOK_ROBE,.@i;
 	}
-	@head4 = .@i;
+	else{
+		.@i = 0;
+		if(.@mode == 1)
+		changelook LOOK_HEAD_TOP,.@i;
+		else if(.@mode == 2)
+		changelook LOOK_HEAD_MID,.@i;
+		else if(.@mode == 3)
+		changelook LOOK_HEAD_BOTTOM,.@i;
+		else if(.@mode == 4)
+		changelook LOOK_ROBE,.@i;
+	}
+	message strcharinfo(0),"สไตล์ที่: " + .@i;
+	if(.@isNoInput)
+	menu "ดูไปเรื่อย ๆ",L_Continue,"เอาอันนี้ละ",-;
+	else
+	menu "เอาอันนี้ละ",-;
+	set getd("head" + .@mode),.@i;
+	if(.@mode == 1)
+	setlook LOOK_HEAD_TOP,.@i;
+	else if(.@mode == 2)
+	setlook LOOK_HEAD_MID,.@i;
+	else if(.@mode == 3)
+	setlook LOOK_HEAD_BOTTOM,.@i;
+	else if(.@mode == 4)
+	setlook LOOK_ROBE,.@i;
+	message strcharinfo(0),"บันทึก เรียบร้อยแล้ว";
 	end;
-	
+
 	L_NotEnoughZeny:
 	mes "ดูเหมือนเจ้าจะมี Zeny ไม่เพียงพอ";
 	close;
 	
+OnTimer2000:
+	if(!isloggedin(.aid)){
+		//debugmes "Not logged in .i: " + .i;
+		.@isFoundOldSave = 0;
+		for(.@allHeadNotAvailable = 0; .@allHeadNotAvailable < getarraysize($headNotAvailable); .@allHeadNotAvailable++){
+			if(.i == $headNotAvailable[.@allHeadNotAvailable])
+			{
+				.@isFoundOldSave = 1;
+				break;
+			}
+		}
+		if(!.@isFoundOldSave)
+		setarray $headNotAvailable[getarraysize($headNotAvailable)],.i;
+	}
+	stopnpctimer;
+	end;
+
 OnInit:
 	.priceHead1 = 10000;
 	.priceHead2 = 500000;
@@ -112,22 +144,8 @@ OnInit:
 	.highestHat = 2129;
 	.lowestHat4 = 1;
 	.highestHat4 = 110;
-	end;
-}
-
--	script	saveView	-1,{
-	message strcharinfo(0),"บันทึก เรียบร้อยแล้ว";
-	head1 = @head1;
-	head2 = @head2;
-	head3 = @head3;
-	head4 = @head4;
-	setlook LOOK_HEAD_TOP,head1;
-	setlook LOOK_HEAD_MID,head2;
-	setlook LOOK_HEAD_BOTTOM,head3;
-	setlook LOOK_ROBE,head4;
-	end;
-OnInit:
-	waitingroom "บันทึกการแต่งตัวจัดเต็ม",0;
+	if(getarraysize($headNotAvailable) <= 0)
+	setarray $headNotAvailable[0],2021,2022,323,328,330,332,333,338,339,342,343,349,366,374,382,383,391,393,396,405,407,409,410,412,416,418,419,420,423,424,425,426,427,428,430,431,433,434,435,451,457,462,469,471,474,475,481,482,483,486,487,488,489,494,496,498,499,500,502,505,506,507,514,516,517,518,519,520,522,542,544,552,556,557,559,561,566,567,570,573,576,580,582,585,588,590,592,599,601,604,605;
 	end;
 }
 
@@ -143,5 +161,4 @@ OnInit:
 
 prontera,143,193,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
 prt_in,244,168,5	duplicate(viewChanger)	แต่งทุกอย่าง	1681
-prt_in,248,165,3	duplicate(saveView)	บันทึก	1680
 prt_in,235,163,5	duplicate(backToTown)	กลับเมือง	101
