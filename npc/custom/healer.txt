@@ -65,6 +65,20 @@
 	sc_start SC_ADRENALINE,600000,5;
 	if(upgradeBuff >= 15)
 	sc_start SC_OVERTHRUST,600000,5;
+	if(upgradeBuff >= 16)
+	sc_start SC_HUMMING,600000,10;
+	if(upgradeBuff >= 17)
+	sc_start SC_SERVICE4U,600000,10;
+	if(upgradeBuff >= 18)
+	sc_start SC_FORTUNE,600000,10;
+	if(upgradeBuff >= 19)
+	sc_start SC_ASSNCROS,600000,10;
+	if(upgradeBuff >= 20)
+	sc_start SC_POEMBRAGI,600000,10;
+	if(upgradeBuff >= 21)
+	sc_start SC_WHISTLE,600000,10;
+	if(upgradeBuff >= 22)
+	sc_start SC_APPLEIDUN,600000,10;
 
 	percentheal 100,100;
 
@@ -105,6 +119,20 @@
 	mes "Adrenaline Rush";
 	if(upgradeBuff >= 15)
 	mes "Power-Thrust";
+	if(upgradeBuff >= 16)
+	mes "Focus Ballet";
+	if(upgradeBuff >= 17)
+	mes "Gypsy's Kiss";
+	if(upgradeBuff >= 18)
+	mes "Lady Luck";
+	if(upgradeBuff >= 19)
+	mes "Impressive Riff";
+	if(upgradeBuff >= 20)
+	mes "Magic Strings";
+	if(upgradeBuff >= 21)
+	mes "Perfect Tablature";
+	if(upgradeBuff >= 22)
+	mes "Song of Lutie";
 
 	if(upgradeBuff >= .maxBuffUpgrade){
 		next;
@@ -141,7 +169,7 @@
 	}
 	
 OnInit:
-	.maxBuffUpgrade = 15;
+	.maxBuffUpgrade = 22;
 	.basePrice = 50;
 	.priceMultiplier = 10;
 	.maxPriceBelow10 = 50000;

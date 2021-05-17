@@ -51,7 +51,7 @@
 	
 OnInit:
 	$maxZeny = 1000000000;
-	$zenyPerCash = 1000;
+	$zenyPerCash = 10000;
 	end;
 }
 
