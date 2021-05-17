@@ -53,6 +53,18 @@
 	sc_start SC_GLORIA,600000,5;
 	if(upgradeBuff >= 9)
 	sc_start SC_SLOWPOISON,600000,4;
+	if(upgradeBuff >= 10)
+	sc_start SC_ASSUMPTIO,600000,5;
+	if(upgradeBuff >= 11)
+	sc_start SC_EXPIATIO,600000,5;
+	if(upgradeBuff >= 12)
+	sc_start SC_RENOVATIO,600000,4;
+	if(upgradeBuff >= 13)
+	sc_start SC_SECRAMENT,600000,5;
+	if(upgradeBuff >= 14)
+	sc_start SC_ADRENALINE,600000,5;
+	if(upgradeBuff >= 15)
+	sc_start SC_OVERTHRUST,600000,5;
 
 	percentheal 100,100;
 
@@ -81,6 +93,18 @@
 	mes "Gloria";
 	if(upgradeBuff >= 9)
 	mes "Slow Poison";
+	if(upgradeBuff >= 10)
+	mes "Assumptio";
+	if(upgradeBuff >= 11)
+	mes "Expiatio";
+	if(upgradeBuff >= 12)
+	mes "Renovatio";
+	if(upgradeBuff >= 13)
+	mes "Sacrament";
+	if(upgradeBuff >= 14)
+	mes "Adrenaline Rush";
+	if(upgradeBuff >= 15)
+	mes "Power-Thrust";
 
 	if(upgradeBuff >= .maxBuffUpgrade){
 		next;
@@ -117,7 +141,7 @@
 	}
 	
 OnInit:
-	.maxBuffUpgrade = 9;
+	.maxBuffUpgrade = 15;
 	.basePrice = 50;
 	.priceMultiplier = 10;
 	.maxPriceBelow10 = 50000;
