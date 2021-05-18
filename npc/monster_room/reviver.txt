@@ -1,0 +1,257 @@
+-	script	reviverController	-1,{
+	if(reviver > 0){
+		mes "*ดม ๆ* เจ้ายังมีวิญญาณอยู่หนิ? ข้าไม่สนใจเจ้าหรอกนะ";
+		close;
+	}
+	else
+	menu "ข้ายังไม่อยากตาย",L_PleaseGiveMeAChance,"ข้าขอไปเกิดใหม่",L_AcceptTheTruth;
+
+	L_PleaseGiveMeAChance:
+	mes "ฮึ? อะไรนะ เจ้าพูดว่าอะไรนะ";
+	next;
+	menu "ข้า.. ยอมแพ้ให้กับชีวิตนี้แล้ว",L_AcceptTheTruth,"ข้ายังไม่อยากตาย!",-;
+	mes "อ้อ งั้นรึ... แต่ข้าช่วยเจ้าได้ไม่มากหรอกนะ ข้ามีหน้าที่นำทาง เหล่าวิญญาณที่สูญสิ้นไปเกิดใหม่";
+	next;
+	mes "แต่ถ้าเจ้าต้องการโอกาสที่จะมีชีวิตรอดจริง ๆ ละก็ เดินไปมองลูกแก้วด้านล่าง แล้วภาวนาซะ";
+	close;
+	
+	L_AcceptTheTruth:
+	mes "ขอให้เจ้าไปสู่สุขติ";
+	callfunc("DeadReset");
+	close;
+	
+OnPCLoginEvent:
+	if(strcharinfo(3) != "job4_mag")
+	reviver = 1;
+	end;
+	
+OnPCLoadMapEvent:
+	if(strcharinfo(3) == "job4_mag"){
+		setpcblock PCBLOCK_ALL,true;
+		setpcblock PCBLOCK_MOVE,false;
+		setpcblock PCBLOCK_CHAT,false;
+		setpcblock PCBLOCK_SITSTAND,false;
+		setpcblock PCBLOCK_NPCCLICK,false;
+		setpcblock PCBLOCK_EMOTION,false;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ยินดีต้อนรับสู่โลกหลังความตาย",0;
+	end; 
+}
+
+job4_mag	mapflag	loadevent
+
+-	script	prayForLife	-1,{
+	if(reviver > 0){
+		mes "คุณมองไม่เห็นอะไรในลูกแก้วนี้เลย";
+		close;
+	}
+	mes "*คุณมองเข้าไปที่ลูกแก้ว เห็นลูกแก้วภายในนั้น 10 ลูก*";
+	next;
+	menu "แตะ",-;
+	mes "คุณเลือกที่จะแตะลูกที่? (1-10)";
+	next;
+	input .@i;
+	if(.@i < 1)
+	.@i = 1;
+	if(.@i > 10)
+	.@i = 10;
+	if(rand(1,10) == .@i){
+		warp "prontera",156,191;
+		announce strcharinfo(0) + " ได้กลับมามีชีวิตอีกครั้ง จากการดื้นรนเฮือกสุดท้าย!",bc_all,0xF5FF28;
+		end;
+	}
+	else{
+		callfunc("DeadReset");
+		end;
+	}
+	
+OnInit:
+	waitingroom "ดื้นรนเฮือกสุดท้าย",0;
+	end; 
+}
+
+-	script	prayForLifeByPlayer	-1,{
+	if(reviver > 0){
+		mes "ความปราถนาที่เกิดขึ้น อยู่ได้ 5 นาที";
+		mes "ความช่วยเหลือจากพระเจ้า อยู่ได้ 50 นาที";
+		mes "- ระดับ 1 โอกาสรอด 1 ใน 8";
+		mes "- ระดับ 2 โอกาสรอด 1 ใน 6 (Level ต้องมากกว่า 98)";
+		mes "- ระดับ 3 โอกาสรอด 1 ใน 3 (Level ต้องมากกว่า 190)";
+		mes "^8328FF- ระดับ พระเจ้า ???!!!???^000000";
+		next;
+		if($prayBuff > 0){
+			if($prayBuff == 4)
+			mes "ขณะนี้ มี ความปราถนา จากพระเจ้า อยู่แล้วโปรดรอสักพักใหญ่ ๆ ความปราถนา นั้นจะหายไปเอง";
+			else
+			mes "ขณะนี้ มี ความปราถนา ระดับ " + $prayBuff + " อยู่แล้วโปรดรอสักพัก ความปราถนา นั้นจะหายไปเอง";
+			close;
+		}
+		if(BaseLevel < 99)
+		menu "สร้างความปราถนาระดับ 1 (คนขอจะโดนลด 10 Lv)",L_Hope1,"โทรเรียกเทพเจ้า",L_CallAGod;
+		else if(BaseLevel < 190)
+		menu "สร้างความปราถนาระดับ 2 (คนขอจะโดนลด 10 Lv)",L_Hope2,"โทรเรียกเทพเจ้า",L_CallAGod;
+		else
+		menu "สร้างความปราถนาระดับ 3 (คนขอจะโดนลด 10 Lv)",L_Hope3,"โทรเรียกเทพเจ้า",L_CallAGod;
+		close;
+	}
+	else{
+		if($prayBuff > 0){
+			if(reviver > 0){
+				mes "*คุณภาวนาให้ใครบางคน*";
+				close;
+			}
+			.@maxPray = 8;
+			if($prayBuff == 2)
+			.@maxPray = 6;
+			else if($prayBuff == 3)
+			.@maxPray = 3;
+			else if($prayBuff == 4)
+			goto L_GodPlan;
+			
+			mes "*คุณมองเข้าไปที่ ความปราถนา เห็นลูกแก้วภายในนั้น " + .@maxPray + " ลูก*";
+			next;
+			menu "แตะ",-;
+			mes "คุณเลือกที่จะแตะลูกที่? (1-" + .@maxPray + ")";
+			next;
+			input .@i;
+			if(.@i < 1)
+			.@i = 1;
+			if(.@i > .@maxPray)
+			.@i = .@maxPray;
+			if(rand(1,.@maxPray) == .@i){
+				L_GodPlan:
+				setpcblock PCBLOCK_ALL,false;
+				warp "prontera",156,191;
+				if($prayBuff == 4)
+				announce strcharinfo(0) + " ได้กลับมามีชีวิตอีกครั้ง ด้วยคำสั่งจากพระเจ้า!",bc_all,0xF5FF28;
+				else
+				announce strcharinfo(0) + " ได้กลับมามีชีวิตอีกครั้ง จากความปราถนาของใครบางคน!",bc_all,0xF5FF28;
+				end;
+			}
+			else{
+				callfunc("DeadReset");
+				end;
+			}
+		}
+		else{
+			mes "... ไม่มีปฎิกิริยาใด ๆ เกิดขึ้น ดูเหมือนมันต้องการใครบางคน มาสร้างความปราถนา ...";
+			close;
+		}
+	}
+	
+	L_Hope1:
+	$prayBuff = 1;
+	goto L_HopeTrade;
+	
+	L_Hope2:
+	$prayBuff = 2;
+	goto L_HopeTrade;
+	
+	L_Hope3:
+	$prayBuff = 3;
+	goto L_HopeTrade;
+	
+	L_CallAGod:
+	mes "*ตื๊ด ๆ ตื๊ด ๆ";
+	next;
+	mes "^8328FF[พระเจ้า]^000000";
+	mes "^8328FFว่าไงมานุด^000000";
+	next;
+	menu "ได้โปรดลงมาช่วยวิญญาณเหล่านี้ที (" + .godPrice + " Cash)",-;
+	mes "^8328FFโอ้ ได้สิ ถ้าเจ้ามีเงิน!^000000";
+	next;
+	if(#CASHPOINTS >= .godPrice){
+		#CASHPOINTS -= .godPrice;
+		$prayBuff = 4;
+		$prayBuffTimer = 50;
+		mes "^8328FFเยี่ยม! ข้าให้เวลาเจ้า 50 นาที^000000";
+		announce strcharinfo(0) + " ได้ขอพรจากพระเจ้า!! ใครก็ตามที่ตายภายใน 50 นาทีนี้ สามารถเกิดใหม่ได้ที่ 'ความปราถนาของใครบางคน' !!",bc_all,0xF5FF28;
+		close;
+	}
+	else{
+		mes "^8328FFง่ะ ไหนเงินล่ะ มานุด^000000";
+		close;
+	}
+	
+	L_HopeTrade:
+	$prayBuffTimer = 5;
+	atcommand "@lvup -10";
+	message strcharinfo(0),"คุณโดนลด 10 Level เพื่อปราถนาให้ใครบางคนรอด";
+	close;
+	
+OnTimer60000:
+	if($prayBuffTimer > 0){
+		$prayBuffTimer--;
+		if($prayBuffTimer <= 0)
+		$prayBuff = 0;
+	}
+	end;
+	
+OnInit:
+	.godPrice = 50;
+	waitingroom "ความปราถนา",0;
+	initnpctimer;
+	startnpctimer;
+	end; 
+}
+
+function	script	DeadReset	{
+	clearitem;
+	if(Class != 4218 && Class != 4220){
+		getitem 1201,1;
+		atcommand "@job 0";
+	}
+	else
+	getitem 1681,1;
+	getitem 2301,1;
+	if(countitem(602) <= 0)
+	getitem 602,1;
+	atcommand "@lvup -999";
+	atcommand "@joblvup -999";
+	atcommand "@reset";
+	StatusPoint = 48;
+	SkillPoint = 0;
+	setpcblock PCBLOCK_ALL,false;
+	warp "prontera",156,191;
+	return;
+}
+
+-	script	deathMaster	-1,{
+	if(reviver > 0 && BaseClass == Job_Acolyte){
+		mes "มีธุระอะไรรึ นักแสวงบุญตัวน้อย?";
+		if(strcharinfo(3) == "job4_mag"){
+			setpcblock PCBLOCK_ALL,false;
+			menu "กลับโลก",L_ReturnToWorld;
+		}
+		else
+		menu "ไปที่โลกหลังความตาย",L_GoToDeathRealm;
+	}
+	else{
+		if(strcharinfo(3) == "job4_mag")
+		mes "!? โอ๋ ๆ เจ้าวิญญาณตัวน้อย เจ้าไม่มีธุระอะไรกับข้าหรอก";
+		else
+		mes "!? ไสหัวไปซะ เจ้ามนุษย์ ที่นี่ไม่มีนักแสวงบุญบ้างเลยหรือไง?";
+		close;
+	}
+	
+	L_ReturnToWorld:
+	warp "prontera",156,191;
+	end;
+	
+	L_GoToDeathRealm:
+	warp "job4_mag",130,194;
+	end;
+	
+OnInit:
+	waitingroom "ผู้คุมโลกแห่งความตาย",0;
+	end; 
+}
+
+job4_mag,126,197,5	duplicate(reviverController)	ยมทูต	10191
+job4_mag,133,197,3	duplicate(deathMaster)	ผู้คุมโลกแห่งความตาย	10368 
+prontera,170,181,1	duplicate(deathMaster)	ผู้คุมโลกแห่งความตาย#2	10368 
+job4_mag,131,162,5	duplicate(prayForLife)	แสงสว่างแห่งความหวัง	10308 
+job4_mag,130,177,5	duplicate(prayForLifeByPlayer)	ความปราถนาของใครบางคน	3101 

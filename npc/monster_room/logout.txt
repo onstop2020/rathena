@@ -5,7 +5,7 @@ OnPCLogoutEvent:
 	if(!playerattached())
 	end;
 
-	if(strcharinfo(3) == "prt_in")
+	if(strcharinfo(3) == "prt_in" || strcharinfo(3) == "job4_mag")
 	end;
 
 	warp "prontera",156,191;

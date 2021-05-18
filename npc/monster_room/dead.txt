@@ -4,22 +4,9 @@ OnPCDieEvent:
 	if(strcharinfo(3) == "pvp_y_7-2" || strcharinfo(3) == "pvp_y_8-2")
 	end;
 
-	clearitem;
-	if(Class != 4218 && Class != 4220){
-		getitem 1201,1;
-		atcommand "@job 0";
-	}
-	else
-	getitem 1681,1;
-	getitem 2301,1;
-	if(countitem(602) <= 0)
-	getitem 602,1;
-	atcommand "@lvup -999";
-	atcommand "@joblvup -999";
-	atcommand "@reset";
-	StatusPoint = 48;
-	SkillPoint = 0;
-	
+	// Reset reviver stats
+	reviver = 0;
+
 	for(.@i = 1; .@i <= 20; .@i++){
 		if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
 			set getd("$killed_mr" + .@i),0;
@@ -28,7 +15,7 @@ OnPCDieEvent:
 		}
 	}
 	
-	warp "prontera",156,191;
+	warp "job4_mag",130,194;
 	
 	announce strcharinfo(0) + " ตาย!",bc_all,0xFF2828;
 	
