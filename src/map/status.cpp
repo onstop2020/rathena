@@ -10044,10 +10044,10 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 	case SC_ASSNCROS:
 	case SC_POEMBRAGI:
 	case SC_APPLEIDUN:
-		status_change_end(bl, SC_WHISTLE, INVALID_TIMER);
-		status_change_end(bl, SC_ASSNCROS, INVALID_TIMER);
-		status_change_end(bl, SC_POEMBRAGI, INVALID_TIMER);
-		status_change_end(bl, SC_APPLEIDUN, INVALID_TIMER);
+		//status_change_end(bl, SC_WHISTLE, INVALID_TIMER);		// [Start]
+		//status_change_end(bl, SC_ASSNCROS, INVALID_TIMER);	// [Start]
+		//status_change_end(bl, SC_POEMBRAGI, INVALID_TIMER);	// [Start]
+		//status_change_end(bl, SC_APPLEIDUN, INVALID_TIMER);	// [Start]
 		break;
 	case SC_DONTFORGETME:
 		status_change_end(bl, SC_INCREASEAGI, INVALID_TIMER);
