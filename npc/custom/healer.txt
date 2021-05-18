@@ -141,10 +141,16 @@
 	}
 	.@sumPrice = .basePrice;
 	if(upgradeBuff > 0){
-		.@sumUpgradeCount = upgradeBuff;
-		while(.@sumUpgradeCount > 0){
-			.@sumUpgradeCount--;
-			.@sumPrice = .@sumPrice * .priceMultiplier;
+		if(upgradeBuff > 20)
+		.@sumPrice = .maxPriceBelow30;
+		else if(upgradeBuff > 10)
+		.@sumPrice = .maxPriceBelow20;
+		else{
+			.@sumUpgradeCount = upgradeBuff;
+			while(.@sumUpgradeCount > 0){
+				.@sumUpgradeCount--;
+				.@sumPrice = .@sumPrice * .priceMultiplier;
+			}
 		}
 	}
 	if(upgradeBuff < 10 && .@sumPrice > .maxPriceBelow10)
