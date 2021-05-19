@@ -143,7 +143,7 @@ OnInit:
 			if (@prayRequestDelay > gettimetick(2))
 			close;
 			else{
-				announce strcharinfo(0) + " ใครก็ได้ช่วยที!",bc_all,0xFFA728;
+				announce strcharinfo(0) + ": ใครก็ได้ช่วยที!",bc_all,0xFFA728;
 				@prayRequestDelay = gettimetick(2) + .@prayRequestDelay;
 			}
 			close;
@@ -174,14 +174,17 @@ OnInit:
 	goto L_HopeTrade;
 	
 	L_CallAGod:
+	callsub L_HopeCheck;
 	mes "*ตื๊ด ๆ ตื๊ด ๆ";
 	next;
 	mes "^8328FF[พระเจ้า]^000000";
 	mes "^8328FFว่าไงมานุด^000000";
 	next;
 	menu "ได้โปรดลงมาช่วยวิญญาณเหล่านี้ที (" + .godPrice + " Cash)",-;
+	callsub L_HopeCheck;
 	mes "^8328FFโอ้ ได้สิ ถ้าเจ้ามีเงิน!^000000";
 	next;
+	callsub L_HopeCheck;
 	if(#CASHPOINTS >= .godPrice){
 		#CASHPOINTS -= .godPrice;
 		$prayBuff = 4;
