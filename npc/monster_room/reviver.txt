@@ -74,6 +74,8 @@ OnInit:
 }
 
 -	script	prayForLifeByPlayer	-1,{
+	.@prayRequestDelay = 10;
+	
 	if(reviver > 0){
 		mes "ความปราถนาที่เกิดขึ้น อยู่ได้ 5 นาที";
 		mes "ความช่วยเหลือจากพระเจ้า อยู่ได้ 50 นาที";
@@ -138,19 +140,36 @@ OnInit:
 		}
 		else{
 			mes "... ไม่มีปฎิกิริยาใด ๆ เกิดขึ้น ดูเหมือนมันต้องการใครบางคน มาสร้างความปราถนา ...";
+			if (@prayRequestDelay > gettimetick(2))
+			close;
+			else{
+				announce strcharinfo(0) + " ใครก็ได้ช่วยที!",bc_all,0xFFA728;
+				@prayRequestDelay = gettimetick(2) + .@prayRequestDelay;
+			}
 			close;
 		}
 	}
 	
+	L_HopeCheck:
+	if($prayBuff > 0)
+	{
+		message strcharinfo(0),"มีคนลงความปราถนา ก่อนหน้าคุณไปแล้ว";
+		close;
+	}
+	return;
+	
 	L_Hope1:
+	callsub L_HopeCheck;
 	$prayBuff = 1;
 	goto L_HopeTrade;
 	
 	L_Hope2:
+	callsub L_HopeCheck;
 	$prayBuff = 2;
 	goto L_HopeTrade;
 	
 	L_Hope3:
+	callsub L_HopeCheck;
 	$prayBuff = 3;
 	goto L_HopeTrade;
 	
