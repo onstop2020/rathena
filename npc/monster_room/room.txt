@@ -2,7 +2,9 @@ prontera,157,196,3	script	Monster Room Warper	967,{
 	menu "เก็บอาวุธอัตโนมัติ (ที่สุ่มทุกอย่าง)",L_AutoLootWeapon
 	,"เก็บอุปกรณ์สวมใส่อัตโนมัติ (ที่สุ่มทุกอย่าง)",L_AutoLootEquipment
 	,"ตั้งเวลาอมตะตอนโหลด Map",L_AdjustLoadTime
-	,"(Max " + $mr1 + ") Level 1-5 (มอนตีเบากว่า 50)",L_1
+	,"เลือก Map ตาม Level Monster",-
+	,"เลือก Map ตาม EXP Monster",L_ByEXP;
+	menu "(Max " + $mr1 + ") Level 1-5 (มอนตีเบากว่า 50)",L_1
 	,"(Max " + $mr2 + ") Level 6-20 (มอนตีเบากว่า 200)",L_2
 	,"(Max " + $mr3 + ") Level 21-30 (มอนตีเบากว่า 300)",L_3
 	,"(Max " + $mr4 + ") Level 31-40 (มอนตีเบากว่า 400)",L_4
@@ -23,6 +25,14 @@ prontera,157,196,3	script	Monster Room Warper	967,{
 	,"(Max " + $mr19 + ") Level 191-200",L_19
 	,"(Max " + $mr20 + ") All MvP",L_20
 	,"(Max " + $mr21 + ") All Monster",L_21;
+	L_ByEXP:
+	menu "(Max " + $mr22 + ") EXP 10k-50k",L_22
+	,"(Max " + $mr23 + ") EXP 50k-100k",L_23
+	,"(Max " + $mr24 + ") EXP 100k-500k",L_24
+	,"(Max " + $mr25 + ") EXP 500k-1m",L_25
+	,"(Max " + $mr26 + ") EXP 1m-2m",L_26
+	,"(Max " + $mr27 + ") EXP 2m ขึ้นไป",L_27;
+	//,"(Max " + $mr28 + ") EXP 5m ขึ้นไป",L_28;
 	end;
 	
 	L_AutoLootWeapon:
@@ -36,87 +46,115 @@ prontera,157,196,3	script	Monster Room Warper	967,{
 
 	L_1:
 	callsub(L_WarpBegin);
-	warp "pvp_n_1-1",0,0;
+	warp $mr1name$,0,0;
 	end;
 	L_2:
 	callsub(L_WarpBegin);
-	warp "pvp_n_1-2",0,0;
+	warp $mr2name$,0,0;
 	end;
 	L_3:
 	callsub(L_WarpBegin);
-	warp "pvp_n_1-3",0,0;
+	warp $mr3name$,0,0;
 	end;
 	L_4:
 	callsub(L_WarpBegin);
-	warp "pvp_n_1-4",0,0;
+	warp $mr4name$,0,0;
 	end;
 	L_5:
 	callsub(L_WarpBegin);
-	warp "pvp_n_1-5",0,0;
+	warp $mr5name$,0,0;
 	end;
 	L_6:
 	callsub(L_WarpBegin);
-	warp "pvp_y_1-1",0,0;
+	warp $mr6name$,0,0;
 	end;
 	L_7:
 	callsub(L_WarpBegin);
-	warp "pvp_y_1-2",0,0;
+	warp $mr7name$,0,0;
 	end;
 	L_8:
 	callsub(L_WarpBegin);
-	warp "pvp_y_1-3",0,0;
+	warp $mr8name$,0,0;
 	end;
 	L_9:
 	callsub(L_WarpBegin);
-	warp "pvp_y_1-4",0,0;
+	warp $mr9name$,0,0;
 	end;
 	L_10:
 	callsub(L_WarpBegin);
-	warp "pvp_y_1-5",0,0;
+	warp $mr10name$,0,0;
 	end;
 	L_11:
 	callsub(L_WarpBegin);
-	warp "guild_vs1",0,0;
+	warp $mr11name$,0,0;
 	end;
 	L_12:
 	callsub(L_WarpBegin);
-	warp "guild_vs2",0,0;
+	warp $mr12name$,0,0;
 	end;
 	L_13:
 	callsub(L_WarpBegin);
-	warp "guild_vs3",0,0;
+	warp $mr13name$,0,0;
 	end;
 	L_14:
 	callsub(L_WarpBegin);
-	warp "guild_vs4",0,0;
+	warp $mr14name$,0,0;
 	end;
 	L_15:
 	callsub(L_WarpBegin);
-	warp "guild_vs5",0,0;
+	warp $mr15name$,0,0;
 	end;
 	L_16:
 	callsub(L_WarpBegin);
-	warp "guild_vs2-1",0,0;
+	warp $mr16name$,0,0;
 	end;
 	L_17:
 	callsub(L_WarpBegin);
-	warp "guild_vs2-2",0,0;
+	warp $mr17name$,0,0;
 	end;
 	L_18:
 	callsub(L_WarpBegin);
-	warp "tha_t11",0,0;
+	warp $mr18name$,0,0;
 	end;
 	L_19:
 	callsub(L_WarpBegin);
-	warp "tha_t12",0,0;
+	warp $mr19name$,0,0;
 	end;
 	L_20:
 	callsub(L_WarpBegin);
-	warp "thana_boss",0,0;
+	warp $mr20name$,0,0;
 	end;
 	L_21:
 	callsub(L_WarpBegin);
-	warp "job4_tro",0,0;
+	warp $mr21name$,0,0;
+	end;
+	L_22:
+	callsub(L_WarpBegin);
+	warp $mr22name$,0,0;
+	end;
+	L_23:
+	callsub(L_WarpBegin);
+	warp $mr23name$,0,0;
+	end;
+	L_24:
+	callsub(L_WarpBegin);
+	warp $mr24name$,0,0;
+	end;
+	L_25:
+	callsub(L_WarpBegin);
+	warp $mr25name$,0,0;
+	end;
+	L_26:
+	callsub(L_WarpBegin);
+	warp $mr26name$,0,0;
+	end;
+	L_27:
+	callsub(L_WarpBegin);
+	warp $mr27name$,0,0;
+	end;
+	L_28:
+	callsub(L_WarpBegin);
+	warp $mr28name$,0,0;
 	end;
 	
 OnInit:
@@ -149,6 +187,14 @@ OnInit:
 	deletearray $mr18id[0],getarraysize($mr18id);
 	deletearray $mr19id[0],getarraysize($mr19id);
 	deletearray $mr20id[0],getarraysize($mr20id);
+	deletearray $mr21id[0],getarraysize($mr21id);
+	deletearray $mr22id[0],getarraysize($mr22id);
+	deletearray $mr23id[0],getarraysize($mr23id);
+	deletearray $mr24id[0],getarraysize($mr24id);
+	deletearray $mr25id[0],getarraysize($mr25id);
+	deletearray $mr26id[0],getarraysize($mr26id);
+	deletearray $mr27id[0],getarraysize($mr27id);
+	deletearray $mr28id[0],getarraysize($mr28id);
 	deletearray $allMvp[0],getarraysize($allMvp);
 	
 	.@lowestMonsterId = 1001;
@@ -167,6 +213,21 @@ OnInit:
 		.@monsterMvpExp = getmonsterinfo(.@i,MOB_MVPEXP);
 		
 		.@monsterAttack = getmonsterinfo(.@i,MOB_ATK1);
+		
+		if(.@monsterExp >= 10000 && .@monsterExp < 50000)
+		setarray $mr22id[getarraysize($mr22id)],.@i;
+		else if(.@monsterExp >= 50000 && .@monsterExp < 100000)
+		setarray $mr23id[getarraysize($mr23id)],.@i;
+		else if(.@monsterExp >= 100000 && .@monsterExp < 500000)
+		setarray $mr24id[getarraysize($mr24id)],.@i;
+		else if(.@monsterExp >= 500000 && .@monsterExp < 1000000)
+		setarray $mr25id[getarraysize($mr25id)],.@i;
+		else if(.@monsterExp >= 1000000 && .@monsterExp < 2000000)
+		setarray $mr26id[getarraysize($mr26id)],.@i;
+		else if(.@monsterExp >= 2000000 && .@monsterExp < 5000000)
+		setarray $mr27id[getarraysize($mr27id)],.@i;
+		else if(.@monsterExp >= 5000000)
+		setarray $mr28id[getarraysize($mr28id)],.@i;
 		
 		if(.@monsterLevel > 0){
 			if(.@monsterLevel <= 5 && .@monsterAttack < 50)
@@ -213,7 +274,7 @@ OnInit:
 	}
 	
 	// Clean all variables
-	$maxRoom = 21;
+	$maxRoom = 27;
 	
 	$mr1 = 30;
 	$mr2 = 30;
@@ -236,6 +297,13 @@ OnInit:
 	$mr19 = 30;
 	$mr20 = 30;
 	$mr21 = 30;
+	$mr22 = 30;
+	$mr23 = 30;
+	$mr24 = 30;
+	$mr25 = 30;
+	$mr26 = 30;
+	$mr27 = 30;
+	$mr28 = 30;
 	
 	$killed_mr1 = 0;
 	$killed_mr2 = 0;
@@ -258,6 +326,13 @@ OnInit:
 	$killed_mr19 = 0;
 	$killed_mr20 = 0;
 	$killed_mr21 = 0;
+	$killed_mr22 = 0;
+	$killed_mr23 = 0;
+	$killed_mr24 = 0;
+	$killed_mr25 = 0;
+	$killed_mr26 = 0;
+	$killed_mr27 = 0;
+	$killed_mr28 = 0;
 	
 	$mr1name$ = "pvp_n_1-1";
 	$mr2name$ = "pvp_n_1-2";
@@ -280,6 +355,13 @@ OnInit:
 	$mr19name$ = "tha_t12";
 	$mr20name$ = "thana_boss";
 	$mr21name$ = "job4_tro";
+	$mr22name$ = "06guild_01";
+	$mr23name$ = "06guild_02";
+	$mr24name$ = "06guild_03";
+	$mr25name$ = "06guild_04";
+	$mr26name$ = "06guild_05";
+	$mr27name$ = "06guild_06";
+	$mr28name$ = "06guild_07";
 	
 	for(.@i = 1; .@i <= $maxRoom; .@i++)
 	callfunc("SpawnMonsterInRoom",.@i);
@@ -485,6 +567,20 @@ function	script	SpawnMonsterInRoom	{
 		monster .@mapName$,0,0,"--ja--",$mr19id[rand(0,getarraysize($mr19id)-1)],1,"Monster Room Warper::OnMonsterDead";
 		else if(.@room == 20 || (.@room == 21 && rand(1,20) == 20))
 		monster .@mapName$,0,0,"--ja--",$allMvp[rand(0,getarraysize($allMvp)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 22)
+		monster .@mapName$,0,0,"--ja--",$mr22id[rand(0,getarraysize($mr22id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 23)
+		monster .@mapName$,0,0,"--ja--",$mr23id[rand(0,getarraysize($mr23id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 24)
+		monster .@mapName$,0,0,"--ja--",$mr24id[rand(0,getarraysize($mr24id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 25)
+		monster .@mapName$,0,0,"--ja--",$mr25id[rand(0,getarraysize($mr25id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 26)
+		monster .@mapName$,0,0,"--ja--",$mr26id[rand(0,getarraysize($mr26id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 27)
+		monster .@mapName$,0,0,"--ja--",$mr27id[rand(0,getarraysize($mr27id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else if(.@room == 28)
+		monster .@mapName$,0,0,"--ja--",$mr28id[rand(0,getarraysize($mr28id)-1)],1,"Monster Room Warper::OnMonsterDead";
 	}
 	return;
 }
