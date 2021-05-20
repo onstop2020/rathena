@@ -1,0 +1,18 @@
+// Buy more zeny
+-	script	killedMonsterChecker	-1,{
+	mes "ข้ามีหน้าที่ ตรวจสอบผู้สังหาร Monster";
+	next;
+	menu "ตรวจสอบข้อมูลของข้าให้ที",-,"ข้าอยากรู้ว่าข้าต้องฆ่า Monster ที่ห้องไหนในตอนนี้",L_Hint;
+	mes "อ่า สักครู่นะ";
+	next;
+	mes "Monster ที่ต้องฆ่ามีทั้งหมด: " + callfunc("F_InsertComma",getarraysize($mrid)) + " ตัว";
+	mes "Monster ที่เจ้าฆ่าไปแล้ว: " + callfunc("F_InsertComma",getarraysize(#killedMonster)) + " ตัว";
+	mes "ข้าหวังว่าสักวัน Monster เหล่านี้ จะหายไปจากโลกของเราเสียที";
+	close;
+
+	L_Hint:
+	mes "อือออ ฮึ ขอข้าดูข้อมูลที่ข้ามีก่อน";
+	close;
+}
+
+prontera,138,172,5	duplicate(killedMonsterChecker)	ผู้บันทึก Monster	615 

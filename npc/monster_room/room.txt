@@ -393,6 +393,24 @@ OnMonsterDead:
 	if(!playerattached())
 	end;
 
+	.@playerArraySize = getarraysize(#killedMonster);
+	.@isFoundOld = 0;
+	freeloop(1);
+	for(.@i = 0; .@i <= .@playerArraySize; .@i++)
+	{
+		if(#killedMonster[.@i] == killedrid){
+			.@isFoundOld = 1;
+			break;
+		}
+		
+	}
+	freeloop(0);
+	
+	if(!.@isFoundOld)
+	setarray #killedMonster[getarraysize(#killedMonster)],killedrid;
+	
+	debugmes "Killed type: " + getarraysize(#killedMonster);
+
 	.@allWeaponDropChance = 10;
 	.@allArmorDropChance = 10;
 	
