@@ -22,7 +22,7 @@ function	script	RefreshEXP	{
 		bonus_script "{ bonus2 bExpAddClass,Class_All," + .@expMultiplier + "; }",86400;
 	}
 	// Infomation for player
-	dispbottom "EXP x(" + callfunc("F_InsertComma",1 + #expMultiplierBuy)+ " + " + callfunc("F_InsertComma",.@killedMonsterExpBonus) + ")";
+	dispbottom "EXP x(" + callfunc("F_InsertComma",1 + #expMultiplierBuy) + " + " + callfunc("F_InsertComma",.@killedMonsterExpBonus) + ")";
 	return;
 }
 
@@ -33,13 +33,13 @@ function	script	RefreshEXP	{
 	if(#expMultiplierBuy >= $maxExpBuyCount){
 		mes "คุณได้ซื้อคูณ EXP ถึงขึ้นสูงสุดแล้ว";
 		mes "อัตราการคูณขณะนี้";
-		mes "x(" + callfunc("F_InsertComma",1 + #expMultiplierBuy)+ " + " + callfunc("F_InsertComma",.@killedMonsterExpBonus) + ")";
+		mes "x(" + callfunc("F_InsertComma",1 + #expMultiplierBuy) + " + " + callfunc("F_InsertComma",.@killedMonsterExpBonus) + ")";
 		close;
 	}
 	mes "สวัสดี! คุณต้องการอัตราการคูณ EXP ที่มากขึ้นอยู่หรือเปล่า? ถ้าใช่ล่ะก็ซื้อกับข้าได้เลย (คูณทั้ง ID)";
 	next;
 	mes "อัตราการคูณขณะนี้";
-	mes "x" + callfunc("F_InsertComma",(1 + #expMultiplierBuy));
+	mes "x(" + callfunc("F_InsertComma",1 + #expMultiplierBuy) + " + " + callfunc("F_InsertComma",.@killedMonsterExpBonus) + ")";
 	mes "คุณมี " + callfunc("F_InsertComma",#CASHPOINTS) + " Cash";
 	mes "ราคาต่อคูณ " + callfunc("F_InsertComma",$cashPerExpBuy) + " Cash";
 	next;
