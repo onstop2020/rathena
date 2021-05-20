@@ -85,10 +85,9 @@ job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 		next;
 		if($prayBuff > 0){
 			if($prayBuff == 4)
-			mes "ขณะนี้ มี ความปราถนา จากพระเจ้า อยู่แล้วโปรดรอสักพักใหญ่ ๆ ความปราถนา นั้นจะหายไปเอง";
+			mes "ขณะนี้ มี ความปราถนา จากพระเจ้า อยู่ ระยะเวลาที่เหลือ " + $prayBuffTimer + " นาที";
 			else
-			mes "ขณะนี้ มี ความปราถนา ระดับ " + $prayBuff + " อยู่แล้วโปรดรอสักพัก ความปราถนา นั้นจะหายไปเอง";
-			close;
+			mes "ขณะนี้ มี ความปราถนา ระดับ " + $prayBuff + " อยู่ ระยะเวลาที่เหลือ " + $prayBuffTimer + " นาที";
 		}
 		if(BaseLevel < 99)
 		menu "สร้างความปราถนาระดับ 1 (คนขอจะโดนลด 10 Lv)",L_Hope1,"โทรเรียกเทพเจ้า",L_CallAGod;
@@ -149,27 +148,31 @@ job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 		}
 	}
 	
-	L_HopeCheck:
-	if($prayBuff > 0)
-	{
-		message strcharinfo(0),"มีคนลงความปราถนา ก่อนหน้าคุณไปแล้ว";
-		close;
-	}
-	return;
-	
 	L_Hope1:
-	callsub L_HopeCheck;
-	$prayBuff = 1;
+	if($prayBuff > 1)
+	message strcharinfo(0),"มีคนลงความปราถนา ที่สูงกว่า ก่อนหน้าคุณไปแล้ว (แต่ยังคงกดลด Level ได้อยู่)";
+	else{
+		$prayBuff = 1;
+		$prayBuffTimer = 5;
+	}
 	goto L_HopeTrade;
 	
 	L_Hope2:
-	callsub L_HopeCheck;
-	$prayBuff = 2;
+	if($prayBuff > 2)
+	message strcharinfo(0),"มีคนลงความปราถนา ที่สูงกว่า ก่อนหน้าคุณไปแล้ว (แต่ยังคงกดลด Level ได้อยู่)";
+	else{
+		$prayBuff = 2;
+		$prayBuffTimer = 5;
+	}
 	goto L_HopeTrade;
 	
 	L_Hope3:
-	callsub L_HopeCheck;
-	$prayBuff = 3;
+	if($prayBuff > 3)
+	message strcharinfo(0),"มีคนลงความปราถนา ที่สูงกว่า ก่อนหน้าคุณไปแล้ว (แต่ยังคงกดลด Level ได้อยู่)";
+	else{
+		$prayBuff = 3;
+		$prayBuffTimer = 5;
+	}
 	goto L_HopeTrade;
 	
 	L_CallAGod:
@@ -198,7 +201,6 @@ job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 	}
 	
 	L_HopeTrade:
-	$prayBuffTimer = 5;
 	if(BaseLevel > 10)
 	BaseLevel -= 10;
 	else
@@ -214,14 +216,13 @@ OnTimer60000:
 	}
 	else
 	$prayBuff = 0;
-	setnpctimer 0;
+	initnpctimer;
 	end;
 	
 OnInit:
 	.godPrice = 50;
 	waitingroom "ความปราถนา",0;
 	initnpctimer;
-	startnpctimer;
 	end; 
 }
 
