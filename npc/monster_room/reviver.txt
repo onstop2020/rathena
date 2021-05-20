@@ -213,6 +213,8 @@ OnTimer60000:
 		if($prayBuffTimer <= 0)
 		$prayBuff = 0;
 	}
+	else
+	$prayBuff = 0;
 	end;
 	
 OnInit:
