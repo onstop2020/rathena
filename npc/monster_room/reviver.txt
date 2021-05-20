@@ -200,7 +200,10 @@ OnInit:
 	
 	L_HopeTrade:
 	$prayBuffTimer = 5;
-	atcommand "@lvup -10";
+	if(BaseLevel > 10)
+	BaseLevel -= 10;
+	else
+	BaseLevel = 1;
 	message strcharinfo(0),"คุณโดนลด 10 Level เพื่อปราถนาให้ใครบางคนรอด";
 	close;
 	
