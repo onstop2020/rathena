@@ -175,6 +175,13 @@ job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 	}
 	goto L_HopeTrade;
 	
+	L_HopeCheck:
+	if($prayBuff >= 4){
+		message strcharinfo(0),"มีคนลงความปราถนา ที่สูงกว่า ก่อนหน้าคุณไปแล้ว";
+		close;
+	}
+	return;
+	
 	L_CallAGod:
 	callsub L_HopeCheck;
 	mes "*ตื๊ด ๆ ตื๊ด ๆ";
