@@ -72,8 +72,7 @@ OnInit:
 	waitingroom "ดื้นรนเฮือกสุดท้าย",0;
 	end; 
 }
-
--	script	prayForLifeByPlayer	-1,{
+job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 	.@prayRequestDelay = 10;
 	
 	if(reviver > 0){
@@ -215,6 +214,7 @@ OnTimer60000:
 	}
 	else
 	$prayBuff = 0;
+	setnpctimer 0;
 	end;
 	
 OnInit:
@@ -281,4 +281,3 @@ job4_mag,126,197,5	duplicate(reviverController)	ยมทูต	10191
 job4_mag,133,197,3	duplicate(deathMaster)	ผู้คุมโลกแห่งความตาย	10368 
 prontera,170,181,1	duplicate(deathMaster)	ผู้คุมโลกแห่งความตาย#2	10368 
 job4_mag,131,162,5	duplicate(prayForLife)	แสงสว่างแห่งความหวัง	10308 
-job4_mag,130,177,5	duplicate(prayForLifeByPlayer)	ความปราถนาของใครบางคน	3101 
