@@ -3611,10 +3611,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Red_Herb
         Rate: 5500
@@ -3654,10 +3654,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Blue_Herb
         Rate: 5500
@@ -3697,10 +3697,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Green_Herb
         Rate: 7000
@@ -3740,10 +3740,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Yellow_Herb
         Rate: 5500
@@ -3783,10 +3783,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: White_Herb
         Rate: 5500
@@ -3827,10 +3827,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Blue_Herb
         Rate: 5500
@@ -3870,10 +3870,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Alchol
         Rate: 50
@@ -3913,10 +3913,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Alchol
         Rate: 50
@@ -8565,10 +8565,10 @@ Body:
     DamageMotion: 1
     Class: Event
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Mushroom_Of_Thief_1
         Rate: 1500
@@ -11420,10 +11420,10 @@ Body:
     Ai: 01
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Santa's_Hat_
         Rate: 1000
@@ -13351,10 +13351,10 @@ Body:
     DamageMotion: 384
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 1289
     AegisName: MAYA_PUPLE
     Name: Maya Purple
@@ -17647,11 +17647,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: Piece_Of_Cake
         Rate: 3800
@@ -17683,11 +17678,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: Piece_Of_Cake
         Rate: 3800
@@ -17719,11 +17709,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: Piece_Of_Cake
         Rate: 3800
@@ -17755,11 +17740,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: Piece_Of_Cake
         Rate: 3800
@@ -30553,10 +30533,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 1751
     AegisName: RANDGRIS
     Name: Valkyrie Randgris
@@ -32255,10 +32235,10 @@ Body:
     AttackMotion: 96
     DamageMotion: 96
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Small_Horn_Of_Devil
         Rate: 5000
@@ -32700,10 +32680,10 @@ Body:
     Ai: 21
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Evil_Mind
         Rate: 10000
@@ -32732,10 +32712,10 @@ Body:
     Ai: 21
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Evil_Mind
         Rate: 10000
@@ -32765,10 +32745,10 @@ Body:
     Ai: 21
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Evil_Mind
         Rate: 10000
@@ -32798,10 +32778,10 @@ Body:
     Ai: 21
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Evil_Mind
         Rate: 10000
@@ -32831,10 +32811,10 @@ Body:
     Ai: 20
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Evil_Mind
         Rate: 10000
@@ -32864,10 +32844,10 @@ Body:
     Ai: 21
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Evil_Mind
         Rate: 10000
@@ -32933,10 +32913,10 @@ Body:
     DamageMotion: 480
     Ai: 01
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Pumpkin_Bucket
         Rate: 5000
@@ -33056,10 +33036,10 @@ Body:
     Ai: 01
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 1816
     AegisName: EVENT_GOURD
     Name: Gourd
@@ -33080,10 +33060,10 @@ Body:
     DamageMotion: 96
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Apple
         Rate: 10000
@@ -35420,11 +35400,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: GOLD_ID4
         Rate: 10
@@ -35453,10 +35428,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Love_Flower
         Rate: 3000
@@ -36066,7 +36041,7 @@ Body:
     Ai: 02
     Class: Event
     Modes:
-      IgnoreMisc: true
+      IgnoreMisc: false
     Drops:
       - Item: RF_Taining_Notice
         Rate: 9000
@@ -36274,10 +36249,10 @@ Body:
     DamageMotion: 480
     Ai: 03
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Immortality_Egg
         Rate: 1000
@@ -36386,10 +36361,10 @@ Body:
     DamageMotion: 384
     Class: Guardian
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       Detector: true
       KnockBackImmune: true
   - Id: 1907
@@ -36451,10 +36426,10 @@ Body:
     DamageMotion: 384
     Class: Guardian
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       Detector: true
       KnockBackImmune: true
   - Id: 1910
@@ -36476,10 +36451,10 @@ Body:
     DamageMotion: 384
     Class: Guardian
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       Detector: true
       KnockBackImmune: true
   - Id: 1911
@@ -36501,10 +36476,10 @@ Body:
     DamageMotion: 384
     Class: Guardian
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       Detector: true
       KnockBackImmune: true
   - Id: 1912
@@ -36526,10 +36501,10 @@ Body:
     DamageMotion: 384
     Class: Guardian
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       Detector: true
       KnockBackImmune: true
   - Id: 1913
@@ -36551,10 +36526,10 @@ Body:
     DamageMotion: 384
     Class: Guardian
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       Detector: true
       KnockBackImmune: true
   - Id: 1914
@@ -36576,10 +36551,6 @@ Body:
     DamageMotion: 384
     Class: Guardian
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
       Detector: true
       KnockBackImmune: true
   - Id: 1915
@@ -36601,10 +36572,6 @@ Body:
     DamageMotion: 384
     Class: Guardian
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
       Detector: true
       KnockBackImmune: true
   - Id: 1916
@@ -37016,10 +36983,10 @@ Body:
     DamageMotion: 648
     Ai: 01
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Fools_Day_Box
         Rate: 1000
@@ -37213,10 +37180,10 @@ Body:
     Ai: 01
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Crystal_Key
         Rate: 9000
@@ -37269,10 +37236,10 @@ Body:
     DamageMotion: 576
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 1935
     AegisName: RED_FLOWER
     Name: Red Flower
@@ -37294,10 +37261,10 @@ Body:
     DamageMotion: 576
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 1936
     AegisName: YELL_FLOWER
     Name: Yellow Flower
@@ -37319,10 +37286,10 @@ Body:
     DamageMotion: 576
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 1937
     AegisName: CONSTANT_
     Name: Constant
@@ -37746,11 +37713,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: Piece_Of_Cake
         Rate: 3800
@@ -37782,11 +37744,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: Piece_Of_Cake
         Rate: 3800
@@ -37818,11 +37775,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: Piece_Of_Cake
         Rate: 3800
@@ -37854,11 +37806,6 @@ Body:
     WalkSpeed: 190
     Ai: 01
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
     Drops:
       - Item: Piece_Of_Cake
         Rate: 3800
@@ -37887,10 +37834,10 @@ Body:
     ElementLevel: 1
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Tresure_Box_WoE
         Rate: 9000
@@ -38134,10 +38081,10 @@ Body:
     Ai: 01
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 1963
     AegisName: P_CHUNG_E
     Name: New Year Doll
@@ -38438,10 +38385,10 @@ Body:
     AttackMotion: 432
     DamageMotion: 540
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Crystal_Blue
         Rate: 40
@@ -38525,10 +38472,10 @@ Body:
     AttackMotion: 672
     DamageMotion: 480
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Jellopy
         Rate: 7000
@@ -40672,10 +40619,10 @@ Body:
     Ai: 01
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Chocolate
         Rate: 5000
@@ -40946,10 +40893,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Gold_Tulip
         Rate: 10000
@@ -41493,7 +41440,7 @@ Body:
     Ai: 01
     Class: Boss
     Modes:
-      IgnoreMelee: true
+      IgnoreMelee: false
       Mvp: true
     MvpDrops:
       - Item: Skull
@@ -42002,10 +41949,10 @@ Body:
     Ai: 21
     Class: Event
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Wing_Of_Fly
         Rate: 1000
@@ -42407,10 +42354,10 @@ Body:
     Ai: 21
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       Mvp: true
     Drops:
       - Item: Nipper
@@ -42571,11 +42518,6 @@ Body:
     AttackMotion: 864
     DamageMotion: 288
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
   - Id: 2081
     AegisName: E_HYDRA
     Name: Strange Hydra
@@ -43094,10 +43036,10 @@ Body:
     DamageMotion: 480
     Ai: 01
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Crumpled_Paper
         Rate: 7000
@@ -44758,10 +44700,10 @@ Body:
     AttackMotion: 192
     DamageMotion: 576
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2136
     AegisName: LITTLE_FATUM
     Name: Little Fatum
@@ -44862,10 +44804,10 @@ Body:
     Ai: 25
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2139
     AegisName: NYDHOG_MEMORY1_2
     Name: Nydhoggur Memory
@@ -44884,10 +44826,10 @@ Body:
     Ai: 25
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2140
     AegisName: NYDHOG_MEMORY2_1
     Name: Nydhoggur Memory
@@ -44906,10 +44848,10 @@ Body:
     Ai: 25
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2141
     AegisName: NYDHOG_MEMORY2_2
     Name: Nydhoggur Memory
@@ -44928,10 +44870,10 @@ Body:
     Ai: 25
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2142
     AegisName: NYDHOG_MEMORY3_1
     Name: Nydhoggur Memory
@@ -44950,10 +44892,10 @@ Body:
     Ai: 25
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2143
     AegisName: NYDHOG_MEMORY3_2
     Name: Nydhoggur Memory
@@ -44972,10 +44914,10 @@ Body:
     Ai: 25
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2144
     AegisName: G_ANTLER_SCARABA
     Name: Antler Scaraba
@@ -45120,10 +45062,10 @@ Body:
     DamageMotion: 96
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Ripe_Watermelon
         Rate: 5000
@@ -46193,7 +46135,7 @@ Body:
     Ai: 20
     Class: Boss
     Modes:
-      IgnoreMagic: true
+      IgnoreMagic: false
     Drops:
       - Item: Crystal_Blue
         Rate: 23
@@ -46242,8 +46184,8 @@ Body:
     Ai: 20
     Class: Boss
     Modes:
-      IgnoreMelee: true
-      IgnoreRanged: true
+      IgnoreMelee: false
+      IgnoreRanged: false
     Drops:
       - Item: Clam_Shell
         Rate: 2750
@@ -46386,8 +46328,8 @@ Body:
     Ai: 20
     Class: Boss
     Modes:
-      IgnoreMelee: true
-      IgnoreRanged: true
+      IgnoreMelee: false
+      IgnoreRanged: false
     Drops:
       - Item: Mistic_Frozen
         Rate: 5
@@ -46483,7 +46425,7 @@ Body:
     Ai: 20
     Class: Boss
     Modes:
-      IgnoreMagic: true
+      IgnoreMagic: false
     Drops:
       - Item: Anolian_Skin
         Rate: 2425
@@ -46872,10 +46814,10 @@ Body:
     Ai: 10
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2192
     AegisName: MD_OCTOPUS
     Name: Octopus
@@ -47582,10 +47524,10 @@ Body:
     Ai: 01
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2210
     AegisName: XMAS_LUNATIC
     Name: Christmas Snow Rabbit
@@ -47635,10 +47577,10 @@ Body:
     DamageMotion: 504
     Ai: 02
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2212
     AegisName: E_KNIGHT_OF_WINDSTORM
     Name: Stormy Knight
@@ -47671,7 +47613,7 @@ Body:
     Ai: 02
     Class: Boss
     Modes:
-      IgnoreMelee: true
+      IgnoreMelee: false
       Mvp: true
   - Id: 2213
     AegisName: M_WANDER_MAN
@@ -47842,10 +47784,10 @@ Body:
     DamageMotion: 540
     Ai: 02
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2219
     AegisName: E_GIANT_OCTOPUS
     Name: Giant Octopus
@@ -47870,10 +47812,10 @@ Body:
     DamageMotion: 540
     Ai: 02
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2220
     AegisName: E_QUVE
     Name: Messenger of Devil
@@ -47899,10 +47841,10 @@ Body:
     DamageMotion: 576
     Ai: 02
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2221
     AegisName: RANDEL
     Name: Randel
@@ -49105,10 +49047,10 @@ Body:
     DamageMotion: 480
     Ai: 01
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Blue_Card_C
         Rate: 2000
@@ -50448,10 +50390,10 @@ Body:
     ElementLevel: 1
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Woe_Violet_Potion
         Rate: 2000
@@ -50858,7 +50800,7 @@ Body:
     Ai: 02
     Class: Boss
     Modes:
-      IgnoreMagic: true
+      IgnoreMagic: false
       Mvp: true
   - Id: 2307
     AegisName: J_MISTRESS
@@ -51302,10 +51244,10 @@ Body:
     DamageMotion: 360
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2319
     AegisName: BUWAYA
     Name: Buwaya
@@ -51599,10 +51541,10 @@ Body:
     WalkSpeed: 1000
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Bangungot_Doll
         Rate: 4000
@@ -51640,10 +51582,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2329
     AegisName: BUWAYA_EGG
     Name: Buwaya's Egg
@@ -51717,10 +51659,10 @@ Body:
     Class: Battlefield
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2332
     AegisName: BUWAYA_GHOST
     Name: Buwaya
@@ -51772,10 +51714,10 @@ Body:
     DamageMotion: 1
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2334
     AegisName: G_WAKWAK
     Name: Wakwak
@@ -51820,10 +51762,10 @@ Body:
     ElementLevel: 1
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Bakonawa_Doll
         Rate: 2000
@@ -51901,10 +51843,10 @@ Body:
     Class: Battlefield
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2338
     AegisName: MD_MANANANGGAL
     Name: Manananggal
@@ -52093,10 +52035,10 @@ Body:
     Class: Battlefield
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2344
     AegisName: MER_WISH_MAIDEN
     Name: Wish Maiden
@@ -53201,10 +53143,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2373
     AegisName: ROCK
     Name: Rock
@@ -53226,10 +53168,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2374
     AegisName: THICKET
     Name: Thicket
@@ -53251,10 +53193,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2375
     AegisName: MOROCC_4_142
     Name: Incarnation of Morocc
@@ -53337,10 +53279,10 @@ Body:
     DamageMotion: 480
     Ai: 02
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2378
     AegisName: MER_ANTLER_SCARABA
     Name: Antler Scaraba
@@ -53397,10 +53339,10 @@ Body:
     Ai: 01
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Stolen_Cookie
         Rate: 3000
@@ -53435,10 +53377,10 @@ Body:
     Ai: 01
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Stolen_Cookie
         Rate: 3000
@@ -53582,7 +53524,7 @@ Body:
     AttackMotion: 672
     DamageMotion: 480
     Modes:
-      IgnoreMagic: true
+      IgnoreMagic: false
   - Id: 2403
     AegisName: POPORING_IMMUNE_A
     Name: Poporing
@@ -53613,7 +53555,7 @@ Body:
     AttackMotion: 672
     DamageMotion: 480
     Modes:
-      IgnoreMelee: true
+      IgnoreMelee: false
   - Id: 2404
     AegisName: DEAD_PLANKTON
     Name: Dead Plankton
@@ -55209,10 +55151,10 @@ Body:
     DamageMotion: 480
     Ai: 01
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Payroll_Of_Kafra
         Rate: 5000
@@ -55250,10 +55192,10 @@ Body:
     DamageMotion: 288
     Ai: 01
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Small_Wooden_Chest
         Rate: 5000
@@ -56981,10 +56923,10 @@ Body:
     Ai: 10
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2537
     AegisName: HIDDEN_MOB4
     Name: Monster 4
@@ -57013,10 +56955,10 @@ Body:
     Ai: 10
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
 #  - Id: 2538
 #    AegisName: E_KING_PORING
   - Id: 2539
@@ -57048,10 +56990,10 @@ Body:
     Ai: 10
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2540
     AegisName: FACEWORM_EGG
     Name: Faceworm Egg
@@ -57080,10 +57022,10 @@ Body:
     AttackDelay: 24
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Piece_Of_Egg_Shell
         Rate: 5000
@@ -73348,10 +73290,10 @@ Body:
     DamageMotion: 648
     Class: Event
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Pumpkin
         Rate: 1500
@@ -73598,10 +73540,10 @@ Body:
     Class: Battlefield
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
 #  - Id: 2944
 #    AegisName: J_HORNET
 #  - Id: 2945
@@ -74072,10 +74014,10 @@ Body:
     Class: Battlefield
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 2961
     AegisName: E_TORTUROUS_REDEEMER
     Name: Torturous Redeemer
@@ -74234,10 +74176,10 @@ Body:
     Ai: 01
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Red_Socks_With_Holes
         Rate: 2000
@@ -74974,10 +74916,10 @@ Body:
     DamageMotion: 440
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3008
     AegisName: EP14_MORS_HIDDEN
     Name: Morocc Hidden
@@ -75604,10 +75546,10 @@ Body:
     AttackMotion: 912
     DamageMotion: 288
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3027
     AegisName: FULBUK
     Name: Fire Bug
@@ -75668,10 +75610,10 @@ Body:
     AttackMotion: 912
     DamageMotion: 288
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: YummyStem
         Rate: 1000
@@ -75765,10 +75707,10 @@ Body:
     Class: Boss
     Modes:
       Aggressive: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3039
     AegisName: B_MOROCC_1
     Name: Blazing Morocc Reincarnation
@@ -75954,10 +75896,10 @@ Body:
 #    AttackMotion: 432
 #    DamageMotion: 540
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
   - Id: 3061
     AegisName: E_ANGRY_MIMIC
@@ -75981,10 +75923,10 @@ Body:
     DamageMotion: 1
     Class: Event
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
 #  - Id: 3065
 #    AegisName: E_ICE_MINE
 #  - Id: 3066
@@ -76588,10 +76530,10 @@ Body:
 #    AttackMotion: 1
 #    DamageMotion: 1
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Detector: true
 #  - Id: 3094
 #    AegisName: MM_MUSPELLSKOLL_CORE
@@ -76613,10 +76555,10 @@ Body:
 #    AttackMotion: 1
 #    DamageMotion: 1
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Detector: true
 #  - Id: 3095
 #    AegisName: MM_GOD_SHADOW
@@ -76638,10 +76580,10 @@ Body:
 #    AttackMotion: 1
 #    DamageMotion: 1
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Detector: true
 #  - Id: 3096
 #    AegisName: MM_MOROCC_KID
@@ -76785,10 +76727,10 @@ Body:
 #    AttackMotion: 1
 #    DamageMotion: 1
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
   - Id: 3101
     AegisName: MM_MANA_WHITE
     Name: Mana White
@@ -76809,10 +76751,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3102
     AegisName: MM_MANA_RED
     Name: Mana of Life
@@ -76833,10 +76775,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3103
     AegisName: MM_MANA_YELLOW
     Name: Mana of Earth
@@ -76857,10 +76799,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
 #  - Id: 3104
 #    AegisName: MM_MANA_BLUE
 #    Name: Mm Mana Blue
@@ -76881,10 +76823,10 @@ Body:
 #    AttackMotion: 1
 #    DamageMotion: 1
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #  - Id: 3105
 #    AegisName: MM_GB_MOROCC_1
 #    Name: Mm Gb Morocc 1
@@ -76967,10 +76909,10 @@ Body:
 #    AttackMotion: 456
 #    DamageMotion: 336
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #    Drops:
 #      - Item: Easter_Egg
@@ -77086,10 +77028,10 @@ Body:
 #    DamageMotion: 288
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3111
 #    AegisName: E_RUNAWAY2
@@ -77112,10 +77054,10 @@ Body:
 #    DamageMotion: 288
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3112
 #    AegisName: E_RUNAWAY3
@@ -77138,10 +77080,10 @@ Body:
 #    DamageMotion: 672
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3113
 #    AegisName: E_RUNAWAY4
@@ -77164,10 +77106,10 @@ Body:
 #    DamageMotion: 480
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3114
 #    AegisName: E_RUNAWAY5
@@ -77190,10 +77132,10 @@ Body:
 #    DamageMotion: 576
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3115
 #    AegisName: E_RUNAWAY1_
@@ -77216,10 +77158,10 @@ Body:
 #    DamageMotion: 288
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3116
 #    AegisName: E_RUNAWAY2_
@@ -77242,10 +77184,10 @@ Body:
 #    DamageMotion: 288
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3117
 #    AegisName: E_RUNAWAY3_
@@ -77268,10 +77210,10 @@ Body:
 #    DamageMotion: 672
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3118
 #    AegisName: E_RUNAWAY4_
@@ -77294,10 +77236,10 @@ Body:
 #    DamageMotion: 480
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3119
 #    AegisName: E_RUNAWAY5_
@@ -77320,10 +77262,10 @@ Body:
 #    DamageMotion: 576
 #    Class: Event
 #    Modes:
-#      IgnoreMagic: true
-#      IgnoreMelee: true
-#      IgnoreMisc: true
-#      IgnoreRanged: true
+#      IgnoreMagic: false
+#      IgnoreMelee: false
+#      IgnoreMisc: false
+#      IgnoreRanged: false
 #      Mvp: true
 #  - Id: 3120
 #    AegisName: M_ISIS
@@ -77894,10 +77836,10 @@ Body:
     AttackMotion: 2112
     DamageMotion: 768
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       NoRandomWalk: true
 #  - Id: 3160
 #    AegisName: BOILED_RICE_DUANWU
@@ -78328,10 +78270,10 @@ Body:
     Ai: 10
     Class: Boss
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
       Mvp: true
       NoRandomWalk: true
       TeleportBlock: true
@@ -78371,8 +78313,8 @@ Body:
     Ai: 04
     Class: Boss
     Modes:
-      IgnoreMelee: true
-      IgnoreRanged: true
+      IgnoreMelee: false
+      IgnoreRanged: false
     Drops:
       - Item: Robe_Of_Sarah
         Rate: 100
@@ -78408,7 +78350,7 @@ Body:
     Ai: 04
     Class: Boss
     Modes:
-      IgnoreMagic: true
+      IgnoreMagic: false
     Drops:
       - Item: Robe_Of_Sarah
         Rate: 100
@@ -78476,8 +78418,8 @@ Body:
     Ai: 04
     Class: Boss
     Modes:
-      IgnoreMelee: true
-      IgnoreRanged: true
+      IgnoreMelee: false
+      IgnoreRanged: false
     Drops:
       - Item: Gigantes_Card
         Rate: 1
@@ -78511,7 +78453,7 @@ Body:
     Ai: 04
     Class: Boss
     Modes:
-      IgnoreMagic: true
+      IgnoreMagic: false
     Drops:
       - Item: Gigantes_Card
         Rate: 1
@@ -78755,9 +78697,9 @@ Body:
     Ai: 25
     Class: Boss
     Modes:
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: ORGANIC_PUMPKIN
         Rate: 5000
@@ -78796,7 +78738,7 @@ Body:
     Ai: 25
     Class: Boss
     Modes:
-      IgnoreMagic: true
+      IgnoreMagic: false
     Drops:
       - Item: INORGANIC_PUMPKIN
         Rate: 5000
@@ -80820,10 +80762,10 @@ Body:
     Ai: 10
     Modes:
       CanMove: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Burnt_Parts
         Rate: 1000
@@ -80951,10 +80893,10 @@ Body:
     Ai: 01
     Class: Battlefield
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3254
     AegisName: T_W_O
     Name: T_W_O
@@ -81880,10 +81822,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
 #  - Id: 3456
 #    AegisName: WATERMELON_34
 #  - Id: 3457
@@ -83453,10 +83395,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3624
     AegisName: EP16_2_MM_U_ENERGY_G
     Name: Plasma G
@@ -83478,10 +83420,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3625
     AegisName: EP16_2_MM_U_ENERGY_B
     Name: Plasma B
@@ -83503,10 +83445,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3626
     AegisName: EP16_2_H_HUNTER_V
     Name: Upgraded Heart Hunter
@@ -84477,10 +84419,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3743
     AegisName: SEAANEMONE
     Name: Sea Anemone
@@ -84504,10 +84446,10 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
   - Id: 3744
     AegisName: G_COWRAIDERS1
     Name: Buffalo Bandit
@@ -84921,10 +84863,10 @@ Body:
     DamageMotion: 480
     Ai: 02
     Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
+      IgnoreMagic: false
+      IgnoreMelee: false
+      IgnoreMisc: false
+      IgnoreRanged: false
     Drops:
       - Item: Jellopy
         Rate: 7500
