@@ -6,9 +6,13 @@
 	L_Party:
 	warp "pvp_y_8-2",0,0;
 	end;
+	
+OnInit:
+	waitingroom "PvP",0;
+	end;
 }
 
-prontera,147,174,5	duplicate(pvpMan)	PvP	831
+prontera,148,203,3	duplicate(pvpMan)	PvP	831
 
 pvp_y_7-2	mapflag	pvp
 pvp_y_7-2	mapflag	pvp_noparty

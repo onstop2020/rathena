@@ -1,5 +1,6 @@
 -	script	CharacterSuitController	-1,{
-	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด",L_Class3Suit,"แก้เด้ง ID ที่เข้าเกมไม่ได้",L_ResetErrorCharacter;
+	//menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด",L_Class3Suit,"แก้เด้ง ID ที่เข้าเกมไม่ได้",L_ResetErrorCharacter;
+	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด",L_Class3Suit;
 	setarray .@Styles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
 	setarray .@Look[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
 	.@s = select(" ~ สีเสื้อ: ~ ทรงผม: ~ สีผม");
@@ -84,6 +85,10 @@
 	}
 	mes "เรียบร้อยแล้ว โปรดลองเข้า ID ดังกล่าวใหม่อีกที";
 	close;
+	
+	OnInit:
+	waitingroom "แต่ง ผม, สีผม, สีเสื้อ, ชุด Class 3",0;
+	end;
 }
 
-prontera,140,182,5	duplicate(CharacterSuitController)	 แต่งตัว	894
+prontera,178,174,3	duplicate(CharacterSuitController)	 แต่งตัว	894

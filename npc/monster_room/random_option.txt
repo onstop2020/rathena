@@ -132,7 +132,7 @@
 	close;
 
 OnInit:
-	waitingroom "3.) ทำให้ อุปกรณ์สวมใส่ โหด",0;
+	waitingroom "ทำให้ อุปกรณ์สวมใส่ โหด",0;
 	end;
 }
 
@@ -145,4 +145,4 @@ function	script	GetRandomOptionId	{
 	return .@optId;
 }
 
-prontera,147,193,5	duplicate(randomOptionSeller)	Random Option	933
+prontera,163,203,5	duplicate(randomOptionSeller)	Random Option	933

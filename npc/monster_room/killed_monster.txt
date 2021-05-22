@@ -506,6 +506,10 @@
 	freeloop(0);
 	
 	close;
+	
+OnInit:
+	waitingroom "เช็คคูณ EXP พิเศษ",0;
+	end;
 }
 
-prontera,138,172,5	duplicate(killedMonsterChecker)	ผู้บันทึก Monster	615 
+prontera,134,172,3	duplicate(killedMonsterChecker)	ผู้บันทึก Monster	615 

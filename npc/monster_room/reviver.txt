@@ -149,7 +149,7 @@ job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 	}
 	
 	L_Hope1:
-	if($prayBuff > 1)
+	if($prayBuff > 0)
 	message strcharinfo(0),"มีคนลงความปราถนา ที่สูงกว่า ก่อนหน้าคุณไปแล้ว (แต่ยังคงกดลด Level ได้อยู่)";
 	else{
 		$prayBuff = 1;
@@ -158,7 +158,7 @@ job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 	goto L_HopeTrade;
 	
 	L_Hope2:
-	if($prayBuff > 2)
+	if($prayBuff > 1)
 	message strcharinfo(0),"มีคนลงความปราถนา ที่สูงกว่า ก่อนหน้าคุณไปแล้ว (แต่ยังคงกดลด Level ได้อยู่)";
 	else{
 		$prayBuff = 2;
@@ -167,7 +167,7 @@ job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 	goto L_HopeTrade;
 	
 	L_Hope3:
-	if($prayBuff > 3)
+	if($prayBuff > 2)
 	message strcharinfo(0),"มีคนลงความปราถนา ที่สูงกว่า ก่อนหน้าคุณไปแล้ว (แต่ยังคงกดลด Level ได้อยู่)";
 	else{
 		$prayBuff = 3;
@@ -281,7 +281,7 @@ function	script	DeadReset	{
 	end;
 	
 OnInit:
-	waitingroom "ผู้คุมโลกแห่งความตาย",0;
+	waitingroom "Class - Acolyte ช่วยคนตาย",0;
 	end; 
 }
 

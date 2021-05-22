@@ -157,8 +157,12 @@ OnInit:
 -	script	goToDress	-1,{
 	warp "prt_in",240,162;
 	end;
+	
+	OnInit:
+	waitingroom "ใส่ หมวก, ปีก",0;
+	end;
 }
 
-prontera,138,184,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
+prontera,175,177,3	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
 prt_in,244,168,5	duplicate(viewChanger)	แต่งทุกอย่าง	1681
 prt_in,235,163,5	duplicate(backToTown)	กลับเมือง	101

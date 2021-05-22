@@ -52,7 +52,9 @@
 OnInit:
 	$maxZeny = 1000000000;
 	$zenyPerCash = 10000;
+	
+	waitingroom "ซื้อ Zeny",0;
 	end;
 }
 
-prontera,164,174,1	duplicate(zenySeller)	ซื้อ Zeny	803
+prontera,164,170,1	duplicate(zenySeller)	ซื้อ Zeny	803

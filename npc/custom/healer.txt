@@ -188,4 +188,4 @@ OnInit:
 
 // Duplicates
 //============================================================
-prontera,160,193,4	duplicate(Healer)	¿×é¹¿Ù¾ÅÑ§ªÕÇÔµ#prt	677
+prontera,159,193,4	duplicate(Healer)	¿×é¹¿Ù¾ÅÑ§ªÕÇÔµ#prt	677

@@ -14,6 +14,10 @@
 	mes "ขออภัยไว้ล่วงหน้า";
 	mes "หากผมมากดเพิ่ม Cash ให้ช้า ขอบคุณครับ";
 	close;
+	
+OnInit:
+	waitingroom "ซื้อ Cash",0;
+	end;
 }
 
-prontera,154,181,5	duplicate(donateInfomation)	บริจาค	837
+prontera,164,174,3	duplicate(donateInfomation)	บริจาค	837

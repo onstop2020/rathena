@@ -1,6 +1,10 @@
 -	script	storage	-1,{
 	openstorage;
 	end;
+	
+	OnInit:
+	waitingroom "คลังเก็บของ",0;
+	end;
 }
 
 prontera,142,180,5	duplicate(storage)	คลังเก็บของ	10005

@@ -1,0 +1,52 @@
+-	script	serverInfomation	-1,{
+	dispbottom "Monster Room - RO (Rogue-Like)";
+	dispbottom " ";
+	dispbottom "=== ข้อมูลเซิร์ฟเวอร์ ===";
+	dispbottom "-EXP x1 โดยสามารถใช้ Cash ซื้อคูณ EXP เพิ่ม หรือฆ่า Monster ที่แตกต่างกันทุก ๆ 10 ตัว ก็จะได้คูณ EXP พิเศษ (ถาวรทั้ง ID)";
+	dispbottom "-Level ห่างได้ไม่เกิน 15 Level (หากจะแชร์ EXP ใน Party)";
+	dispbottom "-Monster ทุกตัว Drop อุปกรณ์สวมใส่ทุกชิ้นในเกม";
+	dispbottom "-Zeny หาจากฆ่า Monster หรือซื้อด้วย Cash";
+	dispbottom "-Cash หาไม่ได้ บริจาคได้อย่างเดียว";
+	dispbottom "-อุปกรณ์สวมใส่ ทุกชิ้นไม่มีคุณสมบัติพิเศษเช่น Str +1, ไม่มีคอมโบ, ใส่การ์ดไม่ได้, ตีบวกไม่ได้ อย่างอื่นเหมือนเดิม";
+	dispbottom "-อุปกรณ์สวมใส่ ทุกชิ้นสามารถนำไปสุ่ม Random Option ได้ ราคารอบละ {10z/10,000z/100,000z} (สุ่ม 1 ถึง 5 แถว สุ่มค่าความแรง 1 ถึง {10/50/100}) (กรณี Damage แรงจนล้น ไม่รับผิดชอบใด ๆ ทั้งสิ้น)";
+	dispbottom "-มี Potion ขาย HP, SP เต็ม ราคา 1z";
+	dispbottom "-ตายแล้วจะกลายเป็น Novice, Level เหลือ 1, Job Level เหลือ 1, Status เหลือ 1 ทั้งหมด, Status Point จะกลายเป็น 48, Skill จะถูกลืม, Skill Point จะเหลือ 0, ถอดอุปกรณ์, ลบของทุกอย่างที่มีในตัว";
+	dispbottom "-ไม่มี GvG, ไม่มี Guild, มี PvP, มี PvP Party หากตายในห้อง PvP, PvP Party ไม่โดนโทษตาย";
+	dispbottom "-การป้องกันทุกอย่างรวมกันจะได้ไม่เกิน 99% ไม่งั้นอมตะ";
+	dispbottom " ";
+	dispbottom "=== วิธีลบตัวละคร ===";
+	dispbottom "1.) ไปหน้าเลือกตัวละคร";
+	dispbottom "2.) กดลบ";
+	dispbottom "3.) รอ 1 วิ";
+	dispbottom "4.) กดลบอีกที";
+	dispbottom "5.) ไม่ต้องใส่อะไรเลยตอนลบ แล้วกดยืนยัน";
+	dispbottom " ";
+	dispbottom "=== วิธีเล่นแบบสั้น ๆ ===";
+	dispbottom "1.) เข้ามาเก็บ Level";
+	dispbottom "2.) เปลี่ยนอาชีพตามต้องการ";
+	dispbottom "3.) หาเงินมาสุ่ม Upgrade อุปกรณ์สวมใส่";
+	dispbottom " ";
+	dispbottom "=== แจ้งไว้เฉย ๆ ===";
+	dispbottom "-ไม่มี Website";
+	dispbottom "-ไม่มี Patcher โหลด Patch ผ่าน Discord/Play Server เท่านั้น";
+	dispbottom " ";
+	dispbottom "=== คำสั่งที่ใช้ได้ ===";
+	dispbottom "showexp";
+	dispbottom "showzeny";
+	dispbottom "autoloot";
+	dispbottom "alootid";
+	dispbottom "autoloottype";
+	dispbottom "autotrade";
+	dispbottom "who";
+	dispbottom "who2";
+	dispbottom "who3";
+	dispbottom "load";
+	dispbottom "mi";
+	end;
+	
+OnInit:
+	waitingroom "วิธีเล่นคร่าว ๆ",0;
+	end;
+}
+
+prontera,147,174,5	duplicate(serverInfomation)	ข้อมูล Server	837

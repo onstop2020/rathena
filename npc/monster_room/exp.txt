@@ -93,7 +93,9 @@ function	script	RefreshEXP	{
 OnInit:
 	$maxExpBuyCount = 999999;
 	$cashPerExpBuy = 10;
+	
+	waitingroom "«×éÍ¤Ù³ EXP",0;
 	end;
 }
 
-prontera,164,193,3	duplicate(expSeller)	¤Ù³ EXP	704
+prontera,165,193,3	duplicate(expSeller)	¤Ù³ EXP	704

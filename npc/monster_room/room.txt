@@ -1,4 +1,4 @@
-prontera,157,196,3	script	Monster Room Warper	967,{
+prontera,146,193,5	script	Monster Room Warper	967,{
 	menu "เก็บอาวุธอัตโนมัติ (ที่สุ่มทุกอย่าง)",L_AutoLootWeapon
 	,"เก็บอุปกรณ์สวมใส่อัตโนมัติ (ที่สุ่มทุกอย่าง)",L_AutoLootEquipment
 	,"ตั้งเวลาอมตะตอนโหลด Map",L_AdjustLoadTime
@@ -373,7 +373,7 @@ OnInit:
 	
 	freeloop(0);
 	
-	waitingroom "1.) เก็บ Level",0;
+	waitingroom "เก็บ Level",0;
 	
 	initnpctimer;
 	end;

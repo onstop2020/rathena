@@ -26,4 +26,4 @@ OnInit:
 	end;
 }
 
-prontera,144,174,5	duplicate(ranking)	จัดอันดับ	837
+prontera,147,170,5	duplicate(ranking)	จัดอันดับ	837
