@@ -1,7 +1,7 @@
-prontera,169,203,4	script	ช่าง Mang	684,{
-	if(BaseClass == Job_Merchant){
+prontera,175,203,4	script	นักรบถึกทน	734,{
+	if(BaseClass == Job_Swordman){
 		mes .npcName$;
-		mes "ว่าไงช่างตัวน้อย จะมาทำอะไรเหรอ?";
+		mes "ว่าไงนักรบตัวน้อย จะมาทำอะไรเหรอ?";
 		next;
 		menu "ใช้ระบบ " + .systemName$,L_Use,"เติม " + .resourceName$,-;
 		mes .npcName$;
@@ -37,7 +37,7 @@ prontera,169,203,4	script	ช่าง Mang	684,{
 			.@successChance = .lv3Chance;
 			else if(getd("$" + .variableName$ + "Buff") == 4)
 			.@successChance = 100;
-			callfunc("RefineRandomOption",.@successChance,.npcName$);
+			callfunc("RandomOptionDef",.@successChance,.npcName$);
 			close;
 		}
 		else{
@@ -136,15 +136,15 @@ OnTimer60000:
 	end;
 	
 OnInit:
-	.npcName$ = "^8328FF[ช่าง Mang]^000000";
+	.npcName$ = "^8328FF[นักรบถึกทน]^000000";
 	
-	.systemName$ = "บวก Random Option";
+	.systemName$ = "ทำ Random Option ป้องกัน";
 	
-	.resourceName$ = "เชื้อเพลิง";
+	.resourceName$ = "กระสอบทราย";
 	
-	.variableName$ = "stacker";
+	.variableName$ = "randomOptionDef";
 	
-	.className$ = "Class - Merchant";
+	.className$ = "Class - Swordman";
 	
 	.normalTimer = 5;	// Minutes
 	.cashTimer = 50;	// Minutes
@@ -163,14 +163,13 @@ OnInit:
 	end; 
 }
 
-function	script	RefineRandomOption	{
+function	script	RandomOptionDef	{
 	.@chance = getarg(0,0);
 	.@npcName$ = getarg(1,"^8328FF[ระบบ]^000000");
-	.price = 10000;
-	.maxValue = 1000;
+	.price = 100000;
 	mes .@npcName$;
 	mes "โอกาสสำเร็จ " + .@chance + "%";
-	mes "*เมื่อ สำเร็จ ความแรง Random Option ทุกช่องจะ +1 (มากสุด " + callfunc("F_InsertComma",.maxValue) + ")";
+	mes "*เมื่อ สำเร็จ Random Option ช่องที่เลือก จะกลายเป็น ป้องกัน โจมตีกายภาพระยะใกล้ หรือ ป้องกัน โจมตีกายภาพระยะไกล";
 	mes "*เมื่อ ไม่สำเร็จ จะไม่มีผลเสียใด ๆ";
 	mes "ราคาต่อรอบ " + callfunc("F_InsertComma",.price) + "z";
 	next;
@@ -202,6 +201,16 @@ function	script	RefineRandomOption	{
 	
 	.@selectedItemId = getequipid(.@part);
 
+	mes .@npcName$;
+	mes "เลือกช่อง Random Option 1-5";
+	next;
+	input .@index;
+	.@index--;
+	if(.@index <= 0)
+	.@index = 0;
+	else 	if(.@index >= 4)
+	.@index = 4;
+
 	if(Zeny < .price) {
 		mes .@npcName$;
 		mes "เจ้ามี Zeny ไม่เพียงพอ";
@@ -226,45 +235,31 @@ function	script	RefineRandomOption	{
 		.@index3 = getequiprandomoption(.@part,3,ROA_ID);
 		.@index4 = getequiprandomoption(.@part,4,ROA_ID);
 		
-		.@valueIndex0 = getequiprandomoption(.@part,0,ROA_VALUE) + 1;
-		.@valueIndex1 = getequiprandomoption(.@part,1,ROA_VALUE) + 1;
-		.@valueIndex2 = getequiprandomoption(.@part,2,ROA_VALUE) + 1;
-		.@valueIndex3 = getequiprandomoption(.@part,3,ROA_VALUE) + 1;
-		.@valueIndex4 = getequiprandomoption(.@part,4,ROA_VALUE) + 1;
-		
-		if(.@valueIndex0 >= .maxValue)
-		.@valueIndex0 = .maxValue;
-		if(.@valueIndex1 >= .maxValue)
-		.@valueIndex1 = .maxValue;
-		if(.@valueIndex2 >= .maxValue)
-		.@valueIndex2 = .maxValue;
-		if(.@valueIndex3 >= .maxValue)
-		.@valueIndex3 = .maxValue;
-		if(.@valueIndex4 >= .maxValue)
-		.@valueIndex4 = .maxValue;
-		
+		.@valueIndex0 = getequiprandomoption(.@part,0,ROA_VALUE);
+		.@valueIndex1 = getequiprandomoption(.@part,1,ROA_VALUE);
+		.@valueIndex2 = getequiprandomoption(.@part,2,ROA_VALUE);
+		.@valueIndex3 = getequiprandomoption(.@part,3,ROA_VALUE);
+		.@valueIndex4 = getequiprandomoption(.@part,4,ROA_VALUE);
+
+		.@randomOptionRand = (rand(0,1) == 0 ? 167 : 220);
+
 		if(.@index0 <= 0)
 		setrandomoption(.@part,0,1,1,0);
-		else
-		setrandomoption(.@part,0,.@index0,.@valueIndex0,0);
-
 		if(.@index1 <= 0)
 		setrandomoption(.@part,1,1,1,0);
-		else
-		setrandomoption(.@part,1,.@index1,.@valueIndex1,0);
 		if(.@index2 <= 0)
 		setrandomoption(.@part,2,1,1,0);
-		else
-		setrandomoption(.@part,2,.@index2,.@valueIndex2,0);
 		if(.@index3 <= 0)
 		setrandomoption(.@part,3,1,1,0);
-		else
-		setrandomoption(.@part,3,.@index3,.@valueIndex3,0);
 		if(.@index4 <= 0)
 		setrandomoption(.@part,4,1,1,0);
-		else
-		setrandomoption(.@part,4,.@index4,.@valueIndex4,0);
 
+		.@valueOnSelectedIndex = getd(".@valueIndex" + .@index);
+		if(.@valueOnSelectedIndex > 0)
+		setrandomoption(.@part,.@index,.@randomOptionRand,.@valueOnSelectedIndex,0);
+		else
+		setrandomoption(.@part,.@index,.@randomOptionRand,1,0);
+	
 		emotion ET_SMILE;
 		
 		close;
