@@ -1,4 +1,4 @@
-prontera,175,217,4	script	พ่อมดลึกลับ	902,{
+prontera,175,217,4	script	พ่อมด	902,{
 	if(BaseClass == Job_Mage){
 		mes .npcName$;
 		mes "ว่าไงพ่อมดตัวน้อย จะมาทำอะไรเหรอ?";
@@ -140,7 +140,7 @@ OnInit:
 	
 	.systemName$ = "ทำ Random Option ร่ายเร็ว";
 	
-	.resourceName$ = "พลังเวทย์";
+	.resourceName$ = "น้ำยามนตรา";
 	
 	.variableName$ = "randomOptionCast";
 	

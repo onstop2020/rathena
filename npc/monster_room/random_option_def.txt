@@ -1,4 +1,4 @@
-prontera,169,217,4	script	นักรบถึกทน	734,{
+prontera,169,217,4	script	นักรบ	734,{
 	if(BaseClass == Job_Swordman){
 		mes .npcName$;
 		mes "ว่าไงนักรบตัวน้อย จะมาทำอะไรเหรอ?";
@@ -136,11 +136,11 @@ OnTimer60000:
 	end;
 	
 OnInit:
-	.npcName$ = "^8328FF[นักรบถึกทน]^000000";
+	.npcName$ = "^8328FF[นักรบ]^000000";
 	
 	.systemName$ = "ทำ Random Option ป้องกัน";
 	
-	.resourceName$ = "เหล็ก";
+	.resourceName$ = "น้ำยาป้องกัน";
 	
 	.variableName$ = "randomOptionDef";
 	
