@@ -20,11 +20,6 @@
 	callfunc("DeadReset");
 	close;
 	
-OnPCLoginEvent:
-	if(strcharinfo(3) != "job4_mag")
-	reviver = 1;
-	end;
-	
 OnPCLoadMapEvent:
 	if(strcharinfo(3) == "job4_mag"){
 		setpcblock PCBLOCK_ALL,true;

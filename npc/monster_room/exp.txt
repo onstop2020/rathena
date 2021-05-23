@@ -1,9 +1,3 @@
--	script	expSystem	-1,{
-OnPCLoginEvent:
-	callfunc("RefreshEXP");
-	end;
-}
-
 function	script	RefreshEXP	{
 	// Check exp multiplier tier
 	.@killedMonsterExpBonus = (getarraysize(#killedMonster) / 10);

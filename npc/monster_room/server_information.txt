@@ -1,4 +1,5 @@
 -	script	serverInfomation	-1,{
+	mes "Website: <URL>Link<INFO>https://sites.google.com/view/monsterroom-ro/home</INFO></URL>";
 	dispbottom "Monster Room - RO (Rogue-Like)";
 	dispbottom " ";
 	dispbottom "=== ข้อมูลเซิร์ฟเวอร์ ===";
@@ -42,7 +43,7 @@
 	dispbottom "who3";
 	dispbottom "load";
 	dispbottom "mi";
-	end;
+	close;
 	
 OnInit:
 	waitingroom "วิธีเล่นคร่าว ๆ",0;

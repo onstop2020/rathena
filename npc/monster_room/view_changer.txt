@@ -1,12 +1,3 @@
--	script	viewSet	-1,{
-OnPCLoginEvent:
-	setlook LOOK_HEAD_TOP,head1;
-	setlook LOOK_HEAD_MID,head2;
-	setlook LOOK_HEAD_BOTTOM,head3;
-	setlook LOOK_ROBE,head4;
-	end;
-}
-
 -	script	viewChanger	-1,{
 	if(!head1Bought || !head2Bought || !head3Bought || !head4Bought)
 	mes "*จ่ายเมนูละรอบ \nจากนั้นจะสามารถใช้เมนูนั้น ได้ตลอดไปต่อตัวละคร";

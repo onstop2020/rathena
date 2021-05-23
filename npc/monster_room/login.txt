@@ -1,0 +1,27 @@
+-	script	loginCheck	-1,{
+OnPCLoginEvent:
+	if(strcharinfo(3) != "job4_mag"){
+		reviver = 1;
+		setpcblock PCBLOCK_ALL,false;
+	}
+	else{
+		setpcblock PCBLOCK_ALL,true;
+		setpcblock PCBLOCK_MOVE,false;
+		setpcblock PCBLOCK_CHAT,false;
+		setpcblock PCBLOCK_SITSTAND,false;
+		setpcblock PCBLOCK_NPCCLICK,false;
+		setpcblock PCBLOCK_EMOTION,false;
+	}
+	
+	callfunc("RefreshEXP");
+	
+	setlook LOOK_HEAD_TOP,head1;
+	setlook LOOK_HEAD_MID,head2;
+	setlook LOOK_HEAD_BOTTOM,head3;
+	setlook LOOK_ROBE,head4;
+
+	if(countitem(602) <= 0)
+	getitem 602,1;
+
+	end;
+}

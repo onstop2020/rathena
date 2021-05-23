@@ -517,10 +517,6 @@ OnMonsterDead:
 OnLoaded5Second:
 	setpcblock PCBLOCK_ALL,false;
 	end;
-	
-OnPCLoginEvent:
-	setpcblock PCBLOCK_ALL,false;
-	end;
 }
 
 function	script	SpawnMonsterInRoom	{
