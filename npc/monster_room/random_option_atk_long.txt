@@ -1,7 +1,7 @@
-prontera,169,217,4	script	นักรบถึกทน	734,{
-	if(BaseClass == Job_Swordman){
+prontera,169,210,4	script	นักล่า	951,{
+	if(BaseClass == Job_Archer){
 		mes .npcName$;
-		mes "ว่าไงนักรบตัวน้อย จะมาทำอะไรเหรอ?";
+		mes "ว่าไงนักล่าตัวน้อย จะมาทำอะไรเหรอ?";
 		next;
 		menu "ใช้ระบบ " + .systemName$,L_Use,"เติม " + .resourceName$,-;
 		mes .npcName$;
@@ -37,7 +37,7 @@ prontera,169,217,4	script	นักรบถึกทน	734,{
 			.@successChance = .lv3Chance;
 			else if(getd("$" + .variableName$ + "Buff") == 4)
 			.@successChance = 100;
-			callfunc("RandomOptionDef",.@successChance,.npcName$);
+			callfunc("RandomOptionAtkLong",.@successChance,.npcName$);
 			close;
 		}
 		else{
@@ -136,15 +136,15 @@ OnTimer60000:
 	end;
 	
 OnInit:
-	.npcName$ = "^8328FF[นักรบถึกทน]^000000";
+	.npcName$ = "^8328FF[นักล่า]^000000";
 	
-	.systemName$ = "ทำ Random Option ป้องกัน";
+	.systemName$ = "ทำ Random Option โจมตีไกล";
 	
-	.resourceName$ = "เหล็ก";
+	.resourceName$ = "น้ำยาตีไกล";
 	
-	.variableName$ = "randomOptionDef";
+	.variableName$ = "randomOptionAtkLong";
 	
-	.className$ = "Class - Swordman";
+	.className$ = "Class - Archer";
 	
 	.normalTimer = 5;	// Minutes
 	.cashTimer = 50;	// Minutes
@@ -163,13 +163,13 @@ OnInit:
 	end; 
 }
 
-function	script	RandomOptionDef	{
+function	script	RandomOptionAtkLong	{
 	.@chance = getarg(0,0);
 	.@npcName$ = getarg(1,"^8328FF[ระบบ]^000000");
 	.price = 100000;
 	mes .@npcName$;
 	mes "โอกาสสำเร็จ " + .@chance + "%";
-	mes "*เมื่อ สำเร็จ Random Option ช่องที่เลือก จะกลายเป็น ป้องกัน โจมตีกายภาพระยะใกล้ หรือ ป้องกัน โจมตีกายภาพระยะไกล";
+	mes "*เมื่อ สำเร็จ Random Option ช่องที่เลือก จะกลายเป็น โจมตีกายภาพระยะไกล";
 	mes "*เมื่อ ไม่สำเร็จ จะไม่มีผลเสียใด ๆ";
 	mes "ราคาต่อรอบ " + callfunc("F_InsertComma",.price) + "z";
 	next;
@@ -241,7 +241,7 @@ function	script	RandomOptionDef	{
 		.@valueIndex3 = getequiprandomoption(.@part,3,ROA_VALUE);
 		.@valueIndex4 = getequiprandomoption(.@part,4,ROA_VALUE);
 
-		.@randomOptionRand = (rand(0,1) == 0 ? 167 : 220);
+		.@randomOptionRand = 166;
 
 		if(.@index0 <= 0)
 		setrandomoption(.@part,0,1,1,0);
