@@ -7,8 +7,8 @@ prontera,169,210,4	script	นักล่า	951,{
 		mes .npcName$;
 		mes .resourceName$ + " สามารถอยู่ได้ " + .normalTimer + " นาที";
 		mes .resourceName$ + "(Cash) สามารถอยู่ได้ " + .cashTimer + " นาที";
-		mes "- ระดับ 1 โอกาสสำเร็จ " + .lv1Chance + "%";
-		mes "- ระดับ 2 โอกาสสำเร็จ " + .lv2Chance + "%";
+		mes "- ระดับ 1 โอกาสสำเร็จ " + .lv1Chance + "% (Lv. < " + .lv1LevelRequire + ")";
+		mes "- ระดับ 2 โอกาสสำเร็จ " + .lv2Chance + "% (Lv. < " + .lv2LevelRequire + ")";
 		mes "- ระดับ 3 โอกาสสำเร็จ " + .lv3Chance + "%";
 		mes "^8328FF- Cash โอกาสสำเร็จ 100%^000000";
 		next;
