@@ -1,7 +1,11 @@
 -	script	reviverController	-1,{
 	if(reviver > 0){
 		mes "*ดม ๆ* เจ้ายังมีวิญญาณอยู่หนิ? ข้าไม่สนใจเจ้าหรอกนะ";
-		close;
+		close2;
+		setpcblock PCBLOCK_ALL,false;
+		savepoint "prontera",156,191;
+		warp "prontera",156,191;
+		end;
 	}
 	else
 	menu "ข้ายังไม่อยากตาย",L_PleaseGiveMeAChance,"ข้าขอไปเกิดใหม่",L_AcceptTheTruth;
@@ -69,8 +73,11 @@ OnInit:
 }
 job4_mag,130,177,5	script	ความปราถนาของใครบางคน	3101,{
 	.@prayRequestDelay = 10;
-	
-	if(reviver > 0){
+	if(reviver > 0 && BaseClass != Job_Acolyte){
+		mes "*คุณภาวนาให้ใครบางคน*";
+		close;
+	}
+	else if(reviver > 0 && BaseClass == Job_Acolyte){
 		mes "ความปราถนาที่เกิดขึ้น อยู่ได้ 5 นาที";
 		mes "ความช่วยเหลือจากพระเจ้า อยู่ได้ 50 นาที";
 		mes "- ระดับ 1 โอกาสรอด 1 ใน 8";
@@ -245,7 +252,10 @@ function	script	DeadReset	{
 	StatusPoint = 48;
 	SkillPoint = 0;
 	setpcblock PCBLOCK_ALL,false;
+	reviver = 1;
+	savepoint "prontera",156,191;
 	warp "prontera",156,191;
+	announce strcharinfo(0) + " เริ่มเล่นใหม่!",bc_all,0xFF2828;
 	return;
 }
 
@@ -260,8 +270,18 @@ function	script	DeadReset	{
 		menu "ไปที่โลกหลังความตาย",L_GoToDeathRealm;
 	}
 	else{
-		if(strcharinfo(3) == "job4_mag")
-		mes "!? โอ๋ ๆ เจ้าวิญญาณตัวน้อย เจ้าไม่มีธุระอะไรกับข้าหรอก";
+		if(strcharinfo(3) == "job4_mag"){
+			mes "!? โอ๋ ๆ เจ้าวิญญาณตัวน้อย เจ้าไม่มีธุระอะไรกับข้าหรอก";
+			if(reviver>0){
+				close2;
+				setpcblock PCBLOCK_ALL,false;
+				savepoint "prontera",156,191;
+				warp "prontera",156,191;
+				end;
+			}
+			else
+			close;
+		}
 		else
 		mes "!? ไสหัวไปซะ เจ้ามนุษย์ ที่นี่ไม่มีนักแสวงบุญบ้างเลยหรือไง?";
 		close;

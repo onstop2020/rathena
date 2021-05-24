@@ -4,7 +4,7 @@ OnPCDieEvent:
 	if(strcharinfo(3) == "pvp_y_7-2" || strcharinfo(3) == "pvp_y_8-2")
 	end;
 
-	// Reset reviver stats
+	// Set reviver stats to dead
 	reviver = 0;
 
 	for(.@i = 1; .@i <= 20; .@i++){
@@ -15,7 +15,7 @@ OnPCDieEvent:
 		}
 	}
 	
-	warp "job4_mag",130,194;
+	savepoint "job4_mag",130,194;
 	
 	announce strcharinfo(0) + " ตาย!",bc_all,0xFF2828;
 	

@@ -1079,7 +1079,7 @@ Body:
     Flags:
       BuyingStore: true
     Script: |
-      atcommand "@load";
+      callfunc("CustomLoad");
   - Id: 603
     AegisName: Old_Blue_Box
     Name: Old Blue Box
@@ -5113,8 +5113,10 @@ Body:
   - Id: 12212
     AegisName: Giant_Fly_Wing
     Name: Giant Fly Wing
-    Type: Delayconsume
+    Type: Usable
     Buy: 1
+    Flags:
+      NoConsume: true
     Weight: 10
     Script: |
       callfunc "F_CashPartyCall";

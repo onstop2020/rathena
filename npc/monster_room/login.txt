@@ -2,6 +2,7 @@
 OnPCLoginEvent:
 	if(strcharinfo(3) != "job4_mag"){
 		reviver = 1;
+		savepoint "prontera",156,191;
 		setpcblock PCBLOCK_ALL,false;
 	}
 	else{

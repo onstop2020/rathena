@@ -1,0 +1,23 @@
+-	script	loadCommand	-1,{
+	end;
+	
+OnReturnToSavePoint:
+	callfunc("CustomLoad");
+	end;
+	
+OnInit:
+	bindatcmd "load",strnpcinfo(3) + "::OnReturnToSavePoint",0,99;
+	end;
+}
+
+function	script	CustomLoad	{
+	if(Hp > 0){
+		reviver = 1;
+		savepoint "prontera",156,191;
+		warp "prontera",156,191;
+	}
+	else{
+		message strcharinfo(0),"คุณตายไปแล้ว";
+	}
+	return;
+}
