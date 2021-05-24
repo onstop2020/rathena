@@ -1,4 +1,3 @@
-// Buy more zeny
 -	script	killedMonsterChecker	-1,{
 	mes "ข้ามีหน้าที่ ตรวจสอบผู้สังหาร Monster";
 	next;

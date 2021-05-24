@@ -393,6 +393,23 @@ OnMonsterDead:
 	if(!playerattached())
 	end;
 
+	// Quest Monster Cleaner
+	if(#isMonsterCleaner){
+		// Check by map name
+		freeloop(1);
+		//debugmes "This Map: " + strcharinfo(3);
+		for(.@i = 1; .@i <= $maxRoom; .@i++)
+		{
+			//debugmes "Loop Map: " + getd("$mr" + .@i + "name$");
+			if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
+				#monsterCleaner++;
+				dispbottom "คุณฆ่า Monster ในชั้นที่นักล่าค่าหัวต้องการไปแล้ว " + #monsterCleaner + " ตัว";
+				break;
+			}
+		}
+		freeloop(0);
+	}
+
 	.@playerArraySize = getarraysize(#killedMonster);
 	.@isFoundOld = 0;
 	freeloop(1);
@@ -409,7 +426,7 @@ OnMonsterDead:
 	if(!.@isFoundOld)
 	setarray #killedMonster[getarraysize(#killedMonster)],killedrid;
 	
-	debugmes "Killed type: " + getarraysize(#killedMonster);
+	//debugmes "Killed type: " + getarraysize(#killedMonster);
 
 	.@allWeaponDropChance = 10;
 	.@allArmorDropChance = 10;
