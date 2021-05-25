@@ -394,7 +394,7 @@ OnMonsterDead:
 	end;
 
 	// Quest Monster Cleaner
-	if(#isMonsterCleaner){
+	if(#isMonsterCleaner && #monsterCleaner < $monsterCleanerAmount){
 		// Check by map name
 		freeloop(1);
 		//debugmes "This Map: " + strcharinfo(3);
