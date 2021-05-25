@@ -193,6 +193,10 @@ function	script	RefineRandomOption	{
 	
 	.@part = .@indices[select(.@menu$)];
 
+	menu "1 รอบ",L_Once,"กดอัตโนมัติจนกว่าเงินจะหมด (มากสุด 1,000 รอบ)",-;
+	.@loop = 1;
+	L_Once:
+	
 	if(!getequipisequiped(.@part)) {
 		mes .@npcName$;
 		mes "เจ้าเลือกช่องที่ ไม่ได้สวมใส่อะไรอยู่เลย";
@@ -202,12 +206,30 @@ function	script	RefineRandomOption	{
 	
 	.@selectedItemId = getequipid(.@part);
 
+	freeloop(1);
+
 	if(Zeny < .price) {
 		mes .@npcName$;
 		mes "เจ้ามี Zeny ไม่เพียงพอ";
+		freeloop(0);
 		close;
 	}
-	Zeny = Zeny - .price;
+	Zeny -= .price;
+	
+	if(rand(1,100) <= .@chance)
+	.@increment = 1;
+
+	if(.@loop){
+		.@sumZeny = Zeny;
+		while(.@increment < .maxValue && .@sumZeny >= .price){
+			.@sumZeny -= .price;
+			if(rand(1,100) <= .@chance)
+			.@increment++;
+		}
+		Zeny = .@sumZeny;
+	}
+
+	freeloop(0);
 
 	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
 		emotion ET_FRET;
@@ -216,7 +238,7 @@ function	script	RefineRandomOption	{
 		close;
 	}
 
-	if(rand(1,100) <= .@chance){
+	if(.@increment > 0){
 		mes .@npcName$;
 		mes "เรียบร้อยละ ดูเอาเองเด้อ";
 		
@@ -226,11 +248,11 @@ function	script	RefineRandomOption	{
 		.@index3 = getequiprandomoption(.@part,3,ROA_ID);
 		.@index4 = getequiprandomoption(.@part,4,ROA_ID);
 		
-		.@valueIndex0 = getequiprandomoption(.@part,0,ROA_VALUE) + 1;
-		.@valueIndex1 = getequiprandomoption(.@part,1,ROA_VALUE) + 1;
-		.@valueIndex2 = getequiprandomoption(.@part,2,ROA_VALUE) + 1;
-		.@valueIndex3 = getequiprandomoption(.@part,3,ROA_VALUE) + 1;
-		.@valueIndex4 = getequiprandomoption(.@part,4,ROA_VALUE) + 1;
+		.@valueIndex0 = getequiprandomoption(.@part,0,ROA_VALUE) + .@increment;
+		.@valueIndex1 = getequiprandomoption(.@part,1,ROA_VALUE) + .@increment;
+		.@valueIndex2 = getequiprandomoption(.@part,2,ROA_VALUE) + .@increment;
+		.@valueIndex3 = getequiprandomoption(.@part,3,ROA_VALUE) + .@increment;
+		.@valueIndex4 = getequiprandomoption(.@part,4,ROA_VALUE) + .@increment;
 		
 		if(.@valueIndex0 >= .maxValue)
 		.@valueIndex0 = .maxValue;
@@ -244,29 +266,27 @@ function	script	RefineRandomOption	{
 		.@valueIndex4 = .maxValue;
 		
 		if(.@index0 <= 0)
-		setrandomoption(.@part,0,1,1,0);
+		setrandomoption(.@part,0,1,.@increment,0);
 		else
 		setrandomoption(.@part,0,.@index0,.@valueIndex0,0);
-
 		if(.@index1 <= 0)
-		setrandomoption(.@part,1,1,1,0);
+		setrandomoption(.@part,1,1,.@increment,0);
 		else
 		setrandomoption(.@part,1,.@index1,.@valueIndex1,0);
 		if(.@index2 <= 0)
-		setrandomoption(.@part,2,1,1,0);
+		setrandomoption(.@part,2,1,.@increment,0);
 		else
 		setrandomoption(.@part,2,.@index2,.@valueIndex2,0);
 		if(.@index3 <= 0)
-		setrandomoption(.@part,3,1,1,0);
+		setrandomoption(.@part,3,1,.@increment,0);
 		else
 		setrandomoption(.@part,3,.@index3,.@valueIndex3,0);
 		if(.@index4 <= 0)
-		setrandomoption(.@part,4,1,1,0);
+		setrandomoption(.@part,4,1,.@increment,0);
 		else
 		setrandomoption(.@part,4,.@index4,.@valueIndex4,0);
 
 		emotion ET_SMILE;
-		
 		close;
 	}
 	else{

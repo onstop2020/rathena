@@ -211,12 +211,34 @@ function	script	RandomOptionCast	{
 	else 	if(.@index >= 4)
 	.@index = 4;
 
+	menu "1 รอบ",L_Once,"กดอัตโนมัติจนกว่าจะติด",-;
+	.@loop = 1;
+	L_Once:
+	
+	freeloop(1);
+	
 	if(Zeny < .price) {
 		mes .@npcName$;
 		mes "เจ้ามี Zeny ไม่เพียงพอ";
+		freeloop(0);
 		close;
 	}
-	Zeny = Zeny - .price;
+	Zeny -= .price;
+
+	if(rand(1,100) <= .@chance)
+	.@success = 1;
+
+	if(.@loop){
+		.@sumZeny = Zeny;
+		while(!.@success && .@sumZeny >= .price){
+			.@sumZeny -= .price;
+			if(rand(1,100) <= .@chance)
+			.@success = 1;
+		}
+		Zeny = .@sumZeny;
+	}
+
+	freeloop(0);
 
 	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
 		emotion ET_FRET;
@@ -225,7 +247,7 @@ function	script	RandomOptionCast	{
 		close;
 	}
 
-	if(rand(1,100) <= .@chance){
+	if(.@success){
 		mes .@npcName$;
 		mes "เรียบร้อยละ ดูเอาเองเด้อ";
 		
@@ -259,7 +281,7 @@ function	script	RandomOptionCast	{
 		setrandomoption(.@part,.@index,.@randomOptionRand,.@valueOnSelectedIndex,0);
 		else
 		setrandomoption(.@part,.@index,.@randomOptionRand,1,0);
-	
+		
 		emotion ET_SMILE;
 		
 		close;
