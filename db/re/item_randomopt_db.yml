@@ -890,3 +890,7 @@ Body:
     Option: MELEE_ATTACK_DAMAGE_USER
     Script: |
       bonus bNearAtkDef,getrandomoptinfo(ROA_VALUE);
+  - Id: 221
+    Option: REFLECT_DAMAGE_PERCENT
+    Script: |
+      bonus bReduceDamageReturn,getrandomoptinfo(ROA_VALUE);
