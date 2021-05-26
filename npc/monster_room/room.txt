@@ -439,11 +439,14 @@ OnMonsterDead:
 	
 	// All MvP map check
 	if(strcharinfo(3) == $mr20name$){
-		.@allWeaponDropChance += 40;
-		.@allArmorDropChance += 40;
+		.@allWeaponDropChance = 0;
+		.@allArmorDropChance = 0;
 		mvpMapKiller++;
+		
+		if(rand(0,100) <= $dropRateQuestExpServer)
+		getitem $targetMvPItemDropId,1;
 	}
-	
+
 	.@rand = rand(0,100);
 	
 	//debugmes "Chance: " + .@allWeaponDropChance;

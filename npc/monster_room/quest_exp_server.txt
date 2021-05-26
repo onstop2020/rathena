@@ -1,0 +1,55 @@
+-	script	questEXPServer	-1,{
+	if($serverExp <= 0)
+	.@sumServerExp = 1;
+	else
+	.@sumServerExp = 1 + $serverExp;
+
+	.@currentTargetQuestExpServer = .@sumServerExp * .targetQuestExpServer;
+	mes .npcName$;
+	mes "ยะโฮ เจ้าสนใจจะเพิ่มคูณ EXP ให้เซิร์ฟเวอร์รึเปล่า?";
+	mes "จำนวนการคูณ EXP พิเศษ ที่ทุกคนได้รับคือ";
+	mes "x" + callfunc("F_InsertComma",$serverExp);
+	mes getitemname($targetMvPItemDropId) + " ขณะนี้ " + callfunc("F_InsertComma",$questExpServerCount) + "/" + callfunc("F_InsertComma",.@currentTargetQuestExpServer);
+	next;
+	menu "อยากทราบรายละเอียด",-,"มอบ " + getitemname($targetMvPItemDropId),L_Trade;
+	mes .npcName$;
+	mes "เอาละ หลักการมีตามนี้ \nเมื่อเจ้าฆ่า Monster ที่ห้อง All MvP จะมีโอกาส " + $dropRateQuestExpServer + "% ที่จะได้รับ " + getitemname($targetMvPItemDropId) + " จากนั้นให้ช่วยกันมอบมันมาให้ข้า หากครบ " + callfunc("F_InsertComma",.@currentTargetQuestExpServer) + " ชิ้น ทุกคนก็จะได้รับคูณ EXP ร่วมกันทั้ง Server";
+	close;
+	
+	L_Trade:
+	.@need = .@currentTargetQuestExpServer - $questExpServerCount;
+	.@sumPlayerItemCount = countitem($targetMvPItemDropId);
+	if(.@sumPlayerItemCount <= 0){
+		mes .npcName$;
+		mes "เหมือนเจ้าจะไม่ได้นำ " + getitemname($targetMvPItemDropId) + " มานะ";
+		close;
+	}
+	if(.@sumPlayerItemCount > .@need)
+	.@sumPlayerItemCount = .@need;
+	delitem $targetMvPItemDropId,.@sumPlayerItemCount;
+	$questExpServerCount += .@sumPlayerItemCount;
+	mes .npcName$;
+	mes "ขอบคุณมาก!";
+	if($questExpServerCount >= .@currentTargetQuestExpServer){
+		$serverExp++;
+		$questExpServerCount = 0;
+		next;
+		mes .npcName$;
+		mes "เจ๋ง! ครบแล้ว!";
+		mes "---";
+		mes "จำนวนการคูณ EXP พิเศษ ที่ทุกคนได้รับคือ";
+		mes "x" + callfunc("F_InsertComma",$serverExp);
+	}
+	close;
+	
+OnInit:
+	.npcName$ = "^8328FF[นักเทคนิคการล่า]^000000";
+	.targetQuestExpServer = 10;
+	$dropRateQuestExpServer = 5;
+	$targetMvPItemDropId = 25767;
+	
+	waitingroom "เพิ่มคูณ EXP เซิร์ฟเวอร์",0;
+	end;
+}
+
+prontera,145,158,7	duplicate(questEXPServer)	นักเทคนิคการล่า	693 
