@@ -29,7 +29,10 @@
 		addhomintimacy 100000;
 		atcommand "@homhungry 100";
 		homevolution;
-		hommutate;
+		if(gethominfo(6) >= 99){
+			morphembryo;
+			hommutate;
+		}
 	}
 	
 	identifyall;
