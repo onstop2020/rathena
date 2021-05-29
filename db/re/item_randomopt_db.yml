@@ -88,6 +88,7 @@ Body:
     Option: VAR_MAGICATKPERCENT
     Script: |
       bonus bMatkRate,getrandomoptinfo(ROA_VALUE);
+      bonus2 bMagicAddClass,Class_All,getrandomoptinfo(ROA_VALUE);
   - Id: 15
     Option: VAR_PLUSASPD
     Script: |
