@@ -31,7 +31,7 @@ OnTimer60000:
 	// Add point to base owner
 	if($blBase1 > 0){
 		initnpctimer;
-		addrid(2,1,$blBase1);
+		addrid(2,0,$blBase1);
 		
 		// Make sure there are players attach
 		if(playerattached() && blPoint < 1000000000){
