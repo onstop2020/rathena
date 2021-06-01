@@ -1,0 +1,49 @@
+dewata,199,226,5	script	ยึดครอง	974,3,3,{
+	end;
+	
+	// Whoever touch this npc -> Gain a point per minute (Everyone in party)
+OnTouch:
+
+	// Unexpected Error
+	if(!playerattached())
+	end;
+
+	.@partyId = getcharid(1);
+	
+	if(.@partyId <= 0)
+	end;
+	
+	if($blBase1 <= 0 || $blBase1 != .@partyId){
+		$blBase1 = .@partyId;
+		// Announce when party id is changed
+		for(.@i = 0; .@i < getarraysize($blMapName$); .@i++)
+		mapannounce $blMapName$[.@i],"เมือง " + strcharinfo(3) + " ถูกยึดครองโดย '" + getpartyname($blBase1) + "'",0;
+	}
+	end;
+	
+OnPCLoadMapEvent:
+	// Hint player where to go
+	if(strcharinfo(3) == strnpcinfo(4))
+	viewpoint 1,199,226,1,0xFF0000;
+	end;
+
+OnTimer60000:
+	// Add point to base owner
+	if($blBase1 > 0){
+		initnpctimer;
+		addrid(2,1,$blBase1);
+		
+		// Make sure there are players attach
+		if(playerattached() && blPoint < 1000000000){
+			blPoint++;
+			dispbottom "คุณได้รับ 1 Bomberland Point";
+		}
+	}
+	end;
+	
+OnInit:
+	initnpctimer;
+	end;
+}
+
+dewata	mapflag	loadevent

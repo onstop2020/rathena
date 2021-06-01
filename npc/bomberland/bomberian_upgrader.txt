@@ -1,0 +1,48 @@
+-	script	bomberianUpgrader	-1,{
+	mes "^FF5928*อย่าคุยกับ NPC ค้างไว้ ไม่งั้นไม่ได้ Bomberland Point หากยึดเมืองไว้อยู่^000000";
+	mes "คุณมี " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
+	next;
+	menu "Max SP (ใช้ " + callfunc("F_InsertComma",(blUpg1 + 1)) + " Point)",L_Upgrade1
+	,"SP Regen (ใช้ " + callfunc("F_InsertComma",(blUpg2 + 1)) + " Point)",L_Upgrade2;
+	
+	L_Upgrade1:
+	.@upgType = 1;
+	if(getd("blUpg" + .@upgType) >= .maxUpgrade){
+		mes "คุณ Upgrade Max SP ถึงขั้นสูงสุดแล้ว";
+		close;
+	}
+	else if(blPoint < (getd("blUpg" + .@upgType) + 1)){
+		mes "Bomberland Point ไม่เพียงพอ";
+		close;
+	}
+	else{
+		blPoint -= (getd("blUpg" + .@upgType) + 1);
+		set getd("blUpg" + .@upgType),getd("blUpg" + .@upgType) + 1;
+		callfunc("RefreshBomberian");
+	}
+	end;
+	
+	L_Upgrade2:
+	.@upgType = 2;
+	if(getd("blUpg" + .@upgType) >= .maxUpgrade){
+		mes "คุณ Upgrade SP Regen ถึงขั้นสูงสุดแล้ว";
+		close;
+	}
+	else if(blPoint < (getd("blUpg" + .@upgType) + 1)){
+		mes "Bomberland Point ไม่เพียงพอ";
+		close;
+	}
+	else{
+		blPoint -= (getd("blUpg" + .@upgType) + 1);
+		set getd("blUpg" + .@upgType),getd("blUpg" + .@upgType) + 1;
+		callfunc("RefreshBomberian");
+	}
+	end;
+	
+OnInit:
+	waitingroom "Upgrade ตัวละคร",0;
+	.maxUpgrade = 10000;
+	end;
+}
+
+moscovia,225,207,3	duplicate(bomberianUpgrader)	ผู้ชื่นชอบระเบิด	951

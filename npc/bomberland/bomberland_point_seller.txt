@@ -1,0 +1,60 @@
+// Buy more Bomberland Point
+-	script	bomberlandPointSeller	-1,{
+	mes "ระเบิดเต็มไปหมด !? ระเบิดดดด แต้มระเบิดก็โปรยปราย.. !!";
+	next;
+	menu "งง!",-,"ต้องการซื้อ Bomberland Point",L_Input;
+	mes "ตู้มมมม";
+	close;
+	
+	L_Input:
+	mes "คุณมี " + callfunc("F_InsertComma",#CASHPOINTS) + " Cash";
+	mes "คุณมี " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
+	// Check is max
+	if(blPoint >= $maxValue)
+	close;
+	mes "1 Cash จะได้ " + callfunc("F_InsertComma",$rewardPerCash) + " Bomberland Point";
+	mes "ใส่จำนวน Cash ที่ต้องการแลกได้เลย";
+	next;
+	input .@i;
+	if(.@i <= 0)
+	goto L_Cancel;
+	// Check is overload
+	if((Zeny + (.@i * $rewardPerCash)) > $maxValue)
+	.@targetToBuyCount = (($maxValue - Zeny) / $rewardPerCash);
+	else
+	.@targetToBuyCount = .@i;
+	goto L_Trade;
+	end;
+	
+	L_Trade:
+	.@price = .@targetToBuyCount;
+	mes "คุณต้องการซื้อ " + callfunc("F_InsertComma",(.@targetToBuyCount * $rewardPerCash)) + " Bomberland Point";
+	mes "ราคา " + callfunc("F_InsertComma",.@price) + " Cash?";
+	next;
+	menu "ยืนยัน",-,"ยกเลิก",L_Cancel;
+	if(#CASHPOINTS < .@price){
+		mes "คุณมี Cash ไม่เพียงพอ";
+		mes "ต้องการ " + callfunc("F_InsertComma",.@price) + " Cash";
+		close;
+	}
+	else{
+		#CASHPOINTS -= .@price;
+		blPoint += .@targetToBuyCount * $rewardPerCash;
+		mes "เรียบร้อย! ไปวางระเบิดกันเถอะ!";
+		mes "คุณมี " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
+		close;
+	}
+	
+	L_Cancel:
+	mes "ยกเลิกเรียบร้อยแล้ว";
+	close;
+	
+OnInit:
+	$maxValue = 1000000000;
+	$rewardPerCash = 10;
+	
+	waitingroom "ซื้อ Bomberland Point",0;
+	end;
+}
+
+moscovia,233,205,5	duplicate(bomberlandPointSeller)	ซื้อ Bomberland Point	952

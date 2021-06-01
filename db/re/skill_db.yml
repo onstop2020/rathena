@@ -4309,15 +4309,15 @@ Body:
         Amount: 10
     Duration1:
       - Level: 1
-        Time: 300000
+        Time: 86400000
       - Level: 2
-        Time: 240000
+        Time: 86400000
       - Level: 3
-        Time: 180000
+        Time: 86400000
       - Level: 4
-        Time: 120000
+        Time: 86400000
       - Level: 5
-        Time: 60000
+        Time: 86400000
     Duration2: 3000
     Requires:
       SpCost: 10
@@ -4360,15 +4360,15 @@ Body:
     AfterCastActDelay: 1000
     Duration1:
       - Level: 1
-        Time: 200000
+        Time: 86400000
       - Level: 2
-        Time: 160000
+        Time: 86400000
       - Level: 3
-        Time: 120000
+        Time: 86400000
       - Level: 4
-        Time: 80000
+        Time: 86400000
       - Level: 5
-        Time: 40000
+        Time: 86400000
     Duration2: 5000
     FixedCastTime: 300
     Requires:
@@ -4403,15 +4403,15 @@ Body:
     HitCount: 1
     Duration1:
       - Level: 1
-        Time: 250000
+        Time: 86400000
       - Level: 2
-        Time: 200000
+        Time: 86400000
       - Level: 3
-        Time: 150000
+        Time: 86400000
       - Level: 4
-        Time: 100000
+        Time: 86400000
       - Level: 5
-        Time: 50000
+        Time: 86400000
     Duration2:
       - Level: 1
         Time: 4000
@@ -4458,15 +4458,15 @@ Body:
     SplashArea: 1
     Duration1:
       - Level: 1
-        Time: 200000
+        Time: 86400000
       - Level: 2
-        Time: 160000
+        Time: 86400000
       - Level: 3
-        Time: 120000
+        Time: 86400000
       - Level: 4
-        Time: 80000
+        Time: 86400000
       - Level: 5
-        Time: 40000
+        Time: 86400000
     Requires:
       SpCost: 45
       ItemCost:
@@ -4501,15 +4501,15 @@ Body:
     SplashArea: 2
     Duration1:
       - Level: 1
-        Time: 150000
+        Time: 86400000
       - Level: 2
-        Time: 120000
+        Time: 86400000
       - Level: 3
-        Time: 90000
+        Time: 86400000
       - Level: 4
-        Time: 60000
+        Time: 86400000
       - Level: 5
-        Time: 30000
+        Time: 86400000
     Duration2: 20000
     Requires:
       SpCost: 12
@@ -4545,15 +4545,15 @@ Body:
     SplashArea: 1
     Duration1:
       - Level: 1
-        Time: 150000
+        Time: 86400000
       - Level: 2
-        Time: 120000
+        Time: 86400000
       - Level: 3
-        Time: 90000
+        Time: 86400000
       - Level: 4
-        Time: 60000
+        Time: 86400000
       - Level: 5
-        Time: 30000
+        Time: 86400000
     Duration2: 20000
     Requires:
       SpCost: 12
@@ -4595,15 +4595,15 @@ Body:
         Reproduce: true
     Duration1:
       - Level: 1
-        Time: 150000
+        Time: 86400000
       - Level: 2
-        Time: 120000
+        Time: 86400000
       - Level: 3
-        Time: 90000
+        Time: 86400000
       - Level: 4
-        Time: 60000
+        Time: 86400000
       - Level: 5
-        Time: 30000
+        Time: 86400000
     Duration2:
       - Level: 1
         Time: 5500
@@ -4659,15 +4659,15 @@ Body:
     AfterCastActDelay: 1000
     Duration1:
       - Level: 1
-        Time: 25000
+        Time: 86400000
       - Level: 2
-        Time: 20000
+        Time: 86400000
       - Level: 3
-        Time: 15000
+        Time: 86400000
       - Level: 4
-        Time: 10000
+        Time: 86400000
       - Level: 5
-        Time: 5000
+        Time: 86400000
     FixedCastTime: 300
     Requires:
       SpCost: 10
@@ -4713,15 +4713,15 @@ Body:
     AfterCastActDelay: 1000
     Duration1:
       - Level: 1
-        Time: 20000
+        Time: 86400000
       - Level: 2
-        Time: 40000
+        Time: 86400000
       - Level: 3
-        Time: 60000
+        Time: 86400000
       - Level: 4
-        Time: 80000
+        Time: 86400000
       - Level: 5
-        Time: 100000
+        Time: 86400000
     FixedCastTime: 300
     Requires:
       SpCost: 15

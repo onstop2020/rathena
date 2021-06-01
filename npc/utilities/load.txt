@@ -1,0 +1,35 @@
+-	script	loadCommand	-1,{
+	end;
+	
+OnReturnToSavePoint:
+	callfunc("CustomLoad");
+	end;
+	
+OnInit:
+	bindatcmd "load",strnpcinfo(3) + "::OnReturnToSavePoint",0,99;
+	end;
+}
+
+function	script	CustomLoad	{
+	if(strcharinfo(3) == "malaya"){
+		message strcharinfo(0),"ไม่สามารถใช้คำสั่งนี้ได้ เนื่องจากคุณยังไม่ได้เลือกเกม";
+		end;
+	}
+
+	// Monster Room Player
+	if(playerType <= 0){
+		if(Hp > 0){
+			reviver = 1;
+			savepoint "prontera",156,191;
+			warp "prontera",156,191;
+		}
+		else{
+			message strcharinfo(0),"คุณตายไปแล้ว";
+		}
+	}
+	// Bomberland Player
+	else if(playerType == 1)
+		message strcharinfo(0),"ไม่สามารถใช้คำสั่งนี้ได้ เนื่องจากคุณเล่นเกม Bomberland";
+	
+	return;
+}

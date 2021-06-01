@@ -1,4 +1,7 @@
 -	script	donateInfomation	-1,{
+	if(playerType == 1)
+	mes "^FF5928*อย่าคุยกับ NPC ค้างไว้ ไม่งั้นไม่ได้ Bomberland Point หากยึดเมืองไว้อยู่^000000";
+	
 	mes "=== บริจาค ===";
 	mes "50 THB รับ 100 Cash";
 	mes "90 THB รับ 250 Cash";
@@ -16,8 +19,10 @@
 	close;
 	
 OnInit:
-	waitingroom "ซื้อ Cash",0;
+	waitingroom "บริจาค",0;
 	end;
 }
 
-prontera,164,174,3	duplicate(donateInfomation)	บริจาค	837
+prontera,164,174,3	duplicate(donateInfomation)	บริจาค#1	837
+moscovia,230,198,3	duplicate(donateInfomation)	บริจาค#2	837
+malaya,244,218,3	duplicate(donateInfomation)	บริจาค#3	837

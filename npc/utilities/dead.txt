@@ -1,7 +1,8 @@
 -	script	deadSystem	-1,{
 OnPCDieEvent:
 	// Check PvP, PvP Party maps name here
-	if(strcharinfo(3) == "pvp_y_7-2" || strcharinfo(3) == "pvp_y_8-2")
+	.@deadMapName$ = strcharinfo(3);
+	if(.@deadMapName$ == "pvp_y_7-2" || .@deadMapName$ == "pvp_y_8-2" || .@deadMapName$ == "malaya" || playerType == 1)
 	end;
 
 	// Set reviver stats to dead

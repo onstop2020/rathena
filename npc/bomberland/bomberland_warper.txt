@@ -1,0 +1,43 @@
+-	script	bomberlandWarper	-1,{
+	mes "^FF5928*อย่าคุยกับ NPC ค้างไว้ ไม่งั้นไม่ได้ Bomberland Point หากยึดเมืองไว้อยู่^000000";
+	mes "- หากไม่มี Party คุณจะครองเมืองไม่ได้";
+	mes "- ทุก ๆ 1 นาที สมาชิกทุกคนใน Party จะได้รับ 1 Bomberland Point";
+	mes "- หากจะกลับมาก็วางระเบิดให้ตัวเองตาย";
+	next;
+	menu "Bomberland ฐานที่ 1",L_Base1,"ขอ Trap เพิ่มหน่อย",-;
+	mes "ได้เลยครับ";
+	next;
+	if (checkweight(1065,1000)){
+		getitem 1065,1000;
+		mes "เรียบร้อยครับ";
+	}
+	else 
+	mes "ถือ Trap เยอะไปรึเปล่าครับ?";
+	close;
+	
+	L_Base1:
+	if(getcharid(1) <= 0){
+		mes "คุณไม่มี Party";
+		close;
+	}
+	
+	if(getcharid(1) != $blBase1){
+		for(.@i = 0; .@i < getarraysize($blMapName$); .@i++)
+		mapannounce $blMapName$[.@i],strcharinfo(0) + " เข้าเมือง Dewata!!",0;
+	}
+	
+	warp "dewata",0,0;
+	end;
+	
+OnInit:
+	waitingroom "ครอง Bomberland!",0;
+	
+	setarray $blMapName$[0],"moscovia","dewata";
+	//setarray $blMapNameWording$[0],"Moscovia","Dewata"; //[TODO]
+
+	end;
+}
+
+moscovia,217,198,5	duplicate(bomberlandWarper)	Bomberland Warper	953
+
+dewata	mapflag	pvp

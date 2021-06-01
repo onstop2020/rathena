@@ -1,0 +1,10 @@
+-	script	bomberianRanking	-1,{
+	mes "-กำลังก่อสร้าง-";
+	close;
+	
+OnInit:
+	waitingroom "Bomerian Ranking",0;
+	end;
+}
+
+moscovia,220,213,4	duplicate(bomberianRanking)	Bomerian Ranking	974

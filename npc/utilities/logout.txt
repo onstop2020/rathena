@@ -1,0 +1,16 @@
+-	script	logout	-1,{
+OnPCLogoutEvent:
+
+	// Unexpected Error
+	if(!playerattached())
+	end;
+
+	.@logoutMapName$ = strcharinfo(3);
+	if(.@logoutMapName$ == "prontera" || .@logoutMapName$ == "prt_in" || .@logoutMapName$ == "job4_mag" || .@logoutMapName$ == "malaya")
+	end;
+	
+	if(playerType <= 0)
+	warp "prontera",156,191;
+
+	end;
+}
