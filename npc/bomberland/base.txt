@@ -1,4 +1,20 @@
 dewata,199,226,5	script	ยึดครอง	974,3,3,{
+	// Unexpected Error
+	if(!playerattached())
+	end;
+
+	.@partyId = getcharid(1);
+	
+	if(.@partyId <= 0)
+	end;
+
+	if($blBase1 > 0 && $blBase1 == .@partyId){
+		menu "ไม่ทำอะไร",-,"กลับเมือง",L_BackToTown;
+		end;
+	}
+	
+	L_BackToTown:
+	warp "moscovia",221,191;
 	end;
 	
 	// Whoever touch this npc -> Gain a point per minute (Everyone in party)
