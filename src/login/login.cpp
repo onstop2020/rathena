@@ -752,9 +752,9 @@ void login_set_defaults() {
 	login_config.client_hash_check = 0;
 	login_config.client_hash_nodes = NULL;
 	login_config.usercount_disable = false;
-	login_config.usercount_low = 200;
-	login_config.usercount_medium = 500;
-	login_config.usercount_high = 1000;
+	login_config.usercount_low = 5;
+	login_config.usercount_medium = 15;
+	login_config.usercount_high = 30;
 	login_config.char_per_account = MAX_CHARS - MAX_CHAR_VIP - MAX_CHAR_BILLING;
 #ifdef VIP_ENABLE
 	login_config.vip_sys.char_increase = MAX_CHAR_VIP;
