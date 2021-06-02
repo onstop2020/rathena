@@ -3,8 +3,8 @@
 	close;
 	
 OnInit:
-	waitingroom "Bomerian Ranking",0;
+	waitingroom "Bomberian Ranking",0;
 	end;
 }
 
-moscovia,220,213,4	duplicate(bomberianRanking)	Bomerian Ranking	974
+moscovia,220,213,4	duplicate(bomberianRanking)	Bomberian Ranking	974
