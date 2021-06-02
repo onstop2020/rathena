@@ -1,5 +1,4 @@
 -	script	bomberianUpgrader	-1,{
-	mes "^FF5928*อย่าคุยกับ NPC ค้างไว้ ไม่งั้นไม่ได้ Bomberland Point หากยึดเมืองไว้อยู่^000000";
 	mes "คุณมี " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
 	next;
 	menu "Max SP (ใช้ " + callfunc("F_InsertComma",(blUpg1 + 1)) + " Point)",L_Upgrade1
