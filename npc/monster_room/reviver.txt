@@ -25,7 +25,7 @@
 	close;
 	
 OnPCLoadMapEvent:
-	if(strcharinfo(3) == "job4_mag"){
+	if(strcharinfo(3) == strnpcinfo(4)){
 		setpcblock PCBLOCK_ALL,true;
 		setpcblock PCBLOCK_MOVE,false;
 		setpcblock PCBLOCK_CHAT,false;
