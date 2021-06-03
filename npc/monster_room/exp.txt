@@ -23,7 +23,6 @@ function	script	RefreshEXP	{
 
 // Buy more exp multiplier
 -	script	expSeller	-1,{
-	.@killedMonsterExpBonus = (getarraysize(#killedMonster) / 10);
 	// Check is max
 	if(#expMultiplierBuy >= $maxExpBuyCount){
 		mes "คุณได้ซื้อคูณ EXP ถึงขึ้นสูงสุดแล้ว";
@@ -41,7 +40,7 @@ function	script	RefreshEXP	{
 	L_CurrentEXPMultiplier:
 	mes "อัตราการคูณขณะนี้";
 	mes "x(" + callfunc("F_InsertComma",1 + #expMultiplierBuy) 
-		+ " + " + callfunc("F_InsertComma",.@killedMonsterExpBonus)
+		+ " + " + callfunc("F_InsertComma",(getarraysize(#killedMonster) / 10))
 		+ " + " + callfunc("F_InsertComma",$serverExp)
 		+ ")";
 	return;

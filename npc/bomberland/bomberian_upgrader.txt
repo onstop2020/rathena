@@ -1,46 +1,47 @@
 -	script	bomberianUpgrader	-1,{
 	mes "คุณมี " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
 	next;
-	menu "Max SP (ใช้ " + callfunc("F_InsertComma",(blUpg1 + 1)) + " Point)",L_Upgrade1
-	,"SP Regen (ใช้ " + callfunc("F_InsertComma",(blUpg2 + 1)) + " Point)",L_Upgrade2;
+	menu "SP สูงสุด (ใช้ " + callfunc("F_InsertComma",(blUpg1 + 1)) + " Point)",L_Upgrade1
+	,"การฟื้นฟู SP (ใช้ " + callfunc("F_InsertComma",(blUpg2 + 1)) + " Point)",L_Upgrade2
+	,"Land Mine แรงขึ้น (ใช้ " + callfunc("F_InsertComma",(blUpg3 + 1)) + " Point)",L_Upgrade3
+	,"Blast Mine แรงขึ้น (ใช้ " + callfunc("F_InsertComma",(blUpg4 + 1)) + " Point)",L_Upgrade4
+	,"Claymore Trap แรงขึ้น (ใช้ " + callfunc("F_InsertComma",(blUpg5 + 1)) + " Point)",L_Upgrade5
+	;
 	
 	L_Upgrade1:
-	.@upgType = 1;
-	if(getd("blUpg" + .@upgType) >= .maxUpgrade){
-		mes "คุณ Upgrade Max SP ถึงขั้นสูงสุดแล้ว";
-		close;
-	}
-	else if(blPoint < (getd("blUpg" + .@upgType) + 1)){
-		mes "Bomberland Point ไม่เพียงพอ";
-		close;
-	}
-	else{
-		blPoint -= (getd("blUpg" + .@upgType) + 1);
-		set getd("blUpg" + .@upgType),getd("blUpg" + .@upgType) + 1;
-		callfunc("RefreshBomberian");
-	}
+	callsub L_Trade,1;
+	end;
+	L_Upgrade2:
+	callsub L_Trade,2;
+	end;
+	L_Upgrade3:
+	callsub L_Trade,3;
+	end;
+	L_Upgrade4:
+	callsub L_Trade,4;
+	end;
+	L_Upgrade5:
+	callsub L_Trade,5;
 	end;
 	
-	L_Upgrade2:
-	.@upgType = 2;
+	L_Trade:
+	.@upgType = getarg(0);
 	if(getd("blUpg" + .@upgType) >= .maxUpgrade){
-		mes "คุณ Upgrade SP Regen ถึงขั้นสูงสุดแล้ว";
+		mes "Upgrade ดังกล่าวถึงขั้นสูงสุดแล้ว";
 		close;
 	}
 	else if(blPoint < (getd("blUpg" + .@upgType) + 1)){
 		mes "Bomberland Point ไม่เพียงพอ";
 		close;
 	}
-	else{
-		blPoint -= (getd("blUpg" + .@upgType) + 1);
-		set getd("blUpg" + .@upgType),getd("blUpg" + .@upgType) + 1;
-		callfunc("RefreshBomberian");
-	}
-	end;
+	blPoint -= (getd("blUpg" + .@upgType) + 1);
+	set getd("blUpg" + .@upgType),getd("blUpg" + .@upgType) + 1;
+	callfunc("RefreshBomberian");
+	return;
 	
 OnInit:
 	waitingroom "Upgrade ตัวละคร",0;
-	.maxUpgrade = 10000;
+	.maxUpgrade = 1000;
 	end;
 }
 

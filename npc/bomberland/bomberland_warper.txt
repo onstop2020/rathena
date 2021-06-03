@@ -1,28 +1,30 @@
 -	script	bomberlandWarper	-1,{
 	mes "- หากไม่มี Party คุณจะครองเมืองไม่ได้";
 	mes "- ทุก ๆ 1 นาที สมาชิกทุกคนใน Party จะได้รับ 1 Bomberland Point";
-	mes "- หากจะกลับมาก็วางระเบิดให้ตัวเองตาย";
+	mes "- กดที่ธงเพื่อกลับมาที่นี่";
 	next;
-	menu "Bomberland ฐานที่ 1",L_Base1,"ขอ Trap เพิ่มหน่อย",-;
+	menu "Bomberland เมืองที่ 1",L_Base1,"ขอ Trap เพิ่มหน่อย",-;
 	mes "ได้เลยครับ";
 	next;
 	if (checkweight(1065,1000)){
 		getitem 1065,1000;
 		mes "เรียบร้อยครับ";
+		specialeffect2 269;
 	}
-	else 
+	else
 	mes "ถือ Trap เยอะไปรึเปล่าครับ?";
 	close;
 	
 	L_Base1:
+	.@selectBase = 1;
 	if(getcharid(1) <= 0){
 		mes "คุณไม่มี Party";
 		close;
 	}
 	
-	if(getcharid(1) != $blBase1){
+	if(getcharid(1) != getd("$blBase" + .@selectBase)){
 		for(.@i = 0; .@i < getarraysize($blMapName$); .@i++)
-		mapannounce $blMapName$[.@i],strcharinfo(0) + " เข้าเมือง Dewata!!",0;
+		mapannounce $blMapName$[.@i],strcharinfo(0) + " เข้าเมือง " + $blMapNameWording$[.@selectBase] + "!!",0;
 	}
 	
 	warp "dewata",0,0;
@@ -32,7 +34,7 @@ OnInit:
 	waitingroom "ครอง Bomberland!",0;
 	
 	setarray $blMapName$[0],"moscovia","dewata";
-	//setarray $blMapNameWording$[0],"Moscovia","Dewata"; //[TODO]
+	setarray $blMapNameWording$[0],"Moscovia","Dewata";
 
 	end;
 }

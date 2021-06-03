@@ -1,0 +1,132 @@
+-	script	startZoneBackToTown	-1,{
+	if(!isCameFromGame){
+		mes "คุณยังไม่ได้เลือกเกมเลยนะ?";
+		close;
+	}
+	mes "จะกลับไปเล่นเกมแล้วเหรอ?";
+	next;
+	menu "ใช่",-;
+	mes "ขอให้สนุกนะ!";
+	close2;
+	
+	setpcblock PCBLOCK_ALL,false;
+	
+	if(playerType == 1)
+	warp "moscovia",221,191;
+	else
+	warp "prontera",156,191;
+	end;
+	
+OnPCLoadMapEvent:
+	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
+	setpcblock PCBLOCK_CHAT,false;
+	setpcblock PCBLOCK_SITSTAND,false;
+	setpcblock PCBLOCK_NPCCLICK,false;
+	setpcblock PCBLOCK_EMOTION,false;
+	end;
+	
+OnInit:
+	waitingroom "กลับสู่เกม",0;
+	end;
+}
+
+-	script	goToStartZone	-1,{
+	mes "สวัสดี! ต้องการพักจากการเล่นเกมอยู่หรือเปล่า?";
+	next;
+	menu "ใช่",-;
+	mes "ฉันจะส่งคุณไปยังสถานที่พักผ่อน และเป็นศูนย์รวมผู้เล่น เซิร์ฟเวอร์ Start's !!";
+	close2;
+	
+	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
+	setpcblock PCBLOCK_CHAT,false;
+	setpcblock PCBLOCK_SITSTAND,false;
+	setpcblock PCBLOCK_NPCCLICK,false;
+	setpcblock PCBLOCK_EMOTION,false;
+	isCameFromGame = 1;
+	warp "malaya",239,221;
+	end;
+	
+OnInit:
+	waitingroom "ไปห้องนั่งเล่น",0;
+	end;
+}
+
+prontera,138,184,5	duplicate(goToStartZone)	อิน	478
+moscovia,230,184,1	duplicate(goToStartZone)	อิน#2	478
+malaya,236,225,3	duplicate(startZoneBackToTown)	อิน#3	478
+malaya	mapflag	nodrop
+malaya	mapflag	loadevent
+malaya	mapflag	partylock
+
+// Idle Minigame
+malaya,226,226,1	script	คนนั่งปาหิน	474,5,5,{
+	if(!stoneThrowing){
+		mes "สนใจมานั่งปาหินด้วยกันไหม?";
+		next;
+		menu "หืม? ข้าไม่มีเวลามากขนาดนั้นหรอก",-,"โอ้ ฟังดูเข้าท่า",L_Play;
+		mes "..";
+		close;
+	}
+	else{
+		mes "ลองปาดูสิ เล็งไปที่ดอกบัว \nเอาให้มันแม่น ๆ หน่อย";
+		close;
+	}
+	
+	L_Play:
+	mes "รับไปหินทิพย์ไม่จำกัด!";
+	mes "ลองปาดูได้เลย เล็งไปที่ดอกบัวนะ";
+	stoneThrowing = 1;
+	close;
+	
+OnTouch:
+	if(stoneThrowing)
+	menu "ปาหินอัตโนมัติ",L_AutomaticThrow,"เพิ่มโอกาสปาหินโดนดอกบัว",L_UpgradeSuccessChance;
+	end;
+	
+	L_AutomaticThrow:
+	isAutoThrow = !isAutoThrow;
+	message strcharinfo(0),"ปาหินอัตโนมัติทุก ๆ 10 วินาที: " + (isAutoThrow ? "On" : "Off");
+	end;
+	
+	L_UpgradeSuccessChance:
+	mes "-ยังไม่เปิดใช้งาน-";
+	close;
+	
+OnInit:
+	initnpctimer;
+	end;
+	
+OnTimer10000:
+	initnpctimer;
+	addrid(4,0,221,231,231,221);
+	if(isAutoThrow)
+	callfunc("ThorwingStone");
+	end;
+}
+
+-	script	manualThrowStone	-1,{
+	if(stoneThrowing)
+	callfunc("ThorwingStone");
+	end;
+	
+OnInit:
+	waitingroom "ปาหิน",0;
+	end;
+}
+
+function	script	ThorwingStone	{
+	.@chance = rand(0,10);
+	if(.@chance <= 0){
+		stoneThrowPoint++;
+		message strcharinfo(0),"คุณปาโดนดอกบัว! ทั้งหมด " + callfunc("F_InsertComma",stoneThrowPoint) + " ครั้ง";
+		specialeffect2 1;
+	}
+	else
+	message strcharinfo(0),"คุณปาไม่โดน..";
+
+	return;
+}
+
+malaya,219,244,5	duplicate(manualThrowStone)	ปาหิน	111

@@ -1,0 +1,437 @@
+-	script	bomberianWarper	-1,{
+	if(strcharinfo(3) != "moscovia"){
+		.@stageNumber = atoi(strnpcinfo(2));
+		if(getd("blStageWarper" + .@stageNumber) <= 0){
+			specialeffect2 569;
+			set getd("blStageWarper" + .@stageNumber),1;
+			message strcharinfo(0),"บันทึก Fast Travel Stage " + (.@stageNumber + 1) + " เรียบร้อยแล้ว!";
+		}
+		menu "กลับเมืองหลัก",-,"Fast Travel",L_FastTravel;
+		warp "moscovia",221,191;
+		end;
+	}
+	mes "Bomb Bomberian! เจ้าต้องการที่จะเล่นโหมดตลุยด่านหรือไม่?";
+	mes "---";
+	mes "*หากเจ้าผ่านด่าน เจ้าจะได้รับ \n(10 คูณ ด่าน) Bomberland Point";
+	next;
+	menu "วิธีผ่านด่าน",L_HowToPlay,"เริ่มตลุยด่าน",L_Stage1,"Fast Travel",L_FastTravel,"ขอ Trap เพิ่มหน่อย",-;
+	mes "จัดไป";
+	next;
+	if (checkweight(1065,1000)){
+		getitem 1065,1000;
+		mes "เรียบร้อย";
+		specialeffect2 269;
+	}
+	else
+	mes "ถือ Trap เยอะไปรึเปล่า?";
+	close;
+	
+	L_HowToPlay:
+	mes "แนวทางที่เป็นไปได้ ในการผ่านด่าน มีดังนี้";
+	mes "1.) ฆ่า Monster ให้ครบจำนวน";
+	mes "2.) ฆ่า Boss ประจำ Map";
+	mes "3.) เดินชนวงแหวนสีดำ (Unlocker)";
+	mes "*การเดินทางไปด่านต่อไป ให้ดูจุดแดงที่ Minimap";
+	close;
+	
+	L_Stage1:
+	warp $blStageMapName$[0],$blStageMapX[0],$blStageMapY[0];
+	end;
+	
+	L_FastTravel:
+	menu "Stage 1",L_FastTravelStage1
+	,"Stage 2",L_FastTravelStage2
+	,"Stage 3",L_FastTravelStage3
+	,"Stage 4",L_FastTravelStage4
+	,"Stage 5",L_FastTravelStage5
+	,"Stage 6",L_FastTravelStage6
+	,"Stage 7",L_FastTravelStage7
+	,"Stage 8",L_FastTravelStage8
+	,"Stage 9",L_FastTravelStage9
+	;
+	end;
+	
+	L_FastTravelStage1:
+	.@targetStage = 0;
+	goto L_FastTravelNow;
+	L_FastTravelStage2:
+	.@targetStage = 1;
+	goto L_FastTravelNow;
+	L_FastTravelStage3:
+	.@targetStage = 2;
+	goto L_FastTravelNow;
+	L_FastTravelStage4:
+	.@targetStage = 3;
+	goto L_FastTravelNow;
+	L_FastTravelStage5:
+	.@targetStage = 4;
+	goto L_FastTravelNow;
+	L_FastTravelStage6:
+	.@targetStage = 5;
+	goto L_FastTravelNow;
+	L_FastTravelStage7:
+	.@targetStage = 6;
+	goto L_FastTravelNow;
+	L_FastTravelStage8:
+	.@targetStage = 7;
+	goto L_FastTravelNow;
+	L_FastTravelStage9:
+	.@targetStage = 8;
+	goto L_FastTravelNow;
+	
+	L_FastTravelNow:
+	if(getd("blStageWarper" + .@targetStage) <= 0){
+		message strcharinfo(0),"คุณยังไปไม่ถึงด่านดังกล่าว";
+		end;
+	}
+	atcommand "@tonpc Bomberian Warper#" + .@targetStage;
+	end;
+	
+OnInit:
+	waitingroom "Bomberian ตลุยด่าน!",0;
+	end;
+}
+
+-	script	bomberianUnlocker	-1,{
+	end;
+	
+OnTouch:
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if($blStageCondition[.@stageIndex] != 3)
+	end;
+
+	if(getd("blKilled" + .@stageIndex) < 1){
+		set getd("blKilled" + .@stageIndex),1;
+		message strcharinfo(0),"คุณได้แตะ Unlocker เรียบร้อยแล้ว สามารถผ่านด่านได้เลย";
+		specialeffect2 682;
+		.@stageClearReward = (10 * (.@stageIndex + 1));
+		blPoint += .@stageClearReward;
+		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",.@stageClearReward) + " Bomberland Point รวม " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
+	}
+	end;
+}
+
+-	script	bomberianStage	-1,{
+	end;
+	
+OnBossDead:
+	BaseExp = 0;
+	JobExp = 0;
+
+	.@stageIndex = atoi(strnpcinfo(2));
+
+	if($blStageCondition[.@stageIndex] != 2)
+	end;
+
+	// Kill target
+	// Check killed monster id
+	if(killedrid == $blStageBossId[.@stageIndex]){
+		if(getd("blKilled" + .@stageIndex) < 1){
+			set getd("blKilled" + .@stageIndex),1;
+			message strcharinfo(0),"คุณฆ่าเป้าหมายเรียบร้อยแล้ว สามารถผ่านด่านได้เลย";
+			specialeffect2 682;
+			.@stageClearReward = (10 * (.@stageIndex + 1));
+			blPoint += .@stageClearReward;
+			dispbottom "คุณได้รับ " + callfunc("F_InsertComma",.@stageClearReward) + " Bomberland Point รวม " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
+		}
+	}
+	
+	end;
+	
+OnMonsterDead:
+	BaseExp = 0;
+	JobExp = 0;
+
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if($blStageCondition[.@stageIndex] != 1)
+	end;
+
+	// Kill count
+	// Check kill count
+	if(getd("blKilled" + .@stageIndex) < .killCountNeed){
+		set getd("blKilled" + .@stageIndex),getd("blKilled" + .@stageIndex) + 100;
+		if(getd("blKilled" + .@stageIndex) >= .killCountNeed){
+			set getd("blKilled" + .@stageIndex),.killCountNeed;
+			specialeffect2 682;
+			.@stageClearReward = (10 * (.@stageIndex + 1));
+			blPoint += .@stageClearReward;
+			dispbottom "คุณได้รับ " + callfunc("F_InsertComma",.@stageClearReward) + " Bomberland Point รวม " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
+		}
+		message strcharinfo(0),"กำจัดเป้าหมายแล้ว " + getd("blKilled" + .@stageIndex) + "/" + .killCountNeed;
+	}
+
+	end;
+
+OnInit:
+	// Unexpected error
+	.@mapName$ = strnpcinfo(4);
+
+	if(.@mapName$ == "")
+	end;
+
+	// Start OnInit
+	
+	.killCountNeed = 20;
+	
+	deletearray $blStage0Id[0],getarraysize($blStage0Id);
+	deletearray $blStage1Id[0],getarraysize($blStage1Id);
+	deletearray $blStage2Id[0],getarraysize($blStage2Id);
+	deletearray $blStage3Id[0],getarraysize($blStage3Id);
+	deletearray $blStage4Id[0],getarraysize($blStage4Id);
+	deletearray $blStage5Id[0],getarraysize($blStage5Id);
+	deletearray $blStage6Id[0],getarraysize($blStage6Id);
+	deletearray $blStage7Id[0],getarraysize($blStage7Id);
+	deletearray $blStage8Id[0],getarraysize($blStage8Id);
+	setarray $blStage0Id[0],1002;
+	setarray $blStage1Id[0],1002,1004;
+	setarray $blStage2Id[0],1007,1009;
+	setarray $blStage3Id[0],1001,1005,1010;
+	setarray $blStage4Id[0],1005,1013;
+	setarray $blStage5Id[0],1014,1018,1019;
+	setarray $blStage6Id[0],1023;
+	setarray $blStage7Id[0],1033,1035,1040;
+	setarray $blStage8Id[0],1052,1056,1057;
+	
+	deletearray $blStageBossId[0],getarraysize($blStageBossId);
+	setarray $blStageBossId[0],0
+	,1031
+	,0
+	,0
+	,0
+	,0
+	,1026
+	,0
+	,1065
+	;
+
+	deletearray $blStageMapName$[0],getarraysize($blStageMapName$);
+	setarray $blStageMapName$[0],"mosk_fild02"
+	,"mosk_dun01"
+	,"mosk_dun02"
+	,"mosk_dun03"
+	,"mosk_que"
+	,"hu_fild02"
+	,"cave"
+	,"odin_tem01"
+	,"odin_tem02"
+	;
+	
+	deletearray $blStageMapX[0],getarraysize($blStageMapX);
+	setarray $blStageMapX[0],18
+	,25
+	,166
+	,32
+	,50
+	,293
+	,99
+	,88
+	,28
+	;
+	
+	deletearray $blStageMapY[0],getarraysize($blStageMapY);
+	setarray $blStageMapY[0],171
+	,75
+	,28
+	,136
+	,17
+	,29
+	,22
+	,146
+	,335
+	;
+	
+	deletearray $blStageBossX[0],getarraysize($blStageBossX);
+	setarray $blStageBossX[0],0
+	,0
+	,0
+	,0
+	,0
+	,0
+	,110
+	,0
+	,226
+	;
+	
+	deletearray $blStageBossY[0],getarraysize($blStageBossY);
+	setarray $blStageBossY[0],0
+	,0
+	,0
+	,0
+	,0
+	,0
+	,67
+	,0
+	,150
+	;
+
+	deletearray $blStageMobCount[0],getarraysize($blStageMobCount);
+	setarray $blStageMobCount[0],50
+	,75
+	,100
+	,100
+	,50
+	,125
+	,25
+	,150
+	,100
+	;
+	
+	deletearray $blStageCondition[0],getarraysize($blStageCondition);
+	setarray $blStageCondition[0],1
+	,2
+	,3
+	,1
+	,1
+	,3
+	,2
+	,1
+	,2
+	;
+	
+	//debugmes "Start spawn monster on map " + strnpcinfo(4);
+	
+	callsub L_RespawnMob;
+	
+	initnpctimer;
+	end;
+
+	L_RespawnMob:
+	.@stageIndex = atoi(strnpcinfo(2));
+	//debugmes gettimetick(1) + ": " + .@stageIndex;
+	.@mobAmount = $blStageMobCount[.@stageIndex];
+	//debugmes ".@mobAmount: " + .@mobAmount;
+	.@mapName$ = strnpcinfo(4);
+	.@currentMonsterCount = getmapunits(BL_MOB,.@mapName$);
+	//debugmes ".@currentMonsterCount: " + .@currentMonsterCount;
+	.@maxMonster = .@mobAmount - .@currentMonsterCount;
+	//debugmes ".@maxMonster: " + .@maxMonster;
+	if(.@maxMonster > 1)
+	.@mobAmount = rand((.@maxMonster / 2),.@maxMonster);
+	else if(.@maxMonster > 0)
+	.@mobAmount = 1;
+	else
+	return;
+	
+	//debugmes ".@mobAmount (Calculated, Spawning now): " + .@mobAmount;
+	
+	.@arraySize = getarraysize(getd("$blStage" + .@stageIndex + "Id"));
+	for(.@i = 0; .@i < .@arraySize; .@i++){
+		monster .@mapName$,0,0,"--ja--",getd("$blStage" + .@stageIndex + "Id[" + .@i + "]"),(.@mobAmount / .@arraySize),strnpcinfo(0) + "::OnMonsterDead";
+		for(.@j = 0; .@j < (.@mobAmount / .@arraySize); .@j++)
+		setunitdata $@mobid[.@j],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
+	}
+	.@bossId = $blStageBossId[.@stageIndex];
+	if(.@bossId > 0){
+		monster .@mapName$,$blStageBossX[.@stageIndex],$blStageBossY[.@stageIndex],"--ja--",.@bossId,1,strnpcinfo(0) + "::OnBossDead";
+		setunitdata $@mobid[0],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
+	}
+	return;
+
+OnTimer60000:
+	callsub L_RespawnMob;
+	initnpctimer;
+	end;
+
+OnTouch:
+	// Unexpected error
+	.@mapName$ = strnpcinfo(4);
+
+	if(.@mapName$ == "")
+	end;
+
+	// Start OnTouch
+	
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if(($blStageCondition[.@stageIndex] == 1 && getd("blKilled" + .@stageIndex) >= .killCountNeed)
+			|| ($blStageCondition[.@stageIndex] != 1 && getd("blKilled" + .@stageIndex) >= 1)){
+		mes "ยินดีด้วยคุณผ่านด่านแล้ว!";
+		menu "ไปด่านต่อไป",-,"กลับเมืองหลัก",L_ReturnToMainTown;
+		.@stageIndex++;
+		if(getarraysize($blStageMapName$) > .@stageIndex)
+		warp $blStageMapName$[.@stageIndex],$blStageMapX[.@stageIndex],$blStageMapY[.@stageIndex];
+		else
+		message strcharinfo(0),"ยังไม่มีด่านต่อไป หากถูกใจแนวนี้ ช่วย Donate ให้ผมด้วยนะครับ";
+		end;
+	}
+	else{
+		if($blStageCondition[.@stageIndex] == 1)
+		message strcharinfo(0),"ต้องกำจัดเป้าหมายให้ครบเสียก่อน (" + getd("blKilled" + .@stageIndex) + "/" + .killCountNeed + ")";
+		else if($blStageCondition[.@stageIndex] == 2)
+		message strcharinfo(0),"ต้องกำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME) + " ให้ได้เสียก่อน";
+		else if($blStageCondition[.@stageIndex] == 3)
+		message strcharinfo(0),"ต้องแตะ Unlocker ให้ได้เสียก่อน";
+	}
+	end;
+	
+	L_ReturnToMainTown:
+	warp "moscovia",221,191;
+	end;
+	
+OnPCLoadMapEvent:
+	// Unexpected error
+	.@mapName$ = strnpcinfo(4);
+
+	if(.@mapName$ == "")
+	end;
+
+	// Start OnPCLoadMapEvent
+
+	// Hint player where to go
+	if(strcharinfo(3) == strnpcinfo(4)){
+		getmapxy(.@mapName$,.@x,.@y,BL_NPC);
+		viewpoint 1,.@x,.@y,1,0xFF0000;
+		
+		.@stageIndex = atoi(strnpcinfo(2));
+		
+		if($blStageCondition[.@stageIndex] == 1)
+		message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ";
+		else if($blStageCondition[.@stageIndex] == 2)
+		message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME);
+		else if($blStageCondition[.@stageIndex] == 3)
+		message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker";
+	}
+	end;
+}
+
+moscovia,213,207,5	duplicate(bomberianWarper)	Bomberian Warper	727
+
+mosk_fild02,18,178,5	duplicate(bomberianWarper)	Bomberian Warper#0	727
+mosk_fild02,190,255,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#0	722,3,3
+mosk_fild02	mapflag	loadevent
+
+mosk_dun01,28,81,3	duplicate(bomberianWarper)	Bomberian Warper#1	727
+mosk_dun01,200,273,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#1	722,3,3
+mosk_dun01	mapflag	loadevent
+
+mosk_dun02,164,35,3	duplicate(bomberianWarper)	Bomberian Warper#2	727
+mosk_dun02,130,155,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#2	722,3,3
+mosk_dun02,234,213,4	duplicate(bomberianUnlocker)	Unlocker#2	723,3,3
+mosk_dun02	mapflag	loadevent
+
+mosk_dun03,31,140,5	duplicate(bomberianWarper)	Bomberian Warper#3	727
+mosk_dun03,205,211,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#3	722,3,3
+mosk_dun03	mapflag	loadevent
+
+mosk_que,57,19,3	duplicate(bomberianWarper)	Bomberian Warper#4	727
+mosk_que,48,217,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#4	722,3,3
+mosk_que	mapflag	loadevent
+
+hu_fild02,289,36,5	duplicate(bomberianWarper)	Bomberian Warper#5	727
+hu_fild02,147,261,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#5	722,3,3
+hu_fild02,267,273,4	duplicate(bomberianUnlocker)	Unlocker#5	723,3,3
+hu_fild02	mapflag	loadevent
+
+cave,108,33,3	duplicate(bomberianWarper)	Bomberian Warper#6	727
+cave,83,100,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#6	722,3,3
+cave	mapflag	loadevent
+
+odin_tem01,97,148,3	duplicate(bomberianWarper)	Bomberian Warper#7	727
+odin_tem01,384,333,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#7	722,3,3
+odin_tem01	mapflag	loadevent
+
+odin_tem02,31,340,3	duplicate(bomberianWarper)	Bomberian Warper#8	727
+odin_tem02,152,350,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#8	722,3,3
+odin_tem02	mapflag	loadevent

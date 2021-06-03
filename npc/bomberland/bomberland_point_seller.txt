@@ -42,6 +42,7 @@
 		blPoint += .@targetToBuyCount * $rewardPerCash;
 		mes "เรียบร้อย! ไปวางระเบิดกันเถอะ!";
 		mes "คุณมี " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
+		specialeffect2 18;
 		close;
 	}
 	

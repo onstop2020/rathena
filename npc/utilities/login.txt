@@ -1,7 +1,7 @@
 -	script	loginCheck	-1,{
 OnPCLoginEvent:
 	// Select game
-	if(strcharinfo(3) == "malaya" && BaseLevel == 1 && JobLevel == 1 && Class == 0){
+	if(strcharinfo(3) == "malaya" && BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
 		mes "สวัสดีครับ ผม Start เองครับ";
 		mes "ตอนนี้ Server ของผมมีแนว ให้เลือกเล่น 2 แนว";
 		mes "1.) <URL>Monster Room (PvE, เล่นยาก)<INFO>https://sites.google.com/view/monsterroom-ro/home</INFO></URL>";

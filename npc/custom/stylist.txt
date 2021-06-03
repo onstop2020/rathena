@@ -91,3 +91,4 @@
 }
 
 prontera,178,174,3	duplicate(CharacterSuitController)	 แต่งตัว	894
+moscovia,199,202,5	duplicate(CharacterSuitController)	 แต่งตัว#2	894

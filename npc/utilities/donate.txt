@@ -1,7 +1,4 @@
 -	script	donateInfomation	-1,{
-	if(playerType == 1)
-	mes "^FF5928*อย่าคุยกับ NPC ค้างไว้ ไม่งั้นไม่ได้ Bomberland Point หากยึดเมืองไว้อยู่^000000";
-	
 	mes "=== บริจาค ===";
 	mes "50 THB รับ 100 Cash";
 	mes "90 THB รับ 250 Cash";

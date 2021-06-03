@@ -42,6 +42,7 @@
 		Zeny += .@targetToBuyCount * $zenyPerCash;
 		mes "ฮิ้วว รวย ๆ จ้า";
 		mes "คุณมี " + callfunc("F_InsertComma",Zeny) + "z";
+		specialeffect2 18;
 		close;
 	}
 	
