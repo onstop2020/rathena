@@ -4,7 +4,7 @@ OnPCLoginEvent:
 	if(strcharinfo(3) == "malaya" && BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
 		mes "สวัสดีครับ ผม Start เองครับ";
 		mes "ตอนนี้ Server ของผมมีแนว ให้เลือกเล่น 2 แนว";
-		mes "1.) <URL>Monster Room (PvE, เล่นยาก)<INFO>https://sites.google.com/view/monsterroom-ro/home</INFO></URL>";
+		mes "1.) <URL>Monster Room (PvE, เล่นยาก)<INFO>https://sites.google.com/view/start-ro/</INFO></URL>";
 		mes "2.) Bomberland (PvP, เล่นง่ายมาก ๆ)";
 		mes "เลือกเล่นตามที่ชอบได้เลยครับ ขอบคุณครับ";
 		menu "1.) Monster Room",L_MonsterRoom,"2.) Bomberland",L_BomberLand;
