@@ -36,6 +36,7 @@
 	
 	L_Stage1:
 	warp $blStageMapName$[0],$blStageMapX[0],$blStageMapY[0];
+	callsub L_WarpBegin,strcharinfo(3);
 	end;
 	
 	L_FastTravel:
@@ -85,6 +86,19 @@
 		end;
 	}
 	atcommand "@tonpc Bomberian Warper#" + .@targetStage;
+	callsub L_WarpBegin,strcharinfo(3);
+	end;
+	
+	L_WarpBegin:
+	lastWarpMapName$ = getarg(0);
+	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
+	addtimer 2000,strnpcinfo(3) + "::OnLoaded2Second";
+	return;
+	
+OnLoaded2Second:
+	if(strcharinfo(3) == lastWarpMapName$)
+	setpcblock PCBLOCK_ALL,false;
 	end;
 	
 OnInit:
@@ -350,8 +364,10 @@ OnTouch:
 		mes "ยินดีด้วยคุณผ่านด่านแล้ว!";
 		menu "ไปด่านต่อไป",-,"กลับเมืองหลัก",L_ReturnToMainTown;
 		.@stageIndex++;
-		if(getarraysize($blStageMapName$) > .@stageIndex)
-		warp $blStageMapName$[.@stageIndex],$blStageMapX[.@stageIndex],$blStageMapY[.@stageIndex];
+		if(getarraysize($blStageMapName$) > .@stageIndex){
+			warp $blStageMapName$[.@stageIndex],$blStageMapX[.@stageIndex],$blStageMapY[.@stageIndex];
+			callsub L_WarpBegin,strcharinfo(3);
+		}
 		else
 		message strcharinfo(0),"ยังไม่มีด่านต่อไป หากถูกใจแนวนี้ ช่วย Donate ให้ผมด้วยนะครับ";
 		end;
@@ -393,6 +409,18 @@ OnPCLoadMapEvent:
 		else if($blStageCondition[.@stageIndex] == 3)
 		message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker";
 	}
+	end;
+	
+	L_WarpBegin:
+	lastWarpMapName$ = getarg(0);
+	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
+	addtimer 2000,strnpcinfo(3) + "::OnLoaded2Second";
+	return;
+	
+OnLoaded2Second:
+	if(strcharinfo(3) == lastWarpMapName$)
+	setpcblock PCBLOCK_ALL,false;
 	end;
 }
 

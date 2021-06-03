@@ -68,6 +68,7 @@ OnPCLoginEvent:
 		getitem 1065,1000;
 		
 		callfunc("RefreshBomberian");
+		setpcblock PCBLOCK_NPCCLICK,false;
 		
 		isWarpToGame2Town = 1;
 		warp "moscovia",221,191;
