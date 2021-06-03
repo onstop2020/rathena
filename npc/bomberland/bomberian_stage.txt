@@ -151,7 +151,7 @@ OnMonsterDead:
 	// Kill count
 	// Check kill count
 	if(getd("blKilled" + .@stageIndex) < .killCountNeed){
-		set getd("blKilled" + .@stageIndex),getd("blKilled" + .@stageIndex) + 100;
+		set getd("blKilled" + .@stageIndex),getd("blKilled" + .@stageIndex) + 1;
 		if(getd("blKilled" + .@stageIndex) >= .killCountNeed){
 			set getd("blKilled" + .@stageIndex),.killCountNeed;
 			specialeffect2 682;
