@@ -166,17 +166,6 @@ OnInit:
 	else
 	warp "prontera",156,191;
 	end;
-	
-OnPCLoadMapEvent:
-	if(strcharinfo(3) == strnpcinfo(4)){
-		setpcblock PCBLOCK_ALL,true;
-		setpcblock PCBLOCK_MOVE,false;
-		setpcblock PCBLOCK_CHAT,false;
-		setpcblock PCBLOCK_SITSTAND,false;
-		setpcblock PCBLOCK_NPCCLICK,false;
-		setpcblock PCBLOCK_EMOTION,false;
-	}
-	end;
 }
 
 -	script	goToDress	-1,{
@@ -199,6 +188,5 @@ moscovia,210,194,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม#2	101
 prt_in,244,168,5	duplicate(viewChanger)	แต่งทุกอย่าง	1681
 prt_in,235,163,5	duplicate(backToTown)	กลับเมือง	101
 prt_in	mapflag	nodrop
-prt_in	mapflag	loadevent
 prt_in	mapflag	partylock
 

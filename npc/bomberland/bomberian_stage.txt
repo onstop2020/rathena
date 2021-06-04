@@ -12,7 +12,7 @@
 	}
 	mes "Bomb Bomberian! เจ้าต้องการที่จะเล่นโหมดตลุยด่านหรือไม่?";
 	mes "---";
-	mes "*หากเจ้าผ่านด่าน เจ้าจะได้รับ \n(10 คูณ ด่าน) Bomberland Point";
+	mes "*หากผ่านด่าน จะได้รับ \n(10 คูณ ด่าน) Bomberland Point";
 	next;
 	menu "วิธีผ่านด่าน",L_HowToPlay,"เริ่มตลุยด่าน",L_Stage1,"Fast Travel",L_FastTravel,"ขอ Trap เพิ่มหน่อย",-;
 	mes "จัดไป";
@@ -385,32 +385,7 @@ OnTouch:
 	L_ReturnToMainTown:
 	warp "moscovia",221,191;
 	end;
-	
-OnPCLoadMapEvent:
-	// Unexpected error
-	.@mapName$ = strnpcinfo(4);
 
-	if(.@mapName$ == "")
-	end;
-
-	// Start OnPCLoadMapEvent
-
-	// Hint player where to go
-	if(strcharinfo(3) == strnpcinfo(4)){
-		getmapxy(.@mapName$,.@x,.@y,BL_NPC);
-		viewpoint 1,.@x,.@y,1,0xFF0000;
-		
-		.@stageIndex = atoi(strnpcinfo(2));
-		
-		if($blStageCondition[.@stageIndex] == 1)
-		message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ";
-		else if($blStageCondition[.@stageIndex] == 2)
-		message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME);
-		else if($blStageCondition[.@stageIndex] == 3)
-		message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker";
-	}
-	end;
-	
 	L_WarpBegin:
 	lastWarpMapName$ = getarg(0);
 	setpcblock PCBLOCK_ALL,true;
@@ -424,42 +399,62 @@ OnLoaded2Second:
 	end;
 }
 
+-	script	stageHint	-1,{
+	end;
+	
+OnTouch:
+	// Hint player where to go
+	getmapxy(.@mapName$,.@x,.@y,BL_NPC,"ชนเพื่อผ่านด่าน#" + strnpcinfo(2));
+	viewpoint 1,.@x,.@y,1,0xFF0000;
+	
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if($blStageCondition[.@stageIndex] == 1)
+	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ";
+	else if($blStageCondition[.@stageIndex] == 2)
+	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME);
+	else if($blStageCondition[.@stageIndex] == 3)
+	message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker";
+	
+	end;
+}
+
 moscovia,213,207,5	duplicate(bomberianWarper)	Bomberian Warper	727
 
 mosk_fild02,18,178,5	duplicate(bomberianWarper)	Bomberian Warper#0	727
 mosk_fild02,190,255,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#0	722,3,3
-mosk_fild02	mapflag	loadevent
+mosk_fild02,1,1,5	duplicate(stageHint)	Stage Hint#0	111,400,400
 
 mosk_dun01,28,81,3	duplicate(bomberianWarper)	Bomberian Warper#1	727
 mosk_dun01,200,273,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#1	722,3,3
-mosk_dun01	mapflag	loadevent
+mosk_dun01,1,1,5	duplicate(stageHint)	Stage Hint#1	111,400,400
 
 mosk_dun02,164,35,3	duplicate(bomberianWarper)	Bomberian Warper#2	727
 mosk_dun02,130,155,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#2	722,3,3
+mosk_dun02,1,1,5	duplicate(stageHint)	Stage Hint#2	111,400,400
 mosk_dun02,234,213,4	duplicate(bomberianUnlocker)	Unlocker#2	723,3,3
-mosk_dun02	mapflag	loadevent
 
 mosk_dun03,31,140,5	duplicate(bomberianWarper)	Bomberian Warper#3	727
 mosk_dun03,205,211,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#3	722,3,3
-mosk_dun03	mapflag	loadevent
+mosk_dun03,1,1,5	duplicate(stageHint)	Stage Hint#3	111,400,400
 
 mosk_que,57,19,3	duplicate(bomberianWarper)	Bomberian Warper#4	727
 mosk_que,48,217,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#4	722,3,3
-mosk_que	mapflag	loadevent
+mosk_que,1,1,5	duplicate(stageHint)	Stage Hint#4	111,400,400
 
 hu_fild02,289,36,5	duplicate(bomberianWarper)	Bomberian Warper#5	727
 hu_fild02,147,261,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#5	722,3,3
+hu_fild02,1,1,5	duplicate(stageHint)	Stage Hint#5	111,400,400
 hu_fild02,267,273,4	duplicate(bomberianUnlocker)	Unlocker#5	723,3,3
-hu_fild02	mapflag	loadevent
 
 cave,108,33,3	duplicate(bomberianWarper)	Bomberian Warper#6	727
 cave,83,100,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#6	722,3,3
-cave	mapflag	loadevent
+cave,1,1,5	duplicate(stageHint)	Stage Hint#6	111,400,400
 
 odin_tem01,97,148,3	duplicate(bomberianWarper)	Bomberian Warper#7	727
 odin_tem01,384,333,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#7	722,3,3
-odin_tem01	mapflag	loadevent
+odin_tem01,1,1,5	duplicate(stageHint)	Stage Hint#7	111,400,400
 
 odin_tem02,31,340,3	duplicate(bomberianWarper)	Bomberian Warper#8	727
 odin_tem02,152,350,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#8	722,3,3
-odin_tem02	mapflag	loadevent
+odin_tem02,1,1,5	duplicate(stageHint)	Stage Hint#8	111,400,400

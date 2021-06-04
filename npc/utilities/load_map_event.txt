@@ -1,0 +1,18 @@
+-	script	loadMapEventController	-1,{
+	end;
+	
+OnPCLoadMapEvent:
+	if(compare("malaya|prt_in|job4_mag",strcharinfo(3))){
+		setpcblock PCBLOCK_ALL,true;
+		setpcblock PCBLOCK_MOVE,false;
+		setpcblock PCBLOCK_CHAT,false;
+		setpcblock PCBLOCK_SITSTAND,false;
+		setpcblock PCBLOCK_NPCCLICK,false;
+		setpcblock PCBLOCK_EMOTION,false;
+	}
+	end;
+}
+
+malaya	mapflag	loadevent
+prt_in	mapflag	loadevent
+job4_mag	mapflag	loadevent

@@ -24,23 +24,10 @@
 	callfunc("DeadReset");
 	close;
 	
-OnPCLoadMapEvent:
-	if(strcharinfo(3) == strnpcinfo(4)){
-		setpcblock PCBLOCK_ALL,true;
-		setpcblock PCBLOCK_MOVE,false;
-		setpcblock PCBLOCK_CHAT,false;
-		setpcblock PCBLOCK_SITSTAND,false;
-		setpcblock PCBLOCK_NPCCLICK,false;
-		setpcblock PCBLOCK_EMOTION,false;
-	}
-	end;
-	
 OnInit:
 	waitingroom "ยินดีต้อนรับสู่โลกหลังความตาย",0;
 	end; 
 }
-
-job4_mag	mapflag	loadevent
 
 -	script	prayForLife	-1,{
 	if(reviver > 0){

@@ -36,18 +36,6 @@ OnTouch:
 	}
 	end;
 	
-OnPCLoadMapEvent:
-	// Unexpected error
-	.@mapName$ = strnpcinfo(4);
-
-	if(.@mapName$ == "")
-	end;
-
-	// Hint player where to go
-	if(strcharinfo(3) == strnpcinfo(4))
-	viewpoint 1,199,226,1,0xFF0000;
-	end;
-
 OnTimer60000:
 	// Unexpected error
 	.@mapName$ = strnpcinfo(4);
@@ -81,6 +69,14 @@ OnInit:
 	end;
 }
 
-dewata,199,226,5	duplicate(bomberlandBase)	ÂÖ´¤ÃÍ§#1	974,3,3
+-	script	positionHint	-1,{
+	end;
+	
+OnTouch:
+	// Hint player where to go
+	viewpoint 1,199,226,1,0xFF0000;
+	end;
+}
 
-dewata	mapflag	loadevent
+dewata,199,226,5	duplicate(bomberlandBase)	ÂÖ´¤ÃÍ§#1	974,3,3
+dewata,1,1,5	duplicate(positionHint)	BaseHint#1	111,400,400

@@ -17,17 +17,6 @@
 	warp "prontera",156,191;
 	end;
 	
-OnPCLoadMapEvent:
-	if(strcharinfo(3) == strnpcinfo(4)){
-		setpcblock PCBLOCK_ALL,true;
-		setpcblock PCBLOCK_MOVE,false;
-		setpcblock PCBLOCK_CHAT,false;
-		setpcblock PCBLOCK_SITSTAND,false;
-		setpcblock PCBLOCK_NPCCLICK,false;
-		setpcblock PCBLOCK_EMOTION,false;
-	}
-	end;
-	
 OnInit:
 	waitingroom "กลับสู่เกม",0;
 	end;
@@ -59,7 +48,6 @@ prontera,138,184,5	duplicate(goToStartZone)	อิน	478
 moscovia,230,184,1	duplicate(goToStartZone)	อิน#2	478
 malaya,236,225,3	duplicate(startZoneBackToTown)	อิน#3	478
 malaya	mapflag	nodrop
-malaya	mapflag	loadevent
 malaya	mapflag	partylock
 
 // Idle Minigame

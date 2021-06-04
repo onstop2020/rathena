@@ -1,9 +1,35 @@
 -	script	loginCheck	-1,{
 OnPCLoginEvent:
 	announce strcharinfo(0) + " ได้เข้าสู่เกม!",bc_all,0x28FF32;
+
+	// Monster Room Player
+	if(playerType <= 0){
+		if(strcharinfo(3) != "job4_mag"){
+			reviver = 1;
+			savepoint "prontera",156,191;
+			setpcblock PCBLOCK_ALL,false;
+		}
+		
+		callfunc("RefreshEXP");
+
+		if(countitem(602) <= 0)
+		getitem 602,1;
+	}
+	// Bomberland Player
+	else if(playerType == 1 && isWarpToGame2Town)
+	callfunc("RefreshBomberian");
 	
+	setlook LOOK_HEAD_TOP,head1;
+	setlook LOOK_HEAD_MID,head2;
+	setlook LOOK_HEAD_BOTTOM,head3;
+	setlook LOOK_ROBE,head4;
+	
+	end;
+}
+
+que_moon,100,38,4	script	Start	10385,{
 	// Select game
-	if(strcharinfo(3) == "malaya" && BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
+	if(BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
 		mes "สวัสดีครับ ผม Start เองครับ";
 		mes "ตอนนี้ Server ของผมมีแนว ให้เลือกเล่น 2 แนว";
 		mes "1.) <URL>Monster Room (PvE, เล่นยาก)<INFO>https://sites.google.com/view/start-ro/</INFO></URL>";
@@ -75,13 +101,7 @@ OnPCLoginEvent:
 		isWarpToGame2Town = 1;
 		warp "moscovia",221,191;
 	}
-	else if(playerType == 1 && isWarpToGame2Town)
-	callfunc("RefreshBomberian");
-	
-	setlook LOOK_HEAD_TOP,head1;
-	setlook LOOK_HEAD_MID,head2;
-	setlook LOOK_HEAD_BOTTOM,head3;
-	setlook LOOK_ROBE,head4;
 	
 	end;
 }
+
