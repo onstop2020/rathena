@@ -5,15 +5,9 @@ OnPCLogoutEvent:
 	if(!playerattached())
 	end;
 
-	.@logoutMapName$ = strcharinfo(3);
-	if(.@logoutMapName$ == "prontera"
-	|| .@logoutMapName$ == "prt_in"
-	|| .@logoutMapName$ == "job4_mag"
-	|| .@logoutMapName$ == "malaya"
-	|| .@logoutMapName$ == "que_moon"
-	)
+	if(compare("prontera|prt_in|job4_mag|malaya|que_moon",strcharinfo(3)))
 	end;
-	
+
 	if(playerType <= 0)
 	warp "prontera",156,191;
 
