@@ -7,6 +7,9 @@ OnPCLoginEvent:
 		end;
 	}
 	
+	if(strcharinfo(3) == "que_moon")
+		end;
+	
 	// Monster Room Player
 	if(playerType <= 0){
 		if(strcharinfo(3) != "job4_mag"){
