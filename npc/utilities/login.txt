@@ -1,6 +1,6 @@
 -	script	loginCheck	-1,{
 OnPCLoginEvent:
-	announce strcharinfo(0) + " ได้เข้าสู่เกม ขณะนี้มีผู้เล่น " + callfunc("F_InsertComma",getusers(1)+1) + " คน!",bc_all,0x28FF32;
+	announce strcharinfo(0) + " ได้เข้าสู่เกม!",bc_all,0x28FF32;
 	
 	// Select game
 	if(strcharinfo(3) == "malaya" && BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
