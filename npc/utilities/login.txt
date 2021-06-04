@@ -2,6 +2,11 @@
 OnPCLoginEvent:
 	announce strcharinfo(0) + " ได้เข้าสู่เกม!",bc_all,0x28FF32;
 
+	if(strcharinfo(0) == "malaya" && BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
+		warp "que_moon",100,12;
+		end;
+	}
+	
 	// Monster Room Player
 	if(playerType <= 0){
 		if(strcharinfo(3) != "job4_mag"){
