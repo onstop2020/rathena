@@ -419,11 +419,53 @@ OnTouch:
 	end;
 }
 
+-	script	hiddenTreasure	-1,{
+	end;
+	
+OnTimer60000:
+OnInit:
+	.@npcMapName$ = strnpcinfo(4);
+	
+	if(.@npcMapName$ == "")
+	end;
+	
+	getfreecell(.@npcMapName$,.@x,.@y);
+	moveNPC strnpcinfo(0),.@x,.@y;
+	initnpctimer;
+	end;
+
+OnTouch:
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if(!getd("blHiddenTreasure" + .@stageIndex))
+	{
+		set getd("blHiddenTreasure" + .@stageIndex),1;
+		
+		if(.@stageIndex == 0){
+			setarray .@OptID[0],2;
+			setarray .@OptVal[0],10;
+			setarray .@OptParam[0],0;
+			getitem3 2604,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+			setarray .@OptID[0],12;
+			setarray .@OptVal[0],10;
+			setarray .@OptParam[0],0;
+			getitem3 2604,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		
+		message strcharinfo(0),"คุณขุดกองดินแปลก ๆ และพบสมบัติที่ฝังอยู่!";
+	}
+	else
+	message strcharinfo(0),"คุณขุดกองดินแปลก ๆ ภายในด่านนี้ไปแล้ว";
+	
+	end;
+}
+
 moscovia,213,207,5	duplicate(bomberianWarper)	Bomberian Warper	727
 
 mosk_fild02,18,178,5	duplicate(bomberianWarper)	Bomberian Warper#0	727
 mosk_fild02,190,255,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#0	722,3,3
 mosk_fild02,1,1,5	duplicate(stageHint)	Stage Hint#0	111,400,400
+mosk_fild02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#0	2452,2,2
 
 mosk_dun01,28,81,3	duplicate(bomberianWarper)	Bomberian Warper#1	727
 mosk_dun01,200,273,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#1	722,3,3
