@@ -452,10 +452,10 @@ OnTouch:
 			getitem3 2604,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
 		}
 		
-		message strcharinfo(0),"คุณขุดกองดินแปลก ๆ และพบสมบัติที่ฝังอยู่!";
+		message strcharinfo(0),"คุณเปิดกล่องสมบัติแปลก ๆ และพบสมบัติภายในนั้น!";
 	}
 	else
-	message strcharinfo(0),"คุณขุดกองดินแปลก ๆ ภายในด่านนี้ไปแล้ว";
+	message strcharinfo(0),"คุณเปิดกล่องสมบัติแปลก ๆ ของด่านนี้ไปแล้ว";
 	
 	end;
 }
