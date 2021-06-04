@@ -6,7 +6,12 @@ OnPCLogoutEvent:
 	end;
 
 	.@logoutMapName$ = strcharinfo(3);
-	if(.@logoutMapName$ == "prontera" || .@logoutMapName$ == "prt_in" || .@logoutMapName$ == "job4_mag" || .@logoutMapName$ == "malaya")
+	if(.@logoutMapName$ == "prontera"
+	|| .@logoutMapName$ == "prt_in"
+	|| .@logoutMapName$ == "job4_mag"
+	|| .@logoutMapName$ == "malaya"
+	|| .@logoutMapName$ == "que_moon"
+	)
 	end;
 	
 	if(playerType <= 0)
