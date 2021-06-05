@@ -24,11 +24,11 @@ function	script	CustomLoad	{
 			warp "prontera",156,191;
 		}
 		else
-			message strcharinfo(0),"คุณตายไปแล้ว";
+		message strcharinfo(0),"คุณตายไปแล้ว";
 	}
 	// Bomberland Player
 	else if(playerType == 1)
-		message strcharinfo(0),"ไม่สามารถใช้คำสั่งนี้ได้ เนื่องจากคุณเล่นเกม Bomberland";
+	message strcharinfo(0),"ไม่สามารถใช้คำสั่งนี้ได้ เนื่องจากคุณเล่นเกม Bomberland";
 	
 	return;
 }
