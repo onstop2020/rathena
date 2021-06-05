@@ -54,7 +54,7 @@ function	script	KnockOutSafety	{
 	}
 	
 	specialeffect2 154;
-	successrefitem EQI_HEAD_TOP;
+	successrefitem EQI_HEAD_TOP,(.@type == 2 ? 20 : 1);
 	
 	return;
 }

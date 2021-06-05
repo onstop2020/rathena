@@ -27,12 +27,14 @@ OnPCDieEvent:
 			.@equipmentName$ = getequipname(EQI_HEAD_TOP);
 			// Check Refine Count
 			.@refineCount = getequiprefinerycnt(EQI_HEAD_TOP);
-			if(.@refineCount > 0){
-				message strcharinfo(0),.@equipmentName$ + " ได้กันตายให้คุณ! จำนวนครั้งที่สามารถกันตายได้คงเหลือ " + (.@refineCount - 1) + " ครั้ง";
+			if(.@refineCount > (BaseLevel / 10)){
+				message strcharinfo(0),.@equipmentName$ + " ได้กันตายให้คุณ! จำนวนครั้งที่สามารถกันตายได้คงเหลือ 0 ครั้ง";
 				specialeffect2 939;
-				downrefitem EQI_HEAD_TOP;
+				downrefitem EQI_HEAD_TOP,.@refineCount;
 				end;
 			}
+			else if(.@refineCount > 0)
+			message strcharinfo(0),"จำนวนตีบวก " + .@equipmentName$ + " ไม่เพียงพอ ต้องการ +" + (BaseLevel / 10);
 		}
 
 		// Set alive state to dead
