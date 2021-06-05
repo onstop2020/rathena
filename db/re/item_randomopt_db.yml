@@ -895,3 +895,15 @@ Body:
     Option: REFLECT_DAMAGE_PERCENT
     Script: |
       bonus bReduceDamageReturn,getrandomoptinfo(ROA_VALUE);
+  - Id: 244
+    Option: LAND_MINE_ATTACK_DAMAGE_TARGET
+    Script: |
+      bonus2 bSkillAtk,116,getrandomoptinfo(ROA_VALUE);
+  - Id: 245
+    Option: BLAST_MINE_ATTACK_DAMAGE_TARGET
+    Script: |
+      bonus2 bSkillAtk,122,getrandomoptinfo(ROA_VALUE);
+  - Id: 246
+    Option: CLAYMORE_TRAP_ATTACK_DAMAGE_TARGET
+    Script: |
+      bonus2 bSkillAtk,123,getrandomoptinfo(ROA_VALUE);

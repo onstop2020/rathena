@@ -471,6 +471,7 @@ OnTouch:
 	{
 		set getd("blHiddenTreasure" + .@stageIndex),1;
 		
+		// Stage 1
 		if(.@stageIndex == 0){
 			setarray .@OptID[0],2;
 			setarray .@OptVal[0],10;
@@ -481,7 +482,82 @@ OnTouch:
 			setarray .@OptParam[0],0;
 			getitem3 2604,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
 		}
-		
+		// Stage 2
+		else if(.@stageIndex == 1){
+			setarray .@OptID[0],244;
+			setarray .@OptVal[0],200;
+			setarray .@OptParam[0],0;
+			getitem3 5383,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+			setarray .@OptID[0],246;
+			setarray .@OptVal[0],200;
+			setarray .@OptParam[0],0;
+			getitem3 13038,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 3
+		else if(.@stageIndex == 2){
+			setarray .@OptID[0],4;
+			setarray .@OptVal[0],5;
+			setarray .@OptParam[0],0;
+			getitem3 22060,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+			setarray .@OptID[0],7;
+			setarray .@OptVal[0],5;
+			setarray .@OptParam[0],0;
+			getitem3 2503,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 4
+		else if(.@stageIndex == 3){
+			setarray .@OptID[0],1,2,4;
+			setarray .@OptVal[0],5,5,1;
+			setarray .@OptParam[0],0,0,0;
+			getitem3 2330,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+			setarray .@OptID[0],7,6,0;
+			setarray .@OptVal[0],5,5,0;
+			setarray .@OptParam[0],0,0,0;
+			getitem3 2296,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 5
+		else if(.@stageIndex == 4){
+			setarray .@OptID[0],12;
+			setarray .@OptVal[0],200;
+			setarray .@OptParam[0],0;
+			getitem3 2269,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+			setarray .@OptID[0],245;
+			setarray .@OptVal[0],200;
+			setarray .@OptParam[0],0;
+			getitem3 2892,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 6
+		else if(.@stageIndex == 5){
+			setarray .@OptID[0],6;
+			setarray .@OptVal[0],20;
+			setarray .@OptParam[0],0;
+			getitem3 2918,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+			setarray .@OptID[0],5;
+			setarray .@OptVal[0],20;
+			setarray .@OptParam[0],0;
+			getitem3 2920,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 7
+		else if(.@stageIndex == 6){
+			setarray .@OptID[0],2,244,245,246;
+			setarray .@OptVal[0],10,250,250,250;
+			setarray .@OptParam[0],0,0,0,0;
+			getitem3 13069,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 8
+		else if(.@stageIndex == 7){
+			setarray .@OptID[0],1,2,11,12;
+			setarray .@OptVal[0],250,250,250,250;
+			setarray .@OptParam[0],0,0,0,0;
+			getitem3 18600,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 9
+		else if(.@stageIndex == 8){
+			setarray .@OptID[0],4,6,7;
+			setarray .@OptVal[0],33,33,33;
+			setarray .@OptParam[0],0,0,0;
+			getitem3 18703,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
 		message strcharinfo(0),"คุณเปิดกล่องสมบัติแปลก ๆ และพบสมบัติภายในนั้น!";
 	}
 	else
@@ -534,41 +610,49 @@ mosk_fild02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#0	1878
 mosk_dun01,28,81,3	duplicate(bomberianWarper)	Bomberian Warper#1	727
 mosk_dun01,200,273,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#1	722,3,3
 mosk_dun01,1,1,5	duplicate(stageHint)	Stage Hint#1	111,400,400
+mosk_dun01,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#1	2452,2,2
 mosk_dun01,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#1	1878
 
 mosk_dun02,164,35,3	duplicate(bomberianWarper)	Bomberian Warper#2	727
 mosk_dun02,130,155,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#2	722,3,3
 mosk_dun02,1,1,5	duplicate(stageHint)	Stage Hint#2	111,400,400
-mosk_dun02,234,213,4	duplicate(bomberianUnlocker)	Unlocker#2	723,3,3
+mosk_dun02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#2	2452,2,2
 mosk_dun02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#2	1878
+mosk_dun02,234,213,4	duplicate(bomberianUnlocker)	Unlocker#2	723,3,3
 
 mosk_dun03,31,140,5	duplicate(bomberianWarper)	Bomberian Warper#3	727
 mosk_dun03,205,211,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#3	722,3,3
 mosk_dun03,1,1,5	duplicate(stageHint)	Stage Hint#3	111,400,400
+mosk_dun03,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#3	2452,2,2
 mosk_dun03,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#3	1878
 
 mosk_que,57,19,3	duplicate(bomberianWarper)	Bomberian Warper#4	727
 mosk_que,48,217,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#4	722,3,3
 mosk_que,1,1,5	duplicate(stageHint)	Stage Hint#4	111,400,400
+mosk_que,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#4	2452,2,2
 mosk_que,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#4	1878
 
 hu_fild02,289,36,5	duplicate(bomberianWarper)	Bomberian Warper#5	727
 hu_fild02,147,261,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#5	722,3,3
 hu_fild02,1,1,5	duplicate(stageHint)	Stage Hint#5	111,400,400
-hu_fild02,267,273,4	duplicate(bomberianUnlocker)	Unlocker#5	723,3,3
+hu_fild02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#5	2452,2,2
 hu_fild02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#5	1878
+hu_fild02,267,273,4	duplicate(bomberianUnlocker)	Unlocker#5	723,3,3
 
 cave,108,33,3	duplicate(bomberianWarper)	Bomberian Warper#6	727
 cave,83,100,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#6	722,3,3
 cave,1,1,5	duplicate(stageHint)	Stage Hint#6	111,400,400
+cave,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#6	2452,2,2
 cave,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#6	1878
 
 odin_tem01,97,148,3	duplicate(bomberianWarper)	Bomberian Warper#7	727
 odin_tem01,384,333,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#7	722,3,3
 odin_tem01,1,1,5	duplicate(stageHint)	Stage Hint#7	111,400,400
+odin_tem01,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#7	2452,2,2
 odin_tem01,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#7	1878
 
 odin_tem02,31,340,3	duplicate(bomberianWarper)	Bomberian Warper#8	727
 odin_tem02,152,350,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#8	722,3,3
 odin_tem02,1,1,5	duplicate(stageHint)	Stage Hint#8	111,400,400
+odin_tem02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#8	2452,2,2
 odin_tem02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#8	1878
