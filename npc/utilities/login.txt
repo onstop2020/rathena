@@ -1,16 +1,19 @@
 -	script	loginCheck	-1,{
 OnPCLoginEvent:
+	// Enter game announce
 	announce strcharinfo(0) + " ได้เข้าสู่เกม!",bc_all,0x28FF32;
 
+	// Send remaining new player that still on malaya to que_moon
 	if(strcharinfo(3) == "malaya" && BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
 		warp "que_moon",100,12;
 		end;
 	}
 	
+	// Starting map checking
 	if(strcharinfo(3) == "que_moon")
-		end;
+	end;
 	
-	// Monster Room Player
+	// Monster - Room Player Login
 	if(playerType <= 0){
 		if(strcharinfo(3) != "job4_mag"){
 			reviver = 1;
@@ -23,10 +26,11 @@ OnPCLoginEvent:
 		if(countitem(602) <= 0)
 		getitem 602,1;
 	}
-	// Bomberland Player
+	// Bomberland Player Login
 	else if(playerType == 1 && isWarpToGame2Town)
 	callfunc("RefreshBomberian");
 	
+	// Dresser
 	setlook LOOK_HEAD_TOP,head1;
 	setlook LOOK_HEAD_MID,head2;
 	setlook LOOK_HEAD_BOTTOM,head3;
@@ -36,51 +40,35 @@ OnPCLoginEvent:
 }
 
 que_moon,100,38,4	script	Start	10385,{
-	// Select game
+	// Must check for unexpected error!
 	if(BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
 		mes "สวัสดีครับ ผม Start เองครับ";
 		mes "ตอนนี้ Server มีให้เลือกเล่น 2 เกม";
-		mes "1.) <URL>Monster Room (ระดับความยาก ****)<INFO>https://sites.google.com/view/start-ro/</INFO></URL>";
-		mes "2.) Bomberland (ระดับความยาก **)";
+		mes "1.) <URL>Monster Room (ความยาก ****)<INFO>https://sites.google.com/view/start-ro/mr</INFO></URL>";
+		mes "2.) Bomberland (ความยาก **)";
 		mes "เลือกเล่นตามที่ชอบได้เลยครับ ขอบคุณครับ";
+		next;
 		menu "1.) Monster Room",L_MonsterRoom,"2.) Bomberland",L_BomberLand;
 		
 		L_MonsterRoom:
+		// Set player type
 		playerType = 0;
-		warp "prontera",156,191;
-		goto L_NextProcess;
-		
-		L_BomberLand:
-		playerType = 1;
-		goto L_NextProcess;
-	}
-
-	L_NextProcess:
-	// Monster - Room Player
-	if(playerType <= 0){
-		if(strcharinfo(3) != "job4_mag"){
-			reviver = 1;
-			savepoint "prontera",156,191;
-			setpcblock PCBLOCK_ALL,false;
-		}
-		else{
-			setpcblock PCBLOCK_ALL,true;
-			setpcblock PCBLOCK_MOVE,false;
-			setpcblock PCBLOCK_CHAT,false;
-			setpcblock PCBLOCK_SITSTAND,false;
-			setpcblock PCBLOCK_NPCCLICK,false;
-			setpcblock PCBLOCK_EMOTION,false;
-		}
-		
-		callfunc("RefreshEXP");
-
+		// Set alive state
+		reviver = 1;
+		// Give Butterfly Wings
 		if(countitem(602) <= 0)
 		getitem 602,1;
-	}
-	// Bomberland Player
-	else if(playerType == 1 && !isWarpToGame2Town){
-		savepoint "moscovia",221,191;
+		// Set savepoint and warp to games town
+		savepoint "prontera",156,191;
+		warp "prontera",156,191;
+		// Show exp information
+		callfunc("RefreshEXP");
+		end;
 		
+		L_BomberLand:
+		// Set player type
+		playerType = 1;
+		// Initialize
 		atcommand "@job 11";
 		BaseLevel = 1;
 		JobLevel = 1;
@@ -100,16 +88,14 @@ que_moon,100,38,4	script	Start	10385,{
 		skill 124,1,0;
 		skill 125,1,0;
 		skill 131,1,0;
-		
 		getitem 1065,1000;
-		
 		callfunc("RefreshBomberian");
-		setpcblock PCBLOCK_NPCCLICK,false;
-		
+		// Set is already sent to game town. (Only set with 2nd games and upper because players on 1st game can't reach these npc anymore.)
 		isWarpToGame2Town = 1;
+		// Set savepoint and warp to games town
+		savepoint "moscovia",221,191;
 		warp "moscovia",221,191;
+		end;
 	}
-	
 	end;
 }
-

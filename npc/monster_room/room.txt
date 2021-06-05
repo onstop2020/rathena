@@ -531,6 +531,7 @@ OnMonsterDead:
 	if(loadTimer <= 0)
 	return;
 	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
 	addtimer loadTimer * 1000,strnpcinfo(3) + "::OnLoaded5Second";
 	return;
 	

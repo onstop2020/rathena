@@ -169,17 +169,12 @@ OnInit:
 }
 
 -	script	goToDress	-1,{
-	setpcblock PCBLOCK_ALL,true;
-	setpcblock PCBLOCK_MOVE,false;
-	setpcblock PCBLOCK_CHAT,false;
-	setpcblock PCBLOCK_SITSTAND,false;
-	setpcblock PCBLOCK_NPCCLICK,false;
-	setpcblock PCBLOCK_EMOTION,false;
+	callfunc("BlockHelper");
 	warp "prt_in",240,162;
 	end;
 	
 OnInit:
-	waitingroom "ใส่ หมวก, ปีก",0;
+	waitingroom "ใส่หมวก",0;
 	end;
 }
 

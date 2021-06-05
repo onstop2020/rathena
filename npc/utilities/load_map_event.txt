@@ -3,18 +3,11 @@
 	
 OnPCLoadMapEvent:
 	.@mapName$ = strcharinfo(3);
-	if(
-			.@mapName$ == "malaya"
+	if(.@mapName$ == "malaya"
 			|| .@mapName$ == "prt_in"
-			|| .@mapName$ == "job4_mag")
-	{
-		setpcblock PCBLOCK_ALL,true;
-		setpcblock PCBLOCK_MOVE,false;
-		setpcblock PCBLOCK_CHAT,false;
-		setpcblock PCBLOCK_SITSTAND,false;
-		setpcblock PCBLOCK_NPCCLICK,false;
-		setpcblock PCBLOCK_EMOTION,false;
-	}
+			|| .@mapName$ == "job4_mag"
+			)
+	callfunc("BlockHelper");
 	end;
 }
 
