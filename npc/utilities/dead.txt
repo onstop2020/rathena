@@ -1,13 +1,34 @@
 -	script	deadSystem	-1,{
 OnPCDieEvent:
-	// Check PvP, PvP Party maps name here
+
+	// Killer name information
+	if(killerrid > 0 && getunitname(killerrid) != ""){
+		lastKiller$ = getunitname(killerrid);
+		message strcharinfo(0),lastKiller$ + " ฆ่าคุณ! พิมพ์ @mskill เพื่อตรวจสอบ Skill ที่ Monster มี";
+	}
+
 	.@deadMapName$ = strcharinfo(3);
-	if(.@deadMapName$ == "pvp_y_7-2" || .@deadMapName$ == "pvp_y_8-2" || .@deadMapName$ == "malaya" || playerType == 1)
+	if(
+			// Check no death penalty maps
+			.@deadMapName$ == "pvp_y_7-2"
+			|| .@deadMapName$ == "pvp_y_8-2"
+			|| .@deadMapName$ == "malaya"
+			|| .@deadMapName$ == "que_moon"
+			// Check Bomberland players
+			|| playerType == 1
+			)
 	end;
 
-	// Set reviver stats to dead
+	// Set alive state to dead
 	reviver = 0;
+	
+	// Set savepoint to afterlife world
+	savepoint "job4_mag",130,194;
+	
+	// Dead announce
+	announce strcharinfo(0) + " ตาย!",bc_all,0xFF2828;
 
+	// Reset spawn count and kill count to invoke maps
 	for(.@i = 1; .@i <= 20; .@i++){
 		if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
 			set getd("$killed_mr" + .@i),0;
@@ -15,10 +36,18 @@ OnPCDieEvent:
 			break;
 		}
 	}
+	end;
+}
+
+-	script	monsterSkillCommand	-1,{
+	end;
 	
-	savepoint "job4_mag",130,194;
+OnCheckMonsterSkill:
+	mes "ตรวจสอบสกิลที่ Monster มีได้ที่ <URL>Link<INFO>https://raw.githubusercontent.com/kaninhot004/rathena/master/db/re/mob_skill_db.txt</INFO></URL>";
+	mes "กด Ctrl + F แล้วพิมพ์ชื่อ " + lastKiller$;
+	close;
 	
-	announce strcharinfo(0) + " ตาย!",bc_all,0xFF2828;
-	
+OnInit:
+	bindatcmd "mskill",strnpcinfo(3) + "::OnCheckMonsterSkill",0,99;
 	end;
 }
