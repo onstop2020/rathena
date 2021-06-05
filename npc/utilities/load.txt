@@ -11,7 +11,7 @@ OnInit:
 }
 
 function	script	CustomLoad	{
-	if(strcharinfo(3) == "malaya"){
+	if(strcharinfo(3) == "que_moon"){
 		message strcharinfo(0),"ไม่สามารถใช้คำสั่งนี้ได้ เนื่องจากคุณยังไม่ได้เลือกเกม";
 		end;
 	}
@@ -23,9 +23,8 @@ function	script	CustomLoad	{
 			savepoint "prontera",156,191;
 			warp "prontera",156,191;
 		}
-		else{
+		else
 			message strcharinfo(0),"คุณตายไปแล้ว";
-		}
 	}
 	// Bomberland Player
 	else if(playerType == 1)

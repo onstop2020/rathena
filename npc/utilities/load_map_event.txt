@@ -2,7 +2,12 @@
 	end;
 	
 OnPCLoadMapEvent:
-	if(compare("malaya|prt_in|job4_mag",strcharinfo(3))){
+	.@mapName$ = strcharinfo(3);
+	if(
+			.@mapName$ == "malaya"
+			|| .@mapName$ == "prt_in"
+			|| .@mapName$ == "job4_mag")
+	{
 		setpcblock PCBLOCK_ALL,true;
 		setpcblock PCBLOCK_MOVE,false;
 		setpcblock PCBLOCK_CHAT,false;
