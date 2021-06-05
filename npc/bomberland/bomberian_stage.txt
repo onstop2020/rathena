@@ -502,6 +502,10 @@ OnTimer50000:
 	getmapxy(.@mapName$,.@x,.@y,BL_NPC,strnpcinfo(0));
 	areapercentheal .@mapName$,(.@x - 5),(.@y + 5),(.@x + 5),(.@y - 5),50,50;
 	specialeffect EF_SANCTUARY;
+	for(.@i = 0; .@i < .itemDropCount; .@i++){
+		getfreecell(.@mapName$,.@x,.@y);
+		makeitem 514,1,.@mapName$,.@x,.@y;
+	}
 	end;
 
 OnTimer60000:
@@ -514,6 +518,8 @@ OnInit:
 	getfreecell(.@npcMapName$,.@x,.@y);
 	moveNPC strnpcinfo(0),.@x,.@y;
 	initnpctimer;
+	
+	.itemDropCount = 4;
 	end;
 }
 
