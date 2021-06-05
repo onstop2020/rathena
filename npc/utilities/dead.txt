@@ -27,7 +27,7 @@ OnPCDieEvent:
 			.@equipmentName$ = getequipname(EQI_HEAD_TOP);
 			// Check Refine Count
 			.@refineCount = getequiprefinerycnt(EQI_HEAD_TOP);
-			if(.@refineCount > (BaseLevel / 10)){
+			if(.@refineCount >= (BaseLevel / 10)){
 				message strcharinfo(0),.@equipmentName$ + " ได้กันตายให้คุณ! จำนวนครั้งที่สามารถกันตายได้คงเหลือ 0 ครั้ง";
 				specialeffect2 939;
 				downrefitem EQI_HEAD_TOP,.@refineCount;
