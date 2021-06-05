@@ -3,9 +3,10 @@ function	script	RefreshBomberian	{
 	bonus_script_clear 1;
 	
 	.@skillMultiplier = 50;
+	.@skillMultiplier2 = 5;
 	// Add new bomberian buff
 	bonus_script "{ bonus bMaxSP," + blUpg1
-	+ "; bonus bSPrecovRate," + blUpg2
+	+ "; bonus bSPrecovRate," + (blUpg2 * .@skillMultiplier2)
 	+ "; bonus2 bSkillAtk,116," + (blUpg3 * .@skillMultiplier)
 	+ "; bonus2 bSkillAtk,122," + (blUpg4 * .@skillMultiplier)
 	+ "; bonus2 bSkillAtk,123," + (blUpg5 * .@skillMultiplier)
@@ -15,7 +16,7 @@ function	script	RefreshBomberian	{
 
 	// Infomation for player
 	dispbottom "SP สูงสุด +" + callfunc("F_InsertComma",blUpg1);
-	dispbottom "การฟื้นฟู SP +" + callfunc("F_InsertComma",blUpg2) + "%";
+	dispbottom "การฟื้นฟู SP +" + callfunc("F_InsertComma",(blUpg2 * .@skillMultiplier2)) + "%";
 	dispbottom "Land Mine แรงขึ้น +" + callfunc("F_InsertComma",(blUpg3 * .@skillMultiplier)) + "%";
 	dispbottom "Blast Mine แรงขึ้น +" + callfunc("F_InsertComma",(blUpg4 * .@skillMultiplier)) + "%";
 	dispbottom "Claymore Trap แรงขึ้น +" + callfunc("F_InsertComma",(blUpg5 * .@skillMultiplier)) + "%";

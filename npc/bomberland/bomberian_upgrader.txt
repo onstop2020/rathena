@@ -1,4 +1,15 @@
 -	script	bomberianUpgrader	-1,{
+	if(!blPointFreebies){
+		mes "ไง มือระเบิดหน้าใหม่ สิท่า?";
+		next;
+		menu "ใช่ มีอะไรแนะนำให้ข้าได้บ้างไหม?",-,"? *เดินหนี* ?",L_Quit;
+		mes "แน่นอน ข้ามีหน้าที่ดูแล อุปกรณ์ของเจ้าให้มันเจ๋งขึ้น เมื่อใดก็ตามที่เจ้ามี Bomberland Point ก็มาหาข้าได้ทุกเมื่อเลย";
+		next;
+		mes "*คุณได้รับ 5 Bomberland Point";
+		blPoint += 5;
+		blPointFreebies = 1;
+		next;
+	}
 	mes "คุณมี " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
 	next;
 	menu "SP สูงสุด (ใช้ " + callfunc("F_InsertComma",(blUpg1 + 1)) + " Point)",L_Upgrade1
@@ -37,7 +48,11 @@
 	blPoint -= (getd("blUpg" + .@upgType) + 1);
 	set getd("blUpg" + .@upgType),getd("blUpg" + .@upgType) + 1;
 	callfunc("RefreshBomberian");
+	percentheal 100,100;
 	return;
+	
+	L_Quit:
+	close;
 	
 OnInit:
 	waitingroom "Upgrade ตัวละคร",0;

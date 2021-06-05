@@ -138,6 +138,11 @@ OnBossDead:
 	if($blStageCondition[.@stageIndex] != 2)
 	end;
 
+	// Add party member
+	.@partyId = getcharid(1);
+	if(.@partyId > 0)
+	addrid(2,0,.@partyId);
+
 	// Kill target
 	// Check killed monster id
 	if(killedrid == $blStageBossId[.@stageIndex]){
@@ -161,6 +166,11 @@ OnMonsterDead:
 	
 	if($blStageCondition[.@stageIndex] != 1)
 	end;
+
+	// Add party member
+	.@partyId = getcharid(1);
+	if(.@partyId > 0)
+	addrid(2,0,.@partyId);
 
 	// Kill count
 	// Check kill count
@@ -410,11 +420,11 @@ OnTouch:
 	.@stageIndex = atoi(strnpcinfo(2));
 	
 	if($blStageCondition[.@stageIndex] == 1)
-	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ";
+	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	else if($blStageCondition[.@stageIndex] == 2)
-	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME);
+	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME) + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	else if($blStageCondition[.@stageIndex] == 3)
-	message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker";
+	message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	
 	end;
 }
@@ -422,7 +432,27 @@ OnTouch:
 -	script	hiddenTreasure	-1,{
 	end;
 	
+OnTimer10000:
+OnTimer20000:
+OnTimer30000:
+OnTimer40000:
+OnTimer50000:
 OnTimer60000:
+OnTimer70000:
+OnTimer80000:
+OnTimer90000:
+OnTimer100000:
+OnTimer110000:
+OnTimer120000:
+OnTimer130000:
+OnTimer140000:
+OnTimer150000:
+OnTimer160000:
+OnTimer170000:
+	specialeffect 488;
+	end;
+	
+OnTimer180000:
 OnInit:
 	.@npcMapName$ = strnpcinfo(4);
 	
@@ -460,12 +490,40 @@ OnTouch:
 	end;
 }
 
+-	script	replenisher	-1,{
+	message strcharinfo(0),"ยืนใกล้ ๆ แล้วคุณจะรู้สึกสดชื่น!";
+	end;
+	
+OnTimer10000:
+OnTimer20000:
+OnTimer30000:
+OnTimer40000:
+OnTimer50000:
+	getmapxy(.@mapName$,.@x,.@y,BL_NPC,strnpcinfo(0));
+	areapercentheal .@mapName$,(.@x - 5),(.@y + 5),(.@x + 5),(.@y - 5),50,50;
+	specialeffect EF_SANCTUARY;
+	end;
+
+OnTimer60000:
+OnInit:
+	.@npcMapName$ = strnpcinfo(4);
+	
+	if(.@npcMapName$ == "")
+	end;
+	
+	getfreecell(.@npcMapName$,.@x,.@y);
+	moveNPC strnpcinfo(0),.@x,.@y;
+	initnpctimer;
+	end;
+}
+
 moscovia,213,207,5	duplicate(bomberianWarper)	Bomberian Warper	727
 
 mosk_fild02,18,178,5	duplicate(bomberianWarper)	Bomberian Warper#0	727
 mosk_fild02,190,255,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#0	722,3,3
 mosk_fild02,1,1,5	duplicate(stageHint)	Stage Hint#0	111,400,400
 mosk_fild02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#0	2452,2,2
+mosk_fild02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#0	1878
 
 mosk_dun01,28,81,3	duplicate(bomberianWarper)	Bomberian Warper#1	727
 mosk_dun01,200,273,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#1	722,3,3
