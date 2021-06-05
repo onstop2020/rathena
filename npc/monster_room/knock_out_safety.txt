@@ -1,0 +1,60 @@
+function	script	KnockOutSafety	{
+	.@type = getarg(0,1);
+	.@returnItemId = .@type == 1 ? 40004 : 40005;
+	
+	if(playerType > 0){
+		if(.@type == 2){
+			message strcharinfo(0),"ผู้เล่นเกม Monster - Room เท่านั้นที่สามารถใช้ Item นี้ได้ (คืน 10 Cash ให้เรียบร้อยแล้ว)";
+			#CASHPOINTS += 10;
+		}
+		else
+		message strcharinfo(0),"ผู้เล่นเกม Monster - Room เท่านั้นที่สามารถใช้ Item นี้ได้";
+		end;
+	}
+	
+	// Check Head-Top
+	.@headTopId = getequipid(EQI_HEAD_TOP);
+	if(.@headTopId <= 0){
+		message strcharinfo(0),"คุณต้องสวมใส่หมวกส่วนบนเสียก่อน";
+		getitem .@returnItemId,1;
+		end;
+	}
+	
+	.@equipmentName$ = getequipname(EQI_HEAD_TOP);
+	
+	// Check Refine Count
+	.@refineCount = getequiprefinerycnt(EQI_HEAD_TOP);
+	if(.@refineCount >= 20){
+		message strcharinfo(0),"ไม่สามารถเพิ่มจำนวนกันตายให้ " + .@equipmentName$ + " ได้มากกว่านี้อีกแล้ว";
+		getitem .@returnItemId,1;
+		end;
+	}
+	
+	// Normal Knock Out Safety
+	if(.@type == 1){
+		// Base Success Rate = 5~100%
+		.@rate = 100 - rand(0,95);
+		// Dynamic Rate (Base Success Rate - (1~Refine Count))
+		if(.@refineCount > 0)
+		.@rate -= rand(1,.@refineCount);
+		else
+		.@rate -= 1;
+		// .@rate need to be >= 90 to success
+		if(.@rate < 90)
+		{
+			message strcharinfo(0),"คุณใช้ ค้อนกันตาย ไม่สำเร็จ (โอกาสสำเร็จในรอบนี้: " + .@rate + "% โอกาสจะไม่เท่ากันเลยในแต่ละรอบ)";
+			specialeffect2 155;
+			return;
+		}
+		message strcharinfo(0),"คุณใช้ ค้อนกันตาย ให้กับ " + .@equipmentName$ + " สำเร็จเรียบร้อยแล้ว จำนวนครั้งที่กันตายได้ " + (.@refineCount + 1) + " ครั้ง";
+	}
+	else if(.@type == 2){
+		specialeffect2 967;
+		message strcharinfo(0),"คุณใช้ ค้อนกันตายแบบพิเศษ ให้กับ " + .@equipmentName$ + " เรียบร้อยแล้ว จำนวนครั้งที่กันตายได้ " + (.@refineCount + 1) + " ครั้ง";
+	}
+	
+	specialeffect2 154;
+	successrefitem EQI_HEAD_TOP;
+	
+	return;
+}

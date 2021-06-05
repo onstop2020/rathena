@@ -393,6 +393,10 @@ OnMonsterDead:
 	if(!playerattached())
 	end;
 
+	// Knock Out Safety drop
+	if(rand(1,100) <= 5)
+	getitem 40004,1;
+
 	// Quest Monster Cleaner
 	if(#isMonsterCleaner && #monsterCleaner < $monsterCleanerAmount){
 		// Check by map name

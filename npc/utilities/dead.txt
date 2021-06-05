@@ -19,21 +19,38 @@ OnPCDieEvent:
 			)
 	end;
 
-	// Set alive state to dead
-	reviver = 0;
-	
-	// Set savepoint to afterlife world
-	savepoint "job4_mag",130,194;
-	
-	// Dead announce
-	announce strcharinfo(0) + " ตาย!",bc_all,0xFF2828;
+	// Check Monster - Room Players
+	if(playerType <= 0){
+		// Check Head-Top
+		.@headTopId = getequipid(EQI_HEAD_TOP);
+		if(.@headTopId > 0){
+			.@equipmentName$ = getequipname(EQI_HEAD_TOP);
+			// Check Refine Count
+			.@refineCount = getequiprefinerycnt(EQI_HEAD_TOP);
+			if(.@refineCount > 0){
+				message strcharinfo(0),.@equipmentName$ + " ได้กันตายให้คุณ! จำนวนครั้งที่สามารถกันตายได้คงเหลือ " + (.@refineCount - 1) + " ครั้ง";
+				specialeffect2 939;
+				downrefitem EQI_HEAD_TOP;
+				end;
+			}
+		}
 
-	// Reset spawn count and kill count to invoke maps
-	for(.@i = 1; .@i <= 20; .@i++){
-		if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
-			set getd("$killed_mr" + .@i),0;
-			set getd("$mr" + .@i),30;
-			break;
+		// Set alive state to dead
+		reviver = 0;
+		
+		// Set savepoint to afterlife world
+		savepoint "job4_mag",130,194;
+		
+		// Dead announce
+		announce strcharinfo(0) + " ตาย!",bc_all,0xFF2828;
+
+		// Reset spawn count and kill count to invoke maps
+		for(.@i = 1; .@i <= 20; .@i++){
+			if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
+				set getd("$killed_mr" + .@i),0;
+				set getd("$mr" + .@i),30;
+				break;
+			}
 		}
 	}
 	end;
