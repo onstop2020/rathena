@@ -1,6 +1,9 @@
 -	script	deadSystem	-1,{
 OnPCDieEvent:
 
+	if(playerType == 1)
+	lastHintMapName$ = "";
+
 	// Killer name information
 	if(killerrid > 0 && getunitname(killerrid) != ""){
 		lastKiller$ = getunitname(killerrid);
