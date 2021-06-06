@@ -247,15 +247,6 @@ OnInit:
 	$dropItemId6 = 922;
 	$dropItemId7 = 953;
 	$dropItemId8 = 942;
-	$tradeItem0$ = "ชุดนักวางระเบิด";
-	$tradeItem1$ = "มีดที่คล่องตัวสุด ๆ";
-	$tradeItem2$ = "รองเท้านักกรีฑา";
-	$tradeItem3$ = "หมวกแกล้งตาย";
-	$tradeItem4$ = "สร้อยคอสปีด";
-	$tradeItem5$ = "กำไลต่อยหนัก";
-	$tradeItem6$ = "ผ้าคลุมพรางตัว";
-	$tradeItem7$ = "ผ้าคาดตาอันตราย";
-	$tradeItem8$ = "หมวกไอตึ้บ";
 
 	deletearray $blStageBossId[0],getarraysize($blStageBossId);
 	setarray $blStageBossId[0],0
@@ -654,7 +645,18 @@ OnInit:
 
 -	script	trader	-1,{
 	.@stageIndex = atoi(strnpcinfo(2));
-	mes "ฮึ? อยากจะ Trade " + callfunc("F_InsertComma",.amountNeed) + " " + getitemname(getd("$dropItemId" + .@stageIndex)) + " เป็น " + getd("$tradeItem" + .@stageIndex + "$") + " ไหม?";
+	
+	.@tradeItem0$ = "ชุดนักวางระเบิด";
+	.@tradeItem1$ = "มีดที่คล่องตัวสุด ๆ";
+	.@tradeItem2$ = "รองเท้านักกรีฑา";
+	.@tradeItem3$ = "หมวกแกล้งตาย";
+	.@tradeItem4$ = "สร้อยคอสปีด";
+	.@tradeItem5$ = "กำไลต่อยหนัก";
+	.@tradeItem6$ = "ผ้าคลุมพรางตัว";
+	.@tradeItem7$ = "ผ้าคาดตาอันตราย";
+	.@tradeItem8$ = "หมวกไอตึ้บ";
+	
+	mes "ฮึ? อยากจะ Trade " + callfunc("F_InsertComma",.amountNeed) + " " + getitemname(getd("$dropItemId" + .@stageIndex)) + " เป็น " + getd(".@tradeItem" + .@stageIndex + "$") + " ไหม?";
 	next;
 	menu "แลก",-;
 	if(countitem(getd("$dropItemId" + .@stageIndex)) >= .amountNeed){
