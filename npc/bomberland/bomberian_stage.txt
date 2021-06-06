@@ -444,7 +444,7 @@ OnTouch:
 	lastHintMapName$ = strcharinfo(3);
 	
 	if($blStageCondition[.@stageIndex] == 1)
-	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ: " + (getd("blKilled" + .@stageIndex) > $blkillCountNeed ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ: " + (getd("blKilled" + .@stageIndex) >= $blkillCountNeed ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	else if($blStageCondition[.@stageIndex] == 2)
 	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME) + ": " + (getd("blKilled" + .@stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	else if($blStageCondition[.@stageIndex] == 3)
