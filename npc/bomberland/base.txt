@@ -30,8 +30,10 @@ OnTouch:
 	if(getd("$blBase" + .baseNumber) <= 0 || getd("$blBase" + .baseNumber) != .@partyId){
 		set getd("$blBase" + .baseNumber),.@partyId;
 		// Announce when party id is changed
+		freeloop(1);
 		for(.@i = 0; .@i < getarraysize($blMapName$); .@i++)
 		mapannounce $blMapName$[.@i],"เมือง " + $blMapNameWording$[.baseNumber] + " ถูกยึดครองโดย '" + getpartyname(getd("$blBase" + .baseNumber)) + "'",0;
+		freeloop(0);
 		specialeffect2 261;
 	}
 	end;
@@ -54,6 +56,7 @@ OnTimer60000:
 			dispbottom "คุณได้รับ 1 Bomberland Point";
 			specialeffect2 268;
 		}
+		detachrid;
 	}
 	end;
 	

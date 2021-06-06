@@ -5,6 +5,9 @@ OnPCLogoutEvent:
 	if(!playerattached())
 	end;
 
+	if(playerType == 1)
+	lastHintMapName$ = "";
+
 	if(compare("prontera|prt_in|job4_mag|malaya|que_moon",strcharinfo(3)))
 	end;
 

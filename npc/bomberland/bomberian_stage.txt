@@ -8,6 +8,7 @@
 		}
 		menu "กลับเมืองหลัก",-,"Fast Travel",L_FastTravel;
 		warp "moscovia",221,191;
+		lastHintMapName$ = "";
 		end;
 	}
 	mes "Bomb Bomberian! เจ้าต้องการที่จะเล่นโหมดตลุยด่านหรือไม่?";
@@ -36,6 +37,7 @@
 	
 	L_Stage1:
 	warp $blStageMapName$[0],$blStageMapX[0],$blStageMapY[0];
+	lastHintMapName$ = "";
 	callsub L_WarpBegin,strcharinfo(3);
 	end;
 	
@@ -133,24 +135,28 @@ OnBossDead:
 	BaseExp = 0;
 	JobExp = 0;
 
-	.@stageIndex = atoi(strnpcinfo(2));
+	.stageIndex = atoi(strnpcinfo(2));
 
-	if($blStageCondition[.@stageIndex] != 2)
+	if($blStageCondition[.stageIndex] != 2)
 	end;
-
-	// Add party member
-	.@partyId = getcharid(1);
-	if(.@partyId > 0)
-	addrid(2,0,.@partyId);
 
 	// Kill target
 	// Check killed monster id
-	if(killedrid == $blStageBossId[.@stageIndex]){
-		if(getd("blKilled" + .@stageIndex) < 1){
-			set getd("blKilled" + .@stageIndex),1;
+	if(killedrid == $blStageBossId[.stageIndex]){
+		// Add party member
+		.@partyId = getcharid(1);
+		if(.@partyId > 0)
+		addrid(2,0,.@partyId);
+		
+		// Check alive and map
+		if(Hp <= 0 || strcharinfo(3) != strnpcinfo(4))
+		end;
+		
+		if(getd("blKilled" + .stageIndex) < 1){
+			set getd("blKilled" + .stageIndex),1;
 			message strcharinfo(0),"คุณฆ่าเป้าหมายเรียบร้อยแล้ว สามารถผ่านด่านได้เลย";
 			specialeffect2 682;
-			.@stageClearReward = (10 * (.@stageIndex + 1));
+			.@stageClearReward = (10 * (.stageIndex + 1));
 			blPoint += .@stageClearReward;
 			dispbottom "คุณได้รับ " + callfunc("F_InsertComma",.@stageClearReward) + " Bomberland Point รวม " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
 		}
@@ -162,9 +168,9 @@ OnMonsterDead:
 	BaseExp = 0;
 	JobExp = 0;
 
-	.@stageIndex = atoi(strnpcinfo(2));
+	.stageIndex = atoi(strnpcinfo(2));
 	
-	if($blStageCondition[.@stageIndex] != 1)
+	if($blStageCondition[.stageIndex] != 1)
 	end;
 
 	// Add party member
@@ -172,18 +178,22 @@ OnMonsterDead:
 	if(.@partyId > 0)
 	addrid(2,0,.@partyId);
 
+	// Check alive and map
+	if(Hp <= 0 || strcharinfo(3) != strnpcinfo(4))
+	end;
+	
 	// Kill count
 	// Check kill count
-	if(getd("blKilled" + .@stageIndex) < .killCountNeed){
-		set getd("blKilled" + .@stageIndex),getd("blKilled" + .@stageIndex) + 1;
-		if(getd("blKilled" + .@stageIndex) >= .killCountNeed){
-			set getd("blKilled" + .@stageIndex),.killCountNeed;
+	if(getd("blKilled" + .stageIndex) < .killCountNeed){
+		set getd("blKilled" + .stageIndex),getd("blKilled" + .stageIndex) + 1;
+		if(getd("blKilled" + .stageIndex) >= .killCountNeed){
+			set getd("blKilled" + .stageIndex),.killCountNeed;
 			specialeffect2 682;
-			.@stageClearReward = (10 * (.@stageIndex + 1));
+			.@stageClearReward = (10 * (.stageIndex + 1));
 			blPoint += .@stageClearReward;
 			dispbottom "คุณได้รับ " + callfunc("F_InsertComma",.@stageClearReward) + " Bomberland Point รวม " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
 		}
-		message strcharinfo(0),"กำจัดเป้าหมายแล้ว " + getd("blKilled" + .@stageIndex) + "/" + .killCountNeed;
+		message strcharinfo(0),"กำจัดเป้าหมายแล้ว " + getd("blKilled" + .stageIndex) + "/" + .killCountNeed;
 	}
 
 	end;
@@ -211,7 +221,7 @@ OnInit:
 	setarray $blStage0Id[0],1002;
 	setarray $blStage1Id[0],1002,1004;
 	setarray $blStage2Id[0],1007,1009;
-	setarray $blStage3Id[0],1001,1005,1010;
+	setarray $blStage3Id[0],1001,1010;
 	setarray $blStage4Id[0],1005,1013;
 	setarray $blStage5Id[0],1014,1018,1019;
 	setarray $blStage6Id[0],1023;
@@ -292,10 +302,10 @@ OnInit:
 
 	deletearray $blStageMobCount[0],getarraysize($blStageMobCount);
 	setarray $blStageMobCount[0],50
-	,75
-	,100
-	,100
 	,50
+	,100
+	,100
+	,30
 	,125
 	,25
 	,150
@@ -341,11 +351,13 @@ OnInit:
 	//debugmes ".@mobAmount (Calculated, Spawning now): " + .@mobAmount;
 	
 	.@arraySize = getarraysize(getd("$blStage" + .@stageIndex + "Id"));
+	freeloop(1);
 	for(.@i = 0; .@i < .@arraySize; .@i++){
 		monster .@mapName$,0,0,"--ja--",getd("$blStage" + .@stageIndex + "Id[" + .@i + "]"),(.@mobAmount / .@arraySize),strnpcinfo(0) + "::OnMonsterDead";
 		for(.@j = 0; .@j < (.@mobAmount / .@arraySize); .@j++)
 		setunitdata $@mobid[.@j],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
 	}
+	freeloop(0);
 	.@bossId = $blStageBossId[.@stageIndex];
 	if(.@bossId > 0){
 		monster .@mapName$,$blStageBossX[.@stageIndex],$blStageBossY[.@stageIndex],"--ja--",.@bossId,1,strnpcinfo(0) + "::OnBossDead";
@@ -376,6 +388,7 @@ OnTouch:
 		.@stageIndex++;
 		if(getarraysize($blStageMapName$) > .@stageIndex){
 			warp $blStageMapName$[.@stageIndex],$blStageMapX[.@stageIndex],$blStageMapY[.@stageIndex];
+			lastHintMapName$ = "";
 			callsub L_WarpBegin,strcharinfo(3);
 		}
 		else
@@ -394,6 +407,7 @@ OnTouch:
 	
 	L_ReturnToMainTown:
 	warp "moscovia",221,191;
+	lastHintMapName$ = "";
 	end;
 
 	L_WarpBegin:
@@ -413,18 +427,24 @@ OnLoaded2Second:
 	end;
 	
 OnTouch:
+	if(lastHintMapName$ == strcharinfo(3))
+	end;
+	
 	// Hint player where to go
 	getmapxy(.@mapName$,.@x,.@y,BL_NPC,"ชนเพื่อผ่านด่าน#" + strnpcinfo(2));
 	viewpoint 1,.@x,.@y,1,0xFF0000;
 	
-	.@stageIndex = atoi(strnpcinfo(2));
+	.stageIndex = atoi(strnpcinfo(2));
 	
-	if($blStageCondition[.@stageIndex] == 1)
-	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
-	else if($blStageCondition[.@stageIndex] == 2)
-	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME) + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
-	else if($blStageCondition[.@stageIndex] == 3)
-	message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	
+	lastHintMapName$ = strcharinfo(3);
+	
+	if($blStageCondition[.stageIndex] == 1)
+	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ: " + (getd("blKilled" + .stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	else if($blStageCondition[.stageIndex] == 2)
+	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .stageIndex + "]"),MOB_NAME) + ": " + (getd("blKilled" + .stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	else if($blStageCondition[.stageIndex] == 3)
+	message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker: " + (getd("blKilled" + .stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	
 	end;
 }
@@ -578,9 +598,14 @@ OnTimer50000:
 	getmapxy(.@mapName$,.@x,.@y,BL_NPC,strnpcinfo(0));
 	areapercentheal .@mapName$,(.@x - 5),(.@y + 5),(.@x + 5),(.@y - 5),50,50;
 	specialeffect EF_SANCTUARY;
-	for(.@i = 0; .@i < .itemDropCount; .@i++){
-		getfreecell(.@mapName$,.@x,.@y);
-		makeitem 514,1,.@mapName$,.@x,.@y;
+	.@sumDropCount = .itemDropCount * getmapusers(strnpcinfo(4));
+	if(.@sumDropCount > 0){
+		freeloop(1);
+		for(.@i = 0; .@i < .@sumDropCount; .@i++){
+			getfreecell(.@mapName$,.@x,.@y);
+			makeitem 514,1,.@mapName$,.@x,.@y;
+		}
+		freeloop(0);
 	}
 	end;
 
