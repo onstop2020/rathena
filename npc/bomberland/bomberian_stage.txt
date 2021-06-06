@@ -174,6 +174,11 @@ OnMonsterDead:
 
 	.stageIndex = atoi(strnpcinfo(2));
 	
+	if(rand(0,100) <= 25){
+		getmapxy(.@mn$,.@x,.@y);
+		makeitem getd("$dropItemId" + .stageIndex),1,strcharinfo(3),.@x,.@y;
+	}
+	
 	if($blStageCondition[.stageIndex] != 1)
 	end;
 
@@ -233,7 +238,25 @@ OnInit:
 	setarray $blStage6Id[0],1023;
 	setarray $blStage7Id[0],1033,1035,1040;
 	setarray $blStage8Id[0],1052,1056,1057;
-	
+	$dropItemId0 = 909;
+	$dropItemId1 = 741;
+	$dropItemId2 = 907;
+	$dropItemId3 = 902;
+	$dropItemId4 = 913;
+	$dropItemId5 = 743;
+	$dropItemId6 = 922;
+	$dropItemId7 = 953;
+	$dropItemId8 = 942;
+	$tradeItem0$ = "ชุดนักวางระเบิด";
+	$tradeItem1$ = "มีดที่คล่องตัวสุด ๆ";
+	$tradeItem2$ = "รองเท้านักกรีฑา";
+	$tradeItem3$ = "หมวกแกล้งตาย";
+	$tradeItem4$ = "สร้อยคอสปีด";
+	$tradeItem5$ = "กำไลต่อยหนัก";
+	$tradeItem6$ = "ผ้าคลุมพรางตัว";
+	$tradeItem7$ = "ผ้าคาดตาอันตราย";
+	$tradeItem8$ = "หมวกไอตึ้บ";
+
 	deletearray $blStageBossId[0],getarraysize($blStageBossId);
 	setarray $blStageBossId[0],0
 	,1031
@@ -629,6 +652,100 @@ OnInit:
 	end;
 }
 
+-	script	trader	-1,{
+	.@stageIndex = atoi(strnpcinfo(2));
+	mes "ฮึ? อยากจะ Trade " + callfunc("F_InsertComma",.amountNeed) + " " + getitemname(getd("$dropItemId" + .@stageIndex)) + " เป็น " + getd("$tradeItem" + .@stageIndex + "$") + " ไหม?";
+	next;
+	menu "แลก",-;
+	if(countitem(getd("$dropItemId" + .@stageIndex)) >= .amountNeed){
+		delitem getd("$dropItemId" + .@stageIndex),.amountNeed;
+		if(.@stageIndex == 0){
+			setarray .@OptID[0],2;
+			setarray .@OptVal[0],100;
+			setarray .@OptParam[0],0;
+			getitem3 15053,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 1){
+			setarray .@OptID[0],170;
+			setarray .@OptVal[0],50;
+			setarray .@OptParam[0],0;
+			getitem3 1232,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 2){
+			setarray .@OptID[0],247;
+			setarray .@OptVal[0],15;
+			setarray .@OptParam[0],0;
+			getitem3 2466,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 3){
+			setarray .@OptID[0],248;
+			setarray .@OptVal[0],1;
+			setarray .@OptParam[0],0;
+			getitem3 5003,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 4){
+			setarray .@OptID[0],249;
+			setarray .@OptVal[0],10;
+			setarray .@OptParam[0],0;
+			getitem3 2638,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 5){
+			setarray .@OptID[0],3;
+			setarray .@OptVal[0],30;
+			setarray .@OptParam[0],0;
+			getitem3 2665,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 6){
+			setarray .@OptID[0],250;
+			setarray .@OptVal[0],10;
+			setarray .@OptParam[0],0;
+			getitem3 2544,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 7){
+			setarray .@OptID[0],4,244;
+			setarray .@OptVal[0],-10,300;
+			setarray .@OptParam[0],0,0;
+			getitem3 5249,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 8){
+			setarray .@OptID[0],247,1;
+			setarray .@OptVal[0],-30,300;
+			setarray .@OptParam[0],0,0;
+			getitem3 2228,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		mes "ขอบคุณ!";
+		specialeffect 410;
+		close;
+	}
+	else{
+		mes "ของที่ใช้แลกไม่เพียงพอ";
+		close;
+	}
+	end;
+	
+OnTimer10000:
+OnTimer20000:
+OnTimer30000:
+OnTimer40000:
+OnTimer50000:
+	specialeffect 456;
+	end;
+
+OnTimer60000:
+OnInit:
+	.@npcMapName$ = strnpcinfo(4);
+	
+	if(.@npcMapName$ == "")
+	end;
+	
+	.amountNeed = rand(15,40);
+	
+	getfreecell(.@npcMapName$,.@x,.@y);
+	moveNPC strnpcinfo(0),.@x,.@y;
+	initnpctimer;
+	end;
+}
+
 moscovia,213,207,5	duplicate(bomberianWarper)	Bomberian Warper	727
 
 mosk_fild02,18,178,5	duplicate(bomberianWarper)	Bomberian Warper#0	727
@@ -636,12 +753,14 @@ mosk_fild02,190,255,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#0	722,3,3
 mosk_fild02,1,1,5	duplicate(stageHint)	Stage Hint#0	111,400,400
 mosk_fild02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#0	2452,2,2
 mosk_fild02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#0	1878
+mosk_fild02,1,1,5	duplicate(trader)	แมวแม่ค้า#0	877
 
 mosk_dun01,28,81,3	duplicate(bomberianWarper)	Bomberian Warper#1	727
 mosk_dun01,200,273,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#1	722,3,3
 mosk_dun01,1,1,5	duplicate(stageHint)	Stage Hint#1	111,400,400
 mosk_dun01,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#1	2452,2,2
 mosk_dun01,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#1	1878
+mosk_dun01,1,1,5	duplicate(trader)	แมวแม่ค้า#1	877
 
 mosk_dun02,164,35,3	duplicate(bomberianWarper)	Bomberian Warper#2	727
 mosk_dun02,130,155,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#2	722,3,3
@@ -649,18 +768,21 @@ mosk_dun02,1,1,5	duplicate(stageHint)	Stage Hint#2	111,400,400
 mosk_dun02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#2	2452,2,2
 mosk_dun02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#2	1878
 mosk_dun02,234,213,4	duplicate(bomberianUnlocker)	Unlocker#2	723,3,3
+mosk_dun02,1,1,5	duplicate(trader)	แมวแม่ค้า#2	877
 
 mosk_dun03,31,140,5	duplicate(bomberianWarper)	Bomberian Warper#3	727
 mosk_dun03,205,211,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#3	722,3,3
 mosk_dun03,1,1,5	duplicate(stageHint)	Stage Hint#3	111,400,400
 mosk_dun03,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#3	2452,2,2
 mosk_dun03,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#3	1878
+mosk_dun03,1,1,5	duplicate(trader)	แมวแม่ค้า#3	877
 
 mosk_que,57,19,3	duplicate(bomberianWarper)	Bomberian Warper#4	727
 mosk_que,48,217,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#4	722,3,3
 mosk_que,1,1,5	duplicate(stageHint)	Stage Hint#4	111,400,400
 mosk_que,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#4	2452,2,2
 mosk_que,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#4	1878
+mosk_que,1,1,5	duplicate(trader)	แมวแม่ค้า#4	877
 
 hu_fild02,289,36,5	duplicate(bomberianWarper)	Bomberian Warper#5	727
 hu_fild02,147,261,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#5	722,3,3
@@ -668,21 +790,25 @@ hu_fild02,1,1,5	duplicate(stageHint)	Stage Hint#5	111,400,400
 hu_fild02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#5	2452,2,2
 hu_fild02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#5	1878
 hu_fild02,267,273,4	duplicate(bomberianUnlocker)	Unlocker#5	723,3,3
+hu_fild02,1,1,5	duplicate(trader)	แมวแม่ค้า#5	877
 
 cave,108,33,3	duplicate(bomberianWarper)	Bomberian Warper#6	727
 cave,83,100,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#6	722,3,3
 cave,1,1,5	duplicate(stageHint)	Stage Hint#6	111,400,400
 cave,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#6	2452,2,2
 cave,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#6	1878
+cave,1,1,5	duplicate(trader)	แมวแม่ค้า#6	877
 
 odin_tem01,97,148,3	duplicate(bomberianWarper)	Bomberian Warper#7	727
 odin_tem01,384,333,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#7	722,3,3
 odin_tem01,1,1,5	duplicate(stageHint)	Stage Hint#7	111,400,400
 odin_tem01,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#7	2452,2,2
 odin_tem01,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#7	1878
+odin_tem01,1,1,5	duplicate(trader)	แมวแม่ค้า#7	877
 
 odin_tem02,31,340,3	duplicate(bomberianWarper)	Bomberian Warper#8	727
 odin_tem02,152,350,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#8	722,3,3
 odin_tem02,1,1,5	duplicate(stageHint)	Stage Hint#8	111,400,400
 odin_tem02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#8	2452,2,2
 odin_tem02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#8	1878
+odin_tem02,1,1,5	duplicate(trader)	แมวแม่ค้า#8	877

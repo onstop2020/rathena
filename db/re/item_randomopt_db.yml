@@ -907,3 +907,19 @@ Body:
     Option: CLAYMORE_TRAP_ATTACK_DAMAGE_TARGET
     Script: |
       bonus2 bSkillAtk,123,getrandomoptinfo(ROA_VALUE);
+  - Id: 247
+    Option: MOVESPEED_RATE
+    Script: |
+      bonus bSpeedAddRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 248
+    Option: SKILL_TRICK_DEAD
+    Script: |
+      skill 143,getrandomoptinfo(ROA_VALUE),1;
+  - Id: 249
+    Option: SKILL_INCREASE_AGI
+    Script: |
+      skill 29,getrandomoptinfo(ROA_VALUE),1;
+  - Id: 250
+    Option: SKILL_CLOAKING
+    Script: |
+      skill 135,getrandomoptinfo(ROA_VALUE),1;
