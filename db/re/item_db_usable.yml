@@ -224,7 +224,7 @@ Body:
     Name: Grape
     Type: Healing
     Buy: 1
-    Weight: 20
+    Weight: 500
     Flags:
       BuyingStore: true
     Script: |
