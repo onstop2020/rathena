@@ -149,8 +149,10 @@ OnBossDead:
 		addrid(2,0,.@partyId);
 		
 		// Check alive and map
-		if(Hp <= 0 || strcharinfo(3) != strnpcinfo(4))
-		end;
+		if(Hp <= 0 || strcharinfo(3) != strnpcinfo(4)){
+			detachrid;
+			end;
+		}
 		
 		if(getd("blKilled" + .stageIndex) < 1){
 			set getd("blKilled" + .stageIndex),1;
@@ -160,6 +162,7 @@ OnBossDead:
 			blPoint += .@stageClearReward;
 			dispbottom "คุณได้รับ " + callfunc("F_InsertComma",.@stageClearReward) + " Bomberland Point รวม " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
 		}
+		detachrid;
 	}
 	
 	end;
@@ -179,23 +182,25 @@ OnMonsterDead:
 	addrid(2,0,.@partyId);
 
 	// Check alive and map
-	if(Hp <= 0 || strcharinfo(3) != strnpcinfo(4))
-	end;
+	if(Hp <= 0 || strcharinfo(3) != strnpcinfo(4)){
+		detachrid;
+		end;
+	}
 	
 	// Kill count
 	// Check kill count
-	if(getd("blKilled" + .stageIndex) < .killCountNeed){
+	if(getd("blKilled" + .stageIndex) < $blkillCountNeed){
 		set getd("blKilled" + .stageIndex),getd("blKilled" + .stageIndex) + 1;
-		if(getd("blKilled" + .stageIndex) >= .killCountNeed){
-			set getd("blKilled" + .stageIndex),.killCountNeed;
+		if(getd("blKilled" + .stageIndex) >= $blkillCountNeed){
+			set getd("blKilled" + .stageIndex),$blkillCountNeed;
 			specialeffect2 682;
 			.@stageClearReward = (10 * (.stageIndex + 1));
 			blPoint += .@stageClearReward;
 			dispbottom "คุณได้รับ " + callfunc("F_InsertComma",.@stageClearReward) + " Bomberland Point รวม " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
 		}
-		message strcharinfo(0),"กำจัดเป้าหมายแล้ว " + getd("blKilled" + .stageIndex) + "/" + .killCountNeed;
+		message strcharinfo(0),"กำจัดเป้าหมายแล้ว " + getd("blKilled" + .stageIndex) + "/" + $blkillCountNeed;
 	}
-
+	detachrid;
 	end;
 
 OnInit:
@@ -207,7 +212,7 @@ OnInit:
 
 	// Start OnInit
 	
-	.killCountNeed = 20;
+	$blkillCountNeed = 20;
 	
 	deletearray $blStage0Id[0],getarraysize($blStage0Id);
 	deletearray $blStage1Id[0],getarraysize($blStage1Id);
@@ -381,7 +386,7 @@ OnTouch:
 	
 	.@stageIndex = atoi(strnpcinfo(2));
 	
-	if(($blStageCondition[.@stageIndex] == 1 && getd("blKilled" + .@stageIndex) >= .killCountNeed)
+	if(($blStageCondition[.@stageIndex] == 1 && getd("blKilled" + .@stageIndex) >= $blkillCountNeed)
 			|| ($blStageCondition[.@stageIndex] != 1 && getd("blKilled" + .@stageIndex) >= 1)){
 		mes "ยินดีด้วยคุณผ่านด่านแล้ว!";
 		menu "ไปด่านต่อไป",-,"กลับเมืองหลัก",L_ReturnToMainTown;
@@ -397,7 +402,7 @@ OnTouch:
 	}
 	else{
 		if($blStageCondition[.@stageIndex] == 1)
-		message strcharinfo(0),"ต้องกำจัดเป้าหมายให้ครบเสียก่อน (" + getd("blKilled" + .@stageIndex) + "/" + .killCountNeed + ")";
+		message strcharinfo(0),"ต้องกำจัดเป้าหมายให้ครบเสียก่อน (" + getd("blKilled" + .@stageIndex) + "/" + $blkillCountNeed + ")";
 		else if($blStageCondition[.@stageIndex] == 2)
 		message strcharinfo(0),"ต้องกำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME) + " ให้ได้เสียก่อน";
 		else if($blStageCondition[.@stageIndex] == 3)
@@ -434,17 +439,17 @@ OnTouch:
 	getmapxy(.@mapName$,.@x,.@y,BL_NPC,"ชนเพื่อผ่านด่าน#" + strnpcinfo(2));
 	viewpoint 1,.@x,.@y,1,0xFF0000;
 	
-	.stageIndex = atoi(strnpcinfo(2));
-	
-	
+	.@stageIndex = atoi(strnpcinfo(2));
+
 	lastHintMapName$ = strcharinfo(3);
-	
-	if($blStageCondition[.stageIndex] == 1)
-	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ: " + (getd("blKilled" + .stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
-	else if($blStageCondition[.stageIndex] == 2)
-	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .stageIndex + "]"),MOB_NAME) + ": " + (getd("blKilled" + .stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
-	else if($blStageCondition[.stageIndex] == 3)
-	message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker: " + (getd("blKilled" + .stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	dispbottom ""+getd("blKilled" + .@stageIndex);
+	dispbottom ""+$blkillCountNeed;
+	if($blStageCondition[.@stageIndex] == 1)
+	message strcharinfo(0),"เป้าหมาย: กำจัด Monster ให้ครบ: " + (getd("blKilled" + .@stageIndex) > $blkillCountNeed ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	else if($blStageCondition[.@stageIndex] == 2)
+	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME) + ": " + (getd("blKilled" + .@stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	else if($blStageCondition[.@stageIndex] == 3)
+	message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker: " + (getd("blKilled" + .@stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	
 	end;
 }
