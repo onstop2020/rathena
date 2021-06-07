@@ -734,6 +734,10 @@ OnTimer50000:
 	end;
 
 OnTimer60000:
+	.amountNeed = rand(15,40);
+	initnpctimer;
+	end;
+	
 OnInit:
 	.@npcMapName$ = strnpcinfo(4);
 	

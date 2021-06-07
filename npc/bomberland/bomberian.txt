@@ -4,6 +4,7 @@ function	script	RefreshBomberian	{
 	
 	.@skillMultiplier = 50;
 	.@skillMultiplier2 = 5;
+	
 	// Add new bomberian buff
 	bonus_script "{ bonus bMaxSP," + blUpg1
 	+ "; bonus bSPrecovRate," + (blUpg2 * .@skillMultiplier2)
