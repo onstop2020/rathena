@@ -31,7 +31,7 @@
 	end;
 	
 OnInit:
-	waitingroom "ครอง Bomberland!",0;
+	waitingroom "ครองเมือง!",0;
 	
 	setarray $blMapName$[0],"moscovia","dewata";
 	setarray $blMapNameWording$[0],"Moscovia","Dewata";
