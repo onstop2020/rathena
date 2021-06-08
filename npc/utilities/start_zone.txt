@@ -85,7 +85,7 @@ OnInit:
 	
 OnTimer10000:
 	initnpctimer;
-	addrid(4,0,221,231,231,221);
+	addrid(4,1,221,231,231,221);
 	if(isAutoThrow)
 	callfunc("ThorwingStone");
 	end;
