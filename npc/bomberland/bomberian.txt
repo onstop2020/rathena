@@ -12,6 +12,7 @@ function	script	RefreshBomberian	{
 	+ "; bonus2 bSkillAtk,122," + (blUpg4 * .@skillMultiplier)
 	+ "; bonus2 bSkillAtk,123," + (blUpg5 * .@skillMultiplier)
 	+ "; bonus2 bExpAddClass,Class_All,-100"
+	+ "; bonus bAspd,-9999"
 	+ "; }"
 	,86400;
 

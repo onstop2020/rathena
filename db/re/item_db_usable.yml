@@ -29859,9 +29859,9 @@ Body:
     Name: Basil
     Type: Healing
     Buy: 1
-    Weight: 10
+    Weight: 500
     Script: |
-      sc_start SC_DORAM_BUF_02, 180000, 0;
+      itemheal rand(50,150),rand(30,60);
   - Id: 23001
     AegisName: Enchant_Stone_Box8
     Name: Costume Enchant Stone Box 8

@@ -32,6 +32,7 @@
 	mes "1.) ฆ่า Monster ให้ครบจำนวน";
 	mes "2.) ฆ่า Boss ประจำ Map";
 	mes "3.) เดินชนวงแหวนสีดำ (Unlocker)";
+	mes "4.) เดินชนแท่นบูชาให้ครบ";
 	mes "*การเดินทางไปด่านต่อไป ให้ดูจุดแดงที่ Minimap";
 	close;
 	
@@ -51,6 +52,16 @@
 	,"Stage 7",L_FastTravelStage7
 	,"Stage 8",L_FastTravelStage8
 	,"Stage 9",L_FastTravelStage9
+	,"Stage 10",L_FastTravelStage10
+	,"Stage 11",L_FastTravelStage11
+	,"Stage 12",L_FastTravelStage12
+	,"Stage 13",L_FastTravelStage13
+	,"Stage 14",L_FastTravelStage14
+	,"Stage 15",L_FastTravelStage15
+	,"Stage 16",L_FastTravelStage16
+	,"Stage 17",L_FastTravelStage17
+	,"Stage 18",L_FastTravelStage18
+	,"Stage 19",L_FastTravelStage19
 	;
 	end;
 	
@@ -81,6 +92,36 @@
 	L_FastTravelStage9:
 	.@targetStage = 8;
 	goto L_FastTravelNow;
+	L_FastTravelStage10:
+	.@targetStage = 9;
+	goto L_FastTravelNow;
+	L_FastTravelStage11:
+	.@targetStage = 10;
+	goto L_FastTravelNow;
+	L_FastTravelStage12:
+	.@targetStage = 11;
+	goto L_FastTravelNow;
+	L_FastTravelStage13:
+	.@targetStage = 12;
+	goto L_FastTravelNow;
+	L_FastTravelStage14:
+	.@targetStage = 13;
+	goto L_FastTravelNow;
+	L_FastTravelStage15:
+	.@targetStage = 14;
+	goto L_FastTravelNow;
+	L_FastTravelStage16:
+	.@targetStage = 15;
+	goto L_FastTravelNow;
+	L_FastTravelStage17:
+	.@targetStage = 16;
+	goto L_FastTravelNow;
+	L_FastTravelStage18:
+	.@targetStage = 17;
+	goto L_FastTravelNow;
+	L_FastTravelStage19:
+	.@targetStage = 18;
+	goto L_FastTravelNow;
 	
 	L_FastTravelNow:
 	if(getd("blStageWarper" + .@targetStage) <= 0){
@@ -106,6 +147,124 @@ OnLoaded2Second:
 	
 OnInit:
 	waitingroom "Bomberian ตลุยด่าน!",0;
+	end;
+}
+
+function	script	StageBuff	{
+	.@stageIndex = getarg(0);
+	
+	if(.@stageIndex == 9){
+		bonus_script "{ bonus bInt,500; bonus bDex,500; }",10,0,1,990;
+		message strcharinfo(0),"คุณได้รับพลัง เหนือธรรมชาติ เป็นเวลา 10 วินาที";
+	}
+	if(.@stageIndex == 18){
+		bonus_script "{ bonus bDef,3800; bonus bDef2,3800; bonus bMdef,3800; bonus bMdef2,3800; bonus2 bHPRegenRate,1000,1000; }",10,0,1,990;
+		message strcharinfo(0),"คุณได้รับพลัง เหนือธรรมชาติ เป็นเวลา 10 วินาที";
+	}
+	
+	return;
+}
+
+-	script	bomberianBuff	-1,{
+	end;
+	
+OnTouch:
+	.@stageIndex = atoi(strnpcinfo(2));
+
+	callfunc("StageBuff",.@stageIndex);
+	
+	end;
+}
+
+function	script	BomberianAltar	{
+	.@stageIndex = getarg(0);
+	.@altarNumber = getarg(1);
+	if(getd("blKilledAltar1_" + .@stageIndex)
+			&& getd("blKilledAltar2_" + .@stageIndex)
+			&& getd("blKilledAltar3_" + .@stageIndex)
+			&& getd("blKilledAltar4_" + .@stageIndex)
+			){
+		message strcharinfo(0),"คุณได้แตะ แท่นบูชาที่ " + .@altarNumber + " เรียบร้อยแล้ว คุณแตะครบ 4 เสาแล้วสามารถผ่านด่านได้เลย";
+		specialeffect2 682;
+		.@stageClearReward = (10 * (.@stageIndex + 1));
+		blPoint += .@stageClearReward;
+		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",.@stageClearReward) + " Bomberland Point รวม " + callfunc("F_InsertComma",blPoint) + " Bomberland Point";
+	}
+	else
+	message strcharinfo(0),"คุณได้แตะ แท่นบูชาที่ " + .@altarNumber + " เรียบร้อยแล้ว ต้องแตะให้ครบ 4 เสาจึงจะสามารถผ่านด่านได้";
+	return;
+}
+
+-	script	bomberianAltar1	-1,{
+	end;
+	
+OnTouch:
+	.altarNumber = 1;
+
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if($blStageCondition[.@stageIndex] != 4)
+	end;
+
+	if(getd("blKilledAltar" + .altarNumber + "_" + .@stageIndex) < 1){
+		set getd("blKilledAltar" + .altarNumber + "_" + .@stageIndex),1;
+		
+		callfunc("BomberianAltar",.@stageIndex,.altarNumber);
+	}
+	end;
+}
+-	script	bomberianAltar2	-1,{
+	end;
+	
+OnTouch:
+	.altarNumber = 2;
+
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if($blStageCondition[.@stageIndex] != 4)
+	end;
+
+	if(getd("blKilledAltar" + .altarNumber + "_" + .@stageIndex) < 1){
+		set getd("blKilledAltar" + .altarNumber + "_" + .@stageIndex),1;
+		
+		callfunc("BomberianAltar",.@stageIndex,.altarNumber);
+	}
+	end;
+}
+-	script	bomberianAltar3	-1,{
+	end;
+	
+OnTouch:
+	.altarNumber = 3;
+
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if($blStageCondition[.@stageIndex] != 4)
+	end;
+
+	if(getd("blKilledAltar" + .altarNumber + "_" + .@stageIndex) < 1){
+		set getd("blKilledAltar" + .altarNumber + "_" + .@stageIndex),1;
+		
+		callfunc("BomberianAltar",.@stageIndex,.altarNumber);
+	}
+	end;
+}
+-	script	bomberianAltar4	-1,{
+	end;
+	
+OnTouch:
+	.altarNumber = 4;
+
+	.@stageIndex = atoi(strnpcinfo(2));
+	
+	if($blStageCondition[.@stageIndex] != 4)
+	end;
+
+	if(getd("blKilledAltar" + .altarNumber + "_" + .@stageIndex) < 1){
+		set getd("blKilledAltar" + .altarNumber + "_" + .@stageIndex),1;
+		
+		callfunc("BomberianAltar",.@stageIndex,.altarNumber);
+	}
 	end;
 }
 
@@ -144,6 +303,8 @@ OnBossDead:
 	// Kill target
 	// Check killed monster id
 	if(killedrid == $blStageBossId[.stageIndex]){
+		set getd(".bossAlive" + .@stageIndex),0;
+		
 		// Add party member
 		.@partyId = getcharid(1);
 		if(.@partyId > 0)
@@ -220,128 +381,238 @@ OnInit:
 	
 	$blkillCountNeed = 20;
 	
-	deletearray $blStage0Id[0],getarraysize($blStage0Id);
-	deletearray $blStage1Id[0],getarraysize($blStage1Id);
-	deletearray $blStage2Id[0],getarraysize($blStage2Id);
-	deletearray $blStage3Id[0],getarraysize($blStage3Id);
-	deletearray $blStage4Id[0],getarraysize($blStage4Id);
-	deletearray $blStage5Id[0],getarraysize($blStage5Id);
-	deletearray $blStage6Id[0],getarraysize($blStage6Id);
-	deletearray $blStage7Id[0],getarraysize($blStage7Id);
-	deletearray $blStage8Id[0],getarraysize($blStage8Id);
-	setarray $blStage0Id[0],1002;
-	setarray $blStage1Id[0],1002,1004;
-	setarray $blStage2Id[0],1007,1009;
-	setarray $blStage3Id[0],1001,1010;
-	setarray $blStage4Id[0],1005,1013;
-	setarray $blStage5Id[0],1014,1018,1019;
-	setarray $blStage6Id[0],1023;
-	setarray $blStage7Id[0],1033,1035,1040;
-	setarray $blStage8Id[0],1052,1056,1057;
-	$dropItemId0 = 909;
-	$dropItemId1 = 741;
-	$dropItemId2 = 907;
-	$dropItemId3 = 902;
-	$dropItemId4 = 913;
-	$dropItemId5 = 743;
-	$dropItemId6 = 922;
-	$dropItemId7 = 953;
-	$dropItemId8 = 942;
+	deletearray $blStage0Id[0],getarraysize($blStage0Id);	// Stage 1
+	deletearray $blStage1Id[0],getarraysize($blStage1Id);	// Stage 2
+	deletearray $blStage2Id[0],getarraysize($blStage2Id);	// Stage 3
+	deletearray $blStage3Id[0],getarraysize($blStage3Id);	// Stage 4
+	deletearray $blStage4Id[0],getarraysize($blStage4Id);	// Stage 5
+	deletearray $blStage5Id[0],getarraysize($blStage5Id);	// Stage 6
+	deletearray $blStage6Id[0],getarraysize($blStage6Id);	// Stage 7
+	deletearray $blStage7Id[0],getarraysize($blStage7Id);	// Stage 8
+	deletearray $blStage8Id[0],getarraysize($blStage8Id);	// Stage 9
+	deletearray $blStage9Id[0],getarraysize($blStage9Id);	// Stage 10
+	deletearray $blStage10Id[0],getarraysize($blStage10Id);	// Stage 11
+	deletearray $blStage11Id[0],getarraysize($blStage11Id);	// Stage 12
+	deletearray $blStage12Id[0],getarraysize($blStage12Id);	// Stage 13
+	deletearray $blStage13Id[0],getarraysize($blStage13Id);	// Stage 14
+	deletearray $blStage14Id[0],getarraysize($blStage14Id);	// Stage 15
+	deletearray $blStage15Id[0],getarraysize($blStage15Id);	// Stage 16
+	deletearray $blStage16Id[0],getarraysize($blStage16Id);	// Stage 17
+	deletearray $blStage17Id[0],getarraysize($blStage17Id);	// Stage 18
+	deletearray $blStage18Id[0],getarraysize($blStage18Id);	// Stage 19
+	setarray $blStage0Id[0],1002;						// Stage 1
+	setarray $blStage1Id[0],1002,1004;					// Stage 2
+	setarray $blStage2Id[0],1007,1009;					// Stage 3
+	setarray $blStage3Id[0],1001,1010;					// Stage 4
+	setarray $blStage4Id[0],1005,1013;					// Stage 5
+	setarray $blStage5Id[0],1014,1018,1019;				// Stage 6
+	setarray $blStage6Id[0],1023;						// Stage 7
+	setarray $blStage7Id[0],1033,1035,1040;				// Stage 8
+	setarray $blStage8Id[0],1052,1056,1057;				// Stage 9
+	setarray $blStage9Id[0],1028;						// Stage 10
+	setarray $blStage10Id[0],1029;						// Stage 11
+	setarray $blStage11Id[0],1044,1045,1067;			// Stage 12
+	setarray $blStage12Id[0],1072,1117;					// Stage 13
+	setarray $blStage13Id[0],1120;						// Stage 14
+	setarray $blStage14Id[0],1122,1123,1124,1125,1126;	// Stage 15
+	setarray $blStage15Id[0],1129,1130;					// Stage 16
+	setarray $blStage16Id[0],1132,1139,1154,1165;		// Stage 17
+	setarray $blStage17Id[0],1193,1200,1201;			// Stage 18
+	setarray $blStage18Id[0],1101;						// Stage 19
+	$dropItemId0 = 909;		// Stage 1
+	$dropItemId1 = 741;		// Stage 2
+	$dropItemId2 = 907;		// Stage 3
+	$dropItemId3 = 902;		// Stage 4
+	$dropItemId4 = 913;		// Stage 5
+	$dropItemId5 = 743;		// Stage 6
+	$dropItemId6 = 922;		// Stage 7
+	$dropItemId7 = 953;		// Stage 8
+	$dropItemId8 = 942;		// Stage 9
+	$dropItemId9 = 674;		// Stage 10
+	$dropItemId10 = 709;	// Stage 11
+	$dropItemId11 = 713;	// Stage 12
+	$dropItemId12 = 724;	// Stage 13
+	$dropItemId13 = 1059;	// Stage 14
+	$dropItemId14 = 1069;	// Stage 15
+	$dropItemId15 = 6075;	// Stage 16
+	$dropItemId16 = 6080;	// Stage 17
+	$dropItemId17 = 6084;	// Stage 18
+	$dropItemId18 = 6394;	// Stage 19
 
 	deletearray $blStageBossId[0],getarraysize($blStageBossId);
-	setarray $blStageBossId[0],0
-	,1031
-	,0
-	,0
-	,0
-	,0
-	,1026
-	,0
-	,1065
+	setarray $blStageBossId[0],0	// Stage 1
+	,1031	// Stage 2
+	,0		// Stage 3
+	,0		// Stage 4
+	,0		// Stage 5
+	,0		// Stage 6
+	,1026	// Stage 7
+	,0		// Stage 8
+	,1065 	// Stage 9
+	,1046	// Stage 10
+	,0		// Stage 11
+	,0		// Stage 12
+	,0		// Stage 13
+	,0		// Stage 14
+	,1087	// Stage 15
+	,0		// Stage 16
+	,0		// Stage 17
+	,0		// Stage 18
+	,1039	// Stage 19
 	;
 
 	deletearray $blStageMapName$[0],getarraysize($blStageMapName$);
-	setarray $blStageMapName$[0],"mosk_fild02"
-	,"mosk_dun01"
-	,"mosk_dun02"
-	,"mosk_dun03"
-	,"mosk_que"
-	,"hu_fild02"
-	,"cave"
-	,"odin_tem01"
-	,"odin_tem02"
+	setarray $blStageMapName$[0],"mosk_fild02"	// Stage 1
+	,"mosk_dun01"	// Stage 2
+	,"mosk_dun02"	// Stage 3
+	,"mosk_dun03"	// Stage 4
+	,"mosk_que"		// Stage 5
+	,"hu_fild02"	// Stage 6
+	,"cave"			// Stage 7
+	,"odin_tem01"	// Stage 8
+	,"odin_tem02"	// Stage 9
+	,"kh_kiehl02"	// Stage 10
+	,"kh_kiehl01"	// Stage 11
+	,"ra_san01"		// Stage 12
+	,"ra_san02"		// Stage 13
+	,"ra_san03"		// Stage 14
+	,"ra_san04"		// Stage 15
+	,"que_rachel"	// Stage 16
+	,"ra_temple"	// Stage 17
+	,"ra_san05"		// Stage 18
+	,"ra_temsky"	// Stage 19
 	;
 	
 	deletearray $blStageMapX[0],getarraysize($blStageMapX);
-	setarray $blStageMapX[0],18
-	,25
-	,166
-	,32
-	,50
-	,293
-	,99
-	,88
-	,28
+	setarray $blStageMapX[0],18	// Stage 1
+	,25		// Stage 2
+	,166	// Stage 3
+	,32		// Stage 4
+	,50		// Stage 5
+	,293	// Stage 6
+	,99		// Stage 7
+	,88		// Stage 8
+	,28		// Stage 9
+	,49		// Stage 10
+	,166	// Stage 11
+	,140	// Stage 12
+	,213	// Stage 13
+	,4		// Stage 14
+	,120	// Stage 15
+	,31		// Stage 16
+	,118	// Stage 17
+	,150	// Stage 18
+	,100	// Stage 19
 	;
 	
 	deletearray $blStageMapY[0],getarraysize($blStageMapY);
-	setarray $blStageMapY[0],171
-	,75
-	,28
-	,136
-	,17
-	,29
-	,22
-	,146
-	,335
+	setarray $blStageMapY[0],171	// Stage 1
+	,75		// Stage 2
+	,28		// Stage 3
+	,136	// Stage 4
+	,17		// Stage 5
+	,29		// Stage 6
+	,22		// Stage 7
+	,146	// Stage 8
+	,335	// Stage 9
+	,5		// Stage 10
+	,186	// Stage 11
+	,9		// Stage 12
+	,12		// Stage 13
+	,149	// Stage 14
+	,44		// Stage 15
+	,137	// Stage 16
+	,24		// Stage 17
+	,7		// Stage 18
+	,9		// Stage 19
 	;
 	
 	deletearray $blStageBossX[0],getarraysize($blStageBossX);
-	setarray $blStageBossX[0],0
-	,0
-	,0
-	,0
-	,0
-	,0
-	,110
-	,0
-	,226
+	setarray $blStageBossX[0],0	// Stage 1
+	,0		// Stage 2
+	,0		// Stage 3
+	,0		// Stage 4
+	,0		// Stage 5
+	,0		// Stage 6
+	,110	// Stage 7
+	,0		// Stage 8
+	,226	// Stage 9
+	,49		// Stage 10
+	,0		// Stage 11
+	,0		// Stage 12
+	,0		// Stage 13
+	,0		// Stage 14
+	,119	// Stage 15
+	,0		// Stage 16
+	,0		// Stage 17
+	,0		// Stage 18
+	,100	// Stage 19
 	;
 	
 	deletearray $blStageBossY[0],getarraysize($blStageBossY);
-	setarray $blStageBossY[0],0
-	,0
-	,0
-	,0
-	,0
-	,0
-	,67
-	,0
-	,150
+	setarray $blStageBossY[0],0	// Stage 1
+	,0		// Stage 2
+	,0		// Stage 3
+	,0		// Stage 4
+	,0		// Stage 5
+	,0		// Stage 6
+	,67		// Stage 7
+	,0		// Stage 8
+	,150	// Stage 9
+	,51		// Stage 10
+	,0		// Stage 11
+	,0		// Stage 12
+	,0		// Stage 13
+	,0		// Stage 14
+	,104	// Stage 15
+	,0		// Stage 16
+	,0		// Stage 17
+	,0		// Stage 18
+	,98		// Stage 19
 	;
 
 	deletearray $blStageMobCount[0],getarraysize($blStageMobCount);
-	setarray $blStageMobCount[0],50
-	,50
-	,100
-	,100
-	,30
-	,125
-	,25
-	,150
-	,100
+	setarray $blStageMobCount[0],50	// Stage 1
+	,50		// Stage 2
+	,100	// Stage 3
+	,100	// Stage 4
+	,30		// Stage 5
+	,125	// Stage 6
+	,25		// Stage 7
+	,150	// Stage 8
+	,100	// Stage 9
+	,5		// Stage 10
+	,25		// Stage 11
+	,100	// Stage 12
+	,125	// Stage 13
+	,75		// Stage 14
+	,100	// Stage 15
+	,50		// Stage 16
+	,150	// Stage 17
+	,100	// Stage 18
+	,5		// Stage 19
 	;
 	
 	deletearray $blStageCondition[0],getarraysize($blStageCondition);
-	setarray $blStageCondition[0],1
-	,2
-	,3
-	,1
-	,1
-	,3
-	,2
-	,1
-	,2
+	setarray $blStageCondition[0],1	// Stage 1
+	,2	// Stage 2
+	,3	// Stage 3
+	,1	// Stage 4
+	,1	// Stage 5
+	,3	// Stage 6
+	,2	// Stage 7
+	,1	// Stage 8
+	,2	// Stage 9
+	,2	// Stage 10
+	,0	// Stage 11
+	,4	// Stage 12
+	,1	// Stage 13
+	,3	// Stage 14
+	,2	// Stage 15
+	,0	// Stage 16
+	,1	// Stage 17
+	,4	// Stage 18
+	,2	// Stage 19
 	;
 	
 	//debugmes "Start spawn monster on map " + strnpcinfo(4);
@@ -380,8 +651,11 @@ OnInit:
 	freeloop(0);
 	.@bossId = $blStageBossId[.@stageIndex];
 	if(.@bossId > 0){
-		monster .@mapName$,$blStageBossX[.@stageIndex],$blStageBossY[.@stageIndex],"--ja--",.@bossId,1,strnpcinfo(0) + "::OnBossDead";
-		setunitdata $@mobid[0],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
+		if(getd(".bossAlive" + .@stageIndex) <= 0){
+			monster .@mapName$,$blStageBossX[.@stageIndex],$blStageBossY[.@stageIndex],"--ja--",.@bossId,1,strnpcinfo(0) + "::OnBossDead";
+			setunitdata $@mobid[0],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
+			set getd(".bossAlive" + .@stageIndex),1;
+		}
 	}
 	return;
 
@@ -402,6 +676,8 @@ OnTouch:
 	.@stageIndex = atoi(strnpcinfo(2));
 	
 	if(($blStageCondition[.@stageIndex] == 1 && getd("blKilled" + .@stageIndex) >= $blkillCountNeed)
+			|| ($blStageCondition[.@stageIndex] == 4 && (getd("blKilledAltar1_" + .@stageIndex) && getd("blKilledAltar2_" + .@stageIndex) && getd("blKilledAltar3_" + .@stageIndex) && getd("blKilledAltar4_" + .@stageIndex)))
+			|| $blStageCondition[.@stageIndex] <= 0
 			|| ($blStageCondition[.@stageIndex] != 1 && getd("blKilled" + .@stageIndex) >= 1)){
 		mes "ยินดีด้วยคุณผ่านด่านแล้ว!";
 		menu "ไปด่านต่อไป",-,"กลับเมืองหลัก",L_ReturnToMainTown;
@@ -464,6 +740,10 @@ OnTouch:
 	message strcharinfo(0),"เป้าหมาย: กำจัด " + getmonsterinfo(getd("$blStageBossId[" + .@stageIndex + "]"),MOB_NAME) + ": " + (getd("blKilled" + .@stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	else if($blStageCondition[.@stageIndex] == 3)
 	message strcharinfo(0),"เป้าหมาย: ตามหา Unlocker: " + (getd("blKilled" + .@stageIndex) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	else if($blStageCondition[.@stageIndex] == 4)
+	message strcharinfo(0),"เป้าหมาย: ตามหา แท่นบูชา: " + ((getd("blKilledAltar1_" + .@stageIndex) && getd("blKilledAltar2_" + .@stageIndex) && getd("blKilledAltar3_" + .@stageIndex) && getd("blKilledAltar4_" + .@stageIndex)) ? "ผ่านแล้ว" : "ยังไม่ผ่าน") + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
+	else
+	message strcharinfo(0),"เป้าหมาย: ค้นหาทางออก" + " | สมบัติภายในด่าน: " + (getd("blHiddenTreasure" + .@stageIndex) ? "พบแล้ว" : "ยังไม่พบ");
 	
 	end;
 }
@@ -597,6 +877,76 @@ OnTouch:
 			setarray .@OptParam[0],0,0,0;
 			getitem3 18703,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
 		}
+		// Stage 10
+		else if(.@stageIndex == 9){
+			setarray .@OptID[0],20,21;
+			setarray .@OptVal[0],25,25;
+			setarray .@OptParam[0],0,0;
+			getitem3 2117,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 11
+		else if(.@stageIndex == 10){
+			setarray .@OptID[0],6;
+			setarray .@OptVal[0],25;
+			setarray .@OptParam[0],0;
+			getitem3 2857,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 12
+		else if(.@stageIndex == 11){
+			setarray .@OptID[0],5;
+			setarray .@OptVal[0],25;
+			setarray .@OptParam[0],0;
+			getitem3 2519,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 13
+		else if(.@stageIndex == 12){
+			setarray .@OptID[0],5,6,7;
+			setarray .@OptVal[0],25,25,25;
+			setarray .@OptParam[0],0,0,0;
+			getitem3 2387,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 14
+		else if(.@stageIndex == 13){
+			setarray .@OptID[0],251;
+			setarray .@OptVal[0],5;
+			setarray .@OptParam[0],0;
+			getitem3 1234,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 15
+		else if(.@stageIndex == 14){
+			setarray .@OptID[0],1;
+			setarray .@OptVal[0],5000;
+			setarray .@OptParam[0],0;
+			getitem3 5740,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 16
+		else if(.@stageIndex == 15){
+			setarray .@OptID[0],247;
+			setarray .@OptVal[0],5;
+			setarray .@OptParam[0],0;
+			getitem3 2826,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 17
+		else if(.@stageIndex == 16){
+			setarray .@OptID[0],251;
+			setarray .@OptVal[0],10;
+			setarray .@OptParam[0],0;
+			getitem3 5401,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 18
+		else if(.@stageIndex == 17){
+			setarray .@OptID[0],5;
+			setarray .@OptVal[0],50;
+			setarray .@OptParam[0],0;
+			getitem3 5796,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		// Stage 19
+		else if(.@stageIndex == 18){
+			setarray .@OptID[0],251;
+			setarray .@OptVal[0],15;
+			setarray .@OptParam[0],0;
+			getitem3 1247,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
 		message strcharinfo(0),"คุณเปิดกล่องสมบัติแปลก ๆ และพบสมบัติภายในนั้น!";
 	}
 	else
@@ -614,6 +964,12 @@ OnTimer20000:
 OnTimer30000:
 OnTimer40000:
 OnTimer50000:
+	.@stageIndex = atoi(strnpcinfo(2));
+
+	.@spawnItemId = 514;
+	if(.@stageIndex >= 9)
+	.@spawnItemId = 22985;
+
 	getmapxy(.@mapName$,.@x,.@y,BL_NPC,strnpcinfo(0));
 	areapercentheal .@mapName$,(.@x - 5),(.@y + 5),(.@x + 5),(.@y - 5),50,50;
 	specialeffect EF_SANCTUARY;
@@ -622,7 +978,7 @@ OnTimer50000:
 		freeloop(1);
 		for(.@i = 0; .@i < .@sumDropCount; .@i++){
 			getfreecell(.@mapName$,.@x,.@y);
-			makeitem 514,1,.@mapName$,.@x,.@y;
+			makeitem .@spawnItemId,1,.@mapName$,.@x,.@y;
 		}
 		freeloop(0);
 	}
@@ -655,6 +1011,16 @@ OnInit:
 	.@tradeItem6$ = "ผ้าคลุมพรางตัว";
 	.@tradeItem7$ = "ผ้าคาดตาอันตราย";
 	.@tradeItem8$ = "หมวกไอตึ้บ";
+	.@tradeItem9$ = "โล่สุดแกร่ง";
+	.@tradeItem10$ = "สร้อยนักปราชญ์";
+	.@tradeItem11$ = "ผ้าคลุมสุดแกร่ง";
+	.@tradeItem12$ = "เสื้อเชื้อเพลิง";
+	.@tradeItem13$ = "มีดเหมาะมือ";
+	.@tradeItem14$ = "หมวกแห่งชีวิต";
+	.@tradeItem15$ = "เข็มขัดเทพ";
+	.@tradeItem16$ = "แว่นตานักฆ่า";
+	.@tradeItem17$ = "ไปป์ถึก";
+	.@tradeItem18$ = "มีดแห่งสรรพสิ่ง";
 	
 	mes "ฮึ? อยากจะ Trade " + callfunc("F_InsertComma",.amountNeed) + " " + getitemname(getd("$dropItemId" + .@stageIndex)) + " เป็น " + getd(".@tradeItem" + .@stageIndex + "$") + " ไหม?";
 	next;
@@ -715,6 +1081,66 @@ OnInit:
 			setarray .@OptParam[0],0,0;
 			getitem3 2228,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
 		}
+		else if(.@stageIndex == 9){
+			setarray .@OptID[0],20,21;
+			setarray .@OptVal[0],50,50;
+			setarray .@OptParam[0],0,0;
+			getitem3 2119,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 10){
+			setarray .@OptID[0],6;
+			setarray .@OptVal[0],50;
+			setarray .@OptParam[0],0;
+			getitem3 2831,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 11){
+			setarray .@OptID[0],5;
+			setarray .@OptVal[0],50;
+			setarray .@OptParam[0],0;
+			getitem3 2524,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 12){
+			setarray .@OptID[0],5,6,7;
+			setarray .@OptVal[0],50,50,50;
+			setarray .@OptParam[0],0,0,0;
+			getitem3 2389,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 13){
+			setarray .@OptID[0],251;
+			setarray .@OptVal[0],10;
+			setarray .@OptParam[0],0;
+			getitem3 1235,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 14){
+			setarray .@OptID[0],1;
+			setarray .@OptVal[0],10000;
+			setarray .@OptParam[0],0;
+			getitem3 5744,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 15){
+			setarray .@OptID[0],247;
+			setarray .@OptVal[0],10;
+			setarray .@OptParam[0],0;
+			getitem3 2830,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 16){
+			setarray .@OptID[0],251;
+			setarray .@OptVal[0],20;
+			setarray .@OptParam[0],0;
+			getitem3 5641,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 17){
+			setarray .@OptID[0],5;
+			setarray .@OptVal[0],100;
+			setarray .@OptParam[0],0;
+			getitem3 5657,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
+		else if(.@stageIndex == 18){
+			setarray .@OptID[0],251;
+			setarray .@OptVal[0],30;
+			setarray .@OptParam[0],0;
+			getitem3 1248,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		}
 		mes "ขอบคุณ!";
 		specialeffect 410;
 		close;
@@ -760,6 +1186,7 @@ mosk_fild02,1,1,5	duplicate(stageHint)	Stage Hint#0	111,400,400
 mosk_fild02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#0	2452,2,2
 mosk_fild02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#0	1878
 mosk_fild02,1,1,5	duplicate(trader)	แมวแม่ค้า#0	877
+mosk_fild02	mapflag	monster_noteleport
 
 mosk_dun01,28,81,3	duplicate(bomberianWarper)	Bomberian Warper#1	727
 mosk_dun01,200,273,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#1	722,3,3
@@ -767,6 +1194,7 @@ mosk_dun01,1,1,5	duplicate(stageHint)	Stage Hint#1	111,400,400
 mosk_dun01,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#1	2452,2,2
 mosk_dun01,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#1	1878
 mosk_dun01,1,1,5	duplicate(trader)	แมวแม่ค้า#1	877
+mosk_dun01	mapflag	monster_noteleport
 
 mosk_dun02,164,35,3	duplicate(bomberianWarper)	Bomberian Warper#2	727
 mosk_dun02,130,155,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#2	722,3,3
@@ -775,6 +1203,7 @@ mosk_dun02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#2	2452,2,2
 mosk_dun02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#2	1878
 mosk_dun02,234,213,4	duplicate(bomberianUnlocker)	Unlocker#2	723,3,3
 mosk_dun02,1,1,5	duplicate(trader)	แมวแม่ค้า#2	877
+mosk_dun02	mapflag	monster_noteleport
 
 mosk_dun03,31,140,5	duplicate(bomberianWarper)	Bomberian Warper#3	727
 mosk_dun03,205,211,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#3	722,3,3
@@ -782,6 +1211,7 @@ mosk_dun03,1,1,5	duplicate(stageHint)	Stage Hint#3	111,400,400
 mosk_dun03,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#3	2452,2,2
 mosk_dun03,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#3	1878
 mosk_dun03,1,1,5	duplicate(trader)	แมวแม่ค้า#3	877
+mosk_dun03	mapflag	monster_noteleport
 
 mosk_que,57,19,3	duplicate(bomberianWarper)	Bomberian Warper#4	727
 mosk_que,48,217,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#4	722,3,3
@@ -789,6 +1219,7 @@ mosk_que,1,1,5	duplicate(stageHint)	Stage Hint#4	111,400,400
 mosk_que,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#4	2452,2,2
 mosk_que,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#4	1878
 mosk_que,1,1,5	duplicate(trader)	แมวแม่ค้า#4	877
+mosk_que	mapflag	monster_noteleport
 
 hu_fild02,289,36,5	duplicate(bomberianWarper)	Bomberian Warper#5	727
 hu_fild02,147,261,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#5	722,3,3
@@ -797,6 +1228,7 @@ hu_fild02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#5	2452,2,2
 hu_fild02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#5	1878
 hu_fild02,267,273,4	duplicate(bomberianUnlocker)	Unlocker#5	723,3,3
 hu_fild02,1,1,5	duplicate(trader)	แมวแม่ค้า#5	877
+hu_fild02	mapflag	monster_noteleport
 
 cave,108,33,3	duplicate(bomberianWarper)	Bomberian Warper#6	727
 cave,83,100,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#6	722,3,3
@@ -804,6 +1236,7 @@ cave,1,1,5	duplicate(stageHint)	Stage Hint#6	111,400,400
 cave,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#6	2452,2,2
 cave,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#6	1878
 cave,1,1,5	duplicate(trader)	แมวแม่ค้า#6	877
+cave	mapflag	monster_noteleport
 
 odin_tem01,97,148,3	duplicate(bomberianWarper)	Bomberian Warper#7	727
 odin_tem01,384,333,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#7	722,3,3
@@ -811,6 +1244,7 @@ odin_tem01,1,1,5	duplicate(stageHint)	Stage Hint#7	111,400,400
 odin_tem01,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#7	2452,2,2
 odin_tem01,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#7	1878
 odin_tem01,1,1,5	duplicate(trader)	แมวแม่ค้า#7	877
+odin_tem01	mapflag	monster_noteleport
 
 odin_tem02,31,340,3	duplicate(bomberianWarper)	Bomberian Warper#8	727
 odin_tem02,152,350,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#8	722,3,3
@@ -818,3 +1252,105 @@ odin_tem02,1,1,5	duplicate(stageHint)	Stage Hint#8	111,400,400
 odin_tem02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#8	2452,2,2
 odin_tem02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#8	1878
 odin_tem02,1,1,5	duplicate(trader)	แมวแม่ค้า#8	877
+odin_tem02	mapflag	monster_noteleport
+
+kh_kiehl02,52,14,3	duplicate(bomberianWarper)	Bomberian Warper#9	727
+kh_kiehl02,49,72,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#9	722,3,3
+kh_kiehl02,1,1,5	duplicate(stageHint)	Stage Hint#9	111,400,400
+kh_kiehl02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#9	2452,2,2
+kh_kiehl02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#9	1878
+kh_kiehl02,1,1,5	duplicate(trader)	แมวแม่ค้า#9	877
+kh_kiehl02,32,43,5	duplicate(bomberianBuff)	อุปกรณ์ช่วยเหลือ 1#9	10043,3,3
+kh_kiehl02,67,58,5	duplicate(bomberianBuff)	อุปกรณ์ช่วยเหลือ 2#9	10043,3,3
+kh_kiehl02	mapflag	monster_noteleport
+
+kh_kiehl01,169,183,3	duplicate(bomberianWarper)	Bomberian Warper#10	727
+kh_kiehl01,10,31,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#10	722,3,3
+kh_kiehl01,1,1,5	duplicate(stageHint)	Stage Hint#10	111,400,400
+kh_kiehl01,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#10	2452,2,2
+kh_kiehl01,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#10	1878
+kh_kiehl01,1,1,5	duplicate(trader)	แมวแม่ค้า#10	877
+kh_kiehl01,42,32,0	warp	blWarp1	1,1,kh_kiehl01,58,33
+kh_kiehl01,55,34,0	warp	blWarp2	1,1,kh_kiehl01,40,32
+kh_kiehl01,174,38,0	warp	blWarp3	1,1,kh_kiehl01,174,55
+kh_kiehl01,174,52,0	warp	blWarp4	1,1,kh_kiehl01,174,36
+kh_kiehl01,79,108,0	warp	blWarp5	1,1,kh_kiehl01,66,108
+kh_kiehl01,68,108,0	warp	blWarp6	1,1,kh_kiehl01,82,108
+kh_kiehl01,40,177,0	warp	blWarp7	1,1,kh_kiehl01,52,177
+kh_kiehl01,50,177,0	warp	blWarp8	1,1,kh_kiehl01,38,177
+kh_kiehl01	mapflag	monster_noteleport
+
+ra_san01,144,16,3	duplicate(bomberianWarper)	Bomberian Warper#11	727
+ra_san01,140,139,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#11	722,3,3
+ra_san01,48,48,4	duplicate(bomberianAltar1)	แท่นบูชาที่ 1#11	1906,3,3
+ra_san01,48,231,4	duplicate(bomberianAltar2)	แท่นบูชาที่ 2#11	1906,3,3
+ra_san01,231,48,4	duplicate(bomberianAltar3)	แท่นบูชาที่ 3#11	1906,3,3
+ra_san01,231,231,4	duplicate(bomberianAltar4)	แท่นบูชาที่ 4#11	1906,3,3
+ra_san01,1,1,5	duplicate(stageHint)	Stage Hint#11	111,400,400
+ra_san01,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#11	2452,2,2
+ra_san01,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#11	1878
+ra_san01,1,1,5	duplicate(trader)	แมวแม่ค้า#11	877
+ra_san01	mapflag	monster_noteleport
+
+ra_san02,218,13,3	duplicate(bomberianWarper)	Bomberian Warper#12	727
+ra_san02,214,277,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#12	722,3,3
+ra_san02,1,1,5	duplicate(stageHint)	Stage Hint#12	111,400,400
+ra_san02,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#12	2452,2,2
+ra_san02,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#12	1878
+ra_san02,1,1,5	duplicate(trader)	แมวแม่ค้า#12	877
+ra_san02	mapflag	monster_noteleport
+
+ra_san03,4,154,3	duplicate(bomberianWarper)	Bomberian Warper#13	727
+ra_san03,123,283,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#13	722,3,3
+ra_san03,1,1,5	duplicate(stageHint)	Stage Hint#13	111,400,400
+ra_san03,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#13	2452,2,2
+ra_san03,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#13	1878
+ra_san03,263,21,4	duplicate(bomberianUnlocker)	Unlocker#13	723,3,3
+ra_san03,1,1,5	duplicate(trader)	แมวแม่ค้า#13	877
+ra_san03	mapflag	monster_noteleport
+
+ra_san04,117,35,3	duplicate(bomberianWarper)	Bomberian Warper#14	727
+ra_san04,36,220,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#14	722,3,3
+ra_san04,1,1,5	duplicate(stageHint)	Stage Hint#14	111,400,400
+ra_san04,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#14	2452,2,2
+ra_san04,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#14	1878
+ra_san04,1,1,5	duplicate(trader)	แมวแม่ค้า#14	877
+ra_san04	mapflag	monster_noteleport
+
+que_rachel,34,140,5	duplicate(bomberianWarper)	Bomberian Warper#15	727
+que_rachel,293,45,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#15	722,3,3
+que_rachel,1,1,5	duplicate(stageHint)	Stage Hint#15	111,400,400
+que_rachel,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#15	2452,2,2
+que_rachel,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#15	1878
+que_rachel,1,1,5	duplicate(trader)	แมวแม่ค้า#15	877
+que_rachel	mapflag	monster_noteleport
+
+ra_temple,118,24,3	duplicate(bomberianWarper)	Bomberian Warper#16	727
+ra_temple,120,181,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#16	722,3,3
+ra_temple,1,1,5	duplicate(stageHint)	Stage Hint#16	111,400,400
+ra_temple,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#16	2452,2,2
+ra_temple,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#16	1878
+ra_temple,1,1,5	duplicate(trader)	แมวแม่ค้า#16	877
+ra_temple	mapflag	monster_noteleport
+
+ra_san05,149,13,3	duplicate(bomberianWarper)	Bomberian Warper#17	727
+ra_san05,150,145,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#17	722,3,3
+ra_san05,40,40,4	duplicate(bomberianAltar1)	แท่นบูชาที่ 1#17	1906,3,3
+ra_san05,40,259,4	duplicate(bomberianAltar2)	แท่นบูชาที่ 2#17	1906,3,3
+ra_san05,259,40,4	duplicate(bomberianAltar3)	แท่นบูชาที่ 3#17	1906,3,3
+ra_san05,259,259,4	duplicate(bomberianAltar4)	แท่นบูชาที่ 4#17	1906,3,3
+ra_san05,1,1,5	duplicate(stageHint)	Stage Hint#17	111,400,400
+ra_san05,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#17	2452,2,2
+ra_san05,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#17	1878
+ra_san05,1,1,5	duplicate(trader)	แมวแม่ค้า#17	877
+ra_san05	mapflag	monster_noteleport
+
+ra_temsky,102,12,3	duplicate(bomberianWarper)	Bomberian Warper#18	727
+ra_temsky,100,117,4	duplicate(bomberianStage)	ชนเพื่อผ่านด่าน#18	722,3,3
+ra_temsky,1,1,5	duplicate(stageHint)	Stage Hint#18	111,400,400
+ra_temsky,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#18	2452,2,2
+ra_temsky,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#18	1878
+ra_temsky,1,1,5	duplicate(trader)	แมวแม่ค้า#18	877
+ra_temsky,68,96,5	duplicate(bomberianBuff)	อุปกรณ์ช่วยเหลือ 1#18	10043,3,3
+ra_temsky,131,96,5	duplicate(bomberianBuff)	อุปกรณ์ช่วยเหลือ 2#18	10043,3,3
+ra_temsky	mapflag	monster_noteleport

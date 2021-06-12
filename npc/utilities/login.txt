@@ -1,8 +1,5 @@
 -	script	loginCheck	-1,{
 OnPCLoginEvent:
-	// Enter game announce
-	announce strcharinfo(0) + " ได้เข้าสู่เกม!",bc_all,0x28FF32;
-
 	// Send remaining new player that still on malaya to que_moon
 	if(strcharinfo(3) == "malaya" && BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
 		warp "que_moon",100,12;

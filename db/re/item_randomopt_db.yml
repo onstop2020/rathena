@@ -923,3 +923,7 @@ Body:
     Option: SKILL_CLOAKING
     Script: |
       skill 135,getrandomoptinfo(ROA_VALUE),1;
+  - Id: 251
+    Option: ALL_STATUS
+    Script: |
+      bonus bAllStats,getrandomoptinfo(ROA_VALUE);
