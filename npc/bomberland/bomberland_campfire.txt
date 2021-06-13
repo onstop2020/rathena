@@ -1,0 +1,43 @@
+-	shop	campfireShop	-1,501:50
+
+-	script	bomberlandCampfire	-1,{
+	message strcharinfo(0),"เชื้อเพลิงคงเหลือ " + $campfireFuel + " นาที";
+	callshop "campfireShop",2;
+	npcshopattach "campfireShop";
+	end;
+	
+OnTimer10000:
+OnTimer20000:
+OnTimer30000:
+OnTimer40000:
+OnTimer50000:
+	if($campfireFuel > 0){
+		getmapxy(.@mapName$,.@x,.@y,BL_NPC,strnpcinfo(0));
+		areapercentheal .@mapName$,(.@x - 5),(.@y + 5),(.@x + 5),(.@y - 5),10,10;
+	}
+	end;
+
+OnTimer60000:
+	if($campfireFuel > 0)
+	$campfireFuel--;
+	
+OnInit:
+	initnpctimer;
+	end;
+	
+OnSellItem:
+	for(.@i = 0; .@i < getarraysize(@sold_nameid); .@i++){
+		if (countitem(@sold_nameid[.@i]) < @sold_quantity[.@i] || @sold_quantity[.@i] <= 0)
+		end;
+		else if (@sold_nameid[.@i] != 1065){
+			delitem @sold_nameid[.@i],@sold_quantity[.@i];
+			$campfireFuel += (10 * @sold_quantity[.@i]);
+		}
+	}
+	deletearray @sold_quantity,getarraysize(@sold_quantity);
+	deletearray @sold_nameid,getarraysize(@sold_nameid);
+	message strcharinfo(0),"เชื้อเพลิงคงเหลือ " + $campfireFuel + " นาที";
+	close;
+}
+
+moscovia,223,192,5	duplicate(bomberlandCampfire)	แคมป์ไฟ	10252
