@@ -155,11 +155,15 @@ function	script	StageBuff	{
 	
 	if(.@stageIndex == 9){
 		bonus_script "{ bonus bInt,500; bonus bDex,500; }",10,0,1,990;
-		message strcharinfo(0),"คุณได้รับพลัง เหนือธรรมชาติ เป็นเวลา 10 วินาที";
+		message strcharinfo(0),"คุณรู้สึกแน่วแน่ขึ้น เป็นเวลา 10 วินาที";
 	}
-	if(.@stageIndex == 18){
+	else if(.@stageIndex == 14){
+		bonus_script "{ bonus bAllStats,75; }",15,0,1,990;
+		message strcharinfo(0),"คุณรู้สึกถึงร่างกายที่แข็งแกร่งขึ้น เป็นเวลา 15 วินาที";
+	}
+	else if(.@stageIndex == 18){
 		bonus_script "{ bonus bDef,3800; bonus bDef2,3800; bonus bMdef,3800; bonus bMdef2,3800; bonus2 bHPRegenRate,1000,1000; }",10,0,1,990;
-		message strcharinfo(0),"คุณได้รับพลัง เหนือธรรมชาติ เป็นเวลา 10 วินาที";
+		message strcharinfo(0),"คุณใช้ อุปกรณ์ช่วยเหลือ เป็นเวลา 10 วินาที";
 	}
 	
 	return;
@@ -1320,6 +1324,10 @@ ra_san04,1,1,5	duplicate(stageHint)	Stage Hint#14	111,400,400
 ra_san04,1,1,5	duplicate(hiddenTreasure)	สมบัติลับ#14	2452,2,2
 ra_san04,1,1,5	duplicate(replenisher)	ต้นไม้วิเศษ#14	1878
 ra_san04,1,1,5	duplicate(trader)	แมวแม่ค้า#14	877
+ra_san04,86,20,5	duplicate(bomberianBuff)	อุปกรณ์ช่วยเหลือ 1#14	10043,3,3
+ra_san04,153,20,5	duplicate(bomberianBuff)	อุปกรณ์ช่วยเหลือ 2#14	10043,3,3
+ra_san04,107,91,5	duplicate(bomberianBuff)	อุปกรณ์ช่วยเหลือ 3#14	10043,3,3
+ra_san04,132,91,5	duplicate(bomberianBuff)	อุปกรณ์ช่วยเหลือ 4#14	10043,3,3
 ra_san04	mapflag	monster_noteleport
 
 que_rachel,34,140,5	duplicate(bomberianWarper)	Bomberian Warper#15	727
