@@ -303,8 +303,13 @@ OnBossDead:
 	// Kill target
 	// Check killed monster id
 	if(killedrid == $blStageBossId[.stageIndex]){
-		//set getd("$bossAlive" + .@stageIndex),0;
-		
+		for(.@i = 0; .@i < getarraysize($blStageMapName$); .@i++){
+			if($blStageMapName$[.@i] == strcharinfo(3)){
+				set getd(".bossAlive" + .@i),0;
+				break;
+			}
+		}
+
 		// Add party member
 		.@partyId = getcharid(1);
 		if(.@partyId > 0)
@@ -651,11 +656,11 @@ OnInit:
 	freeloop(0);
 	.@bossId = $blStageBossId[.@stageIndex];
 	if(.@bossId > 0){
-		//if(getd("$bossAlive" + .@stageIndex) <= 0){
+		if(getd(".bossAlive" + .@stageIndex) <= 0){
 			monster .@mapName$,$blStageBossX[.@stageIndex],$blStageBossY[.@stageIndex],"--ja--",.@bossId,1,strnpcinfo(0) + "::OnBossDead";
 			setunitdata $@mobid[0],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
-			//set getd("$bossAlive" + .@stageIndex),1;
-		//}
+			set getd(".bossAlive" + .@stageIndex),1;
+		}
 	}
 	return;
 
