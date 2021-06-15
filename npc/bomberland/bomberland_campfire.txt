@@ -22,6 +22,11 @@ OnTimer60000:
 	$campfireFuel--;
 	
 OnInit:
+	.@npcMapName$ = strnpcinfo(4);
+	
+	if(.@npcMapName$ == "")
+	end;
+
 	initnpctimer;
 	end;
 	
