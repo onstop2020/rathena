@@ -17,6 +17,8 @@ OnPCDieEvent:
 			|| .@deadMapName$ == "pvp_y_8-2"
 			|| .@deadMapName$ == "malaya"
 			|| .@deadMapName$ == "que_moon"
+			|| .@deadMapName$ == "prontera"
+			|| .@deadMapName$ == "prt_in"
 			// Check Bomberland players
 			|| playerType == 1
 			)
@@ -54,6 +56,7 @@ OnPCDieEvent:
 			if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
 				set getd("$killed_mr" + .@i),0;
 				set getd("$mr" + .@i),30;
+				killmonsterall strcharinfo(3);
 				break;
 			}
 		}
