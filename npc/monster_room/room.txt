@@ -570,62 +570,12 @@ function	script	SpawnMonsterInRoom	{
 	
 	for(.@i = 0; .@i < .@maxMonster; .@i++){
 		//debugmes "Spawn " + .@i;
-		if(.@room == 1)
-		monster .@mapName$,0,0,"--ja--",$mr1id[rand(0,getarraysize($mr1id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 2)
-		monster .@mapName$,0,0,"--ja--",$mr2id[rand(0,getarraysize($mr2id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 3)
-		monster .@mapName$,0,0,"--ja--",$mr3id[rand(0,getarraysize($mr3id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 4)
-		monster .@mapName$,0,0,"--ja--",$mr4id[rand(0,getarraysize($mr4id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 5)
-		monster .@mapName$,0,0,"--ja--",$mr5id[rand(0,getarraysize($mr5id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 6)
-		monster .@mapName$,0,0,"--ja--",$mr6id[rand(0,getarraysize($mr6id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 7)
-		monster .@mapName$,0,0,"--ja--",$mr7id[rand(0,getarraysize($mr7id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 8)
-		monster .@mapName$,0,0,"--ja--",$mr8id[rand(0,getarraysize($mr8id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 9)
-		monster .@mapName$,0,0,"--ja--",$mr9id[rand(0,getarraysize($mr9id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 10)
-		monster .@mapName$,0,0,"--ja--",$mr10id[rand(0,getarraysize($mr10id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 11)
-		monster .@mapName$,0,0,"--ja--",$mr11id[rand(0,getarraysize($mr11id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 12)
-		monster .@mapName$,0,0,"--ja--",$mr12id[rand(0,getarraysize($mr12id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 13)
-		monster .@mapName$,0,0,"--ja--",$mr13id[rand(0,getarraysize($mr13id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 14)
-		monster .@mapName$,0,0,"--ja--",$mr14id[rand(0,getarraysize($mr14id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 15)
-		monster .@mapName$,0,0,"--ja--",$mr15id[rand(0,getarraysize($mr15id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 16)
-		monster .@mapName$,0,0,"--ja--",$mr16id[rand(0,getarraysize($mr16id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 17)
-		monster .@mapName$,0,0,"--ja--",$mr17id[rand(0,getarraysize($mr17id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 18)
-		monster .@mapName$,0,0,"--ja--",$mr18id[rand(0,getarraysize($mr18id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 19)
-		monster .@mapName$,0,0,"--ja--",$mr19id[rand(0,getarraysize($mr19id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 20)
+		if(.@room == 20)
 		monster .@mapName$,0,0,"--ja--",$allMvp[rand(0,getarraysize($allMvp)-1)],1,"Monster Room Warper::OnMonsterDead";
 		else if(.@room == 21 )
 		monster .@mapName$,0,0,"--ja--",$mrid[rand(0,getarraysize($mrid)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 22)
-		monster .@mapName$,0,0,"--ja--",$mr22id[rand(0,getarraysize($mr22id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 23)
-		monster .@mapName$,0,0,"--ja--",$mr23id[rand(0,getarraysize($mr23id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 24)
-		monster .@mapName$,0,0,"--ja--",$mr24id[rand(0,getarraysize($mr24id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 25)
-		monster .@mapName$,0,0,"--ja--",$mr25id[rand(0,getarraysize($mr25id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 26)
-		monster .@mapName$,0,0,"--ja--",$mr26id[rand(0,getarraysize($mr26id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 27)
-		monster .@mapName$,0,0,"--ja--",$mr27id[rand(0,getarraysize($mr27id)-1)],1,"Monster Room Warper::OnMonsterDead";
-		else if(.@room == 28)
-		monster .@mapName$,0,0,"--ja--",$mr28id[rand(0,getarraysize($mr28id)-1)],1,"Monster Room Warper::OnMonsterDead";
+		else
+		monster .@mapName$,0,0,"--ja--",getd("$mr" + .@room + "id[" + rand(0,getarraysize(getd("$mr" + .@room + "id")) - 1) + "]") ,1,"Monster Room Warper::OnMonsterDead";
 	}
 	return;
 }
