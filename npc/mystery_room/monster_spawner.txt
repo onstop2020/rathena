@@ -252,9 +252,9 @@ OnMonsterDead:
 	// Show npc
 	hideoffnpc "เริ่มต่อสู้";
 	// Sum EXP = Base EXP * Level
-	.@sumEXP = .baseEXP * $mysteryLevel;
+	.sumEXP = .baseEXP * $mysteryLevel;
 	// Dynamic EXP ( 0 ~ (Sum EXP / 2))
-	.@dynamicEXP = rand(0,(.@sumEXP / 2));
+	.@dynamicEXP = rand(0,(.sumEXP / 2));
 	// Unexpected error
 	if(.@dynamicEXP <= 0)
 	.@dynamicEXP = 0;
@@ -262,25 +262,25 @@ OnMonsterDead:
 	if($mysteryDeadCount <= 0){
 		.@isNoDeathBonus = 1;
 		// Dynamic EXP ( 0 ~ (EXP / 5))
-		.@noDeathEXP = rand(0,(.@sumEXP / 5));
+		.@noDeathEXP = rand(0,(.sumEXP / 5));
 		// Unexpected error
 		if(.@noDeathEXP <= 0)
 		.@noDeathEXP = 0;
 	}
-	.@sumEXP += .@dynamicEXP + .@noDeathEXP;
+	.sumEXP += .@dynamicEXP + .@noDeathEXP;
 	// Boss bonus
 	if($mysteryBoss)
-	.@sumEXP *= 2;
+	.sumEXP *= 2;
 	// Show item reward
 	hideoffnpc "กล่องปริศนา#1";
 	hideoffnpc "กล่องปริศนา#2";
 	hideoffnpc "กล่องปริศนา#3";
 	hideoffnpc "กล่องปริศนา#4";
 	// Announce
-	mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " ถูกฆ่าหมดแล้ว!! ทุกคนภายใน Map ได้รับ " + callfunc("F_InsertComma",.@sumEXP) + " EXP " + callfunc("F_InsertComma",.@sumEXP/2) + " Job EXP",0;
+	mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " ถูกฆ่าหมดแล้ว!! ทุกคนภายใน Map ได้รับ " + callfunc("F_InsertComma",.sumEXP) + " EXP " + callfunc("F_InsertComma",.sumEXP/2) + " Job EXP",0;
 	// Give EXP to all player in map
 	addrid(5,0,"bat_c01");
-	getexp .@sumEXP,.@sumEXP/2;
+	getexp .sumEXP,.sumEXP/2;
 	specialeffect2 399;
 	isOpenMysteryBox = 0;
 	end;
