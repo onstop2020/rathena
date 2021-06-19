@@ -38,11 +38,14 @@ Header:
 
 Body:
   - ID: 0
-    Name: "Storage"
+    Name: "Monster - Room Storage"
     Table: storage
   - ID: 1
     Name: "Bomberland Storage"
     Table: storage_bl
+  - ID: 2
+    Name: "Mystery - Room Storage"
+    Table: storage_mystery
 
 Footer:
   Imports:

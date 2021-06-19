@@ -37,3 +37,5 @@ prontera,149,193,5	script	เช่าทุกอย่าง	900,{
 	specialeffect2 EF_TEIHIT3;
 	end;
 }
+
+bat_c01,88,101,5	duplicate(เช่าทุกอย่าง)	เช่าทุกอย่าง#1	900

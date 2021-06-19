@@ -29,6 +29,8 @@ function	script	CustomLoad	{
 	// Bomberland Player
 	else if(playerType == 1)
 	message strcharinfo(0),"ไม่สามารถใช้คำสั่งนี้ได้ เนื่องจากคุณเล่นเกม Bomberland";
+	else if(playerType == 2)
+	message strcharinfo(0),"ไม่สามารถใช้คำสั่งนี้ได้ เนื่องจากคุณเล่นเกม Mystery - Room";
 	
 	return;
 }

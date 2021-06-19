@@ -163,6 +163,8 @@ OnInit:
 	setpcblock PCBLOCK_ALL,false;
 	if(playerType == 1)
 	warp "moscovia",221,191;
+	else if(playerType == 2)
+	warp "bat_c01",102,91;
 	else
 	warp "prontera",156,191;
 	end;
@@ -180,8 +182,8 @@ OnInit:
 
 prontera,175,177,3	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
 moscovia,210,194,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม#2	101
+bat_c01,60,121,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม#3	101
 prt_in,244,168,5	duplicate(viewChanger)	แต่งทุกอย่าง	1681
 prt_in,235,163,5	duplicate(backToTown)	กลับเมือง	101
 prt_in	mapflag	nodrop
 prt_in	mapflag	partylock
-

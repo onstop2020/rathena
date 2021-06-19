@@ -40,12 +40,16 @@ que_moon,100,38,4	script	Start	10385,{
 	// Must check for unexpected error!
 	if(BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
 		mes "สวัสดีครับ ผม Start เองครับ";
-		mes "ตอนนี้ Server มีให้เลือกเล่น 2 เกม";
-		mes "1.) <URL>Monster Room (ความยาก ****)<INFO>https://sites.google.com/view/start-ro/mr</INFO></URL>";
-		mes "2.) <URL>Bomberland (ความยาก **)<INFO>https://sites.google.com/view/start-ro/mr</INFO></URL>";
+		mes "ตอนนี้ Server มีให้เลือกเล่น 3 เกม";
+		mes "1.) <URL>Monster - Room (ความยาก ****)<INFO>https://sites.google.com/view/start-ro/mr</INFO></URL>";
+		mes "2.) <URL>Bomberland (ความยาก **)<INFO>https://sites.google.com/view/start-ro/bl</INFO></URL>";
+		mes "3.) <URL>Mystery - Room (ความยาก **)<INFO>https://sites.google.com/view/start-ro/</INFO></URL>";
 		mes "เลือกเล่นตามที่ชอบได้เลยครับ ขอบคุณครับ";
 		next;
-		menu "1.) Monster Room",L_MonsterRoom,"2.) Bomberland",L_BomberLand;
+		menu "1.) Monster - Room",L_MonsterRoom
+		,"2.) Bomberland",L_BomberLand
+		,"3.) Mystery - Room",L_MysteryRoom
+		;
 		
 		L_MonsterRoom:
 		// Set player type
@@ -92,6 +96,16 @@ que_moon,100,38,4	script	Start	10385,{
 		// Set savepoint and warp to games town
 		savepoint "moscovia",221,191;
 		warp "moscovia",221,191;
+		end;
+		
+		L_MysteryRoom:
+		// Set player type
+		playerType = 2;
+		// Set is already sent to game town. (Only set with 2nd games and upper because players on 1st game can't reach these npc anymore.)
+		isWarpToGame2Town = 1;
+		// Set savepoint and warp to games town
+		savepoint "bat_c01",102,91;
+		warp "bat_c01",102,91;
 		end;
 	}
 	end;

@@ -1,0 +1,10 @@
+-	script	mysteryRoomStorage	-1,{
+	openstorage2 2,STOR_MODE_GET|STOR_MODE_PUT;
+	end;
+	
+	OnInit:
+	waitingroom "คลังเก็บของ",0;
+	end;
+}
+
+bat_c01,77,112,1	duplicate(mysteryRoomStorage)	คลังเก็บของ#3	10005

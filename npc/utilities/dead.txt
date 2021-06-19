@@ -23,9 +23,33 @@ OnPCDieEvent:
 			|| playerType == 1
 			)
 	end;
-
-	// Check Monster - Room Players
-	if(playerType <= 0){
+	
+	// Mystery - Room Players
+	if(playerType == 2 && strcharinfo(3) == "bat_c01"){
+		BaseEXP = 0;
+		JobExp = 0;
+		$mysteryDeadCount++;
+		if($mysteryDeadCount < 10)
+		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! สามารถตายได้อีก " + (10 - $mysteryDeadCount) + " ครั้ง ก่อนที่ Monster จะหายไปและโดนลดระดับลง 1 ระดับ",0,0xFF2828;
+		else{
+			// Clean up monster
+			killmonsterall strcharinfo(3);
+			// Set monster dead
+			$mysterySpawner = 0;
+			// Reset dead count
+			$mysteryDeadCount = 0;
+			// Announce
+			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 1 ชั้น",0;
+			// Show monster spawner npc
+			hideoffnpc "เริ่มต่อสู้";
+			// Decrease mystery level
+			$mysteryLevel -= 2;
+			if($mysteryLevel <= 0)
+			$mysteryLevel = 0;
+		}
+	}
+	// Monster - Room Players
+	else if(playerType <= 0){
 		// Check Head-Top
 		.@headTopId = getequipid(EQI_HEAD_TOP);
 		if(.@headTopId > 0){

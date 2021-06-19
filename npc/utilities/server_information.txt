@@ -9,3 +9,4 @@ OnInit:
 
 prontera,147,174,5	duplicate(serverInfomation)	ข้อมูล Server#1	837
 moscovia,217,184,6	duplicate(serverInfomation)	ข้อมูล Server#2	837
+bat_c01,77,131,5	duplicate(serverInfomation)	ข้อมูล Server#3	837
