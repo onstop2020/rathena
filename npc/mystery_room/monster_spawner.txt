@@ -19,6 +19,8 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			$mysterySpawner = 1;
 			// Reset countdown to spawn
 			$mysterySpawnerCountdown = 30;
+			// Reset dead count
+			$mysteryDeadCount = 0;
 			// Reset tap users
 			deletearray $mysteryTap[0],getarraysize($mysteryTap);
 			// +1 Current Level
@@ -29,6 +31,15 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			// Not MvP
 			else
 			$mysteryBoss = 0;
+			// Set monster tier
+			$monsterTier = $mysteryLevel / 100;
+			// Minimum tier 1
+			if($monsterTier <= 1)
+			$monsterTier = 1;
+			// Maximum tier 19
+			if($monsterTier >= 19)
+			$monsterTier = 19;
+			// Start countdown timer
 			initnpctimer;
 		}
 		end;
@@ -39,17 +50,51 @@ OnTimer1000:
 	$mysterySpawnerCountdown--;
 	// Timeout
 	if($mysterySpawnerCountdown <= 0){
+		// Hide item reward
+		hideonnpc "กล่องปริศนา#1";
+		hideonnpc "กล่องปริศนา#2";
+		hideonnpc "กล่องปริศนา#3";
+		hideonnpc "กล่องปริศนา#4";
 		// Hide npc
 		hideonnpc "เริ่มต่อสู้";
 		// Set monster alive
 		$mysterySpawner = 2;
 		// Set countdown to 0
-		$mysterySpawnerCountdown = 0; 
+		$mysterySpawnerCountdown = 0;
+		// Set mystery box
+		if(rand(0,1) == 0)
+		$mysteryBox1ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
+		else
+		$mysteryBox1ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
+		if(rand(0,1) == 0)
+		$mysteryBox2ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
+		else
+		$mysteryBox2ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
+		if(rand(0,1) == 0)
+		$mysteryBox3ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
+		else
+		$mysteryBox3ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
+		if(rand(0,1) == 0)
+		$mysteryBox4ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
+		else
+		$mysteryBox4ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
 		// Set monster id (Change monster set every 100 level)
-		$mysteryMonsterId = 1002;
+		$mysteryMonsterId = getd("$mr" + $monsterTier + "id[" + rand(0,getarraysize(getd("$mr" + $monsterTier + "id")) - 1) + "]");
 		// Force to spawn boss
 		if($mysteryBoss)
-		$mysteryMonsterId = 1002;
+		$mysteryMonsterId = $allMvp[rand(0,getarraysize($allMvp)-1)];
+		// Monster count
+		.@sumSpawnCount = 1;
+		.@sumLevel = $mysteryLevel;
+		while(.@sumLevel > 100)
+		.@sumLevel -= 100;
+		.@sumSpawnCount = .@sumLevel / 10;
+		if(.@sumSpawnCount <= 1)
+		.@sumSpawnCount = 1;
+		if(rand(0,1) == 0)
+		.@sumSpawnCount *= 2;
+		$mysteryRoomSpawnCount = .@sumSpawnCount;
+		// Spawn now
 		callsub L_SpawnMonster;
 		// Announce
 		mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " ได้ปรากฎขึ้นมาแล้ว!!",0,0xFF5733;
@@ -78,19 +123,130 @@ OnTimer1000:
 	// Check still had timer to reduce
 	if($mysterySpawnerCountdown > 0){
 		// Reduce countdown to spawn
-		$mysterySpawnerCountdown -= 50;
+		$mysterySpawnerCountdown -= 5;
 		// Set tap users
 		setarray $mysteryTap[getarraysize($mysteryTap)],getcharid(3);
 	}
 	return;
 	
 	L_SpawnMonster:
-	monster "bat_c01",104,96,"--ja--",$mysteryMonsterId,1,strnpcinfo(0) + "::OnMonsterDead";
-	setunitdata $@mobid[0],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
+	$mysteryRoomKilled = 0;
+	for(.@i = 0; .@i < $mysteryRoomSpawnCount; .@i++){
+		monster "bat_c01",rand(96,110),rand(96,110),"--ja--",$mysteryMonsterId,1,strnpcinfo(0) + "::OnMonsterDead";
+		
+		getunitdata $@mobid[0],.@tempData;
+		
+		/*npctalk "HP: " + .@tempData[2];
+	npctalk "Max HP: " + .@tempData[3];
+	npctalk "Speed: " + .@tempData[8];
+	npctalk "Str: " + .@tempData[24];
+	npctalk "Agi: " + .@tempData[25];
+	npctalk "Vit: " + .@tempData[26];
+	npctalk "Int: " + .@tempData[27];
+	npctalk "Dex: " + .@tempData[28];
+	npctalk "Luk: " + .@tempData[29];
+	npctalk "Atk Range: " + .@tempData[32];
+	npctalk "Atk Min: " + .@tempData[33];
+	npctalk "Atk Max: " + .@tempData[34];
+	npctalk "MAtk Min: " + .@tempData[35];
+	npctalk "MAtk Max: " + .@tempData[36];
+	npctalk "Def: " + .@tempData[37];
+	npctalk "MDef: " + .@tempData[38];
+	npctalk "Hit: " + .@tempData[39];
+	npctalk "Flee: " + .@tempData[40];
+	npctalk "P.Dodge: " + .@tempData[41];
+	npctalk "Cri: " + .@tempData[42];
+	
+	npctalk "---";*/
+		
+		.@tempHp = .@tempData[2];
+		.@tempMaxHP = .@tempData[3];
+		.@tempSpeed = .@tempData[8];
+		.@tempStr = .@tempData[24];
+		.@tempAgi = .@tempData[25];
+		.@tempVit = .@tempData[26];
+		.@tempInt = .@tempData[27];
+		.@tempDex = .@tempData[28];
+		.@tempLuk = .@tempData[29];
+		.@tempAtkRange = .@tempData[32];
+		.@tempAtkMin = .@tempData[33];
+		.@tempAtkMax = .@tempData[34];
+		.@tempMAtkMin = .@tempData[35];
+		.@tempMAtkMax = .@tempData[36];
+		.@tempDef = .@tempData[37];
+		.@tempMDef = .@tempData[38];
+		.@tempHit = .@tempData[39];
+		.@tempFlee = .@tempData[40];
+		.@tempPDodge = .@tempData[41];
+		.@tempCri = .@tempData[42];
+		
+		.@multiplier = 1;
+		
+		.@sumLevel = $mysteryLevel;
+		while(.@sumLevel > 100)
+		.@sumLevel -= 100;
+		
+		.@multiplier = .@sumLevel / 10;
+
+		if(.@multiplier <= 1)
+		.@multiplier = 1;
+
+		setunitdata $@mobid[0],UMOB_HP,.@tempHp * .@multiplier;
+		setunitdata $@mobid[0],UMOB_MAXHP,.@tempMaxHP * .@multiplier;
+		setunitdata $@mobid[0],UMOB_SPEED,.@tempSpeed * .@multiplier;
+		setunitdata $@mobid[0],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
+		setunitdata $@mobid[0],UMOB_STR,.@tempStr * .@multiplier;
+		setunitdata $@mobid[0],UMOB_AGI,.@tempAgi * .@multiplier;
+		setunitdata $@mobid[0],UMOB_VIT,.@tempVit * .@multiplier;
+		setunitdata $@mobid[0],UMOB_INT,.@tempInt * .@multiplier;
+		setunitdata $@mobid[0],UMOB_DEX,.@tempDex * .@multiplier;
+		setunitdata $@mobid[0],UMOB_LUK,.@tempLuk * .@multiplier;
+		setunitdata $@mobid[0],UMOB_ATKRANGE,.@tempAtkRange * .@multiplier;
+		setunitdata $@mobid[0],UMOB_ATKMIN,.@tempAtkMin * .@multiplier;
+		setunitdata $@mobid[0],UMOB_ATKMAX,.@tempAtkMax * .@multiplier;
+		setunitdata $@mobid[0],UMOB_MATKMIN,.@tempMAtkMin * .@multiplier;
+		setunitdata $@mobid[0],UMOB_MATKMAX,.@tempMAtkMax * .@multiplier;
+		setunitdata $@mobid[0],UMOB_DEF,.@tempDef * .@multiplier;
+		setunitdata $@mobid[0],UMOB_MDEF,.@tempMDef * .@multiplier;
+		setunitdata $@mobid[0],UMOB_HIT,.@tempHit * .@multiplier;
+		setunitdata $@mobid[0],UMOB_FLEE,.@tempFlee * .@multiplier;
+		setunitdata $@mobid[0],UMOB_PDODGE,.@tempPDodge * .@multiplier;
+		setunitdata $@mobid[0],UMOB_CRIT,.@tempCri * .@multiplier;
+		
+		/*getunitdata $@mobid[0],.@tempData;
+	
+	npctalk "HP: " + .@tempData[2];
+	npctalk "Max HP: " + .@tempData[3];
+	npctalk "Speed: " + .@tempData[8];
+	npctalk "Str: " + .@tempData[24];
+	npctalk "Agi: " + .@tempData[25];
+	npctalk "Vit: " + .@tempData[26];
+	npctalk "Int: " + .@tempData[27];
+	npctalk "Dex: " + .@tempData[28];
+	npctalk "Luk: " + .@tempData[29];
+	npctalk "Atk Range: " + .@tempData[32];
+	npctalk "Atk Min: " + .@tempData[33];
+	npctalk "Atk Max: " + .@tempData[34];
+	npctalk "MAtk Min: " + .@tempData[35];
+	npctalk "MAtk Max: " + .@tempData[36];
+	npctalk "Def: " + .@tempData[37];
+	npctalk "MDef: " + .@tempData[38];
+	npctalk "Hit: " + .@tempData[39];
+	npctalk "Flee: " + .@tempData[40];
+	npctalk "P.Dodge: " + .@tempData[41];
+	npctalk "Cri: " + .@tempData[42];*/
+	}
 	return;
 	
 	// Any monster dead goes here
 OnMonsterDead:
+	$mysteryRoomKilled++;
+	if($mysteryRoomKilled < $mysteryRoomSpawnCount)
+	{
+		// Announce
+		mapannounce "bat_c01","ฆ่าแล้ว " + $mysteryRoomKilled + "/" + $mysteryRoomSpawnCount,0;
+		end;
+	}
 	// Set monster dead
 	$mysterySpawner = 0;
 	// Show npc
@@ -116,12 +272,17 @@ OnMonsterDead:
 	if($mysteryBoss)
 	.@sumEXP *= 2;
 	// Show item reward
-	hideoffnpc "รางวัล";
+	hideoffnpc "กล่องปริศนา#1";
+	hideoffnpc "กล่องปริศนา#2";
+	hideoffnpc "กล่องปริศนา#3";
+	hideoffnpc "กล่องปริศนา#4";
 	// Announce
-	mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " ถูกฆ่า!! ทุกคนภายใน Map ได้รับ " + callfunc("F_InsertComma",.@sumEXP) + " EXP " + callfunc("F_InsertComma",.@sumEXP/2) + " Job EXP",0;
+	mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " ถูกฆ่าหมดแล้ว!! ทุกคนภายใน Map ได้รับ " + callfunc("F_InsertComma",.@sumEXP) + " EXP " + callfunc("F_InsertComma",.@sumEXP/2) + " Job EXP",0;
 	// Give EXP to all player in map
 	addrid(5,0,"bat_c01");
 	getexp .@sumEXP,.@sumEXP/2;
+	specialeffect2 399;
+	isOpenMysteryBox = 0;
 	end;
 	
 	// Initialize

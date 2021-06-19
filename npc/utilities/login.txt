@@ -26,6 +26,9 @@ OnPCLoginEvent:
 	// Bomberland Player Login
 	else if(playerType == 1 && isWarpToGame2Town)
 	callfunc("RefreshBomberian");
+	// Mystery - Room Player Login
+	else if(playerType == 2 && isWarpToGame2Town)
+	callfunc("RefreshMystrian");
 	
 	// Dresser
 	setlook LOOK_HEAD_TOP,head1;
@@ -101,6 +104,8 @@ que_moon,100,38,4	script	Start	10385,{
 		L_MysteryRoom:
 		// Set player type
 		playerType = 2;
+		// Initialize
+		callfunc("RefreshMystrian");
 		// Set is already sent to game town. (Only set with 2nd games and upper because players on 1st game can't reach these npc anymore.)
 		isWarpToGame2Town = 1;
 		// Set savepoint and warp to games town

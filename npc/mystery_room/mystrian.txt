@@ -1,0 +1,8 @@
+function	script	RefreshMystrian	{
+	// Remove old bomberian buff
+	bonus_script_clear 1;
+	
+	// Add new mystrian buff
+	bonus_script "{ bonus2 bExpAddClass,Class_All,-100; }",86400;
+	return;
+}
