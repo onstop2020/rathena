@@ -5,6 +5,10 @@ function	script	RefreshBomberian	{
 	.@skillMultiplier = 50;
 	.@skillMultiplier2 = 5;
 	
+	.@falconBonus$ = "";
+	if(falconLearn)
+	.@falconBonus$ = "bonus2 bSkillAtk,129," + (blUpg6 * .@skillMultiplier) + ";";
+	
 	// Add new bomberian buff
 	bonus_script "{ bonus bMaxSP," + blUpg1
 	+ "; bonus bSPrecovRate," + (blUpg2 * .@skillMultiplier2)
@@ -13,7 +17,9 @@ function	script	RefreshBomberian	{
 	+ "; bonus2 bSkillAtk,123," + (blUpg5 * .@skillMultiplier)
 	+ "; bonus2 bExpAddClass,Class_All,-100"
 	+ "; bonus bAspd,-9999"
-	+ "; }"
+	+ "; "
+	+ .@falconBonus$
+	+ "}"
 	,86400;
 
 	// Infomation for player
@@ -22,7 +28,10 @@ function	script	RefreshBomberian	{
 	dispbottom "Land Mine แรงขึ้น +" + callfunc("F_InsertComma",(blUpg3 * .@skillMultiplier)) + "%";
 	dispbottom "Blast Mine แรงขึ้น +" + callfunc("F_InsertComma",(blUpg4 * .@skillMultiplier)) + "%";
 	dispbottom "Claymore Trap แรงขึ้น +" + callfunc("F_InsertComma",(blUpg5 * .@skillMultiplier)) + "%";
-	
+	if(falconLearn){
+		dispbottom "Blitz Beat แรงขึ้น +" + callfunc("F_InsertComma",(blUpg6 * .@skillMultiplier)) + "%";
+	}
+
 	specialeffect2 564;
 	
 	return;

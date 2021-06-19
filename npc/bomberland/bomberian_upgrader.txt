@@ -17,6 +17,7 @@
 	,"Land Mine แรงขึ้น (ใช้ " + callfunc("F_InsertComma",(blUpg3 + 1)) + " Point)",L_Upgrade3
 	,"Blast Mine แรงขึ้น (ใช้ " + callfunc("F_InsertComma",(blUpg4 + 1)) + " Point)",L_Upgrade4
 	,"Claymore Trap แรงขึ้น (ใช้ " + callfunc("F_InsertComma",(blUpg5 + 1)) + " Point)",L_Upgrade5
+	,falconLearn ? "Blitz Beat แรงขึ้น (ใช้ " + callfunc("F_InsertComma",(blUpg6 + 1)) + " Point)" : "-Locked-",L_Upgrade6
 	;
 	
 	L_Upgrade1:
@@ -34,18 +35,25 @@
 	L_Upgrade5:
 	callsub L_Trade,5;
 	end;
+	L_Upgrade6:
+	if(falconLearn)
+	callsub L_Trade,6;
+	end;
 	
 	L_Trade:
 	.@upgType = getarg(0);
+	
+	.@sumPrice = (getd("blUpg" + .@upgType) + 1);
+
 	if(getd("blUpg" + .@upgType) >= .maxUpgrade){
 		mes "Upgrade ดังกล่าวถึงขั้นสูงสุดแล้ว";
 		close;
 	}
-	else if(blPoint < (getd("blUpg" + .@upgType) + 1)){
+	else if(blPoint < .@sumPrice){
 		mes "Bomberland Point ไม่เพียงพอ";
 		close;
 	}
-	blPoint -= (getd("blUpg" + .@upgType) + 1);
+	blPoint -= .@sumPrice;
 	set getd("blUpg" + .@upgType),getd("blUpg" + .@upgType) + 1;
 	callfunc("RefreshBomberian");
 	percentheal 100,100;

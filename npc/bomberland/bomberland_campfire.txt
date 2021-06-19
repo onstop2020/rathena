@@ -42,7 +42,7 @@ OnSellItem:
 	deletearray @sold_quantity,getarraysize(@sold_quantity);
 	deletearray @sold_nameid,getarraysize(@sold_nameid);
 	message strcharinfo(0),"เชื้อเพลิงคงเหลือ " + $campfireFuel + " นาที";
-	close;
+	end;
 }
 
 moscovia,223,192,5	duplicate(bomberlandCampfire)	แคมป์ไฟ	10252

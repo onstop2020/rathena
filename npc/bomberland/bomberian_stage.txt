@@ -162,7 +162,7 @@ function	script	StageBuff	{
 		message strcharinfo(0),"คุณรู้สึกถึงร่างกายที่แข็งแกร่งขึ้น เป็นเวลา 15 วินาที";
 	}
 	else if(.@stageIndex == 18){
-		bonus_script "{ bonus bDef,3800; bonus bDef2,3800; bonus bMdef,3800; bonus bMdef2,3800; bonus2 bHPRegenRate,1000,1000; }",10,0,1,990;
+		bonus_script "{ bonus bDef,3800; bonus bDef2,3800; bonus bMdef,3800; bonus bMdef2,3800; bonus2 bHPRegenRate,1000,1000; bonus bAgi,500; bonus bDex,500; }",10,0,1,990;
 		message strcharinfo(0),"คุณใช้ อุปกรณ์ช่วยเหลือ เป็นเวลา 10 วินาที";
 	}
 	

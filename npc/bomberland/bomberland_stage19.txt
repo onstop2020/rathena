@@ -1,0 +1,31 @@
+ra_temsky,97,7,6	script	นก	6011,3,3,{
+	end;
+	
+	OnTouch:
+	if(falconLearn){
+		if (ismounting())
+		end;
+		setfalcon;
+		end;
+	}
+	mes "*คุณเจอนกตัวนึง มันกำลังมองมาที่คุณ";
+	next;
+	menu "คุณจะพุ่งเข้าไปจับ",-,"ยกแขนขึ้นมา",L_StayStill;
+	mes "*นกบินหนีไปแล้ว";
+	close;
+	
+	L_StayStill:
+	mes "*นกบินมาหาคุณ!";
+	skill 126,10,0;
+	skill 127,1,0;
+	skill 128,10,0;
+	skill 129,5,0;
+	skill 130,4,0;
+	skill 131,5,0;
+	
+	falconLearn = 1;
+	
+	setfalcon;
+	
+	close;
+}
