@@ -32,7 +32,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			else
 			$mysteryBoss = 0;
 			// Set monster tier
-			$monsterTier = $mysteryLevel / 100;
+			$monsterTier = $mysteryLevel / 30;
 			// Minimum tier 1
 			if($monsterTier <= 1)
 			$monsterTier = 1;
