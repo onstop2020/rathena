@@ -190,6 +190,10 @@ OnTimer1000:
 
 		if(.@multiplier <= 1)
 		.@multiplier = 1;
+		
+		.@multiplier2 = .@multiplier / 2;
+		if(.@multiplier2 <= 1)
+		.@multiplier2 = 1;
 
 		setunitdata $@mobid[0],UMOB_HP,.@tempHp * .@multiplier;
 		setunitdata $@mobid[0],UMOB_MAXHP,.@tempMaxHP * .@multiplier;
@@ -209,7 +213,7 @@ OnTimer1000:
 		setunitdata $@mobid[0],UMOB_DEF,.@tempDef * .@multiplier;
 		setunitdata $@mobid[0],UMOB_MDEF,.@tempMDef * .@multiplier;
 		setunitdata $@mobid[0],UMOB_HIT,.@tempHit * .@multiplier;
-		setunitdata $@mobid[0],UMOB_FLEE,.@tempFlee * .@multiplier;
+		setunitdata $@mobid[0],UMOB_FLEE,.@tempFlee * .@multiplier2;
 		setunitdata $@mobid[0],UMOB_PDODGE,.@tempPDodge * .@multiplier;
 		setunitdata $@mobid[0],UMOB_CRIT,.@tempCri * .@multiplier;
 		
