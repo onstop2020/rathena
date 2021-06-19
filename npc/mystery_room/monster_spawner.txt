@@ -18,15 +18,15 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 		else{
 			$mysterySpawner = 1;
 			// Reset countdown to spawn
-			$mysterySpawnerCountdown = 30;
+			$mysterySpawnerCountdown = 10;
 			// Reset dead count
 			$mysteryDeadCount = 0;
 			// Reset tap users
 			deletearray $mysteryTap[0],getarraysize($mysteryTap);
 			// +1 Current Level
 			$mysteryLevel++;
-			// Every 10 level had 10% chance to spawn MvP (Double reward at the end)
-			if($mysteryLevel % 10 == 0 && rand (0,100) <= 10)
+			// Every 10 level had 50% chance to spawn MvP (Double reward at the end)
+			if($mysteryLevel % 10 == 0 && rand (0,100) <= 50)
 			$mysteryBoss = 1;
 			// Not MvP
 			else
@@ -285,6 +285,7 @@ OnMonsterDead:
 	// Give EXP to all player in map
 	addrid(5,0,"bat_c01");
 	getexp .sumEXP,.sumEXP/2;
+	Zeny += $mysteryLevel * 40;
 	specialeffect2 399;
 	isOpenMysteryBox = 0;
 	end;

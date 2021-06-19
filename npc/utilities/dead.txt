@@ -29,8 +29,8 @@ OnPCDieEvent:
 		BaseEXP = 0;
 		JobExp = 0;
 		$mysteryDeadCount++;
-		if($mysteryDeadCount < 10)
-		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! สามารถตายได้อีก " + (10 - $mysteryDeadCount) + " ครั้ง ก่อนที่ Monster จะหายไปและโดนลดระดับลง 1 ระดับ",0,0xFF2828;
+		if($mysteryDeadCount < 5)
+		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! สามารถตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง ก่อนที่ Monster จะหายไปและโดนลดระดับลง 1 ระดับ",0,0xFF2828;
 		else{
 			// Clean up monster
 			killmonsterall strcharinfo(3);
