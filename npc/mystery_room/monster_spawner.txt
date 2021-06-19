@@ -183,8 +183,8 @@ OnTimer1000:
 		.@multiplier = 1;
 		
 		.@sumLevel = $mysteryLevel;
-		while(.@sumLevel > 100)
-		.@sumLevel -= 100;
+		while(.@sumLevel > 30)
+		.@sumLevel -= 30;
 		
 		.@multiplier = .@sumLevel / 10;
 
