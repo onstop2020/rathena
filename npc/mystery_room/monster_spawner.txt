@@ -23,6 +23,8 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			$mysteryDeadCount = 0;
 			// Reset tap users
 			deletearray $mysteryTap[0],getarraysize($mysteryTap);
+			// Set tap user level
+			$mysteryTapUserLv = BaseLevel;
 			// +1 Current Level
 			$mysteryLevel++;
 			// Every 10 level had 50% chance to spawn MvP (Double reward at the end)
@@ -39,6 +41,29 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			// Maximum tier 19
 			if($monsterTier >= 19)
 			$monsterTier = 19;
+			// Game mode
+			$mysteryMode = rand(0,100);
+			// Announce
+			if($mysteryMode <= 19) // 20%
+			{
+				mapannounce "bat_c01","Mode: ปกติ",0,0x93FF28;
+				$mysteryMode = 0;
+			}
+			else if($mysteryMode <= 69) // 50%
+			{
+				mapannounce "bat_c01","Mode: ตามเลเวลผู้กด",0,0x93FF28;
+				$mysteryMode = 1;
+			}
+			else if($mysteryMode <= 84) // 15%
+			{
+				mapannounce "bat_c01","Mode: ปกติมหาศาล",0,0x93FF28;
+				$mysteryMode = 2;
+			}
+			else if($mysteryMode <= 100) // 15%
+			{
+				mapannounce "bat_c01","Mode: ตามเลเวลผู้กดมหาศาล",0,0x93FF28;
+				$mysteryMode = 3;
+			}
 			// Start countdown timer
 			initnpctimer;
 		}
@@ -78,8 +103,18 @@ OnTimer1000:
 		$mysteryBox4ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
 		else
 		$mysteryBox4ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
+		// Monster set
+		if($mysteryMode == 0 || $mysteryMode == 2)
+		.@sumMonsterSet = $monsterTier;
+		else if($mysteryMode == 1 || $mysteryMode == 3)
+		{
+			.@sumMonsterSet = $mysteryTapUserLv / 30;
+			// Minimum tier 1
+			if(.@sumMonsterSet <= 1)
+			.@sumMonsterSet = 1;
+		}
 		// Set monster id (Change monster set every 30 level)
-		$mysteryMonsterId = getd("$mr" + $monsterTier + "id[" + rand(0,getarraysize(getd("$mr" + $monsterTier + "id")) - 1) + "]");
+		$mysteryMonsterId = getd("$mr" + .@sumMonsterSet + "id[" + rand(0,getarraysize(getd("$mr" + .@sumMonsterSet + "id")) - 1) + "]");
 		// Force to spawn boss
 		if($mysteryBoss)
 		$mysteryMonsterId = $allMvp[rand(0,getarraysize($allMvp)-1)];
@@ -93,6 +128,9 @@ OnTimer1000:
 		.@sumSpawnCount = 1;
 		if(rand(0,1) == 0)
 		.@sumSpawnCount *= 2;
+		// Crazy spawn mode
+		if($mysteryMode == 1 || $mysteryMode == 3)
+		.@sumSpawnCount = 300;
 		$mysteryRoomSpawnCount = .@sumSpawnCount;
 		// Spawn now
 		callsub L_SpawnMonster;
