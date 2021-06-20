@@ -55,11 +55,11 @@ OnPCDieEvent:
 			// Reset dead count
 			$mysteryDeadCount = 0;
 			// Announce
-			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 11 ระดับ",0;
+			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 15 ระดับ",0;
 			// Show npc
 			hideoffnpc "เริ่มต่อสู้";
 			// Decrease mystery level
-			$mysteryLevel -= 11;
+			$mysteryLevel -= 15;
 			if($mysteryLevel <= 0)
 			$mysteryLevel = 0;
 		}
