@@ -136,7 +136,10 @@ OnTimer1000:
 		// Crazy spawn mode
 		if($mysteryMode == 2 || $mysteryMode == 3)
 		.@sumSpawnCount = 40;
-		// Cap at 50
+		// MvP should be 1~15
+		if($mysteryBoss)
+		.@sumSpawnCount = rand(1,15);
+		// Cap at 40
 		if(.@sumSpawnCount >= 40)
 		.@sumSpawnCount = 40;
 		$mysteryRoomSpawnCount = .@sumSpawnCount;
