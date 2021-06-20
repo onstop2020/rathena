@@ -134,7 +134,7 @@ OnTimer1000:
 		if($mysteryMode == 1 || $mysteryMode == 3)
 		.@sumLevel = $mysteryTapUserLv;
 		.@sumSpawnCount = rand(1,.@sumLevel);
-		.@sumSpawnCount /= 10;
+		.@sumSpawnCount /= 5;
 		if(.@sumSpawnCount <= 1)
 		.@sumSpawnCount = 1;
 		// Crazy spawn mode
