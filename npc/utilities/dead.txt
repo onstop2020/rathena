@@ -28,6 +28,19 @@ OnPCDieEvent:
 	if(playerType == 2 && strcharinfo(3) == "bat_c01"){
 		BaseEXP = 0;
 		JobExp = 0;
+		BaseLevel -= 1;
+		if(readparam(bStr) > 1)
+		statusup2 bStr,-1;
+		if(readparam(bAgi) > 1)
+		statusup2 bAgi,-1;
+		if(readparam(bVit) > 1)
+		statusup2 bVit,-1;
+		if(readparam(bInt) > 1)
+		statusup2 bInt,-1;
+		if(readparam(bDex) > 1)
+		statusup2 bDex,-1;
+		if(readparam(bLuk) > 1)
+		statusup2 bLuk,-1;
 		$mysteryDeadCount++;
 		if($mysteryDeadCount < 5)
 		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! สามารถตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง ก่อนที่ Monster จะหายไปและโดนลดระดับลง 1 ระดับ",0,0xFF2828;
