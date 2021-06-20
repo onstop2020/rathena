@@ -27,9 +27,11 @@ function	script	MysteryBox	{
 	// Set item id
 	.@itemId = getd("$mysteryBox" + .@boxNumber + "ItemId");
 
-	// Dynamic value = Level + (0 ~ (Level / 2))
 	.@level = $mysteryLevel;
+	if($mysteryMode == 1 || $mysteryMode == 3)
+	.@level = $mysteryTapUserLv;
 
+	// Dynamic value = Level + (0 ~ (Level / 2))
 	.@dynamicValue = .@level + (rand(0,(.@level / 2)));
 	.@randomizeValueIndex0 = rand(-.@dynamicValue,.@dynamicValue);
 	.@dynamicValue = .@level + (rand(0,(.@level / 2)));
