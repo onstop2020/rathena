@@ -11,7 +11,7 @@ OnPCDieEvent:
 		message strcharinfo(0),lastKiller$ + " ฆ่าคุณ! พิมพ์ @mskill เพื่อตรวจสอบ Skill ที่ Monster มี";
 	}
 	
-	// Check no death penalty maps or Bomberland players
+	// Check no death penalty maps or instant skip for Bomberland players
 	.@deadMapName$ = strcharinfo(3);
 	if(.@deadMapName$ == "pvp_y_7-2"
 			|| .@deadMapName$ == "pvp_y_8-2"
@@ -28,7 +28,7 @@ OnPCDieEvent:
 		// Reset EXP
 		BaseEXP = 0;
 		JobExp = 0;
-		// Decrease Base Level and all status by 1
+		// Decrease base level and all status by 1
 		BaseLevel -= 1;
 		if(readparam(bStr) > 1)
 		statusup2 bStr,-1;
@@ -44,18 +44,19 @@ OnPCDieEvent:
 		statusup2 bLuk,-1;
 		// Dead count increment
 		$mysteryDeadCount++;
-		// Dead count reach
+		// Dead count not reach
 		if($mysteryDeadCount < 5)
 		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! ตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง",0,0xFF2828;
+		// Dead count reached
 		else{
 			// Clean up monster
 			killmonsterall strcharinfo(3);
-			// Set monster dead
+			// Reset mystery spawn state
 			$mysterySpawner = 0;
 			// Reset dead count
 			$mysteryDeadCount = 0;
 			// Announce
-			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 15 ระดับ",0;
+			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! ระดับลดลง 15 ระดับ..",0;
 			// Show npc
 			hideoffnpc "เริ่มต่อสู้";
 			// Decrease mystery level
@@ -64,13 +65,13 @@ OnPCDieEvent:
 			$mysteryLevel = 0;
 		}
 	}
-	// Monster - Room Players
+	// Monster - Room players
 	else if(playerType <= 0){
-		// Check Head-Top
+		// Check knock-out safety
 		.@headTopId = getequipid(EQI_HEAD_TOP);
 		if(.@headTopId > 0){
 			.@equipmentName$ = getequipname(EQI_HEAD_TOP);
-			// Check Refine Count
+			// Check refine count
 			.@refineCount = getequiprefinerycnt(EQI_HEAD_TOP);
 			if(.@refineCount >= (BaseLevel / 10)){
 				message strcharinfo(0),.@equipmentName$ + " ได้กันตายให้คุณ! จำนวนครั้งที่สามารถกันตายได้คงเหลือ 0 ครั้ง";
@@ -91,7 +92,7 @@ OnPCDieEvent:
 		// Dead announce
 		announce strcharinfo(0) + " ตาย!",bc_all,0xFF2828;
 
-		// Reset spawn count and kill count to invoke maps
+		// Reset spawn count, reset kill count and clean up monsters to invoke maps
 		for(.@i = 1; .@i <= 20; .@i++){
 			if(strcharinfo(3) == getd("$mr" + .@i + "name$")){
 				set getd("$killed_mr" + .@i),0;
