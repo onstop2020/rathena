@@ -1,6 +1,7 @@
 -	script	deadSystem	-1,{
 OnPCDieEvent:
 
+	// Reset last hint map for Bomberland players
 	if(playerType == 1)
 	lastHintMapName$ = "";
 
@@ -9,25 +10,26 @@ OnPCDieEvent:
 		lastKiller$ = getunitname(killerrid);
 		message strcharinfo(0),lastKiller$ + " ฆ่าคุณ! พิมพ์ @mskill เพื่อตรวจสอบ Skill ที่ Monster มี";
 	}
-
+	
+	// Check no death penalty maps
 	.@deadMapName$ = strcharinfo(3);
-	if(
-			// Check no death penalty maps
-			.@deadMapName$ == "pvp_y_7-2"
-			|| .@deadMapName$ == "pvp_y_8-2"
-			|| .@deadMapName$ == "malaya"
-			|| .@deadMapName$ == "que_moon"
-			|| .@deadMapName$ == "prontera"
-			|| .@deadMapName$ == "prt_in"
-			// Check Bomberland players
-			|| playerType == 1
-			)
+	if(.@deadMapName$ == "pvp_y_7-2"
+	|| .@deadMapName$ == "pvp_y_8-2"
+	|| .@deadMapName$ == "malaya"
+	|| .@deadMapName$ == "que_moon"
+	|| .@deadMapName$ == "prontera"
+	|| .@deadMapName$ == "prt_in"
+	// Check Bomberland players
+	|| playerType == 1
+	)
 	end;
 	
 	// Mystery - Room Players
 	if(playerType == 2 && strcharinfo(3) == "bat_c01"){
+		// Reset EXP
 		BaseEXP = 0;
 		JobExp = 0;
+		// Decrease Base Level and all status by 1
 		BaseLevel -= 1;
 		if(readparam(bStr) > 1)
 		statusup2 bStr,-1;
@@ -41,7 +43,9 @@ OnPCDieEvent:
 		statusup2 bDex,-1;
 		if(readparam(bLuk) > 1)
 		statusup2 bLuk,-1;
+		// Dead count increment
 		$mysteryDeadCount++;
+		// Dead count reach
 		if($mysteryDeadCount < 5)
 		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! สามารถตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง ก่อนที่ Monster จะหายไปและโดนลดระดับลง 10 ระดับ",0,0xFF2828;
 		else{
@@ -53,7 +57,7 @@ OnPCDieEvent:
 			$mysteryDeadCount = 0;
 			// Announce
 			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 10 ระดับ",0;
-			// Show monster spawner npc
+			// Show npc
 			hideoffnpc "เริ่มต่อสู้";
 			// Decrease mystery level
 			$mysteryLevel -= 10;

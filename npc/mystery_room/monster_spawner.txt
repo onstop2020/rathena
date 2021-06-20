@@ -119,7 +119,7 @@ OnTimer1000:
 		.@sumMonsterSet = $monsterTier;
 		else if($mysteryMode == 1 || $mysteryMode == 3)
 		{
-			.@sumMonsterSet = $mysteryTapUserLv / 30;
+			.@sumMonsterSet = $mysteryTapUserLv / 10;
 			if(.@sumMonsterSet <= 1)
 			.@sumMonsterSet = 1;
 		}
