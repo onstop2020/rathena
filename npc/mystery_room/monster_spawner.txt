@@ -343,7 +343,7 @@ OnMonsterDead:
 	
 	// Initialize
 OnInit:
-	.baseEXP = 100;
+	.baseEXP = 10000;
 	// Respawn monster here
 	if($mysterySpawner == 2)
 	callsub L_SpawnMonster;
