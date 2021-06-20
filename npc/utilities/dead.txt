@@ -43,7 +43,7 @@ OnPCDieEvent:
 		statusup2 bLuk,-1;
 		$mysteryDeadCount++;
 		if($mysteryDeadCount < 5)
-		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! สามารถตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง ก่อนที่ Monster จะหายไปและโดนลดระดับลง 1 ระดับ",0,0xFF2828;
+		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! สามารถตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง ก่อนที่ Monster จะหายไปและโดนลดระดับลง 10 ระดับ",0,0xFF2828;
 		else{
 			// Clean up monster
 			killmonsterall strcharinfo(3);
@@ -52,11 +52,11 @@ OnPCDieEvent:
 			// Reset dead count
 			$mysteryDeadCount = 0;
 			// Announce
-			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 1 ชั้น",0;
+			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 10 ระดับ",0;
 			// Show monster spawner npc
 			hideoffnpc "เริ่มต่อสู้";
 			// Decrease mystery level
-			$mysteryLevel -= 2;
+			$mysteryLevel -= 10;
 			if($mysteryLevel <= 0)
 			$mysteryLevel = 0;
 		}
