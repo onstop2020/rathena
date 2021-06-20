@@ -171,6 +171,7 @@ OnTimer1000:
 	
 	L_SpawnMonster:
 	$mysteryRoomKilled = 0;
+	freeloop(1);
 	for(.@i = 0; .@i < $mysteryRoomSpawnCount; .@i++){
 		monster "bat_c01",rand(96,110),rand(96,110),"--ja--",$mysteryMonsterId,1,strnpcinfo(0) + "::OnMonsterDead";
 		
@@ -280,6 +281,7 @@ OnTimer1000:
 	npctalk "P.Dodge: " + .@tempData[41];
 	npctalk "Cri: " + .@tempData[42];*/
 	}
+	freeloop(0);
 	return;
 	
 	// Any monster dead goes here
