@@ -306,6 +306,8 @@ OnMonsterDead:
 	hideoffnpc "เริ่มต่อสู้";
 	// Sum EXP = Base EXP * Level
 	.sumEXP = .baseEXP * $mysteryLevel;
+	if($mysteryMode == 1 || $mysteryMode == 3)
+	.sumEXP = .baseEXP * $mysteryTapUserLv;
 	// Dynamic EXP ( 0 ~ (Sum EXP / 2))
 	.@dynamicEXP = rand(0,(.sumEXP / 2));
 	// Unexpected error
