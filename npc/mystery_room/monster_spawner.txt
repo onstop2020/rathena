@@ -25,8 +25,6 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			deletearray $mysteryTap[0],getarraysize($mysteryTap);
 			// Set tap user level
 			$mysteryTapUserLv = BaseLevel;
-			// +1 Current Level
-			$mysteryLevel++;
 			// Every 10 level had 50% chance to spawn MvP (Double reward at the end)
 			if($mysteryLevel % 10 == 0 && rand (0,100) <= 50)
 			$mysteryBoss = 1;
@@ -46,6 +44,9 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			// Announce
 			if($mysteryMode <= 19) // 20%
 			{
+				// +1 Current Level
+				$mysteryLevel++;
+				
 				mapannounce "bat_c01","Mode: ปกติ",0,0x93FF28;
 				$mysteryMode = 0;
 			}
@@ -56,6 +57,9 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			}
 			else if($mysteryMode <= 84) // 15%
 			{
+				// +1 Current Level
+				$mysteryLevel++;
+				
 				mapannounce "bat_c01","Mode: ปกติมหาศาล",0,0x93FF28;
 				$mysteryMode = 2;
 			}
