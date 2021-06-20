@@ -1,5 +1,5 @@
 function	script	RefreshMystrian	{
-	// Remove old bomberian buff
+	// Remove old mystrian buff
 	bonus_script_clear 1;
 	
 	// Add new mystrian buff
