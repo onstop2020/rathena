@@ -41,7 +41,7 @@ OnPCLoginEvent:
 
 que_moon,100,38,4	script	Start	10385,{
 	// Must check for unexpected error!
-	if(BaseLevel == 1 && JobLevel == 1 && Class == 0 && !isCameFromGame){
+	if(BaseLevel == 1 && JobLevel == 1 && (Class == 0 || Class == 4218) && !isCameFromGame){
 		mes "สวัสดีครับ ผม Start เองครับ";
 		mes "ตอนนี้ Server มีให้เลือกเล่น 3 เกม";
 		mes "1.) <URL>Monster - Room (ความยาก ****)<INFO>https://sites.google.com/view/start-ro/mr</INFO></URL>";
