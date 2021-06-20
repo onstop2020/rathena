@@ -121,6 +121,8 @@ OnTimer1000:
 		// Monster count
 		.@sumSpawnCount = 1;
 		.@sumLevel = $mysteryLevel;
+		if($mysteryMode == 1 || $mysteryMode == 3)
+		.@sumLevel = $mysteryTapUserLv;
 		while(.@sumLevel > 100)
 		.@sumLevel -= 100;
 		.@sumSpawnCount = .@sumLevel / 10;
