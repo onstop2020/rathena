@@ -11,20 +11,19 @@ OnPCDieEvent:
 		message strcharinfo(0),lastKiller$ + " ฆ่าคุณ! พิมพ์ @mskill เพื่อตรวจสอบ Skill ที่ Monster มี";
 	}
 	
-	// Check no death penalty maps
+	// Check no death penalty maps or Bomberland players
 	.@deadMapName$ = strcharinfo(3);
 	if(.@deadMapName$ == "pvp_y_7-2"
-	|| .@deadMapName$ == "pvp_y_8-2"
-	|| .@deadMapName$ == "malaya"
-	|| .@deadMapName$ == "que_moon"
-	|| .@deadMapName$ == "prontera"
-	|| .@deadMapName$ == "prt_in"
-	// Check Bomberland players
-	|| playerType == 1
-	)
+			|| .@deadMapName$ == "pvp_y_8-2"
+			|| .@deadMapName$ == "malaya"
+			|| .@deadMapName$ == "que_moon"
+			|| .@deadMapName$ == "prontera"
+			|| .@deadMapName$ == "prt_in"
+			|| playerType == 1
+			)
 	end;
 	
-	// Mystery - Room Players
+	// Mystery - Room players
 	if(playerType == 2 && strcharinfo(3) == "bat_c01"){
 		// Reset EXP
 		BaseEXP = 0;
@@ -47,7 +46,7 @@ OnPCDieEvent:
 		$mysteryDeadCount++;
 		// Dead count reach
 		if($mysteryDeadCount < 5)
-		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! สามารถตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง ก่อนที่ Monster จะหายไปและโดนลดระดับลง 10 ระดับ",0,0xFF2828;
+		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! ตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง",0,0xFF2828;
 		else{
 			// Clean up monster
 			killmonsterall strcharinfo(3);
@@ -56,11 +55,11 @@ OnPCDieEvent:
 			// Reset dead count
 			$mysteryDeadCount = 0;
 			// Announce
-			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 10 ระดับ",0;
+			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! Monster ได้หายไปแล้วและโดนลดชั้นลง 11 ระดับ",0;
 			// Show npc
 			hideoffnpc "เริ่มต่อสู้";
 			// Decrease mystery level
-			$mysteryLevel -= 10;
+			$mysteryLevel -= 11;
 			if($mysteryLevel <= 0)
 			$mysteryLevel = 0;
 		}
