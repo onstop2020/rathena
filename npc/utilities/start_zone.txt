@@ -41,9 +41,9 @@ OnInit:
 	end;
 }
 
-prontera,138,184,5	duplicate(goToStartZone)	Õ‘π	478
-moscovia,230,184,1	duplicate(goToStartZone)	Õ‘π#2	478
-bat_c01,88,131,3	duplicate(goToStartZone)	Õ‘π#3	478
+//prontera,138,184,5	duplicate(goToStartZone)	Õ‘π	478
+//moscovia,230,184,1	duplicate(goToStartZone)	Õ‘π#2	478
+//bat_c01,88,131,3	duplicate(goToStartZone)	Õ‘π#3	478
 malaya,236,225,3	duplicate(startZoneBackToTown)	Õ‘π#1	478
 malaya	mapflag	nodrop
 malaya	mapflag	partylock

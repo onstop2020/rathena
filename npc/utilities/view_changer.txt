@@ -180,9 +180,12 @@ OnInit:
 	end;
 }
 
-prontera,175,177,3	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
-moscovia,210,194,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม#2	101
-bat_c01,60,121,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม#3	101
+//prontera,175,177,3	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
+//moscovia,210,194,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม#2	101
+//bat_c01,60,121,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม#3	101
+prontera,175,177,3	duplicate(viewChanger)	แต่งทุกอย่าง#1	101
+moscovia,210,194,5	duplicate(viewChanger)	แต่งทุกอย่าง#2	101
+bat_c01,60,121,5	duplicate(viewChanger)	แต่งทุกอย่าง#3	101
 prt_in,244,168,5	duplicate(viewChanger)	แต่งทุกอย่าง	1681
 prt_in,235,163,5	duplicate(backToTown)	กลับเมือง	101
 prt_in	mapflag	nodrop

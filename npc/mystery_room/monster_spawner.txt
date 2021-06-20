@@ -78,7 +78,7 @@ OnTimer1000:
 		$mysteryBox4ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
 		else
 		$mysteryBox4ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
-		// Set monster id (Change monster set every 100 level)
+		// Set monster id (Change monster set every 30 level)
 		$mysteryMonsterId = getd("$mr" + $monsterTier + "id[" + rand(0,getarraysize(getd("$mr" + $monsterTier + "id")) - 1) + "]");
 		// Force to spawn boss
 		if($mysteryBoss)
