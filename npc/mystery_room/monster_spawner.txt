@@ -132,7 +132,10 @@ OnTimer1000:
 		.@sumSpawnCount *= 2;
 		// Crazy spawn mode
 		if($mysteryMode == 2 || $mysteryMode == 3)
-		.@sumSpawnCount = 60;
+		.@sumSpawnCount = 50;
+		// Cap at 50
+		if(.@sumSpawnCount >= 50)
+		.@sumSpawnCount = 50;
 		$mysteryRoomSpawnCount = .@sumSpawnCount;
 		// Spawn now
 		callsub L_SpawnMonster;
