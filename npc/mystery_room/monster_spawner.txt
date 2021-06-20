@@ -1,14 +1,16 @@
 bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
+	// Unexpected error
 	if($mysterySpawner == 2){
 		message strcharinfo(0),"Monster ตัวเก่ายังอยู่ โปรดฆ่ามันเสียก่อน";
 		end;
 	}
+	// Faster countdown
 	else if($mysterySpawner == 1){
 		callsub L_AlreadyTapCheck;
 		end;
 	}
 	else{
-		message strcharinfo(0),"ขณะนี้อยู่ที่ระดับ: " + callfunc("F_InsertComma",$mysteryLevel);
+		message strcharinfo(0),"ระดับขณะนี้: " + callfunc("F_InsertComma",$mysteryLevel);
 		menu "เริ่มต่อสู้",-;
 		// Unexpected error
 		if($mysterySpawner != 0){
@@ -16,8 +18,9 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			end;
 		}
 		else{
+			// Announcing
 			$mysterySpawner = 1;
-			// Reset countdown to spawn
+			// Reset countdown
 			$mysterySpawnerCountdown = 10;
 			// Reset dead count
 			$mysteryDeadCount = 0;
@@ -28,69 +31,73 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			// Every 10 level had 50% chance to spawn MvP (Double reward at the end)
 			if($mysteryLevel % 10 == 0 && rand (0,100) <= 50)
 			$mysteryBoss = 1;
-			// Not MvP
+			// Otherwise not MvP
 			else
 			$mysteryBoss = 0;
 			// Set monster tier
 			$monsterTier = $mysteryLevel / 30;
-			// Minimum tier 1
 			if($monsterTier <= 1)
 			$monsterTier = 1;
-			// Maximum tier 19
-			if($monsterTier >= 19)
+			else if($monsterTier >= 19)
 			$monsterTier = 19;
-			// Game mode
+			// Set game mode
 			$mysteryMode = rand(0,100);
+			// Set monster buff
+			$mysteryBuff = rand(0,100);
 			// Announce
-			if($mysteryMode <= 19) // 20%
+			delwaitingroom;
+			if($mysteryBoss)
+			.@sumInformation$ = "Mode: MvP!!";
+			else if($mysteryMode <= 19) // 20%
 			{
 				// +1 Current Level
 				$mysteryLevel++;
-				
-				mapannounce "bat_c01","Mode: ปกติ",0,0x93FF28;
+
+				.@sumInformation$ = "Mode: ปกติ (Lv. " + $mysteryLevel + ")";
 				$mysteryMode = 0;
 			}
 			else if($mysteryMode <= 69) // 50%
 			{
-				mapannounce "bat_c01","Mode: ตามเลเวลผู้กด",0,0x93FF28;
+				.@sumInformation$ = "Mode: ตามเลเวลผู้กด (Lv. " + $mysteryTapUserLv + ")";
 				$mysteryMode = 1;
 			}
 			else if($mysteryMode <= 84) // 15%
 			{
 				// +1 Current Level
 				$mysteryLevel++;
-				
-				mapannounce "bat_c01","Mode: ปกติมหาศาล",0,0x93FF28;
+
+				.@sumInformation$ = "Mode: ปกติมหาศาล (Lv. " + $mysteryLevel + ")";
 				$mysteryMode = 2;
 			}
 			else if($mysteryMode <= 100) // 15%
 			{
-				mapannounce "bat_c01","Mode: ตามเลเวลผู้กดมหาศาล",0,0x93FF28;
+				.@sumInformation$ = "Mode: ตามเลเวลผู้กดมหาศาล (Lv. " + $mysteryTapUserLv + ")";
 				$mysteryMode = 3;
 			}
-			// Start countdown timer
+			waitingroom .@sumInformation$,0;
+			mapannounce "bat_c01",.@sumInformation$,0,0x93FF28;
+			// Start countdown
 			initnpctimer;
 		}
 		end;
 	}
 	
-	// Countdown to spawn monster
+	// Countdown
 OnTimer1000:
 	$mysterySpawnerCountdown--;
 	// Timeout
 	if($mysterySpawnerCountdown <= 0){
-		// Hide item reward
+		// Hide npc
 		hideonnpc "กล่องปริศนา#1";
 		hideonnpc "กล่องปริศนา#2";
 		hideonnpc "กล่องปริศนา#3";
 		hideonnpc "กล่องปริศนา#4";
-		// Hide npc
 		hideonnpc "เริ่มต่อสู้";
 		// Set monster alive
 		$mysterySpawner = 2;
 		// Set countdown to 0
 		$mysterySpawnerCountdown = 0;
-		// Set mystery box
+		// Set mystery box reward
 		if(rand(0,1) == 0)
 		$mysteryBox1ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
 		else
@@ -113,23 +120,20 @@ OnTimer1000:
 		else if($mysteryMode == 1 || $mysteryMode == 3)
 		{
 			.@sumMonsterSet = $mysteryTapUserLv / 30;
-			// Minimum tier 1
 			if(.@sumMonsterSet <= 1)
 			.@sumMonsterSet = 1;
 		}
-		// Set monster id (Change monster set every 30 level)
-		$mysteryMonsterId = getd("$mr" + .@sumMonsterSet + "id[" + rand(0,getarraysize(getd("$mr" + .@sumMonsterSet + "id")) - 1) + "]");
 		// Force to spawn boss
 		if($mysteryBoss)
 		$mysteryMonsterId = $allMvp[rand(0,getarraysize($allMvp)-1)];
+		// Set monster id (Change monster set every 30 level)
+		else
+		$mysteryMonsterId = getd("$mr" + .@sumMonsterSet + "id[" + rand(0,getarraysize(getd("$mr" + .@sumMonsterSet + "id")) - 1) + "]");
 		// Monster count
-		.@sumSpawnCount = 1;
 		.@sumLevel = $mysteryLevel;
 		if($mysteryMode == 1 || $mysteryMode == 3)
 		.@sumLevel = $mysteryTapUserLv;
-		while(.@sumLevel > 100)
-		.@sumLevel -= 100;
-		.@sumSpawnCount = .@sumLevel / 10;
+		.@sumSpawnCount = rand(1,.@sumLevel);
 		if(.@sumSpawnCount <= 1)
 		.@sumSpawnCount = 1;
 		if(rand(0,1) == 0)
@@ -144,7 +148,7 @@ OnTimer1000:
 		// Spawn now
 		callsub L_SpawnMonster;
 		// Announce
-		mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " ได้ปรากฎขึ้นมาแล้ว!!",0,0xFF5733;
+		mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " (" + $mysteryRoomSpawnCount + " ตัว) ได้ปรากฎขึ้นมาแล้ว!!",0,0xFF5733;
 		// Stop countdown
 		stopnpctimer;
 	}
@@ -170,14 +174,16 @@ OnTimer1000:
 	// Check still had timer to reduce
 	if($mysterySpawnerCountdown > 0){
 		// Reduce countdown to spawn
-		$mysterySpawnerCountdown -= 5;
+		$mysterySpawnerCountdown -= 4;
 		// Set tap users
 		setarray $mysteryTap[getarraysize($mysteryTap)],getcharid(3);
 	}
 	return;
 	
 	L_SpawnMonster:
+	// Reset kill count
 	$mysteryRoomKilled = 0;
+	// Loop spawn
 	freeloop(1);
 	for(.@i = 0; .@i < $mysteryRoomSpawnCount; .@i++){
 		monster "bat_c01",rand(96,110),rand(96,110),"--ja--",$mysteryMonsterId,1,strnpcinfo(0) + "::OnMonsterDead";
@@ -228,13 +234,8 @@ OnTimer1000:
 		.@tempPDodge = .@tempData[41];
 		.@tempCri = .@tempData[42];
 		
-		.@multiplier = 1;
-		
-		.@sumLevel = $mysteryLevel;
-		while(.@sumLevel > 30)
-		.@sumLevel -= 30;
-		
-		.@multiplier = .@sumLevel / 10;
+		// x2 Every 600 Level
+		.@multiplier = ($mysteryLevel / 600) + 1;
 
 		if(.@multiplier <= 1)
 		.@multiplier = 1;
@@ -300,10 +301,8 @@ OnMonsterDead:
 		mapannounce "bat_c01","ฆ่าแล้ว " + $mysteryRoomKilled + "/" + $mysteryRoomSpawnCount,0;
 		end;
 	}
-	// Set monster dead
+	// All monster dead
 	$mysterySpawner = 0;
-	// Show npc
-	hideoffnpc "เริ่มต่อสู้";
 	// Sum EXP = Base EXP * Level
 	.sumEXP = .baseEXP * $mysteryLevel;
 	if($mysteryMode == 1 || $mysteryMode == 3)
@@ -315,7 +314,6 @@ OnMonsterDead:
 	.@dynamicEXP = 0;
 	// No death bonus
 	if($mysteryDeadCount <= 0){
-		.@isNoDeathBonus = 1;
 		// Dynamic EXP ( 0 ~ (EXP / 5))
 		.@noDeathEXP = rand(0,(.sumEXP / 5));
 		// Unexpected error
@@ -326,7 +324,8 @@ OnMonsterDead:
 	// Boss bonus
 	if($mysteryBoss)
 	.sumEXP *= 2;
-	// Show item reward
+	// Show npc
+	hideoffnpc "เริ่มต่อสู้";
 	hideoffnpc "กล่องปริศนา#1";
 	hideoffnpc "กล่องปริศนา#2";
 	hideoffnpc "กล่องปริศนา#3";
@@ -335,25 +334,34 @@ OnMonsterDead:
 	mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " ถูกฆ่าหมดแล้ว!! ทุกคนภายใน Map ได้รับ " + callfunc("F_InsertComma",.sumEXP) + " EXP " + callfunc("F_InsertComma",.sumEXP/2) + " Job EXP",0;
 	// Give EXP to all player in map
 	addrid(5,0,"bat_c01");
+	// EXP reward
 	getexp .sumEXP,.sumEXP/2;
+	// Zeny reward
+	if($mysteryMode == 1 || $mysteryMode == 3)
+	Zeny += $mysteryTapUserLv * 40;
+	else
 	Zeny += $mysteryLevel * 40;
+	// Visual effect
 	specialeffect2 399;
+	// Reset open box count
 	isOpenMysteryBox = 0;
 	end;
 	
 	// Initialize
 OnInit:
+	// Base EXP
 	.baseEXP = 10000;
-	// Respawn monster here
+	// Respawn monster if still in progress
 	if($mysterySpawner == 2)
 	callsub L_SpawnMonster;
-	// Reset count timer here
-	else if($mysterySpawner == 1)
+	// Otherwise reset it
+	else
 	$mysterySpawner = 0;
 	// Hide / Show here
 	if($mysterySpawner <= 0)
 	hideoffnpc "เริ่มต่อสู้";
 	else
 	hideonnpc "เริ่มต่อสู้";
+	waitingroom "เริ่มต่อสู้",0;
 	end;
 }
