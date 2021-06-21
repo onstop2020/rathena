@@ -49,6 +49,27 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			$mysteryMode = rand(0,100);
 			// Set monster buff
 			$mysteryBuff = rand(0,100);
+			.@sumInformationBuff$ = "Monster Buff: ไม่มี";
+			if($mysteryBuff <= 19) // 20%
+			{
+				.@sumInformationBuff$ = "Monster Buff: Super Attack";
+				$mysteryBuff = 1;
+			}
+			else if($mysteryBuff <= 39) // 20%
+			{
+				.@sumInformationBuff$ = "Monster Buff: Super Defense";
+				$mysteryBuff = 2;
+			}
+			else if($mysteryBuff <= 59) // 20%
+			{
+				.@sumInformationBuff$ = "Monster Buff: Super Health Point";
+				$mysteryBuff = 3;
+			}
+			else
+			{
+				.@sumInformationBuff$ = "Monster Buff: ไม่มี";
+				$mysteryBuff = 0;
+			}
 			// +1 Current Level
 			$mysteryLevel++;
 			// Announce
@@ -76,7 +97,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 				$mysteryMode = 3;
 			}
 			waitingroom .@sumInformation$,0;
-			mapannounce "bat_c01",.@sumInformation$,0,0x93FF28;
+			mapannounce "bat_c01",.@sumInformation$ + " | " + .@sumInformationBuff$,0,0x93FF28;
 			// Start countdown
 			initnpctimer;
 		}
@@ -186,27 +207,27 @@ OnTimer1000:
 		getunitdata $@mobid[0],.@tempData;
 		
 		/*npctalk "HP: " + .@tempData[2];
-	npctalk "Max HP: " + .@tempData[3];
-	npctalk "Speed: " + .@tempData[8];
-	npctalk "Str: " + .@tempData[24];
-	npctalk "Agi: " + .@tempData[25];
-	npctalk "Vit: " + .@tempData[26];
-	npctalk "Int: " + .@tempData[27];
-	npctalk "Dex: " + .@tempData[28];
-	npctalk "Luk: " + .@tempData[29];
-	npctalk "Atk Range: " + .@tempData[32];
-	npctalk "Atk Min: " + .@tempData[33];
-	npctalk "Atk Max: " + .@tempData[34];
-	npctalk "MAtk Min: " + .@tempData[35];
-	npctalk "MAtk Max: " + .@tempData[36];
-	npctalk "Def: " + .@tempData[37];
-	npctalk "MDef: " + .@tempData[38];
-	npctalk "Hit: " + .@tempData[39];
-	npctalk "Flee: " + .@tempData[40];
-	npctalk "P.Dodge: " + .@tempData[41];
-	npctalk "Cri: " + .@tempData[42];
-	
-	npctalk "---";*/
+		npctalk "Max HP: " + .@tempData[3];
+		npctalk "Speed: " + .@tempData[8];
+		npctalk "Str: " + .@tempData[24];
+		npctalk "Agi: " + .@tempData[25];
+		npctalk "Vit: " + .@tempData[26];
+		npctalk "Int: " + .@tempData[27];
+		npctalk "Dex: " + .@tempData[28];
+		npctalk "Luk: " + .@tempData[29];
+		npctalk "Atk Range: " + .@tempData[32];
+		npctalk "Atk Min: " + .@tempData[33];
+		npctalk "Atk Max: " + .@tempData[34];
+		npctalk "MAtk Min: " + .@tempData[35];
+		npctalk "MAtk Max: " + .@tempData[36];
+		npctalk "Def: " + .@tempData[37];
+		npctalk "MDef: " + .@tempData[38];
+		npctalk "Hit: " + .@tempData[39];
+		npctalk "Flee: " + .@tempData[40];
+		npctalk "P.Dodge: " + .@tempData[41];
+		npctalk "Cri: " + .@tempData[42];
+		
+		npctalk "---";*/
 		
 		.@tempHp = .@tempData[2];
 		.@tempMaxHP = .@tempData[3];
@@ -239,50 +260,50 @@ OnTimer1000:
 		if(.@multiplier2 <= 1)
 		.@multiplier2 = 1;
 
-		setunitdata $@mobid[0],UMOB_HP,.@tempHp * .@multiplier;
-		setunitdata $@mobid[0],UMOB_MAXHP,.@tempMaxHP * .@multiplier;
-		setunitdata $@mobid[0],UMOB_SPEED,.@tempSpeed * .@multiplier;
+		setunitdata $@mobid[0],UMOB_HP,($mysteryBuff == 3 ? 999999999 : ((.@tempHp * .@multiplier) < 999999999 ? (.@tempHp * .@multiplier) : 999999999));
+		setunitdata $@mobid[0],UMOB_MAXHP,($mysteryBuff == 3 ? 999999999 : ((.@tempMaxHP * .@multiplier) < 999999999 ? (.@tempMaxHP * .@multiplier) : 999999999));
+		//setunitdata $@mobid[0],UMOB_SPEED,.@tempSpeed * .@multiplier;
 		setunitdata $@mobid[0],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
-		setunitdata $@mobid[0],UMOB_STR,.@tempStr * .@multiplier;
-		setunitdata $@mobid[0],UMOB_AGI,.@tempAgi * .@multiplier;
-		setunitdata $@mobid[0],UMOB_VIT,.@tempVit * .@multiplier;
-		setunitdata $@mobid[0],UMOB_INT,.@tempInt * .@multiplier;
-		setunitdata $@mobid[0],UMOB_DEX,.@tempDex * .@multiplier;
-		setunitdata $@mobid[0],UMOB_LUK,.@tempLuk * .@multiplier;
-		setunitdata $@mobid[0],UMOB_ATKRANGE,.@tempAtkRange * .@multiplier;
-		setunitdata $@mobid[0],UMOB_ATKMIN,.@tempAtkMin * .@multiplier;
-		setunitdata $@mobid[0],UMOB_ATKMAX,.@tempAtkMax * .@multiplier;
-		setunitdata $@mobid[0],UMOB_MATKMIN,.@tempMAtkMin * .@multiplier;
-		setunitdata $@mobid[0],UMOB_MATKMAX,.@tempMAtkMax * .@multiplier;
-		setunitdata $@mobid[0],UMOB_DEF,.@tempDef * .@multiplier;
-		setunitdata $@mobid[0],UMOB_MDEF,.@tempMDef * .@multiplier;
-		setunitdata $@mobid[0],UMOB_HIT,.@tempHit * .@multiplier;
-		setunitdata $@mobid[0],UMOB_FLEE,.@tempFlee * .@multiplier2;
-		setunitdata $@mobid[0],UMOB_PDODGE,.@tempPDodge * .@multiplier;
-		setunitdata $@mobid[0],UMOB_CRIT,.@tempCri * .@multiplier;
+		//setunitdata $@mobid[0],UMOB_STR,($mysteryBuff == 1 ? 5000 : ((.@tempStr * .@multiplier) < 5000 ? (.@tempStr * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_AGI,($mysteryBuff == 2 ? 5000 : ((.@tempAgi * .@multiplier) < 5000 ? (.@tempAgi * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_VIT,($mysteryBuff == 2 ? 5000 : ((.@tempVit * .@multiplier) < 5000 ? (.@tempVit * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_INT,($mysteryBuff == 2 ? 5000 : ((.@tempInt * .@multiplier) < 5000 ? (.@tempInt * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_DEX,($mysteryBuff == 2 ? 5000 : ((.@tempDex * .@multiplier) < 5000 ? (.@tempDex * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_LUK,($mysteryBuff == 2 ? 5000 : ((.@tempLuk * .@multiplier) < 5000 ? (.@tempLuk * .@multiplier) : 5000));
+		//setunitdata $@mobid[0],UMOB_ATKRANGE,($mysteryBuff == 1 ? 6 : (.@tempAtkRange * .@multiplier));
+		//setunitdata $@mobid[0],UMOB_ATKMIN,($mysteryBuff == 1 ? 9998 : (.@tempAtkMin * .@multiplier));
+		//setunitdata $@mobid[0],UMOB_ATKMAX,($mysteryBuff == 1 ? 9999 : (.@tempAtkMax * .@multiplier));
+		//setunitdata $@mobid[0],UMOB_MATKMIN,($mysteryBuff == 1 ? 9998 : (.@tempMAtkMin * .@multiplier));
+		//setunitdata $@mobid[0],UMOB_MATKMAX,($mysteryBuff == 1 ? 9999 : (.@tempMAtkMax * .@multiplier));
+		setunitdata $@mobid[0],UMOB_DEF,($mysteryBuff == 2 ? 9999 : ((.@tempDef * .@multiplier) < 9999 ? (.@tempDef * .@multiplier) : 9999));
+		setunitdata $@mobid[0],UMOB_MDEF,($mysteryBuff == 2 ? 9999 : ((.@tempMDef * .@multiplier) < 9999 ? (.@tempMDef * .@multiplier) : 9999));
+		setunitdata $@mobid[0],UMOB_HIT,($mysteryBuff == 1 ? 9999 : ((.@tempHit * .@multiplier) < 9999 ? (.@tempHit * .@multiplier) : 9999));
+		setunitdata $@mobid[0],UMOB_FLEE,($mysteryBuff == 2 ? 9999 : ((.@tempFlee * .@multiplier) < 9999 ? (.@tempFlee * .@multiplier) : 9999));
+		//setunitdata $@mobid[0],UMOB_PDODGE,($mysteryBuff == 2 ? 9999 : (.@tempPDodge * .@multiplier));
+		setunitdata $@mobid[0],UMOB_CRIT,($mysteryBuff == 1 ? 9999 : ((.@tempCri * .@multiplier) < 9999 ? (.@tempCri * .@multiplier) : 9999));
 		
 		/*getunitdata $@mobid[0],.@tempData;
-	
-	npctalk "HP: " + .@tempData[2];
-	npctalk "Max HP: " + .@tempData[3];
-	npctalk "Speed: " + .@tempData[8];
-	npctalk "Str: " + .@tempData[24];
-	npctalk "Agi: " + .@tempData[25];
-	npctalk "Vit: " + .@tempData[26];
-	npctalk "Int: " + .@tempData[27];
-	npctalk "Dex: " + .@tempData[28];
-	npctalk "Luk: " + .@tempData[29];
-	npctalk "Atk Range: " + .@tempData[32];
-	npctalk "Atk Min: " + .@tempData[33];
-	npctalk "Atk Max: " + .@tempData[34];
-	npctalk "MAtk Min: " + .@tempData[35];
-	npctalk "MAtk Max: " + .@tempData[36];
-	npctalk "Def: " + .@tempData[37];
-	npctalk "MDef: " + .@tempData[38];
-	npctalk "Hit: " + .@tempData[39];
-	npctalk "Flee: " + .@tempData[40];
-	npctalk "P.Dodge: " + .@tempData[41];
-	npctalk "Cri: " + .@tempData[42];*/
+		
+		npctalk "HP: " + .@tempData[2];
+		npctalk "Max HP: " + .@tempData[3];
+		//npctalk "Speed: " + .@tempData[8];
+		npctalk "Str: " + .@tempData[24];
+		npctalk "Agi: " + .@tempData[25];
+		npctalk "Vit: " + .@tempData[26];
+		npctalk "Int: " + .@tempData[27];
+		npctalk "Dex: " + .@tempData[28];
+		npctalk "Luk: " + .@tempData[29];
+		//npctalk "Atk Range: " + .@tempData[32];
+		npctalk "Atk Min: " + .@tempData[33];
+		npctalk "Atk Max: " + .@tempData[34];
+		npctalk "MAtk Min: " + .@tempData[35];
+		npctalk "MAtk Max: " + .@tempData[36];
+		npctalk "Def: " + .@tempData[37];
+		npctalk "MDef: " + .@tempData[38];
+		npctalk "Hit: " + .@tempData[39];
+		npctalk "Flee: " + .@tempData[40];
+		npctalk "P.Dodge: " + .@tempData[41];
+		npctalk "Cri: " + .@tempData[42];*/
 	}
 	freeloop(0);
 	return;

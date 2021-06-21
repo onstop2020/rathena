@@ -6,7 +6,7 @@ OnPCDieEvent:
 	lastHintMapName$ = "";
 
 	// Killer name information
-	if(killerrid > 0 && getunitname(killerrid) != ""){
+	if(killerrid > 0 && getunitname(killerrid) != "" && playerType <= 0){
 		lastKiller$ = getunitname(killerrid);
 		message strcharinfo(0),lastKiller$ + " ฆ่าคุณ! พิมพ์ @mskill เพื่อตรวจสอบ Skill ที่ Monster มี";
 	}
