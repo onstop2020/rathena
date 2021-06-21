@@ -38,7 +38,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			.@sumLevel = $mysteryLevel;
 			freeloop(1);
 			while(.@sumLevel > 600)
-				.@sumLevel -= 600;
+			.@sumLevel -= 600;
 			freeloop(0);
 			$monsterTier = (.@sumLevel + 30) / 30 ;
 			if($monsterTier <= 1)
@@ -158,7 +158,9 @@ OnTimer1000:
 	// Information for players
 	else{
 		// Announce
-		mapannounce "bat_c01","เตรียมตัว.. Monster จะมาภายใน " + $mysterySpawnerCountdown + " วินาที!!",0,0xFF5733;
+		//mapannounce "bat_c01","เตรียมตัว.. Monster จะมาภายใน " + $mysterySpawnerCountdown + " วินาที!!",0,0xFF5733;
+		delwaitingroom;
+		waitingroom $mysterySpawnerCountdown,0;
 		// Continue countdown
 		initnpctimer;
 	}
@@ -306,6 +308,8 @@ OnMonsterDead:
 		waitingroom "ฆ่าแล้ว " + $mysteryRoomKilled + "/" + $mysteryRoomSpawnCount,0;
 		end;
 	}
+	delwaitingroom;
+	waitingroom "ชนะแล้ว!",0;
 	// All monster dead
 	$mysterySpawner = 0;
 	// Sum EXP = Base EXP * Level
