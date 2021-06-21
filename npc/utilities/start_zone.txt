@@ -24,7 +24,8 @@ OnInit:
 	end;
 }
 
--	script	goToStartZone	-1,{
+
+/*-	script	goToStartZone	-1,{
 	mes "สวัสดี! ต้องการพักจากการเล่นเกมอยู่หรือเปล่า?";
 	next;
 	menu "ใช่",-;
@@ -39,7 +40,8 @@ OnInit:
 OnInit:
 	waitingroom "ไปห้องนั่งเล่น",0;
 	end;
-}
+}*/
+
 
 //prontera,138,184,5	duplicate(goToStartZone)	อิน	478
 //moscovia,230,184,1	duplicate(goToStartZone)	อิน#2	478
@@ -49,7 +51,7 @@ malaya	mapflag	nodrop
 malaya	mapflag	partylock
 
 // Idle Minigame
-malaya,226,226,1	script	คนนั่งปาหิน	474,5,5,{
+/*malaya,226,226,1	script	คนนั่งปาหิน	474,5,5,{
 	if(!stoneThrowing){
 		mes "สนใจมานั่งปาหินด้วยกันไหม?";
 		next;
@@ -118,3 +120,4 @@ function	script	ThorwingStone	{
 }
 
 malaya,219,244,5	duplicate(manualThrowStone)	ปาหิน	111
+*/
