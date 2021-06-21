@@ -29,7 +29,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			// Set tap user level
 			$mysteryTapUserLv = BaseLevel;
 			// Every 10 level had 50% chance to spawn MvP (Double reward at the end)
-			if($mysteryLevel % 10 == 0 && rand (0,100) <= 50)
+			if($mysteryLevel > 0 && $mysteryLevel % 10 == 0 && rand (0,100) <= 50)
 			$mysteryBoss = 1;
 			// Otherwise not MvP
 			else
@@ -82,12 +82,14 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 		}
 		end;
 	}
-	
+
 	// Countdown
 OnTimer1000:
 	$mysterySpawnerCountdown--;
 	// Timeout
 	if($mysterySpawnerCountdown <= 0){
+		delwaitingroom;
+		waitingroom "เริ่มต่อสู้!!",0;
 		// Hide npc
 		hideonnpc "กล่องปริศนา#1";
 		hideonnpc "กล่องปริศนา#2";
@@ -99,22 +101,10 @@ OnTimer1000:
 		// Set countdown to 0
 		$mysterySpawnerCountdown = 0;
 		// Set mystery box reward
-		if(rand(0,1) == 0)
-		$mysteryBox1ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
-		else
-		$mysteryBox1ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
-		if(rand(0,1) == 0)
-		$mysteryBox2ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
-		else
-		$mysteryBox2ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
-		if(rand(0,1) == 0)
-		$mysteryBox3ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
-		else
-		$mysteryBox3ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
-		if(rand(0,1) == 0)
-		$mysteryBox4ItemId = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
-		else
-		$mysteryBox4ItemId = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
+		$mysteryBox1ItemId = callfunc("GetRandomMysteryBoxReward");
+		$mysteryBox2ItemId = callfunc("GetRandomMysteryBoxReward");
+		$mysteryBox3ItemId = callfunc("GetRandomMysteryBoxReward");
+		$mysteryBox4ItemId = callfunc("GetRandomMysteryBoxReward");
 		// Monster set
 		if($mysteryMode == 0 || $mysteryMode == 2)
 		.@sumMonsterSet = $monsterTier;
@@ -160,7 +150,7 @@ OnTimer1000:
 		// Announce
 		//mapannounce "bat_c01","เตรียมตัว.. Monster จะมาภายใน " + $mysterySpawnerCountdown + " วินาที!!",0,0xFF5733;
 		delwaitingroom;
-		waitingroom $mysterySpawnerCountdown,0;
+		waitingroom "" + $mysterySpawnerCountdown,0;
 		// Continue countdown
 		initnpctimer;
 	}
@@ -360,17 +350,28 @@ OnMonsterDead:
 OnInit:
 	// Base EXP
 	.baseEXP = 10000;
-	// Respawn monster if still in progress
-	if($mysterySpawner == 2)
-	callsub L_SpawnMonster;
-	// Otherwise reset it
-	else
+	// Always reset spawn state
 	$mysterySpawner = 0;
 	// Hide / Show here
 	if($mysterySpawner <= 0)
 	hideoffnpc "เริ่มต่อสู้";
 	else
 	hideonnpc "เริ่มต่อสู้";
-	waitingroom "เริ่มต่อสู้",0;
+	waitingroom "เริ่มต่อสู้!!",0;
 	end;
+}
+
+function	script	GetRandomMysteryBoxReward	{
+	if(rand(0,1) == 0)
+	.@reward = $allWeaponId[rand(0,$allWeaponIdArraySize - 1)];
+	else
+	.@reward = $allArmorId[rand(0,$allArmorIdArraySize - 1)];
+	.@rand = rand(0,100);
+	// 5% Bonus status point
+	if(.@rand <= 4)
+	.@reward = -1;
+	// 5% Bonus skill point
+	else if(.@rand >= 5 && .@rand <= 9)
+	.@reward = -2;
+	return .@reward;
 }

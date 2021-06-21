@@ -27,6 +27,30 @@ function	script	MysteryBox	{
 	// Set item id
 	.@itemId = getd("$mysteryBox" + .@boxNumber + "ItemId");
 
+	// Status point
+	if(.@itemId == -1 
+			&& (readparam(bStr) < 130
+				|| readparam(bAgi) < 130 
+				|| readparam(bVit) < 130
+				|| readparam(bInt) < 130 
+				|| readparam(bDex) < 130
+				|| readparam(bLuk) < 130))
+	{
+		message strcharinfo(0),"คุณได้รับ 10 Status Point";
+		StatusPoint += 10;
+		end;
+	}
+	else if(.@itemId == -1){
+		message strcharinfo(0),"คุณมี All Status อยู่ที่ 130 แล้ว ไม่สามารถเพิ่ม Status Point ได้อีก";
+		end;
+	}
+	// Skill point
+	else if(.@itemId == -2)
+	{
+		message strcharinfo(0),"คุณได้รับ 1 Skill Point";
+		SkillPoint += 1;
+		end;
+	}
 	.@level = $mysteryLevel;
 	if($mysteryMode == 1 || $mysteryMode == 3)
 	.@level = $mysteryTapUserLv;
