@@ -301,7 +301,9 @@ OnMonsterDead:
 	if($mysteryRoomKilled < $mysteryRoomSpawnCount)
 	{
 		// Announce
-		mapannounce "bat_c01","ฆ่าแล้ว " + $mysteryRoomKilled + "/" + $mysteryRoomSpawnCount,0;
+		//mapannounce "bat_c01","ฆ่าแล้ว " + $mysteryRoomKilled + "/" + $mysteryRoomSpawnCount,0;
+		delwaitingroom;
+		waitingroom "ฆ่าแล้ว " + $mysteryRoomKilled + "/" + $mysteryRoomSpawnCount,0;
 		end;
 	}
 	// All monster dead
