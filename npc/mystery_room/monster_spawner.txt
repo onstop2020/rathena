@@ -35,7 +35,12 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			else
 			$mysteryBoss = 0;
 			// Set monster tier
-			$monsterTier = $mysteryLevel / 30;
+			.@sumLevel = $mysteryLevel;
+			freeloop(1);
+			while(.@sumLevel > 600)
+				.@sumLevel -= 600;
+			freeloop(0);
+			$monsterTier = (.@sumLevel + 30) / 30 ;
 			if($monsterTier <= 1)
 			$monsterTier = 1;
 			else if($monsterTier >= 19)
