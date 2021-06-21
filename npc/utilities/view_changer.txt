@@ -170,7 +170,7 @@ OnInit:
 	end;
 }
 
--	script	goToDress	-1,{
+/*-	script	goToDress	-1,{
 	callfunc("BlockHelper");
 	warp "prt_in",240,162;
 	end;
@@ -178,7 +178,7 @@ OnInit:
 OnInit:
 	waitingroom "ใส่หมวก",0;
 	end;
-}
+}*/
 
 //prontera,175,177,3	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม	101
 //moscovia,210,194,5	duplicate(goToDress)	ไปแต่งตัวจัดเต็ม#2	101

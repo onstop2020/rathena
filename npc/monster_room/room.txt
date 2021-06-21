@@ -166,114 +166,118 @@ OnInit:
 
 	freeloop(1);
 
-	// Fetch monster info
-	deletearray $mrid[0],getarraysize($mrid);
-	deletearray $mr1id[0],getarraysize($mr1id);
-	deletearray $mr2id[0],getarraysize($mr2id);
-	deletearray $mr3id[0],getarraysize($mr3id);
-	deletearray $mr4id[0],getarraysize($mr4id);
-	deletearray $mr5id[0],getarraysize($mr5id);
-	deletearray $mr6id[0],getarraysize($mr6id);
-	deletearray $mr7id[0],getarraysize($mr7id);
-	deletearray $mr8id[0],getarraysize($mr8id);
-	deletearray $mr9id[0],getarraysize($mr9id);
-	deletearray $mr10id[0],getarraysize($mr10id);
-	deletearray $mr11id[0],getarraysize($mr11id);
-	deletearray $mr12id[0],getarraysize($mr12id);
-	deletearray $mr13id[0],getarraysize($mr13id);
-	deletearray $mr14id[0],getarraysize($mr14id);
-	deletearray $mr15id[0],getarraysize($mr15id);
-	deletearray $mr16id[0],getarraysize($mr16id);
-	deletearray $mr17id[0],getarraysize($mr17id);
-	deletearray $mr18id[0],getarraysize($mr18id);
-	deletearray $mr19id[0],getarraysize($mr19id);
-	deletearray $mr20id[0],getarraysize($mr20id);
-	deletearray $mr21id[0],getarraysize($mr21id);
-	deletearray $mr22id[0],getarraysize($mr22id);
-	deletearray $mr23id[0],getarraysize($mr23id);
-	deletearray $mr24id[0],getarraysize($mr24id);
-	deletearray $mr25id[0],getarraysize($mr25id);
-	deletearray $mr26id[0],getarraysize($mr26id);
-	deletearray $mr27id[0],getarraysize($mr27id);
-	deletearray $mr28id[0],getarraysize($mr28id);
-	deletearray $allMvp[0],getarraysize($allMvp);
-	
-	.@lowestMonsterId = 1001;
-	.@highestMonsterId = 3790;
-	
-	for(.@i = .@lowestMonsterId; .@i < .@highestMonsterId; .@i++){
-		// Error monster id
-		if(.@i == 2336)
-		continue;
+	.isFetchNewMonster = 0;
+
+	if(.isFetchNewMonster){
+		// Fetch monster info
+		deletearray $mrid[0],getarraysize($mrid);
+		deletearray $mr1id[0],getarraysize($mr1id);
+		deletearray $mr2id[0],getarraysize($mr2id);
+		deletearray $mr3id[0],getarraysize($mr3id);
+		deletearray $mr4id[0],getarraysize($mr4id);
+		deletearray $mr5id[0],getarraysize($mr5id);
+		deletearray $mr6id[0],getarraysize($mr6id);
+		deletearray $mr7id[0],getarraysize($mr7id);
+		deletearray $mr8id[0],getarraysize($mr8id);
+		deletearray $mr9id[0],getarraysize($mr9id);
+		deletearray $mr10id[0],getarraysize($mr10id);
+		deletearray $mr11id[0],getarraysize($mr11id);
+		deletearray $mr12id[0],getarraysize($mr12id);
+		deletearray $mr13id[0],getarraysize($mr13id);
+		deletearray $mr14id[0],getarraysize($mr14id);
+		deletearray $mr15id[0],getarraysize($mr15id);
+		deletearray $mr16id[0],getarraysize($mr16id);
+		deletearray $mr17id[0],getarraysize($mr17id);
+		deletearray $mr18id[0],getarraysize($mr18id);
+		deletearray $mr19id[0],getarraysize($mr19id);
+		deletearray $mr20id[0],getarraysize($mr20id);
+		deletearray $mr21id[0],getarraysize($mr21id);
+		deletearray $mr22id[0],getarraysize($mr22id);
+		deletearray $mr23id[0],getarraysize($mr23id);
+		deletearray $mr24id[0],getarraysize($mr24id);
+		deletearray $mr25id[0],getarraysize($mr25id);
+		deletearray $mr26id[0],getarraysize($mr26id);
+		deletearray $mr27id[0],getarraysize($mr27id);
+		deletearray $mr28id[0],getarraysize($mr28id);
+		deletearray $allMvp[0],getarraysize($allMvp);
 		
-		.@monsterExp = getmonsterinfo(.@i,MOB_BASEEXP);
-		if(.@monsterExp < 150)
-		continue;
+		.@lowestMonsterId = 1001;
+		.@highestMonsterId = 3790;
 		
-		.@monsterLevel = getmonsterinfo(.@i,MOB_LV);
-		.@monsterMvpExp = getmonsterinfo(.@i,MOB_MVPEXP);
-		
-		.@monsterAttack = getmonsterinfo(.@i,MOB_ATK1);
-		
-		if(.@monsterExp >= 10000 && .@monsterExp < 50000)
-		setarray $mr22id[getarraysize($mr22id)],.@i;
-		else if(.@monsterExp >= 50000 && .@monsterExp < 100000)
-		setarray $mr23id[getarraysize($mr23id)],.@i;
-		else if(.@monsterExp >= 100000 && .@monsterExp < 500000)
-		setarray $mr24id[getarraysize($mr24id)],.@i;
-		else if(.@monsterExp >= 500000 && .@monsterExp < 1000000)
-		setarray $mr25id[getarraysize($mr25id)],.@i;
-		else if(.@monsterExp >= 1000000 && .@monsterExp < 2000000)
-		setarray $mr26id[getarraysize($mr26id)],.@i;
-		else if(.@monsterExp >= 2000000 && .@monsterExp < 5000000)
-		setarray $mr27id[getarraysize($mr27id)],.@i;
-		else if(.@monsterExp >= 5000000)
-		setarray $mr28id[getarraysize($mr28id)],.@i;
-		
-		if(.@monsterLevel > 0){
-			if(.@monsterLevel <= 5 && .@monsterAttack < 50)
-			setarray $mr1id[getarraysize($mr1id)],.@i;
-			else if(.@monsterLevel > 5 && .@monsterLevel <= 20 && .@monsterAttack < 200)
-			setarray $mr2id[getarraysize($mr2id)],.@i;
-			else if(.@monsterLevel > 20 && .@monsterLevel <= 30 && .@monsterAttack < 300)
-			setarray $mr3id[getarraysize($mr3id)],.@i;
-			else if(.@monsterLevel > 30 && .@monsterLevel <= 40 && .@monsterAttack < 400)
-			setarray $mr4id[getarraysize($mr4id)],.@i;
-			else if(.@monsterLevel > 40 && .@monsterLevel <= 50 && .@monsterAttack < 500)
-			setarray $mr5id[getarraysize($mr5id)],.@i;
-			else if(.@monsterLevel > 50 && .@monsterLevel <= 60)
-			setarray $mr6id[getarraysize($mr6id)],.@i;
-			else if(.@monsterLevel > 60 && .@monsterLevel <= 70)
-			setarray $mr7id[getarraysize($mr7id)],.@i;
-			else if(.@monsterLevel > 70 && .@monsterLevel <= 80)
-			setarray $mr8id[getarraysize($mr8id)],.@i;
-			else if(.@monsterLevel > 80 && .@monsterLevel <= 90)
-			setarray $mr9id[getarraysize($mr9id)],.@i;
-			else if(.@monsterLevel > 90 && .@monsterLevel <= 100)
-			setarray $mr10id[getarraysize($mr10id)],.@i;
-			else if(.@monsterLevel > 100 && .@monsterLevel <= 110)
-			setarray $mr11id[getarraysize($mr11id)],.@i;
-			else if(.@monsterLevel > 110 && .@monsterLevel <= 120)
-			setarray $mr12id[getarraysize($mr12id)],.@i;
-			else if(.@monsterLevel > 120 && .@monsterLevel <= 130)
-			setarray $mr13id[getarraysize($mr13id)],.@i;
-			else if(.@monsterLevel > 130 && .@monsterLevel <= 140)
-			setarray $mr14id[getarraysize($mr14id)],.@i;
-			else if(.@monsterLevel > 140 && .@monsterLevel <= 150)
-			setarray $mr15id[getarraysize($mr15id)],.@i;
-			else if(.@monsterLevel > 150 && .@monsterLevel <= 160)
-			setarray $mr16id[getarraysize($mr16id)],.@i;
-			else if(.@monsterLevel > 160 && .@monsterLevel <= 170)
-			setarray $mr17id[getarraysize($mr17id)],.@i;
-			else if(.@monsterLevel > 170 && .@monsterLevel <= 180)
-			setarray $mr18id[getarraysize($mr18id)],.@i;
-			else
-			setarray $mr19id[getarraysize($mr19id)],.@i;
+		for(.@i = .@lowestMonsterId; .@i < .@highestMonsterId; .@i++){
+			// Error monster id
+			if(.@i == 2336)
+			continue;
+			
+			.@monsterExp = getmonsterinfo(.@i,MOB_BASEEXP);
+			if(.@monsterExp < 150)
+			continue;
+			
+			.@monsterLevel = getmonsterinfo(.@i,MOB_LV);
+			.@monsterMvpExp = getmonsterinfo(.@i,MOB_MVPEXP);
+			
+			.@monsterAttack = getmonsterinfo(.@i,MOB_ATK1);
+			
+			if(.@monsterExp >= 10000 && .@monsterExp < 50000)
+			setarray $mr22id[getarraysize($mr22id)],.@i;
+			else if(.@monsterExp >= 50000 && .@monsterExp < 100000)
+			setarray $mr23id[getarraysize($mr23id)],.@i;
+			else if(.@monsterExp >= 100000 && .@monsterExp < 500000)
+			setarray $mr24id[getarraysize($mr24id)],.@i;
+			else if(.@monsterExp >= 500000 && .@monsterExp < 1000000)
+			setarray $mr25id[getarraysize($mr25id)],.@i;
+			else if(.@monsterExp >= 1000000 && .@monsterExp < 2000000)
+			setarray $mr26id[getarraysize($mr26id)],.@i;
+			else if(.@monsterExp >= 2000000 && .@monsterExp < 5000000)
+			setarray $mr27id[getarraysize($mr27id)],.@i;
+			else if(.@monsterExp >= 5000000)
+			setarray $mr28id[getarraysize($mr28id)],.@i;
+			
+			if(.@monsterLevel > 0){
+				if(.@monsterLevel <= 5 && .@monsterAttack < 50)
+				setarray $mr1id[getarraysize($mr1id)],.@i;
+				else if(.@monsterLevel > 5 && .@monsterLevel <= 20 && .@monsterAttack < 200)
+				setarray $mr2id[getarraysize($mr2id)],.@i;
+				else if(.@monsterLevel > 20 && .@monsterLevel <= 30 && .@monsterAttack < 300)
+				setarray $mr3id[getarraysize($mr3id)],.@i;
+				else if(.@monsterLevel > 30 && .@monsterLevel <= 40 && .@monsterAttack < 400)
+				setarray $mr4id[getarraysize($mr4id)],.@i;
+				else if(.@monsterLevel > 40 && .@monsterLevel <= 50 && .@monsterAttack < 500)
+				setarray $mr5id[getarraysize($mr5id)],.@i;
+				else if(.@monsterLevel > 50 && .@monsterLevel <= 60)
+				setarray $mr6id[getarraysize($mr6id)],.@i;
+				else if(.@monsterLevel > 60 && .@monsterLevel <= 70)
+				setarray $mr7id[getarraysize($mr7id)],.@i;
+				else if(.@monsterLevel > 70 && .@monsterLevel <= 80)
+				setarray $mr8id[getarraysize($mr8id)],.@i;
+				else if(.@monsterLevel > 80 && .@monsterLevel <= 90)
+				setarray $mr9id[getarraysize($mr9id)],.@i;
+				else if(.@monsterLevel > 90 && .@monsterLevel <= 100)
+				setarray $mr10id[getarraysize($mr10id)],.@i;
+				else if(.@monsterLevel > 100 && .@monsterLevel <= 110)
+				setarray $mr11id[getarraysize($mr11id)],.@i;
+				else if(.@monsterLevel > 110 && .@monsterLevel <= 120)
+				setarray $mr12id[getarraysize($mr12id)],.@i;
+				else if(.@monsterLevel > 120 && .@monsterLevel <= 130)
+				setarray $mr13id[getarraysize($mr13id)],.@i;
+				else if(.@monsterLevel > 130 && .@monsterLevel <= 140)
+				setarray $mr14id[getarraysize($mr14id)],.@i;
+				else if(.@monsterLevel > 140 && .@monsterLevel <= 150)
+				setarray $mr15id[getarraysize($mr15id)],.@i;
+				else if(.@monsterLevel > 150 && .@monsterLevel <= 160)
+				setarray $mr16id[getarraysize($mr16id)],.@i;
+				else if(.@monsterLevel > 160 && .@monsterLevel <= 170)
+				setarray $mr17id[getarraysize($mr17id)],.@i;
+				else if(.@monsterLevel > 170 && .@monsterLevel <= 180)
+				setarray $mr18id[getarraysize($mr18id)],.@i;
+				else
+				setarray $mr19id[getarraysize($mr19id)],.@i;
+			}
+			if(.@monsterMvpExp > 0)
+			setarray $allMvp[getarraysize($allMvp)],.@i;
+			
+			setarray $mrid[getarraysize($mrid)],.@i;
 		}
-		if(.@monsterMvpExp > 0)
-		setarray $allMvp[getarraysize($allMvp)],.@i;
-		
-		setarray $mrid[getarraysize($mrid)],.@i;
 	}
 	
 	//debugmes "All monster type: " + getarraysize($mrid);
