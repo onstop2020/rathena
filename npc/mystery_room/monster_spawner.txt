@@ -60,7 +60,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 				.@sumInformationBuff$ = "Monster Buff: Super Defense";
 				$mysteryBuff = 2;
 			}
-			else if($mysteryBuff <= 59) // 20%
+			else if($mysteryBuff <= 49) // 10%
 			{
 				.@sumInformationBuff$ = "Monster Buff: Super Health Point";
 				$mysteryBuff = 3;
