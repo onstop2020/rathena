@@ -1,18 +1,5 @@
 -	script	donateInfomation	-1,{
-	mes "=== บริจาค ===";
-	mes "50 THB รับ 100 Cash";
-	mes "90 THB รับ 250 Cash";
-	mes "300 THB รับ 1,000 Cash";
-	mes "500 THB รับ 3,000 Cash";
-	mes "1,000 THB รับ 10,000 Cash";
-	mes "=== ช่องทาง ===";
-	mes "พร้อมเพย์: 089-111-3455";
-	mes "True Money Wallet: 089-111-3455";
-	mes "ธนาคารกรุงไทย: 984-4-66693-7";
-	mes "ธนาคารกสิกรไทย: 025-8-61323-6 ";
-	mes "(ชื่อ: Kanin Temsrisuk )";
-	mes "ขออภัยไว้ล่วงหน้า";
-	mes "หากผมมากดเพิ่ม Cash ให้ช้า ขอบคุณครับ";
+	mes "Website: <URL>Link<INFO>https://sites.google.com/view/start-ro/donate</INFO></URL>";
 	close;
 	
 OnInit:
