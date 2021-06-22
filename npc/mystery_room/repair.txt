@@ -1,5 +1,5 @@
 -	script	mysteryRoomRepair	-1,{
-	mes "ค่าซ่อม 1,000,000z";
+	mes "ค่าซ่อม " + callfunc("F_InsertComma",.price) + "z";
 	next;
 	menu "ยกเลิก",-,"ซ่อมทุกอย่างในกระเป๋า",L_Repair;
 	close;

@@ -104,76 +104,103 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 		end;
 	}
 
-	// Countdown
+	
 OnTimer1000:
-	$mysterySpawnerCountdown--;
-	// Timeout
-	if($mysterySpawnerCountdown <= 0){
-		delwaitingroom;
-		waitingroom "เริ่มต่อสู้!!",0;
-		// Hide npc
-		hideonnpc "กล่องปริศนา#1";
-		hideonnpc "กล่องปริศนา#2";
-		hideonnpc "กล่องปริศนา#3";
-		hideonnpc "กล่องปริศนา#4";
-		hideonnpc "เริ่มต่อสู้";
-		// Set monster alive
-		$mysterySpawner = 2;
-		// Set countdown to 0
-		$mysterySpawnerCountdown = 0;
-		// Set mystery box reward
-		$mysteryBox1ItemId = callfunc("GetRandomMysteryBoxReward");
-		$mysteryBox2ItemId = callfunc("GetRandomMysteryBoxReward");
-		$mysteryBox3ItemId = callfunc("GetRandomMysteryBoxReward");
-		$mysteryBox4ItemId = callfunc("GetRandomMysteryBoxReward");
-		// Monster set
-		if($mysteryMode == 0 || $mysteryMode == 2)
-		.@sumMonsterSet = $monsterTier;
-		else if($mysteryMode == 1 || $mysteryMode == 3)
-		{
-			.@sumMonsterSet = $mysteryTapUserLv / 10;
-			if(.@sumMonsterSet <= 1)
-			.@sumMonsterSet = 1;
+	// Fail fight (Timeout)
+	if($mysterySpawner == 2){
+		$mysteryFightTimer++;
+		// 3 minutes
+		if($mysteryFightTimer >= 180){
+			// Clean up monster
+			killmonsterall "bat_c01";
+			// Reset mystery spawn state
+			$mysterySpawner = 0;
+			// Reset dead count
+			$mysteryDeadCount = 0;
+			// Announce
+			mapannounce "bat_c01","เวลาหมด!! ระดับลดลง 15 ระดับ..",0;
+			// Show npc
+			hideoffnpc "เริ่มต่อสู้";
+			// Decrease mystery level
+			$mysteryLevel -= 15;
+			if($mysteryLevel <= 0)
+			$mysteryLevel = 0;
+			// Stop countdown
+			stopnpctimer;
 		}
-		// Force to spawn boss
-		if($mysteryBoss)
-		$mysteryMonsterId = $allMvp[rand(0,getarraysize($allMvp)-1)];
-		// Set monster id (Change monster set every 30 level)
-		else
-		$mysteryMonsterId = getd("$mr" + .@sumMonsterSet + "id[" + rand(0,getarraysize(getd("$mr" + .@sumMonsterSet + "id")) - 1) + "]");
-		// Monster count
-		.@sumLevel = $mysteryLevel;
-		if($mysteryMode == 1 || $mysteryMode == 3)
-		.@sumLevel = $mysteryTapUserLv;
-		.@sumSpawnCount = rand(1,.@sumLevel);
-		.@sumSpawnCount /= 5;
-		if(.@sumSpawnCount <= 1)
-		.@sumSpawnCount = 1;
-		// Crazy spawn mode
-		if($mysteryMode == 2 || $mysteryMode == 3)
-		.@sumSpawnCount = 40;
-		// MvP should be 1~15
-		if($mysteryBoss)
-		.@sumSpawnCount = rand(1,15);
-		// Cap at 40
-		if(.@sumSpawnCount >= 40)
-		.@sumSpawnCount = 40;
-		$mysteryRoomSpawnCount = .@sumSpawnCount;
-		// Spawn now
-		callsub L_SpawnMonster;
-		// Announce
-		mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " (" + $mysteryRoomSpawnCount + " ตัว) ได้ปรากฎขึ้นมาแล้ว!!",0,0xFF5733;
-		// Stop countdown
-		stopnpctimer;
 	}
-	// Information for players
-	else{
-		// Announce
-		//mapannounce "bat_c01","เตรียมตัว.. Monster จะมาภายใน " + $mysterySpawnerCountdown + " วินาที!!",0,0xFF5733;
-		delwaitingroom;
-		waitingroom "" + $mysterySpawnerCountdown,0;
-		// Continue countdown
-		initnpctimer;
+	// Countdown
+	else if($mysterySpawner == 1){
+		$mysterySpawnerCountdown--;
+		// Timeout
+		if($mysterySpawnerCountdown <= 0){
+			delwaitingroom;
+			waitingroom "เริ่มต่อสู้!!",0;
+			// Hide npc
+			hideonnpc "กล่องปริศนา#1";
+			hideonnpc "กล่องปริศนา#2";
+			hideonnpc "กล่องปริศนา#3";
+			hideonnpc "กล่องปริศนา#4";
+			hideonnpc "เริ่มต่อสู้";
+			// Set monster alive
+			$mysterySpawner = 2;
+			// Set countdown to 0
+			$mysterySpawnerCountdown = 0;
+			// Set mystery box reward
+			$mysteryBox1ItemId = callfunc("GetRandomMysteryBoxReward");
+			$mysteryBox2ItemId = callfunc("GetRandomMysteryBoxReward");
+			$mysteryBox3ItemId = callfunc("GetRandomMysteryBoxReward");
+			$mysteryBox4ItemId = callfunc("GetRandomMysteryBoxReward");
+			// Monster set
+			if($mysteryMode == 0 || $mysteryMode == 2)
+			.@sumMonsterSet = $monsterTier;
+			else if($mysteryMode == 1 || $mysteryMode == 3)
+			{
+				.@sumMonsterSet = $mysteryTapUserLv / 10;
+				if(.@sumMonsterSet <= 1)
+				.@sumMonsterSet = 1;
+			}
+			// Force to spawn boss
+			if($mysteryBoss)
+			$mysteryMonsterId = $allMvp[rand(0,getarraysize($allMvp)-1)];
+			// Set monster id (Change monster set every 30 level)
+			else
+			$mysteryMonsterId = getd("$mr" + .@sumMonsterSet + "id[" + rand(0,getarraysize(getd("$mr" + .@sumMonsterSet + "id")) - 1) + "]");
+			// Monster count
+			.@sumLevel = $mysteryLevel;
+			if($mysteryMode == 1 || $mysteryMode == 3)
+			.@sumLevel = $mysteryTapUserLv;
+			.@sumSpawnCount = rand(1,.@sumLevel);
+			.@sumSpawnCount /= 5;
+			if(.@sumSpawnCount <= 1)
+			.@sumSpawnCount = 1;
+			// Crazy spawn mode
+			if($mysteryMode == 2 || $mysteryMode == 3)
+			.@sumSpawnCount = 40;
+			// MvP should be 1~15
+			if($mysteryBoss)
+			.@sumSpawnCount = rand(1,15);
+			// Cap at 40
+			if(.@sumSpawnCount >= 40)
+			.@sumSpawnCount = 40;
+			$mysteryRoomSpawnCount = .@sumSpawnCount;
+			// Spawn now
+			callsub L_SpawnMonster;
+			// Announce
+			mapannounce "bat_c01",getmonsterinfo($mysteryMonsterId,MOB_NAME) + " (" + $mysteryRoomSpawnCount + " ตัว) ได้ปรากฎขึ้นมาแล้ว มีเวลาต่อสู้ 3 นาที!!",0,0xFF5733;
+			$mysteryFightTimer = 0;
+			// Continue countdown for failed fight
+			initnpctimer;
+		}
+		// Information for players
+		else{
+			// Announce
+			//mapannounce "bat_c01","เตรียมตัว.. Monster จะมาภายใน " + $mysterySpawnerCountdown + " วินาที!!",0,0xFF5733;
+			delwaitingroom;
+			waitingroom "" + $mysterySpawnerCountdown,0;
+			// Continue countdown
+			initnpctimer;
+		}
 	}
 	end;
 	
