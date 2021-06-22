@@ -137,10 +137,10 @@ OnInit:
 }
 
 function	script	GetRandomOptionId	{
-	.@optId = rand(1,221);
+	.@optId = rand(1,231);
 	freeloop(1);
-	while(.@optId == 86 || .@optId == 173 || .@optId == 174 || .@optId == 204 || .@optId == 205 || .@optId == 218)
-	.@optId = rand(1,221);
+	while(.@optId == 86 || .@optId == 173 || .@optId == 174 || .@optId == 204 || .@optId == 205)
+	.@optId = rand(1,231);
 	freeloop(0);
 	return .@optId;
 }
