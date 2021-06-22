@@ -128,6 +128,9 @@ OnTimer1000:
 			// Stop countdown
 			stopnpctimer;
 		}
+		// Continue countdown for failed fight
+		else
+		initnpctimer;
 	}
 	// Countdown
 	else if($mysterySpawner == 1){
