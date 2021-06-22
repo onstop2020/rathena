@@ -87,6 +87,30 @@ Header:
   Version: 1
 
 Body:
+  - Id: 602
+    AegisName: Wing_Of_Butterfly
+    Name: Butterfly Wing
+    Type: Delayconsume
+    Buy: 1
+    Weight: 50
+    Flags:
+      BuyingStore: true
+    Script: |
+      callfunc("CustomLoad");
+  - Id: 12704
+    AegisName: Elixir_Of_Life
+    Name: Elixir of Life
+    Type: Healing
+    Buy: 1
+    Weight: 10
+    Script: |
+      percentheal 100,100;
+      sc_end SC_POISON;
+      sc_end SC_SILENCE;
+      sc_end SC_BLIND;
+      sc_end SC_CONFUSION;
+      sc_end SC_CURSE;
+      sc_end SC_Hallucination;
   - Id: 40001
     AegisName: 10_Cash
     Name: 10 Cash
