@@ -65,4 +65,4 @@ OnInit:
 	end;
 }
 
-bat_c01,99,112,1	duplicate(mysteryRoomElement)	เคลือบธาตุ Equipment	813
+bat_c01,77,90,5	duplicate(mysteryRoomElement)	เคลือบธาตุ Equipment	813
