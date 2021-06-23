@@ -1,0 +1,68 @@
+-	script	mysteryRoomElement	-1,{
+	mes "ค่าเคลือบธาตุอาวุธ " + callfunc("F_InsertComma",.price) + "z";
+	next;
+	menu "ยกเลิก",-
+	,"เคลือบธาตุอาวุธ: Dark",L_Dark
+	,"เคลือบธาตุอาวุธ: Earth",L_Earth
+	,"เคลือบธาตุอาวุธ: Fire",L_Fire
+	,"เคลือบธาตุอาวุธ: Ghost",L_Ghost
+	,"เคลือบธาตุอาวุธ: Holy",L_Holy
+	,"เคลือบธาตุอาวุธ: Neutral",L_Neutral
+	,"เคลือบธาตุอาวุธ: Poison",L_Poison
+	,"เคลือบธาตุอาวุธ: Undead",L_Undead
+	,"เคลือบธาตุอาวุธ: Water",L_Water
+	,"เคลือบธาตุอาวุธ: Wind",L_Wind;
+	close;
+	
+	L_Dark:
+	.@sumElement = "Ele_Dark";
+	goto L_Element;
+	L_Earth:
+	.@sumElement = "Ele_Earth";
+	goto L_Element;
+	L_Fire:
+	.@sumElement = "Ele_Fire";
+	goto L_Element;
+	L_Ghost:
+	.@sumElement = "Ele_Ghost";
+	goto L_Element;
+	L_Holy:
+	.@sumElement = "Ele_Holy";
+	goto L_Element;
+	L_Neutral:
+	.@sumElement = "Ele_Neutral";
+	goto L_Element;
+	L_Poison:
+	.@sumElement = "Ele_Poison";
+	goto L_Element;
+	L_Undead:
+	.@sumElement = "Ele_Undead";
+	goto L_Element;
+	L_Water:
+	.@sumElement = "Ele_Water";
+	goto L_Element;
+	L_Wind:
+	.@sumElement = "Ele_Wind";
+	goto L_Element;
+	
+	L_Element:
+	if(Zeny >= .price)
+	{
+		Zeny -= .price;
+		mysteryElement$ = .@sumElement;
+		callfunc("RefreshMystrian");
+		mes "เรียบร้อยแล้ว!";
+		close;
+	}
+	else{
+		mes "เจ้ามี Zeny ไม่เพียงพอ";
+		close;
+	}
+	
+OnInit:
+	.price = 2000000;
+	waitingroom "เคลือบธาตุ Equipment",0;
+	end;
+}
+
+bat_c01,99,112,1	duplicate(mysteryRoomRepair)	เคลือบธาตุ Equipment	813
