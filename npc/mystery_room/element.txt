@@ -2,16 +2,16 @@
 	mes "ค่าเคลือบธาตุอาวุธ " + callfunc("F_InsertComma",.price) + "z";
 	next;
 	menu "ยกเลิก",-
-	,"เคลือบธาตุอาวุธ: Dark",L_Dark
-	,"เคลือบธาตุอาวุธ: Earth",L_Earth
-	,"เคลือบธาตุอาวุธ: Fire",L_Fire
-	,"เคลือบธาตุอาวุธ: Ghost",L_Ghost
-	,"เคลือบธาตุอาวุธ: Holy",L_Holy
-	,"เคลือบธาตุอาวุธ: Neutral",L_Neutral
-	,"เคลือบธาตุอาวุธ: Poison",L_Poison
-	,"เคลือบธาตุอาวุธ: Undead",L_Undead
-	,"เคลือบธาตุอาวุธ: Water",L_Water
-	,"เคลือบธาตุอาวุธ: Wind",L_Wind;
+	,"Dark",L_Dark
+	,"Earth",L_Earth
+	,"Fire",L_Fire
+	,"Ghost",L_Ghost
+	,"Holy",L_Holy
+	,"Neutral",L_Neutral
+	,"Poison",L_Poison
+	,"Undead",L_Undead
+	,"Water",L_Water
+	,"Wind",L_Wind;
 	close;
 	
 	L_Dark:
