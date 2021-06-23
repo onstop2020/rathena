@@ -15,41 +15,41 @@
 	close;
 	
 	L_Dark:
-	.@sumElement = "Ele_Dark";
+	.@sumElement$ = "Ele_Dark";
 	goto L_Element;
 	L_Earth:
-	.@sumElement = "Ele_Earth";
+	.@sumElement$ = "Ele_Earth";
 	goto L_Element;
 	L_Fire:
-	.@sumElement = "Ele_Fire";
+	.@sumElement$ = "Ele_Fire";
 	goto L_Element;
 	L_Ghost:
-	.@sumElement = "Ele_Ghost";
+	.@sumElement$ = "Ele_Ghost";
 	goto L_Element;
 	L_Holy:
-	.@sumElement = "Ele_Holy";
+	.@sumElement$ = "Ele_Holy";
 	goto L_Element;
 	L_Neutral:
-	.@sumElement = "Ele_Neutral";
+	.@sumElement$ = "Ele_Neutral";
 	goto L_Element;
 	L_Poison:
-	.@sumElement = "Ele_Poison";
+	.@sumElement$ = "Ele_Poison";
 	goto L_Element;
 	L_Undead:
-	.@sumElement = "Ele_Undead";
+	.@sumElement$ = "Ele_Undead";
 	goto L_Element;
 	L_Water:
-	.@sumElement = "Ele_Water";
+	.@sumElement$ = "Ele_Water";
 	goto L_Element;
 	L_Wind:
-	.@sumElement = "Ele_Wind";
+	.@sumElement$ = "Ele_Wind";
 	goto L_Element;
 	
 	L_Element:
 	if(Zeny >= .price)
 	{
 		Zeny -= .price;
-		mysteryElement$ = .@sumElement;
+		mysteryElement$ = .@sumElement$;
 		callfunc("RefreshMystrian");
 		mes "เรียบร้อยแล้ว!";
 		close;
@@ -65,4 +65,4 @@ OnInit:
 	end;
 }
 
-bat_c01,99,112,1	duplicate(mysteryRoomRepair)	เคลือบธาตุ Equipment	813
+bat_c01,99,112,1	duplicate(mysteryRoomElement)	เคลือบธาตุ Equipment	813
