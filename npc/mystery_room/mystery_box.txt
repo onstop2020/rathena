@@ -28,27 +28,39 @@ function	script	MysteryBox	{
 	.@itemId = getd("$mysteryBox" + .@boxNumber + "ItemId");
 
 	// Status point
-	if(.@itemId == -1 
-			&& (readparam(bStr) < 130
-				|| readparam(bAgi) < 130 
-				|| readparam(bVit) < 130
-				|| readparam(bInt) < 130 
-				|| readparam(bDex) < 130
-				|| readparam(bLuk) < 130))
+	if(.@itemId == -1 && StatusPoint < 10000)
 	{
-		message strcharinfo(0),"คุณได้รับ 10 Status Point";
-		StatusPoint += 10;
+		.@sumStatusPoint = 10;
+		if($mysteryBoss)
+		.@sumStatusPoint += 10;
+		if($mysteryBuff > 0)
+		.@sumStatusPoint += 10;
+		if($mysteryBuff == 4)
+		.@sumStatusPoint += 10;
+		StatusPoint += .@sumStatusPoint;
+		message strcharinfo(0),"คุณได้รับ " + callfunc("F_InsertComma",.@sumStatusPoint) + " Status Point";
 		end;
 	}
 	else if(.@itemId == -1){
-		message strcharinfo(0),"คุณมี All Status อยู่ที่ 130 แล้ว ไม่สามารถเพิ่ม Status Point ได้อีก";
+		message strcharinfo(0),"คุณมี Status Point มากกว่า " + callfunc("F_InsertComma",10000) + " แล้ว ไม่สามารถเพิ่ม Status Point ได้อีก";
 		end;
 	}
 	// Skill point
-	else if(.@itemId == -2)
+	else if(.@itemId == -2 && SkillPoint < 10000)
 	{
-		message strcharinfo(0),"คุณได้รับ 1 Skill Point";
-		SkillPoint += 1;
+		.@sumSkillPoint = 1;
+		if($mysteryBoss)
+		.@sumSkillPoint += 1;
+		if($mysteryBuff > 0)
+		.@sumSkillPoint += 1;
+		if($mysteryBuff == 4)
+		.@sumSkillPoint += 1;
+		SkillPoint += .@sumSkillPoint;
+		message strcharinfo(0),"คุณได้รับ " + callfunc("F_InsertComma",.@sumSkillPoint) + " Skill Point";
+		end;
+	}
+	else if(.@itemId == -2){
+		message strcharinfo(0),"คุณมี Skill Point มากกว่า 10,000 แล้ว ไม่สามารถเพิ่ม Status Point ได้อีก";
 		end;
 	}
 	.@level = $mysteryLevel;
@@ -67,14 +79,19 @@ function	script	MysteryBox	{
 	.@dynamicValue = .@level + (rand(0,(.@level / 2)));
 	.@randomizeValueIndex4 = rand(-.@dynamicValue,.@dynamicValue);
 	
-	// Boss reward
-	if($mysteryBoss){
-		.@randomizeValueIndex0 *= 2;
-		.@randomizeValueIndex1 *= 2;
-		.@randomizeValueIndex2 *= 2;
-		.@randomizeValueIndex3 *= 2;
-		.@randomizeValueIndex4 *= 2;
-	}
+	.@sumMultiplier = 1;
+	if($mysteryBoss)
+	.@sumMultiplier += 1;
+	if($mysteryBuff > 0)
+	.@sumMultiplier += 1;
+	if($mysteryBuff == 4)
+	.@sumMultiplier += 1;
+	
+	.@randomizeValueIndex0 *= .@sumMultiplier;
+	.@randomizeValueIndex1 *= .@sumMultiplier;
+	.@randomizeValueIndex2 *= .@sumMultiplier;
+	.@randomizeValueIndex3 *= .@sumMultiplier;
+	.@randomizeValueIndex4 *= .@sumMultiplier;
 	
 	setarray .@OptID[0],callfunc("GetMysteryRandomOptionId"),callfunc("GetMysteryRandomOptionId"),callfunc("GetMysteryRandomOptionId"),callfunc("GetMysteryRandomOptionId"),callfunc("GetMysteryRandomOptionId");
 	setarray .@OptVal[0],.@randomizeValueIndex0,.@randomizeValueIndex1,.@randomizeValueIndex2,.@randomizeValueIndex3,.@randomizeValueIndex4;

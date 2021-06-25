@@ -1,0 +1,4 @@
+bat_c01,77,81	monster	Dummy Lv10	2408,1,5000
+bat_c01,79,81	monster	Dummy Lv50	2409,1,5000
+bat_c01,81,81	monster	Dummy Lv100	2410,1,5000
+bat_c01,83,81	monster	Dummy Lv150	2411,1,5000

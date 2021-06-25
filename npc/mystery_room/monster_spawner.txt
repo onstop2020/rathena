@@ -60,10 +60,15 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 				.@sumInformationBuff$ = "Monster Buff: Super Defense";
 				$mysteryBuff = 2;
 			}
-			else if($mysteryBuff <= 49) // 10%
+			else if($mysteryBuff <= 44) // 5%
 			{
 				.@sumInformationBuff$ = "Monster Buff: Super Health Point";
 				$mysteryBuff = 3;
+			}
+			else if($mysteryBuff <= 45) // 1%
+			{
+				.@sumInformationBuff$ = "Monster Buff: ทุก Buff";
+				$mysteryBuff = 4;
 			}
 			else
 			{
@@ -290,27 +295,27 @@ OnTimer1000:
 		if(.@multiplier2 <= 1)
 		.@multiplier2 = 1;
 
-		setunitdata $@mobid[0],UMOB_HP,($mysteryBuff == 3 ? 999999999 : ((.@tempHp * .@multiplier) < 999999999 ? (.@tempHp * .@multiplier) : 999999999));
-		setunitdata $@mobid[0],UMOB_MAXHP,($mysteryBuff == 3 ? 999999999 : ((.@tempMaxHP * .@multiplier) < 999999999 ? (.@tempMaxHP * .@multiplier) : 999999999));
+		setunitdata $@mobid[0],UMOB_HP,($mysteryBuff == 3 || $mysteryBuff == 4 ? 999999999 : ((.@tempHp * .@multiplier) < 999999999 ? (.@tempHp * .@multiplier) : 999999999));
+		setunitdata $@mobid[0],UMOB_MAXHP,($mysteryBuff == 3 || $mysteryBuff == 4 ? 999999999 : ((.@tempMaxHP * .@multiplier) < 999999999 ? (.@tempMaxHP * .@multiplier) : 999999999));
 		//setunitdata $@mobid[0],UMOB_SPEED,.@tempSpeed * .@multiplier;
 		setunitdata $@mobid[0],UMOB_MODE,(0x0000001 | 0x0000004 | 0x0000080);
-		//setunitdata $@mobid[0],UMOB_STR,($mysteryBuff == 1 ? 5000 : ((.@tempStr * .@multiplier) < 5000 ? (.@tempStr * .@multiplier) : 5000));
-		setunitdata $@mobid[0],UMOB_AGI,($mysteryBuff == 2 ? 5000 : ((.@tempAgi * .@multiplier) < 5000 ? (.@tempAgi * .@multiplier) : 5000));
-		setunitdata $@mobid[0],UMOB_VIT,($mysteryBuff == 2 ? 5000 : ((.@tempVit * .@multiplier) < 5000 ? (.@tempVit * .@multiplier) : 5000));
-		setunitdata $@mobid[0],UMOB_INT,($mysteryBuff == 2 ? 5000 : ((.@tempInt * .@multiplier) < 5000 ? (.@tempInt * .@multiplier) : 5000));
-		setunitdata $@mobid[0],UMOB_DEX,($mysteryBuff == 2 ? 5000 : ((.@tempDex * .@multiplier) < 5000 ? (.@tempDex * .@multiplier) : 5000));
-		setunitdata $@mobid[0],UMOB_LUK,($mysteryBuff == 2 ? 5000 : ((.@tempLuk * .@multiplier) < 5000 ? (.@tempLuk * .@multiplier) : 5000));
-		//setunitdata $@mobid[0],UMOB_ATKRANGE,($mysteryBuff == 1 ? 6 : (.@tempAtkRange * .@multiplier));
-		//setunitdata $@mobid[0],UMOB_ATKMIN,($mysteryBuff == 1 ? 9998 : (.@tempAtkMin * .@multiplier));
-		//setunitdata $@mobid[0],UMOB_ATKMAX,($mysteryBuff == 1 ? 9999 : (.@tempAtkMax * .@multiplier));
-		//setunitdata $@mobid[0],UMOB_MATKMIN,($mysteryBuff == 1 ? 9998 : (.@tempMAtkMin * .@multiplier));
-		//setunitdata $@mobid[0],UMOB_MATKMAX,($mysteryBuff == 1 ? 9999 : (.@tempMAtkMax * .@multiplier));
-		setunitdata $@mobid[0],UMOB_DEF,($mysteryBuff == 2 ? 9999 : ((.@tempDef * .@multiplier) < 9999 ? (.@tempDef * .@multiplier) : 9999));
-		setunitdata $@mobid[0],UMOB_MDEF,($mysteryBuff == 2 ? 9999 : ((.@tempMDef * .@multiplier) < 9999 ? (.@tempMDef * .@multiplier) : 9999));
-		setunitdata $@mobid[0],UMOB_HIT,($mysteryBuff == 1 ? 9999 : ((.@tempHit * .@multiplier) < 9999 ? (.@tempHit * .@multiplier) : 9999));
-		setunitdata $@mobid[0],UMOB_FLEE,($mysteryBuff == 2 ? 9999 : ((.@tempFlee * .@multiplier) < 9999 ? (.@tempFlee * .@multiplier) : 9999));
-		//setunitdata $@mobid[0],UMOB_PDODGE,($mysteryBuff == 2 ? 9999 : (.@tempPDodge * .@multiplier));
-		setunitdata $@mobid[0],UMOB_CRIT,($mysteryBuff == 1 ? 9999 : ((.@tempCri * .@multiplier) < 9999 ? (.@tempCri * .@multiplier) : 9999));
+		//setunitdata $@mobid[0],UMOB_STR,($mysteryBuff == 1 || $mysteryBuff == 4 ? 5000 : ((.@tempStr * .@multiplier) < 5000 ? (.@tempStr * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_AGI,($mysteryBuff == 2 || $mysteryBuff == 4 ? 5000 : ((.@tempAgi * .@multiplier) < 5000 ? (.@tempAgi * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_VIT,($mysteryBuff == 2 || $mysteryBuff == 4 ? 5000 : ((.@tempVit * .@multiplier) < 5000 ? (.@tempVit * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_INT,($mysteryBuff == 2 || $mysteryBuff == 4 ? 5000 : ((.@tempInt * .@multiplier) < 5000 ? (.@tempInt * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_DEX,($mysteryBuff == 2 || $mysteryBuff == 4 ? 5000 : ((.@tempDex * .@multiplier) < 5000 ? (.@tempDex * .@multiplier) : 5000));
+		setunitdata $@mobid[0],UMOB_LUK,($mysteryBuff == 2 || $mysteryBuff == 4 ? 5000 : ((.@tempLuk * .@multiplier) < 5000 ? (.@tempLuk * .@multiplier) : 5000));
+		//setunitdata $@mobid[0],UMOB_ATKRANGE,($mysteryBuff == 1 || $mysteryBuff == 4 ? 6 : (.@tempAtkRange * .@multiplier));
+		//setunitdata $@mobid[0],UMOB_ATKMIN,($mysteryBuff == 1 || $mysteryBuff == 4 ? 9998 : (.@tempAtkMin * .@multiplier));
+		//setunitdata $@mobid[0],UMOB_ATKMAX,($mysteryBuff == 1 || $mysteryBuff == 4 ? 9999 : (.@tempAtkMax * .@multiplier));
+		//setunitdata $@mobid[0],UMOB_MATKMIN,($mysteryBuff == 1 || $mysteryBuff == 4 ? 9998 : (.@tempMAtkMin * .@multiplier));
+		//setunitdata $@mobid[0],UMOB_MATKMAX,($mysteryBuff == 1 || $mysteryBuff == 4 ? 9999 : (.@tempMAtkMax * .@multiplier));
+		setunitdata $@mobid[0],UMOB_DEF,($mysteryBuff == 2 || $mysteryBuff == 4 ? 9999 : ((.@tempDef * .@multiplier) < 9999 ? (.@tempDef * .@multiplier) : 9999));
+		setunitdata $@mobid[0],UMOB_MDEF,($mysteryBuff == 2 || $mysteryBuff == 4 ? 9999 : ((.@tempMDef * .@multiplier) < 9999 ? (.@tempMDef * .@multiplier) : 9999));
+		setunitdata $@mobid[0],UMOB_HIT,($mysteryBuff == 1 || $mysteryBuff == 4 ? 9999 : ((.@tempHit * .@multiplier) < 9999 ? (.@tempHit * .@multiplier) : 9999));
+		setunitdata $@mobid[0],UMOB_FLEE,($mysteryBuff == 2 || $mysteryBuff == 4 ? 9999 : ((.@tempFlee * .@multiplier) < 9999 ? (.@tempFlee * .@multiplier) : 9999));
+		//setunitdata $@mobid[0],UMOB_PDODGE,($mysteryBuff == 2 || $mysteryBuff == 4 ? 9999 : (.@tempPDodge * .@multiplier));
+		setunitdata $@mobid[0],UMOB_CRIT,($mysteryBuff == 1 || $mysteryBuff == 4 ? 9999 : ((.@tempCri * .@multiplier) < 9999 ? (.@tempCri * .@multiplier) : 9999));
 		
 		/*getunitdata $@mobid[0],.@tempData;
 		
@@ -371,9 +376,18 @@ OnMonsterDead:
 		.@noDeathEXP = 0;
 	}
 	.sumEXP += .@dynamicEXP + .@noDeathEXP;
+	// Multiplier
+	.sumEXPMultiplier = 1;
 	// Boss bonus
 	if($mysteryBoss)
-	.sumEXP *= 2;
+	.sumEXPMultiplier += 1;
+	// Monster Buff: Any
+	if($mysteryBuff > 0)
+	.sumEXPMultiplier += 1;
+	// Monster Buff: All (More bonus)
+	if($mysteryBuff == 4)
+	.sumEXPMultiplier += 1;
+	.sumEXP *= .sumEXPMultiplier;
 	// Show npc
 	hideoffnpc "เริ่มต่อสู้";
 	hideoffnpc "กล่องปริศนา#1";
