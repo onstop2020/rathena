@@ -29,7 +29,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			// Set tap user level
 			$mysteryTapUserLv = BaseLevel;
 			// Every 10 level had 50% chance to spawn MvP (Double reward at the end)
-			if($mysteryLevel > 0 && $mysteryLevel % 10 == 0 && rand (0,100) <= 50)
+			if($mysteryLevel > 0 && (($mysteryLevel % 10 == 0 && rand (0,100) <= 50) || ($mysteryLevel % 10 != 0 && rand (0,100) <= 5)))
 			$mysteryBoss = 1;
 			// Otherwise not MvP
 			else
@@ -76,6 +76,14 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 				$mysteryBuff = 0;
 			}
 			// +1 Current Level
+			$mysteryLevel++;
+			if(BaseLevel > 50)
+			$mysteryLevel++;
+			if(BaseLevel > 100)
+			$mysteryLevel++;
+			if(BaseLevel > 150)
+			$mysteryLevel++;
+			if(BaseLevel >= 200)
 			$mysteryLevel++;
 			// Announce
 			delwaitingroom;
