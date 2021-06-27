@@ -89,7 +89,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			delwaitingroom;
 			if($mysteryBoss)
 			.@sumInformation$ = "Mode: MvP!!";
-			else if($mysteryMode <= 19) // 20%
+			else if($mysteryMode <= 19 && BaseLevel >= 125) // 20%
 			{
 				.@sumInformation$ = "Mode: ปกติ (Lv. " + $mysteryLevel + ")";
 				$mysteryMode = 0;
@@ -99,7 +99,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 				.@sumInformation$ = "Mode: ตามเลเวลผู้กด (Lv. " + $mysteryTapUserLv + ")";
 				$mysteryMode = 1;
 			}
-			else if($mysteryMode <= 84) // 15%
+			else if($mysteryMode <= 84 && BaseLevel >= 125) // 15%
 			{
 				.@sumInformation$ = "Mode: ปกติมหาศาล (Lv. " + $mysteryLevel + ")";
 				$mysteryMode = 2;
