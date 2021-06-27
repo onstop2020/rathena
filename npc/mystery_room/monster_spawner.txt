@@ -49,6 +49,8 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 			$mysteryMode = rand(0,100);
 			// Set monster buff
 			$mysteryBuff = rand(0,100);
+			if(BaseLevel < 125)
+			$mysteryBuff = 100;
 			.@sumInformationBuff$ = "Monster Buff: ไม่มี";
 			if($mysteryBuff <= 19) // 20%
 			{
