@@ -94,7 +94,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 				.@sumInformation$ = "Mode: ปกติ (Lv. " + $mysteryLevel + ")";
 				$mysteryMode = 0;
 			}
-			else if($mysteryMode <= 69) // 50%
+			else if($mysteryMode <= 69 || (BaseLevel < 125 && rand (0,1) == 0)) // 50% || Base Level < 125 (50%)
 			{
 				.@sumInformation$ = "Mode: ตามเลเวลผู้กด (Lv. " + $mysteryTapUserLv + ")";
 				$mysteryMode = 1;
@@ -104,7 +104,7 @@ bat_c01,97,86,5	script	เริ่มต่อสู้	464,{
 				.@sumInformation$ = "Mode: ปกติมหาศาล (Lv. " + $mysteryLevel + ")";
 				$mysteryMode = 2;
 			}
-			else if($mysteryMode <= 100) // 15%
+			else if($mysteryMode <= 100 || BaseLevel < 125) // 15% || Base Level < 125
 			{
 				.@sumInformation$ = "Mode: ตามเลเวลผู้กดมหาศาล (Lv. " + $mysteryTapUserLv + ")";
 				$mysteryMode = 3;
