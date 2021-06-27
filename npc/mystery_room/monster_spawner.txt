@@ -294,6 +294,7 @@ OnTimer1000:
 		.@tempCri = .@tempData[42];
 		
 		// x2 Every 600 Level
+		if($mysteryMode == 0 || $mysteryMode == 2)
 		.@multiplier = ($mysteryLevel / 600) + 1;
 
 		if(.@multiplier <= 1)
