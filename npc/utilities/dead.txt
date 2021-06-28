@@ -46,8 +46,10 @@ OnPCDieEvent:
 		// Dead count increment
 		$mysteryDeadCount++;
 		// Dead count not reach
-		if($mysteryDeadCount < 5)
-		mapannounce "bat_c01",strcharinfo(0) + " ตาย!! ตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง",0,0xFF2828;
+		if($mysteryDeadCount < 5){
+			warp "bat_c01",0,0;
+			mapannounce "bat_c01",strcharinfo(0) + " ตาย!! ตายได้อีก " + (5 - $mysteryDeadCount) + " ครั้ง",0,0xFF2828;
+		}
 		// Dead count reached
 		else{
 			// Clean up monster
