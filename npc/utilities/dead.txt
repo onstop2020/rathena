@@ -29,6 +29,7 @@ OnPCDieEvent:
 		BaseEXP = 0;
 		JobExp = 0;
 		// Decrease base level and all status by 1
+		if(BaseLevel > 1)
 		BaseLevel -= 1;
 		if(readparam(bStr) > 1)
 		statusup2 bStr,-1;
