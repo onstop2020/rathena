@@ -64,9 +64,10 @@ function	script	MysteryBox	{
 		end;
 	}
 	.@level = $mysteryLevel;
-	.@level /= 5;
 	if($mysteryMode == 1 || $mysteryMode == 3)
 	.@level = $mysteryTapUserLv;
+	
+	.@level /= 5;
 
 	// Dynamic value = Level + (0 ~ (Level / 2))
 	.@dynamicValue = .@level + (rand(0,(.@level / 2)));
