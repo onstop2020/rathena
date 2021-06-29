@@ -64,6 +64,7 @@ function	script	MysteryBox	{
 		end;
 	}
 	.@level = $mysteryLevel;
+	.@level /= 5;
 	if($mysteryMode == 1 || $mysteryMode == 3)
 	.@level = $mysteryTapUserLv;
 
@@ -87,11 +88,33 @@ function	script	MysteryBox	{
 	if($mysteryBuff == 4)
 	.@sumMultiplier += 1;
 	
+	if(.@randomizeValueIndex0 < 0)
+	.@randomizeValueIndex0 = 1;
+	if(.@randomizeValueIndex1 < 0)
+	.@randomizeValueIndex1 = 1;
+	if(.@randomizeValueIndex2 < 0)
+	.@randomizeValueIndex2 = 1;
+	if(.@randomizeValueIndex3 < 0)
+	.@randomizeValueIndex3 = 1;
+	if(.@randomizeValueIndex4 < 0)
+	.@randomizeValueIndex4 = 1;
+	
 	.@randomizeValueIndex0 *= .@sumMultiplier;
 	.@randomizeValueIndex1 *= .@sumMultiplier;
 	.@randomizeValueIndex2 *= .@sumMultiplier;
 	.@randomizeValueIndex3 *= .@sumMultiplier;
 	.@randomizeValueIndex4 *= .@sumMultiplier;
+	
+	if(.@randomizeValueIndex0 > 100)
+	.@randomizeValueIndex0 = 100;
+	if(.@randomizeValueIndex1 > 100)
+	.@randomizeValueIndex1 = 100;
+	if(.@randomizeValueIndex2 > 100)
+	.@randomizeValueIndex2 = 100;
+	if(.@randomizeValueIndex3 > 100)
+	.@randomizeValueIndex3 = 100;
+	if(.@randomizeValueIndex4 > 100)
+	.@randomizeValueIndex4 = 100;
 	
 	setarray .@OptID[0],callfunc("GetMysteryRandomOptionId"),callfunc("GetMysteryRandomOptionId"),callfunc("GetMysteryRandomOptionId"),callfunc("GetMysteryRandomOptionId"),callfunc("GetMysteryRandomOptionId");
 	setarray .@OptVal[0],.@randomizeValueIndex0,.@randomizeValueIndex1,.@randomizeValueIndex2,.@randomizeValueIndex3,.@randomizeValueIndex4;
