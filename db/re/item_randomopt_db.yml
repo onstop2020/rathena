@@ -88,7 +88,6 @@ Body:
     Option: VAR_MAGICATKPERCENT
     Script: |
       bonus bMatkRate,getrandomoptinfo(ROA_VALUE);
-      bonus2 bMagicAddClass,Class_All,getrandomoptinfo(ROA_VALUE);
   - Id: 15
     Option: VAR_PLUSASPD
     Script: |
@@ -710,7 +709,6 @@ Body:
     Option: DEC_SPELL_CAST_TIME
     Script: |
       bonus bVariableCastrate,-(getrandomoptinfo(ROA_VALUE));
-      bonus bFixedCastrate,-(getrandomoptinfo(ROA_VALUE));
   - Id: 171
     Option: DEC_SPELL_DELAY_TIME
     Script: |
@@ -983,35 +981,3 @@ Body:
     Option: ADDEXPPERCENT_KILLRACE_ALL
     Script: |
       bonus2 bExpAddRace,RC_All,getrandomoptinfo(ROA_VALUE);
-  - Id: 244
-    Option: LAND_MINE_ATTACK_DAMAGE_TARGET
-    Script: |
-      bonus2 bSkillAtk,116,getrandomoptinfo(ROA_VALUE);
-  - Id: 245
-    Option: BLAST_MINE_ATTACK_DAMAGE_TARGET
-    Script: |
-      bonus2 bSkillAtk,122,getrandomoptinfo(ROA_VALUE);
-  - Id: 246
-    Option: CLAYMORE_TRAP_ATTACK_DAMAGE_TARGET
-    Script: |
-      bonus2 bSkillAtk,123,getrandomoptinfo(ROA_VALUE);
-  - Id: 247
-    Option: MOVESPEED_RATE
-    Script: |
-      bonus bSpeedAddRate,getrandomoptinfo(ROA_VALUE);
-  - Id: 248
-    Option: SKILL_TRICK_DEAD
-    Script: |
-      skill 143,getrandomoptinfo(ROA_VALUE),1;
-  - Id: 249
-    Option: SKILL_INCREASE_AGI
-    Script: |
-      skill 29,getrandomoptinfo(ROA_VALUE),1;
-  - Id: 250
-    Option: SKILL_CLOAKING
-    Script: |
-      skill 135,getrandomoptinfo(ROA_VALUE),1;
-  - Id: 251
-    Option: ALL_STATUS
-    Script: |
-      bonus bAllStats,getrandomoptinfo(ROA_VALUE);
