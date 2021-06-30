@@ -1,5 +1,7 @@
 -	script	freebieSystem	-1,{
-OnPCLoginEvent:
+	end;
+	
+/*OnPCLoginEvent:
 	if(getcharid(3) <= 2000034 && !#fb1){
 		#fb1 = 1;
 		
@@ -10,5 +12,5 @@ OnPCLoginEvent:
 		dispbottom "---";
 		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",2000000) + "z";
 	}
-	end;
+	end;*/
 }

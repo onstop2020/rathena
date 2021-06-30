@@ -1,9 +1,0 @@
-function	script	BlockHelper	{
-	setpcblock PCBLOCK_ALL,true;
-	setpcblock PCBLOCK_MOVE,false;
-	setpcblock PCBLOCK_CHAT,false;
-	setpcblock PCBLOCK_SITSTAND,false;
-	setpcblock PCBLOCK_NPCCLICK,false;
-	setpcblock PCBLOCK_EMOTION,false;
-	return;
-}
