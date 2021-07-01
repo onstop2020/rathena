@@ -16,8 +16,6 @@
 //============================================================
 
 prontera,152,193,6	script	เปลี่ยนอาชีพ	861,{
-	if((Class == 0 || Class == 4001 || Class == 4023) && getskilllv(1) >= 9)
-	SkillPoint = 0;
 	function Get_Job_Equip;
 	// Checks if the Player has the required level.
 	// closes if not, returns if yes
@@ -493,5 +491,3 @@ OnInit:
 	waitingroom "เปลี่ยนอาชีพตามต้องการ",0;
 	end;
 }
-
-bat_c01,77,101,3	duplicate(เปลี่ยนอาชีพ)	เปลี่ยนอาชีพ#1	861
