@@ -108,3 +108,29 @@ Body:
     Buy: 1
     Script: |
       #CASHPOINTS += 1000;
+  - Id: 1599
+    AegisName: Angra_Manyu
+    Name: Angra Manyu
+    Type: Weapon
+    SubType: Mace
+    Buy: 1
+    Weight: 10
+    Attack: 100
+    MagicAttack: 100
+    Range: 2
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 1
+    EquipLevelMin: 1
+    Refineable: true
+  - Id: 2199
+    AegisName: Ahura_Mazda
+    Name: Ahura Mazdah
+    Type: Armor
+    Buy: 1
+    Weight: 10
+    Locations:
+      Left_Hand: true
+    EquipLevelMin: 1
+    Refineable: true
+    View: 1
