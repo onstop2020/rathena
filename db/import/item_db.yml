@@ -123,6 +123,7 @@ Body:
     WeaponLevel: 1
     EquipLevelMin: 1
     Refineable: true
+    Script: |
   - Id: 2199
     AegisName: Ahura_Mazda
     Name: Ahura Mazdah
@@ -134,3 +135,4 @@ Body:
     EquipLevelMin: 1
     Refineable: true
     View: 1
+    Script: |

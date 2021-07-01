@@ -17,13 +17,14 @@
 	.@Delay = 1;
 
 	if (@HD > gettimetick(2))
-		end;
+	end;
 	
 	specialeffect2 EF_HEAL2;
 	
 	identifyall;
 	repairall;
-
+	mergeitem2;
+	
 	percentheal 100,100;
 
 	if (.@Delay)
