@@ -2879,6 +2879,22 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 			}
 
+			// THE BOX 2 [Start]
+			// 5% to drop random key
+			int keyDropRate = 500;
+			if (drop_modifier != 100) {
+				keyDropRate = apply_rate(keyDropRate, drop_modifier);
+				if (keyDropRate < 1)
+					keyDropRate = 1;
+			}
+			if (rnd() % 10000 <= keyDropRate) {
+				struct s_mob_drop mobdrop;
+				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
+				// Random key here
+				mobdrop.nameid = 1599;
+				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
+			}
+
 			// process script-granted zeny bonus (get_zeny_num) [Skotlex]
 			if( sd->bonus.get_zeny_num && rnd()%100 < sd->bonus.get_zeny_rate ) {
 				i = sd->bonus.get_zeny_num > 0 ? sd->bonus.get_zeny_num : -md->level * sd->bonus.get_zeny_num;
