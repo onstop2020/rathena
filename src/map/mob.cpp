@@ -2890,8 +2890,15 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			if (rnd() % 10000 <= keyDropRate) {
 				struct s_mob_drop mobdrop;
 				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
+				int randomKey = (rnd() % 4) + 1;
 				// Random key here
-				mobdrop.nameid = 1599;
+				mobdrop.nameid = 40004;
+				if(randomKey==2)
+					mobdrop.nameid = 40005;
+				else if (randomKey == 3)
+					mobdrop.nameid = 40006;
+				else if (randomKey == 4)
+					mobdrop.nameid = 40007;
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
 			}
 

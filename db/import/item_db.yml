@@ -108,6 +108,26 @@ Body:
     Buy: 1
     Script: |
       #CASHPOINTS += 1000;
+  - Id: 40004
+    AegisName: Weapon_Key
+    Name: Weapon Key
+    Type: Etc
+    Buy: 1
+  - Id: 40005
+    AegisName: Equipment_Key
+    Name: Equipment Key
+    Type: Etc
+    Buy: 1
+  - Id: 40006
+    AegisName: Costume_Key
+    Name: Costume Key
+    Type: Etc
+    Buy: 1
+  - Id: 40007
+    AegisName: Card_Key
+    Name: Card Key
+    Type: Etc
+    Buy: 1
   - Id: 1599
     AegisName: Angra_Manyu
     Name: Angra Manyu
