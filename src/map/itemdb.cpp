@@ -530,7 +530,8 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->view_id = 0;
 	}
 
-	if (this->nodeExists(node, "Flags")) {
+	// THE BOX 2 [Start]
+	if (this->nodeExists(node, "FlagsUnused")) {
 		const YAML::Node &flagNode = node["Flags"];
 
 		if (this->nodeExists(flagNode, "BuyingStore")) {
@@ -665,7 +666,8 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Delay")) {
+	// THE BOX 2 [Start]
+	if (this->nodeExists(node, "DelayUnused")) {
 		const YAML::Node &delayNode = node["Delay"];
 
 		if (this->nodeExists(delayNode, "Duration")) {
@@ -706,7 +708,8 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Stack")) {
+	// THE BOX 2 [Start]
+	if (this->nodeExists(node, "StackUnused")) {
 		const YAML::Node &stackNode = node["Stack"];
 
 		if (this->nodeExists(stackNode, "Amount")) {
@@ -782,8 +785,9 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->stack.guild_storage = false;
 		}
 	}
-	
-	if (this->nodeExists(node, "NoUse")) {
+
+	// THE BOX 2 [Start]
+	if (this->nodeExists(node, "NoUseUnused")) {
 		const YAML::Node &nouseNode = node["NoUse"];
 
 		if (this->nodeExists(nouseNode, "Override")) {
@@ -821,7 +825,8 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Trade")) {
+	// THE BOX 2 [Start]
+	if (this->nodeExists(node, "TradeUnused")) {
 		const YAML::Node &tradeNode = node["Trade"];
 
 		if (this->nodeExists(tradeNode, "Override")) {
