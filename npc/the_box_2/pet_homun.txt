@@ -1,0 +1,20 @@
+prontera,95,248,5	script	ฟักไข่	10366,{
+	bpet
+	end;
+	
+OnInit:
+	waitingroom "ฟักไข่",0;
+	end;
+}
+
+prontera,95,248,5	script	Pet & Homun. อิ่มสนิท	10366,{
+	atcommand "@petfriendly 1000";
+	atcommand "@pethungry 100";
+	atcommand "@homfriendly 1000";
+	atcommand "@homhungry 100";
+	end;
+	
+OnInit:
+	waitingroom "Pet & Homun. อิ่มสนิท",0;
+	end;
+}
