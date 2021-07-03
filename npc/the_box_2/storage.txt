@@ -1,10 +1,43 @@
 -	script	storage	-1,{
+	specialeffect2 250;
+	.@menu$ = "คลังปกติ:";
+	
+	for(.@i = 1; .@i < 9; ++.@i)
+	.@menu$ += "คลัง Cash " + .@i + ":";
+
+	.@storageNum = select(.@menu$) - 1;
+	
+	if(.@storageNum <= 0)
 	openstorage;
+	else{
+		if(getd("#storage" + .@storageNum) > 0){
+			openstorage2 .@storageNum,STOR_MODE_GET|STOR_MODE_PUT;
+		}
+		else{
+			mes "ใช้ ^3F28FF" + callfunc("F_InsertComma",.price) + " Cash^000000 เพื่อเปิด คลัง Cash ที่ " + .@storageNum + "?";
+			menu "ยืนยัน",-;
+			if(#CASHPOINTS >= .price)
+			{
+				#CASHPOINTS -= .price;
+				set getd("#storage" + .@storageNum),1;
+				close2;
+				openstorage2 .@storageNum,STOR_MODE_GET|STOR_MODE_PUT;
+				end;
+			}
+			else{
+				clear;
+				mes "^3F28FFต้องการ:^000000 " + callfunc("F_InsertComma",.price) + " Cash";
+				mes "^3F28FFคุณมี:^000000 " + callfunc("F_InsertComma",#CASHPOINT) + " Cash";
+				close;
+			}
+		}
+	}
 	end;
 	
-	OnInit:
+OnInit:
+	.price = 100;
 	waitingroom "คลังเก็บของ",0;
 	end;
 }
 
-prontera,142,180,5	duplicate(storage)	คลังเก็บของ	10005
+prontera,147,174,5	duplicate(storage)	คลังเก็บของ	10005

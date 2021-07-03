@@ -1,4 +1,5 @@
 -	script	CharacterSuitController	-1,{
+	specialeffect2 253;
 	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด",L_Class3Suit,"แก้เด้ง ID ที่เข้าเกมไม่ได้",L_ResetErrorCharacter;
 	setarray .@Styles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
 	setarray .@Look[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
@@ -86,8 +87,8 @@
 	close;
 	
 	OnInit:
-	waitingroom "แต่ง ผม, สีผม, สีเสื้อ, ชุด Class 3",0;
+	waitingroom "แต่ง ผม, สีผม, สีเสื้อ, ชุด",0;
 	end;
 }
 
-prontera,178,174,3	duplicate(CharacterSuitController)	 แต่งตัว	894
+prontera,142,180,7	duplicate(CharacterSuitController)	 แต่งตัว	894
