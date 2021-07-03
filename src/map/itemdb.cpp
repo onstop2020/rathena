@@ -487,7 +487,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->elvmax = MAX_LEVEL;
 	}
 
-	if (this->nodeExists(node, "Refineable")) {
+	if (this->nodeExists(node, "RefineableNoUse")) {
 		bool refine;
 
 		if (!this->asBool(node, "Refineable", refine))
@@ -496,7 +496,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		item->flag.no_refine = !refine;
 	} else {
 		if (!exists)
-			item->flag.no_refine = true;
+			item->flag.no_refine = false;
 	}
 
 	if (this->nodeExists(node, "View")) {
