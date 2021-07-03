@@ -128,6 +128,48 @@ Body:
     Name: Card Key
     Type: Etc
     Buy: 1
+  - Id: 40008
+    AegisName: EXP_100
+    Name: EXP +100%
+    Type: Usable
+    Weight: 10
+    Script: |
+      sc_start SC_EXPBOOST,3600000,100;
+  - Id: 40009
+    AegisName: EXP_200
+    Name: EXP +200%
+    Type: Usable
+    Weight: 10
+    Script: |
+      sc_start SC_EXPBOOST,3600000,200;
+  - Id: 40010
+    AegisName: EXP_300
+    Name: EXP +300%
+    Type: Usable
+    Weight: 10
+    Script: |
+      sc_start SC_EXPBOOST,3600000,300;
+  - Id: 40011
+    AegisName: DROP_100
+    Name: Drop +100%
+    Type: Usable
+    Weight: 10
+    Script: |
+      sc_start SC_ITEMBOOST,3600000,100;
+  - Id: 40012
+    AegisName: DROP_200
+    Name: Drop +200%
+    Type: Usable
+    Weight: 10
+    Script: |
+      sc_start SC_ITEMBOOST,3600000,200;
+  - Id: 40013
+    AegisName: DROP_300
+    Name: Drop +300%
+    Type: Usable
+    Weight: 10
+    Script: |
+      sc_start SC_ITEMBOOST,3600000,300;
   - Id: 1599
     AegisName: Angra_Manyu
     Name: Angra Manyu
