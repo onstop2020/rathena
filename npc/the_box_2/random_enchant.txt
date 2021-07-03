@@ -1,6 +1,6 @@
-prontera,124,252,3	script	Random Option	869,{
+prontera,134,244,5	script	Random Enchantment	868,{
 	mes "^3F28FFโอกาสติด:^000000 100%";
-	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
+	mes "^3F28FFEnchant ได้เฉพาะ:^000000 อุปกรณ์สวมใส่ที่มี Slot ไม่ครบ 4 Slot";
 	mes "^3F28FFZeny ที่ต้องใช้:^000000 " + callfunc("F_InsertComma",.price) + "z";
 	next;
 	
@@ -64,7 +64,7 @@ prontera,124,252,3	script	Random Option	869,{
 
 OnInit:
 	.price = 5000000;
-	waitingroom "Random Option",0;
+	waitingroom "Random Enchantment",0;
 	end;
 }
 

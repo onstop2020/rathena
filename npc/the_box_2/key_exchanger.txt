@@ -1,5 +1,5 @@
 prontera,103,261,5	script	Weapon Box	10249,{
-	mes "ใช้ " + getitemname(.itemId) + " ในการสุ่มอาวุธ";
+	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มอาวุธ";
 	next;
 	menu "สุ่ม 1 รอบ",-,"สุ่มทีเดียวหมด",L_AllIn;
 	.@amount = 1;
@@ -49,7 +49,7 @@ OnInit:
 }
 
 prontera,110,261,5	script	Equipment Box	10249,{
-	mes "ใช้ " + getitemname(.itemId) + " ในการสุ่มอุปกรณ์";
+	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มอุปกรณ์สวมใส่";
 	next;
 	menu "สุ่ม 1 รอบ",-,"สุ่มทีเดียวหมด",L_AllIn;
 	.@amount = 1;
@@ -93,13 +93,13 @@ prontera,110,261,5	script	Equipment Box	10249,{
 	close;
 	
 OnInit:
-	waitingroom "กล่องอุปกรณ์",0;
+	waitingroom "กล่องอุปกรณ์สวมใส่",0;
 	.itemId = 40005;
 	end;
 }
 
 prontera,117,261,5	script	Costume Box	10249,{
-	mes "ใช้ " + getitemname(.itemId) + " ในการสุ่ม Costume";
+	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่ม Costume";
 	next;
 	menu "สุ่ม 1 รอบ",-,"สุ่มทีเดียวหมด",L_AllIn;
 	.@amount = 1;
@@ -149,7 +149,7 @@ OnInit:
 }
 
 prontera,124,261,5	script	Card Box	10249,{
-	mes "ใช้ " + getitemname(.itemId) + " ในการสุ่มการ์ด";
+	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มการ์ด";
 	next;
 	menu "สุ่ม 1 รอบ",-,"สุ่มทีเดียวหมด",L_AllIn;
 	.@amount = 1;
