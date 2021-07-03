@@ -33,8 +33,8 @@
 	" ~ พื้นที่",Fields,
 	" ~ ดันเจี้ยน",Dungeons,
 	" ~ ปราสาท Guild",Castles,
-	" ~ ดันเจี้ยน Guild",Guild_Dungeons,
-	" ~ ดันเจี้ยนเพิ่มเติม",Instances
+	" ~ ดันเจี้ยน Guild",Guild_Dungeons
+	//" ~ ดันเจี้ยนเพิ่มเติม",Instances
 	//" ~ Special Areas",Special
 	;
 

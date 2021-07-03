@@ -14,18 +14,18 @@
 //============================================================
 
 -	script	Healer	-1,{
-	.@Delay = 1;
+	.@Delay = 4;
 	
 	.@price = 0;
-	if(BaseLevel >= 20 && isUseBuff)
+	if(BaseLevel >= 20 && !isNotUseBuff)
 	.@price = BaseLevel * 25;
 
 	if (@HD > gettimetick(2)){
 		menu "เปิด/ปิด Buff",-;
-		isUseBuff = !isUseBuff;
-		if(isUseBuff)
+		isNotUseBuff = !isNotUseBuff;
+		if(!isNotUseBuff)
 		message strcharinfo(0),"ต้องจ่าย " + callfunc("F_InsertComma",.@price) + "z เพื่อรับ Buff ทุกครั้ง";
-		message strcharinfo(0),isUseBuff ? "Buff: เปิด" : "Buff: ปิด";
+		message strcharinfo(0),!isNotUseBuff ? "Buff: เปิด" : "Buff: ปิด";
 		end;	
 	}
 	
@@ -35,7 +35,7 @@
 	repairall;
 	mergeitem2;
 	
-	if(isUseBuff){
+	if(!isNotUseBuff){
 		if(Zeny >= .@price)
 		Zeny -= .@price;
 		else
@@ -58,7 +58,7 @@
 	end;
 
 OnInit:
-	waitingroom "ฟื้นฟู HP & SP (กดรัว ๆ เพื่อตั้งค่า)",0;
+	waitingroom "กดรัว ๆ ตั้งค่า Buff",0;
 	end;
 }
 
