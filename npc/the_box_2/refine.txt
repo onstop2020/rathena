@@ -1,0 +1,8 @@
+prontera,95,249,5	script	�պǡ	10366,{
+	refineui;
+	end;
+	
+OnInit:
+	waitingroom "�պǡ",0;
+	end;
+}
