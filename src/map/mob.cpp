@@ -2881,13 +2881,21 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 			// THE BOX 2 [Start]
 			// 5% to drop random key
-			int keyDropRate = 500;
+			int key_drop_rate = 500;
+
+			int key_drop_rate_bonus = 0;
+			// Increase drop rate if user has SC_ITEMBOOST
+			if (sd->sc.data[SC_ITEMBOOST])
+				key_drop_rate_bonus += sd->sc.data[SC_ITEMBOOST]->val1;
+			key_drop_rate_bonus = (int)(0.5 + key_drop_rate * key_drop_rate_bonus / 100.);
+			key_drop_rate = i32max(key_drop_rate, cap_value(key_drop_rate_bonus, 0, 9000));
+
 			if (drop_modifier != 100) {
-				keyDropRate = apply_rate(keyDropRate, drop_modifier);
-				if (keyDropRate < 1)
-					keyDropRate = 1;
+				key_drop_rate = apply_rate(key_drop_rate, drop_modifier);
+				if (key_drop_rate < 1)
+					key_drop_rate = 1;
 			}
-			if (rnd() % 10000 <= keyDropRate) {
+			if (rnd() % 10000 <= key_drop_rate) {
 				struct s_mob_drop mobdrop;
 				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
 				int randomKey = (rnd() % 4) + 1;
