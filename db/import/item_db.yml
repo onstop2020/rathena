@@ -170,6 +170,14 @@ Body:
     Weight: 10
     Script: |
       sc_start SC_ITEMBOOST,3600000,300;
+  - Id: 12887
+    AegisName: C_Wing_Of_Fly
+    Name: Infinite Flywing
+    Type: Delayconsume
+    Buy: 1
+    Script: |
+      itemskill "AL_TELEPORT",1;
+      getitem 12887,1;
   - Id: 1599
     AegisName: Angra_Manyu
     Name: Angra Manyu
