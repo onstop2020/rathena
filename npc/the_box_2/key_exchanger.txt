@@ -2,14 +2,13 @@ prontera,103,261,5	script	Weapon Box	10249,{
 	specialeffect2 593;
 	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มอาวุธ";
 	next;
-	menu "สุ่ม 1 รอบ",-,"สุ่มทีเดียวหมด",L_AllIn;
+	menu "สุ่ม 1 รอบ",-,"สุ่ม 10 รอบ",L_AllIn;
 	.@amount = 1;
 	goto L_Trade;
 	
 	L_AllIn:
 	.@keyCount = countitem(.itemId);
-	getinventorylist;
-	.@amount = 100 - getarraysize(@inventorylist_id);
+	.@amount = 10;
 	if(.@keyCount < .@amount)
 	.@amount = .@keyCount;
 	goto L_Trade;
@@ -53,14 +52,13 @@ prontera,110,261,5	script	Equipment Box	10249,{
 	specialeffect2 594;
 	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มอุปกรณ์สวมใส่";
 	next;
-	menu "สุ่ม 1 รอบ",-,"สุ่มทีเดียวหมด",L_AllIn;
+	menu "สุ่ม 1 รอบ",-,"สุ่ม 10 รอบ",L_AllIn;
 	.@amount = 1;
 	goto L_Trade;
 	
 	L_AllIn:
 	.@keyCount = countitem(.itemId);
-	getinventorylist;
-	.@amount = 100 - getarraysize(@inventorylist_id);
+	.@amount = 10;
 	if(.@keyCount < .@amount)
 	.@amount = .@keyCount;
 	goto L_Trade;
@@ -104,14 +102,13 @@ prontera,117,261,5	script	Costume Box	10249,{
 	specialeffect2 595;
 	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่ม Costume";
 	next;
-	menu "สุ่ม 1 รอบ",-,"สุ่มทีเดียวหมด",L_AllIn;
+	menu "สุ่ม 1 รอบ",-,"สุ่ม 10 รอบ",L_AllIn;
 	.@amount = 1;
 	goto L_Trade;
 	
 	L_AllIn:
 	.@keyCount = countitem(.itemId);
-	getinventorylist;
-	.@amount = 100 - getarraysize(@inventorylist_id);
+	.@amount = 10;
 	if(.@keyCount < .@amount)
 	.@amount = .@keyCount;
 	goto L_Trade;
@@ -155,14 +152,13 @@ prontera,124,261,5	script	Card Box	10249,{
 	specialeffect2 596;
 	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มการ์ด";
 	next;
-	menu "สุ่ม 1 รอบ",-,"สุ่มทีเดียวหมด",L_AllIn;
+	menu "สุ่ม 1 รอบ",-,"สุ่ม 10 รอบ",L_AllIn;
 	.@amount = 1;
 	goto L_Trade;
 	
 	L_AllIn:
 	.@keyCount = countitem(.itemId);
-	getinventorylist;
-	.@amount = 100 - getarraysize(@inventorylist_id);
+	.@amount = 10;
 	if(.@keyCount < .@amount)
 	.@amount = .@keyCount;
 	goto L_Trade;
