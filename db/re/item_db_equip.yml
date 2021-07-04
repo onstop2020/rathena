@@ -90649,7 +90649,7 @@ Body:
     Locations:
       Costume_Garment: true
     EquipLevelMin: 1
-    View: 49
+    View: 48
   - Id: 20773
     AegisName: Excelion_Wing
     Name: Excelion Wing
