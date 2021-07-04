@@ -33,7 +33,7 @@
 	
 	identifyall;
 	repairall;
-	mergeitem2;
+	//mergeitem2;
 	
 	if(!isNotUseBuff){
 		if(Zeny >= .@price)
@@ -44,7 +44,6 @@
 			message strcharinfo(0),"ต้องมี " + callfunc("F_InsertComma",.@price) + "z";
 			if (.@Delay)
 			@HD = gettimetick(2) + .@Delay;
-			end;
 			end;
 		}
 		sc_start SC_INCREASEAGI,600000,10;
