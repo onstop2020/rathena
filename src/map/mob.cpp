@@ -2884,7 +2884,6 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			int key_drop_rate = 500;
 
 			int key_drop_rate_bonus = 0;
-			// Increase drop rate if user has SC_ITEMBOOST
 			if (sd->sc.data[SC_ITEMBOOST])
 				key_drop_rate_bonus += sd->sc.data[SC_ITEMBOOST]->val1;
 			key_drop_rate_bonus = (int)(0.5 + key_drop_rate * key_drop_rate_bonus / 100.);
@@ -2895,18 +2894,21 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				if (key_drop_rate < 1)
 					key_drop_rate = 1;
 			}
+
 			if (rnd() % 10000 <= key_drop_rate) {
 				struct s_mob_drop mobdrop;
-				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
 				int randomKey = (rnd() % 4) + 1;
 				// Random key here
-				mobdrop.nameid = 40004;
-				if(randomKey==2)
-					mobdrop.nameid = 40005;
+				dropid = 40004;
+				if (randomKey == 2)
+					dropid = 40005;
 				else if (randomKey == 3)
-					mobdrop.nameid = 40006;
+					dropid = 40006;
 				else if (randomKey == 4)
-					mobdrop.nameid = 40007;
+					dropid = 40007;
+				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
+				mobdrop.nameid = dropid;
+				
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
 			}
 
