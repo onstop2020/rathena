@@ -23,11 +23,7 @@
 	// --------------------------------------------------
 	//	Main Menu:
 	// --------------------------------------------------
-	
-	@price = 0;
-	if(BaseLevel >= 20)
-	@price = BaseLevel/10 * 100;
-	message strcharinfo(0),"ต้องจ่าย " + callfunc("F_InsertComma",@price) + "z ในการวาร์ป";
+
 	menu	"วาร์ปล่าสุด ^777777["+lastwarp$+"]^000000",-,
 	" ~ เมือง",Towns,
 	" ~ พื้นที่",Fields,
