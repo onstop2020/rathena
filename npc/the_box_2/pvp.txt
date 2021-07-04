@@ -1,4 +1,5 @@
 -	script	pvpMan	-1,{
+	specialeffect2 677;
 	menu "PvP",-,"PvP Party",L_Party;
 	warp "pvp_y_7-2",0,0;
 	end;

@@ -1,4 +1,5 @@
 prontera,196,249,5	script	ฟักไข่	918,{
+	specialeffect2 444;
 	bpet;
 	end;
 	
@@ -11,10 +12,12 @@ prontera,202,249,3	script	Pet & Hom. อิ่มสนิท	919,{
 	if(getpetinfo(PETINFO_ID) > 0){
 		atcommand "@petfriendly 1000";
 		atcommand "@pethungry 100";
+		specialeffect2 434;
 	}
 	if(gethominfo(0) > 0){
 		addhomintimacy 100000;
 		atcommand "@homhungry 100";
+		specialeffect2 431;
 	}
 	end;
 	
@@ -24,7 +27,10 @@ OnInit:
 }
 
 prontera,206,244,3	script	Hom. Evo. 	920,{
-	homevolution;
+	if(gethominfo(0) > 0){
+		specialeffect2 417;
+		homevolution;
+	}
 	end;
 	
 OnInit:
@@ -33,38 +39,42 @@ OnInit:
 }
 
 prontera,206,239,3	script	Hom. S 	915,{
-	if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
-		switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
-		case 1:
-			cutin "Mer_Eira_Card",3;
-			.@Homunculus = 6048; //MER_EIRA
-			break;
-		case 2:
-			cutin "Mer_Sera_Card",3;
-			.@Homunculus = 6050; //MER_SERA
-			break;
-		case 3:
-			cutin "Mer_Dieter_Card",3;
-			.@Homunculus = 6051; //MER_DIETER
-			break;
-		case 4:
-			cutin "Mer_Bayeri_Card",3;
-			.@Homunculus = 6049; //MER_BAYERI
-			break;
-		case 5:
-			cutin "Mer_Eleanor_Card",3;
-			.@Homunculus = 6052; //MER_ELEANOR
-			break;
+	if(gethominfo(0) > 0){
+		specialeffect2 408;
+		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
+			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
+			case 1:
+				cutin "Mer_Eira_Card",3;
+				.@Homunculus = 6048; //MER_EIRA
+				break;
+			case 2:
+				cutin "Mer_Sera_Card",3;
+				.@Homunculus = 6050; //MER_SERA
+				break;
+			case 3:
+				cutin "Mer_Dieter_Card",3;
+				.@Homunculus = 6051; //MER_DIETER
+				break;
+			case 4:
+				cutin "Mer_Bayeri_Card",3;
+				.@Homunculus = 6049; //MER_BAYERI
+				break;
+			case 5:
+				cutin "Mer_Eleanor_Card",3;
+				.@Homunculus = 6052; //MER_ELEANOR
+				break;
+			}
+			menu "ยืนยัน",-;
+			morphembryo;
+			hommutate .@Homunculus;
+			end;
 		}
-		menu "ยืนยัน",-;
-		morphembryo;
-		hommutate .@Homunculus;
-		end;
+		else{
+			mes "ต้องมี Homunculus ปกติที่ Evolution แล้วและ Level 99 หรือมากกว่า";
+			close;
+		}
 	}
-	else{
-		mes "ต้องมี Homunculus ปกติที่ Evolution แล้วและ Level 99 หรือมากกว่า";
-		close;
-	}
+	end;
 	
 OnInit:
 	waitingroom "Hom. S",0;

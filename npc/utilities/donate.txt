@@ -1,5 +1,6 @@
 -	script	donateInfomation	-1,{
-	mes "Website: <URL>Link<INFO>https://sites.google.com/view/start-ro/donate</INFO></URL>";
+	specialeffect2 1002;
+	mes "<URL>คลิก<INFO>https://sites.google.com/view/start-ro/donate</INFO></URL>";
 	close;
 	
 OnInit:
@@ -8,6 +9,3 @@ OnInit:
 }
 
 prontera,164,174,3	duplicate(donateInfomation)	บริจาค#1	837
-moscovia,230,198,3	duplicate(donateInfomation)	บริจาค#2	837
-malaya,244,218,3	duplicate(donateInfomation)	บริจาค#3	837
-bat_c01,50,101,5	duplicate(donateInfomation)	บริจาค#4	837

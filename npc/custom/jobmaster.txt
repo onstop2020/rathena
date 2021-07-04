@@ -488,6 +488,6 @@ OnInit:
 		.BabySummoner = false;
 	}
 	
-	waitingroom "เปลี่ยนอาชีพตามต้องการ",0;
+	waitingroom "เปลี่ยนอาชีพ",0;
 	end;
 }

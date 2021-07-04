@@ -8,12 +8,12 @@ OnInit:
 	end;
 }
 
-prontera,110,246,5	duplicate(backToCenter)	กลับกลางเมือง#1	723
-prontera,101,168,5	duplicate(backToCenter)	กลับกลางเมือง#2	723
-prontera,237,62,5	duplicate(backToCenter)	กลับกลางเมือง#3	723
-prontera,200,240,5	duplicate(backToCenter)	กลับกลางเมือง#4	723
+prontera,110,246,5	duplicate(backToCenter)	กลับกลางเมือง#1	10081
+prontera,101,168,5	duplicate(backToCenter)	กลับกลางเมือง#2	10081
+prontera,237,62,5	duplicate(backToCenter)	กลับกลางเมือง#3	10081
+prontera,200,240,5	duplicate(backToCenter)	กลับกลางเมือง#4	10081
 
-prontera,145,193,5	script	Zone อุปกรณ์สวมใส่	723,{
+prontera,145,193,5	script	Zone อุปกรณ์สวมใส่	10081,{
 	warp "prontera",115,247;
 	specialeffect2 320;
 	end;
@@ -23,7 +23,7 @@ OnInit:
 	end;
 }
 
-prontera,138,193,5	script	Zone ของจำเป็นตามอาชีพ	723,{
+prontera,138,193,5	script	Zone ของจำเป็นตามอาชีพ	10081,{
 	warp "prontera",102,175;
 	specialeffect2 320;
 	end;
@@ -33,7 +33,7 @@ OnInit:
 	end;
 }
 
-prontera,173,193,5	script	Zone ทดสอบพลังโจมตี	723,{
+prontera,173,193,5	script	Zone ทดสอบพลังโจมตี	10081,{
 	warp "prontera",237,66;
 	specialeffect2 320;
 	end;
@@ -43,7 +43,7 @@ OnInit:
 	end;
 }
 
-prontera,166,193,5	script	Zone Pet & Hom.	723,{
+prontera,166,193,5	script	Zone Pet & Hom.	10081,{
 	warp "prontera",198,246;
 	specialeffect2 320;
 	end;
