@@ -1,16 +1,18 @@
 -	script	freebieSystem	-1,{
 	end;
 	
-/*OnPCLoginEvent:
-	if(getcharid(3) <= 2000034 && !#fb1){
-		#fb1 = 1;
+OnPCLoginEvent:
+	if(getcharid(3) == 2000014)
+	end;
+	if(getcharid(3) <= 2000042 && !#tb2fb1){
+		#tb2fb1 = 1;
 		
-		Zeny += 2000000;
+		#CASHPOINTS += 200;
 		
-		dispbottom "คุณได้รับการชดเชย สำหรับผู้เล่นที่เล่นก่อน ( 13 May 2021 )";
-		dispbottom "* เนื่องจากมีอาการเด้งหลายครั้ง";
+		dispbottom "คุณได้รับการชดเชย สำหรับผู้เล่นที่เล่นก่อน ( 4 July 2021 เวลา 1 ทุ่มครึ่ง )";
+		dispbottom "* เนื่องจากมีอาการ Server ดับหลายครั้ง";
 		dispbottom "---";
-		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",2000000) + "z";
+		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",200) + " Cash";
 	}
-	end;*/
+	end;
 }
