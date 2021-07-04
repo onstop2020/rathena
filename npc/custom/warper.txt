@@ -40,10 +40,8 @@
 
 	if (lastwarp$ == "")
 	message strcharinfo(0),"คุณยังไม่เคยวาร์ปไปที่ไหนมาก่อน";
-	else{
-		callsub L_Pay;
-		warp lastwarp$,lastwarpx,lastwarpy;
-	}
+	else
+	warp lastwarp$,lastwarpx,lastwarpy;
 	end;
 
 	// ------------------- Functions -------------------
@@ -71,7 +69,6 @@
 	// --------------------------------------------------
 
 	function Go {
-		callsub L_Pay;
 		set lastwarp$, getarg(0);
 		set lastwarpx, getarg(1,0);
 		set lastwarpy, getarg(2,0);
@@ -535,16 +532,6 @@ S8: Go("p_track01",62,41);
 S9: Restrict("RE");
 	Go("paramk",97,17);
 S10: Go("turbo_room",99,114);
-
-	L_Pay:
-	if(Zeny >= @price)
-	Zeny -= @price;
-	else
-	{
-		message strcharinfo(0),"ต้องมี " + callfunc("F_InsertComma",@price) + "z";
-		end;
-	}
-	return;
 	
 OnInit:
 	.Satan_Morocc = true;	//	false will enable moc_fild 4,5,6,8,9,10,14,15 while disable moc_fild 20,21,22 Default is true.

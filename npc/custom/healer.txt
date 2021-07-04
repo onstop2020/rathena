@@ -14,50 +14,23 @@
 //============================================================
 
 -	script	Healer	-1,{
-	.@Delay = 4;
+	.@Delay = 1;
 	
-	.@price = 0;
-	if(BaseLevel >= 20 && !isNotUseBuff)
-	.@price = BaseLevel * 25;
-
-	if (@HD > gettimetick(2)){
-		menu "เปิด/ปิด Buff",-;
-		isNotUseBuff = !isNotUseBuff;
-		if(!isNotUseBuff)
-		message strcharinfo(0),"ต้องจ่าย " + callfunc("F_InsertComma",.@price) + "z เพื่อรับ Buff ทุกครั้ง";
-		message strcharinfo(0),!isNotUseBuff ? "Buff: เปิด" : "Buff: ปิด";
-		end;	
-	}
+	if (@HD > gettimetick(2))
+	end;	
 	
 	specialeffect2 EF_HEAL2;
 	
 	identifyall;
 	repairall;
 	//mergeitem2;
-	
-	if(!isNotUseBuff){
-		if(Zeny >= .@price)
-		Zeny -= .@price;
-		else
-		{
-			percentheal 100,100;
-			message strcharinfo(0),"ต้องมี " + callfunc("F_InsertComma",.@price) + "z";
-			if (.@Delay)
-			@HD = gettimetick(2) + .@Delay;
-			end;
-		}
-		sc_start SC_INCREASEAGI,600000,10;
-		sc_start SC_BLESSING,600000,10;
-	}
-	
+
+	sc_start SC_INCREASEAGI,600000,10;
+	sc_start SC_BLESSING,600000,10;
 	percentheal 100,100;
 
 	if (.@Delay)
 	@HD = gettimetick(2) + .@Delay;
-	end;
-
-OnInit:
-	waitingroom "กดรัว ๆ ตั้งค่า Buff",0;
 	end;
 }
 
