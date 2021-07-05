@@ -170,6 +170,16 @@ Body:
     Weight: 10
     Script: |
       sc_start SC_ITEMBOOST,3600000,300;
+  - Id: 601
+    AegisName: Wing_Of_Fly
+    Name: Fly Wing
+    Type: Delayconsume
+    Buy: 1
+    Weight: 50
+    Flags:
+      BuyingStore: true
+    Script: |
+      itemskill "AL_TELEPORT",1;
   - Id: 12887
     AegisName: C_Wing_Of_Fly
     Name: Infinite Flywing
