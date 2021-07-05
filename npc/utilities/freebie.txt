@@ -14,5 +14,17 @@ OnPCLoginEvent:
 		dispbottom "---";
 		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",200) + " Cash";
 	}
+	if(getcharid(3) <= 2000050 && !#tb2fb2){
+		#tb2fb1 = 2;
+		
+		#CASHPOINTS += 50;
+		Zeny += 5000000;
+		
+		dispbottom "คุณได้รับการชดเชย สำหรับผู้เล่นที่เล่นก่อน ( 4 July 2021 เวลา 5 ทุ่ม )";
+		dispbottom "* เนื่องจากมีอาการ Server ดับหลายครั้ง";
+		dispbottom "---";
+		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",50) + " Cash";
+		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",5000000) + " Zeny";
+	}
 	end;
 }
