@@ -112,22 +112,22 @@ Body:
     AegisName: Weapon_Key
     Name: Weapon Key
     Type: Etc
-    Buy: 1
+    Buy: 2000
   - Id: 40005
     AegisName: Equipment_Key
     Name: Equipment Key
     Type: Etc
-    Buy: 1
+    Buy: 2000
   - Id: 40006
     AegisName: Costume_Key
     Name: Costume Key
     Type: Etc
-    Buy: 1
+    Buy: 8000
   - Id: 40007
     AegisName: Card_Key
     Name: Card Key
     Type: Etc
-    Buy: 1
+    Buy: 20000
   - Id: 40008
     AegisName: EXP_100
     Name: EXP +100%
