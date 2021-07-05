@@ -1,8 +1,8 @@
 prontera,103,261,5	script	Weapon Box	10249,{
-	if(countitem(.itemId) < .@amount)
+	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
-		close;
+		end;
 	}
 	.@reward = $weaponIds[rand(0,getarraysize($weaponIds) - 1)];
 	if (checkweight(.@reward,1)){
@@ -66,10 +66,10 @@ OnInit:
 }
 
 prontera,110,261,5	script	Equipment Box	10249,{
-	if(countitem(.itemId) < .@amount)
+	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
-		close;
+		end;
 	}
 	.@reward = $equipmentIds[rand(0,getarraysize($equipmentIds) - 1)];
 	if (checkweight(.@reward,1)){
@@ -133,10 +133,10 @@ OnInit:
 }
 
 prontera,117,261,5	script	Costume Box	10249,{
-	if(countitem(.itemId) < .@amount)
+	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
-		close;
+		end;
 	}
 	.@reward = $costumeIds[rand(0,getarraysize($costumeIds) - 1)];
 	if (checkweight(.@reward,1)){
@@ -200,10 +200,10 @@ OnInit:
 }
 
 prontera,124,261,5	script	Card Box	10249,{
-	if(countitem(.itemId) < .@amount)
+	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
-		close;
+		end;
 	}
 	.@reward = $cardIds[rand(0,getarraysize($cardIds) - 1)];
 	if (checkweight(.@reward,1)){
