@@ -17,7 +17,6 @@
 //============================================================
 
 -	script	Warper	-1,{
-	specialeffect2 73;
 	function Go; function Disp; function Pick; function Restrict;
 
 	// --------------------------------------------------

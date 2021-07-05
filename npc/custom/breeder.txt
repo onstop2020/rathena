@@ -35,6 +35,5 @@ prontera,149,193,5	script	เช่า All, Skill เสริม	900,{
 		message strcharinfo(0),"คุณไม่จำเป็นต้องเช่าอะไร";
 		end;
 	}
-	specialeffect2 EF_TEIHIT3;
 	end;
 }

@@ -314,8 +314,6 @@ prontera,152,193,6	script	เปลี่ยนอาชีพ	861,{
 			resetskill;
 			set SkillPoint,0;
 		}
-		specialeffect2 EF_ANGEL2;
-		specialeffect2 EF_ELECTRIC;
 		if (.@previous_class != Class) {
 			if (.Platinum)
 			callfunc "F_GetPlatinumSkills";

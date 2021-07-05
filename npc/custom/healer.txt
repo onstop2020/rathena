@@ -19,7 +19,6 @@
 	if (@HD > gettimetick(2))
 	end;	
 	
-	specialeffect2 EF_HEAL2;
 	
 	identifyall;
 	repairall;

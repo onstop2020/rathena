@@ -31,7 +31,6 @@ prontera,134,172,3	script	สาวนัก Reset	10010,{
 	}
 	if(.@i&2) ResetStatus;
 	mes "เรียบร้อยแล้ว!";
-	specialeffect2 731;
 	close;
 	
 OnInit:
