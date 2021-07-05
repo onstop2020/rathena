@@ -1,5 +1,4 @@
 prontera,124,238,1	script	Random Enchantment	868,{
-	specialeffect2 56;
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFEnchant ได้เฉพาะ:^000000 อุปกรณ์สวมใส่ที่มี Slot ไม่ครบ 4 Slot";
 	mes "^3F28FFZeny ที่ต้องใช้:^000000 " + callfunc("F_InsertComma",.price) + "z";
@@ -92,7 +91,6 @@ prontera,124,238,1	script	Random Enchantment	868,{
 	getitem2 .@selectedItemId,1,1,.@refineCount,0,.@cardSlot1,.@cardSlot2,.@cardSlot3,.@cardSlot4;
 	
 	mes "เรียบร้อยแล้ว!";
-	specialeffect2 86;
 	close;
 
 OnInit:

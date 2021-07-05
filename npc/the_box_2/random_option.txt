@@ -1,5 +1,4 @@
 prontera,124,252,3	script	Random Option	869,{
-	specialeffect2 56;
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
 	mes "^3F28FFZeny ที่ต้องใช้:^000000 " + callfunc("F_InsertComma",.price) + "z";
@@ -60,7 +59,6 @@ prontera,124,252,3	script	Random Option	869,{
 	setrandomoption(.@part,.@slot - 1,callfunc("GetRandomOptionId"),rand(1,.@maxRandomize),0);
 
 	mes "เรียบร้อยแล้ว!";
-	specialeffect2 86;
 	close;
 
 OnInit:

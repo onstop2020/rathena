@@ -1,5 +1,4 @@
 prontera,196,249,5	script	ฟักไข่	918,{
-	specialeffect2 444;
 	bpet;
 	end;
 	
@@ -12,12 +11,10 @@ prontera,202,249,3	script	Pet & Hom. อิ่มสนิท	919,{
 	if(getpetinfo(PETINFO_ID) > 0){
 		atcommand "@petfriendly 1000";
 		atcommand "@pethungry 100";
-		specialeffect2 434;
 	}
 	if(gethominfo(0) > 0){
 		addhomintimacy 100000;
 		atcommand "@homhungry 100";
-		specialeffect2 431;
 	}
 	end;
 	
@@ -27,10 +24,8 @@ OnInit:
 }
 
 prontera,206,244,3	script	Hom. Evo. 	920,{
-	if(gethominfo(0) > 0){
-		specialeffect2 417;
-		homevolution;
-	}
+	if(gethominfo(0) > 0)
+	homevolution;
 	end;
 	
 OnInit:
@@ -40,7 +35,6 @@ OnInit:
 
 prontera,206,239,3	script	Hom. S 	915,{
 	if(gethominfo(0) > 0){
-		specialeffect2 408;
 		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
 			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
 			case 1:

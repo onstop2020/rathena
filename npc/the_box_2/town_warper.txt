@@ -1,6 +1,5 @@
 -	script	backToCenter	-1,{
 	warp "prontera",156,191;
-	specialeffect2 320;
 	end;
 	
 OnInit:
@@ -15,7 +14,6 @@ prontera,200,240,5	duplicate(backToCenter)	กลับกลางเมือง#4	10081
 
 prontera,145,193,5	script	Zone อุปกรณ์สวมใส่	10081,{
 	warp "prontera",115,247;
-	specialeffect2 320;
 	end;
 	
 OnInit:
@@ -25,7 +23,6 @@ OnInit:
 
 prontera,138,193,5	script	Zone ของจำเป็นตามอาชีพ	10081,{
 	warp "prontera",102,175;
-	specialeffect2 320;
 	end;
 	
 OnInit:
@@ -35,7 +32,6 @@ OnInit:
 
 prontera,173,193,5	script	Zone ทดสอบพลังโจมตี	10081,{
 	warp "prontera",237,66;
-	specialeffect2 320;
 	end;
 	
 OnInit:
@@ -45,7 +41,6 @@ OnInit:
 
 prontera,166,193,5	script	Zone Pet & Hom.	10081,{
 	warp "prontera",198,246;
-	specialeffect2 320;
 	end;
 	
 OnInit:

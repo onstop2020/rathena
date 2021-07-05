@@ -1,5 +1,4 @@
 -	script	storage	-1,{
-	specialeffect2 250;
 	.@menu$ = "คลังปกติ:";
 	
 	for(.@i = 1; .@i < 9; ++.@i)

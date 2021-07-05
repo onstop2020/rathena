@@ -34,7 +34,6 @@ OnTimer5000:
 		if(.@diff > 0){
 			npctalk "กระสอบทราย: โดน " + (.@diff/5) + " Damage ภายใน 5 วินาทีที่แล้ว";
 			setunitdata .gid[.@dupid],UMOB_HP,.mhp[.@dupid];
-			specialeffect EF_HEAL;
 		}
 	}
 	initnpctimer;
