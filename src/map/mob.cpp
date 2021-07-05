@@ -2879,39 +2879,6 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 			}
 
-			// THE BOX 2 [Start]
-			// 5% to drop random key
-			int key_drop_rate = 500;
-
-			int key_drop_rate_bonus = 0;
-			if (sd->sc.data[SC_ITEMBOOST])
-				key_drop_rate_bonus += sd->sc.data[SC_ITEMBOOST]->val1;
-			key_drop_rate_bonus = (int)(0.5 + key_drop_rate * key_drop_rate_bonus / 100.);
-			key_drop_rate = i32max(key_drop_rate, cap_value(key_drop_rate_bonus, 0, 9000));
-
-			if (drop_modifier != 100) {
-				key_drop_rate = apply_rate(key_drop_rate, drop_modifier);
-				if (key_drop_rate < 1)
-					key_drop_rate = 1;
-			}
-
-			if (rnd() % 10000 <= key_drop_rate) {
-				struct s_mob_drop mobdrop;
-				int randomKey = (rnd() % 4) + 1;
-				// Random key here
-				dropid = 40004;
-				if (randomKey == 2)
-					dropid = 40005;
-				else if (randomKey == 3)
-					dropid = 40006;
-				else if (randomKey == 4)
-					dropid = 40007;
-				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
-				mobdrop.nameid = dropid;
-				
-				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
-			}
-
 			// process script-granted zeny bonus (get_zeny_num) [Skotlex]
 			if( sd->bonus.get_zeny_num && rnd()%100 < sd->bonus.get_zeny_rate ) {
 				i = sd->bonus.get_zeny_num > 0 ? sd->bonus.get_zeny_num : -md->level * sd->bonus.get_zeny_num;
