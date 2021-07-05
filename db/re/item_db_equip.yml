@@ -116096,12 +116096,6 @@ Body:
     Locations:
       Costume_Head_Mid: true
     EquipLevelMin: 1
-    View: 1500
-    Script: |
-      hateffect(HAT_EF_BAKURETSU_HADOU,true);
-      /* Need to confirm this */
-    UnEquipScript: |
-      hateffect(HAT_EF_BAKURETSU_HADOU,false);
   - Id: 31090
     AegisName: C_Angelring_Hat
     Name: Costume Angelring Hat
