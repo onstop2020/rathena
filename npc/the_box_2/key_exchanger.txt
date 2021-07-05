@@ -1,4 +1,21 @@
 prontera,103,261,5	script	Weapon Box	10249,{
+	if(countitem(.itemId) < .@amount)
+	{
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		close;
+	}
+	.@reward = $weaponIds[rand(0,getarraysize($weaponIds) - 1)];
+	if (checkweight(.@reward,1)){
+		delitem .itemId,1;
+		getitem .@reward,1;
+	}
+	else
+	{
+		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
+		close;
+	}
+	end;
+	
 	specialeffect2 593;
 	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มอาวุธ";
 	next;
@@ -49,6 +66,23 @@ OnInit:
 }
 
 prontera,110,261,5	script	Equipment Box	10249,{
+	if(countitem(.itemId) < .@amount)
+	{
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		close;
+	}
+	.@reward = $equipmentIds[rand(0,getarraysize($equipmentIds) - 1)];
+	if (checkweight(.@reward,1)){
+		delitem .itemId,1;
+		getitem .@reward,1;
+	}
+	else
+	{
+		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
+		close;
+	}
+	end;
+	
 	specialeffect2 594;
 	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มอุปกรณ์สวมใส่";
 	next;
@@ -99,6 +133,23 @@ OnInit:
 }
 
 prontera,117,261,5	script	Costume Box	10249,{
+	if(countitem(.itemId) < .@amount)
+	{
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		close;
+	}
+	.@reward = $costumeIds[rand(0,getarraysize($costumeIds) - 1)];
+	if (checkweight(.@reward,1)){
+		delitem .itemId,1;
+		getitem .@reward,1;
+	}
+	else
+	{
+		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
+		close;
+	}
+	end;
+	
 	specialeffect2 595;
 	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่ม Costume";
 	next;
@@ -149,6 +200,23 @@ OnInit:
 }
 
 prontera,124,261,5	script	Card Box	10249,{
+	if(countitem(.itemId) < .@amount)
+	{
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		close;
+	}
+	.@reward = $cardIds[rand(0,getarraysize($cardIds) - 1)];
+	if (checkweight(.@reward,1)){
+		delitem .itemId,1;
+		getitem .@reward,1;
+	}
+	else
+	{
+		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
+		close;
+	}
+	end;
+	
 	specialeffect2 596;
 	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มการ์ด";
 	next;
