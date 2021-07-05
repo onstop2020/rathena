@@ -9,6 +9,4 @@
  * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
  **/
 
-#define CIRCULAR_AREA
-
 #endif /* CONFIG_CUSTOM_DEFINES_PRE_HPP */
