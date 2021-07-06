@@ -27,7 +27,7 @@
 	" ~ เมือง",Towns,
 	" ~ พื้นที่",Fields,
 	" ~ ดันเจี้ยน",Dungeons,
-	" ~ ปราสาท Guild",Castles,
+	//" ~ ปราสาท Guild",Castles,
 	" ~ ดันเจี้ยน Guild",Guild_Dungeons
 	//" ~ ดันเจี้ยนเพิ่มเติม",Instances
 	//" ~ Special Areas",Special

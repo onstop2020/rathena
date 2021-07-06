@@ -40,30 +40,6 @@ Body:
   - ID: 0
     Name: "Storage"
     Table: storage
-  - ID: 1
-    Name: "Cash Storage 1"
-    Table: storage2
-  - ID: 2
-    Name: "Cash Storage 2"
-    Table: storage3
-  - ID: 3
-    Name: "Cash Storage 3"
-    Table: storage4
-  - ID: 4
-    Name: "Cash Storage 4"
-    Table: storage5
-  - ID: 5
-    Name: "Cash Storage 5"
-    Table: storage6
-  - ID: 6
-    Name: "Cash Storage 6"
-    Table: storage7
-  - ID: 7
-    Name: "Cash Storage 7"
-    Table: storage8
-  - ID: 8
-    Name: "Cash Storage 8"
-    Table: storage9
 
 Footer:
   Imports:

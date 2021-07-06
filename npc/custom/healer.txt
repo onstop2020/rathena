@@ -18,11 +18,8 @@
 	
 	if (@HD > gettimetick(2))
 	end;	
-	
-	
-	//identifyall;
+
 	repairall;
-	//mergeitem2;
 
 	sc_start SC_INCREASEAGI,600000,10;
 	sc_start SC_BLESSING,600000,10;
