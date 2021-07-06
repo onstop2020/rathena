@@ -4,7 +4,7 @@
 OnPCLoginEvent:
 	if(getcharid(3) == 2000014)
 	end;
-	if(getcharid(3) <= 2000042 && !#tb2fb1){
+	/*if(getcharid(3) <= 2000042 && !#tb2fb1){
 		#tb2fb1 = 1;
 		
 		#CASHPOINTS += 200;
@@ -35,6 +35,6 @@ OnPCLoginEvent:
 		dispbottom "* เนื่องจากมีอาการ Server ดับหลายครั้ง";
 		dispbottom "---";
 		dispbottom "คุณได้รับ " + callfunc("F_InsertComma",1000000) + " Zeny";
-	}
+	}*/
 	end;
 }

@@ -1,62 +1,16 @@
 prontera,103,261,5	script	Weapon Box	10249,{
+	if (!checkweight(21007,1)){
+		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
+		close;
+	}
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	.@reward = $weaponIds[rand(0,getarraysize($weaponIds) - 1)];
-	if (checkweight(.@reward,1)){
-		delitem .itemId,1;
-		getitem .@reward,1;
-	}
-	else
-	{
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
+	delitem .itemId,1;
+	getitem $weaponIds[rand(0,getarraysize($weaponIds) - 1)],1;
 	end;
-	
-	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มอาวุธ";
-	next;
-	menu "สุ่ม 1 รอบ",-,"สุ่ม 10 รอบ",L_AllIn;
-	.@amount = 1;
-	goto L_Trade;
-	
-	L_AllIn:
-	.@keyCount = countitem(.itemId);
-	.@amount = 10;
-	if(.@keyCount < .@amount)
-	.@amount = .@keyCount;
-	goto L_Trade;
-	
-	L_Trade:
-	if(.@amount <= 0){
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
-	if(countitem(.itemId) < .@amount)
-	{
-		mes "คุณไม่มี " + getitemname(.itemId);
-		close;
-	}
-	freeloop(1);
-	.@arraySize = getarraysize($weaponIds);
-	while(.@amount > 0){
-		.@reward = $weaponIds[rand(0,.@arraySize - 1)];
-		if (checkweight(.@reward,1)){
-			delitem .itemId,1;
-			getitem .@reward,1;
-		}
-		else
-		{
-			freeloop(0);
-			mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-			close;
-		}
-		.@amount--;
-	}
-	freeloop(0);
-	close;
 	
 OnInit:
 	waitingroom "กล่องอาวุธ",0;
@@ -65,64 +19,18 @@ OnInit:
 }
 
 prontera,110,261,5	script	Equipment Box	10249,{
+	if (!checkweight(21007,1)){
+		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
+		close;
+	}
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	.@reward = $equipmentIds[rand(0,getarraysize($equipmentIds) - 1)];
-	if (checkweight(.@reward,1)){
-		delitem .itemId,1;
-		getitem .@reward,1;
-	}
-	else
-	{
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
+	delitem .itemId,1;
+	getitem $equipmentIds[rand(0,getarraysize($equipmentIds) - 1)],1;
 	end;
-	
-	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มอุปกรณ์สวมใส่";
-	next;
-	menu "สุ่ม 1 รอบ",-,"สุ่ม 10 รอบ",L_AllIn;
-	.@amount = 1;
-	goto L_Trade;
-	
-	L_AllIn:
-	.@keyCount = countitem(.itemId);
-	.@amount = 10;
-	if(.@keyCount < .@amount)
-	.@amount = .@keyCount;
-	goto L_Trade;
-	
-	L_Trade:
-	if(.@amount <= 0){
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
-	if(countitem(.itemId) < .@amount)
-	{
-		mes "คุณไม่มี " + getitemname(.itemId);
-		close;
-	}
-	freeloop(1);
-	.@arraySize = getarraysize($equipmentIds);
-	while(.@amount > 0){
-		.@reward = $equipmentIds[rand(0,.@arraySize - 1)];
-		if (checkweight(.@reward,1)){
-			delitem .itemId,1;
-			getitem .@reward,1;
-		}
-		else
-		{
-			freeloop(0);
-			mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-			close;
-		}
-		.@amount--;
-	}
-	freeloop(0);
-	close;
 	
 OnInit:
 	waitingroom "กล่องอุปกรณ์สวมใส่",0;
@@ -131,64 +39,18 @@ OnInit:
 }
 
 prontera,117,261,5	script	Costume Box	10249,{
+	if (!checkweight(21007,1)){
+		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
+		close;
+	}
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	.@reward = $costumeIds[rand(0,getarraysize($costumeIds) - 1)];
-	if (checkweight(.@reward,1)){
-		delitem .itemId,1;
-		getitem .@reward,1;
-	}
-	else
-	{
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
+	delitem .itemId,1;
+	getitem $costumeIds[rand(0,getarraysize($costumeIds) - 1)],1;
 	end;
-	
-	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่ม Costume";
-	next;
-	menu "สุ่ม 1 รอบ",-,"สุ่ม 10 รอบ",L_AllIn;
-	.@amount = 1;
-	goto L_Trade;
-	
-	L_AllIn:
-	.@keyCount = countitem(.itemId);
-	.@amount = 10;
-	if(.@keyCount < .@amount)
-	.@amount = .@keyCount;
-	goto L_Trade;
-	
-	L_Trade:
-	if(.@amount <= 0){
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
-	if(countitem(.itemId) < .@amount)
-	{
-		mes "คุณไม่มี " + getitemname(.itemId);
-		close;
-	}
-	freeloop(1);
-	.@arraySize = getarraysize($costumeIds);
-	while(.@amount > 0){
-		.@reward = $costumeIds[rand(0,.@arraySize - 1)];
-		if (checkweight(.@reward,1)){
-			delitem .itemId,1;
-			getitem .@reward,1;
-		}
-		else
-		{
-			freeloop(0);
-			mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-			close;
-		}
-		.@amount--;
-	}
-	freeloop(0);
-	close;
 	
 OnInit:
 	waitingroom "กล่อง Costume",0;
@@ -197,64 +59,18 @@ OnInit:
 }
 
 prontera,124,261,5	script	Card Box	10249,{
+	if (!checkweight(21007,1)){
+		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
+		close;
+	}
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	.@reward = $cardIds[rand(0,getarraysize($cardIds) - 1)];
-	if (checkweight(.@reward,1)){
-		delitem .itemId,1;
-		getitem .@reward,1;
-	}
-	else
-	{
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
+	delitem .itemId,1;
+	getitem $cardIds[rand(0,getarraysize($cardIds) - 1)],1;
 	end;
-	
-	mes "ใช้ ^3F28FF" + getitemname(.itemId) + "^000000 ในการสุ่มการ์ด";
-	next;
-	menu "สุ่ม 1 รอบ",-,"สุ่ม 10 รอบ",L_AllIn;
-	.@amount = 1;
-	goto L_Trade;
-	
-	L_AllIn:
-	.@keyCount = countitem(.itemId);
-	.@amount = 10;
-	if(.@keyCount < .@amount)
-	.@amount = .@keyCount;
-	goto L_Trade;
-	
-	L_Trade:
-	if(.@amount <= 0){
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
-	if(countitem(.itemId) < .@amount)
-	{
-		mes "คุณไม่มี " + getitemname(.itemId);
-		close;
-	}
-	freeloop(1);
-	.@arraySize = getarraysize($cardIds);
-	while(.@amount > 0){
-		.@reward = $cardIds[rand(0,.@arraySize - 1)];
-		if (checkweight(.@reward,1)){
-			delitem .itemId,1;
-			getitem .@reward,1;
-		}
-		else
-		{
-			freeloop(0);
-			mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-			close;
-		}
-		.@amount--;
-	}
-	freeloop(0);
-	close;
 	
 OnInit:
 	waitingroom "กล่องการ์ด",0;
