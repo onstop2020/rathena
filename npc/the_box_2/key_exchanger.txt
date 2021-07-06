@@ -1,8 +1,4 @@
 prontera,103,261,5	script	Weapon Box	10249,{
-	if (!checkweight(21007,1)){
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
@@ -19,10 +15,6 @@ OnInit:
 }
 
 prontera,110,261,5	script	Equipment Box	10249,{
-	if (!checkweight(21007,1)){
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
@@ -39,10 +31,6 @@ OnInit:
 }
 
 prontera,117,261,5	script	Costume Box	10249,{
-	if (!checkweight(21007,1)){
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
@@ -59,10 +47,6 @@ OnInit:
 }
 
 prontera,124,261,5	script	Card Box	10249,{
-	if (!checkweight(21007,1)){
-		mes "คุณไม่สามารถแบกของ ได้มากกว่านี้แล้ว";
-		close;
-	}
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
