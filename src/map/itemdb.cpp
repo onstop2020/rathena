@@ -487,7 +487,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->elvmax = MAX_LEVEL;
 	}
 
-	if (this->nodeExists(node, "RefineableNoUse")) {
+	if (this->nodeExists(node, "Refineable")) {
 		bool refine;
 
 		if (!this->asBool(node, "Refineable", refine))
@@ -496,7 +496,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		item->flag.no_refine = !refine;
 	} else {
 		if (!exists)
-			item->flag.no_refine = false;
+			item->flag.no_refine = true;
 	}
 
 	if (this->nodeExists(node, "View")) {
@@ -530,8 +530,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->view_id = 0;
 	}
 
-	// THE BOX 2 [Start]
-	if (this->nodeExists(node, "FlagsUnused")) {
+	if (this->nodeExists(node, "Flags")) {
 		const YAML::Node &flagNode = node["Flags"];
 
 		if (this->nodeExists(flagNode, "BuyingStore")) {
@@ -666,8 +665,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	// THE BOX 2 [Start]
-	if (this->nodeExists(node, "DelayUnused")) {
+	if (this->nodeExists(node, "Delay")) {
 		const YAML::Node &delayNode = node["Delay"];
 
 		if (this->nodeExists(delayNode, "Duration")) {
@@ -708,8 +706,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	// THE BOX 2 [Start]
-	if (this->nodeExists(node, "StackUnused")) {
+	if (this->nodeExists(node, "Stack")) {
 		const YAML::Node &stackNode = node["Stack"];
 
 		if (this->nodeExists(stackNode, "Amount")) {
@@ -786,8 +783,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	// THE BOX 2 [Start]
-	if (this->nodeExists(node, "NoUseUnused")) {
+	if (this->nodeExists(node, "NoUse")) {
 		const YAML::Node &nouseNode = node["NoUse"];
 
 		if (this->nodeExists(nouseNode, "Override")) {
@@ -825,8 +821,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	// THE BOX 2 [Start]
-	if (this->nodeExists(node, "TradeUnused")) {
+	if (this->nodeExists(node, "Trade")) {
 		const YAML::Node &tradeNode = node["Trade"];
 
 		if (this->nodeExists(tradeNode, "Override")) {
