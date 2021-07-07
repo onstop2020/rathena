@@ -63,7 +63,76 @@ prontera,124,252,3	script	Random Option	869,{
 
 OnInit:
 	.price = 5000000;
-	waitingroom "Random Option",0;
+	waitingroom "(Zeny)Random Option",0;
+	end;
+}
+
+prontera,124,246,3	script	Random Option#2	869,{
+	mes "^3F28FFโอกาสติด:^000000 100%";
+	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
+	mes "^3F28FFItem ที่ต้องใช้:^000000 " + getitemname(.itemId);
+	next;
+	
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
+	
+	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
+		if(getequipisequiped(.@indices[.@i])) {
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			.@equipped = 1;
+		}
+		.@menu$ = .@menu$ + ":";
+	}
+	
+	if (.@equipped == 0) {
+		mes "เจ้าไม่ได้สวมใส่ อุปกรณ์สวมใส่ใด ๆ เลย ข้าไม่สามารถทำอะไรได้";
+		close;
+	}
+	
+	.@part = .@indices[select(.@menu$)];
+
+	if(!getequipisequiped(.@part)) {
+		mes "เจ้าเลือกช่องที่ ไม่ได้สวมใส่อะไรอยู่เลย";
+		close;
+	}
+	
+	.@selectedItemId = getequipid(.@part);
+
+	mes "โปรดเลือกช่องที่ต้องการ";
+	next;
+
+	.@menu$ = "ช่องที่ 1:";
+	
+	for(.@i = 1; .@i < 5; ++.@i) {
+		if(getequiprandomoption(.@part,.@i - 1,ROA_ID) > 0)
+		.@menu$ += "ช่องที่ " + (.@i + 1);
+		else
+		break;
+		.@menu$ = .@menu$ + ":";
+	}
+	
+	.@slot = select(.@menu$);
+
+	.@maxRandomize = 5;
+
+	if(countitem(.itemId) < 1) {
+		mes getitemname(.itemId) + " ไม่เพียงพอ";
+		close;
+	}
+	delitem .itemId,1;
+
+	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
+		mes "เหมือนว่าเจ้าจะสลับอุปกรณ์ ระหว่างข้าดำเนินการอยู่นะ";
+		close;
+	}
+	
+	setrandomoption(.@part,.@slot - 1,callfunc("GetRandomOptionId"),rand(1,.@maxRandomize),0);
+
+	mes "เรียบร้อยแล้ว!";
+	close;
+
+OnInit:
+	.itemId = 40014;
+	waitingroom "(Key)Random Option",0;
 	end;
 }
 

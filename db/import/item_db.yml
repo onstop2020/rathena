@@ -170,6 +170,16 @@ Body:
     Weight: 10
     Script: |
       sc_start SC_ITEMBOOST,3600000,300;
+  - Id: 40014
+    AegisName: Random_Option_Key
+    Name: Random Option Key
+    Type: Etc
+    Buy: 140000
+  - Id: 40015
+    AegisName: Random_Enchant_Key
+    Name: Random Enchant Key
+    Type: Etc
+    Buy: 140000
   - Id: 601
     AegisName: Wing_Of_Fly
     Name: Fly Wing
