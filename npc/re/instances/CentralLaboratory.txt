@@ -1,56 +1,67 @@
-1@lab,0,0	boss_monster	--ja--	1087,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1147,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1190,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1115,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1086,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1038,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1159,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1389,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1046,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1059,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1150,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1688,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1039,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1089,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1092,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1088,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1096,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1093,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1120,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1090,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1980,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1157,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1112,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1251,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	2068,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1373,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	2156,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1272,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1630,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1252,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1779,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1708,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1623,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1418,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1312,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1785,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1734,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1719,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1768,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	2087,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1751,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	2253,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	2255,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1832,1,180000,180000
-1@lab,0,0	boss_monster	--ja--	1874,1,180000,180000
+1@lab,0,0	boss_monster	--ja--	1087,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1147,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1190,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1115,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1086,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1038,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1159,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1389,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1046,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1059,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1150,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1688,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1039,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1089,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1092,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1088,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1096,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1093,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1120,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1090,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1980,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1157,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1112,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1251,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	2068,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1373,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	2156,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1272,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1630,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1252,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1779,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1708,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1623,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1418,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1312,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1785,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1734,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1719,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1768,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	2087,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1751,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	2253,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	2255,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1832,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lab,0,0	boss_monster	--ja--	1874,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
 prontera,161,305,3	script	Central Laboratory	1623,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
+		
+	L_RefreshRate:
+	$mvpRefineRate10 = rand(1,5);
+	delwaitingroom;
+	waitingroom "MvP Refine (" + $mvpRefineRate10 + "%)",0;
+	return;
 	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@lab";
+	callsub L_RefreshRate;
 	end;
 }

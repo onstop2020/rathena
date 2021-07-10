@@ -10,19 +10,30 @@
 1@face,0,0	monster	--ja--	2528,20,180000,180000
 1@face,0,0	monster	--ja--	2530,20,180000,180000
 
-1@face,0,0	boss_monster	--ja--	2532,1,180000,180000
-1@face,0,0	boss_monster	--ja--	2529,1,180000,180000
-1@face,0,0	boss_monster	--ja--	2535,1,180000,180000
-1@face,0,0	boss_monster	--ja--	2533,1,180000,180000
-1@face,0,0	boss_monster	--ja--	2534,1,180000,180000
+1@face,0,0	boss_monster	--ja--	2532,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@face,0,0	boss_monster	--ja--	2529,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@face,0,0	boss_monster	--ja--	2535,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@face,0,0	boss_monster	--ja--	2533,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@face,0,0	boss_monster	--ja--	2534,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
 prontera,150,125,7	script	Faceworm's Nest	2529,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
+		
+	L_RefreshRate:
+	$mvpRefineRate13 = rand(1,5);
+	delwaitingroom;
+	waitingroom "MvP Refine (" + $mvpRefineRate13 + "%)",0;
+	return;
 	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@face";
+	callsub L_RefreshRate;
 	end;
 }

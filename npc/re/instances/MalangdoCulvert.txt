@@ -15,18 +15,29 @@
 2@pump,0,0	monster	--ja--	2184,10,180000,180000
 2@pump,0,0	monster	--ja--	2185,10,180000,180000
 
-2@pump,0,0	boss_monster	--ja--	2187,1,180000,180000
-2@pump,0,0	boss_monster	--ja--	2188,1,180000,180000
-2@pump,0,0	boss_monster	--ja--	2189,1,180000,180000
-2@pump,0,0	boss_monster	--ja--	2190,1,180000,180000
+2@pump,0,0	boss_monster	--ja--	2187,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@pump,0,0	boss_monster	--ja--	2188,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@pump,0,0	boss_monster	--ja--	2189,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@pump,0,0	boss_monster	--ja--	2190,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
 prontera,245,210,3	script	Malangdo Culvert	2190,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
+		
+	L_RefreshRate:
+	$mvpRefineRate20 = rand(1,5);
+	delwaitingroom;
+	waitingroom "MvP Refine (" + $mvpRefineRate20 + "%)",0;
+	return;
 	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+
 OnInit:
 	.m$ = "ชั้น 1:ชั้น 2";
 	setarray .mapName$[0],"1@pump","2@pump";
+	callsub L_RefreshRate;
 	end;
 }

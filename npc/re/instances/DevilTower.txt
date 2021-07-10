@@ -12,15 +12,26 @@
 1@tnm3,0,0	monster	--ja--	2938,15,180000,180000
 1@tnm3,0,0	monster	--ja--	2943,15,180000,180000
 
-1@tnm3,0,0	boss_monster	--ja--	2942,1,180000,180000
+1@tnm3,0,0	boss_monster	--ja--	2942,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
 prontera,103,208,5	script	Devil Tower	2942,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
+		
+	L_RefreshRate:
+	$mvpRefineRate12 = rand(1,5);
+	delwaitingroom;
+	waitingroom "MvP Refine (" + $mvpRefineRate12 + "%)",0;
+	return;
 	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+
 OnInit:
 	.m$ = "ชั้น 1:ชั้น 2:ชั้น 3";
 	setarray .mapName$[0],"1@tnm1","1@tnm2","1@tnm3";
+	callsub L_RefreshRate;
 	end;
 }

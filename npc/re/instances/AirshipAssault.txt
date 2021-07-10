@@ -3,8 +3,8 @@
 1@air1,0,0	monster	--ja--	3176,40,180000,180000
 1@air1,0,0	monster	--ja--	3179,40,180000,180000
 
-1@air2,0,0	boss_monster	--ja--	3180,1,180000,180000
-1@air2,0,0	boss_monster	--ja--	3181,1,180000,180000
+1@air2,0,0	boss_monster	--ja--	3180,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@air2,0,0	boss_monster	--ja--	3181,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
 1@air2,0,0	monster	--ja--	3178,50,180000,180000
 1@air2,0,0	monster	--ja--	3175,50,180000,180000
@@ -14,9 +14,20 @@ prontera,162,267,3	script	Airship Assault	3181,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
+		
+	L_RefreshRate:
+	$mvpRefineRate6 = rand(1,5);
+	delwaitingroom;
+	waitingroom "MvP Refine (" + $mvpRefineRate6 + "%)",0;
+	return;
 	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+
 OnInit:
 	.m$ = "ชั้น 1:ชั้น 2";
 	setarray .mapName$[0],"1@air1","1@air2";
+	callsub L_RefreshRate;
 	end;
 }

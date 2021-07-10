@@ -4,15 +4,26 @@
 1@mcd,0,0	monster	--ja--	3161,70,180000,180000
 1@mcd,0,0	monster	--ja--	3125,70,180000,180000
 
-1@mcd,0,0	boss_monster	--ja--	3124,1,180000,180000
+1@mcd,0,0	boss_monster	--ja--	3124,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
 prontera,150,305,5	script	Charleston in Distress	3124,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
+		
+	L_RefreshRate:
+	$mvpRefineRate11 = rand(1,5);
+	delwaitingroom;
+	waitingroom "MvP Refine (" + $mvpRefineRate11 + "%)",0;
+	return;
 	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@mcd";
+	callsub L_RefreshRate;
 	end;
 }

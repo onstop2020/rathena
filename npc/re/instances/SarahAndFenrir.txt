@@ -8,15 +8,26 @@
 1@glast,0,0	monster	--ja--	3197,25,180000,180000
 1@glast,0,0	monster	--ja--	3200,25,180000,180000
 
-1@glast,0,0	boss_monster	--ja--	3190,1,180000,180000
+1@glast,0,0	boss_monster	--ja--	3190,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
 prontera,84,199,7	script	Sarah and Fenrir	3190,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
+		
+	L_RefreshRate:
+	$mvpRefineRate26 = rand(1,5);
+	delwaitingroom;
+	waitingroom "MvP Refine (" + $mvpRefineRate26 + "%)",0;
+	return;
 	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@glast";
+	callsub L_RefreshRate;
 	end;
 }

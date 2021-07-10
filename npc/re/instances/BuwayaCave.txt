@@ -4,15 +4,26 @@
 1@ma_c,0,0	monster	--ja--	2329,40,180000,180000
 1@ma_c,0,0	monster	--ja--	2330,40,180000,180000
 
-1@ma_c,0,0	boss_monster	--ja--	2319,1,180000,180000
+1@ma_c,0,0	boss_monster	--ja--	2319,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
 prontera,163,283,5	script	Buwaya Cave	2319,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
+		
+	L_RefreshRate:
+	$mvpRefineRate9 = rand(1,5);
+	delwaitingroom;
+	waitingroom "MvP Refine (" + $mvpRefineRate9 + "%)",0;
+	return;
 	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@ma_c";
+	callsub L_RefreshRate;
 	end;
 }

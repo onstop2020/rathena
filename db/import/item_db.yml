@@ -180,6 +180,11 @@ Body:
     Name: Random Enchant Key
     Type: Etc
     Buy: 140000
+  - Id: 40016
+    AegisName: MvP_Refine
+    Name: MvP Refine
+    Type: Etc
+    Buy: 1
   - Id: 601
     AegisName: Wing_Of_Fly
     Name: Fly Wing
