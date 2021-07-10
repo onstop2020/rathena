@@ -1,15 +1,23 @@
 prontera,103,261,5	script	Weapon Box	10249,{
-	if (!checkweight(21007,1)){
-		mes "ของเต็ม";
-		close;
-	}
-	if(countitem(.itemId) < 1)
+	.@itemCount = countitem(.itemId);
+	if(.@itemCount < 1)
 	{
+		freeloop(0);
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	delitem .itemId,1;
-	getitem $weaponIds[rand(0,getarraysize($weaponIds) - 1)],1;
+	freeloop(1);
+	while(.@itemCount > 0){
+		if (!checkweight(21007,1)){
+			freeloop(0);
+			mes "ของเต็ม";
+			close;
+		}
+		delitem .itemId,1;
+		getitem $weaponIds[rand(0,$weaponIdArraySize - 1)],1;
+		.@itemCount--;
+	}
+	freeloop(0);
 	end;
 	
 OnInit:
@@ -19,17 +27,25 @@ OnInit:
 }
 
 prontera,110,261,5	script	Equipment Box	10249,{
-	if (!checkweight(21007,1)){
-		mes "ของเต็ม";
-		close;
-	}
-	if(countitem(.itemId) < 1)
+	.@itemCount = countitem(.itemId);
+	if(.@itemCount < 1)
 	{
+		freeloop(0);
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	delitem .itemId,1;
-	getitem $equipmentIds[rand(0,getarraysize($equipmentIds) - 1)],1;
+	freeloop(1);
+	while(.@itemCount > 0){
+		if (!checkweight(21007,1)){
+			freeloop(0);
+			mes "ของเต็ม";
+			close;
+		}
+		delitem .itemId,1;
+		getitem $equipmentIds[rand(0,$equipmentIdArraySize - 1)],1;
+		.@itemCount--;
+	}
+	freeloop(0);
 	end;
 	
 OnInit:
@@ -39,17 +55,25 @@ OnInit:
 }
 
 prontera,117,261,5	script	Costume Box	10249,{
-	if (!checkweight(21007,1)){
-		mes "ของเต็ม";
-		close;
-	}
-	if(countitem(.itemId) < 1)
+	.@itemCount = countitem(.itemId);
+	if(.@itemCount < 1)
 	{
+		freeloop(0);
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	delitem .itemId,1;
-	getitem $costumeIds[rand(0,getarraysize($costumeIds) - 1)],1;
+	freeloop(1);
+	while(.@itemCount > 0){
+		if (!checkweight(21007,1)){
+			freeloop(0);
+			mes "ของเต็ม";
+			close;
+		}
+		delitem .itemId,1;
+		getitem $costumeIds[rand(0,$costumeIdArraySize - 1)],1;
+		.@itemCount--;
+	}
+	freeloop(0);
 	end;
 	
 OnInit:
@@ -59,17 +83,25 @@ OnInit:
 }
 
 prontera,124,261,5	script	Card Box	10249,{
-	if (!checkweight(21007,1)){
-		mes "ของเต็ม";
-		close;
-	}
-	if(countitem(.itemId) < 1)
+	.@itemCount = countitem(.itemId);
+	if(.@itemCount < 1)
 	{
+		freeloop(0);
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	delitem .itemId,1;
-	getitem $cardIds[rand(0,getarraysize($cardIds) - 1)],1;
+	freeloop(1);
+	while(.@itemCount > 0){
+		if (!checkweight(21007,1)){
+			freeloop(0);
+			mes "ของเต็ม";
+			close;
+		}
+		delitem .itemId,1;
+		getitem $cardIds[rand(0,$cardIdArraySize - 1)],1;
+		.@itemCount--;
+	}
+	freeloop(0);
 	end;
 	
 OnInit:

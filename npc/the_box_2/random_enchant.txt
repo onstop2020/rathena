@@ -74,13 +74,13 @@ prontera,124,238,1	script	Random Enchantment	868,{
 	}
 	delequip .@part;
 	if(.@slot == 0)
-	.@cardSlot1 = $enchantIds[rand(0,getarraysize($enchantIds) - 1)];
+	.@cardSlot1 = $enchantIds[rand(0,$enchantIdArraySize - 1)];
 	else if(.@slot == 1)
-	.@cardSlot2 = $enchantIds[rand(0,getarraysize($enchantIds) - 1)];
+	.@cardSlot2 = $enchantIds[rand(0,$enchantIdArraySize - 1)];
 	else if(.@slot == 2)
-	.@cardSlot3 = $enchantIds[rand(0,getarraysize($enchantIds) - 1)];
+	.@cardSlot3 = $enchantIds[rand(0,$enchantIdArraySize - 1)];
 	else if(.@slot == 3)
-	.@cardSlot4 = $enchantIds[rand(0,getarraysize($enchantIds) - 1)];
+	.@cardSlot4 = $enchantIds[rand(0,$enchantIdArraySize - 1)];
 	if(.@randomOptionId1 > 0){
 		setarray .@OptID[0],.@randomOptionId1,.@randomOptionId2,.@randomOptionId3,.@randomOptionId4,.@randomOptionId5;
 		setarray .@OptVal[0],.@randomOptionValue1,.@randomOptionValue2,.@randomOptionValue3,.@randomOptionValue4,.@randomOptionValue5;
