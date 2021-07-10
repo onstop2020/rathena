@@ -84529,7 +84529,6 @@ Body:
     AegisName: Ribbon_Piamat
     Name: Ribbon Piamat
     Type: Armor
-    View: 7
     Buy: 10
     Weight: 100
     MagicAttack: 10
@@ -120177,7 +120176,7 @@ Body:
     AegisName: C_Snow_Powder
     Name: "Costume: Snow Powder"
     Type: Armor
-    View: 100
+    View: 99
     Locations:
       Costume_Garment: true
     Refineable: true
