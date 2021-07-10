@@ -80928,10 +80928,6 @@ Body:
     Class: Boss
     Modes:
       NoRandomWalk: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
       TeleportBlock: true
       Mvp: true
     Drops:

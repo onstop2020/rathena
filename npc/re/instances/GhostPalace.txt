@@ -13,7 +13,7 @@
 1@spa,0,0	boss_monster	--ja--	2959,1,180000,180000
 1@spa,0,0	boss_monster	--ja--	2961,1,180000,180000
 
-prontera,161,125,3	script	Ghost Palace	2961,{
+prontera,161,125,1	script	Ghost Palace	2961,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

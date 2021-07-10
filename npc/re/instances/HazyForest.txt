@@ -7,7 +7,7 @@
 
 1@mist,0,0	boss_monster	--ja--	2131,1,180000,180000
 
-prontera,149,108,5	script	Hazy Forest	2131,{
+prontera,149,108,7	script	Hazy Forest	2131,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
