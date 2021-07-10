@@ -194,9 +194,12 @@ Fields:
 	"Lutie Field",F16, "Malaya Fields",F17, "Manuk Fields",F18, 
 	"Mjolnir Fields",F19, "Moscovia Fields",F20, "Niflheim Fields",F21, 
 	"Payon Forests",F22, "Prontera Fields",F23, "Rachel Fields",F24, 
+	"Rockridge Fields",F30,
 	"Sograt Deserts",F25, "Splendide Fields",F26, "Umbala Fields",F27, 
 	"Veins Fields",F28, "Juno Fields",F29;
-
+	
+F30: setarray @c[2],0,0,0,0;
+	Disp("Kiwawa Desert",1,2); Pick("","rockrdg1","rockrdg2");
 F1: setarray @c[2],190,197;
 	Disp("Amatsu Field",1,1); Pick("ama_fild");
 F2: setarray @c[2],173,134,212,150;
@@ -291,9 +294,12 @@ Dungeons:
 	"Luoyang Dungeon",D24, "Magma Dungeon",D25, "Malangdo Dungeon",D26,
 	"Moscovia Dungeon",D27, "Nidhogg's Dungeon",D28, "Odin Temple",D29,
 	"Orc Dungeon",D30, "Payon Dungeon",D31, "Pyramids",D32, "Rachel Sanctuary",D33,
+	"Rockridge Dungeon",D43,
 	"Scaraba Hole",D34, "Sphinx",D35, "Sunken Ship",D36, "Thanatos Tower",D37,
 	"Thor Volcano",D38, "Toy Factory",D39, "Turtle Dungeon",D40, "Umbala Dungeon",D41;
 
+D43: setarray @c[2],0,0,0,0,0,0;
+	Disp("Rock Ridge Mine 1:Rock Ridge Mine 2:Culvert"); Pick("","rockmi1","rockmi2","harboro2");
 D1: setarray @c[2],261,272,275,270,116,27;
 	Disp("Abyss Lakes",1,3); Pick("abyss_");
 D2: setarray @c[2],228,11,34,41,119,14;
