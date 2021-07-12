@@ -9,3 +9,5 @@ OnInit:
 	waitingroom "ลบ Item ทุกอย่างในตัว",0;
 	end;
 }
+
+prontera,98,232,5	duplicate(ลบ Item ทุกอย่างในตัว)	ลบ Item ทุกอย่างในตัว#2	496

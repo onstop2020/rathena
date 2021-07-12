@@ -9,3 +9,4 @@ OnInit:
 }
 
 prontera,147,174,5	duplicate(storage)	คลังเก็บของ	10005
+prontera,101,238,5	duplicate(storage)	คลังเก็บของ#2	10005

@@ -105,7 +105,248 @@ prontera,124,261,5	script	Card Box	10249,{
 	end;
 	
 OnInit:
-	waitingroom "กล่องการ์ด",0;
+	waitingroom "กล่อง Card",0;
 	.itemId = 40007;
 	end;
 }
+
+prontera,106,264,5	script	Target Weapon Box	10249,{
+	if(!weapon_box_item_id)
+	goto L_SetItemId;
+	mes "คุณอยากได้: " + getitemname(weapon_box_item_id);
+	menu "กำหนด Item",-,"เริ่มสุ่ม",L_Start;
+	next;
+	L_SetItemId:
+	mes "โปรดใส่ Item ID ที่อยากได้";
+	mes "<URL>Item ID ที่มีทั้งหมด<INFO>https://raw.githubusercontent.com/kaninhot004/rathena/the-box-2/npc/utilities/global_item_ids.txt</INFO></URL>";
+	input .@itemId;
+	freeloop(1);
+	for(.@i = 0; .@i < $weaponIdArraySize; .@i++){
+		if(.@itemId == $weaponIds[.@i]){
+			weapon_box_item_id = .@itemId;
+			break;
+		}
+	}
+	freeloop(0);
+	if(weapon_box_item_id <= 0)
+	mes "ไม่พบ Item ID ดังกล่าว";
+	else
+	mes "คุณอยากได้: " + getitemname(weapon_box_item_id);
+	close;
+	
+	L_Start:
+	if(weapon_box_item_id <= 0){
+		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
+		close;
+	}
+	.@itemCount = countitem(.itemId);
+	if(.@itemCount < 1)
+	{
+		freeloop(0);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		end;
+	}
+	freeloop(1);
+	while(.@itemCount > 0){
+		if (!checkweight(21007,1)){
+			freeloop(0);
+			mes "ของเต็ม";
+			close;
+		}
+		delitem .itemId,1;
+		.@rewardId = $weaponIds[rand(0,$weaponIdArraySize - 1)];
+		if(.@rewardId == weapon_box_item_id){
+			getitem .@rewardId,1;
+			break;
+		}
+		.@itemCount--;
+	}
+	freeloop(0);
+	end;
+	
+OnInit:
+	waitingroom "(กำหนด Item) กล่องอาวุธ",0;
+	.itemId = 40004;
+	end;
+}
+
+prontera,113,264,5	script	Target Equipment Box	10249,{
+	if(!equipment_box_item_id)
+	goto L_SetItemId;
+	mes "คุณอยากได้: " + getitemname(equipment_box_item_id);
+	menu "กำหนด Item",-,"เริ่มสุ่ม",L_Start;
+	next;
+	L_SetItemId:
+	mes "โปรดใส่ Item ID ที่อยากได้";
+	mes "<URL>Item ID ที่มีทั้งหมด<INFO>https://raw.githubusercontent.com/kaninhot004/rathena/the-box-2/npc/utilities/global_item_ids.txt</INFO></URL>";
+	input .@itemId;
+	freeloop(1);
+	for(.@i = 0; .@i < $equipmentIdArraySize; .@i++){
+		if(.@itemId == $equipmentIds[.@i]){
+			equipment_box_item_id = .@itemId;
+			break;
+		}
+	}
+	freeloop(0);
+	if(equipment_box_item_id <= 0)
+	mes "ไม่พบ Item ID ดังกล่าว";
+	else
+	mes "คุณอยากได้: " + getitemname(equipment_box_item_id);
+	close;
+	
+	L_Start:
+	if(equipment_box_item_id <= 0){
+		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
+		close;
+	}
+	.@itemCount = countitem(.itemId);
+	if(.@itemCount < 1)
+	{
+		freeloop(0);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		end;
+	}
+	freeloop(1);
+	while(.@itemCount > 0){
+		if (!checkweight(21007,1)){
+			freeloop(0);
+			mes "ของเต็ม";
+			close;
+		}
+		delitem .itemId,1;
+		.@rewardId = $equipmentIds[rand(0,$equipmentIdArraySize - 1)];
+		if(.@rewardId == equipment_box_item_id){
+			getitem .@rewardId,1;
+			break;
+		}
+		.@itemCount--;
+	}
+	freeloop(0);
+	end;
+	
+OnInit:
+	waitingroom "(กำหนด Item) กล่องอุปกรณ์สวมใส่",0;
+	.itemId = 40005;
+	end;
+}
+
+prontera,120,264,5	script	Target Costume Box	10249,{
+	if(!costume_box_item_id)
+	goto L_SetItemId;
+	mes "คุณอยากได้: " + getitemname(costume_box_item_id);
+	menu "กำหนด Item",-,"เริ่มสุ่ม",L_Start;
+	next;
+	L_SetItemId:
+	mes "โปรดใส่ Item ID ที่อยากได้";
+	mes "<URL>Item ID ที่มีทั้งหมด<INFO>https://raw.githubusercontent.com/kaninhot004/rathena/the-box-2/npc/utilities/global_item_ids.txt</INFO></URL>";
+	input .@itemId;
+	freeloop(1);
+	for(.@i = 0; .@i < $costumeIdArraySize; .@i++){
+		if(.@itemId == $costumeIds[.@i]){
+			costume_box_item_id = .@itemId;
+			break;
+		}
+	}
+	freeloop(0);
+	if(costume_box_item_id <= 0)
+	mes "ไม่พบ Item ID ดังกล่าว";
+	else
+	mes "คุณอยากได้: " + getitemname(costume_box_item_id);
+	close;
+	
+	L_Start:
+	if(costume_box_item_id <= 0){
+		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
+		close;
+	}
+	.@itemCount = countitem(.itemId);
+	if(.@itemCount < 1)
+	{
+		freeloop(0);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		end;
+	}
+	freeloop(1);
+	while(.@itemCount > 0){
+		if (!checkweight(21007,1)){
+			freeloop(0);
+			mes "ของเต็ม";
+			close;
+		}
+		delitem .itemId,1;
+		.@rewardId = $costumeIds[rand(0,$costumeIdArraySize - 1)];
+		if(.@rewardId == costume_box_item_id){
+			getitem .@rewardId,1;
+			break;
+		}
+		.@itemCount--;
+	}
+	freeloop(0);
+	end;
+	
+OnInit:
+	waitingroom "(กำหนด Item) กล่อง Costume",0;
+	.itemId = 40006;
+	end;
+}
+
+prontera,127,264,5	script	Target Card Box	10249,{
+	if(!card_box_item_id)
+	goto L_SetItemId;
+	mes "คุณอยากได้: " + getitemname(card_box_item_id);
+	menu "กำหนด Item",-,"เริ่มสุ่ม",L_Start;
+	next;
+	L_SetItemId:
+	mes "โปรดใส่ Item ID ที่อยากได้";
+	mes "<URL>Item ID ที่มีทั้งหมด<INFO>https://raw.githubusercontent.com/kaninhot004/rathena/the-box-2/npc/utilities/global_item_ids.txt</INFO></URL>";
+	input .@itemId;
+	freeloop(1);
+	for(.@i = 0; .@i < $cardIdArraySize; .@i++){
+		if(.@itemId == $cardIds[.@i]){
+			card_box_item_id = .@itemId;
+			break;
+		}
+	}
+	freeloop(0);
+	if(card_box_item_id <= 0)
+	mes "ไม่พบ Item ID ดังกล่าว";
+	else
+	mes "คุณอยากได้: " + getitemname(card_box_item_id);
+	close;
+	
+	L_Start:
+	if(card_box_item_id <= 0){
+		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
+		close;
+	}
+	.@itemCount = countitem(.itemId);
+	if(.@itemCount < 1)
+	{
+		freeloop(0);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		end;
+	}
+	freeloop(1);
+	while(.@itemCount > 0){
+		if (!checkweight(21007,1)){
+			freeloop(0);
+			mes "ของเต็ม";
+			close;
+		}
+		delitem .itemId,1;
+		.@rewardId = $cardIds[rand(0,$cardIdArraySize - 1)];
+		if(.@rewardId == card_box_item_id){
+			getitem .@rewardId,1;
+			break;
+		}
+		.@itemCount--;
+	}
+	freeloop(0);
+	end;
+	
+OnInit:
+	waitingroom "(กำหนด Item) กล่อง Card",0;
+	.itemId = 40007;
+	end;
+}
+
