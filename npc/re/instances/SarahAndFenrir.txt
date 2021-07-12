@@ -1,12 +1,12 @@
-1@glast,0,0	monster	--ja--	3198,25,180000,180000
-1@glast,0,0	monster	--ja--	3191,25,180000,180000
-1@glast,0,0	monster	--ja--	3192,25,180000,180000
-1@glast,0,0	monster	--ja--	3194,25,180000,180000
-1@glast,0,0	monster	--ja--	3195,25,180000,180000
-1@glast,0,0	monster	--ja--	3196,25,180000,180000
-1@glast,0,0	monster	--ja--	3193,25,180000,180000
-1@glast,0,0	monster	--ja--	3197,25,180000,180000
-1@glast,0,0	monster	--ja--	3200,25,180000,180000
+1@glast,0,0	monster	--ja--	3198,25,30000,30000
+1@glast,0,0	monster	--ja--	3191,25,30000,30000
+1@glast,0,0	monster	--ja--	3192,25,30000,30000
+1@glast,0,0	monster	--ja--	3194,25,30000,30000
+1@glast,0,0	monster	--ja--	3195,25,30000,30000
+1@glast,0,0	monster	--ja--	3196,25,30000,30000
+1@glast,0,0	monster	--ja--	3193,25,30000,30000
+1@glast,0,0	monster	--ja--	3197,25,30000,30000
+1@glast,0,0	monster	--ja--	3200,25,30000,30000
 
 1@glast,0,0	boss_monster	--ja--	3190,1,180000,180000,"BossMonsterDrop::OnBossDead"
 

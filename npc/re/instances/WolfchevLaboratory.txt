@@ -1,6 +1,6 @@
-1@lhz,0,0	monster	--ja--	2244,30,180000,180000
-1@lhz,0,0	monster	--ja--	2242,30,180000,180000
-1@lhz,0,0	monster	--ja--	2243,30,180000,180000
+1@lhz,0,0	monster	--ja--	2244,30,30000,30000
+1@lhz,0,0	monster	--ja--	2242,30,30000,30000
+1@lhz,0,0	monster	--ja--	2243,30,30000,30000
 
 1@lhz,0,0	boss_monster	--ja--	1646,1,180000,180000,"BossMonsterDrop::OnBossDead"
 1@lhz,0,0	boss_monster	--ja--	1650,1,180000,180000,"BossMonsterDrop::OnBossDead"

@@ -1,4 +1,4 @@
-2@mir,0,0	monster	--ja--	3454,60,180000,180000
+2@mir,0,0	monster	--ja--	3454,60,30000,30000
 
 prontera,208,199,1	script	Ritual of Blessing	3454,{
 	.@index = select(.m$);

@@ -1,8 +1,8 @@
-1@rev,0,0	monster	--ja--	3001,20,180000,180000
-1@rev,0,0	monster	--ja--	3003,20,180000,180000
-1@rev,0,0	monster	--ja--	3004,20,180000,180000
-1@rev,0,0	monster	--ja--	3005,20,180000,180000
-1@rev,0,0	monster	--ja--	3007,20,180000,180000
+1@rev,0,0	monster	--ja--	3001,20,30000,30000
+1@rev,0,0	monster	--ja--	3003,20,30000,30000
+1@rev,0,0	monster	--ja--	3004,20,30000,30000
+1@rev,0,0	monster	--ja--	3005,20,30000,30000
+1@rev,0,0	monster	--ja--	3007,20,30000,30000
 
 1@rev,0,0	boss_monster	--ja--	2998,1,180000,180000,"BossMonsterDrop::OnBossDead"
 1@rev,0,0	boss_monster	--ja--	2999,1,180000,180000,"BossMonsterDrop::OnBossDead"

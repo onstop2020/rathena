@@ -1,8 +1,8 @@
-1@ma_c,0,0	monster	--ja--	2333,40,180000,180000
-1@ma_c,0,0	monster	--ja--	2332,40,180000,180000
-1@ma_c,0,0	monster	--ja--	2331,40,180000,180000
-1@ma_c,0,0	monster	--ja--	2329,40,180000,180000
-1@ma_c,0,0	monster	--ja--	2330,40,180000,180000
+1@ma_c,0,0	monster	--ja--	2333,40,30000,30000
+1@ma_c,0,0	monster	--ja--	2332,40,30000,30000
+1@ma_c,0,0	monster	--ja--	2331,40,30000,30000
+1@ma_c,0,0	monster	--ja--	2329,40,30000,30000
+1@ma_c,0,0	monster	--ja--	2330,40,30000,30000
 
 1@ma_c,0,0	boss_monster	--ja--	2319,1,180000,180000,"BossMonsterDrop::OnBossDead"
 

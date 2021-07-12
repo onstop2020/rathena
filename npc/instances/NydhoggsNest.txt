@@ -1,16 +1,16 @@
-1@nyd,0,0	monster	--ja--	2020,25,180000,180000
-1@nyd,0,0	monster	--ja--	2021,25,180000,180000
-1@nyd,0,0	monster	--ja--	2019,25,180000,180000
-1@nyd,0,0	monster	--ja--	2016,25,180000,180000
-1@nyd,0,0	monster	--ja--	2015,25,180000,180000
+1@nyd,0,0	monster	--ja--	2020,25,30000,30000
+1@nyd,0,0	monster	--ja--	2021,25,30000,30000
+1@nyd,0,0	monster	--ja--	2019,25,30000,30000
+1@nyd,0,0	monster	--ja--	2016,25,30000,30000
+1@nyd,0,0	monster	--ja--	2015,25,30000,30000
 
 
 2@nyd,0,0	boss_monster	--ja--	2022,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
-2@nyd,0,0	monster	--ja--	2023,40,180000,180000
-2@nyd,0,0	monster	--ja--	2015,40,180000,180000
-2@nyd,0,0	monster	--ja--	2020,40,180000,180000
-2@nyd,0,0	monster	--ja--	2021,40,180000,180000
+2@nyd,0,0	monster	--ja--	2023,40,30000,30000
+2@nyd,0,0	monster	--ja--	2015,40,30000,30000
+2@nyd,0,0	monster	--ja--	2020,40,30000,30000
+2@nyd,0,0	monster	--ja--	2021,40,30000,30000
 
 
 prontera,165,236,3	script	Nidhoggr's Nest	2022,{

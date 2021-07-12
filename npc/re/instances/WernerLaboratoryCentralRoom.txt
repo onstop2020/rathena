@@ -1,4 +1,4 @@
-1@slw,0,0	monster	--ja--	3622,100,180000,180000
+1@slw,0,0	monster	--ja--	3622,100,30000,30000
 
 1@slw,0,0	boss_monster	--ja--	3621,1,180000,180000,"BossMonsterDrop::OnBossDead"
 

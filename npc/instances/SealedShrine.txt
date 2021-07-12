@@ -1,23 +1,23 @@
-1@cata,0,0	monster	--ja--	1869,25,180000,180000
-1@cata,0,0	monster	--ja--	1291,25,180000,180000
-1@cata,0,0	monster	--ja--	1132,25,180000,180000
-1@cata,0,0	monster	--ja--	1117,25,180000,180000
-1@cata,0,0	monster	--ja--	1292,25,180000,180000
-1@cata,0,0	monster	--ja--	1867,25,180000,180000
+1@cata,0,0	monster	--ja--	1869,25,30000,30000
+1@cata,0,0	monster	--ja--	1291,25,30000,30000
+1@cata,0,0	monster	--ja--	1132,25,30000,30000
+1@cata,0,0	monster	--ja--	1117,25,30000,30000
+1@cata,0,0	monster	--ja--	1292,25,30000,30000
+1@cata,0,0	monster	--ja--	1867,25,30000,30000
 
 2@cata,0,0	boss_monster	--ja--	1929,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
-2@cata,0,0	monster	--ja--	1298,15,180000,180000
-2@cata,0,0	monster	--ja--	1291,15,180000,180000
-2@cata,0,0	monster	--ja--	1699,15,180000,180000
-2@cata,0,0	monster	--ja--	1869,15,180000,180000
-2@cata,0,0	monster	--ja--	1290,15,180000,180000
-2@cata,0,0	monster	--ja--	1132,15,180000,180000
-2@cata,0,0	monster	--ja--	1263,15,180000,180000
-2@cata,0,0	monster	--ja--	1509,15,180000,180000
-2@cata,0,0	monster	--ja--	1117,15,180000,180000
-2@cata,0,0	monster	--ja--	1867,15,180000,180000
-2@cata,0,0	monster	--ja--	1302,15,180000,180000
+2@cata,0,0	monster	--ja--	1298,15,30000,30000
+2@cata,0,0	monster	--ja--	1291,15,30000,30000
+2@cata,0,0	monster	--ja--	1699,15,30000,30000
+2@cata,0,0	monster	--ja--	1869,15,30000,30000
+2@cata,0,0	monster	--ja--	1290,15,30000,30000
+2@cata,0,0	monster	--ja--	1132,15,30000,30000
+2@cata,0,0	monster	--ja--	1263,15,30000,30000
+2@cata,0,0	monster	--ja--	1509,15,30000,30000
+2@cata,0,0	monster	--ja--	1117,15,30000,30000
+2@cata,0,0	monster	--ja--	1867,15,30000,30000
+2@cata,0,0	monster	--ja--	1302,15,30000,30000
 
 prontera,127,210,5	script	Sealed Shrine	1929,{
 	.@index = select(.m$);

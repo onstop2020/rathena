@@ -1,8 +1,8 @@
-1@mcd,0,0	monster	--ja--	3127,70,180000,180000
-1@mcd,0,0	monster	--ja--	3126,70,180000,180000
-1@mcd,0,0	monster	--ja--	3128,70,180000,180000
-1@mcd,0,0	monster	--ja--	3161,70,180000,180000
-1@mcd,0,0	monster	--ja--	3125,70,180000,180000
+1@mcd,0,0	monster	--ja--	3127,70,30000,30000
+1@mcd,0,0	monster	--ja--	3126,70,30000,30000
+1@mcd,0,0	monster	--ja--	3128,70,30000,30000
+1@mcd,0,0	monster	--ja--	3161,70,30000,30000
+1@mcd,0,0	monster	--ja--	3125,70,30000,30000
 
 1@mcd,0,0	boss_monster	--ja--	3124,1,180000,180000,"BossMonsterDrop::OnBossDead"
 

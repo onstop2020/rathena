@@ -1,9 +1,9 @@
-1@mist,0,0	monster	--ja--	2136,25,180000,180000
-1@mist,0,0	monster	--ja--	2137,25,180000,180000
-1@mist,0,0	monster	--ja--	2134,25,180000,180000
-1@mist,0,0	monster	--ja--	2133,25,180000,180000
-1@mist,0,0	monster	--ja--	2132,25,180000,180000
-1@mist,0,0	monster	--ja--	2138,25,180000,180000
+1@mist,0,0	monster	--ja--	2136,25,30000,30000
+1@mist,0,0	monster	--ja--	2137,25,30000,30000
+1@mist,0,0	monster	--ja--	2134,25,30000,30000
+1@mist,0,0	monster	--ja--	2133,25,30000,30000
+1@mist,0,0	monster	--ja--	2132,25,30000,30000
+1@mist,0,0	monster	--ja--	2138,25,30000,30000
 
 1@mist,0,0	boss_monster	--ja--	2131,1,180000,180000,"BossMonsterDrop::OnBossDead"
 

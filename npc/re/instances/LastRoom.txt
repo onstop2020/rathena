@@ -1,6 +1,6 @@
-1@uns,0,0	monster	--ja--	3253,50,180000,180000
-1@uns,0,0	monster	--ja--	3251,50,180000,180000
-1@uns,0,0	monster	--ja--	3252,50,180000,180000
+1@uns,0,0	monster	--ja--	3253,50,30000,30000
+1@uns,0,0	monster	--ja--	3251,50,30000,30000
+1@uns,0,0	monster	--ja--	3252,50,30000,30000
 
 1@uns,0,0	boss_monster	--ja--	3254,1,180000,180000,"BossMonsterDrop::OnBossDead"
 
