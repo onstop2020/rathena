@@ -1,4 +1,4 @@
-prontera,124,252,3	script	Random Option	869,{
+prontera,127,254,1	script	Random Option	869,{
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
 	mes "^3F28FFZeny ที่ต้องใช้:^000000 " + callfunc("F_InsertComma",.price) + "z";
@@ -67,7 +67,7 @@ OnInit:
 	end;
 }
 
-prontera,124,246,3	script	Random Option#2	869,{
+prontera,132,254,1	script	Random Option#2	869,{
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
 	mes "^3F28FFItem ที่ต้องใช้:^000000 " + getitemname(.itemId);
