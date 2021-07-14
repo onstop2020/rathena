@@ -146,22 +146,27 @@ prontera,106,264,5	script	Target Weapon Box	10249,{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
+	if (!checkweight(21007,1)){
+		freeloop(0);
+		mes "ของเต็ม";
+		close;
+	}
 	freeloop(1);
 	while(.@itemCount > 0){
-		if (!checkweight(21007,1)){
-			freeloop(0);
-			mes "ของเต็ม";
-			close;
-		}
 		delitem .itemId,1;
 		.@rewardId = $weaponIds[rand(0,$weaponIdArraySize - 1)];
 		if(.@rewardId == weapon_box_item_id){
 			getitem .@rewardId,1;
+			.@isSuccess = 1;
 			break;
 		}
 		.@itemCount--;
 	}
 	freeloop(0);
+	if(!.@isSuccess){
+		mes "ไม่ได้รับ Item โปรดลองสุ่มใหม่อีกที";
+		close;
+	}
 	end;
 	
 OnInit:
@@ -206,22 +211,27 @@ prontera,113,264,5	script	Target Equipment Box	10249,{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
+	if (!checkweight(21007,1)){
+		freeloop(0);
+		mes "ของเต็ม";
+		close;
+	}
 	freeloop(1);
 	while(.@itemCount > 0){
-		if (!checkweight(21007,1)){
-			freeloop(0);
-			mes "ของเต็ม";
-			close;
-		}
 		delitem .itemId,1;
 		.@rewardId = $equipmentIds[rand(0,$equipmentIdArraySize - 1)];
 		if(.@rewardId == equipment_box_item_id){
 			getitem .@rewardId,1;
+			.@isSuccess = 1;
 			break;
 		}
 		.@itemCount--;
 	}
 	freeloop(0);
+	if(!.@isSuccess){
+		mes "ไม่ได้รับ Item โปรดลองสุ่มใหม่อีกที";
+		close;
+	}
 	end;
 	
 OnInit:
@@ -266,22 +276,27 @@ prontera,120,264,5	script	Target Costume Box	10249,{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
+	if (!checkweight(21007,1)){
+		freeloop(0);
+		mes "ของเต็ม";
+		close;
+	}
 	freeloop(1);
 	while(.@itemCount > 0){
-		if (!checkweight(21007,1)){
-			freeloop(0);
-			mes "ของเต็ม";
-			close;
-		}
 		delitem .itemId,1;
 		.@rewardId = $costumeIds[rand(0,$costumeIdArraySize - 1)];
 		if(.@rewardId == costume_box_item_id){
 			getitem .@rewardId,1;
+			.@isSuccess = 1;
 			break;
 		}
 		.@itemCount--;
 	}
 	freeloop(0);
+	if(!.@isSuccess){
+		mes "ไม่ได้รับ Item โปรดลองสุ่มใหม่อีกที";
+		close;
+	}
 	end;
 	
 OnInit:
@@ -326,22 +341,27 @@ prontera,127,264,5	script	Target Card Box	10249,{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
+	if (!checkweight(21007,1)){
+		freeloop(0);
+		mes "ของเต็ม";
+		close;
+	}
 	freeloop(1);
 	while(.@itemCount > 0){
-		if (!checkweight(21007,1)){
-			freeloop(0);
-			mes "ของเต็ม";
-			close;
-		}
 		delitem .itemId,1;
 		.@rewardId = $cardIds[rand(0,$cardIdArraySize - 1)];
 		if(.@rewardId == card_box_item_id){
 			getitem .@rewardId,1;
+			.@isSuccess = 1;
 			break;
 		}
 		.@itemCount--;
 	}
 	freeloop(0);
+	if(!.@isSuccess){
+		mes "ไม่ได้รับ Item โปรดลองสุ่มใหม่อีกที";
+		close;
+	}
 	end;
 	
 OnInit:
