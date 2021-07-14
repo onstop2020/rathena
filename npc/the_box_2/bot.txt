@@ -28,27 +28,26 @@ OnTimer50000:
 OnTimer55000:
 	// Randomize killed monster
 	.@extraChance = (rand(0,10) * 100);
-	.@chance = rand(1,10000);
 	// 2% Weapon Key + Extra chance from killed monster
-	if(.@chance <= (200 + .@extraChance))
+	if(rand(1,10000) <= (200 + .@extraChance))
 	$botKey1++;
 	// 2% Equipment Key + Extra chance from killed monster
-	if(.@chance <= (200 + .@extraChance))
+	if(rand(1,10000) <= (200 + .@extraChance))
 	$botKey2++;
 	// 0.5% Costume Key + Extra chance from killed monster
-	if(.@chance <= (50 + .@extraChance))
+	if(rand(1,10000) <= (50 + .@extraChance))
 	$botKey3++;
 	// 0.5% Card Key + Extra chance from killed monster
-	if(.@chance <= (50 + .@extraChance))
+	if(rand(1,10000) <= (50 + .@extraChance))
 	$botKey4++;
 	// 0.1% Random Option Key + Extra chance from killed monster
-	if(.@chance <= (10 + .@extraChance))
+	if(rand(1,10000) <= (10 + .@extraChance))
 	$botKey5++;
 	// 0.1% Random Enchant Key + Extra chance from killed monster
-	if(.@chance <= (10 + .@extraChance))
+	if(rand(1,10000) <= (10 + .@extraChance))
 	$botKey6++;
 	// 0.01% MvP Refine
-	if(.@chance <= 1)
+	if(rand(1,10000) <= 1)
 	$botMvPRefine++;
 	end;
 	
