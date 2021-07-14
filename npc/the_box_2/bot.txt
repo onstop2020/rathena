@@ -56,7 +56,7 @@ OnTimer60000:
 	initnpctimer;
 	// Add rid here
 	addrid(4,1,149,191,163,177);
-	if(BaseClass == Job_Merchant)
+	if(BaseClass == Job_Merchant || Class == 23 || Class == 4045 || Class == 4190 || Class == 4191)
 	end;
 	// Give item here
 	if($botKey1 > 0)
