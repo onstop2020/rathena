@@ -200,156 +200,12 @@ OnInit:
 	end;
 }
 
-prontera,133,235,7	script	Target Random Enchantment	868,{
-	if(!enchantment_item_id)
-	goto L_SetItemId;
-	mes "คุณอยากได้ Enchant: " + getitemname(enchantment_item_id);
-	menu "กำหนด Enchant",-,"ขั้นตอนต่อไป",L_Start;
-	next;
-	L_SetItemId:
-	mes "โปรดใส่ Enchant ID ที่อยากได้";
-	mes "<URL>Enchant ID ที่มีทั้งหมด<INFO>https://raw.githubusercontent.com/kaninhot004/rathena/the-box-2/npc/utilities/global_item_ids.txt</INFO></URL>";
-	input .@itemId;
-	freeloop(1);
-	for(.@i = 0; .@i < $enchantIdArraySize; .@i++){
-		if(.@itemId == $enchantIds[.@i]){
-			enchantment_item_id = .@itemId;
-			break;
-		}
-	}
-	freeloop(0);
-	if(enchantment_item_id <= 0)
-	mes "ไม่พบ Enchant ID ดังกล่าว";
-	else
-	mes "คุณอยากได้ Enchant: " + getitemname(enchantment_item_id);
-	close;
-	
-	L_Start:
-	if(enchantment_item_id <= 0){
-		mes "คุณยังไม่ได้กำหนด Enchant ที่อยากได้";
-		close;
-	}
-	mes "^3F28FFโอกาสติด:^000000 100%";
-	mes "^3F28FFEnchant ได้เฉพาะ:^000000 อุปกรณ์สวมใส่ที่มี Slot ไม่ครบ 4 Slot";
-	mes "^3F28FFZeny ที่ต้องใช้:^000000 " + callfunc("F_InsertComma",.price) + "z";
-	next;
-	
-	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
-	
-	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
-		if(getequipisequiped(.@indices[.@i])) {
-			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
-			.@equipped = 1;
-		}
-		.@menu$ = .@menu$ + ":";
-	}
-	
-	if (.@equipped == 0) {
-		mes "เจ้าไม่ได้สวมใส่ อุปกรณ์สวมใส่ใด ๆ เลย ข้าไม่สามารถทำอะไรได้";
-		close;
-	}
-	
-	.@part = .@indices[select(.@menu$)];
-
-	if(!getequipisequiped(.@part)) {
-		mes "เจ้าเลือกช่องที่ ไม่ได้สวมใส่อะไรอยู่เลย";
-		close;
-	}
-	
-	.@selectedItemId = getequipid(.@part);
-
-	// Remember all value
-	.@refineCount = getequiprefinerycnt(.@part);
-	.@cardSlot1 = getequipcardid(.@part,0);
-	.@cardSlot2 = getequipcardid(.@part,1);
-	.@cardSlot3 = getequipcardid(.@part,2);
-	.@cardSlot4 = getequipcardid(.@part,3);
-	.@randomOptionId1 = getequiprandomoption(.@part,0,ROA_ID);
-	.@randomOptionId2 = getequiprandomoption(.@part,1,ROA_ID);
-	.@randomOptionId3 = getequiprandomoption(.@part,2,ROA_ID);
-	.@randomOptionId4 = getequiprandomoption(.@part,3,ROA_ID);
-	.@randomOptionId5 = getequiprandomoption(.@part,4,ROA_ID);
-	.@randomOptionValue1 = getequiprandomoption(.@part,0,ROA_VALUE);
-	.@randomOptionValue2 = getequiprandomoption(.@part,1,ROA_VALUE);
-	.@randomOptionValue3 = getequiprandomoption(.@part,2,ROA_VALUE);
-	.@randomOptionValue4 = getequiprandomoption(.@part,3,ROA_VALUE);
-	.@randomOptionValue5 = getequiprandomoption(.@part,4,ROA_VALUE);
-
-	// Slot select
-	.@itemSlotCount = getitemslots(.@selectedItemId);
-	.@sumSlotCount = 4 - .@itemSlotCount;
-	if(.@sumSlotCount <= 0){
-		mes "อุปกรณ์สวมใส่ดังกล่าว ไม่สามารถ Enchant ได้";
-		close;
-	}
-	mes "โปรดเลือก Slot ที่ต้องการ";
-	next;
-
-	.@menu$ = "";
-	
-	for(.@i = .@itemSlotCount; .@i < 4; ++.@i)
-	.@menu$ += "ช่องที่ " + (.@i + 1) + ":";
-
-	.@slot = select(.@menu$) + .@itemSlotCount - 1;
-	
-	if(Zeny < .price) {
-		mes "เจ้ามี Zeny ไม่เพียงพอ";
-		close;
-	}
-	
-	.@is_pass = 0;
-	
-	freeloop(1);
-	while(Zeny >= .price && !.@is_pass){
-		Zeny = Zeny - .price;
-		if($enchantIds[rand(0,$enchantIdArraySize - 1)] == enchantment_item_id){
-			.@is_pass = 1;
-			break;
-		}
-	}
-	freeloop(0);
-	
-	if(!.@is_pass){
-		mes "ไม่ติด!";
-		close;
-	}
-	
-	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
-		mes "เหมือนว่าเจ้าจะสลับอุปกรณ์ ระหว่างข้าดำเนินการอยู่นะ";
-		close;
-	}
-
-	delequip .@part;
-	if(.@slot == 0)
-	.@cardSlot1 = enchantment_item_id;
-	else if(.@slot == 1)
-	.@cardSlot2 = enchantment_item_id;
-	else if(.@slot == 2)
-	.@cardSlot3 = enchantment_item_id;
-	else if(.@slot == 3)
-	.@cardSlot4 = enchantment_item_id;
-	if(.@randomOptionId1 > 0){
-		setarray .@OptID[0],.@randomOptionId1,.@randomOptionId2,.@randomOptionId3,.@randomOptionId4,.@randomOptionId5;
-		setarray .@OptVal[0],.@randomOptionValue1,.@randomOptionValue2,.@randomOptionValue3,.@randomOptionValue4,.@randomOptionValue5;
-		setarray .@OptParam[0],0,0,0,0,0;
-		getitem3 .@selectedItemId,1,1,.@refineCount,0,.@cardSlot1,.@cardSlot2,.@cardSlot3,.@cardSlot4,.@OptID,.@OptVal,.@OptParam;
-	}
-	else
-	getitem2 .@selectedItemId,1,1,.@refineCount,0,.@cardSlot1,.@cardSlot2,.@cardSlot3,.@cardSlot4;
-	
-	mes "เรียบร้อยแล้ว!";
-	close;
-
-OnInit:
-	.price = 5000000;
-	waitingroom "(กำหนด Enchant)(Zeny)Random Enchant.",0;
-	end;
-}
-
 prontera,135,231,5	script	Target Random Enchantment#2	868,{
 	if(!enchantment_item_id)
 	goto L_SetItemId;
+	mes "ต้องการ " + $enchant_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้ Enchant: " + getitemname(enchantment_item_id);
+	next;
 	menu "กำหนด Enchant",-,"ขั้นตอนต่อไป",L_Start;
 	next;
 	L_SetItemId:
@@ -438,27 +294,12 @@ prontera,135,231,5	script	Target Random Enchantment#2	868,{
 
 	.@slot = select(.@menu$) + .@itemSlotCount - 1;
 	
-	if(countitem(.itemId) < 1) {
-		mes getitemname(.itemId) + " ไม่เพียงพอ";
+	if(countitem(.itemId) < $enchant_target_amount) {
+		mes "คุณไม่มี " + $enchant_target_amount + " " + getitemname(.itemId);
 		close;
 	}
 	
-	.@is_pass = 0;
-	
-	freeloop(1);
-	while(countitem(.itemId) > 0 && !.@is_pass){
-		delitem .itemId,1;
-		if($enchantIds[rand(0,$enchantIdArraySize - 1)] == enchantment_item_id){
-			.@is_pass = 1;
-			break;
-		}
-	}
-	freeloop(0);
-	
-	if(!.@is_pass){
-		mes "ไม่ติด!";
-		close;
-	}
+	delitem .itemId,$enchant_target_amount;
 
 	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
 		mes "เหมือนว่าเจ้าจะสลับอุปกรณ์ ระหว่างข้าดำเนินการอยู่นะ";
@@ -485,7 +326,21 @@ prontera,135,231,5	script	Target Random Enchantment#2	868,{
 	mes "เรียบร้อยแล้ว!";
 	close;
 
+	L_RefreshRate:
+	if($enchantIdArraySize)
+	$enchant_target_amount = rand($enchantIdArraySize,($enchantIdArraySize * 4));
+	else
+	$enchant_target_amount = 4000;
+	if($enchant_target_amount > 30000)
+	$enchant_target_amount = 30000;
+	return;
+	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+	
 OnInit:
+	callsub L_RefreshRate;
 	.itemId = 40015;
 	waitingroom "(กำหนด Enchant)(Key)Random Enchant.",0;
 	end;

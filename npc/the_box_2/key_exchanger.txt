@@ -113,8 +113,9 @@ OnInit:
 prontera,106,264,5	script	Target Weapon Box	10249,{
 	if(!weapon_box_item_id)
 	goto L_SetItemId;
+	mes "ต้องการ " + $weapon_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(weapon_box_item_id);
-	menu "กำหนด Item",-,"เริ่มสุ่ม",L_Start;
+	menu "กำหนด Item",-,"แลก",L_Start;
 	next;
 	L_SetItemId:
 	mes "โปรดใส่ Item ID ที่อยากได้";
@@ -139,37 +140,37 @@ prontera,106,264,5	script	Target Weapon Box	10249,{
 		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
 		close;
 	}
-	.@itemCount = countitem(.itemId);
-	if(.@itemCount < 1)
+
+	if(countitem(.itemId) < $weapon_target_amount)
 	{
-		freeloop(0);
-		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + $weapon_target_amount + " " + getitemname(.itemId);
 		end;
 	}
 	if (!checkweight(21007,1)){
-		freeloop(0);
 		mes "ของเต็ม";
 		close;
 	}
-	freeloop(1);
-	while(.@itemCount > 0){
-		delitem .itemId,1;
-		.@rewardId = $weaponIds[rand(0,$weaponIdArraySize - 1)];
-		if(.@rewardId == weapon_box_item_id){
-			getitem .@rewardId,1;
-			.@isSuccess = 1;
-			break;
-		}
-		.@itemCount--;
-	}
-	freeloop(0);
-	if(!.@isSuccess){
-		mes "ไม่ได้รับ Item โปรดลองสุ่มใหม่อีกที";
-		close;
-	}
+	
+	delitem .itemId,$weapon_target_amount;
+	getitem weapon_box_item_id,1;
+
+	end;
+	
+	L_RefreshRate:
+	if($weaponIdArraySize)
+	$weapon_target_amount = rand($weaponIdArraySize,($weaponIdArraySize * 4));
+	else
+	$weapon_target_amount = 4000;
+	if($weapon_target_amount > 30000)
+	$weapon_target_amount = 30000;
+	return;
+	
+OnMinute30:
+	callsub L_RefreshRate;
 	end;
 	
 OnInit:
+	callsub L_RefreshRate;
 	waitingroom "(กำหนด Item) กล่องอาวุธ",0;
 	.itemId = 40004;
 	end;
@@ -178,8 +179,9 @@ OnInit:
 prontera,113,264,5	script	Target Equipment Box	10249,{
 	if(!equipment_box_item_id)
 	goto L_SetItemId;
+	mes "ต้องการ " + $equipment_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(equipment_box_item_id);
-	menu "กำหนด Item",-,"เริ่มสุ่ม",L_Start;
+	menu "กำหนด Item",-,"แลก",L_Start;
 	next;
 	L_SetItemId:
 	mes "โปรดใส่ Item ID ที่อยากได้";
@@ -204,37 +206,37 @@ prontera,113,264,5	script	Target Equipment Box	10249,{
 		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
 		close;
 	}
-	.@itemCount = countitem(.itemId);
-	if(.@itemCount < 1)
+	
+	if(countitem(.itemId) < $equipment_target_amount)
 	{
-		freeloop(0);
-		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + $equipment_target_amount + " " + getitemname(.itemId);
 		end;
 	}
 	if (!checkweight(21007,1)){
-		freeloop(0);
 		mes "ของเต็ม";
 		close;
 	}
-	freeloop(1);
-	while(.@itemCount > 0){
-		delitem .itemId,1;
-		.@rewardId = $equipmentIds[rand(0,$equipmentIdArraySize - 1)];
-		if(.@rewardId == equipment_box_item_id){
-			getitem .@rewardId,1;
-			.@isSuccess = 1;
-			break;
-		}
-		.@itemCount--;
-	}
-	freeloop(0);
-	if(!.@isSuccess){
-		mes "ไม่ได้รับ Item โปรดลองสุ่มใหม่อีกที";
-		close;
-	}
+	
+	delitem .itemId,$equipment_target_amount;
+	getitem equipment_box_item_id,1;
+	
+	end;
+	
+	L_RefreshRate:
+	if($equipmentIdArraySize)
+	$equipment_target_amount = rand($equipmentIdArraySize,($equipmentIdArraySize * 4));
+	else
+	$equipment_target_amount = 4000;
+	if($equipment_target_amount > 30000)
+	$equipment_target_amount = 30000;
+	return;
+	
+OnMinute30:
+	callsub L_RefreshRate;
 	end;
 	
 OnInit:
+	callsub L_RefreshRate;
 	waitingroom "(กำหนด Item) กล่องอุปกรณ์สวมใส่",0;
 	.itemId = 40005;
 	end;
@@ -243,8 +245,9 @@ OnInit:
 prontera,120,264,5	script	Target Costume Box	10249,{
 	if(!costume_box_item_id)
 	goto L_SetItemId;
+	mes "ต้องการ " + $costume_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(costume_box_item_id);
-	menu "กำหนด Item",-,"เริ่มสุ่ม",L_Start;
+	menu "กำหนด Item",-,"แลก",L_Start;
 	next;
 	L_SetItemId:
 	mes "โปรดใส่ Item ID ที่อยากได้";
@@ -269,37 +272,37 @@ prontera,120,264,5	script	Target Costume Box	10249,{
 		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
 		close;
 	}
-	.@itemCount = countitem(.itemId);
-	if(.@itemCount < 1)
+	
+	if(countitem(.itemId) < $costume_target_amount)
 	{
-		freeloop(0);
-		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + $costume_target_amount + " " + getitemname(.itemId);
 		end;
 	}
 	if (!checkweight(21007,1)){
-		freeloop(0);
 		mes "ของเต็ม";
 		close;
 	}
-	freeloop(1);
-	while(.@itemCount > 0){
-		delitem .itemId,1;
-		.@rewardId = $costumeIds[rand(0,$costumeIdArraySize - 1)];
-		if(.@rewardId == costume_box_item_id){
-			getitem .@rewardId,1;
-			.@isSuccess = 1;
-			break;
-		}
-		.@itemCount--;
-	}
-	freeloop(0);
-	if(!.@isSuccess){
-		mes "ไม่ได้รับ Item โปรดลองสุ่มใหม่อีกที";
-		close;
-	}
+	
+	delitem .itemId,$costume_target_amount;
+	getitem costume_box_item_id,1;
+	
+	end;
+	
+	L_RefreshRate:
+	if($costumeIdArraySize)
+	$costume_target_amount = rand($costumeIdArraySize,($costumeIdArraySize * 4));
+	else
+	$costume_target_amount = 4000;
+	if($costume_target_amount > 30000)
+	$costume_target_amount = 30000;
+	return;
+	
+OnMinute30:
+	callsub L_RefreshRate;
 	end;
 	
 OnInit:
+	callsub L_RefreshRate;
 	waitingroom "(กำหนด Item) กล่อง Costume",0;
 	.itemId = 40006;
 	end;
@@ -308,8 +311,9 @@ OnInit:
 prontera,127,264,5	script	Target Card Box	10249,{
 	if(!card_box_item_id)
 	goto L_SetItemId;
+	mes "ต้องการ " + $card_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(card_box_item_id);
-	menu "กำหนด Item",-,"เริ่มสุ่ม",L_Start;
+	menu "กำหนด Item",-,"แลก",L_Start;
 	next;
 	L_SetItemId:
 	mes "โปรดใส่ Item ID ที่อยากได้";
@@ -334,39 +338,38 @@ prontera,127,264,5	script	Target Card Box	10249,{
 		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
 		close;
 	}
-	.@itemCount = countitem(.itemId);
-	if(.@itemCount < 1)
+
+	if(countitem(.itemId) < $card_target_amount)
 	{
-		freeloop(0);
-		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + $card_target_amount + " " + getitemname(.itemId);
 		end;
 	}
 	if (!checkweight(21007,1)){
-		freeloop(0);
 		mes "ของเต็ม";
 		close;
 	}
-	freeloop(1);
-	while(.@itemCount > 0){
-		delitem .itemId,1;
-		.@rewardId = $cardIds[rand(0,$cardIdArraySize - 1)];
-		if(.@rewardId == card_box_item_id){
-			getitem .@rewardId,1;
-			.@isSuccess = 1;
-			break;
-		}
-		.@itemCount--;
-	}
-	freeloop(0);
-	if(!.@isSuccess){
-		mes "ไม่ได้รับ Item โปรดลองสุ่มใหม่อีกที";
-		close;
-	}
+
+	delitem .itemId,$card_target_amount;
+	getitem card_box_item_id,1;
+	
+	end;
+	
+	L_RefreshRate:
+	if($cardIdArraySize)
+	$card_target_amount = rand($cardIdArraySize,($cardIdArraySize * 4));
+	else
+	$card_target_amount = 4000;
+	if($card_target_amount > 30000)
+	$card_target_amount = 30000;
+	return;
+	
+OnMinute30:
+	callsub L_RefreshRate;
 	end;
 	
 OnInit:
+	callsub L_RefreshRate;
 	waitingroom "(กำหนด Item) กล่อง Card",0;
 	.itemId = 40007;
 	end;
 }
-

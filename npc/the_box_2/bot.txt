@@ -55,7 +55,7 @@ OnTimer60000:
 	//specialeffect 567;
 	initnpctimer;
 	// Add rid here
-	addrid(1);
+	addrid(1,1);
 	if(BaseClass == Job_Merchant || Class == 23 || Class == 4045 || Class == 4190 || Class == 4191)
 	end;
 	// Give item here
