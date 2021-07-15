@@ -20,7 +20,7 @@ pvp_y_1-1	mapflag	pvp_noparty
 pvp_y_1-1	mapflag	nocommand
 pvp_y_1-4	mapflag	nocommand
 
-pvp_y_1-1,156,129,5	script	ล้างแค้น	505,{
+/*pvp_y_1-1,156,129,5	script	ล้างแค้น	505,{
 	if($revenge_cooldown){
 		mes "โปรดรอ.. Cooldown Reset ทุก ๆ 5 นาที";
 		close;
@@ -52,4 +52,4 @@ OnInit:
 	initnpctimer;
 	$revenge_cooldown = 0;
 	end;
-}
+}*/
