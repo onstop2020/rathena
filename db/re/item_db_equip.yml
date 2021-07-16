@@ -48839,7 +48839,7 @@ Body:
     AegisName: Roundly_Woolly_Hat
     Name: Costume Angel Veil
     Type: Armor
-    View: 1168
+    View: 1379
     Buy: 20
     Weight: 300
     Defense: 10
@@ -68772,7 +68772,6 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 880
     EquipScript: |
       sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
     UnEquipScript: |
@@ -81944,7 +81943,6 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 1299
     EquipScript: |
       sc_start SC_MERMAID_LONGING,INFINITE_TICK,0;
     UnEquipScript: |
@@ -84852,7 +84850,6 @@ Body:
       Garment: true
     EquipLevelMin: 30
     Refineable: true
-    View: 7
     Script: |
       bonus bInt,1;
       bonus bDex,1;
@@ -85173,7 +85170,7 @@ Body:
     Locations:
       Costume_Garment: true
     EquipLevelMin: 1
-    View: 49
+    View: 48
   - Id: 20773
     AegisName: Excelion_Wing
     Name: Excelion Wing
@@ -112677,7 +112674,6 @@ Body:
     Locations:
       Costume_Head_Low: true
     EquipLevelMin: 1
-    View: 880
     EquipScript: |
       sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
     UnEquipScript: |
@@ -112795,7 +112791,6 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 1807
     Script: |
     UnEquipScript: |
   - Id: 31606
@@ -120622,7 +120617,7 @@ Body:
     Type: Armor
     Locations:
       Costume_Garment: true
-    View: 100
+    View: 99
   - Id: 490004
     AegisName: Attacker_Booster_Ring
     Name: Attacker Booster Ring
