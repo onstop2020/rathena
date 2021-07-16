@@ -52375,14 +52375,12 @@ Body:
     EquipLevelMin: 1
     View: 1378
     Script: |
-      hateffect HAT_EF_FLUTTER_BUTTERFLY,true;
     UnEquipScript: |
-      hateffect HAT_EF_FLUTTER_BUTTERFLY,false;
   - Id: 5915
     AegisName: Roundly_Woolly_Hat
     Name: Costume Angel Veil
     Type: Armor
-    View: 1168
+    View: 1379
     Buy: 20
     Weight: 300
     Defense: 10
@@ -52460,10 +52458,8 @@ Body:
     Script: |
       bonus bMdef,20;
       bonus3 bAutoSpell,"AL_PNEUMA",1,30+getrefine()*5;
-      hateffect(HAT_EF_CAMELLIA_HAIR_PIN,true);
       /* CONFIRM The Rate*/
     UnEquipScript: |
-      hateffect(HAT_EF_CAMELLIA_HAIR_PIN,false);
   - Id: 5920
     AegisName: Medical_Boots
     Name: Medical Boots
@@ -52821,9 +52817,7 @@ Body:
     EquipLevelMin: 1
     View: 1380
     Script: |
-      hateffect HAT_EF_ANGEL_FLUTTERING,true;
     UnEquipScript: |
-      hateffect HAT_EF_ANGEL_FLUTTERING,false;
   - Id: 5980
     AegisName: C_Classical_Fhat
     Name: C Classical Fhat
@@ -73508,7 +73502,6 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 880
     EquipScript: |
       sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
     UnEquipScript: |
@@ -77342,9 +77335,7 @@ Body:
     Script: |
       bonus bMaxSP,50;
       bonus4 bAutoSpellWhenHit,"MG_SAFETYWALL",10,50,0;
-      hateffect(HAT_EF_VALHALLA_IDOL,true);
     UnEquipScript: |
-      hateffect(HAT_EF_VALHALLA_IDOL,false);
   - Id: 19111
     AegisName: Laser_Of_Eagle
     Name: Laser of Eagle
@@ -80537,9 +80528,7 @@ Body:
     EquipLevelMin: 1
     View: 1823
     Script: |
-      hateffect(HAT_EF_RESONATETAEGO,true);
     UnEquipScript: |
-      hateffect(HAT_EF_RESONATETAEGO,false);
   - Id: 19439
     AegisName: Subject_Aura
     Name: Vicious Mind Aura
@@ -87451,7 +87440,6 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 1299
     EquipScript: |
       sc_start SC_MERMAID_LONGING,INFINITE_TICK,0;
     UnEquipScript: |
@@ -88087,9 +88075,7 @@ Body:
       Override: 100
       NoDrop: true
     Script: |
-      hateffect HAT_EF_BLOSSOM_FLUTTERING,true;
     UnEquipScript: |
-      hateffect HAT_EF_BLOSSOM_FLUTTERING,false;
   - Id: 20286
     AegisName: C_Under_Rim_Glasses_Red
     Name: Costume Under Rim Glasses Red
@@ -88958,9 +88944,7 @@ Body:
     EquipLevelMin: 1
     View: 1425
     Script: |
-      hateffect(HAT_EF_BLESSING_OF_ANGELS,true);
     UnEquipScript: |
-      hateffect(HAT_EF_BLESSING_OF_ANGELS,false);
   - Id: 20405
     AegisName: C_Eremes_Scarf
     Name: Costume Eremes Scarf
@@ -89169,9 +89153,7 @@ Body:
     EquipLevelMin: 1
     View: 1203
     Script: |
-      hateffect(HAT_EF_CAMELLIA_HAIR_PIN,true);
     UnEquipScript: |
-      hateffect(HAT_EF_CAMELLIA_HAIR_PIN,false);
   - Id: 20436
     AegisName: C_Angelring_Furhat
     Name: Costume Angelring Furhat
@@ -89204,9 +89186,7 @@ Body:
       Costume_Head_Mid: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_GLOW_OF_NEW_YEAR,true);
     UnEquipScript: |
-      hateffect(HAT_EF_GLOW_OF_NEW_YEAR,false);
   - Id: 20440
     AegisName: C_Tone_of_Gold
     Name: Costume Tone of Gold
@@ -89312,9 +89292,7 @@ Body:
     EquipLevelMin: 1
     View: 1461
     Script: |
-      hateffect(HAT_EF_FEATHER_FLUTTERING,true);
     UnEquipScript: |
-      hateffect(HAT_EF_FEATHER_FLUTTERING,false);
   - Id: 20458
     AegisName: C_Wild_Poring_Rider
     Name: Costume Wild Poring Rider
@@ -89332,9 +89310,7 @@ Body:
     EquipLevelMin: 1
     View: 1423
     Script: |
-      hateffect(HAT_EF_VALHALLA_IDOL,true);
     UnEquipScript: |
-      hateffect(HAT_EF_VALHALLA_IDOL,false);
   - Id: 20460
     AegisName: C_Thorny_Hairband
     Name: Costume Thorny Hairband
@@ -89467,9 +89443,7 @@ Body:
     EquipLevelMin: 1
     View: 1473
     Script: |
-      hateffect(HAT_EF_FLORAL_WALTZ,true);
     UnEquipScript: |
-      hateffect(HAT_EF_FLORAL_WALTZ,false);
   - Id: 20488
     AegisName: C_Pope_Ribbon
     Name: Costume Pope Ribbon
@@ -89653,9 +89627,7 @@ Body:
       Costume_Garment: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_MAGICCIRCLE,true);
     UnEquipScript: |
-      hateffect(HAT_EF_MAGICCIRCLE,false);
   - Id: 20516
     AegisName: C_Wings_of_Michael
     Name: Costume Wings of Michael
@@ -89680,9 +89652,7 @@ Body:
       Costume_Garment: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_FULL_BLOOMCHERRY_TREE,true);
     UnEquipScript: |
-      hateffect(HAT_EF_FULL_BLOOMCHERRY_TREE,false);
   - Id: 20522
     AegisName: C_Blessings_Of_Soul
     Name: Costume Blessings Of Soul
@@ -89691,9 +89661,7 @@ Body:
       Costume_Head_Low: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_C_BLESSINGS_OF_SOUL,true);
     UnEquipScript: |
-      hateffect(HAT_EF_C_BLESSINGS_OF_SOUL,false);
   - Id: 20524
     AegisName: C_Shining_Angel_Wings
     Name: Costume Shining Angel Wings
@@ -89702,9 +89670,7 @@ Body:
       Costume_Garment: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_C_SHINING_ANGEL_WING,true);
     UnEquipScript: |
-      hateffect(HAT_EF_C_SHINING_ANGEL_WING,false);
   - Id: 20525
     AegisName: C_Bloody_Wing
     Name: Costume Crimson Wings
@@ -89753,9 +89719,7 @@ Body:
       Costume_Garment: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_DIGITAL_SPACE,true);
     UnEquipScript: |
-      hateffect(HAT_EF_DIGITAL_SPACE,false);
   - Id: 20537
     AegisName: C_Maple_Which_Falls_Rd
     Name: Costume Falling Red Foliage
@@ -89764,9 +89728,7 @@ Body:
       Costume_Garment: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_C_MAPLE_WHICH_FALLS_RD,true);
     UnEquipScript: |
-      hateffect(HAT_EF_C_MAPLE_WHICH_FALLS_RD,false);
   - Id: 20538
     AegisName: C_Magic_Circle_Rainbow
     Name: Costume Magic Circle Rainbow
@@ -89775,9 +89737,7 @@ Body:
       Costume_Garment: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_MAGICCIRCLERAINBOW,true);
     UnEquipScript: |
-      hateffect(HAT_EF_MAGICCIRCLERAINBOW,false);
   - Id: 20541
     AegisName: C_AngelRibbonWing_TW
     Name: Costume angel ribbon wings    # !todo check english name
@@ -89809,9 +89769,7 @@ Body:
       Costume_Garment: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_C_GHOST_EFFECT,true);
     UnEquipScript: |
-      hateffect(HAT_EF_C_GHOST_EFFECT,false);
   - Id: 20548
     AegisName: Costume_Popping_Poring_Aura
     Name: Costume Popping Poring Aura
@@ -89820,9 +89778,7 @@ Body:
       Costume_Garment: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_C_POPPING_PORING_AURA,true);
     UnEquipScript: |
-      hateffect(HAT_EF_C_POPPING_PORING_AURA,false);
   - Id: 20570
     AegisName: C_HeartChocoBag
     Name: Costume HeartChocoBag
@@ -89839,9 +89795,7 @@ Body:
     Locations:
       Costume_Garment: true
     Script: |
-      hateffect HAT_EF_C_VALKYRIE_WING,true;
     UnEquipScript: |
-      hateffect HAT_EF_C_VALKYRIE_WING,false;
   - Id: 20572
     AegisName: C_WingOfHeart
     Name: Costume WingOfHeart
@@ -90461,7 +90415,6 @@ Body:
       Garment: true
     EquipLevelMin: 30
     Refineable: true
-    View: 7
     Script: |
       bonus bInt,1;
       bonus bDex,1;
@@ -90789,7 +90742,7 @@ Body:
     Locations:
       Costume_Garment: true
     EquipLevelMin: 1
-    View: 49
+    View: 48
   - Id: 20773
     AegisName: Excelion_Wing
     Name: Excelion Wing
@@ -115827,7 +115780,6 @@ Body:
     EquipLevelMin: 1
     View: 1279
     Script: |
-      hateffect(HAT_EF_MAGICAL_FEATHER,true);
     EquipScript: |
       /* commented because only the last sentence is seen
       showscript "Oh Holy Light!";
@@ -115837,7 +115789,6 @@ Body:
       */
       showscript "Every day I struggle against the darkness but today will be magical!";
     UnEquipScript: |
-      hateffect(HAT_EF_MAGICAL_FEATHER,false);
   - Id: 31041
     AegisName: C_Cat_Lace_Hairband
     Name: Costume Cat Lace Hairband
@@ -115968,10 +115919,8 @@ Body:
       Costume_Head_Mid: true
     EquipLevelMin: 1
     Script: |
-      hateffect(HAT_EF_DOUBLEGUMGANG,true);
       /* Need to confirm this */
     UnEquipScript: |
-      hateffect(HAT_EF_DOUBLEGUMGANG,false);
   - Id: 31057
     AegisName: C_Eremes_Scarf_Black
     Name: "Costume: Eremes' Scarf (Black)"
@@ -116238,10 +116187,8 @@ Body:
     EquipLevelMin: 1
     View: 1500
     Script: |
-      hateffect(HAT_EF_BAKURETSU_HADOU,true);
       /* Need to confirm this */
     UnEquipScript: |
-      hateffect(HAT_EF_BAKURETSU_HADOU,false);
   - Id: 31090
     AegisName: C_Angelring_Hat
     Name: Costume Angelring Hat
@@ -116259,10 +116206,8 @@ Body:
     EquipLevelMin: 1
     View: 1528
     Script: |
-      hateffect(HAT_EF_GOLD_SHOWER,true);
       bonus2 bGetZenyNum,500,3;
     UnEquipScript: |
-      hateffect(HAT_EF_GOLD_SHOWER,false);
   - Id: 31092
     AegisName: C_Rabbit_Ribbon_Hat
     Name: Costume Bunny Ribbon Hat
@@ -118015,9 +117960,7 @@ Body:
     EquipLevelMin: 1
     View: 1665
     Script: |
-      hateffect(HAT_EF_C_FLUTTERBUTTERFLY_BL,true);
     UnEquipScript: |
-      hateffect(HAT_EF_C_FLUTTERBUTTERFLY_BL,false);
   - Id: 31317
     AegisName: C_15th_Anniversary_Wing
     Name: C 15th Anniversary Wing
@@ -118102,9 +118045,7 @@ Body:
     EquipLevelMin: 1
     View: 1231
     Script: |
-      hateffect(HAT_EF_QSCARABA,true);
     UnEquipScript: |
-      hateffect(HAT_EF_QSCARABA,false);
   - Id: 31326
     AegisName: C_Rolf_Von_Ziege_666_II
     Name: C Rolf Von Ziege 666 II
@@ -118952,9 +118893,7 @@ Body:
     EquipLevelMin: 1
     View: 1729
     Script: |
-      hateffect(HAT_EF_MANYSTARS,true);
     UnEquipScript: |
-      hateffect(HAT_EF_MANYSTARS,false);
   - Id: 31481
     AegisName: C_CatCoffeeCup_TW
     Name: C TriColor CatCup
@@ -119657,7 +119596,6 @@ Body:
     Locations:
       Costume_Head_Low: true
     EquipLevelMin: 1
-    View: 880
     EquipScript: |
       sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
     UnEquipScript: |
@@ -119679,9 +119617,7 @@ Body:
     EquipLevelMin: 1
     View: 1799
     Script: |
-      hateffect(HAT_EF_SNOWFLAKE_TIARA,true);
     UnEquipScript: |
-      hateffect(HAT_EF_SNOWFLAKE_TIARA,false);
   - Id: 31589
     AegisName: C_Golden_Majestic_Goat
     Name: C Golden Majestic Goat
@@ -119777,11 +119713,8 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 1807
     Script: |
-      hateffect(HAT_EF_MIDGARTS_GLORY,true);
     UnEquipScript: |
-      hateffect(HAT_EF_MIDGARTS_GLORY,false);
   - Id: 31606
     AegisName: C_Autumn_Headband
     Name: C Autumn Headband
@@ -120537,9 +120470,7 @@ Body:
     EquipLevelMin: 1
     View: 1823
     Script: |
-      hateffect(HAT_EF_RESONATETAEGO,true);
     UnEquipScript: |
-      hateffect(HAT_EF_RESONATETAEGO,false);
   - Id: 31723
     AegisName: Costume_TW_Rice_Ball
     Name: C Tw Rice Ball
@@ -128594,7 +128525,7 @@ Body:
     Type: Armor
     Locations:
       Costume_Garment: true
-    View: 100
+    View: 99
   - Id: 490004
     AegisName: Attacker_Booster_Ring
     Name: Attacker Booster Ring
