@@ -22,7 +22,10 @@ OnBossDead:
 	announce "เสียใจด้วย! คุณไม่ได้รับ " + getitemname(.reward_id),0xEBB531|bc_self;
 
 	$mystery_boss_killed++;
-	if($mystery_boss_killed >= $mystery_boss_amount){
+	.@spawnCount = $mystery_boss_amount;
+	if(.@spawnCount > 10)
+	.@spawnCount = 10;
+	if($mystery_boss_killed >= .@spawnCount){
 		$mystery_boss_amount++;
 		$mystery_boss_killed = 0;
 		callsub L_Spawn;
