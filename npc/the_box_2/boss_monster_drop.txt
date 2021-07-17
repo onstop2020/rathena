@@ -73,9 +73,9 @@ OnBossDead:
 	.@percent = getarg(0,0);
 	if(.@rand <= .@percent){
 		getitem 40016,1;
-		announce "ยินดีด้วย! คุณได้รับ " + getitemname(40016),0xEBB531|bc_self;
+		announce "ยินดีด้วย! คุณได้รับ " + getitemname(40016) + "!",0xEBB531|bc_self;
 	}
 	else
-	announce "เสียใจด้วย! คุณไม่ได้รับ " + getitemname(40016) + " ลองกำจัดมันอีกทีสิ!",0xEBB531|bc_self;
+	announce "เสียใจด้วย! คุณไม่ได้รับ " + getitemname(40016) + " ลองกำจัดมันอีกทีสิ..",0xEBB531|bc_self;
 	return;
 }
