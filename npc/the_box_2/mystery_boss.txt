@@ -50,7 +50,10 @@ OnBossDead:
 	return;
 	
 	L_Spawn:
-	for(.@i = 0; .@i < $mystery_boss_amount; .@i++){
+	.@spawnCount = $mystery_boss_amount;
+	if(.@spawnCount > 10)
+	.@spawnCount = 10;
+	for(.@i = 0; .@i < .@spawnCount; .@i++){
 		monster .map_name$,0,0,"--ja--",.boss_id[rand(0,(.boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
 		
 		// Random Ignore Mode (Ignore Magic, Ignore Melee, Ignore Misc, Ignore Ranged)
