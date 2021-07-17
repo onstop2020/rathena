@@ -26,6 +26,7 @@ OnBossDead:
 	if(.@spawnCount > 10)
 	.@spawnCount = 10;
 	if($mystery_boss_killed >= .@spawnCount){
+		killmonsterall .map_name$;
 		$mystery_boss_amount++;
 		$mystery_boss_killed = 0;
 		callsub L_Spawn;
