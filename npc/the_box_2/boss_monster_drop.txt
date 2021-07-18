@@ -2,7 +2,6 @@
 	end;
 	
 OnBossDead:
-	.@var1$ = strcharinfo(0);
 	.@var2$ = strcharinfo(3);
 	if(.@var2$ == "1@tower" || .@var2$ == "2@tower" || .@var2$ == "3@tower" || .@var2$ == "4@tower" || .@var2$ == "5@tower" || .@var2$ == "6@tower")
 	callsub L_Rand,$mvpRefineRate1;
@@ -75,7 +74,9 @@ OnBossDead:
 		getitem 40016,1;
 		announce "ยินดีด้วย! คุณได้รับ " + getitemname(40016) + "!",0xEBB531|bc_self;
 	}
-	else
-	announce "เสียใจด้วย! คุณไม่ได้รับ " + getitemname(40016) + " ลองกำจัดมันอีกทีสิ..",0xEBB531|bc_self;
+	else{
+		getitem 608,1;
+		announce "เสียใจด้วย! คุณไม่ได้รับ " + getitemname(40016) + " ลองกำจัดมันอีกทีสิ..",0xEBB531|bc_self;
+	}
 	return;
 }
