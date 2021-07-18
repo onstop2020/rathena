@@ -2,6 +2,7 @@ prontera,153,200,4	script	Bot	562,{
 	mes "เพียงแค่ Online ในเมือง";
 	mes "ก็จะได้รับ Item ทุก ๆ 1 นาที";
 	mes "*ห้ามคุยกับ NPC ทิ้งไว้";
+	mes "*ห้ามตั้งร้านทิ้งไว้";
 	close;
 
 OnTimer1000:
