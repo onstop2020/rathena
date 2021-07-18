@@ -2,7 +2,6 @@ prontera,153,200,4	script	Bot	562,{
 	mes "เพียงแค่ Online ในเมือง";
 	mes "ก็จะได้รับ Item ทุก ๆ 1 นาที";
 	mes "*ห้ามคุยกับ NPC ทิ้งไว้";
-	mes "*สายอาชีพ: Merchant ไม่สามารถ Bot ได้";
 	close;
 
 OnTimer1000:
@@ -56,7 +55,7 @@ OnTimer60000:
 	initnpctimer;
 	// Add rid here
 	addrid(1,1);
-	if(BaseClass == Job_Merchant || Class == 23 || Class == 4045 || Class == 4190 || Class == 4191)
+	if(checkvending())
 	end;
 	// Give item here
 	if($botKey1 > 0)
