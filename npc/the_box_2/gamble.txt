@@ -1,0 +1,20 @@
+prontera,45,78,5	script	MvP Refine	828,{
+	if(countitem(.itemId) < 1)
+	{
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		end;
+	}
+	.@sum = rand(0,.max_rand);
+	message strcharinfo(0),"ต้องออก 0 :: คุณทอยได้ " + .@sum;
+	if(.@sum == 0)
+	getitem 40016,1;
+	else
+	delitem .itemId,1;
+	end;
+	
+OnInit:
+	.itemId = 40016;
+	.max_rand = 2;
+	waitingroom "(" + getitemname(.itemId) + ") โอกาสชนะ 1 ใน " + (.max_rand + 1),0;
+	end;
+}

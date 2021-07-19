@@ -11,6 +11,7 @@ prontera,110,246,5	duplicate(backToCenter)	กลับกลางเมือง#1	10081
 prontera,101,168,5	duplicate(backToCenter)	กลับกลางเมือง#2	10081
 prontera,237,62,5	duplicate(backToCenter)	กลับกลางเมือง#3	10081
 prontera,200,240,5	duplicate(backToCenter)	กลับกลางเมือง#4	10081
+prontera,56,65,5	duplicate(backToCenter)	กลับกลางเมือง#5	10081
 
 prontera,145,193,5	script	Zone อุปกรณ์สวมใส่	10081,{
 	warp "prontera",115,247;
@@ -45,5 +46,14 @@ prontera,166,193,5	script	Zone Pet & Hom.	10081,{
 	
 OnInit:
 	waitingroom "Zone - Pet & Hom.",0;
+	end;
+}
+
+prontera,131,193,5	script	พนัน	10081,{
+	warp "prontera",52,72;
+	end;
+	
+OnInit:
+	waitingroom "Zone - พนัน",0;
 	end;
 }
