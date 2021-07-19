@@ -7,7 +7,7 @@ prontera,103,261,5	script	Weapon Box	10249,{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	if (!checkweight(21007,10)){
+	if (!checkweight(21007,1)){
 		mes "ของเต็ม/น้ำหนักเกิน";
 		close;
 	}
@@ -31,7 +31,7 @@ prontera,110,261,5	script	Equipment Box	10249,{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	if (!checkweight(21007,10)){
+	if (!checkweight(21007,1)){
 		mes "ของเต็ม/น้ำหนักเกิน";
 		close;
 	}
@@ -55,7 +55,7 @@ prontera,117,261,5	script	Costume Box	10249,{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	if (!checkweight(21007,10)){
+	if (!checkweight(21007,1)){
 		mes "ของเต็ม/น้ำหนักเกิน";
 		close;
 	}
@@ -79,7 +79,7 @@ prontera,124,261,5	script	Card Box	10249,{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
 		end;
 	}
-	if (!checkweight(21007,10)){
+	if (!checkweight(21007,1)){
 		mes "ของเต็ม/น้ำหนักเกิน";
 		close;
 	}
