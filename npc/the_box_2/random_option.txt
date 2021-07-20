@@ -136,6 +136,114 @@ OnInit:
 	end;
 }
 
+
+prontera,134,249,5	script	Target Random Option	869,{
+	if(!option_item_id)
+	goto L_SetItemId;
+	mes "ต้องการ " + $option_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
+	mes "คุณอยากได้ Option ID: " + option_item_id;
+	next;
+	menu "กำหนด Option",-,"ขั้นตอนต่อไป",L_Start;
+	next;
+	L_SetItemId:
+	mes "โปรดใส่ Option ID ที่อยากได้";
+	mes "<URL>Option ID ที่มีทั้งหมด<INFO>https://raw.githubusercontent.com/kaninhot004/rathena/the-box-2/npc/the_box_2/Random%20Option%20Ids.txt</INFO></URL>";
+	input .@itemId;
+	.@is_had_opt_id = callfunc("IsHadRandomOptionId",.@itemId);
+
+	if(.@is_had_opt_id)
+	option_item_id = .@itemId;
+	
+	if(option_item_id <= 0)
+	mes "ไม่พบ Option ID ดังกล่าว หรือ Option ID ดังกล่าวใช้งานไม่ได้";
+	else
+	mes "คุณอยากได้ Option ID: " + option_item_id;
+	close;
+	
+	L_Start:
+	if(option_item_id <= 0){
+		mes "คุณยังไม่ได้กำหนด Option ID ที่อยากได้";
+		close;
+	}
+	mes "^3F28FFโอกาสติด:^000000 100%";
+	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
+	mes "^3F28FFItem ที่ต้องใช้:^000000 " + getitemname(.itemId);
+	next;
+	
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
+	
+	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
+		if(getequipisequiped(.@indices[.@i])) {
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			.@equipped = 1;
+		}
+		.@menu$ = .@menu$ + ":";
+	}
+	
+	if (.@equipped == 0) {
+		mes "เจ้าไม่ได้สวมใส่ อุปกรณ์สวมใส่ใด ๆ เลย ข้าไม่สามารถทำอะไรได้";
+		close;
+	}
+	
+	.@part = .@indices[select(.@menu$)];
+
+	if(!getequipisequiped(.@part)) {
+		mes "เจ้าเลือกช่องที่ ไม่ได้สวมใส่อะไรอยู่เลย";
+		close;
+	}
+	
+	.@selectedItemId = getequipid(.@part);
+
+	mes "โปรดเลือกช่องที่ต้องการ";
+	next;
+
+	.@menu$ = "ช่องที่ 1:";
+	
+	for(.@i = 1; .@i < 5; ++.@i) {
+		if(getequiprandomoption(.@part,.@i - 1,ROA_ID) > 0)
+		.@menu$ += "ช่องที่ " + (.@i + 1);
+		else
+		break;
+		.@menu$ = .@menu$ + ":";
+	}
+	
+	.@slot = select(.@menu$);
+
+	.@maxRandomize = 5;
+
+	if(countitem(.itemId) < $option_target_amount) {
+		mes getitemname(.itemId) + " ไม่เพียงพอ";
+		close;
+	}
+	delitem .itemId,$option_target_amount;
+
+	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
+		mes "เหมือนว่าเจ้าจะสลับอุปกรณ์ ระหว่างข้าดำเนินการอยู่นะ";
+		close;
+	}
+	
+	setrandomoption(.@part,.@slot - 1,option_item_id,rand(1,.@maxRandomize),0);
+
+	mes "เรียบร้อยแล้ว!";
+	close;
+
+	L_RefreshRate:
+	$option_target_amount = rand(242,(242 * 4));
+	if($option_target_amount > 30000)
+	$option_target_amount = 30000;
+	return;
+	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+	
+OnInit:
+	callsub L_RefreshRate;
+	.itemId = 40014;
+	waitingroom "(กำหนด Opt.)(Key)Random Opt.",0;
+	end;
+}
+
 function	script	GetRandomOptionId	{
 	.@optId = rand(1,242);
 	freeloop(1);
@@ -144,4 +252,13 @@ function	script	GetRandomOptionId	{
 	.@optId = rand(1,242);
 	freeloop(0);
 	return .@optId;
+}
+
+function	script	IsHadRandomOptionId	{
+	.@optId = getarg(0,0);
+	if(.@optId < 1 || .@optId > 242)
+	return 0;
+	if(.@optId == 86 || .@optId == 173 || .@optId == 174 || .@optId == 204 || .@optId == 205 || (.@optId >= 76 && .@optId <= 85) || (.@optId >= 175 && .@optId <= 184))
+	return 0;
+	return 1;
 }
