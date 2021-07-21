@@ -136,7 +136,6 @@ OnInit:
 	end;
 }
 
-
 prontera,134,249,5	script	Target Random Option	869,{
 	if(!option_item_id)
 	goto L_SetItemId;
