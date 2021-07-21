@@ -50,7 +50,7 @@ prontera,161,305,3	script	Central Laboratory	1623,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate10 = rand(1,5);
+	$mvpRefineRate10 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate10 + "%)",0;
 	return;

@@ -16,7 +16,7 @@ prontera,162,267,3	script	Airship Assault	3181,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate6 = rand(1,5);
+	$mvpRefineRate6 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate6 + "%)",0;
 	return;

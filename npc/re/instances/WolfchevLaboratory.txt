@@ -22,7 +22,7 @@ prontera,49,197,7	script	Wolfchev's Laboratory	1646,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate30 = rand(1,5);
+	$mvpRefineRate30 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate30 + "%)",0;
 	return;

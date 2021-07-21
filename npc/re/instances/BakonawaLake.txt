@@ -12,7 +12,7 @@ prontera,151,265,5	script	Bakonawa Lake	2320,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate7 = rand(1,5);
+	$mvpRefineRate7 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate7 + "%)",0;
 	return;

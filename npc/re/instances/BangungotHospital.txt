@@ -10,7 +10,7 @@ prontera,148,283,3	script	Bangungot Hospital 2F	2317,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate8 = rand(1,5);
+	$mvpRefineRate8 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate8 + "%)",0;
 	return;

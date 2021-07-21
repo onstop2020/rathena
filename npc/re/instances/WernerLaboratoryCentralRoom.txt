@@ -8,7 +8,7 @@ prontera,49,210,5	script	Werner Lab. Central R.	3621,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate29 = rand(1,5);
+	$mvpRefineRate29 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate29 + "%)",0;
 	return;

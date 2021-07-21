@@ -22,7 +22,7 @@ prontera,150,125,7	script	Faceworm's Nest	2529,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate13 = rand(1,5);
+	$mvpRefineRate13 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate13 + "%)",0;
 	return;

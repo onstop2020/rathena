@@ -20,7 +20,7 @@ prontera,103,208,5	script	Devil Tower	2942,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate12 = rand(1,5);
+	$mvpRefineRate12 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate12 + "%)",0;
 	return;

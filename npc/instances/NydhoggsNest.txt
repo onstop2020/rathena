@@ -19,7 +19,7 @@ prontera,165,236,3	script	Nidhoggr's Nest	2022,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate2 = rand(1,5);
+	$mvpRefineRate2 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate2 + "%)",0;
 	return;

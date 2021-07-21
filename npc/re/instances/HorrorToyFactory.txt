@@ -18,7 +18,7 @@ prontera,227,208,3	script	Horror Toy Factory	2996,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate17 = rand(1,5);
+	$mvpRefineRate17 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate17 + "%)",0;
 	return;

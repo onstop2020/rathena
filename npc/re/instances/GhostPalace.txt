@@ -19,7 +19,7 @@ prontera,161,125,1	script	Ghost Palace	2961,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate14 = rand(1,5);
+	$mvpRefineRate14 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate14 + "%)",0;
 	return;

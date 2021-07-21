@@ -64,7 +64,7 @@ OnBossDead:
 	else if(.@var2$ == "1@lhz")
 	callsub L_Rand,$mvpRefineRate30;
 	else
-	callsub L_Rand,10;
+	callsub L_Rand,50;
 	end;
 	
 	L_Rand:

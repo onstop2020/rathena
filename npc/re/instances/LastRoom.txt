@@ -10,7 +10,7 @@ prontera,67,210,5	script	The Last Room	3254,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate19 = rand(1,5);
+	$mvpRefineRate19 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate19 + "%)",0;
 	return;

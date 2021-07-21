@@ -21,7 +21,7 @@ prontera,184,210,3	script	Orc's Memory	1087,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate3 = rand(1,5);
+	$mvpRefineRate3 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate3 + "%)",0;
 	return;

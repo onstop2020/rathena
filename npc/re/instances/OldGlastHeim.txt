@@ -27,7 +27,7 @@ prontera,184,197,1	script	Old Glast Heim	2476,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate24 = rand(1,5);
+	$mvpRefineRate24 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate24 + "%)",0;
 	return;

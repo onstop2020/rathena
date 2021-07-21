@@ -18,7 +18,7 @@ prontera,84,208,5	script	Isle Of Bios	3029,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate18 = rand(1,5);
+	$mvpRefineRate18 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate18 + "%)",0;
 	return;

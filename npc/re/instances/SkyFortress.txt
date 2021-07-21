@@ -19,7 +19,7 @@ prontera,264,210,3	script	Sky Fortress Invasion	3484,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate28 = rand(1,5);
+	$mvpRefineRate28 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate28 + "%)",0;
 	return;

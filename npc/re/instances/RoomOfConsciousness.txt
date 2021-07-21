@@ -11,7 +11,7 @@ prontera,103,199,7	script	Room of Consciousness	3450,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate25 = rand(1,5);
+	$mvpRefineRate25 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate25 + "%)",0;
 	return;

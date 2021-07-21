@@ -13,7 +13,7 @@ prontera,149,108,7	script	Hazy Forest	2131,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate15 = rand(1,5);
+	$mvpRefineRate15 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate15 + "%)",0;
 	return;

@@ -12,7 +12,7 @@ prontera,163,283,5	script	Buwaya Cave	2319,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate9 = rand(1,5);
+	$mvpRefineRate9 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate9 + "%)",0;
 	return;

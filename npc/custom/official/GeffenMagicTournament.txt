@@ -28,7 +28,7 @@ prontera,263,197,1	script	Geffen Magic Tour. Memo.	2564,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate5 = rand(1,5);
+	$mvpRefineRate5 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate5 + "%)",0;
 	return;

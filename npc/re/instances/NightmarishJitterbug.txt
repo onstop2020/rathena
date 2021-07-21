@@ -13,7 +13,7 @@ prontera,244,197,1	script	Nightmarish Jitterbug	3073,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate22 = rand(1,5);
+	$mvpRefineRate22 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate22 + "%)",0;
 	return;

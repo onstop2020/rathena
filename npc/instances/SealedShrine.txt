@@ -25,7 +25,7 @@ prontera,127,210,5	script	Sealed Shrine	1929,{
 	end;
 		
 	L_RefreshRate:
-	$mvpRefineRate4 = rand(1,5);
+	$mvpRefineRate4 = rand(1,50);
 	delwaitingroom;
 	waitingroom "MvP Refine (" + $mvpRefineRate4 + "%)",0;
 	return;
