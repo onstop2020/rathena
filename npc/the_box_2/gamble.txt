@@ -79,7 +79,7 @@ OnInit:
 	end;
 }
 
-prontera,36,85,5	script	MvP Refine#4	118,{
+prontera,36,85,5	script	MvP Refine#4	482,{
 	if(countitem(.itemId) < 1)
 	{
 		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
