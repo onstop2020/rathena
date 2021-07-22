@@ -29,8 +29,20 @@ alb_ship,0,0	monster	Strange Mouse	2057,25
 // Prontera, Training Dummy Area
 //==================================================
 prontera,251,77	monster	Dummy Lv50	2409,1,5000
+prontera,258,77	monster	Dummy Lv50	2409,1,5000
+prontera,259,76	monster	Dummy Lv50	2409,1,5000
 prontera,259,77	monster	Dummy Lv50	2409,1,5000
+prontera,259,78	monster	Dummy Lv50	2409,1,5000
+prontera,260,77	monster	Dummy Lv50	2409,1,5000
 prontera,251,66	monster	Dummy Lv100	2410,1,5000
+prontera,258,66	monster	Dummy Lv100	2410,1,5000
+prontera,259,65	monster	Dummy Lv100	2410,1,5000
 prontera,259,66	monster	Dummy Lv100	2410,1,5000
+prontera,259,67	monster	Dummy Lv100	2410,1,5000
+prontera,260,66	monster	Dummy Lv100	2410,1,5000
 prontera,251,55	monster	Dummy Lv150	2411,1,5000
+prontera,258,55	monster	Dummy Lv150	2411,1,5000
+prontera,259,54	monster	Dummy Lv150	2411,1,5000
 prontera,259,55	monster	Dummy Lv150	2411,1,5000
+prontera,259,56	monster	Dummy Lv150	2411,1,5000
+prontera,260,55	monster	Dummy Lv150	2411,1,5000
