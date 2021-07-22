@@ -19,8 +19,8 @@ prontera,45,78,5	script	MvP Refine#1	828,{
 	
 OnInit:
 	.itemId = 40016;
-	.max_rand = 3;
-	.reward_amount = 2;
+	.max_rand = 2;
+	.reward_amount = 1;
 	waitingroom getitemname(.itemId) + "|1:" + .max_rand + "|ชนะรับ:" + .reward_amount,0;
 	end;
 }
@@ -46,7 +46,7 @@ prontera,48,84,3	script	MvP Refine#2	118,{
 	
 OnInit:
 	.itemId = 40016;
-	.max_rand = 10;
+	.max_rand = 20;
 	.reward_amount = 20;
 	waitingroom getitemname(.itemId) + "|1:" + .max_rand + "|ชนะรับ:" + .reward_amount,0;
 	end;
