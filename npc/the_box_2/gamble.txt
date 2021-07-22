@@ -46,6 +46,60 @@ prontera,48,84,3	script	MvP Refine#2	118,{
 	
 OnInit:
 	.itemId = 40016;
+	.max_rand = 5;
+	.reward_amount = 5;
+	waitingroom getitemname(.itemId) + "|1:" + .max_rand + "|ชนะรับ:" + .reward_amount,0;
+	end;
+}
+
+prontera,41,88,5	script	MvP Refine#3	481,{
+	if(countitem(.itemId) < 1)
+	{
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		end;
+	}
+	input .@guess;
+	if(.@guess < 1 || .@guess > .max_rand){
+		mes "โปรดใส่ 1~" + .max_rand;
+		close;
+	}
+	.@sum = rand(1,.max_rand);
+	message strcharinfo(0),"ต้องออก " + .@sum + " :: คุณทอย " + .@guess;
+	if(.@sum == .@guess)
+	getitem 40016,.reward_amount;
+	else
+	delitem .itemId,1;
+	end;
+	
+OnInit:
+	.itemId = 40016;
+	.max_rand = 10;
+	.reward_amount = 10;
+	waitingroom getitemname(.itemId) + "|1:" + .max_rand + "|ชนะรับ:" + .reward_amount,0;
+	end;
+}
+
+prontera,36,85,5	script	MvP Refine#4	118,{
+	if(countitem(.itemId) < 1)
+	{
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		end;
+	}
+	input .@guess;
+	if(.@guess < 1 || .@guess > .max_rand){
+		mes "โปรดใส่ 1~" + .max_rand;
+		close;
+	}
+	.@sum = rand(1,.max_rand);
+	message strcharinfo(0),"ต้องออก " + .@sum + " :: คุณทอย " + .@guess;
+	if(.@sum == .@guess)
+	getitem 40016,.reward_amount;
+	else
+	delitem .itemId,1;
+	end;
+	
+OnInit:
+	.itemId = 40016;
 	.max_rand = 20;
 	.reward_amount = 20;
 	waitingroom getitemname(.itemId) + "|1:" + .max_rand + "|ชนะรับ:" + .reward_amount,0;
