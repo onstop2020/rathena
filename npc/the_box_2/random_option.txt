@@ -246,8 +246,7 @@ OnInit:
 function	script	GetRandomOptionId	{
 	.@optId = rand(1,242);
 	freeloop(1);
-	while(.@optId == 86 || .@optId == 173 || .@optId == 174 || .@optId == 204 || .@optId == 205
-	|| (.@optId >= 76 && .@optId <= 85) || (.@optId >= 175 && .@optId <= 184))
+	while((.@optId >= 76 && .@optId <= 85) || (.@optId >= 175 && .@optId <= 184))
 	.@optId = rand(1,242);
 	freeloop(0);
 	return .@optId;
@@ -256,8 +255,6 @@ function	script	GetRandomOptionId	{
 function	script	IsHadRandomOptionId	{
 	.@optId = getarg(0,0);
 	if(.@optId < 1 || .@optId > 242)
-	return 0;
-	if(.@optId == 86 || .@optId == 173 || .@optId == 174 || .@optId == 204 || .@optId == 205 || (.@optId >= 76 && .@optId <= 85) || (.@optId >= 175 && .@optId <= 184))
 	return 0;
 	return 1;
 }
