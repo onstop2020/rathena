@@ -181,8 +181,8 @@
 [WEAPON_ATTR_DARKNESS[1]] = เคลือบอาวุธธาตุ: Shadow
 [WEAPON_ATTR_TELEKINESIS[1]] = เคลือบอาวุธธาตุ: Ghost
 [WEAPON_ATTR_UNDEAD[1]] = เคลือบอาวุธธาตุ: Undead
-[WEAPON_INDESTRUCTIBLE[1]] = อุปกรณ์จะไม่สามารถถูกทำให้เสียหายได้
-[BODY_INDESTRUCTIBLE[1]] = อุปกรณ์จะไม่สามารถถูกทำให้เสียหายได้
+[WEAPON_INDESTRUCTIBLE[1]] = อาวุธจะไม่สามารถถูกทำให้เสียหายได้
+[BODY_INDESTRUCTIBLE[1]] = ชุดเกราะจะไม่สามารถถูกทำให้เสียหายได้
 [MDAMAGE_SIZE_SMALL_TARGET[1]] = MATK กับ Monster ขนาด Small %
 [MDAMAGE_SIZE_MIDIUM_TARGET[1]] = MATK กับ Monster ขนาด Medium %
 [MDAMAGE_SIZE_LARGE_TARGET[1]] = MATK กับ Monster ขนาด Large %
@@ -217,9 +217,6 @@
 [REFLECT_DAMAGE_PERCENT[1]] = ป้องกันสะท้อน %
 [MELEE_ATTACK_DAMAGE_TARGET[1]] = โจมตีกายภาพระยะใกล้ %
 [MELEE_ATTACK_DAMAGE_USER[1]] = ป้องกัน โจมตีกายภาพระยะใกล้ %
-[LAND_MINE_ATTACK_DAMAGE_TARGET[1]] = Land Mine %
-[BLAST_MINE_ATTACK_DAMAGE_TARGET[1]] = Blast Mine %
-[CLAYMORE_TRAP_ATTACK_DAMAGE_TARGET[1]] = Claymore Trap %
 [ADDSKILLMDAMAGE_NOTHING[1]] = Skill ธาตุ Neutral %
 [ADDSKILLMDAMAGE_WATER[1]] = Skill ธาตุ Water %
 [ADDSKILLMDAMAGE_GROUND[1]] = Skill ธาตุ Earth %
