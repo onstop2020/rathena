@@ -93,6 +93,7 @@ OnInit:
 	end;
 }
 
+x_prt	mapflag	monster_noteleport
 x_prt	mapflag	noteleport
 x_prt	mapflag	nocommand	99
 x_prt	mapflag	nomemo
@@ -216,6 +217,7 @@ OnInit:
 	end;
 }
 
+x_ra	mapflag	monster_noteleport
 x_ra	mapflag	noteleport
 x_ra	mapflag	nocommand	99
 x_ra	mapflag	nomemo
