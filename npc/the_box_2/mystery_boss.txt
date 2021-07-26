@@ -171,7 +171,9 @@ OnBossDead:
 	if(.@spawnCount > 10)
 	.@spawnCount = 10;
 	for(.@i = 0; .@i < .@spawnCount; .@i++){
-		monster .map_name$,0,0,"--ja--",.boss_id[rand(0,(.boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
+		.@x_spawn = rand(61,77);
+		.@y_spawn = rand(48,59);
+		monster .map_name$,.@x_spawn,.@y_spawn,"--ja--",.boss_id[rand(0,(.boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
 		
 		// Set HP and all status
 		setunitdata $@mobid[0],UMOB_STR,400;
@@ -227,7 +229,9 @@ prontera,156,212,0	script	Mystery Boss#2	10183,{
 	mes "๐ มันจะมี All Status ^EC1500400^000000";
 	next;
 	menu "เข้า",-;
-	warp "x_ra",0,0;
+	.@x_spawn = rand(61,77);
+	.@y_spawn = rand(48,59);
+	warp "x_ra",.@x_spawn,.@y_spawn;
 	close;
 	
 OnInit:
