@@ -141,6 +141,7 @@ prontera,134,249,5	script	Target Random Option	869,{
 	goto L_SetItemId;
 	mes "ต้องการ " + $option_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้ Option ID: " + option_item_id;
+	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000)";
 	next;
 	menu "กำหนด Option",-,"ขั้นตอนต่อไป",L_Start;
 	next;

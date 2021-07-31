@@ -205,6 +205,7 @@ prontera,135,231,5	script	Target Random Enchantment#2	868,{
 	goto L_SetItemId;
 	mes "ต้องการ " + $enchant_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้ Enchant: " + getitemname(enchantment_item_id);
+	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000)";
 	next;
 	menu "กำหนด Enchant",-,"ขั้นตอนต่อไป",L_Start;
 	next;
