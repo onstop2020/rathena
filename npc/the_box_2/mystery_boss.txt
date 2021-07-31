@@ -107,6 +107,7 @@ prontera,163,203,5	script	Mystery Boss	459,{
 	mes "๐ มันจะสุ่ม^A15008การป้องกัน^000000 {^EC1500ตีใกล้, ตีไกล, ตีเวทย์, อื่น ๆ^000000}";
 	next;
 	menu "เข้า",-;
+	announce strcharinfo(0) + " เข้าห้อง Mystery Boss (MvP Refine)",bc_all;
 	warp "x_prt",0,0;
 	close;
 	
@@ -233,6 +234,7 @@ prontera,157,213,1	script	Mystery Boss#2	10183,{
 	mes "๐ มันจะมี All Status ^EC1500400^000000";
 	next;
 	menu "เข้า",-;
+	announce strcharinfo(0) + " เข้าห้อง Mystery Boss (Skill Point)",bc_all;
 	.@x_spawn = rand(61,77);
 	.@y_spawn = rand(48,59);
 	warp "x_ra",.@x_spawn,.@y_spawn;
@@ -304,7 +306,7 @@ OnBossDead:
 	mapannounce .map_name$,"โทษระดับ " + $mystery_boss_ak_amount + "!",bc_map;
 	addrid(5,1,.map_name$);
 	bonus_script_clear 1;
-	bonus_script "{ bonus bAllStats,-" + ($mystery_boss_ak_amount * 10) + "; }",86400;
+	bonus_script "{ bonus bAllStats,-" + ($mystery_boss_ak_amount * 5) + "; bonus bFlee2Rate,-" + ($mystery_boss_ak_amount * 2) + "; bonus2 bSubClass,Class_All,-" + ($mystery_boss_ak_amount * 3) + "; bonus2 bAddClass,Class_All,-" + ($mystery_boss_ak_amount * 4) + "; bonus2 bMagicAddClass,Class_All,-" + ($mystery_boss_ak_amount * 4) + "; }",86400;
 	end;
 	
 OnInit:
@@ -344,6 +346,7 @@ prontera,154,211,8	script	Mystery Boss#3	10416,{
 	mes "๐ โทษ ^EC1500โจมตีเวทย์ทุก Class -(ระดับ คูณ 4)^000000";
 	next;
 	menu "เข้า",-,"เอาโทษออก",L_Clean;
+	announce strcharinfo(0) + " เข้าห้อง Mystery Boss (กุญแจทุกชนิด)",bc_all;
 	bonus_script_clear 1;
 	bonus_script "{ bonus bAllStats,-" + ($mystery_boss_ak_amount * 5) + "; bonus bFlee2Rate,-" + ($mystery_boss_ak_amount * 2) + "; bonus2 bSubClass,Class_All,-" + ($mystery_boss_ak_amount * 3) + "; bonus2 bAddClass,Class_All,-" + ($mystery_boss_ak_amount * 4) + "; bonus2 bMagicAddClass,Class_All,-" + ($mystery_boss_ak_amount * 4) + "; }",86400;
 	warp "x_lhz",0,0;
@@ -357,6 +360,3 @@ OnInit:
 	waitingroom "Mystery Boss (กุญแจทุกชนิด)",0;
 	end;
 }
-
-
-
