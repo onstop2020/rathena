@@ -1,3 +1,4 @@
+// MvP Refine
 -	script	MysteryBoss	-1,{
 	end;
 	
@@ -115,6 +116,7 @@ OnInit:
 	end;
 }
 
+// Skill Point
 -	script	MysteryBossSkillPoint	-1,{
 	end;
 	
@@ -241,6 +243,7 @@ OnInit:
 	end;
 }
 
+// All Keys
 -	script	MysteryBossAllKey	-1,{
 	end;
 	
@@ -249,6 +252,8 @@ OnPCDieEvent:
 		$mystery_boss_ak_pdc++;
 		callsub L_RefreshVariable;
 		callsub L_Spawn;
+		if($mystery_boss_ak_pdc <= 0)
+		callsub L_RefreshAllStatus;
 	}
 	end;
 	
@@ -284,8 +289,6 @@ OnBossDead:
 		$mystery_boss_ak_pdc = 0;
 		
 		killmonsterall .map_name$;
-		
-		callsub L_RefreshAllStatus;
 	}
 	return;
 	
@@ -298,7 +301,7 @@ OnBossDead:
 	return;
 	
 	L_RefreshAllStatus:
-	mapannounce .map_name$,"All Status -" + ($mystery_boss_ak_amount * 10) + "!",bc_map;
+	mapannounce .map_name$,"â·ÉÃÐ´Ñº " + $mystery_boss_ak_amount + "!",bc_map;
 	addrid(5,1,.map_name$);
 	bonus_script_clear 1;
 	bonus_script "{ bonus bAllStats,-" + ($mystery_boss_ak_amount * 10) + "; }",86400;
@@ -333,11 +336,16 @@ prontera,154,211,8	script	Mystery Boss#3	10416,{
 	mes "ð à¢éÒä»ÊÙé Boss";
 	mes "ð ¦èÒä´é ^7A31EB¡Ø­á¨·Ø¡ª¹Ô´^000000 (^D10687ÊØèÁà·èÒ æ ¡Ñ¹^000000)";
 	mes "ð ¨Ó¹Ç¹·Õèä´éÃÑº (1~^D10687" + $mystery_boss_ak_amount + " ¤Ù³ 10^000000)";
-	mes "ð ¼ÙéàÅè¹¨Ðâ´¹Å´ All Status ÁÒ¡¢Öé¹àÃ×èÍÂ æ ^EC1500ËÒ¡¼ÙéàÅè¹ÂÑ§äÁèá¾é^000000";
+	mes "ð ¼ÙéàÅè¹¨Ðâ´¹â·ÉÁÒ¡¢Öé¹àÃ×èÍÂ æ ^EC1500ËÒ¡¼ÙéàÅè¹ÂÑ§äÁèá¾é^000000";
+	mes "ð â·É ^EC1500All Status -(ÃÐ´Ñº ¤Ù³ 5)^000000";
+	mes "ð â·É ^EC1500Perfect Dodge -(ÃÐ´Ñº ¤Ù³ 2)^000000";
+	mes "ð â·É ^EC1500»éÍ§¡Ñ¹·Ø¡ Class -(ÃÐ´Ñº ¤Ù³ 3)^000000";
+	mes "ð â·É ^EC1500â¨ÁµÕ·Ø¡ Class -(ÃÐ´Ñº ¤Ù³ 4)^000000";
+	mes "ð â·É ^EC1500â¨ÁµÕàÇ·Âì·Ø¡ Class -(ÃÐ´Ñº ¤Ù³ 4)^000000";
 	next;
-	menu "à¢éÒ",-,"àÍÒâ·ÉÅ´ All Status ÍÍ¡",L_Clean;
+	menu "à¢éÒ",-,"àÍÒâ·ÉÍÍ¡",L_Clean;
 	bonus_script_clear 1;
-	bonus_script "{ bonus bAllStats,-" + ($mystery_boss_ak_amount * 10) + "; }",86400;
+	bonus_script "{ bonus bAllStats,-" + ($mystery_boss_ak_amount * 5) + "; bonus bFlee2Rate,-" + ($mystery_boss_ak_amount * 2) + "; bonus2 bSubClass,Class_All,-" + ($mystery_boss_ak_amount * 3) + "; bonus2 bAddClass,Class_All,-" + ($mystery_boss_ak_amount * 4) + "; bonus2 bMagicAddClass,Class_All,-" + ($mystery_boss_ak_amount * 4) + "; }",86400;
 	warp "x_lhz",0,0;
 	close;
 	
