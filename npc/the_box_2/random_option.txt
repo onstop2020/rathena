@@ -222,6 +222,12 @@ prontera,134,249,5	script	Target Random Option	869,{
 		close;
 	}
 	
+	// Temporary fix
+	if(option_item_id == 203)
+	option_item_id = 166;
+	else if(option_item_id == 204)
+	option_item_id = 167;
+	
 	setrandomoption(.@part,.@slot - 1,option_item_id,rand(1,.@maxRandomize),0);
 
 	mes "เรียบร้อยแล้ว!";
@@ -247,7 +253,7 @@ OnInit:
 function	script	GetRandomOptionId	{
 	.@optId = rand(1,242);
 	freeloop(1);
-	while((.@optId >= 76 && .@optId <= 85) || (.@optId >= 175 && .@optId <= 184))
+	while((.@optId >= 76 && .@optId <= 85) || (.@optId >= 175 && .@optId <= 184) || .@optId == 203 || .@optId == 204)
 	.@optId = rand(1,242);
 	freeloop(0);
 	return .@optId;
