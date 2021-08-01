@@ -74,3 +74,113 @@ evt_bomb	mapflag	monster_noteleport
 evt_bomb	mapflag	noteleport
 evt_bomb	mapflag	nomemo
 evt_bomb	mapflag	nosave
+
+evt_bomb,36,386,0	warp	key_hunt_warp_row1#1	1,1,evt_bomb,0,0
+evt_bomb,76,386,0	warp	key_hunt_warp_row1#2	1,1,evt_bomb,0,0
+evt_bomb,112,386,0	warp	key_hunt_warp_row1#3	1,1,evt_bomb,0,0
+evt_bomb,150,386,0	warp	key_hunt_warp_row1#4	1,1,evt_bomb,0,0
+evt_bomb,188,386,0	warp	key_hunt_warp_row1#5	1,1,evt_bomb,0,0
+evt_bomb,228,386,0	warp	key_hunt_warp_row1#6	1,1,evt_bomb,0,0
+evt_bomb,263,386,0	warp	key_hunt_warp_row1#7	1,1,evt_bomb,0,0
+evt_bomb,302,386,0	warp	key_hunt_warp_row1#8	1,1,evt_bomb,0,0
+evt_bomb,340,386,0	warp	key_hunt_warp_row1#9	1,1,evt_bomb,0,0
+evt_bomb,378,386,0	warp	key_hunt_warp_row1#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,348,0	warp	key_hunt_warp_row2#1	1,1,evt_bomb,0,0
+evt_bomb,76,348,0	warp	key_hunt_warp_row2#2	1,1,evt_bomb,0,0
+evt_bomb,112,348,0	warp	key_hunt_warp_row2#3	1,1,evt_bomb,0,0
+evt_bomb,150,348,0	warp	key_hunt_warp_row2#4	1,1,evt_bomb,0,0
+evt_bomb,188,348,0	warp	key_hunt_warp_row2#5	1,1,evt_bomb,0,0
+evt_bomb,228,348,0	warp	key_hunt_warp_row2#6	1,1,evt_bomb,0,0
+evt_bomb,263,348,0	warp	key_hunt_warp_row2#7	1,1,evt_bomb,0,0
+evt_bomb,302,348,0	warp	key_hunt_warp_row2#8	1,1,evt_bomb,0,0
+evt_bomb,340,348,0	warp	key_hunt_warp_row2#9	1,1,evt_bomb,0,0
+evt_bomb,378,348,0	warp	key_hunt_warp_row2#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,310,0	warp	key_hunt_warp_row3#1	1,1,evt_bomb,0,0
+evt_bomb,76,310,0	warp	key_hunt_warp_row3#2	1,1,evt_bomb,0,0
+evt_bomb,112,310,0	warp	key_hunt_warp_row3#3	1,1,evt_bomb,0,0
+evt_bomb,150,310,0	warp	key_hunt_warp_row3#4	1,1,evt_bomb,0,0
+evt_bomb,188,310,0	warp	key_hunt_warp_row3#5	1,1,evt_bomb,0,0
+evt_bomb,228,310,0	warp	key_hunt_warp_row3#6	1,1,evt_bomb,0,0
+evt_bomb,263,310,0	warp	key_hunt_warp_row3#7	1,1,evt_bomb,0,0
+evt_bomb,302,310,0	warp	key_hunt_warp_row3#8	1,1,evt_bomb,0,0
+evt_bomb,340,310,0	warp	key_hunt_warp_row3#9	1,1,evt_bomb,0,0
+evt_bomb,378,310,0	warp	key_hunt_warp_row3#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,272,0	warp	key_hunt_warp_row4#1	1,1,evt_bomb,0,0
+evt_bomb,76,272,0	warp	key_hunt_warp_row4#2	1,1,evt_bomb,0,0
+evt_bomb,112,272,0	warp	key_hunt_warp_row4#3	1,1,evt_bomb,0,0
+evt_bomb,150,272,0	warp	key_hunt_warp_row4#4	1,1,evt_bomb,0,0
+evt_bomb,188,272,0	warp	key_hunt_warp_row4#5	1,1,evt_bomb,0,0
+evt_bomb,228,272,0	warp	key_hunt_warp_row4#6	1,1,evt_bomb,0,0
+evt_bomb,263,272,0	warp	key_hunt_warp_row4#7	1,1,evt_bomb,0,0
+evt_bomb,302,272,0	warp	key_hunt_warp_row4#8	1,1,evt_bomb,0,0
+evt_bomb,340,272,0	warp	key_hunt_warp_row4#9	1,1,evt_bomb,0,0
+evt_bomb,378,272,0	warp	key_hunt_warp_row4#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,234,0	warp	key_hunt_warp_row5#1	1,1,evt_bomb,0,0
+evt_bomb,76,234,0	warp	key_hunt_warp_row5#2	1,1,evt_bomb,0,0
+evt_bomb,112,234,0	warp	key_hunt_warp_row5#3	1,1,evt_bomb,0,0
+evt_bomb,150,234,0	warp	key_hunt_warp_row5#4	1,1,evt_bomb,0,0
+evt_bomb,188,234,0	warp	key_hunt_warp_row5#5	1,1,evt_bomb,0,0
+evt_bomb,228,234,0	warp	key_hunt_warp_row5#6	1,1,evt_bomb,0,0
+evt_bomb,263,234,0	warp	key_hunt_warp_row5#7	1,1,evt_bomb,0,0
+evt_bomb,302,234,0	warp	key_hunt_warp_row5#8	1,1,evt_bomb,0,0
+evt_bomb,340,234,0	warp	key_hunt_warp_row5#9	1,1,evt_bomb,0,0
+evt_bomb,378,234,0	warp	key_hunt_warp_row5#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,196,0	warp	key_hunt_warp_row6#1	1,1,evt_bomb,0,0
+evt_bomb,76,196,0	warp	key_hunt_warp_row6#2	1,1,evt_bomb,0,0
+evt_bomb,112,196,0	warp	key_hunt_warp_row6#3	1,1,evt_bomb,0,0
+evt_bomb,150,196,0	warp	key_hunt_warp_row6#4	1,1,evt_bomb,0,0
+evt_bomb,188,196,0	warp	key_hunt_warp_row6#5	1,1,evt_bomb,0,0
+evt_bomb,228,196,0	warp	key_hunt_warp_row6#6	1,1,evt_bomb,0,0
+evt_bomb,263,196,0	warp	key_hunt_warp_row6#7	1,1,evt_bomb,0,0
+evt_bomb,302,196,0	warp	key_hunt_warp_row6#8	1,1,evt_bomb,0,0
+evt_bomb,340,196,0	warp	key_hunt_warp_row6#9	1,1,evt_bomb,0,0
+evt_bomb,378,196,0	warp	key_hunt_warp_row6#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,158,0	warp	key_hunt_warp_row7#1	1,1,evt_bomb,0,0
+evt_bomb,76,158,0	warp	key_hunt_warp_row7#2	1,1,evt_bomb,0,0
+evt_bomb,112,158,0	warp	key_hunt_warp_row7#3	1,1,evt_bomb,0,0
+evt_bomb,150,158,0	warp	key_hunt_warp_row7#4	1,1,evt_bomb,0,0
+evt_bomb,188,158,0	warp	key_hunt_warp_row7#5	1,1,evt_bomb,0,0
+evt_bomb,228,158,0	warp	key_hunt_warp_row7#6	1,1,evt_bomb,0,0
+evt_bomb,263,158,0	warp	key_hunt_warp_row7#7	1,1,evt_bomb,0,0
+evt_bomb,302,158,0	warp	key_hunt_warp_row7#8	1,1,evt_bomb,0,0
+evt_bomb,340,158,0	warp	key_hunt_warp_row7#9	1,1,evt_bomb,0,0
+evt_bomb,378,158,0	warp	key_hunt_warp_row7#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,120,0	warp	key_hunt_warp_row8#1	1,1,evt_bomb,0,0
+evt_bomb,76,120,0	warp	key_hunt_warp_row8#2	1,1,evt_bomb,0,0
+evt_bomb,112,120,0	warp	key_hunt_warp_row8#3	1,1,evt_bomb,0,0
+evt_bomb,150,120,0	warp	key_hunt_warp_row8#4	1,1,evt_bomb,0,0
+evt_bomb,188,120,0	warp	key_hunt_warp_row8#5	1,1,evt_bomb,0,0
+evt_bomb,228,120,0	warp	key_hunt_warp_row8#6	1,1,evt_bomb,0,0
+evt_bomb,263,120,0	warp	key_hunt_warp_row8#7	1,1,evt_bomb,0,0
+evt_bomb,302,120,0	warp	key_hunt_warp_row8#8	1,1,evt_bomb,0,0
+evt_bomb,340,120,0	warp	key_hunt_warp_row8#9	1,1,evt_bomb,0,0
+evt_bomb,378,120,0	warp	key_hunt_warp_row8#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,82,0	warp	key_hunt_warp_row9#1	1,1,evt_bomb,0,0
+evt_bomb,76,82,0	warp	key_hunt_warp_row9#2	1,1,evt_bomb,0,0
+evt_bomb,112,82,0	warp	key_hunt_warp_row9#3	1,1,evt_bomb,0,0
+evt_bomb,150,82,0	warp	key_hunt_warp_row9#4	1,1,evt_bomb,0,0
+evt_bomb,188,82,0	warp	key_hunt_warp_row9#5	1,1,evt_bomb,0,0
+evt_bomb,228,82,0	warp	key_hunt_warp_row9#6	1,1,evt_bomb,0,0
+evt_bomb,263,82,0	warp	key_hunt_warp_row9#7	1,1,evt_bomb,0,0
+evt_bomb,302,82,0	warp	key_hunt_warp_row9#8	1,1,evt_bomb,0,0
+evt_bomb,340,82,0	warp	key_hunt_warp_row9#9	1,1,evt_bomb,0,0
+evt_bomb,378,82,0	warp	key_hunt_warp_row9#10	1,1,evt_bomb,0,0
+
+evt_bomb,36,44,0	warp	key_hunt_warp_row10#1	1,1,evt_bomb,0,0
+evt_bomb,76,44,0	warp	key_hunt_warp_row10#2	1,1,evt_bomb,0,0
+evt_bomb,112,44,0	warp	key_hunt_warp_row10#3	1,1,evt_bomb,0,0
+evt_bomb,150,44,0	warp	key_hunt_warp_row10#4	1,1,evt_bomb,0,0
+evt_bomb,188,44,0	warp	key_hunt_warp_row10#5	1,1,evt_bomb,0,0
+evt_bomb,228,44,0	warp	key_hunt_warp_row10#6	1,1,evt_bomb,0,0
+evt_bomb,263,44,0	warp	key_hunt_warp_row10#7	1,1,evt_bomb,0,0
+evt_bomb,302,44,0	warp	key_hunt_warp_row10#8	1,1,evt_bomb,0,0
+evt_bomb,340,44,0	warp	key_hunt_warp_row10#9	1,1,evt_bomb,0,0
+evt_bomb,378,44,0	warp	key_hunt_warp_row10#10	1,1,evt_bomb,0,0
