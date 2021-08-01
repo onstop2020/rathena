@@ -214,7 +214,7 @@ prontera,154,211,8	script	Mystery Boss#3	10416,{
 	mes "๐ โทษ ^EC1500ป้องกันทุก Class -" + ($mystery_boss_ak_penalty_rate2 * 200) + "%^000000";
 	mes "๐ โทษ ^EC1500โจมตีทุก Class -" + ($mystery_boss_ak_penalty_rate2 * 200) + "%^000000";
 	mes "๐ โทษ ^EC1500โจมตีเวทย์ทุก Class -" + ($mystery_boss_ak_penalty_rate2 * 200) + "%^000000";
-	mes "๐ ^D10687ค่าจะเปลี่ยนทุก ๆ xx:30น.^000000)";
+	mes "๐ ^D10687ค่าจะเปลี่ยนทุก ๆ xx:30น.^000000";
 	next;
 	menu "เข้า",-,"เอาโทษออก",L_Clean;
 	bonus_script_clear 1;

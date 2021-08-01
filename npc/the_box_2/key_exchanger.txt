@@ -99,7 +99,7 @@ prontera,106,264,5	script	Target Weapon Box	10249,{
 	goto L_SetItemId;
 	mes "ต้องการ " + $weapon_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(weapon_box_item_id);
-	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000)";
+	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000";
 	menu "กำหนด Item",-,"แลก",L_Start;
 	next;
 	L_SetItemId:
@@ -166,7 +166,7 @@ prontera,113,264,5	script	Target Equipment Box	10249,{
 	goto L_SetItemId;
 	mes "ต้องการ " + $equipment_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(equipment_box_item_id);
-	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000)";
+	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000";
 	menu "กำหนด Item",-,"แลก",L_Start;
 	next;
 	L_SetItemId:
@@ -233,7 +233,7 @@ prontera,120,264,5	script	Target Costume Box	10249,{
 	goto L_SetItemId;
 	mes "ต้องการ " + $costume_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(costume_box_item_id);
-	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000)";
+	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000";
 	menu "กำหนด Item",-,"แลก",L_Start;
 	next;
 	L_SetItemId:
@@ -300,7 +300,7 @@ prontera,127,264,5	script	Target Card Box	10249,{
 	goto L_SetItemId;
 	mes "ต้องการ " + $card_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(card_box_item_id);
-	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000)";
+	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000";
 	menu "กำหนด Item",-,"แลก",L_Start;
 	next;
 	L_SetItemId:
