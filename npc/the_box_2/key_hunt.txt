@@ -1,7 +1,56 @@
-prontera,154,188,5	script	ล่ากุญแจ	918,{
+prontera,152,200,5	script	ห้องล่ากุญแจ	10007,{
+	if (key_hunt_cooldown > gettimetick(2)){
+		mes "โปรดรอ " + (key_hunt_cooldown - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	mes "วิธีเล่น";
+	mes "๐ เข้าไปสู้ Monster";
+	mes "๐ Monster ในห้องมีทั้งหมด ^D10687" + callfunc("F_InsertComma",.max_monster_amount) + " ตัว^000000)";
+	mes "๐ ฆ่าได้ ^7A31EBกุญแจทุกชนิด^000000 (^D10687สุ่มเท่า ๆ กัน^000000)";
+	mes "๐ จำนวนที่ได้รับ (1~^D10687" + .reward_rate + "^000000)";
+	mes "๐ ทุก ๆ ^D106871 นาที^000000 จะทำการ Respawn ให้ครบจำนวน";
+	mes "๐ ^EC1500ไม่สามารถ Teleport ได้^000000";
+	mes "๐ ^EC1500เมื่อเข้าแล้วต้องรอ 1 นาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง^000000";
+	next;
+	menu "เข้า",-;
+	key_hunt_cooldown = gettimetick(2) + .enter_cooldown;
+	warp "evt_bomb",0,0;
+	close;
+	
+	L_Spawn:
+	.@isInit = getarg(0);
+	if(.isInit)
+	.@spawn_amount = .max_monster_amount;
+	else{
+		.@current_amount_left = getmapunits(BL_MOB,.mapName$);
+		.@spawn_amount = .max_monster_amount - .@current_amount_left;
+	}
+
+	freeloop(1);
+	for(.@i = 0; .@i < .@spawn_amount; .@i++)
+	monster .mapName$,0,0,"--ja--",$all_mob_ids[rand(0,$all_mob_id_size - 1)],1,"ห้องล่ากุญแจ::OnMonsterDead";
+	freeloop(0);
+	return;
+	
+OnMonsterDead:
+	getitem $all_key_ids[rand(0,$all_key_id_size - 1)],rand(1,.reward_rate);
+	end;
+	
+OnMinute1:
+	callsub L_Spawn,0;
 	end;
 	
 OnInit:
-	waitingroom "ล่ากุญแจ",0;
+	.enter_cooldown = 60;
+	.reward_rate = 100;
+	.max_monster_amount = 1000;
+	.mapName$ = "evt_bomb";
+	waitingroom "ห้องล่ากุญแจ",0;
+	callsub L_Spawn,1;
 	end;
 }
+
+evt_bomb	mapflag	monster_noteleport
+evt_bomb	mapflag	noteleport
+evt_bomb	mapflag	nomemo
+evt_bomb	mapflag	nosave
