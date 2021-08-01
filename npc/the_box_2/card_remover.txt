@@ -216,7 +216,7 @@ OnInit:
 	.price = 1000000;
 	.tier1 = 2;
 	.tier2 = 4;
-	waitingroom "แงะ Card จากอุปกรณ์สวมใส่",0;
+	waitingroom "แงะ Card",0;
 	end;
 }
 
