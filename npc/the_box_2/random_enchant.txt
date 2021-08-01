@@ -200,7 +200,7 @@ OnInit:
 	end;
 }
 
-prontera,135,231,5	script	Target Random Enchantment#2	868,{
+prontera,135,231,5	script	Target Enchantment	868,{
 	if(!enchantment_item_id)
 	goto L_SetItemId;
 	mes "ต้องการ " + $enchant_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
@@ -343,6 +343,6 @@ OnMinute30:
 OnInit:
 	callsub L_RefreshRate;
 	.itemId = 40015;
-	waitingroom "(กำหนด Enchant)(Key)Random Enchant.",0;
+	waitingroom "(กำหนด)(Key)Enchantment",0;
 	end;
 }

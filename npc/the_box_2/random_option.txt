@@ -136,7 +136,7 @@ OnInit:
 	end;
 }
 
-prontera,134,249,5	script	Target Random Option	869,{
+prontera,134,249,5	script	Target Option	869,{
 	if(!option_item_id)
 	goto L_SetItemId;
 	mes "ต้องการ " + $option_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
@@ -246,7 +246,7 @@ OnMinute30:
 OnInit:
 	callsub L_RefreshRate;
 	.itemId = 40014;
-	waitingroom "(กำหนด Opt.)(Key)Random Opt.",0;
+	waitingroom "(กำหนด)(Key)Option",0;
 	end;
 }
 

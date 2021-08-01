@@ -14,30 +14,30 @@ prontera,200,240,5	duplicate(backToCenter)	กลับกลางเมือง#4	10081
 prontera,56,65,5	duplicate(backToCenter)	กลับกลางเมือง#5	10081
 prontera,195,65,5	duplicate(backToCenter)	กลับกลางเมือง#6	10081
 
-prontera,145,193,5	script	Zone อุปกรณ์สวมใส่	10081,{
+prontera,145,193,5	script	Zone อุปกรณ์ฯ	10081,{
 	warp "prontera",115,247;
 	end;
 	
 OnInit:
-	waitingroom "Zone - อุปกรณ์สวมใส่",0;
+	waitingroom "Zone - อุปกรณ์ฯ",0;
 	end;
 }
 
-prontera,138,193,5	script	Zone ของจำเป็นตามอาชีพ	10081,{
+prontera,138,193,5	script	Zone ของจำเป็น	10081,{
 	warp "prontera",102,175;
 	end;
 	
 OnInit:
-	waitingroom "Zone - ของจำเป็นตามอาชีพ",0;
+	waitingroom "Zone - ของจำเป็น",0;
 	end;
 }
 
-prontera,173,193,5	script	Zone ทดสอบพลังโจมตี	10081,{
+prontera,173,193,5	script	Zone ทดสอบ	10081,{
 	warp "prontera",237,66;
 	end;
 	
 OnInit:
-	waitingroom "Zone - ทดสอบพลังโจมตี",0;
+	waitingroom "Zone - ทดสอบ",0;
 	end;
 }
 
