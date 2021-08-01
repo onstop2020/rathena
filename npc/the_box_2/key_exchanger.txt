@@ -156,7 +156,7 @@ OnMinute30:
 	
 OnInit:
 	callsub L_RefreshRate;
-	waitingroom "(กำหนด) กล่องอาวุธ",0;
+	waitingroom "(กำหนด)กล่องอาวุธ",0;
 	.itemId = 40004;
 	end;
 }
@@ -223,7 +223,7 @@ OnMinute30:
 	
 OnInit:
 	callsub L_RefreshRate;
-	waitingroom "(กำหนด) กล่องอุปกรณ์สวมใส่",0;
+	waitingroom "(กำหนด)กล่องอุปกรณ์สวมใส่",0;
 	.itemId = 40005;
 	end;
 }
@@ -290,7 +290,7 @@ OnMinute30:
 	
 OnInit:
 	callsub L_RefreshRate;
-	waitingroom "(กำหนด) กล่อง Costume",0;
+	waitingroom "(กำหนด)กล่อง Costume",0;
 	.itemId = 40006;
 	end;
 }
@@ -357,7 +357,7 @@ OnMinute30:
 	
 OnInit:
 	callsub L_RefreshRate;
-	waitingroom "(กำหนด) กล่อง Card",0;
+	waitingroom "(กำหนด)กล่อง Card",0;
 	.itemId = 40007;
 	end;
 }
