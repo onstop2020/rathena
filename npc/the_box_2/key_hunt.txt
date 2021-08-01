@@ -7,10 +7,13 @@ prontera,152,200,5	script	ห้องล่ากุญแจ	10007,{
 	mes "๐ เข้าไปสู้ Monster";
 	mes "๐ Monster ในห้องมีทั้งหมด ^D10687" + callfunc("F_InsertComma",.max_monster_amount) + " ตัว^000000)";
 	mes "๐ ฆ่าได้ ^7A31EBกุญแจทุกชนิด^000000 (^D10687สุ่มเท่า ๆ กัน^000000)";
-	mes "๐ จำนวนที่ได้รับ (1~^D10687" + .reward_rate + "^000000)";
+	mes "๐ Weapon, Equipment (1~^D10687" + (.max_reward_rate_tier1 * .key_hunt_reward_rate) + "^000000)";
+	mes "๐ Costume, Card (1~^D10687" + (.max_reward_rate_tier2 * .key_hunt_reward_rate) + "^000000)";
+	mes "๐ Option, Enchantment (1~^D10687" + (.max_reward_rate_tier3 * .key_hunt_reward_rate) + "^000000)";
 	mes "๐ ทุก ๆ ^D106871 นาที^000000 จะทำการ Respawn ให้ครบจำนวน";
 	mes "๐ ^EC1500ไม่สามารถ Teleport ได้^000000";
 	mes "๐ ^EC1500เมื่อเข้าแล้วต้องรอ 1 นาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง^000000";
+	mes "๐ ^D10687ค่าจะเปลี่ยนทุก ๆ xx:30น.^000000";
 	next;
 	menu "เข้า",-;
 	key_hunt_cooldown = gettimetick(2) + .enter_cooldown;
@@ -33,16 +36,33 @@ prontera,152,200,5	script	ห้องล่ากุญแจ	10007,{
 	return;
 	
 OnMonsterDead:
-	getitem $all_key_ids[rand(0,$all_key_id_size - 1)],rand(1,.reward_rate);
+	.@rand_tier = rand(0,2);
+	if(.@rand_tier == 0)
+	getitem rand(0,1)==0?40004:40005,rand(1,(.max_reward_rate_tier1 * .key_hunt_reward_rate));
+	else if(.@rand_tier == 1)
+	getitem rand(0,1)==0?40006:40007,rand(1,(.max_reward_rate_tier2 * .key_hunt_reward_rate));
+	else
+	getitem rand(0,1)==0?40014:40015,rand(1,(.max_reward_rate_tier3 * .key_hunt_reward_rate));
 	end;
 	
 OnMinute1:
 	callsub L_Spawn,0;
 	end;
 	
+	L_RefreshRate:
+	.key_hunt_reward_rate = rand(1,3);
+	return;
+	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+	
 OnInit:
-	.enter_cooldown = 60;
-	.reward_rate = 100;
+	callsub L_RefreshRate;
+	.enter_cooldown = 30;
+	.max_reward_rate_tier1 = 30;
+	.max_reward_rate_tier2 = 15;
+	.max_reward_rate_tier3 = 3;
 	.max_monster_amount = 1000;
 	.mapName$ = "evt_bomb";
 	waitingroom "ห้องล่ากุญแจ",0;
