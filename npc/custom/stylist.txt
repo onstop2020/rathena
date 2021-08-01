@@ -86,7 +86,7 @@
 	close;
 	
 	OnInit:
-	waitingroom "แต่ง ผม, สีผม, สีเสื้อ, ชุด",0;
+	waitingroom "แต่งตัว",0;
 	end;
 }
 
