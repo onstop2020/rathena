@@ -1,0 +1,11 @@
+/*prontera,154,188,5	script	≈Ë“°ÿ≠·®	918,{
+	if(isspawn(20269))
+		mes "Poring spawned";
+	else
+		mes "Poring dind't spawned";
+	close;
+	
+OnInit:
+	waitingroom "≈Ë“°ÿ≠·®",0;
+	end;
+}*/
