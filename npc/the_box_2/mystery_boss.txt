@@ -143,6 +143,7 @@ OnInit:
 }
 
 // All Keys
+/*
 -	script	MysteryBossAllKey	-1,{
 	end;
 	
@@ -221,3 +222,4 @@ OnInit:
 	waitingroom "Mystery Boss (¡Ø­á¨·Ø¡ª¹Ô´)",0;
 	end;
 }
+*/
