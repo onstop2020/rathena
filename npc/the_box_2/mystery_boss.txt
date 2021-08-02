@@ -188,11 +188,11 @@ prontera,154,211,8	script	Mystery Boss#3	10416,{
 	mes "๐ โทษ ^EC1500Perfect Dodge -90%^000000";
 	mes "๐ โทษ ^EC1500ป้องกันทุก Class -500%^000000";
 	mes "๐ โทษ ^EC1500โจมตีทุก Class -700%^000000";
-	mes "๐ โทษ ^EC1500โจมตีเวทย์ทุก Class -700%^000000";
+	mes "๐ โทษ ^EC1500โจมตีเวทย์ทุก Class -350%^000000";
 	next;
 	menu "เข้า",-,"เอาโทษออก",L_Clean;
 	bonus_script_clear 1;
-	bonus_script "{ bonus bAllStats,-130; bonus bFleeRate,-90; bonus bFlee2Rate,-90; bonus2 bSubClass,Class_All,-500; bonus2 bAddClass,Class_All,-700; bonus2 bMagicAddClass,Class_All,-700; }",86400;
+	bonus_script "{ bonus bAllStats,-130; bonus bFleeRate,-90; bonus bFlee2Rate,-90; bonus2 bSubClass,Class_All,-500; bonus2 bAddClass,Class_All,-700; bonus2 bMagicAddClass,Class_All,-350; }",86400;
 	warp "x_lhz",0,0;
 	close;
 	
