@@ -12,7 +12,7 @@ OnInit:
 	end;
 }
 
-prontera,148,203,3	duplicate(pvpMan)	PvP	831
+prontera,138,184,6	duplicate(pvpMan)	PvP	831
 
 pvp_y_1-1	mapflag	noteleport
 pvp_y_1-4	mapflag	noteleport

@@ -1,0 +1,51 @@
+prontera,148,203,3	script	รับกุญแจฟรีทุกชั่วโมง	564,{
+	if (#key_offline_cooldown > gettimetick(2)){
+		mes "โปรดรอ " + (#key_offline_cooldown - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	freeloop(1);
+	for(.@i = 0; .@i < getarraysize($key_offline_ip$); .@i++){
+		if($key_offline_ip$[.@i] == getcharip()){
+			mes "โปรดรอ xx:30น. เพื่อล้างค่า IP";
+			close;
+		}
+	}
+	freeloop(0);
+	mes "วิธีใช้";
+	mes "๐ กดเพื่อรับกุญแจทุกชนิด";
+	mes "๐ Wea., Eqi. (^D10687" + callfunc("F_InsertComma",.max_reward_rate_tier1) + " หาร 1~4^000000)";
+	mes "๐ Cos., Card (^D10687" + callfunc("F_InsertComma",.max_reward_rate_tier2) + " หาร 1~4^000000)";
+	mes "๐ Opt., Enc. (^D10687" + callfunc("F_InsertComma",.max_reward_rate_tier3) + " หาร 1~4^000000)";
+	mes "๐ ^EC15001 ID รับได้ 1 ครั้ง^000000";
+	mes "๐ ^EC15001 IP รับได้ 1 ครั้ง^000000";
+	mes "๐ ^D10687รับได้อีกครั้งภายใน 1 ชั่วโมงหลังกดรับ^000000";
+	mes "๐ ^D10687ล้างค่า IP ทุก ๆ xx:30น.^000000";
+	next;
+	menu "รับ",-;
+	getitem 40004,.max_reward_rate_tier1 / rand(1,4);
+	getitem 40005,.max_reward_rate_tier1 / rand(1,4);
+	getitem 40006,.max_reward_rate_tier2 / rand(1,4);
+	getitem 40007,.max_reward_rate_tier2 / rand(1,4);
+	getitem 40014,.max_reward_rate_tier3 / rand(1,4);
+	getitem 40015,.max_reward_rate_tier3 / rand(1,4);
+	#key_offline_cooldown = gettimetick(2) + .reward_cooldown;
+	setarray $key_offline_ip$[getarraysize($key_offline_ip$)],getcharip();
+	close;
+	
+	L_CleanIP:
+	deletearray $key_offline_ip$[0], getarraysize($key_offline_ip$);
+	return;
+	
+OnMinute30:
+	callsub L_CleanIP;
+	end;
+	
+OnInit:
+	callsub L_CleanIP;
+	.reward_cooldown = 3600;
+	.max_reward_rate_tier1 = 1500;
+	.max_reward_rate_tier2 = 700;
+	.max_reward_rate_tier3 = 30;
+	waitingroom "รับกุญแจฟรีทุกชั่วโมง",0;
+	end;
+}
