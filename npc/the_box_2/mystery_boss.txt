@@ -188,11 +188,14 @@ prontera,154,211,8	script	Mystery Boss#3	10416,{
 	mes "ð â·É ^EC1500Perfect Dodge -90%^000000";
 	mes "ð â·É ^EC1500»éÍ§¡Ñ¹·Ø¡ Class -500%^000000";
 	mes "ð â·É ^EC1500â¨ÁµÕ·Ø¡ Class -700%^000000";
-	mes "ð â·É ^EC1500â¨ÁµÕàÇ·Âì·Ø¡ Class -700%^000000";
+	mes "ð â·É ^EC1500â¨ÁµÕàÇ·Âì·Ø¡ Class -50%^000000";
+	mes "ð â·É ^EC1500MATK -50%^000000";
+	mes "ð â·É ^EC1500Weapon MATK -50%^000000";
+	mes "ð â·É ^EC1500àÇ·Âì·Ø¡¸ÒµØ -50%^000000";
 	next;
 	menu "à¢éÒ",-,"àÍÒâ·ÉÍÍ¡",L_Clean;
 	bonus_script_clear 1;
-	bonus_script "{ bonus bAllStats,-130; bonus bFleeRate,-90; bonus bFlee2Rate,-90; bonus2 bSubClass,Class_All,-500; bonus2 bAddClass,Class_All,-700; bonus2 bMagicAddClass,Class_All,-700; }",86400;
+	bonus_script "{ bonus bAllStats,-130; bonus bFleeRate,-90; bonus bFlee2Rate,-90; bonus2 bSubClass,Class_All,-500; bonus2 bAddClass,Class_All,-700; bonus2 bMagicAddClass,Class_All,-50; bonus bMatkRate,-50; bonus bWeaponMatkRate,-50; bonus2 bMagicAtkEle,Ele_All,-50; }",86400;
 	warp "x_lhz",0,0;
 	close;
 	
