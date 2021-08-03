@@ -184,18 +184,18 @@ prontera,154,211,8	script	Mystery Boss#3	10416,{
 	mes "๐ ฆ่าได้ ^7A31EBกุญแจทุกชนิด^000000 (^D10687สุ่มเท่า ๆ กัน^000000)";
 	mes "๐ จำนวนที่ได้รับ (^D1068730~60^000000)";
 	mes "๐ โทษ ^EC1500All Status -130^000000";
-	mes "๐ โทษ ^EC1500Max HP -100%^000000";
+	mes "๐ โทษ ^EC1500Max HP -300%^000000";
 	mes "๐ โทษ ^EC1500Max SP -100%^000000";
 	mes "๐ โทษ ^EC1500Flee -100%^000000";
 	mes "๐ โทษ ^EC1500Perfect Dodge -100%^000000";
-	mes "๐ โทษ ^EC1500ป้องกันทุก Class -100%^000000";
-	mes "๐ โทษ ^EC1500ร่าย Fixed Cast ช้าลง 100%^000000";
-	mes "๐ โทษ ^EC1500ร่าย Variable Cast ช้าลง 100%^000000";
+	mes "๐ โทษ ^EC1500ป้องกันทุก Class -1,000%^000000";
+	mes "๐ โทษ ^EC1500ร่าย Fixed Cast นานขึ้น 100%^000000";
+	mes "๐ โทษ ^EC1500ร่าย Variable Cast นานขึ้น 100%^000000";
 	mes "๐ โทษ ^EC1500ดีเลย์หลังร่ายนานขึ้น 100%^000000";
 	next;
 	menu "เข้า",-,"เอาโทษออก",L_Clean;
 	bonus_script_clear 1;
-	bonus_script "{ bonus bAllStats,-130; bonus bMaxHPrate,-100; bonus bMaxSPrate,-100; bonus bFleeRate,-100; bonus bFlee2Rate,-100; bonus2 bSubClass,Class_All,-100; bonus bFixedCastrate,-100; bonus bVariableCastrate,-100; bonus bDelayrate,-100; }",86400;
+	bonus_script "{ bonus bAllStats,-130; bonus bMaxHPrate,-300; bonus bMaxSPrate,-100; bonus bFleeRate,-100; bonus bFlee2Rate,-100; bonus2 bSubClass,Class_All,-1000; bonus bFixedCastrate,-100; bonus bVariableCastrate,-100; bonus bDelayrate,-100; }",86400;
 	warp "x_lhz",0,0;
 	close;
 	
