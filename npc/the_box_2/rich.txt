@@ -1,0 +1,43 @@
+prt_cas,216,163,5	script	แท่งคนรวย	506,{
+	if(Zeny >= .price || #RICHPOINTS){
+		mes .npcName$;
+		mes "ว้าวซ่า เจ้าคือคนรวย";
+		next;
+		menu "จ่าย " + callfunc("F_InsertComma",.price) + "z เพื่อรับแต้มคนรวย",-,"เช็คแต้มคนรวย",L_Check,"แต้มคนรวยเอาไว้ทำอะไร",L_Info;
+		if(Zeny >= .price)
+		{
+			mes .npcName$;
+			mes "$$$$";
+			Zeny -= .price;
+			#RICHPOINTS++;
+			clear;
+			goto L_Check;
+		}
+		else{
+			mes .npcName$;
+			mes	"ต้องจ่าย " + callfunc("F_InsertComma",.price) + "z เพื่อรับแต้มคนรวย";
+			close;
+		}
+	}
+	else{
+		mes .npcName$;
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+	L_Check:
+	mes .npcName$;
+	mes "คุณมี " + callfunc("F_InsertComma",#RICHPOINTS) + " แต้มคนรวย";
+	close;
+	
+	L_Info:
+	mes .npcName$;
+	mes "๐ ยังไม่สามารถใช้ทำอะไรได้ในตอนนี้";
+	close;
+	
+OnInit:
+	.npcName$ = "[แท่งคนรวย]";
+	.price = 1000000000;
+	waitingroom "แท่งคนรวย",0;
+	end;
+}
