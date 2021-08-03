@@ -53,7 +53,6 @@ OnInit:
 
 x_prt	mapflag	monster_noteleport
 x_prt	mapflag	noteleport
-x_prt	mapflag	nocommand	99
 x_prt	mapflag	nomemo
 x_prt	mapflag	nosave
 
@@ -193,7 +192,6 @@ OnInit:
 
 x_lhz	mapflag	monster_noteleport
 x_lhz	mapflag	noteleport
-x_lhz	mapflag	nocommand	99
 x_lhz	mapflag	nomemo
 x_lhz	mapflag	nosave
 
