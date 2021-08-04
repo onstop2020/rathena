@@ -32,7 +32,8 @@ prt_cas,216,163,5	script	แท่งคนรวย	506,{
 	
 	L_Info:
 	mes .npcName$;
-	mes "๐ ยังไม่สามารถใช้ทำอะไรได้ในตอนนี้";
+	mes "๐ สามารถกำหนดสภาพอากาศในเมืองได้";
+	mes "๐ สามารถประกาศได้";
 	close;
 	
 OnInit:
@@ -41,3 +42,109 @@ OnInit:
 	waitingroom "แท่งคนรวย",0;
 	end;
 }
+
+prt_cas,186,97,5	script	กำหนดสภาพอากาศในเมือง	506,{
+	if (#RICH_COOLDOWN > gettimetick(2)){
+		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	if(#RICHPOINTS >= .rp_req){
+		menu "หิมะตก",L_Snow,"หมอกลง",L_Fog,"ซากุระโปรยปราย",L_Sakura,"ใบ้ไม้ร่วง",L_Leaves,/*"ฝนตก",L_Rain,*/"เมฆลง",L_Cloud,"จุดพลุ",L_Fireworks,"กลางคืน",L_Night,"ปกติ",-;
+		callsub L_RemoveAll;
+		goto L_Cooldown;
+		
+		L_Snow:
+		callsub L_RemoveAll;
+		setmapflag .mapName$,mf_snow;
+		goto L_Cooldown;
+		L_Fog:
+		callsub L_RemoveAll;
+		setmapflag .mapName$,mf_fog;
+		goto L_Cooldown;
+		L_Sakura:
+		callsub L_RemoveAll;
+		setmapflag .mapName$,mf_sakura;
+		goto L_Cooldown;
+		L_Leaves:
+		callsub L_RemoveAll;
+		setmapflag .mapName$,mf_leaves;
+		goto L_Cooldown;
+		L_Rain:
+		callsub L_RemoveAll;
+		setmapflag .mapName$,mf_rain;
+		goto L_Cooldown;
+		L_Cloud:
+		callsub L_RemoveAll;
+		setmapflag .mapName$,mf_clouds;
+		goto L_Cooldown;
+		L_Fireworks:
+		callsub L_RemoveAll;
+		setmapflag .mapName$,mf_fireworks;
+		goto L_Cooldown;
+		L_Night:
+		callsub L_RemoveAll;
+		setmapflag .mapName$,mf_nightenabled;
+		night;
+		goto L_Cooldown;
+		
+		L_Cooldown:
+		#RICH_COOLDOWN = gettimetick(2) + .cooldown;
+		end;
+	}
+	else{
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+	L_RemoveAll:
+	day;
+	removemapflag .mapName$,mf_snow;
+	removemapflag .mapName$,mf_fog;
+	removemapflag .mapName$,mf_sakura;
+	removemapflag .mapName$,mf_leaves;
+	removemapflag .mapName$,mf_rain;
+	removemapflag .mapName$,mf_clouds;
+	removemapflag .mapName$,mf_fireworks;
+	removemapflag .mapName$,mf_nightenabled;
+	return;
+	
+OnInit:
+	.mapName$ = "prontera";
+	.cooldown = 30;
+	.rp_req = 1;
+	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
+	end;
+}
+prt_cas,186,29,5	duplicate(กำหนดสภาพอากาศในเมือง)	กำหนดสภาพอากาศในเมือง#2	506
+prt_cas,16,35,5	duplicate(กำหนดสภาพอากาศในเมือง)	กำหนดสภาพอากาศในเมือง#3	506
+prt_cas,20,107,5	duplicate(กำหนดสภาพอากาศในเมือง)	กำหนดสภาพอากาศในเมือง#4	506
+
+prt_cas,177,97,5	script	ประกาศ	506,{
+	if (#RICH_COOLDOWN > gettimetick(2)){
+		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	if(#RICHPOINTS >= .rp_req){
+		input .@s$;
+		if(.@s$ != "" && .@s$ != " "){
+			#RICH_COOLDOWN = gettimetick(2) + .cooldown;
+			announce strcharinfo(0) + ": " + .@s$,bc_all;
+			end;
+		}
+		else
+		end;
+	}
+	else{
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+OnInit:
+	.cooldown = 30;
+	.rp_req = 2;
+	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
+	end;
+}
+prt_cas,176,29,5	duplicate(ประกาศ)	ประกาศ#2	506
+prt_cas,23,35,5	duplicate(ประกาศ)	ประกาศ#3	506
+prt_cas,27,107,5	duplicate(ประกาศ)	ประกาศ#4	506
