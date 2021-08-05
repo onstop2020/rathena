@@ -3,5 +3,14 @@
 	
 OnPCLoginEvent:
 	bonus_script_clear 1;
+	
+	// Hat Effect
+	if(rich_hat_effect)
+	addtimer 1,"LoginEvent::OnHatEffectInstall";
+	
+	end;
+	
+OnHatEffectInstall:
+	hateffect($all_hat_effect_ids[rich_hat_effect],true);
 	end;
 }

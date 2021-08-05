@@ -148,3 +148,51 @@ OnInit:
 prt_cas,176,29,5	duplicate(ประกาศ)	ประกาศ#2	506
 prt_cas,23,35,5	duplicate(ประกาศ)	ประกาศ#3	506
 prt_cas,27,107,5	duplicate(ประกาศ)	ประกาศ#4	506
+
+prt_cas,192,90,5	script	ตกแต่งสวยงาม	506,{
+	if (#RICH_COOLDOWN > gettimetick(2)){
+		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	if(#RICHPOINTS >= .rp_req){
+		mes "โปรดใส่ 1~" + ($all_hat_effect_id_size - 1);
+		next;
+		input .@i;
+		
+		if(.@i <= 0 || .@i > ($all_hat_effect_id_size - 1))
+		close;
+		
+		mes "หากเด้งให้เข้าใหม่";
+		next;
+
+		// Remove old
+		if(@temp_hat_effect)
+		hateffect($all_hat_effect_ids[@temp_hat_effect],false);
+	
+		@temp_hat_effect = .@i;
+		
+		// Remove old
+		if(rich_hat_effect)
+		hateffect($all_hat_effect_ids[rich_hat_effect],false);
+
+		hateffect($all_hat_effect_ids[.@i],true);
+		mes "ยืนยัน?";
+		menu "ยืนยัน",-;
+		rich_hat_effect = .@i;
+		#RICH_COOLDOWN = gettimetick(2) + .cooldown;
+		end;
+	}
+	else{
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+OnInit:
+	.cooldown = 1;
+	.rp_req = 3;
+	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
+	end;
+}
+prt_cas,192,23,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#2	506
+prt_cas,28,16,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#3	506
+prt_cas,32,88,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#4	506
