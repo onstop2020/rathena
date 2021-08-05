@@ -40,7 +40,7 @@ OnBossDead:
 	
 OnInit:
 	.min_amount = 10;
-	.max_amount = 10;
+	.max_amount = 30;
 	
 	.reward_id = 40016;
 	
@@ -119,7 +119,7 @@ OnBossDead:
 	
 OnInit:
 	.min_amount = 10;
-	.max_amount = 10;
+	.max_amount = 30;
 	
 	.map_name$ = "x_ra";
 	
@@ -181,7 +181,7 @@ OnBossDead:
 	
 OnInit:
 	.min_amount = 10;
-	.max_amount = 10;
+	.max_amount = 60;
 	
 	.map_name$ = "x_lhz";
 	
