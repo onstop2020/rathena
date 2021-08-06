@@ -168,7 +168,7 @@ prt_cas,192,90,5	script	ตกแต่งสวยงาม	506,{
 		// Remove old
 		if(@temp_hat_effect)
 		hateffect($all_hat_effect_ids[@temp_hat_effect],false);
-	
+		
 		@temp_hat_effect = .@i;
 		
 		// Remove old
@@ -177,10 +177,11 @@ prt_cas,192,90,5	script	ตกแต่งสวยงาม	506,{
 
 		hateffect($all_hat_effect_ids[.@i],true);
 		mes "ยืนยัน?";
+		next;
 		menu "ยืนยัน",-;
 		rich_hat_effect = .@i;
 		#RICH_COOLDOWN = gettimetick(2) + .cooldown;
-		end;
+		close;
 	}
 	else{
 		mes "คุณเป็นคนจน";
@@ -196,3 +197,40 @@ OnInit:
 prt_cas,192,23,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#2	506
 prt_cas,28,16,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#3	506
 prt_cas,32,88,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#4	506
+
+
+prt_cas,177,89,5	script	จัดตั้ง Guild	506,{
+	if (#RICH_COOLDOWN > gettimetick(2)){
+		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	if(#RICHPOINTS >= .rp_req){
+		if(getcharid(2)){
+			mes "คุณมี Guild อยู่แล้ว";
+			close;
+		}
+		mes "โปรดระบุชื่อ Guild";
+		next;
+		input .@s$;
+		mes "ชื่อ Guild: " + .@s$;
+		mes "ยืนยัน?";
+		next;
+		menu "ยืนยัน",-;
+		#RICH_COOLDOWN = gettimetick(2) + .cooldown;
+		atcommand "@guild " + .@s$;
+		close;
+	}
+	else{
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+OnInit:
+	.cooldown = 30;
+	.rp_req = 4;
+	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
+	end;
+}
+prt_cas,177,19,5	duplicate(จัดตั้ง Guild)	จัดตั้ง Guild#2	506
+prt_cas,17,27,5	duplicate(จัดตั้ง Guild)	จัดตั้ง Guild#3	506
+prt_cas,21,99,5	duplicate(จัดตั้ง Guild)	จัดตั้ง Guild#4	506
