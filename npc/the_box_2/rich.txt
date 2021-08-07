@@ -2,16 +2,16 @@ prt_cas,216,163,5	script	แท่งคนรวย	506,{
 	if(Zeny >= .price || #RICHPOINTS){
 		mes .npcName$;
 		mes "ว้าวซ่า เจ้าคือคนรวย";
+		mes "คุณมี " + callfunc("F_InsertComma",#RICHPOINTS) + " แต้มคนรวย";
 		next;
-		menu "จ่าย " + callfunc("F_InsertComma",.price) + "z เพื่อรับแต้มคนรวย",-,"เช็คแต้มคนรวย",L_Check,"แต้มคนรวยเอาไว้ทำอะไร",L_Info;
+		menu "จ่าย " + callfunc("F_InsertComma",.price) + "z เพื่อรับแต้มคนรวย",-,"ใช้แต้มคนรวย",L_Info;
 		if(Zeny >= .price)
 		{
 			mes .npcName$;
 			mes "$$$$";
 			Zeny -= .price;
 			#RICHPOINTS++;
-			clear;
-			goto L_Check;
+			close;
 		}
 		else{
 			mes .npcName$;
@@ -25,15 +25,8 @@ prt_cas,216,163,5	script	แท่งคนรวย	506,{
 		close;
 	}
 	
-	L_Check:
-	mes .npcName$;
-	mes "คุณมี " + callfunc("F_InsertComma",#RICHPOINTS) + " แต้มคนรวย";
-	close;
-	
 	L_Info:
-	mes .npcName$;
-	mes "๐ สามารถกำหนดสภาพอากาศในเมืองได้";
-	mes "๐ สามารถประกาศได้";
+	warp "prt_cas",174,104;
 	close;
 	
 OnInit:
@@ -43,7 +36,7 @@ OnInit:
 	end;
 }
 
-prt_cas,186,97,5	script	กำหนดสภาพอากาศในเมือง	506,{
+prt_cas,176,106,5	script	กำหนดสภาพอากาศในเมือง	506,{
 	if (#RICH_COOLDOWN > gettimetick(2)){
 		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
 		close;	
@@ -115,11 +108,8 @@ OnInit:
 	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
 	end;
 }
-prt_cas,186,29,5	duplicate(กำหนดสภาพอากาศในเมือง)	กำหนดสภาพอากาศในเมือง#2	506
-prt_cas,16,35,5	duplicate(กำหนดสภาพอากาศในเมือง)	กำหนดสภาพอากาศในเมือง#3	506
-prt_cas,20,107,5	duplicate(กำหนดสภาพอากาศในเมือง)	กำหนดสภาพอากาศในเมือง#4	506
 
-prt_cas,177,97,5	script	ประกาศ	506,{
+prt_cas,176,100,5	script	ประกาศ	506,{
 	if (#RICH_COOLDOWN > gettimetick(2)){
 		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
 		close;	
@@ -145,11 +135,41 @@ OnInit:
 	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
 	end;
 }
-prt_cas,176,29,5	duplicate(ประกาศ)	ประกาศ#2	506
-prt_cas,23,35,5	duplicate(ประกาศ)	ประกาศ#3	506
-prt_cas,27,107,5	duplicate(ประกาศ)	ประกาศ#4	506
 
-prt_cas,192,90,5	script	ตกแต่งสวยงาม	506,{
+prt_cas,186,98,5	script	จัดตั้ง Guild	506,{
+	if (#RICH_COOLDOWN > gettimetick(2)){
+		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	if(#RICHPOINTS >= .rp_req){
+		if(getcharid(2)){
+			mes "คุณมี Guild อยู่แล้ว";
+			close;
+		}
+		mes "โปรดระบุชื่อ Guild";
+		next;
+		input .@s$;
+		mes "ชื่อ Guild: " + .@s$;
+		mes "ยืนยัน?";
+		next;
+		menu "ยืนยัน",-;
+		#RICH_COOLDOWN = gettimetick(2) + .cooldown;
+		atcommand "@guild " + .@s$;
+		close;
+	}
+	else{
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+OnInit:
+	.cooldown = 30;
+	.rp_req = 3;
+	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
+	end;
+}
+
+prt_cas,192,97,5	script	ตกแต่งสวยงาม 1	506,{
 	if (#RICH_COOLDOWN > gettimetick(2)){
 		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
 		close;	
@@ -190,34 +210,43 @@ prt_cas,192,90,5	script	ตกแต่งสวยงาม	506,{
 	
 OnInit:
 	.cooldown = 1;
-	.rp_req = 3;
+	.rp_req = 4;
 	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
 	end;
 }
-prt_cas,192,23,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#2	506
-prt_cas,28,16,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#3	506
-prt_cas,32,88,5	duplicate(ตกแต่งสวยงาม)	ตกแต่งสวยงาม#4	506
 
-
-prt_cas,177,89,5	script	จัดตั้ง Guild	506,{
+prt_cas,192,95,5	script	ตกแต่งสวยงาม 2	506,{
 	if (#RICH_COOLDOWN > gettimetick(2)){
 		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
 		close;	
 	}
 	if(#RICHPOINTS >= .rp_req){
-		if(getcharid(2)){
-			mes "คุณมี Guild อยู่แล้ว";
-			close;
-		}
-		mes "โปรดระบุชื่อ Guild";
+		mes "โปรดใส่ 1~" + ($all_hat_effect_id_size - 1);
 		next;
-		input .@s$;
-		mes "ชื่อ Guild: " + .@s$;
+		input .@i;
+		
+		if(.@i <= 0 || .@i > ($all_hat_effect_id_size - 1))
+		close;
+		
+		mes "หากเด้งให้เข้าใหม่";
+		next;
+
+		// Remove old
+		if(@temp_hat_effect)
+		hateffect($all_hat_effect_ids[@temp_hat_effect],false);
+		
+		@temp_hat_effect = .@i;
+		
+		// Remove old
+		if(rich_hat_effect2)
+		hateffect($all_hat_effect_ids[rich_hat_effect2],false);
+
+		hateffect($all_hat_effect_ids[.@i],true);
 		mes "ยืนยัน?";
 		next;
 		menu "ยืนยัน",-;
+		rich_hat_effect2 = .@i;
 		#RICH_COOLDOWN = gettimetick(2) + .cooldown;
-		atcommand "@guild " + .@s$;
 		close;
 	}
 	else{
@@ -226,11 +255,134 @@ prt_cas,177,89,5	script	จัดตั้ง Guild	506,{
 	}
 	
 OnInit:
-	.cooldown = 30;
-	.rp_req = 4;
+	.cooldown = 1;
+	.rp_req = 5;
 	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
 	end;
 }
-prt_cas,177,19,5	duplicate(จัดตั้ง Guild)	จัดตั้ง Guild#2	506
-prt_cas,17,27,5	duplicate(จัดตั้ง Guild)	จัดตั้ง Guild#3	506
-prt_cas,21,99,5	duplicate(จัดตั้ง Guild)	จัดตั้ง Guild#4	506
+
+prt_cas,192,93,5	script	ตกแต่งสวยงาม 3	506,{
+	if (#RICH_COOLDOWN > gettimetick(2)){
+		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	if(#RICHPOINTS >= .rp_req){
+		mes "โปรดใส่ 1~" + ($all_hat_effect_id_size - 1);
+		next;
+		input .@i;
+		
+		if(.@i <= 0 || .@i > ($all_hat_effect_id_size - 1))
+		close;
+		
+		mes "หากเด้งให้เข้าใหม่";
+		next;
+
+		// Remove old
+		if(@temp_hat_effect)
+		hateffect($all_hat_effect_ids[@temp_hat_effect],false);
+		
+		@temp_hat_effect = .@i;
+		
+		// Remove old
+		if(rich_hat_effect3)
+		hateffect($all_hat_effect_ids[rich_hat_effect3],false);
+
+		hateffect($all_hat_effect_ids[.@i],true);
+		mes "ยืนยัน?";
+		next;
+		menu "ยืนยัน",-;
+		rich_hat_effect3 = .@i;
+		#RICH_COOLDOWN = gettimetick(2) + .cooldown;
+		close;
+	}
+	else{
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+OnInit:
+	.cooldown = 1;
+	.rp_req = 6;
+	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
+	end;
+}
+
+prt_cas,192,91,5	script	ตกแต่งสวยงาม 4	506,{
+	if (#RICH_COOLDOWN > gettimetick(2)){
+		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	if(#RICHPOINTS >= .rp_req){
+		mes "โปรดใส่ 1~" + ($all_hat_effect_id_size - 1);
+		next;
+		input .@i;
+		
+		if(.@i <= 0 || .@i > ($all_hat_effect_id_size - 1))
+		close;
+		
+		mes "หากเด้งให้เข้าใหม่";
+		next;
+
+		// Remove old
+		if(@temp_hat_effect)
+		hateffect($all_hat_effect_ids[@temp_hat_effect],false);
+		
+		@temp_hat_effect = .@i;
+		
+		// Remove old
+		if(rich_hat_effect4)
+		hateffect($all_hat_effect_ids[rich_hat_effect4],false);
+
+		hateffect($all_hat_effect_ids[.@i],true);
+		mes "ยืนยัน?";
+		next;
+		menu "ยืนยัน",-;
+		rich_hat_effect4 = .@i;
+		#RICH_COOLDOWN = gettimetick(2) + .cooldown;
+		close;
+	}
+	else{
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+OnInit:
+	.cooldown = 1;
+	.rp_req = 7;
+	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
+	end;
+}
+
+prt_cas,192,85,5	script	ปรับขนาดตัวละคร	506,{
+	if (#RICH_COOLDOWN > gettimetick(2)){
+		mes "โปรดรอ " + (#RICH_COOLDOWN - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	if(#RICHPOINTS >= .rp_req){
+		menu "ตัวใหญ่",L_Big,"ตัวเล็ก",L_Small,"คืนค่าเดิม",-;
+		rich_size = 0;
+		goto L_Trade;
+	}
+	else{
+		mes "คุณเป็นคนจน";
+		close;
+	}
+	
+	L_Big:
+	rich_size = 2;
+	goto L_Trade;
+	
+	L_Small:
+	rich_size = 1;
+	goto L_Trade;
+	
+	L_Trade:
+	atcommand "@size " + rich_size;
+	#RICH_COOLDOWN = gettimetick(2) + .cooldown;
+	end;
+OnInit:
+	.cooldown = 1;
+	.rp_req = 8;
+	waitingroom "ต้องมี " + .rp_req + " แต้มคนรวย",0;
+	end;
+}
