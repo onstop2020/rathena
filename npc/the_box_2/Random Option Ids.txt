@@ -34,7 +34,7 @@
 [ATTR_TOLERACE_DARKNESS[1]] = ป้องกันธาตุ Shadow %
 [ATTR_TOLERACE_TELEKINESIS[1]] = ป้องกันธาตุ Ghost %
 [ATTR_TOLERACE_UNDEAD[1]] = ป้องกันธาตุ Undead %
-[ATTR_TOLERACE_ALLBUTNOTHING[1]] = ป้องกัน ทุกธาตุ %
+[ATTR_TOLERACE_ALLBUTNOTHING[1]] = ป้องกัน ทุกธาตุยกเว้น Neutral %
 [DAMAGE_PROPERTY_NOTHING_USER[1]] = ป้องกัน Monster ธาตุ Neutral %
 [DAMAGE_PROPERTY_NOTHING_TARGET[1]] = ATK % กับ Monster ธาตุ Neutral
 [DAMAGE_PROPERTY_WATER_USER[1]] = ป้องกัน Monster ธาตุ Water %
