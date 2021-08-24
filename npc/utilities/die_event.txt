@@ -1,0 +1,18 @@
+-	script	DieEvent	-1,{
+	end;
+	
+OnPCDieEvent:
+	// Hardcore Mode
+	if(HARDCORE_MODE && strcharinfo(3) != "pvp_y_1-1" && strcharinfo(3) != "pvp_y_1-4" && strcharinfo(3) != "prontera"){
+		clearitem;
+		if(Class != 4218 && Class != 4220)
+		atcommand "@job 0";
+		atcommand "@lvup -999";
+		atcommand "@joblvup -999";
+		atcommand "@reset";
+		StatusPoint = 48;
+		SkillPoint = 0;
+		warp "prontera",156,191;
+	}
+	end;
+}
