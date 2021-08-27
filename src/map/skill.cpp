@@ -19001,8 +19001,7 @@ void skill_clear_unitgroup(struct block_list *src)
 
 	nullpo_retv(ud);
 
-	// The after loop statement might look stupid, but this prevents iteration problems, if an entry was deleted
-	for (auto it = ud->skillunits.begin(); it != ud->skillunits.end(); it = ud->skillunits.begin()) {
+	for (auto it = ud->skillunits.begin(); it != ud->skillunits.end(); it++) {
 		skill_delunitgroup(*it);
 	}
 }
