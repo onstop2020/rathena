@@ -485,7 +485,5 @@ OnInit:
 		.BabyExpanded = false;
 		.BabySummoner = false;
 	}
-	
-	waitingroom "เปลี่ยนอาชีพ",0;
 	end;
 }
