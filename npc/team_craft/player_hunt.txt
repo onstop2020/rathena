@@ -9,6 +9,5 @@ prontera,170,181,3	script	ตามล่าผู้เล่นอื่น	856,{
 	
 OnInit:
 	.enter_cooldown = 60;
-	waitingroom "ตามล่าผู้เล่นอื่น",0;
 	end;
 }

@@ -7,4 +7,4 @@ OnInit:
 	end;
 }
 
-prontera,156,177,5	duplicate(serverInfomation)	วิธีเล่น#1	837
+prontera,156,176,5	duplicate(serverInfomation)	วิธีเล่น#1	837
