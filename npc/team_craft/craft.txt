@@ -1,0 +1,227 @@
+prontera,151,171,5	script	[Normal]Craft	10267,{
+	mes "ใส่ส่วนผสมจำนวนที่ต้องการ";
+	mes "หลักที่ 1 คือจำนวน " + getitemname(.t1);
+	mes "หลักที่ 2 คือจำนวน " + getitemname(.t2);
+	mes "หลักที่ 3 คือจำนวน " + getitemname(.t3);
+	mes "หลักที่ 4 คือจำนวน " + getitemname(.t4);
+	mes "หลักที่ 5 คือจำนวน " + getitemname(.t5);
+	next;
+	input .@i;
+	freeloop(1);
+	for (.@j = 0; .@j < getarraysize($normal_craft); .@j++){
+		if(.@i == $normal_craft[.@j])
+		{
+			.@s$ = .@i + "";
+			.@n1 = atoi(charat(.@s$,0));
+			.@n2 = atoi(charat(.@s$,1));
+			.@n3 = atoi(charat(.@s$,2));
+			.@n4 = atoi(charat(.@s$,3));
+			.@n5 = atoi(charat(.@s$,4));
+			if(countitem(.t1) < .@n1){
+				mes getitemname(.t1) + " ไม่เพียงพอ ต้องการ " + .@n1;
+				freeloop(0);
+				close;
+			}
+			else if(countitem(.t2) < .@n2){
+				mes getitemname(.t2) + " ไม่เพียงพอ ต้องการ " + .@n2;
+				freeloop(0);
+				close;
+			}
+			else if(countitem(.t3) < .@n3){
+				mes getitemname(.t3) + " ไม่เพียงพอ ต้องการ " + .@n3;
+				freeloop(0);
+				close;
+			}
+			else if(countitem(.t4) < .@n4){
+				mes getitemname(.t4) + " ไม่เพียงพอ ต้องการ " + .@n4;
+				freeloop(0);
+				close;
+			}
+			else if(countitem(.t5) < .@n5){
+				mes getitemname(.t5) + " ไม่เพียงพอ ต้องการ " + .@n5;
+				freeloop(0);
+				close;
+			}
+			if(getiteminfo((10000000 + .@j),5) == 32768){
+				if (!checkweight((10000000 + .@j),200)) {
+					mes "น้ำหนักเกิน";
+					freeloop(0);
+					close;
+				}
+			}
+			delitem .t1,.@n1;
+			delitem .t2,.@n2;
+			delitem .t3,.@n3;
+			delitem .t4,.@n4;
+			delitem .t5,.@n5;
+			if(getiteminfo((10000000 + .@j),5) == 32768)
+			getitem (10000000 + .@j),200;
+			else
+			getitem (10000000 + .@j),1;
+			message strcharinfo(0),"คุณได้รับ: " + getitemname((10000000 + .@j)) + " ด้วยรหัส " + .@i;
+			break;
+		}
+	}
+	freeloop(0);
+	close;
+	
+OnInit:
+	.t1 = 40017;
+	.t2 = 40018;
+	.t3 = 40019;
+	.t4 = 40020;
+	.t5 = 40021;
+	end;
+	
+	deletearray $normal_craft[0], getarraysize($normal_craft);
+	
+	debugmes "[Normal]Start";
+	
+	freeloop(1);
+	
+	for (.@i = 10000000; .@i < 10010001; .@i++){
+		L_Repeat:
+		.@i1 = rand (1,9);
+		.@i2 = rand (1,9);
+		.@i3 = rand (1,9);
+		.@i4 = rand (1,9);
+		.@i5 = rand (1,9);
+		
+		for (.@j = 0; .@j < getarraysize($normal_craft); .@j++){
+			if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $normal_craft[.@j])
+			goto L_Repeat;
+		}
+		
+		setarray $normal_craft[getarraysize($normal_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+	}
+	
+	freeloop(0);
+	
+	debugmes "[Normal]End";
+	
+	end;
+}
+
+prontera,153,171,5	script	[Advance]Craft	10267,{
+	//OnInit:
+	deletearray $advance_craft[0], getarraysize($advance_craft);
+	
+	debugmes "[Advance]Start";
+	
+	freeloop(1);
+	
+	for (.@i = 10010001; .@i < 10020001; .@i++){
+		L_Repeat:
+		.@i1 = rand (1,9);
+		.@i2 = rand (1,9);
+		.@i3 = rand (1,9);
+		.@i4 = rand (1,9);
+		.@i5 = rand (1,9);
+		
+		for (.@j = 0; .@j < getarraysize($advance_craft); .@j++){
+			if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $advance_craft[.@j])
+			goto L_Repeat;
+		}
+		
+		setarray $advance_craft[getarraysize($advance_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+	}
+	
+	freeloop(0);
+	
+	debugmes "[Advance]End";
+	
+	end;
+}
+
+prontera,155,171,5	script	[Rare]Craft	10267,{
+	//OnInit:
+	deletearray $rare_craft[0], getarraysize($rare_craft);
+	
+	debugmes "[Rare]Start";
+	
+	freeloop(1);
+	
+	for (.@i = 10020001; .@i < 10030001; .@i++){
+		L_Repeat:
+		.@i1 = rand (1,9);
+		.@i2 = rand (1,9);
+		.@i3 = rand (1,9);
+		.@i4 = rand (1,9);
+		.@i5 = rand (1,9);
+		
+		for (.@j = 0; .@j < getarraysize($rare_craft); .@j++){
+			if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $rare_craft[.@j])
+			goto L_Repeat;
+		}
+		
+		setarray $rare_craft[getarraysize($rare_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+	}
+	
+	freeloop(0);
+	
+	debugmes "[Rare]End";
+	
+	end;
+}
+
+prontera,157,171,5	script	[Mystical]Craft	10267,{
+	//OnInit:
+	deletearray $mystical_craft[0], getarraysize($mystical_craft);
+	
+	debugmes "[Mystical]Start";
+	
+	freeloop(1);
+	
+	for (.@i = 10030001; .@i < 10040001; .@i++){
+		L_Repeat:
+		.@i1 = rand (1,9);
+		.@i2 = rand (1,9);
+		.@i3 = rand (1,9);
+		.@i4 = rand (1,9);
+		.@i5 = rand (1,9);
+		
+		for (.@j = 0; .@j < getarraysize($mystical_craft); .@j++){
+			if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $mystical_craft[.@j])
+			goto L_Repeat;
+		}
+		
+		setarray $mystical_craft[getarraysize($mystical_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+	}
+	
+	freeloop(0);
+	
+	debugmes "[Mystical]End";
+	
+	end;
+}
+
+prontera,159,171,5	script	[Legendary]Craft	10267,{
+	//OnInit:
+	deletearray $legendary_craft[0], getarraysize($legendary_craft);
+	
+	debugmes "[Legendary]Start";
+	
+	freeloop(1);
+	
+	for (.@i = 10040001; .@i < 10050001; .@i++){
+		L_Repeat:
+		.@i1 = rand (1,9);
+		.@i2 = rand (1,9);
+		.@i3 = rand (1,9);
+		.@i4 = rand (1,9);
+		.@i5 = rand (1,9);
+		
+		for (.@j = 0; .@j < getarraysize($legendary_craft); .@j++){
+			if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $legendary_craft[.@j])
+			goto L_Repeat;
+		}
+		
+		setarray $legendary_craft[getarraysize($legendary_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+	}
+	
+	freeloop(0);
+	
+	debugmes "[Legendary]End";
+	
+	end;
+}
