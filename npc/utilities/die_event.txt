@@ -7,14 +7,15 @@ OnPCDieEvent:
 		.@maxDecreaseLevel = BaseLevel/10;
 		if(.@maxDecreaseLevel <= 1)
 		.@maxDecreaseLevel = 1;
-		if(BaseLevel>1)
-		BaseLevel -= rand(1,.@maxDecreaseLevel);
-		statusup2 bStr,-1;
-		statusup2 bAgi,-1;
-		statusup2 bVit,-1;
-		statusup2 bInt,-1;
-		statusup2 bDex,-1;
-		statusup2 bLuk,-1;
+		if(BaseLevel > 1)
+		BaseLevel -= rand(.@maxDecreaseLevel);
+		statusup2 bStr,-rand(6);
+		statusup2 bAgi,-rand(6);
+		statusup2 bVit,-rand(6);
+		statusup2 bInt,-rand(6);
+		statusup2 bDex,-rand(6);
+		statusup2 bLuk,-rand(6);
+		announce strcharinfo(0) + " ตาย!",bc_all,0xEC1500;
 	}
 	end;
 }

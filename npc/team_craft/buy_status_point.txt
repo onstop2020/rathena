@@ -1,0 +1,19 @@
+prontera,163,175,4	script	ซื้อ Status Point	651,{
+	mes callfunc("F_InsertComma",.price) + "z ต่อ 1 Status Point";
+	mes "ระบุ 0 เพื่อยกเลิก";
+	next;
+	input .@i;
+	if((.@i <= 0) || (Zeny < (.@i * .price)))
+	{
+		mes "ยกเลิกเรียบร้อยแล้ว";
+		close;
+	}
+	Zeny -= (.@i * .price);
+	StatusPoint += .@i;
+	close;
+	
+OnInit:
+	.price = 1000;
+	waitingroom "ซื้อ Status Point",0;
+	end;
+}

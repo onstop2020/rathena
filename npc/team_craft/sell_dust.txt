@@ -1,6 +1,6 @@
 -	shop	sell_dust_shop	-1,501:1
 
-prontera,153,199,4	script	ขาย Dust	661,{
+prontera,152,199,4	script	ขาย Dust	661,{
 	mes "[Normal] Dust: 1z";
 	mes "[Advance] Dust: 2z";
 	mes "[Rare] Dust: 3z";
