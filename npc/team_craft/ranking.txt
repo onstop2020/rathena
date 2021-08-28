@@ -1,0 +1,35 @@
+prontera,155,164,5	script	Ranking	837,{
+	menu "¶“µ°√∑’Ë‚À¥∑’Ë ÿ¥",L_Killer,"Party ∑’Ë‚À¥∑’Ë ÿ¥",L_Party;
+	
+	L_Killer:
+	query_sql("SELECT `char_id`,`value` FROM `char_reg_num` WHERE `key` = 'killCount' ORDER BY `value` DESC LIMIT 10",.@charId,.@killCount);
+	if(getarraysize(.@charId) <= 0)
+	mes "‰¡Ëæ∫¢ÈÕ¡Ÿ≈";
+	else{
+		mes "¶“µ°√∑’Ë‚À¥∑’Ë ÿ¥";
+		for(.@i = 0; .@i < getarraysize(.@charId); .@i++){
+			query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@i] + "'",.@rankName$);	
+			mes (.@i + 1) + ".) " + .@rankName$ + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
+		}
+	}
+	close;
+	
+	L_Party:
+	//WHERE CustomerName LIKE 'a%'
+	query_sql("SELECT `varname`,`value` FROM `mapreg` WHERE `varname` LIKE '$pkc_%' ORDER BY `value` DESC LIMIT 10",.@partyName$,.@killCount);
+	if(getarraysize(.@partyName$) <= 0)
+	mes "‰¡Ëæ∫¢ÈÕ¡Ÿ≈";
+	else{
+		mes "Party ∑’Ë‚À¥∑’Ë ÿ¥";
+		for(.@i = 0; .@i < getarraysize(.@partyName$); .@i++){
+			.@length = getstrlen(.@partyName$);
+			mes (.@i + 1) + ".) " + substr(.@partyName$, 5, .@length-1) + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
+		}
+	}
+	close;
+	
+OnInit:
+	waitingroom "Ranking",0;
+	end;
+}
+

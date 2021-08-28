@@ -3,7 +3,11 @@
 	
 OnPCDieEvent:
 	if(strcharinfo(3) != "prontera"){
-		clearitem;
+		nude;
+		atcommand "@dropall";
+		getitem 40042,1;
+		getitem 40043,1;
+		getitem 40044,1;
 		.@maxDecreaseLevel = BaseLevel/10;
 		if(.@maxDecreaseLevel <= 1)
 		.@maxDecreaseLevel = 1;
@@ -16,6 +20,18 @@ OnPCDieEvent:
 		statusup2 bDex,-rand(6);
 		statusup2 bLuk,-rand(6);
 		announce strcharinfo(0) + " ตาย!",bc_all,0xEC1500;
+		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
+			attachrid(killerrid);
+			
+			killCount++;
+			dispbottom "Kill Count: " + callfunc("F_InsertComma",killCount);
+			if(getcharid(1) > 0){
+				set getd("$pkc_" + getpartyname(getcharid(1))),getd("$pkc_" + getpartyname(getcharid(1))) + 1;
+				dispbottom "Party Kill Count: " + callfunc("F_InsertComma",getd("$pkc_" + getpartyname(getcharid(1))));
+			}
+
+			detachrid;
+		}
 	}
 	end;
 }

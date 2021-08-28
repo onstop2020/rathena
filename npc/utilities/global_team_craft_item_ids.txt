@@ -12,5 +12,136 @@ OnInit:
 	$mystical_dust_ids_size = getarraysize($mystical_dust_ids);
 	setarray $legendary_dust_ids[0],40037,40038,40039,40040,40041;
 	$legendary_dust_ids_size = getarraysize($legendary_dust_ids);
+	
+	freeloop(1);
+	
+	if(!$normal_tier_init){
+		debugmes "[Normal]Start";
+		
+		deletearray $normal_craft[0], getarraysize($normal_craft);
+
+		for (.@i = 10000000; .@i < 10010001; .@i++){
+			L_Repeat:
+			.@i1 = rand (1,9);
+			.@i2 = rand (1,9);
+			.@i3 = rand (1,9);
+			.@i4 = rand (1,9);
+			.@i5 = rand (1,9);
+			
+			for (.@j = 0; .@j < getarraysize($normal_craft); .@j++){
+				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $normal_craft[.@j])
+				goto L_Repeat;
+			}
+			
+			setarray $normal_craft[getarraysize($normal_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+		}
+		
+		$normal_tier_init = 1;
+		
+		debugmes "[Normal]End";
+	}
+	if(!$advance_tier_init){
+		debugmes "[Advance]Start";
+		
+		deletearray $advance_craft[0], getarraysize($advance_craft);
+
+		for (.@i = 10010001; .@i < 10020001; .@i++){
+			L_Repeat:
+			.@i1 = rand (1,9);
+			.@i2 = rand (1,9);
+			.@i3 = rand (1,9);
+			.@i4 = rand (1,9);
+			.@i5 = rand (1,9);
+			
+			for (.@j = 0; .@j < getarraysize($advance_craft); .@j++){
+				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $advance_craft[.@j])
+				goto L_Repeat;
+			}
+			
+			setarray $advance_craft[getarraysize($advance_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+		}
+		
+		$advance_tier_init = 1;
+		
+		debugmes "[Advance]End";
+	}
+	if(!$rare_tier_init){
+		debugmes "[Rare]Start";
+		
+		deletearray $rare_craft[0], getarraysize($rare_craft);
+
+		for (.@i = 10020001; .@i < 10030001; .@i++){
+			L_Repeat:
+			.@i1 = rand (1,9);
+			.@i2 = rand (1,9);
+			.@i3 = rand (1,9);
+			.@i4 = rand (1,9);
+			.@i5 = rand (1,9);
+			
+			for (.@j = 0; .@j < getarraysize($rare_craft); .@j++){
+				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $rare_craft[.@j])
+				goto L_Repeat;
+			}
+			
+			setarray $rare_craft[getarraysize($rare_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+		}
+
+		$rare_tier_init = 1;
+		
+		debugmes "[Rare]End";
+	}
+	if(!$mystical_tier_init){
+		debugmes "[Mystical]Start";
+		
+		deletearray $mystical_craft[0], getarraysize($mystical_craft);
+
+		for (.@i = 10030001; .@i < 10040001; .@i++){
+			L_Repeat:
+			.@i1 = rand (1,9);
+			.@i2 = rand (1,9);
+			.@i3 = rand (1,9);
+			.@i4 = rand (1,9);
+			.@i5 = rand (1,9);
+			
+			for (.@j = 0; .@j < getarraysize($mystical_craft); .@j++){
+				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $mystical_craft[.@j])
+				goto L_Repeat;
+			}
+			
+			setarray $mystical_craft[getarraysize($mystical_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+		}
+
+		$mystical_tier_init = 1;
+		
+		debugmes "[Mystical]End";
+	}
+	if(!$legendary_tier_init){
+		debugmes "[Legendary]Start";
+		
+		deletearray $legendary_craft[0], getarraysize($legendary_craft);
+
+		for (.@i = 10040001; .@i < 10050001; .@i++){
+			L_Repeat:
+			.@i1 = rand (1,9);
+			.@i2 = rand (1,9);
+			.@i3 = rand (1,9);
+			.@i4 = rand (1,9);
+			.@i5 = rand (1,9);
+			
+			for (.@j = 0; .@j < getarraysize($legendary_craft); .@j++){
+				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $legendary_craft[.@j])
+				goto L_Repeat;
+			}
+			
+			setarray $legendary_craft[getarraysize($legendary_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
+		}
+
+		$legendary_tier_init = 1;
+		
+		debugmes "[Legendary]End";
+	}
+	
+	freeloop(0);
+	
 	end;
 }
