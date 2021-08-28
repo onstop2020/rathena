@@ -4,6 +4,13 @@
 OnPCLoginEvent:
 	bonus_script_clear 1;
 	
+	if(countitem(40042) <= 0)
+	getitem 40042,1;
+	if(countitem(40043) <= 0)
+	getitem 40043,1;
+	if(countitem(40044) <= 0)
+	getitem 40044,1;
+	
 	// Effect
 	addtimer 1,"LoginEvent::OnEffectInstall";
 

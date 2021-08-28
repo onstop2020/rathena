@@ -1,0 +1,90 @@
+function	script	JumpStone	{
+	if (js_cooldown > gettimetick(2)){
+		message strcharinfo(0),"โปรดรอ " + (js_cooldown - gettimetick(2)) + " วินาที";
+		end;
+	}
+	if (rs_cooldown > gettimetick(2)){
+		message strcharinfo(0),"โปรดรอ " + (rs_cooldown - gettimetick(2)) + " วินาที";
+		end;
+	}
+	js_cast = 5;
+	.@c1 = js_cast;
+	while(.@c1 > 0){
+		.@s$ += "|";
+		.@c1--;
+	}
+	message strcharinfo(0),"[" + .@s$ + "]";
+	addtimer 1000,"TeamCraftFunction::OnJumpStone";
+	js_cooldown = gettimetick(2) + 6;
+	return;
+}
+function	script	ReturnStone	{
+	if (js_cooldown > gettimetick(2)){
+		message strcharinfo(0),"โปรดรอ " + (js_cooldown - gettimetick(2)) + " วินาที";
+		end;
+	}
+	if (rs_cooldown > gettimetick(2)){
+		message strcharinfo(0),"โปรดรอ " + (rs_cooldown - gettimetick(2)) + " วินาที";
+		end;
+	}
+	rs_cast = 10;
+	.@c1 = rs_cast;
+	while(.@c1 > 0){
+		.@s$ += "|";
+		.@c1--;
+	}
+	message strcharinfo(0),"[" + .@s$ + "]";
+	addtimer 1000,"TeamCraftFunction::OnReturnStone";
+	rs_cooldown = gettimetick(2) + 11;
+	return;
+}
+function	script	HealStone	{
+	if (hs_cooldown > gettimetick(2)){
+		message strcharinfo(0),"โปรดรอ " + (hs_cooldown - gettimetick(2)) + " วินาที";
+		end;
+	}
+	percentheal 100,100;
+	sc_end SC_POISON;
+	sc_end SC_SILENCE;
+	sc_end SC_BLIND;
+	sc_end SC_CONFUSION;
+	sc_end SC_CURSE;
+	sc_end SC_Hallucination;
+	hs_cooldown = gettimetick(2) + (9 - hs_cooldown_upg);
+	specialeffect2 777;
+	return;
+}
+
+-	script	TeamCraftFunction	-1,{
+	end;
+	
+OnJumpStone:
+	js_cast--;
+	if(js_cast > 0){
+		.@c1 = js_cast;
+		while(.@c1 > 0){
+			.@s$ += "|";
+			.@c1--;
+		}
+		message strcharinfo(0),"[" + .@s$ + "]";
+		addtimer 1000,"TeamCraftFunction::OnJumpStone";
+	}
+	else
+	warp strcharinfo(3),0,0;
+	end;
+	
+OnReturnStone:
+	rs_cast--;
+	if(rs_cast > 0){
+		.@c1 = rs_cast;
+		while(.@c1 > 0){
+			.@s$ += "|";
+			.@c1--;
+		}
+		message strcharinfo(0),"[" + .@s$ + "]";
+		addtimer 1000,"TeamCraftFunction::OnReturnStone";
+	}
+	else
+	warp "prontera",156,191;
+	end;
+}

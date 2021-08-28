@@ -1,0 +1,22 @@
+prontera,97,188,5	script	Upgrade Heal Stone	655,{
+	if(hs_cooldown_upg >= getarraysize(.price)){
+		mes "Upgrade ถึงระดับสูงสุดแล้ว";
+		close;
+	}
+	mes callfunc("F_InsertComma",.price[hs_cooldown_upg]) + "z \nเพื่อลด Cooldown ของ " + getitemname(40044);
+	next;
+	menu "Upgrade",-;
+	if(Zeny < .price[hs_cooldown_upg]){
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	mes "เรียบร้อยแล้ว";
+	Zeny -= .price[hs_cooldown_upg];
+	hs_cooldown_upg++;
+	close;
+	
+OnInit:
+	setarray .price[0],100,1000,10000,100000,1000000;
+	waitingroom "Upgrade Heal Stone",0;
+	end;
+}
