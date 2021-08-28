@@ -2,6 +2,8 @@
 	end;
 	
 OnInit:
+	bindatcmd "craftinit",strnpcinfo(3) + "::OnCraftInit",99,99;
+
 	setarray $normal_dust_ids[0],40017,40018,40019,40020,40021;
 	$normal_dust_ids_size = getarraysize($normal_dust_ids);
 	setarray $advance_dust_ids[0],40022,40023,40024,40025,40026;
@@ -12,7 +14,9 @@ OnInit:
 	$mystical_dust_ids_size = getarraysize($mystical_dust_ids);
 	setarray $legendary_dust_ids[0],40037,40038,40039,40040,40041;
 	$legendary_dust_ids_size = getarraysize($legendary_dust_ids);
+	end;
 	
+OnCraftInit:
 	freeloop(1);
 	
 	if(!$normal_tier_init){
