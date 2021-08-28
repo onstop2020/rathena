@@ -1,0 +1,37 @@
+prontera,151,171,5	script	ผู้ถือสมุดรวมสูตร Craft	893,{
+	mes "เจ้าอยากรู้สูตรผสมของไหม? ข้าสามารถบอกสูตรใหม่ ๆ ให้เจ้าได้ทุก ๆ xx:30น.";
+	menu "ยังก่อน",-,"เอาสิ (" + callfunc("F_InsertComma",.price) + "z)",L_Yes;
+	close;
+	
+	L_Yes:
+	if(Zeny < .price){
+		mes "เจ้ามี Zeny ไม่เพียงพอ";
+		close;
+	}
+	
+	Zeny -= .price;
+	
+	mes "[Normal]:" + $hint_normal;
+	mes "[Advance]:" + $hint_advance;
+	mes "[Rare]:" + $hint_rare;
+	mes "[Mystical]:" + $hint_mystical;
+	mes "[Legendary]:" + $hint_legendary;
+	close;
+	
+	L_RefreshRate:
+	$hint_normal = $normal_craft[rand(0,getarraysize($normal_craft)];
+	$hint_advance = $advance_craft[rand(0,getarraysize($advance_craft)];
+	$hint_rare = $rare_craft[rand(0,getarraysize($rare_craft)];
+	$hint_mystical = $mystical_craft[rand(0,getarraysize($mystical_craft)];
+	$hint_legendary = $legendary_craft[rand(0,getarraysize($legendary_craft)];
+	return;
+	
+OnMinute30:
+	callsub L_RefreshRate;
+	end;
+	
+OnInit:
+	.price = 1;
+	callsub L_RefreshRate;
+	end;
+}
