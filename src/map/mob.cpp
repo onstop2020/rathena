@@ -2897,27 +2897,24 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 			// TEAM CRAFT - RO [Start]
 			drop_rate = 1000;
-
-			int drop_rate_bonus = 0;
-
-			// Add class and race specific bonuses
-			drop_rate_bonus += sd->indexed_bonus.dropaddclass[md->status.class_] + sd->indexed_bonus.dropaddclass[CLASS_ALL];
-			drop_rate_bonus += sd->indexed_bonus.dropaddrace[md->status.race] + sd->indexed_bonus.dropaddrace[RC_ALL];
-
-			// Increase drop rate if user has SC_ITEMBOOST
-			if (sd->sc.data[SC_ITEMBOOST])
-				drop_rate_bonus += sd->sc.data[SC_ITEMBOOST]->val1;
-
-			drop_rate_bonus = (int)(0.5 + drop_rate * drop_rate_bonus / 100.);
-			// Now rig the drop rate to never be over 90% unless it is originally >90%.
-			drop_rate = i32max(drop_rate, cap_value(drop_rate_bonus, 0, 9000));
+			drop_modifier = 100;
+			drop_rate = mob_getdroprate(src, md->db, drop_rate, drop_modifier);
 
 			// attempt to drop the item
 			if (rnd() % 10000 < drop_rate)
 			{
 				struct s_mob_drop mobdrop;
 				// Check monster level here
-				dropid = 40017;
+				if(md->db->lv<=35)
+					dropid = rnd_value(40017,40021);
+				else if (md->db->lv >35&&md->db->lv <= 70)
+					dropid = rnd_value(40022, 40026);
+				else if (md->db->lv > 70 && md->db->lv <= 105)
+					dropid = rnd_value(40027, 40031);
+				else if (md->db->lv > 105 && md->db->lv <= 140)
+					dropid = rnd_value(40032, 40036);
+				else if (md->db->lv > 140)
+					dropid = rnd_value(40037, 40041);
 				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
 				mobdrop.nameid = dropid;
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
