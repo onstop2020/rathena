@@ -1,5 +1,6 @@
 prontera,141,165,5	script	ผู้ถือสมุดรวมสูตร Craft	893,{
 	mes "เจ้าอยากรู้สูตรผสมของไหม? ข้าสามารถบอกสูตรใหม่ ๆ ให้เจ้าได้ทุก ๆ xx:30น.";
+	next;
 	menu "ยังก่อน",-,"เอาสิ (" + callfunc("F_InsertComma",.price) + "z)",L_Yes;
 	close;
 	

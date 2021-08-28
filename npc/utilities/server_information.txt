@@ -1,5 +1,5 @@
 -	script	serverInfomation	-1,{
-	mes "Website: <URL>Link<INFO>https://sites.google.com/view/start-ro/</INFO></URL>";
+	mes "Website: <URL>Link<INFO>https://sites.google.com/view/start-ro/tc</INFO></URL>";
 	close;
 	
 OnInit:
@@ -7,4 +7,4 @@ OnInit:
 	end;
 }
 
-prontera,147,174,5	duplicate(serverInfomation)	ข้อมูล Server#1	837
+prontera,156,177,5	duplicate(serverInfomation)	วิธีเล่น#1	837
