@@ -24,20 +24,9 @@ prontera,245,210,3	script	Malangdo Culvert	2190,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate20 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate20 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
 
 OnInit:
 	.m$ = "ชั้น 1:ชั้น 2";
 	setarray .mapName$[0],"1@pump","2@pump";
-	callsub L_RefreshRate;
 	end;
 }

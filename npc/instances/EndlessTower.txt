@@ -413,19 +413,8 @@ prontera,146,236,5	script	Endless Tower	1956,{
 	warp .mapName$[.@index - 1],0,0;
 	end;
 	
-	L_RefreshRate:
-	$mvpRefineRate1 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate1 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
-	
 OnInit:
 	.m$ = "股暽 1:股暽 2:股暽 3:股暽 4:股暽 5:股暽 6";
 	setarray .mapName$[0],"1@tower","2@tower","3@tower","4@tower","5@tower","6@tower";
-	callsub L_RefreshRate;
 	end;
 }

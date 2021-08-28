@@ -6,20 +6,9 @@ prontera,49,210,5	script	Werner Lab. Central R.	3621,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate29 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate29 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
 
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@slw";
-	callsub L_RefreshRate;
 	end;
 }

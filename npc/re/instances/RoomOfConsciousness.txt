@@ -9,20 +9,9 @@ prontera,103,199,7	script	Room of Consciousness	3450,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate25 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate25 + "%)",0;
-	return;
 	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
-
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@mir";
-	callsub L_RefreshRate;
 	end;
 }

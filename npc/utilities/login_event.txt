@@ -6,40 +6,7 @@ OnPCLoginEvent:
 	
 	// Effect
 	addtimer 1,"LoginEvent::OnEffectInstall";
-	
-	// Hardcore Mode
-	if(!#HARDCORE_MODE && BaseLevel >= 200 && JobLevel >= 70 && strcharinfo(3) == "prontera"){
-		mes "คุณเล่นจนถึงระดับสูงสุดแล้ว ต้องการลองเล่นแบบ Hardcore Mode หรือไม่?";
-		next;
-		menu "ยังก่อน",-,"เอาสิ",L_Accept;
-		#HARDCORE_MODE_SEEN = 1;
-		close;
-		
-		L_Accept:
-		mes "โปรดสร้างตัวละครใหม่ จะมีให้เลือก Hardcore Mode";
-		#HARDCORE_MODE_SEEN = 1;
-		#HARDCORE_MODE = 1;
-		close;
-	}
-	else{
-		if(#HARDCORE_MODE_SEEN){
-			announce "คุณเล่น Mode: " + (HARDCORE_MODE ? "Hardcode" : "Normal"),0xEBB531|bc_self;
-			if(!HARDCORE_MODE && !NORMAL_MODE && (Class == 0 || Class == 4218) && BaseLevel <= 1 && JobLevel <= 1 && strcharinfo(3) == "prontera"){
-				mes "คุณต้องการเล่น Mode ใด?";
-				mes "Hardcore หากตายจะต้องเริ่มเล่นใหม่";
-				mes "Normal ปกติทุกอย่าง";
-				next;
-				menu "Hardcore",-,"Normal",L_Normal;
-				HARDCORE_MODE = 1;
-				announce "คุณเล่น Mode: " + (HARDCORE_MODE ? "Hardcode" : "Normal"),0xEBB531|bc_self;
-				end;
-				
-				L_Normal:
-				NORMAL_MODE = 1;
-				end;
-			}
-		}
-	}
+
 	end;
 	
 OnEffectInstall:

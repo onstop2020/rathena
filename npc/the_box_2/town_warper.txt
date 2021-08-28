@@ -7,22 +7,9 @@ OnInit:
 	end;
 }
 
-prontera,110,246,5	duplicate(backToCenter)	กลับกลางเมือง#1	10081
 prontera,101,168,5	duplicate(backToCenter)	กลับกลางเมือง#2	10081
 prontera,237,62,5	duplicate(backToCenter)	กลับกลางเมือง#3	10081
 prontera,200,240,5	duplicate(backToCenter)	กลับกลางเมือง#4	10081
-prontera,56,65,5	duplicate(backToCenter)	กลับกลางเมือง#5	10081
-prontera,195,65,5	duplicate(backToCenter)	กลับกลางเมือง#6	10081
-prt_cas,213,146,5	duplicate(backToCenter)	กลับกลางเมือง#7	10081
-
-prontera,145,193,5	script	Zone อุปกรณ์ฯ	10081,{
-	warp "prontera",115,247;
-	end;
-	
-OnInit:
-	waitingroom "Zone - อุปกรณ์ฯ",0;
-	end;
-}
 
 prontera,138,193,5	script	Zone ของจำเป็น	10081,{
 	warp "prontera",102,175;
@@ -42,38 +29,13 @@ OnInit:
 	end;
 }
 
-prontera,166,193,5	script	Zone Pet & Hom.	10081,{
+//prontera,166,193,5	script	Zone Pet & Hom.	10081,{
+prontera,166,193,5	script	Zone Hom.	10081,{
 	warp "prontera",198,246;
 	end;
 	
 OnInit:
-	waitingroom "Zone - Pet & Hom.",0;
-	end;
-}
-
-prontera,131,193,5	script	พนัน	10081,{
-	warp "prontera",52,72;
-	end;
-	
-OnInit:
-	waitingroom "Zone - พนัน",0;
-	end;
-}
-
-prontera,180,193,5	script	แลกกุญแจ	10081,{
-	warp "prontera",195,67;
-	end;
-	
-OnInit:
-	waitingroom "Zone - แลกกุญแจ",0;
-	end;
-}
-
-prontera,138,199,5	script	คนรวย	10081,{
-	warp "prt_cas",216,146;
-	end;
-	
-OnInit:
-	waitingroom "Zone - คนรวย",0;
+	//waitingroom "Zone - Pet & Hom.",0;
+	waitingroom "Zone - Hom.",0;
 	end;
 }

@@ -2,17 +2,19 @@
 	end;
 	
 OnPCDieEvent:
-	// Hardcore Mode
-	if(HARDCORE_MODE && strcharinfo(3) != "pvp_y_1-1" && strcharinfo(3) != "pvp_y_1-4" && strcharinfo(3) != "prontera"){
+	if(strcharinfo(3) != "prontera"){
 		clearitem;
-		if(Class != 4218 && Class != 4220)
-		atcommand "@job 0";
-		atcommand "@lvup -999";
-		atcommand "@joblvup -999";
-		atcommand "@reset";
-		StatusPoint = 48;
-		SkillPoint = 0;
-		warp "prontera",156,191;
+		.@maxDecreaseLevel = BaseLevel/10;
+		if(.@maxDecreaseLevel <= 1)
+		.@maxDecreaseLevel = 1;
+		if(BaseLevel>1)
+		BaseLevel -= rand(1,.@maxDecreaseLevel);
+		statusup2 bStr,-1;
+		statusup2 bAgi,-1;
+		statusup2 bVit,-1;
+		statusup2 bInt,-1;
+		statusup2 bDex,-1;
+		statusup2 bLuk,-1;
 	}
 	end;
 }

@@ -3,10 +3,8 @@
 	end;
 	
 OnInit:
-	.price = 100;
 	waitingroom "คลังเก็บของ",0;
 	end;
 }
 
 prontera,147,174,5	duplicate(storage)	คลังเก็บของ	10005
-prontera,101,238,5	duplicate(storage)	คลังเก็บของ#2	10005

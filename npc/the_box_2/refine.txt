@@ -1,4 +1,4 @@
-prontera,95,248,5	script	�պǡ	10366,{
+prontera,145,193,5	script	�պǡ	10366,{
 	refineui;
 	end;
 	

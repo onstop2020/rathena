@@ -10,20 +10,9 @@ prontera,151,265,5	script	Bakonawa Lake	2320,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate7 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate7 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
 
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@ma_b";
-	callsub L_RefreshRate;
 	end;
 }

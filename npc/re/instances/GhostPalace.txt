@@ -17,20 +17,9 @@ prontera,161,125,1	script	Ghost Palace	2961,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate14 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate14 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
 
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@spa";
-	callsub L_RefreshRate;
 	end;
 }

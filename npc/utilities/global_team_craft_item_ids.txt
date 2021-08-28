@@ -1,0 +1,16 @@
+-	script	GlobalItemId	-1,{
+	end;
+	
+OnInit:
+	setarray $normal_dust_ids[0],40017,40018,40019,40020,40021;
+	$normal_dust_ids_size = getarraysize($normal_dust_ids);
+	setarray $advance_dust_ids[0],40022,40023,40024,40025,40026;
+	$advance_dust_ids_size = getarraysize($advance_dust_ids);
+	setarray $rare_dust_ids[0],40027,40028,40029,40030,40031;
+	$rare_dust_ids_size = getarraysize($rare_dust_ids);
+	setarray $mystical_dust_ids[0],40032,40033,40034,40035,40036;
+	$mystical_dust_ids_size = getarraysize($mystical_dust_ids);
+	setarray $legendary_dust_ids[0],40037,40038,40039,40040,40041;
+	$legendary_dust_ids_size = getarraysize($legendary_dust_ids);
+	end;
+}

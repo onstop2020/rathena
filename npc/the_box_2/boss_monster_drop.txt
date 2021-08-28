@@ -2,6 +2,9 @@
 	end;
 	
 OnBossDead:
+
+	end;
+
 	.@var2$ = strcharinfo(3);
 	if(.@var2$ == "1@tower" || .@var2$ == "2@tower" || .@var2$ == "3@tower" || .@var2$ == "4@tower" || .@var2$ == "5@tower" || .@var2$ == "6@tower")
 	callsub L_Rand,$mvpRefineRate1;

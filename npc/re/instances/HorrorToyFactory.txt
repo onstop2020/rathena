@@ -16,20 +16,9 @@ prontera,227,208,3	script	Horror Toy Factory	2996,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate17 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate17 + "%)",0;
-	return;
 	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
-
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@xm_d";
-	callsub L_RefreshRate;
 	end;
 }

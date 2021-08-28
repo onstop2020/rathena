@@ -17,20 +17,9 @@ prontera,165,236,3	script	Nidhoggr's Nest	2022,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate2 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate2 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
 
 OnInit:
 	.m$ = "ชั้น 1:ชั้น 2";
 	setarray .mapName$[0],"1@nyd","2@nyd";
-	callsub L_RefreshRate;
 	end;
 }
