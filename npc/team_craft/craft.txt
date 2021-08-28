@@ -11,6 +11,7 @@ prontera,151,171,5	script	[Normal]Craft	10267,{
 	for (.@j = 0; .@j < getarraysize($normal_craft); .@j++){
 		if(.@i == $normal_craft[.@j])
 		{
+			.@isFound = 1;
 			.@s$ = .@i + "";
 			.@n1 = atoi(charat(.@s$,0));
 			.@n2 = atoi(charat(.@s$,1));
@@ -62,6 +63,10 @@ prontera,151,171,5	script	[Normal]Craft	10267,{
 			break;
 		}
 	}
+	
+	if(!.@isFound)
+		mes "ไม่พบสูตรดังกล่าว ลองสูตรอื่นดู";
+	
 	freeloop(0);
 	close;
 	
@@ -88,6 +93,7 @@ prontera,153,171,5	script	[Advance]Craft	10267,{
 	for (.@j = 0; .@j < getarraysize($advance_craft); .@j++){
 		if(.@i == $advance_craft[.@j])
 		{
+			.@isFound = 1;
 			.@s$ = .@i + "";
 			.@n1 = atoi(charat(.@s$,0));
 			.@n2 = atoi(charat(.@s$,1));
@@ -139,6 +145,10 @@ prontera,153,171,5	script	[Advance]Craft	10267,{
 			break;
 		}
 	}
+	
+	if(!.@isFound)
+		mes "ไม่พบสูตรดังกล่าว ลองสูตรอื่นดู";
+	
 	freeloop(0);
 	close;
 	
@@ -165,6 +175,7 @@ prontera,155,171,5	script	[Rare]Craft	10267,{
 	for (.@j = 0; .@j < getarraysize($rare_craft); .@j++){
 		if(.@i == $rare_craft[.@j])
 		{
+			.@isFound = 1;
 			.@s$ = .@i + "";
 			.@n1 = atoi(charat(.@s$,0));
 			.@n2 = atoi(charat(.@s$,1));
@@ -216,6 +227,10 @@ prontera,155,171,5	script	[Rare]Craft	10267,{
 			break;
 		}
 	}
+	
+	if(!.@isFound)
+		mes "ไม่พบสูตรดังกล่าว ลองสูตรอื่นดู";
+	
 	freeloop(0);
 	close;
 	
@@ -242,6 +257,7 @@ prontera,157,171,5	script	[Mystical]Craft	10267,{
 	for (.@j = 0; .@j < getarraysize($mystical_craft); .@j++){
 		if(.@i == $mystical_craft[.@j])
 		{
+			.@isFound = 1;
 			.@s$ = .@i + "";
 			.@n1 = atoi(charat(.@s$,0));
 			.@n2 = atoi(charat(.@s$,1));
@@ -293,6 +309,10 @@ prontera,157,171,5	script	[Mystical]Craft	10267,{
 			break;
 		}
 	}
+	
+	if(!.@isFound)
+		mes "ไม่พบสูตรดังกล่าว ลองสูตรอื่นดู";
+	
 	freeloop(0);
 	close;
 	
@@ -319,6 +339,7 @@ prontera,159,171,5	script	[Legendary]Craft	10267,{
 	for (.@j = 0; .@j < getarraysize($legendary_craft); .@j++){
 		if(.@i == $legendary_craft[.@j])
 		{
+			.@isFound = 1;
 			.@s$ = .@i + "";
 			.@n1 = atoi(charat(.@s$,0));
 			.@n2 = atoi(charat(.@s$,1));
@@ -370,6 +391,10 @@ prontera,159,171,5	script	[Legendary]Craft	10267,{
 			break;
 		}
 	}
+	
+	if(!.@isFound)
+		mes "ไม่พบสูตรดังกล่าว ลองสูตรอื่นดู";
+	
 	freeloop(0);
 	close;
 	
