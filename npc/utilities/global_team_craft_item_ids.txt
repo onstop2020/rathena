@@ -50,7 +50,7 @@ OnCraftInit:
 		deletearray $advance_craft[0], getarraysize($advance_craft);
 
 		for (.@i = 10010001; .@i < 10020001; .@i++){
-			L_Repeat:
+			L_Repeat2:
 			.@i1 = rand (1,9);
 			.@i2 = rand (1,9);
 			.@i3 = rand (1,9);
@@ -59,7 +59,7 @@ OnCraftInit:
 			
 			for (.@j = 0; .@j < getarraysize($advance_craft); .@j++){
 				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $advance_craft[.@j])
-				goto L_Repeat;
+				goto L_Repeat2;
 			}
 			
 			setarray $advance_craft[getarraysize($advance_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
@@ -75,7 +75,7 @@ OnCraftInit:
 		deletearray $rare_craft[0], getarraysize($rare_craft);
 
 		for (.@i = 10020001; .@i < 10030001; .@i++){
-			L_Repeat:
+			L_Repeat3:
 			.@i1 = rand (1,9);
 			.@i2 = rand (1,9);
 			.@i3 = rand (1,9);
@@ -84,7 +84,7 @@ OnCraftInit:
 			
 			for (.@j = 0; .@j < getarraysize($rare_craft); .@j++){
 				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $rare_craft[.@j])
-				goto L_Repeat;
+				goto L_Repeat3;
 			}
 			
 			setarray $rare_craft[getarraysize($rare_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
@@ -100,7 +100,7 @@ OnCraftInit:
 		deletearray $mystical_craft[0], getarraysize($mystical_craft);
 
 		for (.@i = 10030001; .@i < 10040001; .@i++){
-			L_Repeat:
+			L_Repeat4:
 			.@i1 = rand (1,9);
 			.@i2 = rand (1,9);
 			.@i3 = rand (1,9);
@@ -109,7 +109,7 @@ OnCraftInit:
 			
 			for (.@j = 0; .@j < getarraysize($mystical_craft); .@j++){
 				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $mystical_craft[.@j])
-				goto L_Repeat;
+				goto L_Repeat4;
 			}
 			
 			setarray $mystical_craft[getarraysize($mystical_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
@@ -125,7 +125,7 @@ OnCraftInit:
 		deletearray $legendary_craft[0], getarraysize($legendary_craft);
 
 		for (.@i = 10040001; .@i < 10050001; .@i++){
-			L_Repeat:
+			L_Repeat5:
 			.@i1 = rand (1,9);
 			.@i2 = rand (1,9);
 			.@i3 = rand (1,9);
@@ -134,7 +134,7 @@ OnCraftInit:
 			
 			for (.@j = 0; .@j < getarraysize($legendary_craft); .@j++){
 				if(atoi((.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5)) == $legendary_craft[.@j])
-				goto L_Repeat;
+				goto L_Repeat5;
 			}
 			
 			setarray $legendary_craft[getarraysize($legendary_craft)],(.@i1+""+.@i2+""+.@i3+""+.@i4+""+.@i5);
