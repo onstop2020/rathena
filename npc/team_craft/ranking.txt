@@ -27,9 +27,5 @@ prontera,155,164,5	script	Ranking	837,{
 		}
 	}
 	close;
-	
-OnInit:
-	waitingroom "Ranking",0;
-	end;
 }
 
