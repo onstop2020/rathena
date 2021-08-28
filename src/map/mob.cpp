@@ -2871,6 +2871,35 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 			}
 
+			// TEAM CRAFT - RO [Start]
+			drop_rate = 1000;
+
+			int drop_rate_bonus = 0;
+
+			// Add class and race specific bonuses
+			drop_rate_bonus += sd->indexed_bonus.dropaddclass[md->status.class_] + sd->indexed_bonus.dropaddclass[CLASS_ALL];
+			drop_rate_bonus += sd->indexed_bonus.dropaddrace[md->status.race] + sd->indexed_bonus.dropaddrace[RC_ALL];
+
+			// Increase drop rate if user has SC_ITEMBOOST
+			if (sd->sc.data[SC_ITEMBOOST])
+				drop_rate_bonus += sd->sc.data[SC_ITEMBOOST]->val1;
+
+			drop_rate_bonus = (int)(0.5 + drop_rate * drop_rate_bonus / 100.);
+			// Now rig the drop rate to never be over 90% unless it is originally >90%.
+			drop_rate = i32max(drop_rate, cap_value(drop_rate_bonus, 0, 9000));
+
+			// attempt to drop the item
+			if (rnd() % 10000 < drop_rate)
+			{
+				struct s_mob_drop mobdrop;
+				// Check monster level here
+				dropid = 40017;
+				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
+				mobdrop.nameid = dropid;
+				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
+			}
+			// TEAM CRAFT - RO
+
 			// process script-granted zeny bonus (get_zeny_num) [Skotlex]
 			if( sd->bonus.get_zeny_num && rnd()%100 < sd->bonus.get_zeny_rate ) {
 				i = sd->bonus.get_zeny_num > 0 ? sd->bonus.get_zeny_num : -md->level * sd->bonus.get_zeny_num;

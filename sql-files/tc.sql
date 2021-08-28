@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80021
  Source Host           : localhost:3306
- Source Schema         : the_box_2
+ Source Schema         : tc
 
  Target Server Type    : MySQL
  Target Server Version : 80021
  File Encoding         : 65001
 
- Date: 06/07/2021 19:57:02
+ Date: 28/08/2021 12:06:18
 */
 
 SET NAMES utf8mb4;
@@ -1019,7 +1019,7 @@ CREATE TABLE `login`  (
 -- ----------------------------
 -- Records of login
 -- ----------------------------
-INSERT INTO `login` VALUES (1, 'tb2id', 'tb2pw', 'S', 'athena@athena.com', 0, 0, 0, 0, 0, NULL, '', NULL, 0, '', 0, 0, 0, NULL, 0);
+INSERT INTO `login` VALUES (1, 'tcid', 'tcpw', 'S', 'athena@athena.com', 0, 0, 0, 0, 0, NULL, '', NULL, 0, '', 0, 0, 0, NULL, 0);
 
 -- ----------------------------
 -- Table structure for loginlog
