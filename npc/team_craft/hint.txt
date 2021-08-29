@@ -1,16 +1,7 @@
 prontera,141,165,5	script	ผู้ถือสมุดรวมสูตร Craft	893,{
-	mes "เจ้าอยากรู้สูตรผสมของไหม? ข้าสามารถบอกสูตรใหม่ ๆ ให้เจ้าได้ทุก ๆ xx:30น.";
+	mes "เจ้าอยากรู้สูตรผสมของไหม? ข้าสามารถบอกสูตรใหม่ ๆ ให้เจ้าได้\nทุก ๆ xx:30น.";
 	next;
-	menu "ยังก่อน",-,"เอาสิ (" + callfunc("F_InsertComma",.price) + "z)",L_Yes;
-	close;
-	
-	L_Yes:
-	if(Zeny < .price){
-		mes "เจ้ามี Zeny ไม่เพียงพอ";
-		close;
-	}
-	
-	Zeny -= .price;
+	menu "เอาสิ",-;
 	
 	mes "[Normal]:" + $hint_normal;
 	mes "[Advance]:" + $hint_advance;
@@ -32,7 +23,7 @@ OnMinute30:
 	end;
 	
 OnInit:
-	.price = 1;
+	waitingroom "ผู้ถือสมุดรวมสูตร Craft",0;
 	callsub L_RefreshRate;
 	end;
 }

@@ -88,3 +88,27 @@ OnReturnStone:
 	warp "prontera",156,191;
 	end;
 }
+
+function	script	Hint	{
+	if(getarg(0,0) == 1){
+		delitem 40045,1;
+		mes "[Normal]:" + $normal_craft[rand(0,getarraysize($normal_craft))];
+	}
+	if(getarg(0,0) == 2){
+		delitem 40046,1;
+		mes "[Advance]:" + $advance_craft[rand(0,getarraysize($advance_craft))];
+	}
+	if(getarg(0,0) == 3){
+		delitem 40047,1;
+		mes "[Rare]:" + $rare_craft[rand(0,getarraysize($rare_craft))];
+	}
+	if(getarg(0,0) == 4){
+		delitem 40048,1;
+		mes "[Mystical]:" + $mystical_craft[rand(0,getarraysize($mystical_craft))];
+	}
+	if(getarg(0,0) == 5){
+		delitem 40049,1;
+		mes "[Legendary]:" + $legendary_craft[rand(0,getarraysize($legendary_craft))];
+	}
+	close;
+}

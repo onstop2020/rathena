@@ -3,6 +3,12 @@
 	
 OnPCDieEvent:
 	if(strcharinfo(3) != "prontera"){
+		if(countitem(40042))
+			delitem 40042,countitem(40042);
+		if(countitem(40043))
+			delitem 40043,countitem(40043);
+		if(countitem(40044))
+			delitem 40044,countitem(40044);
 		nude;
 		atcommand "@dropall";
 		getitem 40042,1;

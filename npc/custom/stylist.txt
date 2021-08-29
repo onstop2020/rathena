@@ -84,6 +84,10 @@
 	}
 	mes "เรียบร้อยแล้ว โปรดลองเข้า ID ดังกล่าวใหม่อีกที";
 	close;
+	
+	OnInit:
+	waitingroom "แต่งตัว",0;
+	end;
 }
 
 prontera,142,180,7	duplicate(CharacterSuitController)	 แต่งตัว	894

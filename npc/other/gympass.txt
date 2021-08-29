@@ -56,5 +56,6 @@ prontera,134,172,3	script	เพิ่มแรงแบกของ	899,{
 	
 	OnInit:
 	.price = 10000;
+	waitingroom "เพิ่มแรงแบกของ",0;
 	end;
 }

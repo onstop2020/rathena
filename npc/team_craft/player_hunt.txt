@@ -1,13 +1,14 @@
 prontera,170,181,3	script	ตามล่าผู้เล่นอื่น	856,{
-	if (player_hunt_cooldown > gettimetick(2)){
-		mes "โปรดรอ " + (player_hunt_cooldown - gettimetick(2)) + " วินาที";
+	if (#player_hunt_cooldown > gettimetick(2)){
+		mes "โปรดรอ " + (#player_hunt_cooldown - gettimetick(2)) + " วินาที";
 		close;	
 	}
-	player_hunt_cooldown = gettimetick(2) + .enter_cooldown;
+	#player_hunt_cooldown = gettimetick(2) + .enter_cooldown;
 	atcommand "@users";
 	end;
 	
 OnInit:
 	.enter_cooldown = 60;
+	waitingroom "ตามล่าผู้เล่นอื่น",0;
 	end;
 }
