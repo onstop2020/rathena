@@ -2897,9 +2897,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 			// TEAM CRAFT - RO [Start]
 			// Dust
-			drop_rate = 1000;
+			drop_rate = 5000;
 			drop_modifier = 100;
-			drop_rate = mob_getdroprate(src, md->db, drop_rate, drop_modifier);
+			drop_rate = mob_getdroprate(src, md->db, 5000, drop_modifier);
 
 			// attempt to drop the item
 			if (rnd() % 10000 < drop_rate)
@@ -2921,9 +2921,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
 			}
 			// Blueprint
-			drop_rate = 100;
+			drop_rate = 1000;
 			drop_modifier = 100;
-			drop_rate = mob_getdroprate(src, md->db, drop_rate, drop_modifier);
+			drop_rate = mob_getdroprate(src, md->db, 1000, drop_modifier);
 
 			// attempt to drop the item
 			if (rnd() % 10000 < drop_rate)
