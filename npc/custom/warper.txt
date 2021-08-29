@@ -36,7 +36,7 @@
 	if (lastwarp$ == "")
 	message strcharinfo(0),"คุณยังไม่เคยวาร์ปไปที่ไหนมาก่อน";
 	else
-	warp lastwarp$,lastwarpx,lastwarpy;
+	warp lastwarp$,0,0;
 	end;
 
 	// ------------------- Functions -------------------
@@ -67,7 +67,7 @@
 		set lastwarp$, getarg(0);
 		set lastwarpx, getarg(1,0);
 		set lastwarpy, getarg(2,0);
-		warp getarg(0),getarg(1,0),getarg(2,0);
+		warp getarg(0),0,0;
 		end;
 	}
 	function Disp {
