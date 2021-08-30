@@ -3728,7 +3728,10 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 #ifdef RENEWAL_CAST
 		case SP_FIXCASTRATE:
 			if(sd->state.lr_flag != 2)
-				sd->bonus.fixcastrate = min(sd->bonus.fixcastrate,val);
+				//sd->bonus.fixcastrate = min(sd->bonus.fixcastrate,val);
+				sd->bonus.fixcastrate += val; // [Start]
+			if (sd->bonus.fixcastrate > 100) // [Start]
+				sd->bonus.fixcastrate = 100; // [Start]
 			break;
 		case SP_ADD_FIXEDCAST:
 			if(sd->state.lr_flag != 2)
