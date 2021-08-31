@@ -9,12 +9,14 @@ prontera,145,193,5	script	�պǡ	10366,{
 			callsub L_ZenyCheck;
 			
 			if(getequipisequiped(.@indices[.@i])){
-				if(getequiprefinerycnt(.@indices[.@i]) < 20){
+				.@r = getequiprefinerycnt(.@indices[.@i]);
+				if(.@r < 20){
 					Zeny -= .price;
-					if (rand(100) <= getequippercentrefinery(.@indices[.@i]))
-					successrefitem .@indices[.@i];
-					else
-					.@notFullFound = 1;
+					if (rand(100) <= getequippercentrefinery(.@indices[.@i])){
+						successrefitem .@indices[.@i];
+						if((.@r + 1) >= 20)
+						.@notFullFound = 1;
+					}
 				}
 			}
 		}
