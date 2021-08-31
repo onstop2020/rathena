@@ -4,7 +4,7 @@ prontera,145,193,5	script	�պǡ	10366,{
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
 	
 	freeloop(1);
-	while(.@notFullFound){
+	while(!.@notFullFound){
 		for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
 			callsub L_ZenyCheck;
 			
