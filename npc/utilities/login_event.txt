@@ -10,10 +10,19 @@ OnPCLoginEvent:
 	getitem 40043,1;
 	if(countitem(40044) <= 0)
 	getitem 40044,1;
-	
+
 	// Effect
 	addtimer 1,"LoginEvent::OnEffectInstall";
-
+	
+	if((Class == 0 || Class == 4218) && BaseLevel <= 1 && JobLevel <= 1 && strcharinfo(3) == "prontera"){
+		mes "วิธีเล่นคร่าว ๆ";
+		mes "1.) ตีบวก 1 บวก จะมีโอกาส ยกเลิกโทษการตายได้ 1%";
+		mes "2.) Monster จะ Drop Dust, Blueprint";
+		mes "3.) กด Blueprint ดูเลข ดูระดับ";
+		mes "4.) นำเลขไปใส่ในตู้ Craft";
+		close;
+	}
+	
 	end;
 	
 OnEffectInstall:
