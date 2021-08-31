@@ -1,0 +1,37 @@
+prontera,145,193,5	script	ตีบวก	10366,{
+	callsub L_ZenyCheck;
+
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
+	
+	freeloop(1);
+	while(.@notFullFound){
+		for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
+			callsub L_ZenyCheck;
+			
+			if(getequipisequiped(.@indices[.@i])){
+				if(getequiprefinerycnt(.@indices[.@i]) < 20){
+					Zeny -= .price;
+					if (rand(100) <= getequippercentrefinery(.@indices[.@i]))
+					successrefitem .@indices[.@i];
+					else
+					.@notFullFound = 1;
+				}
+			}
+		}
+	}
+	freeloop(0);
+
+	end;
+	
+	L_ZenyCheck:
+	if(Zeny < .price){
+		message strcharinfo(0),"Zeny ไม่เพียงพอต้องการ " + callfunc("F_InsertComma",.price) + "z";
+		end;
+	}
+	return;
+	
+OnInit:
+	.price = 10;
+	waitingroom "ตีบวก",0;
+	end;
+}
