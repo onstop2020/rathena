@@ -52,121 +52,121 @@ Body:
             Bonus: 100
             Chances:
               - Type: Normal
-                Rate: 2000
+                Rate: 10000
                 Material: Elunium
           - Level: 2
             Bonus: 200
             Chances:
               - Type: Normal
-                Rate: 1900
+                Rate: 9500
                 Material: Elunium
           - Level: 3
             Bonus: 300
             Chances:
               - Type: Normal
-                Rate: 1800
+                Rate: 9000
                 Material: Elunium
           - Level: 4
             Bonus: 400
             Chances:
               - Type: Normal
-                Rate: 1700
+                Rate: 8500
                 Material: Elunium
           - Level: 5
             Bonus: 600
             Chances:
               - Type: Normal
-                Rate: 1600
+                Rate: 8000
                 Material: Elunium
           - Level: 6
             Bonus: 800
             Chances:
               - Type: Normal
-                Rate: 1500
+                Rate: 7500
                 Material: Elunium
           - Level: 7
             Bonus: 1000
             Chances:
               - Type: Normal
-                Rate: 1400
+                Rate: 7000
                 Material: Elunium
           - Level: 8
             Bonus: 1200
             Chances:
               - Type: Normal
-                Rate: 1300
+                Rate: 6500
                 Material: Elunium
           - Level: 9
             Bonus: 1500
             Chances:
               - Type: Normal
-                Rate: 1200
+                Rate: 6000
                 Material: Elunium
           - Level: 10
             Bonus: 1800
             Chances:
               - Type: Normal
-                Rate: 1100
+                Rate: 5500
                 Material: Elunium
           - Level: 11
             Bonus: 2100
             Chances:
               - Type: Normal
-                Rate: 1000
+                Rate: 5000
                 Material: Elunium
           - Level: 12
             Bonus: 2400
             Chances:
               - Type: Normal
-                Rate: 900
+                Rate: 4500
                 Material: Elunium
           - Level: 13
             Bonus: 2800
             Chances:
               - Type: Normal
-                Rate: 800
+                Rate: 4000
                 Material: Elunium
           - Level: 14
             Bonus: 3200
             Chances:
               - Type: Normal
-                Rate: 700
+                Rate: 3500
                 Material: Elunium
           - Level: 15
             Bonus: 3600
             Chances:
               - Type: Normal
-                Rate: 600
+                Rate: 3000
                 Material: Elunium
           - Level: 16
             Bonus: 4000
             Chances:
               - Type: Normal
-                Rate: 500
+                Rate: 2500
                 Material: Elunium
           - Level: 17
             Bonus: 4500
             Chances:
               - Type: Normal
-                Rate: 400
+                Rate: 2000
                 Material: Elunium
           - Level: 18
             Bonus: 5000
             Chances:
               - Type: Normal
-                Rate: 300
+                Rate: 1500
                 Material: Elunium
           - Level: 19
             Bonus: 5500
             Chances:
               - Type: Normal
-                Rate: 200
+                Rate: 1000
                 Material: Elunium
           - Level: 20
             Bonus: 6000
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 500
                 Material: Elunium
   - Group: Weapon
     Levels:
@@ -176,134 +176,134 @@ Body:
             Bonus: 200
             Chances:
               - Type: Normal
-                Rate: 2000
+                Rate: 10000
                 Material: Elunium
           - Level: 2
             Bonus: 400
             Chances:
               - Type: Normal
-                Rate: 1900
+                Rate: 9500
                 Material: Elunium
           - Level: 3
             Bonus: 600
             Chances:
               - Type: Normal
-                Rate: 1800
+                Rate: 9000
                 Material: Elunium
           - Level: 4
             Bonus: 800
             Chances:
               - Type: Normal
-                Rate: 1700
+                Rate: 8500
                 Material: Elunium
           - Level: 5
             Bonus: 1000
             Chances:
               - Type: Normal
-                Rate: 1600
+                Rate: 8000
                 Material: Elunium
           - Level: 6
             Bonus: 1200
             Chances:
               - Type: Normal
-                Rate: 1500
+                Rate: 7500
                 Material: Elunium
           - Level: 7
             Bonus: 1400
             Chances:
               - Type: Normal
-                Rate: 1400
+                Rate: 7000
                 Material: Elunium
           - Level: 8
             Bonus: 1600
             RandomBonus: 300
             Chances:
               - Type: Normal
-                Rate: 1300
+                Rate: 6500
                 Material: Elunium
           - Level: 9
             Bonus: 1800
             RandomBonus: 600
             Chances:
               - Type: Normal
-                Rate: 1200
+                Rate: 6000
                 Material: Elunium
           - Level: 10
             Bonus: 2000
             RandomBonus: 900
             Chances:
               - Type: Normal
-                Rate: 1100
+                Rate: 5500
                 Material: Elunium
           - Level: 11
             Bonus: 2200
             RandomBonus: 1200
             Chances:
               - Type: Normal
-                Rate: 1000
+                Rate: 5000
                 Material: Elunium
           - Level: 12
             Bonus: 2400
             RandomBonus: 1500
             Chances:
               - Type: Normal
-                Rate: 900
+                Rate: 4500
                 Material: Elunium
           - Level: 13
             Bonus: 2600
             RandomBonus: 1800
             Chances:
               - Type: Normal
-                Rate: 800
+                Rate: 4000
                 Material: Elunium
           - Level: 14
             Bonus: 2800
             RandomBonus: 2100
             Chances:
               - Type: Normal
-                Rate: 700
+                Rate: 3500
                 Material: Elunium
           - Level: 15
             Bonus: 3000
             RandomBonus: 2400
             Chances:
               - Type: Normal
-                Rate: 600
+                Rate: 3000
                 Material: Elunium
           - Level: 16
             Bonus: 4800
             RandomBonus: 2700
             Chances:
               - Type: Normal
-                Rate: 500
+                Rate: 2500
                 Material: Elunium
           - Level: 17
             Bonus: 5100
             RandomBonus: 3000
             Chances:
               - Type: Normal
-                Rate: 400
+                Rate: 2000
                 Material: Elunium
           - Level: 18
             Bonus: 5400
             RandomBonus: 3300
             Chances:
               - Type: Normal
-                Rate: 300
+                Rate: 1500
                 Material: Elunium
           - Level: 19
             Bonus: 5700
             RandomBonus: 3600
             Chances:
               - Type: Normal
-                Rate: 200
+                Rate: 1000
                 Material: Elunium
           - Level: 20
             Bonus: 6000
             RandomBonus: 3900
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 500
                 Material: Elunium
       - Level: 2
         RefineLevels:
@@ -311,135 +311,135 @@ Body:
             Bonus: 300
             Chances:
               - Type: Normal
-                Rate: 2000
+                Rate: 10000
                 Material: Elunium
           - Level: 2
             Bonus: 600
             Chances:
               - Type: Normal
-                Rate: 1900
+                Rate: 9500
                 Material: Elunium
           - Level: 3
             Bonus: 900
             Chances:
               - Type: Normal
-                Rate: 1800
+                Rate: 9000
                 Material: Elunium
           - Level: 4
             Bonus: 1200
             Chances:
               - Type: Normal
-                Rate: 1700
+                Rate: 8500
                 Material: Elunium
           - Level: 5
             Bonus: 1500
             Chances:
               - Type: Normal
-                Rate: 1600
+                Rate: 8000
                 Material: Elunium
           - Level: 6
             Bonus: 1800
             Chances:
               - Type: Normal
-                Rate: 1500
+                Rate: 7500
                 Material: Elunium
           - Level: 7
             Bonus: 2100
             RandomBonus: 500
             Chances:
               - Type: Normal
-                Rate: 1400
+                Rate: 7000
                 Material: Elunium
           - Level: 8
             Bonus: 2400
             RandomBonus: 1000
             Chances:
               - Type: Normal
-                Rate: 1300
+                Rate: 6500
                 Material: Elunium
           - Level: 9
             Bonus: 2700
             RandomBonus: 1500
             Chances:
               - Type: Normal
-                Rate: 1200
+                Rate: 6000
                 Material: Elunium
           - Level: 10
             Bonus: 3000
             RandomBonus: 2000
             Chances:
               - Type: Normal
-                Rate: 1100
+                Rate: 5500
                 Material: Elunium
           - Level: 11
             Bonus: 3300
             RandomBonus: 2500
             Chances:
               - Type: Normal
-                Rate: 1000
+                Rate: 5000
                 Material: Elunium
           - Level: 12
             Bonus: 3600
             RandomBonus: 3000
             Chances:
               - Type: Normal
-                Rate: 900
+                Rate: 4500
                 Material: Elunium
           - Level: 13
             Bonus: 3900
             RandomBonus: 3500
             Chances:
               - Type: Normal
-                Rate: 800
+                Rate: 4000
                 Material: Elunium
           - Level: 14
             Bonus: 4200
             RandomBonus: 4000
             Chances:
               - Type: Normal
-                Rate: 700
+                Rate: 3500
                 Material: Elunium
           - Level: 15
             Bonus: 4500
             RandomBonus: 4500
             Chances:
               - Type: Normal
-                Rate: 600
+                Rate: 3000
                 Material: Elunium
           - Level: 16
             Bonus: 8000
             RandomBonus: 5000
             Chances:
               - Type: Normal
-                Rate: 500
+                Rate: 2500
                 Material: Elunium
           - Level: 17
             Bonus: 8500
             RandomBonus: 5500
             Chances:
               - Type: Normal
-                Rate: 400
+                Rate: 2000
                 Material: Elunium
           - Level: 18
             Bonus: 9000
             RandomBonus: 6000
             Chances:
               - Type: Normal
-                Rate: 300
+                Rate: 1500
                 Material: Elunium
           - Level: 19
             Bonus: 9500
             RandomBonus: 6500
             Chances:
               - Type: Normal
-                Rate: 200
+                Rate: 1000
                 Material: Elunium
           - Level: 20
             Bonus: 10000
             RandomBonus: 7000
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 500
                 Material: Elunium
       - Level: 3
         RefineLevels:
@@ -447,136 +447,136 @@ Body:
             Bonus: 500
             Chances:
               - Type: Normal
-                Rate: 2000
+                Rate: 10000
                 Material: Elunium
           - Level: 2
             Bonus: 1000
             Chances:
               - Type: Normal
-                Rate: 1900
+                Rate: 9500
                 Material: Elunium
           - Level: 3
             Bonus: 1500
             Chances:
               - Type: Normal
-                Rate: 1800
+                Rate: 9000
                 Material: Elunium
           - Level: 4
             Bonus: 2000
             Chances:
               - Type: Normal
-                Rate: 1700
+                Rate: 8500
                 Material: Elunium
           - Level: 5
             Bonus: 2500
             Chances:
               - Type: Normal
-                Rate: 1600
+                Rate: 8000
                 Material: Elunium
           - Level: 6
             Bonus: 3000
             RandomBonus: 800
             Chances:
               - Type: Normal
-                Rate: 1500
+                Rate: 7500
                 Material: Elunium
           - Level: 7
             Bonus: 3500
             RandomBonus: 1600
             Chances:
               - Type: Normal
-                Rate: 1400
+                Rate: 7000
                 Material: Elunium
           - Level: 8
             Bonus: 4000
             RandomBonus: 2400
             Chances:
               - Type: Normal
-                Rate: 1300
+                Rate: 6500
                 Material: Elunium
           - Level: 9
             Bonus: 4500
             RandomBonus: 3200
             Chances:
               - Type: Normal
-                Rate: 1200
+                Rate: 6000
                 Material: Elunium
           - Level: 10
             Bonus: 5000
             RandomBonus: 4000
             Chances:
               - Type: Normal
-                Rate: 1100
+                Rate: 5500
                 Material: Elunium
           - Level: 11
             Bonus: 5500
             RandomBonus: 4800
             Chances:
               - Type: Normal
-                Rate: 1000
+                Rate: 5000
                 Material: Elunium
           - Level: 12
             Bonus: 6000
             RandomBonus: 5600
             Chances:
               - Type: Normal
-                Rate: 900
+                Rate: 4500
                 Material: Elunium
           - Level: 13
             Bonus: 6500
             RandomBonus: 6400
             Chances:
               - Type: Normal
-                Rate: 800
+                Rate: 4000
                 Material: Elunium
           - Level: 14
             Bonus: 7000
             RandomBonus: 7200
             Chances:
               - Type: Normal
-                Rate: 700
+                Rate: 3500
                 Material: Elunium
           - Level: 15
             Bonus: 7500
             RandomBonus: 8000
             Chances:
               - Type: Normal
-                Rate: 600
+                Rate: 3000
                 Material: Elunium
           - Level: 16
             Bonus: 11200
             RandomBonus: 8800
             Chances:
               - Type: Normal
-                Rate: 500
+                Rate: 2500
                 Material: Elunium
           - Level: 17
             Bonus: 11900
             RandomBonus: 9600
             Chances:
               - Type: Normal
-                Rate: 400
+                Rate: 2000
                 Material: Elunium
           - Level: 18
             Bonus: 12600
             RandomBonus: 10400
             Chances:
               - Type: Normal
-                Rate: 300
+                Rate: 1500
                 Material: Elunium
           - Level: 19
             Bonus: 13300
             RandomBonus: 11200
             Chances:
               - Type: Normal
-                Rate: 200
+                Rate: 1000
                 Material: Elunium
           - Level: 20
             Bonus: 14000
             RandomBonus: 12000
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 500
                 Material: Elunium
       - Level: 4
         RefineLevels:
@@ -584,137 +584,137 @@ Body:
             Bonus: 700
             Chances:
               - Type: Normal
-                Rate: 2000
+                Rate: 10000
                 Material: Elunium
           - Level: 2
             Bonus: 1400
             Chances:
               - Type: Normal
-                Rate: 1900
+                Rate: 9500
                 Material: Elunium
           - Level: 3
             Bonus: 2100
             Chances:
               - Type: Normal
-                Rate: 1800
+                Rate: 9000
                 Material: Elunium
           - Level: 4
             Bonus: 2800
             Chances:
               - Type: Normal
-                Rate: 1700
+                Rate: 8500
                 Material: Elunium
           - Level: 5
             Bonus: 3500
             RandomBonus: 1400
             Chances:
               - Type: Normal
-                Rate: 1600
+                Rate: 8000
                 Material: Elunium
           - Level: 6
             Bonus: 4200
             RandomBonus: 2800
             Chances:
               - Type: Normal
-                Rate: 1500
+                Rate: 7500
                 Material: Elunium
           - Level: 7
             Bonus: 4900
             RandomBonus: 4200
             Chances:
               - Type: Normal
-                Rate: 1400
+                Rate: 7000
                 Material: Elunium
           - Level: 8
             Bonus: 5600
             RandomBonus: 5600
             Chances:
               - Type: Normal
-                Rate: 1300
+                Rate: 6500
                 Material: Elunium
           - Level: 9
             Bonus: 6300
             RandomBonus: 7000
             Chances:
               - Type: Normal
-                Rate: 1200
+                Rate: 6000
                 Material: Elunium
           - Level: 10
             Bonus: 7000
             RandomBonus: 8400
             Chances:
               - Type: Normal
-                Rate: 1100
+                Rate: 5500
                 Material: Elunium
           - Level: 11
             Bonus: 7700
             RandomBonus: 9800
             Chances:
               - Type: Normal
-                Rate: 1000
+                Rate: 5000
                 Material: Elunium
           - Level: 12
             Bonus: 8400
             RandomBonus: 11200
             Chances:
               - Type: Normal
-                Rate: 900
+                Rate: 4500
                 Material: Elunium
           - Level: 13
             Bonus: 9100
             RandomBonus: 12600
             Chances:
               - Type: Normal
-                Rate: 800
+                Rate: 4000
                 Material: Elunium
           - Level: 14
             Bonus: 9800
             RandomBonus: 14000
             Chances:
               - Type: Normal
-                Rate: 700
+                Rate: 3500
                 Material: Elunium
           - Level: 15
             Bonus: 10500
             RandomBonus: 15400
             Chances:
               - Type: Normal
-                Rate: 600
+                Rate: 3000
                 Material: Elunium
           - Level: 16
             Bonus: 16000
             RandomBonus: 16800
             Chances:
               - Type: Normal
-                Rate: 500
+                Rate: 2500
                 Material: Elunium
           - Level: 17
             Bonus: 17000
             RandomBonus: 18200
             Chances:
               - Type: Normal
-                Rate: 400
+                Rate: 2000
                 Material: Elunium
           - Level: 18
             Bonus: 18000
             RandomBonus: 19600
             Chances:
               - Type: Normal
-                Rate: 300
+                Rate: 1500
                 Material: Elunium
           - Level: 19
             Bonus: 19000
             RandomBonus: 21000
             Chances:
               - Type: Normal
-                Rate: 200
+                Rate: 1000
                 Material: Elunium
           - Level: 20
             Bonus: 20000
             RandomBonus: 22400
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 500
                 Material: Elunium
   - Group: Shadow_Armor
     Levels:
@@ -723,102 +723,102 @@ Body:
           - Level: 1
             Chances:
               - Type: Normal
-                Rate: 2000
+                Rate: 10000
                 Material: Elunium
           - Level: 2
             Chances:
               - Type: Normal
-                Rate: 1900
+                Rate: 9500
                 Material: Elunium
           - Level: 3
             Chances:
               - Type: Normal
-                Rate: 1800
+                Rate: 9000
                 Material: Elunium
           - Level: 4
             Chances:
               - Type: Normal
-                Rate: 1700
+                Rate: 8500
                 Material: Elunium
           - Level: 5
             Chances:
               - Type: Normal
-                Rate: 1600
+                Rate: 8000
                 Material: Elunium
           - Level: 6
             Chances:
               - Type: Normal
-                Rate: 1500
+                Rate: 7500
                 Material: Elunium
           - Level: 7
             Chances:
               - Type: Normal
-                Rate: 1400
+                Rate: 7000
                 Material: Elunium
           - Level: 8
             Chances:
               - Type: Normal
-                Rate: 1300
+                Rate: 6500
                 Material: Elunium
           - Level: 9
             Chances:
               - Type: Normal
-                Rate: 1200
+                Rate: 6000
                 Material: Elunium
           - Level: 10
             Chances:
               - Type: Normal
-                Rate: 1100
+                Rate: 5500
                 Material: Elunium
           - Level: 11
             Chances:
               - Type: Normal
-                Rate: 1000
+                Rate: 5000
                 Material: Elunium
           - Level: 12
             Chances:
               - Type: Normal
-                Rate: 900
+                Rate: 4500
                 Material: Elunium
           - Level: 13
             Chances:
               - Type: Normal
-                Rate: 800
+                Rate: 4000
                 Material: Elunium
           - Level: 14
             Chances:
               - Type: Normal
-                Rate: 700
+                Rate: 3500
                 Material: Elunium
           - Level: 15
             Chances:
               - Type: Normal
-                Rate: 600
+                Rate: 3000
                 Material: Elunium
           - Level: 16
             Chances:
               - Type: Normal
-                Rate: 500
+                Rate: 2500
                 Material: Elunium
           - Level: 17
             Chances:
               - Type: Normal
-                Rate: 400
+                Rate: 2000
                 Material: Elunium
           - Level: 18
             Chances:
               - Type: Normal
-                Rate: 300
+                Rate: 1500
                 Material: Elunium
           - Level: 19
             Chances:
               - Type: Normal
-                Rate: 200
+                Rate: 1000
                 Material: Elunium
           - Level: 20
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 500
                 Material: Elunium
   - Group: Shadow_Weapon
     Levels:
@@ -827,100 +827,100 @@ Body:
           - Level: 1
             Chances:
               - Type: Normal
-                Rate: 2000
+                Rate: 10000
                 Material: Elunium
           - Level: 2
             Chances:
               - Type: Normal
-                Rate: 1900
+                Rate: 9500
                 Material: Elunium
           - Level: 3
             Chances:
               - Type: Normal
-                Rate: 1800
+                Rate: 9000
                 Material: Elunium
           - Level: 4
             Chances:
               - Type: Normal
-                Rate: 1700
+                Rate: 8500
                 Material: Elunium
           - Level: 5
             Chances:
               - Type: Normal
-                Rate: 1600
+                Rate: 8000
                 Material: Elunium
           - Level: 6
             Chances:
               - Type: Normal
-                Rate: 1500
+                Rate: 7500
                 Material: Elunium
           - Level: 7
             Chances:
               - Type: Normal
-                Rate: 1400
+                Rate: 7000
                 Material: Elunium
           - Level: 8
             Chances:
               - Type: Normal
-                Rate: 1300
+                Rate: 6500
                 Material: Elunium
           - Level: 9
             Chances:
               - Type: Normal
-                Rate: 1200
+                Rate: 6000
                 Material: Elunium
           - Level: 10
             Chances:
               - Type: Normal
-                Rate: 1100
+                Rate: 5500
                 Material: Elunium
           - Level: 11
             Chances:
               - Type: Normal
-                Rate: 1000
+                Rate: 5000
                 Material: Elunium
           - Level: 12
             Chances:
               - Type: Normal
-                Rate: 900
+                Rate: 4500
                 Material: Elunium
           - Level: 13
             Chances:
               - Type: Normal
-                Rate: 800
+                Rate: 4000
                 Material: Elunium
           - Level: 14
             Chances:
               - Type: Normal
-                Rate: 700
+                Rate: 3500
                 Material: Elunium
           - Level: 15
             Chances:
               - Type: Normal
-                Rate: 600
+                Rate: 3000
                 Material: Elunium
           - Level: 16
             Chances:
               - Type: Normal
-                Rate: 500
+                Rate: 2500
                 Material: Elunium
           - Level: 17
             Chances:
               - Type: Normal
-                Rate: 400
+                Rate: 2000
                 Material: Elunium
           - Level: 18
             Chances:
               - Type: Normal
-                Rate: 300
+                Rate: 1500
                 Material: Elunium
           - Level: 19
             Chances:
               - Type: Normal
-                Rate: 200
+                Rate: 1000
                 Material: Elunium
           - Level: 20
             Chances:
               - Type: Normal
-                Rate: 100
+                Rate: 500
                 Material: Elunium

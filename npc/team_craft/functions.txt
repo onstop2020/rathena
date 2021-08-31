@@ -1,4 +1,8 @@
 function	script	JumpStone	{
+	if(strcharinfo(3) == "guild_vs1"){
+		message strcharinfo(0),"ไม่สามารถใช้ได้ใน Map นี้";
+		end;
+	}
 	if (js_cooldown > gettimetick(2)){
 		message strcharinfo(0),"โปรดรอ " + (js_cooldown - gettimetick(2)) + " วินาที";
 		end;
@@ -111,4 +115,19 @@ function	script	Hint	{
 		mes "[Legendary]:" + $legendary_craft[rand(0,getarraysize($legendary_craft))];
 	}
 	close;
+}
+
+function	script	GetTierWording	{
+	.@tier = getarg(0,0);
+	if(.@tier == 1)
+	return "[Normal]";
+	else if(.@tier == 2)
+	return "[Advance]";
+	else if(.@tier == 3)
+	return "[Rare]";
+	else if(.@tier == 4)
+	return "[Mystical]";
+	else if(.@tier == 5)
+	return "[Legendary]";
+	return "[Error]";
 }

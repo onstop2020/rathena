@@ -13,7 +13,7 @@ prontera,163,175,4	script	ซื้อ Status Point	651,{
 	close;
 	
 OnInit:
-	.price = 1000;
+	.price = 100;
 	waitingroom "ซื้อ Status Point",0;
 	end;
 }
