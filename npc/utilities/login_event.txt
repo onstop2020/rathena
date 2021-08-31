@@ -2,7 +2,7 @@
 	end;
 	
 OnPCLoginEvent:
-	bonus_script_clear 1;
+	//bonus_script_clear 1;
 	
 	if(countitem(40042) <= 0)
 	getitem 40042,1;
