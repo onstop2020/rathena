@@ -8,7 +8,7 @@ OnPCDieEvent:
 		
 		for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
 			if(getequipisequiped(.@indices[.@i])){
-				.@refineCount = getequiprefinerycnt(.@indices[.@i]);
+				.@refineCount += getequiprefinerycnt(.@indices[.@i]);
 				.@equipped = 1;
 			}
 		}
