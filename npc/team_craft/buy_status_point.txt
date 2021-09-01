@@ -1,4 +1,5 @@
-prontera,163,175,4	script	ซื้อ Status Point	651,{
+prontera,163,175,4	script	ซื้อ Status, Skill	651,{
+	menu "Status Point",-,"Skill Point",L_SkillPoint;
 	mes callfunc("F_InsertComma",.price) + "z ต่อ 1 Status Point";
 	mes "ระบุ 0 เพื่อยกเลิก";
 	next;
@@ -12,8 +13,23 @@ prontera,163,175,4	script	ซื้อ Status Point	651,{
 	StatusPoint += .@i;
 	close;
 	
+	L_SkillPoint:
+	mes callfunc("F_InsertComma",.price_sk) + "z ต่อ 1 Skill Point";
+	mes "ระบุ 0 เพื่อยกเลิก";
+	next;
+	input .@i;
+	if((.@i <= 0) || (Zeny < (.@i * .price_sk)))
+	{
+		mes "ยกเลิกเรียบร้อยแล้ว";
+		close;
+	}
+	Zeny -= (.@i * .price_sk);
+	SkillPoint += .@i;
+	close;
+	
 OnInit:
 	.price = 100;
-	waitingroom "ซื้อ Status Point",0;
+	.price_sk = 10000;
+	waitingroom "ซื้อ Status, Skill",0;
 	end;
 }
