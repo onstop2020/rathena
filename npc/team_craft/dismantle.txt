@@ -12,49 +12,30 @@ prontera,145,199,4	script	ย่อยของ	982,{
 
 OnSellItem:
 	for (.@i = 0; .@i < getarraysize(@sold_nameid); .@i++){
-		.@isFound = 0;
-		for (.@j = 0; .@j < $normal_dust_ids_size; .@j++){
-			if (@sold_nameid[.@i] >= 10000000 && @sold_nameid[.@i] <= 10010000){
-				delitem @sold_nameid[.@i], @sold_quantity[.@i];
-				getitem $normal_dust_ids[rand(0,$normal_dust_ids_size - 1)],1;
-				break;
-			}
+		if (@sold_nameid[.@i] >= 10000000 && @sold_nameid[.@i] <= 10010000){
+			delitem @sold_nameid[.@i], @sold_quantity[.@i];
+			getitem $normal_dust_ids[rand(0,$normal_dust_ids_size - 1)],1;
+			continue;
 		}
-		if(.@isFound)
-		continue;
-		for (.@j = 0; .@j < $advance_dust_ids_size; .@j++){
-			if (@sold_nameid[.@i] >= 10010001 && @sold_nameid[.@i] <= 10020000){
-				delitem @sold_nameid[.@i], @sold_quantity[.@i];
-				getitem $advance_dust_ids[rand(0,$advance_dust_ids_size - 1)],1;
-				break;
-			}
+		if (@sold_nameid[.@i] >= 10010001 && @sold_nameid[.@i] <= 10020000){
+			delitem @sold_nameid[.@i], @sold_quantity[.@i];
+			getitem $advance_dust_ids[rand(0,$advance_dust_ids_size - 1)],1;
+			continue;
 		}
-		if(.@isFound)
-		continue;
-		for (.@j = 0; .@j < $rare_dust_ids_size; .@j++){
-			if (@sold_nameid[.@i] >= 10020001 && @sold_nameid[.@i] <= 10030000){
-				delitem @sold_nameid[.@i], @sold_quantity[.@i];
-				getitem $rare_dust_ids[rand(0,$rare_dust_ids_size - 1)],1;
-				break;
-			}
+		if (@sold_nameid[.@i] >= 10020001 && @sold_nameid[.@i] <= 10030000){
+			delitem @sold_nameid[.@i], @sold_quantity[.@i];
+			getitem $rare_dust_ids[rand(0,$rare_dust_ids_size - 1)],1;
+			continue;
 		}
-		if(.@isFound)
-		continue;
-		for (.@j = 0; .@j < $mystical_dust_ids_size; .@j++){
-			if (@sold_nameid[.@i] >= 10030001 && @sold_nameid[.@i] <= 10040000){
-				delitem @sold_nameid[.@i], @sold_quantity[.@i];
-				getitem $mystical_dust_ids[rand(0,$mystical_dust_ids_size - 1)],1;
-				break;
-			}
+		if (@sold_nameid[.@i] >= 10030001 && @sold_nameid[.@i] <= 10040000){
+			delitem @sold_nameid[.@i], @sold_quantity[.@i];
+			getitem $mystical_dust_ids[rand(0,$mystical_dust_ids_size - 1)],1;
+			continue;
 		}
-		if(.@isFound)
-		continue;
-		for (.@j = 0; .@j < $legendary_dust_ids_size; .@j++){
-			if (@sold_nameid[.@i] >= 10040001 && @sold_nameid[.@i] <= 10050000){
-				delitem @sold_nameid[.@i], @sold_quantity[.@i];
-				getitem $legendary_dust_ids[rand(0,$legendary_dust_ids_size - 1)],1;
-				break;
-			}
+		if (@sold_nameid[.@i] >= 10040001 && @sold_nameid[.@i] <= 10050000){
+			delitem @sold_nameid[.@i], @sold_quantity[.@i];
+			getitem $legendary_dust_ids[rand(0,$legendary_dust_ids_size - 1)],1;
+			continue;
 		}
 	}
 	deletearray @sold_quantity, getarraysize(@sold_quantity);
