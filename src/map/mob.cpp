@@ -2896,50 +2896,26 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			}
 
 			// TEAM CRAFT - RO [Start]
-			// Dust
-			drop_rate = 5000;
+			// Custom Equipment
+			drop_rate = 500; // 5%
 			drop_modifier = 100;
-			drop_rate = mob_getdroprate(src, md->db, 5000, drop_modifier);
+			drop_rate = mob_getdroprate(src, md->db, 500, drop_modifier);
 
 			// attempt to drop the item
 			if (rnd() % 10000 < drop_rate)
 			{
 				struct s_mob_drop mobdrop;
 				// Check monster level here
-				if(md->db->lv<=35)
-					dropid = rnd_value(40017,40021);
-				else if (md->db->lv >35&&md->db->lv <= 70)
-					dropid = rnd_value(40022, 40026);
-				else if (md->db->lv > 70 && md->db->lv <= 105)
-					dropid = rnd_value(40027, 40031);
-				else if (md->db->lv > 105 && md->db->lv <= 140)
-					dropid = rnd_value(40032, 40036);
-				else if (md->db->lv > 140)
-					dropid = rnd_value(40037, 40041);
-				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
-				mobdrop.nameid = dropid;
-				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
-			}
-			// Blueprint
-			drop_rate = 1000;
-			drop_modifier = 100;
-			drop_rate = mob_getdroprate(src, md->db, 1000, drop_modifier);
-
-			// attempt to drop the item
-			if (rnd() % 10000 < drop_rate)
-			{
-				struct s_mob_drop mobdrop;
-				// Check monster level here
-				if (md->db->lv <= 35)
-					dropid = 40045;
-				else if (md->db->lv > 35 && md->db->lv <= 70)
-					dropid = 40046;
-				else if (md->db->lv > 70 && md->db->lv <= 105)
-					dropid = 40047;
-				else if (md->db->lv > 105 && md->db->lv <= 140)
-					dropid = 40048;
-				else if (md->db->lv > 140)
-					dropid = 40049;
+				if (md->db->mexp > 0)
+					dropid = rnd_value(10040001, 10050000);
+				else if (md->db->lv <= 35)
+					dropid = rnd_value(10000000, 10010000);
+				else if (md->db->lv <= 99)
+					dropid = rnd_value(10010001, 10020000);
+				else if (md->db->lv < 150)
+					dropid = rnd_value(10020001, 10030000);
+				else if (md->db->lv >= 150)
+					dropid = rnd_value(10030001, 10040000);
 				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
 				mobdrop.nameid = dropid;
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
