@@ -1,11 +1,11 @@
 -	shop	dismantleshop	-1,501:1
 
-prontera,145,199,4	script	ย่อยของ	982,{
-	mes "[Normal] ได้ 1 Dust";
-	mes "[Advance] ได้ 1 Dust";
-	mes "[Rare] ได้ 1 Dust";
-	mes "[Mystical] ได้ 1 Dust";
-	mes "[Legendary] ได้ 1 Dust";
+prontera,152,199,4	script	ย่อยของ	982,{
+	mes "[Normal] ได้ 1z";
+	mes "[Advance] ได้ 2z";
+	mes "[Rare] ได้ 3z";
+	mes "[Mystical] ได้ 4z";
+	mes "[Legendary] ได้ 5z";
 	callshop "dismantleshop",2;
 	npcshopattach "dismantleshop";
 	end;
@@ -14,27 +14,27 @@ OnSellItem:
 	for (.@i = 0; .@i < getarraysize(@sold_nameid); .@i++){
 		if (@sold_nameid[.@i] >= 10000000 && @sold_nameid[.@i] <= 10010000){
 			delitem @sold_nameid[.@i], @sold_quantity[.@i];
-			getitem $normal_dust_ids[rand(0,$normal_dust_ids_size - 1)],1;
+			Zeny += @sold_quantity[.@i] * 1;
 			continue;
 		}
 		if (@sold_nameid[.@i] >= 10010001 && @sold_nameid[.@i] <= 10020000){
 			delitem @sold_nameid[.@i], @sold_quantity[.@i];
-			getitem $advance_dust_ids[rand(0,$advance_dust_ids_size - 1)],1;
+			Zeny += @sold_quantity[.@i] * 2;
 			continue;
 		}
 		if (@sold_nameid[.@i] >= 10020001 && @sold_nameid[.@i] <= 10030000){
 			delitem @sold_nameid[.@i], @sold_quantity[.@i];
-			getitem $rare_dust_ids[rand(0,$rare_dust_ids_size - 1)],1;
+			Zeny += @sold_quantity[.@i] * 3;
 			continue;
 		}
 		if (@sold_nameid[.@i] >= 10030001 && @sold_nameid[.@i] <= 10040000){
 			delitem @sold_nameid[.@i], @sold_quantity[.@i];
-			getitem $mystical_dust_ids[rand(0,$mystical_dust_ids_size - 1)],1;
+			Zeny += @sold_quantity[.@i] * 4;
 			continue;
 		}
 		if (@sold_nameid[.@i] >= 10040001 && @sold_nameid[.@i] <= 10050000){
 			delitem @sold_nameid[.@i], @sold_quantity[.@i];
-			getitem $legendary_dust_ids[rand(0,$legendary_dust_ids_size - 1)],1;
+			Zeny += @sold_quantity[.@i] * 5;
 			continue;
 		}
 	}
@@ -43,6 +43,6 @@ OnSellItem:
 	end;
 	
 OnInit:
-	waitingroom "ย่อยของ",0;
+	waitingroom "ขายของที่ไม่ใช้",0;
 	end;
 }
