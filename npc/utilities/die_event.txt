@@ -2,37 +2,7 @@
 	end;
 	
 OnPCDieEvent:
-	if(strcharinfo(3) != "prontera" && killerrid >= 2000000){
-		// Check refine count
-		setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
-		
-		for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
-			if(getequipisequiped(.@indices[.@i])){
-				.@refineCount += getequiprefinerycnt(.@indices[.@i]);
-				.@equipped = 1;
-			}
-		}
-
-		if(.@equipped){
-			if(rand(0,200) <= .@refineCount){
-				message strcharinfo(0),"คุณรอดจากการตาย!";
-				specialeffect2 939;
-				atcommand "@refine 0 -20";
-				end;
-			}
-		}
-		
-		if(countitem(40042))
-		delitem 40042,countitem(40042);
-		if(countitem(40043))
-		delitem 40043,countitem(40043);
-		if(countitem(40044))
-		delitem 40044,countitem(40044);
-		nude;
-		atcommand "@dropall";
-		getitem 40042,1;
-		getitem 40043,1;
-		getitem 40044,1;
+	if(strcharinfo(3) != "prontera"){
 		.@maxDecreaseLevel = BaseLevel/10;
 		if(.@maxDecreaseLevel <= 1)
 		.@maxDecreaseLevel = 1;
