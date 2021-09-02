@@ -1,20 +1,49 @@
-prontera,155,164,5	script	Ranking	837,{
-	menu "ฆาตกรที่โหดที่สุด",L_Killer,"Party ที่โหดที่สุด",L_Party;
+prontera,155,164,5	script	ล่าคน	837,{
+	menu "ล่าฆาตกร",L_MostWantedHunt,"ล่าคนเวลสูงสุด",L_HighestLevelHunt;
 	
-	L_Killer:
-	query_sql("SELECT `char_id`,`value` FROM `char_reg_num` WHERE `key` = 'killCount' ORDER BY `value` DESC LIMIT 10",.@charId,.@killCount);
+	L_MostWantedHunt:
+	query_sql("SELECT `char_id`,`value` FROM `char_reg_num` WHERE `key` = 'killCount' ORDER BY `value` DESC LIMIT 3",.@charId,.@killCount);
 	if(getarraysize(.@charId) <= 0)
 	mes "ไม่พบข้อมูล";
 	else{
 		mes "ฆาตกรที่โหดที่สุด";
 		for(.@i = 0; .@i < getarraysize(.@charId); .@i++){
-			query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@i] + "'",.@rankName$);	
-			mes (.@i + 1) + ".) " + .@rankName$ + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
+			query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@i] + "'",.@name$);
+			mes (.@i + 1) + ".) " + .@name$ + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
+			.@menu$ += .@name$ + ":";
 		}
+		.@t = select(.@menu$);
+		query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@t - 1] + "'",.@name$);
+		atcommand "@goto " + .@name$;
+		getmapxy(.@map$,.@x,.@y);
+		getfreecell(strcharinfo(3),.@rand_x,.@rand_y,.@x,.@y,5,5);
+		warp strcharinfo(3),.@rand_x,.@rand_y;
+		close2;
+		end;
 	}
 	close;
 	
-	L_Party:
+	L_HighestLevelHunt:
+	query_sql("SELECT `name`,`base_level` FROM `char` ORDER BY `base_level` DESC LIMIT 3",.@name$,.@blvl);
+	if(getarraysize(.@name$) <= 0)
+	mes "ไม่พบข้อมูล";
+	else{
+		mes "ผู้เล่นที่ Level มากที่สุด";
+		for(.@i = 0; .@i < getarraysize(.@name$); .@i++){
+			mes (.@i + 1) + ".) " + .@name$[.@i] + " (Level " + .@blvl[.@i] + ")";
+			.@menu$ += .@name$[.@i] + ":";
+		}
+		.@t = select(.@menu$);
+		atcommand "@goto " + .@name$[.@t - 1];
+		getmapxy(.@map$,.@x,.@y);
+		getfreecell(strcharinfo(3),.@rand_x,.@rand_y,.@x,.@y,5,5);
+		warp strcharinfo(3),.@rand_x,.@rand_y;
+		close2;
+		end;
+	}
+	close;
+
+	/*L_Party:
 	//WHERE CustomerName LIKE 'a%'
 	query_sql("SELECT `varname`,`value` FROM `mapreg` WHERE `varname` LIKE '$pkc_%' ORDER BY `value` DESC LIMIT 10",.@partyName$,.@killCount);
 	if(getarraysize(.@partyName$) <= 0)
@@ -26,10 +55,10 @@ prontera,155,164,5	script	Ranking	837,{
 			mes (.@i + 1) + ".) " + substr(.@partyName$, 5, .@length-1) + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
 		}
 	}
-	close;
-	
-	OnInit:
-	waitingroom "Ranking",0;
+	close;*/
+
+OnInit:
+	waitingroom "ล่าคน",0;
 	end;
 }
 

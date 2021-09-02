@@ -14,20 +14,27 @@ OnPCDieEvent:
 		statusup2 bInt,-rand(6);
 		statusup2 bDex,-rand(6);
 		statusup2 bLuk,-rand(6);
-		$a_deadman$ = strcharinfo(0);
+		.a_deadman$ = strcharinfo(0);
 		
-		//if(isloggedin(killerrid)){
-		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
+		.Zeny = Zeny;
+		Zeny -= .Zeny;
+		
+		if(isloggedin(killerrid)){
+			//if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
 			attachrid(killerrid);
 			
 			killCount++;
+			
+			Zeny += .Zeny;
+			
 			dispbottom "Kill Count: " + callfunc("F_InsertComma",killCount);
+			
 			if(getcharid(1) > 0){
 				set getd("$pkc_" + getpartyname(getcharid(1))),getd("$pkc_" + getpartyname(getcharid(1))) + 1;
 				dispbottom "Party Kill Count: " + callfunc("F_InsertComma",getd("$pkc_" + getpartyname(getcharid(1))));
 			}
 			
-			announce strcharinfo(0) + " ฆ่า " + $a_deadman$ + "!",bc_all,0xEC1500;
+			announce strcharinfo(0) + " ฆ่า " + .a_deadman$ + " และขโมย " + callfunc("F_InsertComma",.Zeny) + "z ไปด้วย!",bc_all,0xEC1500;
 			
 			detachrid;
 		}
