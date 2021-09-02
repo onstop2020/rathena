@@ -20,7 +20,8 @@
 	end;	
 
 	repairall;
-
+	identifyall;
+	
 	//sc_start SC_INCREASEAGI,600000,10;
 	//sc_start SC_BLESSING,600000,10;
 	percentheal 100,100;
@@ -29,7 +30,7 @@
 	@HD = gettimetick(2) + .@Delay;
 	end;
 	
-	OnInit:
+OnInit:
 	waitingroom "¿×é¹¿Ù HP & SP",0;
 	end;
 }
