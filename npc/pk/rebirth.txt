@@ -1,0 +1,19 @@
+prontera,163,175,4	script	จุติ	405,{
+	mes "คุณจุติไปแล้ว " + rebirth_count + "/" + callfunc("F_InsertComma",.max_rebirth) + " รอบ";
+	next;
+	menu "สอบถาม",-,"จุติ",L_Rebirth;
+	mes "การจุติ 1 ครั้ง จะได้รับผล";
+	mes "๐ All Status +5";
+	mes "๐ EXP ที่ได้รับน้อยลง 1%";
+	close;
+	
+	L_Rebirth:
+	if(BaseLevel >= 200){
+		rebirth_count++;
+		atcommand "@job 0";
+	}
+OnInit:
+	.max_rebirth = 1000;
+	waitingroom "จุติ",0;
+	end;
+}

@@ -2,19 +2,19 @@
 1@lhz,0,0	monster	--ja--	2242,30,30000,30000
 1@lhz,0,0	monster	--ja--	2243,30,30000,30000
 
-1@lhz,0,0	boss_monster	--ja--	1646,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	1650,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	2239,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	1647,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	2241,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	2238,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	2240,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	2236,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	2235,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	2237,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	1651,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	1649,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@lhz,0,0	boss_monster	--ja--	1648,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@lhz,0,0	boss_monster	--ja--	1646,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	1650,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	2239,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	1647,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	2241,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	2238,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	2240,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	2236,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	2235,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	2237,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	1651,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	1649,1,180000,180000
+1@lhz,0,0	boss_monster	--ja--	1648,1,180000,180000
 
 prontera,49,197,7	script	Wolfchev's Laboratory	1646,{
 	.@index = select(.m$);

@@ -12,7 +12,7 @@
 1@tnm3,0,0	monster	--ja--	2938,15,30000,30000
 1@tnm3,0,0	monster	--ja--	2943,15,30000,30000
 
-1@tnm3,0,0	boss_monster	--ja--	2942,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@tnm3,0,0	boss_monster	--ja--	2942,1,180000,180000
 
 prontera,103,208,5	script	Devil Tower	2942,{
 	.@index = select(.m$);

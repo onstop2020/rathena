@@ -3,7 +3,7 @@
 1@sara,0,0	monster	--ja--	2546,40,30000,30000
 1@sara,0,0	monster	--ja--	2544,40,30000,30000
 
-1@sara,0,0	boss_monster	--ja--	2542,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@sara,0,0	boss_monster	--ja--	2542,1,180000,180000
 
 prontera,227,199,1	script	Sara's Memories	2542,{
 	.@index = select(.m$);

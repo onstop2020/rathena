@@ -8,10 +8,10 @@
 1@sthd,0,0	monster	--ja--	3480,5,30000,30000
 1@sthd,0,0	monster	--ja--	3485,5,30000,30000
 
-1@sthd,0,0	boss_monster	--ja--	3484,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@sthd,0,0	boss_monster	--ja--	3474,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@sthd,0,0	boss_monster	--ja--	3475,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@sthd,0,0	boss_monster	--ja--	3473,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@sthd,0,0	boss_monster	--ja--	3484,1,180000,180000
+1@sthd,0,0	boss_monster	--ja--	3474,1,180000,180000
+1@sthd,0,0	boss_monster	--ja--	3475,1,180000,180000
+1@sthd,0,0	boss_monster	--ja--	3473,1,180000,180000
 
 prontera,264,210,3	script	Sky Fortress Invasion	3484,{
 	.@index = select(.m$);

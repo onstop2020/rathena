@@ -9,8 +9,8 @@
 1@xm_d,0,0	monster	--ja--	2988,20,30000,30000
 1@xm_d,0,0	monster	--ja--	3038,20,30000,30000
 
-1@xm_d,0,0	boss_monster	--ja--	2996,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@xm_d,0,0	boss_monster	--ja--	2997,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@xm_d,0,0	boss_monster	--ja--	2996,1,180000,180000
+1@xm_d,0,0	boss_monster	--ja--	2997,1,180000,180000
 
 prontera,227,208,3	script	Horror Toy Factory	2996,{
 	.@index = select(.m$);

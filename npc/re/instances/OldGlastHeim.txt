@@ -7,7 +7,7 @@
 1@gl_k,0,0	monster	--ja--	2469,30,30000,30000
 1@gl_k,0,0	monster	--ja--	2468,30,30000,30000
 
-1@gl_k,0,0	boss_monster	--ja--	2475,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@gl_k,0,0	boss_monster	--ja--	2475,1,180000,180000
 
 2@gl_k,0,0	monster	--ja--	2468,25,30000,30000
 2@gl_k,0,0	monster	--ja--	2469,25,30000,30000
@@ -19,7 +19,7 @@
 2@gl_k,0,0	monster	--ja--	2473,25,30000,30000
 2@gl_k,0,0	monster	--ja--	2474,25,30000,30000
 
-2@gl_k,0,0	boss_monster	--ja--	2476,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@gl_k,0,0	boss_monster	--ja--	2476,1,180000,180000
 
 prontera,184,197,1	script	Old Glast Heim	2476,{
 	.@index = select(.m$);

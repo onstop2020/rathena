@@ -5,7 +5,7 @@
 1@cata,0,0	monster	--ja--	1292,25,30000,30000
 1@cata,0,0	monster	--ja--	1867,25,30000,30000
 
-2@cata,0,0	boss_monster	--ja--	1929,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@cata,0,0	boss_monster	--ja--	1929,1,180000,180000
 
 2@cata,0,0	monster	--ja--	1298,15,30000,30000
 2@cata,0,0	monster	--ja--	1291,15,30000,30000

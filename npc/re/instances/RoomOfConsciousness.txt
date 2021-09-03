@@ -3,7 +3,7 @@
 1@mir,0,0	monster	--ja--	3445,20,30000,30000
 1@mir,0,0	monster	--ja--	3448,20,30000,30000
 
-1@mir,0,0	boss_monster	--ja--	3450,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@mir,0,0	boss_monster	--ja--	3450,1,180000,180000
 
 prontera,103,199,7	script	Room of Consciousness	3450,{
 	.@index = select(.m$);
