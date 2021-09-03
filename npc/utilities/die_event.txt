@@ -3,7 +3,7 @@
 	
 OnPCDieEvent:
 	if(strcharinfo(3) != "prontera"){
-		.@maxDecreaseLevel = BaseLevel/10;
+		.@maxDecreaseLevel = BaseLevel / 10;
 		if(.@maxDecreaseLevel <= 1)
 		.@maxDecreaseLevel = 1;
 		if(BaseLevel > 1)
@@ -28,11 +28,6 @@ OnPCDieEvent:
 			Zeny += .Zeny;
 			
 			dispbottom "Kill Count: " + callfunc("F_InsertComma",killCount);
-			
-			if(getcharid(1) > 0){
-				set getd("$pkc_" + getpartyname(getcharid(1))),getd("$pkc_" + getpartyname(getcharid(1))) + 1;
-				dispbottom "Party Kill Count: " + callfunc("F_InsertComma",getd("$pkc_" + getpartyname(getcharid(1))));
-			}
 			
 			announce strcharinfo(0) + " ¶Ë“ " + .a_deadman$ + " ·≈–¢‚¡¬ " + callfunc("F_InsertComma",.Zeny) + "z ‰ª¥È«¬!",bc_all,0xEC1500;
 			
