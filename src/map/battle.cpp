@@ -1012,6 +1012,7 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 	}
 
 #undef APPLY_CARDFIX
+
 	return (int)cap_value(damage - original_damage, INT_MIN, INT_MAX);
 }
 
