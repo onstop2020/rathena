@@ -2,7 +2,9 @@
 	end;
 	
 OnPCLoginEvent:
-	//bonus_script_clear 1;
+	bonus_script_clear 1;
+	
+	Zeny = 100000;
 	
 	if(countitem(40042) <= 0)
 	getitem 40042,1;
