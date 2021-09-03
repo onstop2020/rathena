@@ -44,7 +44,7 @@
 1@lab,0,0	boss_monster	--ja--	1832,1,180000,180000
 1@lab,0,0	boss_monster	--ja--	1874,1,180000,180000
 
-prontera,161,305,3	script	Central Laboratory	1623,{
+prontera,146,327,5	script	Central Laboratory	1623,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

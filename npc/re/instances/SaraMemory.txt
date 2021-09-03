@@ -5,7 +5,7 @@
 
 1@sara,0,0	boss_monster	--ja--	2542,1,180000,180000
 
-prontera,227,199,1	script	Sara's Memories	2542,{
+prontera,134,317,5	script	Sara's Memories	2542,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

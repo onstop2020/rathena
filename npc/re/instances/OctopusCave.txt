@@ -6,7 +6,7 @@
 
 1@cash,0,0	boss_monster	--ja--	2194,1,180000,180000
 
-prontera,127,197,7	script	Octopus Cave	2194,{
+prontera,114,317,5	script	Octopus Cave	2194,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

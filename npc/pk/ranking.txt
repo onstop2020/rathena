@@ -1,4 +1,4 @@
-prontera,155,164,5	script	ล่าคน	837,{
+prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 	menu "ล่าฆาตกร",L_MostWantedHunt,"ล่าคนเวลสูงสุด",L_HighestLevelHunt;
 	
 	L_MostWantedHunt:
@@ -58,7 +58,7 @@ prontera,155,164,5	script	ล่าคน	837,{
 	close;*/
 
 OnInit:
-	waitingroom "ล่าคน",0;
+	waitingroom "ตามล่าผู้เล่นอื่น",0;
 	end;
 }
 

@@ -1,17 +1,39 @@
-prontera,163,175,4	script	จุติ	405,{
-	mes "คุณจุติไปแล้ว " + rebirth_count + "/" + callfunc("F_InsertComma",.max_rebirth) + " รอบ";
+prontera,54,352,5	script	จุติ	10377,{
+	mes "คุณจุติไปแล้ว ^A507CF" + rebirth_count + "/" + callfunc("F_InsertComma",.max_rebirth) + "^000000 รอบ";
+	if(rebirth_count){
+		mes "๐ ^A507CFAll Status +" + callfunc("F_InsertComma",(5 * rebirth_count)) + "^000000";
+		mes "๐ ^A507CFแบกของได้หนักขึ้น +" + callfunc("F_InsertComma",(100 * rebirth_count)) + "^000000";
+		mes "๐ ^CF0707EXP ที่ได้รับน้อยลง " + callfunc("F_InsertComma",(1 * rebirth_count)) + "%^000000";
+	}
 	next;
-	menu "สอบถาม",-,"จุติ",L_Rebirth;
+	menu "สอบถาม",-,"จุติ (ต้องการ Level 200)",L_Rebirth;
 	mes "การจุติ 1 ครั้ง จะได้รับผล";
-	mes "๐ All Status +5";
-	mes "๐ EXP ที่ได้รับน้อยลง 1%";
+	mes "๐ ^A507CFAll Status +5^000000";
+	mes "๐ ^A507CFแบกของได้หนักขึ้น +100^000000";
+	mes "๐ ^CF0707EXP ที่ได้รับน้อยลง 1%^000000";
 	close;
 	
 	L_Rebirth:
 	if(BaseLevel >= 200){
 		rebirth_count++;
+		if(Class != 4218)
 		atcommand "@job 0";
+		atcommand "@lvup -200";
+		atcommand "@joblvup -200";
+		atcommand "@reset";
+		StatusPoint = 48;
+		SkillPoint = 0;
+		mes "การจุติสำเร็จลุล่วง!";
+		mes "๐ ^A507CFAll Status +" + callfunc("F_InsertComma",(5 * rebirth_count)) + "^000000";
+		mes "๐ ^A507CFแบกของได้หนักขึ้น +" + callfunc("F_InsertComma",(100 * rebirth_count)) + "^000000";
+		mes "๐ ^CF0707EXP ที่ได้รับน้อยลง " + callfunc("F_InsertComma",(1 * rebirth_count)) + "%^000000";
+		close;
 	}
+	else{
+		mes "ต้องการ Level อีก " + callfunc("F_InsertComma",(200 - BaseLevel));
+		close;
+	}
+	
 OnInit:
 	.max_rebirth = 1000;
 	waitingroom "จุติ",0;

@@ -4,7 +4,7 @@
 
 1@uns,0,0	boss_monster	--ja--	3254,1,180000,180000
 
-prontera,67,210,5	script	The Last Room	3254,{
+prontera,186,327,5	script	The Last Room	3254,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

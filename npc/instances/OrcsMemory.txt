@@ -15,7 +15,7 @@
 2@orcs,0,0	monster	--ja--	1983,25,30000,30000
 2@orcs,0,0	monster	--ja--	1984,25,30000,30000
 
-prontera,184,210,3	script	Orc's Memory	1087,{
+prontera,122,327,5	script	Orc's Memory	1087,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

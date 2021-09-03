@@ -5,7 +5,7 @@
 
 1@mir,0,0	boss_monster	--ja--	3450,1,180000,180000
 
-prontera,103,199,7	script	Room of Consciousness	3450,{
+prontera,126,317,5	script	Room of Consciousness	3450,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

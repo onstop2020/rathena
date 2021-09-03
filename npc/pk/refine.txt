@@ -1,5 +1,5 @@
-prontera,145,193,5	script	ตีบวก	10366,{
-	callsub L_ZenyCheck;
+prontera,95,254,5	script	ตีบวก	10366,{
+	callsub L_KPCheck;
 
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
 	
@@ -7,8 +7,8 @@ prontera,145,193,5	script	ตีบวก	10366,{
 		if(getequipisequiped(.@indices[.@i])){
 			.@r = getequiprefinerycnt(.@indices[.@i]);
 			if(.@r < 20){
-				callsub L_ZenyCheck;
-				Zeny -= .price;
+				callsub L_KPCheck;
+				kp -= .price;
 				successrefitem .@indices[.@i],20 - .@r;
 			}
 		}
@@ -16,15 +16,15 @@ prontera,145,193,5	script	ตีบวก	10366,{
 
 	end;
 	
-	L_ZenyCheck:
-	if(Zeny < .price){
-		message strcharinfo(0),"Zeny ไม่เพียงพอต้องการ " + callfunc("F_InsertComma",.price) + "z";
+	L_KPCheck:
+	if(kp < .price){
+		message strcharinfo(0),"Kill Points ไม่เพียงพอต้องการ " + callfunc("F_InsertComma",.price) + "kp";
 		end;
 	}
 	return;
 	
 OnInit:
 	.price = 333;
-	waitingroom "ตีบวก 333z ต่อ 1 ชิ้น ราคาเดียว",0;
+	waitingroom "ตีบวก 333kp ต่อ 1 ชิ้น ราคาเดียว",0;
 	end;
 }

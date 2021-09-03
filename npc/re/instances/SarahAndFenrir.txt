@@ -10,7 +10,7 @@
 
 1@glast,0,0	boss_monster	--ja--	3190,1,180000,180000
 
-prontera,84,199,7	script	Sarah and Fenrir	3190,{
+prontera,130,317,5	script	Sarah and Fenrir	3190,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

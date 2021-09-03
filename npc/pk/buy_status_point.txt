@@ -1,35 +1,53 @@
-prontera,163,175,4	script	ซื้อ Status, Skill	651,{
+prontera,62,346,5	script	ซื้อ Status / Skill	10370,{
 	menu "Status Point",-,"Skill Point",L_SkillPoint;
-	mes callfunc("F_InsertComma",.price) + "z ต่อ 1 Status Point";
+	mes callfunc("F_InsertComma",.price) + "kp ต่อ 1 Status Point";
 	mes "ระบุ 0 เพื่อยกเลิก";
+	mes "^8B4102Kill Points คงเหลือ:^000000 " + callfunc("F_InsertComma",kp);
 	next;
 	input .@i;
-	if((.@i <= 0) || (Zeny < (.@i * .price)))
+	if(.@i <= 0)
 	{
 		mes "ยกเลิกเรียบร้อยแล้ว";
 		close;
 	}
-	Zeny -= (.@i * .price);
+	else if(kp < (.@i * .price))
+	{
+		mes "ต้องการ Kill Points อีก " + callfunc("F_InsertComma",(.@i * .price) - kp);
+		close;
+	}
+	kp -= (.@i * .price);
 	StatusPoint += .@i;
+	mes "จ่าย Kill Points ไป: " + callfunc("F_InsertComma",(.@i * .price));
+	mes "^8B4102Kill Points คงเหลือ:^000000 " + callfunc("F_InsertComma",kp);
+	mes "^028B1FStatus Point ที่ได้รับ:^000000 " + callfunc("F_InsertComma",.@i);
 	close;
 	
 	L_SkillPoint:
-	mes callfunc("F_InsertComma",.price_sk) + "z ต่อ 1 Skill Point";
+	mes callfunc("F_InsertComma",.price_sk) + "kp ต่อ 1 Skill Point";
 	mes "ระบุ 0 เพื่อยกเลิก";
+	mes "^8B4102Kill Points คงเหลือ:^000000 " + callfunc("F_InsertComma",kp);
 	next;
 	input .@i;
-	if((.@i <= 0) || (Zeny < (.@i * .price_sk)))
+	if(.@i <= 0)
 	{
 		mes "ยกเลิกเรียบร้อยแล้ว";
 		close;
 	}
-	Zeny -= (.@i * .price_sk);
+	else if(kp < (.@i * .price_sk))
+	{
+		mes "ต้องการ Kill Points อีก " + callfunc("F_InsertComma",(.@i * .price_sk) - kp);
+		close;
+	}
+	kp -= (.@i * .price_sk);
 	SkillPoint += .@i;
+	mes "จ่าย Kill Points ไป: " + callfunc("F_InsertComma",(.@i * .price_sk));
+	mes "^8B4102Kill Points คงเหลือ:^000000 " + callfunc("F_InsertComma",kp);
+	mes "^028B1FSkill Point ที่ได้รับ:^000000 " + callfunc("F_InsertComma",.@i);
 	close;
 	
 OnInit:
 	.price = 100;
 	.price_sk = 10000;
-	waitingroom "ซื้อ Status, Skill",0;
+	waitingroom "ซื้อ Status / Skill",0;
 	end;
 }

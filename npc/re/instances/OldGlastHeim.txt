@@ -21,7 +21,7 @@
 
 2@gl_k,0,0	boss_monster	--ja--	2476,1,180000,180000
 
-prontera,184,197,1	script	Old Glast Heim	2476,{
+prontera,118,317,5	script	Old Glast Heim	2476,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

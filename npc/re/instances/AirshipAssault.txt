@@ -10,7 +10,7 @@
 1@air2,0,0	monster	--ja--	3175,50,30000,30000
 1@air2,0,0	monster	--ja--	3177,50,30000,30000
 
-prontera,162,267,3	script	Airship Assault	3181,{
+prontera,130,327,5	script	Airship Assault	3181,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

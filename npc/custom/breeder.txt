@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-prontera,149,193,5	script	เช่า All, Skill เสริม	900,{
+prontera,58,342,3	script	เช่าของและรับ Skill	500,{
 	callfunc "F_GetPlatinumSkills";
 	if (ismounting()) {
 		message strcharinfo(0),"คุณต้องถอดพาหนะเก่าก่อน";
@@ -35,5 +35,9 @@ prontera,149,193,5	script	เช่า All, Skill เสริม	900,{
 		message strcharinfo(0),"คุณไม่จำเป็นต้องเช่าอะไร";
 		end;
 	}
+	end;
+	
+	OnInit:
+	waitingroom "เช่าของและรับ Skill",0;
 	end;
 }

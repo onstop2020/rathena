@@ -13,7 +13,7 @@
 2@nyd,0,0	monster	--ja--	2021,40,30000,30000
 
 
-prontera,165,236,3	script	Nidhoggr's Nest	2022,{
+prontera,118,327,5	script	Nidhoggr's Nest	2022,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

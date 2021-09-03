@@ -15,7 +15,7 @@
 //= 1.9 Migrate/Integrate to Global Functions Platinum Skills. [mazvi]
 //============================================================
 
-prontera,152,193,6	script	เปลี่ยนอาชีพ	861,{
+prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 	function Get_Job_Equip;
 	// Checks if the Player has the required level.
 	// closes if not, returns if yes

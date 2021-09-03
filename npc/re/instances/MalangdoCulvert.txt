@@ -20,7 +20,7 @@
 2@pump,0,0	boss_monster	--ja--	2189,1,180000,180000
 2@pump,0,0	boss_monster	--ja--	2190,1,180000,180000
 
-prontera,245,210,3	script	Malangdo Culvert	2190,{
+prontera,190,327,5	script	Malangdo Culvert	2190,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

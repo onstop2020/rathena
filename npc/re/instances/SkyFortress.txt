@@ -13,7 +13,7 @@
 1@sthd,0,0	boss_monster	--ja--	3475,1,180000,180000
 1@sthd,0,0	boss_monster	--ja--	3473,1,180000,180000
 
-prontera,264,210,3	script	Sky Fortress Invasion	3484,{
+prontera,138,317,5	script	Sky Fortress Invasion	3484,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

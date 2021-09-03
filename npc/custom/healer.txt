@@ -31,11 +31,11 @@
 	end;
 	
 OnInit:
-	waitingroom "¿×é¹¿Ù HP & SP",0;
+	waitingroom "Buff",0;
 	end;
 }
 
 
 // Duplicates
 //============================================================
-prontera,159,193,4	duplicate(Healer)	¿×é¹¿Ù HP & SP#prt	677
+prontera,152,199,3	duplicate(Healer)	Buff	2035

@@ -146,12 +146,11 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			return 0;
 
 		//item->value_buy = buy;
-		item->value_buy = 1; // TEAM CRAFT [Start]
+		item->value_buy = 0; // TEAM CRAFT [Start]
 		item->value_sell = 0;
 	} else {
 		if (!exists) {
-			//item->value_buy = 0;
-			item->value_buy = 1; // TEAM CRAFT [Start]
+			item->value_buy = 0;
 		}
 	}
 

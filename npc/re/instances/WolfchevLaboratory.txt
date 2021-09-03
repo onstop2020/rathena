@@ -16,7 +16,7 @@
 1@lhz,0,0	boss_monster	--ja--	1649,1,180000,180000
 1@lhz,0,0	boss_monster	--ja--	1648,1,180000,180000
 
-prontera,49,197,7	script	Wolfchev's Laboratory	1646,{
+prontera,146,317,5	script	Wolfchev's Laboratory	1646,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

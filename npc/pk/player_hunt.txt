@@ -1,4 +1,4 @@
-prontera,170,181,3	script	ตามล่าผู้เล่นอื่น	856,{
+prontera,163,203,5	script	ตามล่าผู้เล่นอื่น	856,{
 	if (#player_hunt_cooldown > gettimetick(2)){
 		mes "โปรดรอ " + (#player_hunt_cooldown - gettimetick(2)) + " วินาที";
 		close;	

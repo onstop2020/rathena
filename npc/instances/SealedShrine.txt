@@ -19,7 +19,7 @@
 2@cata,0,0	monster	--ja--	1867,15,30000,30000
 2@cata,0,0	monster	--ja--	1302,15,30000,30000
 
-prontera,127,210,5	script	Sealed Shrine	1929,{
+prontera,126,327,5	script	Sealed Shrine	1929,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

@@ -6,7 +6,7 @@
 1@ma_b,0,0	boss_monster	--ja--	2321,1,180000,180000
 1@ma_b,0,0	boss_monster	--ja--	2322,1,180000,180000
 
-prontera,151,265,5	script	Bakonawa Lake	2320,{
+prontera,134,327,5	script	Bakonawa Lake	2320,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

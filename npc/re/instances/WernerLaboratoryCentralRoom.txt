@@ -2,7 +2,7 @@
 
 1@slw,0,0	boss_monster	--ja--	3621,1,180000,180000
 
-prontera,49,210,5	script	Werner Lab. Central R.	3621,{
+prontera,142,317,5	script	Werner Lab. Central R.	3621,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

@@ -12,7 +12,7 @@
 
 1@dth3,0,0	boss_monster	--ja--	3029,1,180000,180000
 
-prontera,84,208,5	script	Isle Of Bios	3029,{
+prontera,182,327,5	script	Isle Of Bios	3029,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

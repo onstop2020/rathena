@@ -6,7 +6,7 @@
 
 1@mcd,0,0	boss_monster	--ja--	3124,1,180000,180000
 
-prontera,150,305,5	script	Charleston in Distress	3124,{
+prontera,150,327,5	script	Charleston in Distress	3124,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

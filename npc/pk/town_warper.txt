@@ -7,20 +7,21 @@ OnInit:
 	end;
 }
 
-prontera,101,168,5	duplicate(backToCenter)	กลับกลางเมือง#2	10081
-prontera,237,62,5	duplicate(backToCenter)	กลับกลางเมือง#3	10081
-prontera,200,240,5	duplicate(backToCenter)	กลับกลางเมือง#4	10081
+prontera,55,336,5	duplicate(backToCenter)	กลับกลางเมือง#CharacterImprovements	10081
+prontera,102,253,5	duplicate(backToCenter)	กลับกลางเมือง#Equipment	10081
+prontera,200,240,5	duplicate(backToCenter)	กลับกลางเมือง#3	10081
+prontera,104,322,5	duplicate(backToCenter)	กลับกลางเมือง#SpecialDungeons	10081
 
-prontera,138,193,5	script	Zone ของจำเป็น	10081,{
-	warp "prontera",102,175;
+prontera,146,188,5	script	Zone Item	10081,{
+	warp "prontera",100,255;
 	end;
 	
 OnInit:
-	waitingroom "Zone - ของจำเป็น",0;
+	waitingroom "Zone - Item",0;
 	end;
 }
 
-prontera,173,193,5	script	Zone ทดสอบ	10081,{
+prontera,112,193,5	script	Zone ทดสอบ	10081,{
 	warp "prontera",237,66;
 	end;
 	
@@ -29,13 +30,20 @@ OnInit:
 	end;
 }
 
-//prontera,166,193,5	script	Zone Pet & Hom.	10081,{
-prontera,166,193,5	script	Zone Hom.	10081,{
-	warp "prontera",198,246;
+prontera,172,195,5	script	Zone Dungeon เพิ่มเติม	10081,{
+	warp "prontera",107,322;
 	end;
 	
 OnInit:
-	//waitingroom "Zone - Pet & Hom.",0;
-	waitingroom "Zone - Hom.",0;
+	waitingroom "Zone Dungeon เพิ่มเติม",0;
+	end;
+}
+
+prontera,140,195,5	script	Zone พัฒนาตัวละคร	10081,{
+	warp "prontera",53,338;
+	end;
+	
+OnInit:
+	waitingroom "Zone พัฒนาตัวละคร",0;
 	end;
 }
