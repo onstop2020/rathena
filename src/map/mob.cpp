@@ -2906,15 +2906,15 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			{
 				struct s_mob_drop mobdrop;
 				// Check monster level here
-				if (md->db->mexp > 0)
+				if (md->db->mexp > 0) // Legendary (MvP)
 					dropid = rnd_value(10040001, 10050000);
-				else if (md->db->lv <= 35)
+				else if (md->db->lv <= 35) // Normal (Level <= 35)
 					dropid = rnd_value(10000000, 10010000);
-				else if (md->db->lv <= 99)
+				else if (md->db->lv <= 99) // Advance (Level 36~99)
 					dropid = rnd_value(10010001, 10020000);
-				else if (md->db->lv < 150)
+				else if (md->db->lv < 150) // Rare (Level 100~149)
 					dropid = rnd_value(10020001, 10030000);
-				else if (md->db->lv >= 150)
+				else if (md->db->lv >= 150) // Mystic (Level >= 150)
 					dropid = rnd_value(10030001, 10040000);
 				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
 				mobdrop.nameid = dropid;
@@ -4934,6 +4934,7 @@ void MobDatabase::loadingFinished() {
 
 		// Now that we know if it is a MVP or not, apply battle_config modifiers [Skotlex]
 		double maxhp = (double)mob->status.max_hp;
+		double saveMaxhp = maxhp; // [Start]
 
 		if (mob->get_bosstype() == BOSSTYPE_MVP) { // MVP
 			if (battle_config.mvp_hp_rate != 100)
@@ -4944,6 +4945,8 @@ void MobDatabase::loadingFinished() {
 		}
 
 		mob->status.max_hp = cap_value(static_cast<uint32>(maxhp), 1, UINT32_MAX);
+		if (battle_config.mvp_hp_rate != 100 && saveMaxhp == mob->status.max_hp) // [Start]
+			mob->status.max_hp = 1000000000; // [Start]
 		mob->status.max_sp = cap_value(mob->status.max_sp, 1, UINT32_MAX);
 		mob->status.hp = mob->status.max_hp;
 		mob->status.sp = mob->status.max_sp;
