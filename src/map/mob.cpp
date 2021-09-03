@@ -2896,6 +2896,34 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			}
 
 			// TEAM CRAFT - RO [Start]
+			// Kill Points
+			// Check monster level here
+			if (md->db->mexp > 0) // Legendary (MvP)
+			{
+				dropid = rnd_value(10040001, 10050000);
+				pc_setreg2(sd, "kp", pc_readreg2(sd,"kp") + 15);
+			}
+			else if (md->db->lv <= 35) // Normal (Level <= 35)
+			{
+				dropid = rnd_value(10000000, 10010000);
+				pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + 1);
+			}
+			else if (md->db->lv <= 99) // Advance (Level 36~99)
+			{
+				dropid = rnd_value(10010001, 10020000);
+				pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + 2);
+			}
+			else if (md->db->lv < 150) // Rare (Level 100~149)
+			{
+				dropid = rnd_value(10020001, 10030000);
+				pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + 5);
+			}
+			else if (md->db->lv >= 150) // Mystic (Level >= 150)
+			{
+				dropid = rnd_value(10030001, 10040000);
+				pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + 9);
+			}
+
 			// Custom Equipment
 			drop_rate = 500; // 5%
 			drop_modifier = 100;
@@ -2905,17 +2933,6 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			if (rnd() % 10000 < drop_rate)
 			{
 				struct s_mob_drop mobdrop;
-				// Check monster level here
-				if (md->db->mexp > 0) // Legendary (MvP)
-					dropid = rnd_value(10040001, 10050000);
-				else if (md->db->lv <= 35) // Normal (Level <= 35)
-					dropid = rnd_value(10000000, 10010000);
-				else if (md->db->lv <= 99) // Advance (Level 36~99)
-					dropid = rnd_value(10010001, 10020000);
-				else if (md->db->lv < 150) // Rare (Level 100~149)
-					dropid = rnd_value(10020001, 10030000);
-				else if (md->db->lv >= 150) // Mystic (Level >= 150)
-					dropid = rnd_value(10030001, 10040000);
 				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
 				mobdrop.nameid = dropid;
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
