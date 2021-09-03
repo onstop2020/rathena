@@ -19,8 +19,8 @@ OnPCDieEvent:
 		.Zeny = Zeny;
 		Zeny -= .Zeny;
 		
-		if(isloggedin(killerrid)){
-			//if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
+		//if(isloggedin(killerrid)){
+		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
 			attachrid(killerrid);
 			
 			killCount++;
