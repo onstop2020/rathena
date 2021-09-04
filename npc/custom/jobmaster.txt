@@ -506,7 +506,7 @@ OnInit:
 	.SNovice = 45;						// Minimum base level to turn into Super Novice
 	
 	// Kill Points Requirements
-	setarray .Req_KillPoints[0],30,5000,90000;
+	setarray .Req_KillPoints[0],30,1900,29000;
 	
 	// Setting adjustments by PACKETVER
 	if( PACKETVER < 20161207 ) {
