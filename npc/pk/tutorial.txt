@@ -23,7 +23,7 @@ OnInit:
 	end;
 }
 
-prontera,107,328,5	script	แนะนำการเล่น/สาระน่ารู้#2	837,{
+prontera,107,328,5	script	สาระน่ารู้#2	837,{
 	mes "MvP ทุกตัวทุกที่";
 	mes "๐^C63E9F ใช้เวลาเกิด 3~6 นาที^000000";
 	mes "๐^C63E9F มี HP เยอะกว่าปกติ 50 เท่า^000000";
@@ -31,12 +31,18 @@ prontera,107,328,5	script	แนะนำการเล่น/สาระน่ารู้#2	837,{
 	close;
 	
 OnInit:
-	waitingroom "แนะนำการเล่น/สาระน่ารู้",0;
+	waitingroom "สาระน่ารู้",0;
 	end;
 }
 
 prontera,116,246,3	script	สาระน่ารู้#3	837,{
 	mes "๐" + callfunc("GetBadConditionColor") + " Zeny ไร้ค่า^000000";
+	next;
+	mes "วิธีทำร่ายเร็ว";
+	mes "๐" + callfunc("GetGoodConditionColor") + " ใส่ของร่าย V. Cast เร็วขึ้นให้ครบ 100%^000000";
+	mes "๐" + callfunc("GetGoodConditionColor") + " ใส่ของร่าย F. Cast เร็วขึ้นให้ครบ 100%^000000";
+	mes "๐" + callfunc("GetGoodConditionColor") + " ใส่ของลด Delay หลังร่ายให้ครบ 100%^000000";
+	mes "๐" + callfunc("GetGoodConditionColor") + " ใส่ของลด Delay หลังร่าย จะช่วยลด Cooldown ทุก Skill ลง (% ละ 0.1 วินาที)^000000";
 	close;
 	
 OnInit:

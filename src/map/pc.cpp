@@ -3632,8 +3632,10 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 				sd->bonus.add_steal_rate+=val;
 			break;
 		case SP_DELAYRATE:
-			if(sd->state.lr_flag != 2)
+			if (sd->state.lr_flag != 2) {
 				sd->delayrate+=val;
+				sd->cooldownrate+=(-val);
+			}
 			break;
 		case SP_CRIT_ATK_RATE:
 			if(sd->state.lr_flag != 2)
@@ -6389,6 +6391,8 @@ int pc_get_skillcooldown(struct map_session_data *sd, uint16 skill_id, uint16 sk
 			break;
 		}
 	}
+
+	cooldown -= (sd->cooldownrate * 100); // Delayrate will reduce all skill cooldown by 1:0.1s [Start]
 
 	return max(0, cooldown);
 }
