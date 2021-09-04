@@ -6,18 +6,42 @@ OnPCDieEvent:
 		.@maxDecreaseLevel = BaseLevel / 10;
 		if(.@maxDecreaseLevel <= 1)
 		.@maxDecreaseLevel = 1;
-		if(BaseLevel > 1)
-		BaseLevel -= rand(.@maxDecreaseLevel);
-		statusup2 bStr,-rand(6);
-		statusup2 bAgi,-rand(6);
-		statusup2 bVit,-rand(6);
-		statusup2 bInt,-rand(6);
-		statusup2 bDex,-rand(6);
-		statusup2 bLuk,-rand(6);
+		if(BaseLevel > 1){
+			.@d_lv = rand(.@maxDecreaseLevel);
+			BaseLevel -= .@d_lv;
+			if(.@d_lv > 0)
+			dispbottom "Level ลดลง " + callfunc("F_InsertComma",.@d_lv);
+		}
+		.@d_str = rand(6);
+		.@d_agi = rand(6);
+		.@d_vit = rand(6);
+		.@d_int = rand(6);
+		.@d_dek = rand(6);
+		.@d_luk = rand(6);
+		statusup2 bStr,-.@d_str;
+		statusup2 bAgi,-.@d_agi;
+		statusup2 bVit,-.@d_vit;
+		statusup2 bInt,-.@d_int;
+		statusup2 bDex,-.@d_dek;
+		statusup2 bLuk,-.@d_luk;
+		if(.@d_str > 0)
+		dispbottom "Str ลดลง " + callfunc("F_InsertComma",.@d_str);
+		if(.@d_agi > 0)
+		dispbottom "Agi ลดลง " + callfunc("F_InsertComma",.@d_agi);
+		if(.@d_vit > 0)
+		dispbottom "Vit ลดลง " + callfunc("F_InsertComma",.@d_vit);
+		if(.@d_int > 0)
+		dispbottom "Int ลดลง " + callfunc("F_InsertComma",.@d_int);
+		if(.@d_dek > 0)
+		dispbottom "Dek ลดลง " + callfunc("F_InsertComma",.@d_dek);
+		if(.@d_luk > 0)
+		dispbottom "Luk ลดลง " + callfunc("F_InsertComma",.@d_luk);
 		.a_deadman$ = strcharinfo(0);
 		
-		.Zeny = Zeny;
-		Zeny -= .Zeny;
+		.kp = rand(kp);
+		kp -= .kp;
+		
+		dispbottom "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp);
 		
 		//if(isloggedin(killerrid)){
 		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
@@ -25,16 +49,16 @@ OnPCDieEvent:
 			
 			killCount++;
 			
-			Zeny += .Zeny;
+			kp += .kp;
 			
 			dispbottom "Kill Count: " + callfunc("F_InsertComma",killCount);
 			
-			announce strcharinfo(0) + " ฆ่า " + .a_deadman$ + " และขโมย " + callfunc("F_InsertComma",.Zeny) + "z ไปด้วย!",bc_all,0xEC1500;
+			announce strcharinfo(0) + " ฆ่า " + .a_deadman$ + " และขโมย " + callfunc("F_InsertComma",.kp) + "kp ไปด้วย!!",bc_all,0xFC33FF;
 			
 			detachrid;
 		}
 		else
-		announce strcharinfo(0) + " ตาย!",bc_all,0xEC1500;
+		announce .a_deadman$ + " ตาย" + (.kp ? (" Kill Points หายไป " + callfunc("F_InsertComma",.kp) + "kp") : "") + "!",bc_all,0xEC1500;
 	}
 	end;
 }

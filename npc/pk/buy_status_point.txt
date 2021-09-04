@@ -48,7 +48,7 @@ prontera,62,346,5	script	ซื้อ Status / Skill	10370,{
 	close;
 	
 OnInit:
-	.price = 100;
+	.price = 10;
 	.price_sk = 10000;
 	waitingroom "ซื้อ Status / Skill",0;
 	end;

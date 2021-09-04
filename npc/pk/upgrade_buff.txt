@@ -21,21 +21,21 @@ prontera,46,330,3	script	�պǡ Buff	637,{
 	close;
 	
 OnInit:
-	setarray .price[0],300	// 1 Times
-	,900					// 2 Times
-	,3000					// 3 Times
-	,9000					// 4 Times
-	,30000					// 5 Times
-	,90000					// 6 Times
-	,300000					// 7 Times
-	,900000					// 8 Times
-	,3000000				// 9 Times
-	,9000000				// 10 Times
-	,30000000				// 11 Times
-	,90000000				// 12 Times
-	,300000000				// 13 Times
-	,900000000				// 14 Times
-	,3000000000				// 15 Times
+	setarray .price[0],30	// 1 Times
+	,90					// 2 Times
+	,300					// 3 Times
+	,900					// 4 Times
+	,3000					// 5 Times
+	,9000					// 6 Times
+	,30000					// 7 Times
+	,90000					// 8 Times
+	,300000				// 9 Times
+	,900000				// 10 Times
+	,3000000				// 11 Times
+	,9000000				// 12 Times
+	,30000000				// 13 Times
+	,90000000				// 14 Times
+	,300000000				// 15 Times
 	;
 	waitingroom "�պǡ Buff",0;
 	end;

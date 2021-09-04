@@ -1,0 +1,9 @@
+prontera,155,212,1	script	เปิด/ปิด kp ที่ได้รับ	2035,{
+	is_kp_gain_no_display = !is_kp_gain_no_display;
+	message strcharinfo(0),(is_kp_gain_no_display ? "แสดง Kill Points ที่ได้รับเมื่อกำจัด Monster: ปิด" : "แสดง Kill Points ที่ได้รับเมื่อกำจัด Monster: เปิด");
+	end;
+	
+OnInit:
+	waitingroom "เปิด/ปิด kp ที่ได้รับ",0;
+	end;
+}

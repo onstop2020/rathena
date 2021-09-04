@@ -47,4 +47,3 @@ OnInit:
 	waitingroom "ตามล่าผู้เล่นอื่น",0;
 	end;
 }
-

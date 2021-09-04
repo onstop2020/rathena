@@ -16,6 +16,8 @@ OnPCLoginEvent:
 	// Effect
 	addtimer 1,"LoginEvent::OnEffectInstall";
 	
+	dispbottom "คุณมี " + callfunc("F_InsertComma",kp) + " Kill Points";
+	
 	end;
 	
 OnEffectInstall:

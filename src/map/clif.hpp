@@ -1090,6 +1090,7 @@ enum clif_colors {
 	COLOR_YELLOW,
 	COLOR_CYAN,
 	COLOR_LIGHT_GREEN,
+	COLOR_KILL_POINTS,
 	COLOR_MAX
 };
 extern unsigned long color_table[COLOR_MAX];

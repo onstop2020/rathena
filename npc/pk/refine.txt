@@ -24,7 +24,7 @@ prontera,95,254,5	script	ตีบวก	10366,{
 	return;
 	
 OnInit:
-	.price = 3333;
+	.price = 333;
 	waitingroom "ตีบวก " + callfunc("F_InsertComma",.price) + "kp ต่อ 1 ชิ้น ราคาเดียว",0;
 	end;
 }

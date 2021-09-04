@@ -36,6 +36,16 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 		}
 		return;
 	}
+	
+	// Check Kill Points requirement
+	function	Require_KillPoints	{
+		$job_change_kp_needed = getarg(0);
+		if (kp < getarg(0)) {
+			mes "ต้องการ " + callfunc("GetKillPointsColor") + "Kill Points^000000 อีก " + callfunc("F_InsertComma",(getarg(0) - kp));
+			close;
+		}
+		return;
+	}
 
 	// Checks if the given eac is a baby class
 	function Is_Baby	{
@@ -143,11 +153,13 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 	if( .@rebirth_possible ) {
 		// Rebirth option (displayed on the top of the menu)
 		Require_Level(.Req_Rebirth[0], .Req_Rebirth[1]);
+		Require_KillPoints(.Req_KillPoints[0]);
 		Job_Options(.@job_opt, Job_Novice_High);
 	}
 	if( .@third_possible ) {
 		// Third Job change (displayed below rebirth)
 		Require_Level(.Req_Third[0], .Req_Third[1]);
+		Require_KillPoints(.Req_KillPoints[2]);
 		Job_Options(.@job_opt, roclass(.@eac|EAJL_THIRD));
 	}
 	
@@ -158,6 +170,7 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 		if( !Is_Baby(.@eac) || (.BabyClass && .BabyExpanded) ) {
 			// .BabyClass & .BabyExpanded must be enabled if the is a baby
 			Require_Level(.Req_Exp_SNOVI[0], .Req_Exp_SNOVI[1]);
+			Require_KillPoints(.Req_KillPoints[2]);
 			Job_Options(.@job_opt,roclass(.@eac|EAJL_THIRD)); // Expanded SN is "third" cls
 		}
 	}
@@ -170,6 +183,7 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 		if( !Is_Baby(.@eac) || (.BabyClass && .BabyExpanded) ) {
 			// .BabyClass & .BabyExpanded must be enabled if the is a baby
 			Require_Level(.Req_Exp_NJ_GS[0], .Req_Exp_NJ_GS[1]);
+			Require_KillPoints(.Req_KillPoints[1]);
 			// Kagerou, Oboro, Rebellion are considered as a 2-1 class
 			Job_Options(.@job_opt, roclass(.@eac|EAJL_2_1));
 		}
@@ -179,6 +193,7 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 	if (.@first_eac == EAJ_NOVICE && .@second_eac != EAJ_SUPER_NOVICE) {
 		// MAPID_NOVICE, MAPID_SUPER_NOVICE, MAPID_NOVICE_HIGH, MAPID_BABY
 		Require_Level(.Req_First[0], .Req_First[1]);
+		Require_KillPoints(.Req_KillPoints[0]);
 		switch(Class) {
 		case Job_Novice:
 			// First job change
@@ -226,15 +241,18 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 		if(.LastJob && lastJob && (.@eac&EAJL_UPPER)) {
 			// Player is rebirth Cls and linear class changes are enforced
 			Require_Level(.Req_Second[0], .Req_Second[1]);
+			Require_KillPoints(.Req_KillPoints[1]);
 			Job_Options(.@job_opt, lastJob + Job_Novice_High);
 		} else {
 			// Class is not enforced, player can decide.
 			if( .@class1 > 0 ) { // 2-1
 				Require_Level(.Req_Second[0], .Req_Second[1]);
+				Require_KillPoints(.Req_KillPoints[1]);
 				Job_Options(.@job_opt, .@class1);
 			}
 			if( .@class2 > 0 ) { // 2-2
 				Require_Level(.Req_Second[0], .Req_Second[1]);
+				Require_KillPoints(.Req_KillPoints[1]);
 				Job_Options(.@job_opt, .@class2);
 			}
 		}
@@ -320,6 +338,8 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 			if (.GetJobEquip)
 			Get_Job_Equip();
 		}
+		kp -= $job_change_kp_needed;
+		dispbottom "คุณมี " + callfunc("F_InsertComma",kp) + " Kill Points";
 		close; // Always closes after the change
 	}
 
@@ -475,6 +495,9 @@ OnInit:
 	setarray .Req_Exp_NJ_GS[0],99,70; 	// Minimum base level, job level to turn into Expanded Ninja and Gunslinger
 	setarray .Req_Exp_SNOVI[0],99,99; 	// Minimum base level, job level to turn into Expanded Super Novice
 	.SNovice = 45;						// Minimum base level to turn into Super Novice
+	
+	// Kill Points Requirements
+	setarray .Req_KillPoints[0],30,5000,90000;
 	
 	// Setting adjustments by PACKETVER
 	if( PACKETVER < 20161207 ) {

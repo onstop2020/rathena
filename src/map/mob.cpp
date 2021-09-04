@@ -2897,31 +2897,41 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 			// TEAM CRAFT - RO [Start]
 			// Kill Points
+			int gain_kp = 0;
 			// Check monster level here
 			if (md->db->mexp > 0) // Legendary (MvP)
 			{
 				dropid = rnd_value(10040001, 10050000);
-				pc_setreg2(sd, "kp", pc_readreg2(sd,"kp") + 15);
+				gain_kp = 15;
 			}
 			else if (md->db->lv <= 35) // Normal (Level <= 35)
 			{
 				dropid = rnd_value(10000000, 10010000);
-				pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + 1);
+				gain_kp = 1;
 			}
 			else if (md->db->lv <= 99) // Advance (Level 36~99)
 			{
 				dropid = rnd_value(10010001, 10020000);
-				pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + 2);
+				gain_kp = 2;
 			}
 			else if (md->db->lv < 150) // Rare (Level 100~149)
 			{
 				dropid = rnd_value(10020001, 10030000);
-				pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + 5);
+				gain_kp = 5;
 			}
 			else if (md->db->lv >= 150) // Mystic (Level >= 150)
 			{
 				dropid = rnd_value(10030001, 10040000);
-				pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + 9);
+				gain_kp = 9;
+			}
+
+			pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + gain_kp);
+
+			if (!pc_readreg2(sd, "is_kp_gain_no_display")) {
+				char output[CHAT_SIZE_MAX];
+				nullpo_retv(sd);
+				sprintf(output, "Kill Points +%d | Total: %d", gain_kp, pc_readreg2(sd, "kp"));
+				clif_messagecolor(&sd->bl, color_table[COLOR_KILL_POINTS], output, false, SELF);
 			}
 
 			// Custom Equipment
