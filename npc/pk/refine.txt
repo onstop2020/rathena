@@ -18,13 +18,13 @@ prontera,95,254,5	script	ตีบวก	10366,{
 	
 	L_KPCheck:
 	if(kp < .price){
-		message strcharinfo(0),"Kill Points ไม่เพียงพอต้องการ " + callfunc("F_InsertComma",.price) + "kp";
+		message strcharinfo(0),"ต้องการ Kill Points อีก " + callfunc("F_InsertComma",(.price - kp));
 		end;
 	}
 	return;
 	
 OnInit:
-	.price = 333;
-	waitingroom "ตีบวก 333kp ต่อ 1 ชิ้น ราคาเดียว",0;
+	.price = 3333;
+	waitingroom "ตีบวก " + callfunc("F_InsertComma",.price) + "kp ต่อ 1 ชิ้น ราคาเดียว",0;
 	end;
 }

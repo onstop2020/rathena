@@ -34,3 +34,12 @@ OnInit:
 	waitingroom "แนะนำการเล่น/สาระน่ารู้",0;
 	end;
 }
+
+prontera,116,246,3	script	สาระน่ารู้#3	837,{
+	mes "๐" + callfunc("GetBadConditionColor") + " Zeny ไร้ค่า^000000";
+	close;
+	
+OnInit:
+	waitingroom "สาระน่ารู้",0;
+	end;
+}

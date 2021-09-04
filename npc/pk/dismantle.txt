@@ -73,6 +73,8 @@ OnSellItem:
 	mes callfunc("GetTierColor",1) + "[Normal]^000000 " + callfunc("F_InsertComma",.@normal_dm);
 	mes callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.@advance_dm);
 	mes callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.@rare_dm);
+	if(.@normal_dm || .@advance_dm || .@rare_dm)
+	specialeffect2 111;
 	end;
 	
 OnInit:

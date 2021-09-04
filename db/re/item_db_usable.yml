@@ -132,6 +132,8 @@ Body:
     Type: Healing
     Buy: 5000
     Weight: 150
+    Delay:
+      Duration: 3000
     Script: |
       itemheal 0,rand(40,60);
   - Id: 506
@@ -517,6 +519,8 @@ Body:
     Type: Healing
     Buy: 150
     Weight: 20
+    Delay:
+      Duration: 3000
     Script: |
       itemheal rand(45,65),0;
   - Id: 546
@@ -525,6 +529,8 @@ Body:
     Type: Healing
     Buy: 600
     Weight: 30
+    Delay:
+      Duration: 3000
     Script: |
       itemheal rand(175,235),0;
   - Id: 547
@@ -533,6 +539,8 @@ Body:
     Type: Healing
     Buy: 1650
     Weight: 50
+    Delay:
+      Duration: 3000
     Trade:
       Override: 100
       NoSell: true
@@ -719,6 +727,8 @@ Body:
     Type: Healing
     Buy: 500
     Weight: 40
+    Delay:
+      Duration: 3000
     Flags:
       BuyingStore: true
     Script: |
@@ -2528,6 +2538,8 @@ Body:
     Type: Healing
     Buy: 200
     Weight: 1
+    Delay:
+      Duration: 3000
     Flags:
       BuyingStore: true
     Script: |
@@ -3492,6 +3504,8 @@ Body:
     Type: Healing
     Buy: 15
     Weight: 1
+    Delay:
+      Duration: 3000
     Script: |
       itemheal rand(36,40),0;
       specialeffect2 EF_HEAL3;

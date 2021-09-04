@@ -8,7 +8,7 @@ OnInit:
 }*/
 
 //prontera,202,249,3	script	Pet & Hom. อิ่มสนิท	919,{
-prontera,202,249,3	script	Hom. อิ่มสนิท	919,{
+prontera,42,337,5	script	Hom. อิ่มสนิท	919,{
 	/*if(getpetinfo(PETINFO_ID) > 0){
 		atcommand "@petfriendly 1000";
 		atcommand "@pethungry 100";
@@ -16,6 +16,7 @@ prontera,202,249,3	script	Hom. อิ่มสนิท	919,{
 	if(gethominfo(0) > 0){
 		addhomintimacy 100000;
 		atcommand "@homhungry 100";
+		specialeffect2 656;
 	}
 	end;
 	
@@ -25,9 +26,11 @@ OnInit:
 	end;
 }
 
-prontera,206,244,3	script	Hom. Evo. 	920,{
-	if(gethominfo(0) > 0)
-	homevolution;
+prontera,37,339,3	script	Hom. Evo. 	920,{
+	if(gethominfo(0) > 0){
+		homevolution;
+		specialeffect2 699;
+	}
 	end;
 	
 OnInit:
@@ -35,7 +38,7 @@ OnInit:
 	end;
 }
 
-prontera,206,239,3	script	Hom. S 	915,{
+prontera,34,341,3	script	Hom. S 	915,{
 	if(gethominfo(0) > 0){
 		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
 			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
@@ -63,6 +66,7 @@ prontera,206,239,3	script	Hom. S 	915,{
 			menu "ยืนยัน",-;
 			morphembryo;
 			hommutate .@Homunculus;
+			specialeffect2 724;
 			end;
 		}
 		else{

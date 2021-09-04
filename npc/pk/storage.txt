@@ -1,4 +1,5 @@
 -	script	storage	-1,{
+	specialeffect2 793;
 	openstorage;
 	end;
 	
@@ -7,4 +8,4 @@
 	end;
 }
 
-prontera,147,174,5	duplicate(storage)	คลังเก็บของ	10005
+prontera,110,246,3	duplicate(storage)	คลังเก็บของ	10005
