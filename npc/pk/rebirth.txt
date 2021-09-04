@@ -1,16 +1,16 @@
 prontera,54,352,5	script	จุติ	10377,{
-	mes "คุณจุติไปแล้ว ^A507CF" + rebirth_count + "/" + callfunc("F_InsertComma",.max_rebirth) + "^000000 รอบ";
+	mes "คุณ" + callfunc("GetRebirthColor") + "จุติ^000000ไปแล้ว " + callfunc("GetRebirthColor") + rebirth_count + "/" + callfunc("F_InsertComma",.max_rebirth) + "^000000 รอบ";
 	if(rebirth_count){
-		mes "๐ ^A507CFAll Status +" + callfunc("F_InsertComma",(5 * rebirth_count)) + "^000000";
-		mes "๐ ^A507CFแบกของได้หนักขึ้น +" + callfunc("F_InsertComma",(100 * rebirth_count)) + "^000000";
-		mes "๐ ^CF0707EXP ที่ได้รับน้อยลง " + callfunc("F_InsertComma",(1 * rebirth_count)) + "%^000000";
+		mes "๐ " + callfunc("GetGoodConditionColor") + "All Status +" + callfunc("F_InsertComma",(5 * rebirth_count)) + "^000000";
+		mes "๐ " + callfunc("GetGoodConditionColor") + "แบกของได้หนักขึ้น +" + callfunc("F_InsertComma",(100 * rebirth_count)) + "^000000";
+		mes "๐ " + callfunc("GetBadConditionColor") + "EXP ที่ได้รับ หาร " + callfunc("F_InsertComma",(1 * (rebirth_count + 1))) + "^000000";
 	}
 	next;
-	menu "สอบถาม",-,"จุติ (ต้องการ Level 200)",L_Rebirth;
-	mes "การจุติ 1 ครั้ง จะได้รับผล";
-	mes "๐ ^A507CFAll Status +5^000000";
-	mes "๐ ^A507CFแบกของได้หนักขึ้น +100^000000";
-	mes "๐ ^CF0707EXP ที่ได้รับน้อยลง 1%^000000";
+	menu "สอบถาม",-,callfunc("GetRebirthColor") + "จุติ^000000 (ต้องการ Level 200)",L_Rebirth;
+	mes callfunc("GetRebirthColor") + "การจุติ 1 ครั้ง^000000 จะได้รับผล";
+	mes "๐ " + callfunc("GetGoodConditionColor") + "All Status +5^000000";
+	mes "๐ " + callfunc("GetGoodConditionColor") + "แบกของได้หนักขึ้น +100^000000";
+	mes "๐ " + callfunc("GetBadConditionColor") + "EXP ที่ได้รับน้อยลง (EXP หาร (จำนวนครั้งที่จุติ + 1))^000000";
 	close;
 	
 	L_Rebirth:
@@ -23,10 +23,12 @@ prontera,54,352,5	script	จุติ	10377,{
 		atcommand "@reset";
 		StatusPoint = 48;
 		SkillPoint = 0;
-		mes "การจุติสำเร็จลุล่วง!";
-		mes "๐ ^A507CFAll Status +" + callfunc("F_InsertComma",(5 * rebirth_count)) + "^000000";
-		mes "๐ ^A507CFแบกของได้หนักขึ้น +" + callfunc("F_InsertComma",(100 * rebirth_count)) + "^000000";
-		mes "๐ ^CF0707EXP ที่ได้รับน้อยลง " + callfunc("F_InsertComma",(1 * rebirth_count)) + "%^000000";
+		specialeffect2 799;
+		mes callfunc("GetRebirthColor") + "การจุติ^000000สำเร็จลุล่วง!";
+		mes "๐ " + callfunc("GetGoodConditionColor") + "All Status +" + callfunc("F_InsertComma",(5 * rebirth_count)) + "^000000";
+		mes "๐ " + callfunc("GetGoodConditionColor") + "แบกของได้หนักขึ้น +" + callfunc("F_InsertComma",(100 * rebirth_count)) + "^000000";
+		mes "๐ " + callfunc("GetBadConditionColor") + "EXP ที่ได้รับ หาร " + callfunc("F_InsertComma",(1 * (rebirth_count + 1))) + "^000000";
+		callfunc("RebirthStatus");
 		close;
 	}
 	else{

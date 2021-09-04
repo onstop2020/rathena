@@ -2,7 +2,7 @@
 	end;
 	
 OnPCLoginEvent:
-	bonus_script_clear 1;
+	callfunc("RebirthStatus");
 	
 	Zeny = 100000;
 	

@@ -2,46 +2,49 @@
 
 prontera,102,262,5	script	ย่อยของที่ไม่ใช้	982,{
 	mes "คุณมีเศษจากการย่อยดังนี้";
-	mes "[Normal] " + callfunc("F_InsertComma",normal_dm);
-	mes "[Advance] " + callfunc("F_InsertComma",advance_dm);
-	mes "[Rare] " + callfunc("F_InsertComma",rare_dm);
-	mes "[Mystical] ไม่สามารถย่อยได้";
-	mes "[Legendary] ไม่สามารถย่อยได้";
+	mes callfunc("GetTierColor",1) + "[Normal] " + callfunc("F_InsertComma",normal_dm) + "^000000";
+	mes callfunc("GetTierColor",2) + "[Advance] " + callfunc("F_InsertComma",advance_dm) + "^000000";
+	mes callfunc("GetTierColor",3) + "[Rare] " + callfunc("F_InsertComma",rare_dm) + "^000000";
+	mes callfunc("GetTierColor",4) + "[Mystical] ไม่สามารถย่อยได้^000000";
+	mes callfunc("GetTierColor",5) + "[Legendary] ไม่สามารถย่อยได้^000000";
 	next;
 	menu "ย่อย",-,
-	"แลก Item [Advance] (ใช้ [Normal] " + callfunc("F_InsertComma",.dm_need) + ")",L_AdvanceTrade,
-	"แลก Item [Rare] (ใช้ [Advance] " + callfunc("F_InsertComma",.dm_need) + ")",L_RareTrade,
-	"แลก Item [Mystical] (ใช้ [Rare] " + callfunc("F_InsertComma",.dm_need) + ")",L_MysticalTrade;
+	"แลก Item " + callfunc("GetTierColor",2) + "[Advance]^000000 (ใช้ " + callfunc("GetTierColor",1) + "[Normal]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_AdvanceTrade,
+	"แลก Item " + callfunc("GetTierColor",3) + "[Rare]^000000 (ใช้ " + callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_RareTrade,
+	"แลก Item " + callfunc("GetTierColor",4) + "[Mystical]^000000 (ใช้ " + callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_MysticalTrade;
 	callshop "dismantleshop",2;
 	npcshopattach "dismantleshop";
 	end;
 	
 	L_AdvanceTrade:
 	if(normal_dm < .dm_need){
-		mes "ต้องการเศษ [Normal] อีก " + callfunc("F_InsertComma",(.dm_need - normal_dm));
+		mes "ต้องการเศษ " + callfunc("GetTierColor",1) + "[Normal]^000000 อีก " + callfunc("F_InsertComma",(.dm_need - normal_dm));
 		close;
 	}
 	normal_dm -= .dm_need;
 	getitem rand(10010001,10020000),1;
-	end;
+	mes "เศษ " + callfunc("GetTierColor",1) + "[Normal]^000000 คงเหลือ " + callfunc("F_InsertComma",normal_dm);
+	close;
 	
 	L_RareTrade:
 	if(advance_dm < .dm_need){
-		mes "ต้องการเศษ [Advance] อีก " + callfunc("F_InsertComma",(.dm_need - advance_dm));
+		mes "ต้องการเศษ " + callfunc("GetTierColor",2) + "[Advance]^000000 อีก " + callfunc("F_InsertComma",(.dm_need - advance_dm));
 		close;
 	}
 	advance_dm -= .dm_need;
 	getitem rand(10020001,10030000),1;
-	end;
+	mes "เศษ " + callfunc("GetTierColor",2) + "[Advance]^000000 คงเหลือ " + callfunc("F_InsertComma",advance_dm);
+	close;
 	
 	L_MysticalTrade:
 	if(rare_dm < .dm_need){
-		mes "ต้องการเศษ [Rare] อีก " + callfunc("F_InsertComma",(.dm_need - rare_dm));
+		mes "ต้องการเศษ " + callfunc("GetTierColor",3) + "[Rare]^000000 อีก " + callfunc("F_InsertComma",(.dm_need - rare_dm));
 		close;
 	}
 	rare_dm -= .dm_need;
 	getitem rand(10030001,10040000),1;
-	end;
+	mes "เศษ " + callfunc("GetTierColor",3) + "[Rare]^000000 คงเหลือ " + callfunc("F_InsertComma",rare_dm);
+	close;
 
 OnSellItem:
 	for (.@i = 0; .@i < getarraysize(@sold_nameid); .@i++){
@@ -67,9 +70,9 @@ OnSellItem:
 	deletearray @sold_quantity, getarraysize(@sold_quantity);
 	deletearray @sold_nameid, getarraysize(@sold_nameid);
 	mes "คุณได้รับเศษดังนี้";
-	mes "[Normal] " + callfunc("F_InsertComma",.@normal_dm);
-	mes "[Advance] " + callfunc("F_InsertComma",.@advance_dm);
-	mes "[Rare] " + callfunc("F_InsertComma",.@rare_dm);
+	mes callfunc("GetTierColor",1) + "[Normal]^000000 " + callfunc("F_InsertComma",.@normal_dm);
+	mes callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.@advance_dm);
+	mes callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.@rare_dm);
 	end;
 	
 OnInit:

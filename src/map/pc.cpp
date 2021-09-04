@@ -7450,6 +7450,12 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 
 	// Give EXP for Base Level
 	if (base_exp) {
+		// Rebirth EXP Reduction [Start]
+		int rebirth = pc_readreg2(sd, "rebirth_count"); // Start
+		if (rebirth > 0)
+		base_exp = base_exp / (rebirth + 1);
+		if ((int)base_exp <= 0)
+			base_exp = 1; // End
 		sd->status.base_exp = util::safe_addition_cap(sd->status.base_exp, base_exp, MAX_EXP);
 
 		if (!pc_checkbaselevelup(sd))
@@ -7458,6 +7464,12 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 
 	// Give EXP for Job Level
 	if (job_exp) {
+		// Rebirth EXP Reduction [Start]
+		int rebirth = pc_readreg2(sd, "rebirth_count"); // Start
+		if (rebirth > 0)
+			job_exp = job_exp / (rebirth + 1);
+		if ((int)job_exp <= 0)
+			job_exp = 1; // End
 		sd->status.job_exp = util::safe_addition_cap(sd->status.job_exp, job_exp, MAX_EXP);
 
 		if (!pc_checkjoblevelup(sd))

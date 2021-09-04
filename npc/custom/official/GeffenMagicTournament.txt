@@ -22,7 +22,7 @@
 1@gef,0,0	monster	--ja--	2567,30,180000,180000
 1@gef,0,0	monster	--ja--	2914,30,180000,180000
 
-prontera,263,197,1	script	Geffen Magic Tour. Memo.	2564,{
+prontera,150,317,5	script	Geffen Magic Tour. Mem.	2564,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;

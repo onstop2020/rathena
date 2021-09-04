@@ -4,6 +4,11 @@ function	script	JumpStone	{
 		end;
 	}
 	if (js_cooldown > gettimetick(2)){
+		if(js_cast >= 5){
+			js_party = 1;
+			message strcharinfo(0),"Party Jump!";
+		}
+		else
 		message strcharinfo(0),"โปรดรอ " + (js_cooldown - gettimetick(2)) + " วินาที";
 		end;
 	}
@@ -11,6 +16,7 @@ function	script	JumpStone	{
 		message strcharinfo(0),"โปรดรอ " + (rs_cooldown - gettimetick(2)) + " วินาที";
 		end;
 	}
+	js_party = 0;
 	js_cast = 5;
 	.@c1 = js_cast;
 	while(.@c1 > 0){
@@ -73,8 +79,12 @@ OnJumpStone:
 		message strcharinfo(0),"[" + .@s$ + "]";
 		addtimer 1000,"TeamCraftFunction::OnJumpStone";
 	}
-	else
-	warp strcharinfo(3),0,0;
+	else{
+		if(js_party)
+		callfunc("F_CashPartyCall");
+		else
+		warp strcharinfo(3),0,0;
+	}
 	end;
 	
 OnReturnStone:
@@ -93,6 +103,16 @@ OnReturnStone:
 	end;
 }
 
+function	script	RebirthStatus	{
+	bonus_script_clear 1;
+	bonus_script "{ bonus bAllStats," + (5 * rebirth_count)
+	+ "; bonus bAddMaxWeight," + (1000 * rebirth_count)
+	+ "; "
+	+ "}"
+	,86400;
+	return;
+}
+
 function	script	GetTierWording	{
 	.@tier = getarg(0,0);
 	if(.@tier == 1)
@@ -106,4 +126,41 @@ function	script	GetTierWording	{
 	else if(.@tier == 5)
 	return "[Legendary]";
 	return "[Error]";
+}
+function	script	GetTierColor	{
+	.@tier = getarg(0,0);
+	if(.@tier == 1)
+	return "^52B7B5";
+	else if(.@tier == 2)
+	return "^5295B7";
+	else if(.@tier == 3)
+	return "^5B52B7";
+	else if(.@tier == 4)
+	return "^8A52B7";
+	else if(.@tier == 5)
+	return "^B752AE";
+	return "^000000";
+}
+function	script	GetRankColor	{
+	.@rank = getarg(0,0);
+	if(.@rank == 1)
+	return "^E91A1A";
+	else if(.@rank == 2)
+	return "^E95F1A";
+	else if(.@rank == 3)
+	return "^E9A11A";
+	else if(.@rank == 1)
+	return "^000000";
+}
+function	script	GetRebirthColor	{
+	return "^851AE9";
+}
+function	script	GetKillPointsColor	{
+	return "^E91AE6";
+}
+function	script	GetGoodConditionColor	{
+	return "^1A4FE9";
+}
+function	script	GetBadConditionColor	{
+	return "^E91A1A";
 }

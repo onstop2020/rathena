@@ -9,7 +9,7 @@ prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 		mes "ฆาตกรที่โหดที่สุด";
 		for(.@i = 0; .@i < getarraysize(.@charId); .@i++){
 			query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@i] + "'",.@name$);
-			mes (.@i + 1) + ".) " + .@name$ + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
+			mes callfunc("GetRankColor",(.@i + 1)) + (.@i + 1) + ".) " + .@name$ + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)^000000";
 			.@menu$ += .@name$ + ":";
 		}
 		.@t = select(.@menu$);
@@ -30,7 +30,7 @@ prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 	else{
 		mes "ผู้เล่นที่ Level มากที่สุด";
 		for(.@i = 0; .@i < getarraysize(.@name$); .@i++){
-			mes (.@i + 1) + ".) " + .@name$[.@i] + " (Level " + .@blvl[.@i] + ")";
+			mes callfunc("GetRankColor",(.@i + 1)) + (.@i + 1) + ".) " + .@name$[.@i] + " (Level " + .@blvl[.@i] + ")^000000";
 			.@menu$ += .@name$[.@i] + ":";
 		}
 		.@t = select(.@menu$);
@@ -42,20 +42,6 @@ prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 		end;
 	}
 	close;
-
-	/*L_Party:
-	//WHERE CustomerName LIKE 'a%'
-	query_sql("SELECT `varname`,`value` FROM `mapreg` WHERE `varname` LIKE '$pkc_%' ORDER BY `value` DESC LIMIT 10",.@partyName$,.@killCount);
-	if(getarraysize(.@partyName$) <= 0)
-	mes "ไม่พบข้อมูล";
-	else{
-		mes "Party ที่โหดที่สุด";
-		for(.@i = 0; .@i < getarraysize(.@partyName$); .@i++){
-			.@length = getstrlen(.@partyName$);
-			mes (.@i + 1) + ".) " + substr(.@partyName$, 5, .@length-1) + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)";
-		}
-	}
-	close;*/
 
 OnInit:
 	waitingroom "ตามล่าผู้เล่นอื่น",0;
