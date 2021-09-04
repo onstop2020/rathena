@@ -149,14 +149,15 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 	// From here on the jobmaster checks the current class
 	// and fills the the array `.@job_opt` with possible
 	// job options for the player.
-	
+	$is_force_rebirth = 0;
 	if( .@rebirth_possible ) {
 		// Rebirth option (displayed on the top of the menu)
 		Require_Level(.Req_Rebirth[0], .Req_Rebirth[1]);
+		$is_force_rebirth = 1;
 		Require_KillPoints(.Req_KillPoints[0]);
 		Job_Options(.@job_opt, Job_Novice_High);
 	}
-	if( .@third_possible ) {
+	if( .@third_possible && !$is_force_rebirth) {
 		// Third Job change (displayed below rebirth)
 		Require_Level(.Req_Third[0], .Req_Third[1]);
 		Require_KillPoints(.Req_KillPoints[2]);
@@ -282,13 +283,20 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 				mes "เลือกอาชีพ";
 				.@menu$ = "";
 				for (.@i = 0; .@i < .@opt_cnt; .@i++) {
-					if( getelementofarray(getarg(0), .@i) == Job_Novice_High)
-					.@jobname$ = "^0055FFRebirth^000000";
+					if( getelementofarray(getarg(0), .@i) == Job_Novice_High){
+						.@jobname$ = "^0055FFRebirth^000000";
+						.@is_found_force_rebirth = 1;
+					}
 					else
 					.@jobname$ = jobname(getelementofarray(getarg(0), .@i));
 					.@menu$ = .@menu$ + " ~ " + .@jobname$ + ":";
 				}
 				.@menu$ = .@menu$+" ~ ^777777ยกเลิก^000000";
+				//dispbottom "$is_force_rebirth:" + $is_force_rebirth;
+				//dispbottom ".@is_found_force_rebirth:" + .@is_found_force_rebirth;
+				if($is_force_rebirth && .@is_found_force_rebirth)
+				.@selected = 0;
+				else
 				.@selected = select(.@menu$) - 1;
 				if( .@selected < 0 || .@selected >= .@opt_cnt )
 				close;
@@ -353,6 +361,7 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 		}
 		mes "ต้องการเปลี่ยนเป็น ^0055FF"+jobname(.@class)+"^000000?";
 		.@job_option$ = " ~ เปลี่ยนเป็น ^0055FF"+jobname(.@class)+"^000000";
+		
 		if( .@class == Job_Novice_High)
 		.@job_option$ = " ~ ^0055FFRebirth^000000";
 		
