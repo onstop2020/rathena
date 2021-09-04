@@ -2930,7 +2930,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			if (!pc_readreg2(sd, "is_kp_gain_no_display")) {
 				char output[CHAT_SIZE_MAX];
 				nullpo_retv(sd);
-				sprintf(output, "Kill Points +%d | Total: %d", gain_kp, pc_readreg2(sd, "kp"));
+				sprintf(output, "Kill Points +%d | Total: %d", gain_kp, (int)pc_readreg2(sd, "kp"));
 				clif_messagecolor(&sd->bl, color_table[COLOR_KILL_POINTS], output, false, SELF);
 			}
 
