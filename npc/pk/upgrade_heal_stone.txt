@@ -9,7 +9,7 @@ prontera,95,247,5	script	ตีบวก Heal Stone	655,{
 	next;
 	menu "ตีบวก Heal Stone (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[hs_cooldown_upg]) + "kp^000000)",-;
 	if(kp < .price[hs_cooldown_upg]){
-		mes "ต้องการ Kill Points อีก " + callfunc("F_InsertComma",(.price[hs_cooldown_upg] - kp));
+		mes "ต้องการ " + callfunc("GetKillPointsColor") + "Kill Points^000000 อีก " + callfunc("F_InsertComma",(.price[hs_cooldown_upg] - kp));
 		close;
 	}
 	mes "จ่าย " + callfunc("GetKillPointsColor") + "Kill Points^000000 ไป: " + callfunc("F_InsertComma",.price[hs_cooldown_upg]);

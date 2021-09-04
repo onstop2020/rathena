@@ -8,9 +8,9 @@ OnInit:
 	end;
 }
 
-prontera,55,336,5	duplicate(backToCenter)	กลับกลางเมือง#CharacterImprovements	10081
+prontera,61,330,5	duplicate(backToCenter)	กลับกลางเมือง#CharacterImprovements	10081
 prontera,113,239,5	duplicate(backToCenter)	กลับกลางเมือง#Equipment	10081
-prontera,195,261,5	duplicate(backToCenter)	กลับกลางเมือง#Beauty	10081
+prontera,195,247,5	duplicate(backToCenter)	กลับกลางเมือง#Beauty	10081
 prontera,104,322,5	duplicate(backToCenter)	กลับกลางเมือง#SpecialDungeons	10081
 prontera,237,74,5	duplicate(backToCenter)	กลับกลางเมือง#Training	10081
 
@@ -54,7 +54,7 @@ OnInit:
 	end;
 }
 
-prontera,138,204,5	script	Zone แต่งตัว	10081,{
+prontera,175,203,5	script	Zone แต่งตัว	10081,{
 	warp "prontera",195,255;
 	specialeffect2 417;
 	end;

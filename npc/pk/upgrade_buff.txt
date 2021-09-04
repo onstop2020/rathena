@@ -1,0 +1,42 @@
+prontera,46,330,3	script	ตีบวก Buff	637,{
+	if(upg_buff >= getarraysize(.price)){
+		mes "ตีบวก Buff ถึงระดับสูงสุดแล้ว";
+		close;
+	}
+	mes "ใช้ " + callfunc("GetKillPointsColor") + "Kill Points^000000 เพื่อ" + callfunc("GetGoodConditionColor") + "ตีบวก Buff^000000";
+	mes "ระดับ Buff ขณะนี้: " + callfunc("F_InsertComma",upg_buff) + "/" + callfunc("F_InsertComma",getarraysize(.price));
+	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp) + "^000000";
+	next;
+	menu "ตีบวก Buff (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[upg_buff]) + "kp^000000)",-;
+	if(kp < .price[upg_buff]){
+		mes "ต้องการ " + callfunc("GetKillPointsColor") + "Kill Points^000000 อีก " + callfunc("F_InsertComma",(.price[upg_buff] - kp));
+		close;
+	}
+	mes "จ่าย " + callfunc("GetKillPointsColor") + "Kill Points^000000 ไป: " + callfunc("F_InsertComma",.price[upg_buff]);
+	kp -= .price[upg_buff];
+	upg_buff++;
+	specialeffect2 313;
+	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ " + callfunc("F_InsertComma",kp) + "^000000";
+	mes "ระดับ Buff ขณะนี้: " + callfunc("F_InsertComma",upg_buff) + "/" + callfunc("F_InsertComma",getarraysize(.price));
+	close;
+	
+OnInit:
+	setarray .price[0],300	// 1 Times
+	,900					// 2 Times
+	,3000					// 3 Times
+	,9000					// 4 Times
+	,30000					// 5 Times
+	,90000					// 6 Times
+	,300000					// 7 Times
+	,900000					// 8 Times
+	,3000000				// 9 Times
+	,9000000				// 10 Times
+	,30000000				// 11 Times
+	,90000000				// 12 Times
+	,300000000				// 13 Times
+	,900000000				// 14 Times
+	,3000000000				// 15 Times
+	;
+	waitingroom "ตีบวก Buff",0;
+	end;
+}

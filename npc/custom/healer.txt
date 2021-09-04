@@ -18,20 +18,63 @@
 	
 	if (@HD > gettimetick(2))
 	end;
-	
-	//sc_start SC_INCREASEAGI,600000,10;
-	//sc_start SC_BLESSING,600000,10;
-	percentheal 100,100;
 
+	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp) + "^000000";
+	next;
+	menu "จ่าย " + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price) + "kp^000000 เพื่อ" + callfunc("GetGoodConditionColor") + "รับ Buff ตามระดับ Buff ของคุณ^000000",-;
+	
+	if(kp < .price){
+		mes "ต้องการ " + callfunc("GetKillPointsColor") + "Kill Points^000000 อีก " + callfunc("F_InsertComma",(.price - kp));
+		close;
+	}
+	kp -= .price;
+
+	if(upg_buff >= 1)
+	sc_start SC_INCREASEAGI,600000,10;
+	if(upg_buff >= 2)
+	sc_start SC_BLESSING,600000,10;
+	if(upg_buff >= 3)
+	sc_start SC_ANGELUS,600000,10;
+	if(upg_buff >= 4)
+	sc_start SC_IMPOSITIO,600000,5;
+	if(upg_buff >= 5)
+	sc_start SC_SUFFRAGIUM,600000,3;
+	if(upg_buff >= 6)
+	sc_start SC_KYRIE,600000,10;
+	if(upg_buff >= 7)
+	sc_start SC_MAGNIFICAT,600000,5;
+	if(upg_buff >= 8)
+	sc_start SC_GLORIA,600000,5;
+	if(upg_buff >= 9)
+	sc_start SC_SLOWPOISON,600000,4;
+	if(upg_buff >= 10)
+	sc_start SC_ASSUMPTIO,600000,5;
+	if(upg_buff >= 11)
+	sc_start SC_EXPIATIO,600000,5;
+	if(upg_buff >= 12)
+	sc_start SC_RENOVATIO,600000,4;
+	if(upg_buff >= 13)
+	sc_start SC_SECRAMENT,600000,5;
+	if(upg_buff >= 14)
+	sc_start SC_ADRENALINE,600000,5;
+	if(upg_buff >= 15)
+	sc_start SC_OVERTHRUST,600000,5;
+
+	percentheal 100,100;
+	
+	specialeffect2 320;
+	
+	message strcharinfo(0),"Kill Points คงเหลือ " + callfunc("F_InsertComma",kp);
+	
 	if (.@Delay)
 	@HD = gettimetick(2) + .@Delay;
 	end;
 	
 OnInit:
+	.price = 3;
 	waitingroom "Buff",0;
 	end;
 }
-
 
 // Duplicates
 //============================================================
