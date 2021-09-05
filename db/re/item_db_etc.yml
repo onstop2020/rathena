@@ -2097,13 +2097,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 25
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2115,13 +2108,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2135,13 +2121,6 @@ Body:
     Buy: 8
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2155,13 +2134,6 @@ Body:
     Buy: 4
     Weight: 1
     Attack: 40
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2173,13 +2145,6 @@ Body:
     Buy: 3
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2193,13 +2158,6 @@ Body:
     Buy: 3
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2213,13 +2171,6 @@ Body:
     Buy: 3
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2233,13 +2184,6 @@ Body:
     Buy: 3
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -33880,9 +33824,6 @@ Body:
     Buy: 200
     Weight: 1
     Attack: 120
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
     Classes:
       All_Third: true
     Locations:
@@ -33898,9 +33839,6 @@ Body:
     Buy: 200
     Weight: 1
     Attack: 120
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
     Classes:
       All_Third: true
     Locations:
@@ -33916,9 +33854,6 @@ Body:
     Buy: 500
     Weight: 1
     Attack: 250
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
     Classes:
       All_Third: true
     Locations:
