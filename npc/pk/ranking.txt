@@ -1,4 +1,8 @@
 prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
+	if (#player_hunt_cooldown2 > gettimetick(2)){
+		mes "โปรดรอ " + (#player_hunt_cooldown2 - gettimetick(2)) + " วินาที";
+		close;	
+	}
 	menu "ล่าฆาตกร",L_MostWantedHunt,"ล่าคนเวลสูงสุด",L_HighestLevelHunt;
 	
 	L_MostWantedHunt:
@@ -15,6 +19,7 @@ prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 		.@t = select(.@menu$);
 		query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@t - 1] + "'",$hunt_name$);
 		close2;
+		#player_hunt_cooldown2 = gettimetick(2) + .cooldown;
 		message $hunt_name$,"มีคนกำลังตามล่าคุณ!";
 		
 		hunt_cast = 2;
@@ -41,6 +46,7 @@ prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 		}
 		.@t = select(.@menu$);
 		close2;
+		#player_hunt_cooldown2 = gettimetick(2) + .cooldown;
 		$hunt_name$ = .@name$[.@t - 1];
 		message $hunt_name$,"มีคนกำลังตามล่าคุณ!";
 		
@@ -77,6 +83,7 @@ OnHunt:
 	end;
 	
 OnInit:
+	.cooldown = 300;
 	waitingroom "ตามล่าผู้เล่นอื่น",0;
 	end;
 }

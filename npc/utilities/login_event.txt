@@ -17,7 +17,23 @@ OnPCLoginEvent:
 	addtimer 1,"LoginEvent::OnEffectInstall";
 	
 	dispbottom "คุณมี " + callfunc("F_InsertComma",kp) + " Kill Points";
+	setpcblock PCBLOCK_ALL,false;
+	if(Class == 4218){
+		setpcblock PCBLOCK_ALL,true;
+		setpcblock PCBLOCK_MOVE|PCBLOCK_NPCCLICK|PCBLOCK_USEITEM|PCBLOCK_COMMANDS,false;
+		atcommand "@load";
+		addtimer 1,"LoginEvent::OnDoramDisable";
+	}
+	end;
 	
+OnDoramDisable:
+	mes "Doram ปิดการใช้งานแล้ว";
+	mes "---";
+	mes "คุณจะกลายเป็น Novice เมื่อกดยืนยัน";
+	next;
+	menu "ยกเลิก",OnDoramDisable,"ยืนยัน",-;
+	atcommand "@job 0";
+	setpcblock PCBLOCK_ALL,false;
 	end;
 	
 OnEffectInstall:

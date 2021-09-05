@@ -1,0 +1,12 @@
+prontera,1,1,5	script	No Doram	655,300,300,{
+	end;
+	
+OnTouch:
+	if(Class == 4218){
+		setpcblock PCBLOCK_ALL,true;
+		setpcblock PCBLOCK_MOVE|PCBLOCK_NPCCLICK|PCBLOCK_USEITEM|PCBLOCK_COMMANDS,false;
+		atcommand "@load";
+		addtimer 1,"LoginEvent::OnDoramDisable";
+	}
+	end;
+}
