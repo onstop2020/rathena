@@ -35,7 +35,7 @@ OnDoramDisable:
 	mes "คุณจะกลายเป็น Novice เมื่อกดยืนยัน";
 	next;
 	menu "ยกเลิก",OnDoramDisable,"ยืนยัน",-;
-	atcommand "@job 4001";
+	atcommand "@job 0";
 	setpcblock PCBLOCK_ALL,false;
 	end;
 	
