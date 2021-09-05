@@ -32631,9 +32631,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 100
@@ -32647,9 +32644,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 100
@@ -32663,9 +32657,6 @@ Body:
     Buy: 5
     Weight: 1
     Attack: 15
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32679,9 +32670,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32765,9 +32753,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32781,9 +32766,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32797,9 +32779,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32813,9 +32792,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32830,9 +32806,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 20
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32847,9 +32820,6 @@ Body:
     Buy: 4
     Weight: 1
     Attack: 10
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32861,9 +32831,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 20
@@ -32875,9 +32842,6 @@ Body:
     Buy: 20
     Weight: 1
     Attack: 45
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 40
@@ -32889,9 +32853,6 @@ Body:
     Buy: 40
     Weight: 1
     Attack: 70
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 60
@@ -32903,9 +32864,6 @@ Body:
     Buy: 100
     Weight: 1
     Attack: 100
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 80
@@ -32917,9 +32875,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32933,9 +32888,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32949,9 +32901,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32965,9 +32914,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32981,9 +32927,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -33488,9 +33431,6 @@ Body:
     SubType: Shuriken
     Weight: 5
     Attack: 110
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 50
@@ -33514,9 +33454,6 @@ Body:
     Buy: 10
     Weight: 20
     Attack: 50
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -33540,9 +33477,6 @@ Body:
     Buy: 10
     Weight: 20
     Attack: 50
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -33566,9 +33500,6 @@ Body:
     Buy: 100
     Weight: 1
     Attack: 50
-    Jobs:
-      KagerouOboro: true
-      Ninja: true
     Locations:
       Ammo: true
     EquipLevelMin: 100
@@ -33638,9 +33569,6 @@ Body:
     Buy: 100
     Weight: 1
     Attack: 100
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
     Classes:
       All_Third: true
     Locations:
@@ -33654,9 +33582,6 @@ Body:
     Buy: 200
     Weight: 1
     Attack: 120
-    Jobs:
-      Alchemist: true
-      Blacksmith: true
     Classes:
       All_Third: true
     Locations:
