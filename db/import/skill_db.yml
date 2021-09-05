@@ -130,3 +130,26 @@
 Header:
   Type: SKILL_DB
   Version: 1
+
+Body:
+  - Id: 26
+    Name: AL_TELEPORT
+    Description: Teleport
+    MaxLevel: 2
+    Type: Magic
+    TargetType: Self
+    DamageFlags:
+      NoDamage: true
+    Flags:
+      IgnoreKagehumi: true
+      AllowOnMado: true
+    Hit: Single
+    HitCount: 1
+    Cooldown: 10000
+    CastCancel: true
+    Requires:
+      SpCost:
+        - Level: 1
+          Amount: 10
+        - Level: 2
+          Amount: 9
