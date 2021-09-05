@@ -38,7 +38,14 @@ OnPCDieEvent:
 		dispbottom "Luk ลดลง " + callfunc("F_InsertComma",.@d_luk);
 		.a_deadman$ = strcharinfo(0);
 		
+		//if(isloggedin(killerrid))
+		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid))
 		.kp = rand(kp);
+		else
+		.kp = rand(kp/10);
+		if(.kp < 0)
+		.kp = 0;
+		
 		kp -= .kp;
 		
 		dispbottom "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp);

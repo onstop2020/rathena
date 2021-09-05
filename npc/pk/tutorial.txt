@@ -13,7 +13,8 @@ prontera,63,337,3	script	สาระน่ารู้#1	837,{
 	next;
 	mes "การเก็บ Level";
 	mes "๐" + callfunc("GetGoodConditionColor") + " EXP x5^000000";
-	mes "๐ มีอุปกรณ์สวมใส่มากมาย ให้คุณได้ค้นหา หากเจออุปกรณ์สวมใส่ ที่มีคุณสมบัติเพิ่ม EXP ที่ได้รับ " + callfunc("GetGoodConditionColor") + "นั่นจะช่วยให้คุณเก็บ Level ได้ไวขึ้น^000000";
+	mes "๐ ความห่าง Level ของคุณกับ Monster " + callfunc("GetGoodConditionColor") + "ไม่มีผลให้ EXP ที่ได้รับน้อยลง^000000";
+	mes "๐ มีอุปกรณ์สวมใส่มากมายให้คุณได้ค้นหา หากเจออุปกรณ์สวมใส่ ที่มีคุณสมบัติเพิ่ม EXP ที่ได้รับ " + callfunc("GetGoodConditionColor") + "นั่นจะช่วยให้คุณเก็บ Level ได้ไวขึ้น^000000";
 	mes "๐ การแบ่ง EXP เท่ากัน ภายใน Party " + callfunc("GetGoodConditionColor") + "จะได้รับ EXP มากขึ้น 10%^000000";
 	mes "๐ การแบ่ง EXP เท่ากัน ภายใน Party " + callfunc("GetGoodConditionColor") + "ไม่จำกัดความห่างของ Level^000000 นั่นคือคุณสามารถให้คนที่เก่งมาก ๆ ช่วยคุณเก็บ Level ได้";
 	close;
@@ -39,7 +40,8 @@ prontera,116,246,3	script	สาระน่ารู้#3	837,{
 	mes "๐" + callfunc("GetGoodConditionColor") + " อุปกรณ์สวมใส่ ทุกชิ้นตีบวกได้^000000";
 	mes "๐" + callfunc("GetGoodConditionColor") + " ค่า APSD ของอาวุธทุกชนิด เท่ากันหมด^000000";
 	mes "๐" + callfunc("GetGoodConditionColor") + " อุปกรณ์สวมใส่ ที่ Drop จาก Monster สามารถใส่ได้ทุกอาชีพ^000000";
-	mes "๐ มีอุปกรณ์สวมใส่มากมาย ให้คุณได้ค้นหา หากเจออุปกรณ์สวมใส่ ที่มีคุณสมบัติเพิ่มอัตราการ Drop " + callfunc("GetGoodConditionColor") + "นั่นจะช่วยให้คุณหา อุปกรณ์สวมใส่อื่น ๆ ได้ไวยิ่งขึ้น^000000";
+	mes "๐ ความห่าง Level ของคุณกับ Monster " + callfunc("GetGoodConditionColor") + "ไม่มีผลให้อัตราการ Drop น้อยลง^000000";
+	mes "๐ มีอุปกรณ์สวมใส่มากมายให้คุณได้ค้นหา หากเจออุปกรณ์สวมใส่ ที่มีคุณสมบัติเพิ่มอัตราการ Drop " + callfunc("GetGoodConditionColor") + "นั่นจะช่วยให้คุณหา อุปกรณ์สวมใส่อื่น ๆ ได้ไวยิ่งขึ้น^000000";
 	mes "๐" + callfunc("GetBadConditionColor") + " Zeny ไร้ค่า^000000";
 	next;
 	mes "วิธีทำร่ายเร็ว";
