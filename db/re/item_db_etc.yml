@@ -2314,13 +2314,6 @@ Body:
     Buy: 3
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2334,13 +2327,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2354,13 +2340,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 1
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2374,13 +2353,6 @@ Body:
     Buy: 4
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2392,8 +2364,6 @@ Body:
     Buy: 50
     Weight: 5
     Attack: 30
-    Jobs:
-      Assassin: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2405,13 +2375,6 @@ Body:
     Buy: 3
     Weight: 1
     Attack: 50
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2426,13 +2389,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 45
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 100
@@ -2444,13 +2400,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 35
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -2462,13 +2411,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 45
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 130
@@ -2480,13 +2422,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 30
-    Jobs:
-      Archer: true
-      Assassin: true
-      BardDancer: true
-      Hunter: true
-      Rogue: true
-      Thief: true
     Locations:
       Ammo: true
     EquipLevelMin: 95
@@ -32454,9 +32389,6 @@ Body:
     Buy: 1
     Weight: 1
     Attack: 25
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32468,9 +32400,6 @@ Body:
     Buy: 15
     Weight: 2
     Attack: 15
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32484,9 +32413,6 @@ Body:
     Buy: 30
     Weight: 2
     Attack: 30
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 1
@@ -32571,9 +32497,6 @@ Body:
     SubType: Bullet
     Weight: 5
     Attack: 50
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 50
@@ -32656,9 +32579,6 @@ Body:
     Buy: 15
     Weight: 1
     Attack: 50
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 100
@@ -32672,9 +32592,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 100
@@ -32688,9 +32605,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 100
@@ -32704,9 +32618,6 @@ Body:
     Buy: 10
     Weight: 1
     Attack: 40
-    Jobs:
-      Gunslinger: true
-      Rebellion: true
     Locations:
       Ammo: true
     EquipLevelMin: 100
