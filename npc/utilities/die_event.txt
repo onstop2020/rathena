@@ -3,7 +3,11 @@
 	
 OnPCDieEvent:
 	if(strcharinfo(3) != "prontera"){
-		.@maxDecreaseLevel = BaseLevel / 10;
+		.@sum_rebirth = rebirth_count;
+		if(.@sum_rebirth >= 90)
+			.@sum_rebirth = 90;
+		.@maxDecreaseLevel = BaseLevel / (100 - .@sum_rebirth);
+		//dispbottom "Test ลด Level มากสุดที่ = " + .@maxDecreaseLevel;
 		if(.@maxDecreaseLevel <= 1)
 		.@maxDecreaseLevel = 1;
 		if(BaseLevel > 1){
