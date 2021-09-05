@@ -4,7 +4,7 @@
 OnPCLoginEvent:
 	callfunc("RebirthStatus");
 	
-	Zeny = 100000;
+	Zeny = 1000000;
 	
 	if(countitem(40042) <= 0)
 	getitem 40042,1;
