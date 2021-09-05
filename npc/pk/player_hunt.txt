@@ -1,10 +1,17 @@
 prontera,163,203,5	script	ตามล่าผู้เล่นอื่น	856,{
-	if (#player_hunt_cooldown > gettimetick(2)){
-		mes "โปรดรอ " + (#player_hunt_cooldown - gettimetick(2)) + " วินาที";
+	.@h = gettime(DT_HOUR);
+	if(.@h >= 21 || .@h < 6){
+		if (#player_hunt_cooldown > gettimetick(2)){
+			mes "โปรดรอ " + (#player_hunt_cooldown - gettimetick(2)) + " วินาที";
+			close;	
+		}
+		#player_hunt_cooldown = gettimetick(2) + .cooldown;
+		atcommand "@users";
+	}
+	else{
+		mes "เปิดให้ใช้งาน 21.00น. ~ 06.00น.";
 		close;	
 	}
-	#player_hunt_cooldown = gettimetick(2) + .cooldown;
-	atcommand "@users";
 	end;
 	
 OnInit:

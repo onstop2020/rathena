@@ -21,7 +21,8 @@
 
 	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp) + "^000000";
 	next;
-	menu "จ่าย " + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price) + "kp^000000 เพื่อ" + callfunc("GetGoodConditionColor") + "รับ Buff ตามระดับ Buff ของคุณ^000000",-;
+	menu "จ่าย " + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price) + "kp^000000 เพื่อ" + callfunc("GetGoodConditionColor") + "รับ Buff ตามระดับ Buff ของคุณ^000000",-
+	,"จ่าย " + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.repair_price) + "kp^000000 เพื่อ" + callfunc("GetGoodConditionColor") + "ซ่อมอุปกรณ์^000000",L_Repair;
 	
 	if(kp < .price){
 		mes "ต้องการ " + callfunc("GetKillPointsColor") + "Kill Points^000000 อีก " + callfunc("F_InsertComma",(.price - kp));
@@ -70,8 +71,26 @@
 	@HD = gettimetick(2) + .@Delay;
 	end;
 	
+	L_Repair:
+	if(kp < .repair_price){
+		mes "ต้องการ " + callfunc("GetKillPointsColor") + "Kill Points^000000 อีก " + callfunc("F_InsertComma",(.repair_price - kp));
+		close;
+	}
+	kp -= .repair_price;
+	
+	repairall;
+	
+	specialeffect2 98;
+	
+	message strcharinfo(0),"Kill Points คงเหลือ " + callfunc("F_InsertComma",kp);
+	
+	if (.@Delay)
+	@HD = gettimetick(2) + .@Delay;
+	end;
+	
 OnInit:
 	.price = 3;
+	.repair_price = 333;
 	waitingroom "Buff",0;
 	end;
 }
