@@ -1,0 +1,30 @@
+prontera,97,232,5	script	ตีบวก Return Stone	861,{
+	if(rs_cooldown_upg >= getarraysize(.price)){
+		mes "ตีบวก " + .item_name$ + " ถึงระดับสูงสุดแล้ว";
+		mes "โดย " + .item_name$ + " จะสุ่มร่าย " + (10 - rs_cooldown_upg) + "~10 วินาที";
+		close;
+	}
+	mes "ใช้ " + callfunc("GetKillPointsColor") + "Kill Points^000000\nเพื่อ" + callfunc("GetGoodConditionColor") + "ลดเวลาร่ายและ Cooldown^000000 Item " + .item_name$;
+	mes "ระดับ " + .item_name$ + " ขณะนี้: " + callfunc("F_InsertComma",rs_cooldown_upg) + "/" + callfunc("F_InsertComma",getarraysize(.price));
+	mes "โดย " + .item_name$ + " จะสุ่มร่าย " + (10 - rs_cooldown_upg) + "~10 วินาที";
+	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp) + "^000000";
+	next;
+	menu "ตีบวก " + .item_name$ + " (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[rs_cooldown_upg]) + "kp^000000)",-;
+	if(kp < .price[rs_cooldown_upg]){
+		mes "ต้องการ " + callfunc("GetKillPointsColor") + "Kill Points^000000 อีก " + callfunc("F_InsertComma",(.price[rs_cooldown_upg] - kp));
+		close;
+	}
+	mes "จ่าย " + callfunc("GetKillPointsColor") + "Kill Points^000000 ไป: " + callfunc("F_InsertComma",.price[rs_cooldown_upg]);
+	kp -= .price[rs_cooldown_upg];
+	rs_cooldown_upg++;
+	specialeffect2 313;
+	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ " + callfunc("F_InsertComma",kp) + "^000000";
+	mes "ระดับ " + .item_name$ + " ขณะนี้: " + callfunc("F_InsertComma",rs_cooldown_upg) + "/" + callfunc("F_InsertComma",getarraysize(.price));
+	close;
+	
+OnInit:
+	.item_name$ = getitemname(40043);
+	setarray .price[0],249,499,799,1490,2490,3900,9999;
+	waitingroom "ตีบวก " + .item_name$,0;
+	end;
+}

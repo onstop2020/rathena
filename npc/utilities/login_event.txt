@@ -17,54 +17,6 @@ OnPCLoginEvent:
 	addtimer 1,"LoginEvent::OnEffectInstall";
 	
 	dispbottom "คุณมี " + callfunc("F_InsertComma",kp) + " Kill Points";
-	
-	// No Doram / Expanded Classes
-	/*setpcblock PCBLOCK_ALL,false;
-	if(Class == 4218){
-		setpcblock PCBLOCK_ALL,true;
-		setpcblock PCBLOCK_MOVE|PCBLOCK_NPCCLICK|PCBLOCK_USEITEM|PCBLOCK_COMMANDS,false;
-		atcommand "@load";
-		addtimer 1,"LoginEvent::OnDoramDisable";
-	}
-	else if(eaclass()&EAJL_BABY
-			|| Class == 24
-			|| Class == 25
-			|| Class == 4045
-			|| Class == 4046
-			|| Class == 4047
-			|| Class == 4049
-			|| Class == 4191
-			|| Class == 4211
-			|| Class == 4212
-			|| Class == 4215
-			|| Class == 4239
-			|| Class == 4240
-			){
-		setpcblock PCBLOCK_ALL,true;
-		setpcblock PCBLOCK_MOVE|PCBLOCK_NPCCLICK|PCBLOCK_USEITEM|PCBLOCK_COMMANDS,false;
-		atcommand "@load";
-		addtimer 1,"LoginEvent::OnOtherJobsDisable";
-	}*/
-	end;
-	
-OnDoramDisable:
-	mes "Doram ถูกปิดการใช้งานแล้ว";
-	mes "---";
-	mes "คุณจะกลายเป็น Novice เมื่อกดยืนยัน";
-	next;
-	menu "ยกเลิก",OnDoramDisable,"ยืนยัน",-;
-	atcommand "@job 0";
-	setpcblock PCBLOCK_ALL,false;
-	end;
-	
-OnOtherJobsDisable:
-	mes "อาชีพที่คุณเล่น ถูกปิดการใช้งานแล้ว";
-	mes "---";
-	mes "คุณจะกลายเป็น High Novice เมื่อกดยืนยัน";
-	next;
-	menu "ยกเลิก",OnOtherJobsDisable,"ยืนยัน",-;
-	atcommand "@job 4001";
-	setpcblock PCBLOCK_ALL,false;
 	end;
 	
 OnEffectInstall:

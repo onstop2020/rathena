@@ -1,9 +1,15 @@
 -	script	storage	-1,{
 	specialeffect2 793;
+	if(getcharid(2) > 0)
+	menu "คลังเก็บของปกติ",-,"คลังเก็บของ Guild",L_GuildStorage;
 	openstorage;
 	end;
 	
-	OnInit:
+	L_GuildStorage:
+	guildopenstorage();
+	end;
+	
+OnInit:
 	waitingroom "คลังเก็บของ",0;
 	end;
 }

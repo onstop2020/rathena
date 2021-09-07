@@ -1,24 +1,35 @@
-prontera,152,200,5	script	ห้องล่ากุญแจ	10007,{
+prontera,56,60,5	script	ห้องล่าของ Legendary	856,{
 	if (key_hunt_cooldown > gettimetick(2)){
 		mes "โปรดรอ " + (key_hunt_cooldown - gettimetick(2)) + " วินาที";
 		close;	
 	}
-	mes "วิธีเล่น";
-	mes "๐ เข้าไปสู้ Monster";
-	mes "๐ Monster ในห้องมีทั้งหมด ^D10687" + callfunc("F_InsertComma",.max_monster_amount) + " ตัว^000000)";
-	mes "๐ ฆ่าได้ ^7A31EBกุญแจทุกชนิด^000000 (^D10687สุ่มเท่า ๆ กัน^000000)";
-	mes "๐ Weapon, Equipment (1~^D10687" + (.max_reward_rate_tier1 * .key_hunt_reward_rate) + "^000000)";
-	mes "๐ Costume, Card (1~^D10687" + (.max_reward_rate_tier2 * .key_hunt_reward_rate) + "^000000)";
-	mes "๐ Option, Enchantment (1~^D10687" + (.max_reward_rate_tier3 * .key_hunt_reward_rate) + "^000000)";
-	mes "๐ ทุก ๆ ^D106871 นาที^000000 จะทำการ Respawn ให้ครบจำนวน";
-	mes "๐ ^EC1500ไม่สามารถ Teleport ได้^000000";
-	mes "๐ ^EC1500เมื่อเข้าแล้วต้องรอ " + .enter_cooldown + " วินาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง^000000";
-	mes "๐ ^D10687ค่าจะเปลี่ยนทุก ๆ xx:30น.^000000";
+	mes "๐ คุณมี " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",ls) + callfunc("GetTierColor",5) + " Legendary Soul^000000";
+	mes "---";
+	mes "๐ เป็น Map PK " + callfunc("GetBadConditionColor") + "(ฆ่ากันได้อิสระ คนฆ่าจะสุ่มได้รับ " + callfunc("GetKillPointsColor") + "Kill Points^000000" + callfunc("GetBadConditionColor") + " ของผู้ตายด้วย)^000000";
+	mes "๐ เข้าได้ทุกคน " + callfunc("GetBadConditionColor") + "แต่ควรเข้าเมื่อคิดว่าพร้อมแล้วเท่านั้น^000000";
+	mes "๐ Monster ในห้องมีทั้งหมด " + callfunc("F_InsertComma",.max_monster_amount) + " ตัว";
+	mes "๐ Monster ในห้อง Level 130+";
+	mes "๐ เมื่อกำจัด Monster จะ" + callfunc("GetGoodConditionColor") + "มีโอกาส 1% ที่จะได้แต้ม^000000 " + callfunc("GetTierColor",5) + "Legendary Soul^000000";
+	mes "๐ สามารถใช้ " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",.trade_amount) + callfunc("GetTierColor",5) + " Legendary Soul^000000 เพื่อสุ่มแลก " + callfunc("GetTierColor",5) + "Legendary Item^000000 ได้ 1 ชิ้น";
+	mes "๐ ทุก ๆ 1 นาที จะทำการ Respawn ให้ครบจำนวน";
+	mes "๐ ไม่สามารถใช้ Jump Stone ได้";
+	mes "๐ เมื่อเข้าแล้วต้องรอ " + .enter_cooldown + " วินาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง";
 	next;
-	menu "เข้า",-;
+	menu "เข้า",-,"แลก " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",.trade_amount) + callfunc("GetTierColor",5) + " Legendary Soul^000000",L_Trade;
 	key_hunt_cooldown = gettimetick(2) + .enter_cooldown;
 	warp "evt_bomb",0,0;
 	close;
+	
+	L_Trade:
+	if(ls < .trade_amount){
+		mes "ต้องการ " + callfunc("GetTierColor",5) + "Legendary Soul^000000 อีก " + callfunc("F_InsertComma",(.trade_amount - ls));
+		close;
+	}
+	ls -= .trade_amount;
+	mes "จ่าย " + callfunc("GetTierColor",5) + "Legendary Soul^000000 ไป: " + callfunc("F_InsertComma",.trade_amount);
+	mes callfunc("GetTierColor",5) + "Legendary Soul^000000 คงเหลือ " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",ls);
+	getitem rand(10040001,10050000),1;
+	end;
 	
 	L_Spawn:
 	.@isInit = getarg(0);
@@ -28,21 +39,17 @@ prontera,152,200,5	script	ห้องล่ากุญแจ	10007,{
 		.@current_amount_left = getmapunits(BL_MOB,.mapName$);
 		.@spawn_amount = .max_monster_amount - .@current_amount_left;
 	}
-
 	freeloop(1);
 	for(.@i = 0; .@i < .@spawn_amount; .@i++)
-	monster .mapName$,0,0,"--ja--",$all_mob_ids[rand(0,$all_mob_id_size - 1)],1,"ห้องล่ากุญแจ::OnMonsterDead";
+	monster .mapName$,0,0,"--ja--",$all_mob_130_plus_ids[rand(0,$all_mob_id_130_plus_size - 1)],1,"ห้องล่าของ Legendary::OnMonsterDead";
 	freeloop(0);
 	return;
 	
 OnMonsterDead:
-	.@rand_tier = rand(0,2);
-	if(.@rand_tier == 0)
-	getitem rand(0,1)==0?40004:40005,rand(1,(.max_reward_rate_tier1 * .key_hunt_reward_rate));
-	else if(.@rand_tier == 1)
-	getitem rand(0,1)==0?40006:40007,rand(1,(.max_reward_rate_tier2 * .key_hunt_reward_rate));
-	else
-	getitem rand(0,1)==0?40014:40015,rand(1,(.max_reward_rate_tier3 * .key_hunt_reward_rate));
+	if(rand(100) == 0){
+		ls++;
+		announce "คุณได้รับ 1 Legendary Soul!",bc_self,0xEBB531;
+	}
 	end;
 	
 OnTimer60000:
@@ -61,12 +68,10 @@ OnMinute30:
 OnInit:
 	callsub L_RefreshRate;
 	.enter_cooldown = 30;
-	.max_reward_rate_tier1 = 30;
-	.max_reward_rate_tier2 = 15;
-	.max_reward_rate_tier3 = 3;
+	.trade_amount = 100;
 	.max_monster_amount = 1000;
 	.mapName$ = "evt_bomb";
-	waitingroom "ห้องล่ากุญแจ",0;
+	waitingroom "ห้องล่าของ Legendary",0;
 	callsub L_Spawn,1;
 	initnpctimer;
 	end;

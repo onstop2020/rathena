@@ -13,6 +13,7 @@ prontera,113,239,5	duplicate(backToCenter)	กลับกลางเมือง#Equipment	10081
 prontera,195,247,5	duplicate(backToCenter)	กลับกลางเมือง#Beauty	10081
 prontera,104,322,5	duplicate(backToCenter)	กลับกลางเมือง#SpecialDungeons	10081
 prontera,237,74,5	duplicate(backToCenter)	กลับกลางเมือง#Training	10081
+prontera,65,60,5	duplicate(backToCenter)	กลับกลางเมือง#PK	10081
 
 prontera,146,188,5	script	Zone Item	10081,{
 	warp "prontera",104,251;
@@ -61,5 +62,15 @@ prontera,175,203,5	script	Zone แต่งตัว	10081,{
 	
 OnInit:
 	waitingroom "Zone แต่งตัว",0;
+	end;
+}
+
+prontera,137,203,5	script	Zone PK	10081,{
+	warp "prontera",65,55;
+	specialeffect2 417;
+	end;
+	
+OnInit:
+	waitingroom "Zone PK",0;
 	end;
 }

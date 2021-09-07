@@ -2,17 +2,14 @@
 	end;
 	
 OnPCDieEvent:
+	if(strcharinfo(3) == "force_1-1")
+	end;
 	if(strcharinfo(3) != "prontera"){
 		exp_multiplier = 0;
 		
 		callfunc("RebirthStatus");
-	
-		/*.@sum_rebirth = rebirth_count;
-		if(.@sum_rebirth >= 90)
-			.@sum_rebirth = 90;
-		.@maxDecreaseLevel = BaseLevel / (100 - .@sum_rebirth);*/
+		
 		.@maxDecreaseLevel = BaseLevel / 10;
-		//dispbottom "Test ลด Level มากสุดที่ = " + .@maxDecreaseLevel;
 		if(.@maxDecreaseLevel <= 1)
 		.@maxDecreaseLevel = 1;
 		if(BaseLevel > 1){
@@ -49,21 +46,22 @@ OnPCDieEvent:
 		.a_deadman$ = strcharinfo(0);
 		
 		//if(isloggedin(killerrid))
-		/*if(isloggedin(killerrid) && getcharip() != getcharip(killerrid))
+		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid))
 		.kp = rand(kp);
-		else*/
+		else
 		.kp = rand(kp / 10);
 		if(.kp < 0)
 		.kp = 0;
 		
+		if(.kp > 0)
 		kp -= .kp;
-		if(kp < 0)
+		if(kp <= 0)
 		kp = 0;
 		
 		dispbottom "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp);
 		
 		//if(isloggedin(killerrid)){
-		/*if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
+		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
 			attachrid(killerrid);
 			
 			killCount++;
@@ -76,7 +74,7 @@ OnPCDieEvent:
 			
 			detachrid;
 		}
-		else*/
+		else
 		announce .a_deadman$ + " ตาย" + (.kp ? (" Kill Points หายไป " + callfunc("F_InsertComma",.kp) + "kp") : "") + "!",bc_all,0xEC1500;
 	}
 	end;

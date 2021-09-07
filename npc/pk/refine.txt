@@ -1,4 +1,7 @@
 prontera,95,254,5	script	ตีบวก	10366,{
+	mes "เมื่อกดตีบวก จะทำการตีบวกทีเดียวทั้งตัว";
+	mes callfunc("GetBadConditionColor") + "โปรดถอดอุปกรณ์สวมใส่ ที่ไม่ต้องการตีบวกออกไปก่อน^000000";
+	menu "ตีบวก " + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price) + "kp^000000",-;
 	callsub L_KPCheck;
 
 	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;

@@ -3,7 +3,7 @@ prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 		mes "โปรดรอ " + (#player_hunt_cooldown2 - gettimetick(2)) + " วินาที";
 		close;	
 	}
-	menu "ล่าฆาตกร",L_MostWantedHunt,"ล่าคนเวลสูงสุด",L_HighestLevelHunt;
+	menu "ฆาตกรที่โหดที่สุด",L_MostWantedHunt,"ผู้เล่นที่ Level มากที่สุด",L_HighestLevelHunt;
 	
 	L_MostWantedHunt:
 	query_sql("SELECT `char_id`,`value` FROM `char_reg_num` WHERE `key` = 'killCount' ORDER BY `value` DESC LIMIT 3",.@charId,.@killCount);
@@ -16,6 +16,7 @@ prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 			mes callfunc("GetRankColor",(.@i + 1)) + (.@i + 1) + ".) " + .@name$ + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " Kill)^000000";
 			.@menu$ += .@name$ + ":";
 		}
+		close;
 		.@t = select(.@menu$);
 		query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@t - 1] + "'",$hunt_name$);
 		close2;
@@ -41,9 +42,10 @@ prontera,148,203,3	script	ตามล่าผู้เล่นอื่น#2	10295,{
 	else{
 		mes "ผู้เล่นที่ Level มากที่สุด";
 		for(.@i = 0; .@i < getarraysize(.@name$); .@i++){
-			mes callfunc("GetRankColor",(.@i + 1)) + (.@i + 1) + ".) " + .@name$[.@i] + " (Level " + .@blvl[.@i] + ")^000000";
+			mes callfunc("GetRankColor",(.@i + 4)) + (.@i + 1) + ".) " + .@name$[.@i] + " (Level " + .@blvl[.@i] + ")^000000";
 			.@menu$ += .@name$[.@i] + ":";
 		}
+		close;
 		.@t = select(.@menu$);
 		close2;
 		#player_hunt_cooldown2 = gettimetick(2) + .cooldown;
@@ -84,6 +86,6 @@ OnHunt:
 	
 OnInit:
 	.cooldown = 300;
-	waitingroom "ตามล่าผู้เล่นอื่น",0;
+	waitingroom "Ranking",0;
 	end;
 }

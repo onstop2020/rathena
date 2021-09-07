@@ -1,6 +1,8 @@
 function	script	JumpStone	{
-	if(strcharinfo(3) == "guild_vs1"){
-		message strcharinfo(0),"ไม่สามารถใช้ได้ใน Map นี้";
+	if(strcharinfo(3) == "force_1-1"
+			|| strcharinfo(3) == "evt_bomb"
+			){
+		message strcharinfo(0),"ไม่สามารถใช้งานได้ภายใน Map นี้";
 		end;
 	}
 	if (js_cooldown > gettimetick(2)){
@@ -17,7 +19,7 @@ function	script	JumpStone	{
 		end;
 	}
 	js_party = 0;
-	js_cast = 5;
+	js_cast = rand((5 - js_cooldown_upg),5);
 	.@c1 = js_cast;
 	while(.@c1 > 0){
 		.@s$ += "|";
@@ -25,7 +27,7 @@ function	script	JumpStone	{
 	}
 	message strcharinfo(0),"[" + .@s$ + "]";
 	addtimer 1000,"TeamCraftFunction::OnJumpStone";
-	js_cooldown = gettimetick(2) + 6;
+	js_cooldown = gettimetick(2) + js_cast + 1;
 	return;
 }
 function	script	ReturnStone	{
@@ -37,7 +39,7 @@ function	script	ReturnStone	{
 		message strcharinfo(0),"โปรดรอ " + (rs_cooldown - gettimetick(2)) + " วินาที";
 		end;
 	}
-	rs_cast = 10;
+	rs_cast = rand((10 - rs_cooldown_upg),10);
 	.@c1 = rs_cast;
 	while(.@c1 > 0){
 		.@s$ += "|";
@@ -45,7 +47,7 @@ function	script	ReturnStone	{
 	}
 	message strcharinfo(0),"[" + .@s$ + "]";
 	addtimer 1000,"TeamCraftFunction::OnReturnStone";
-	rs_cooldown = gettimetick(2) + 11;
+	rs_cooldown = gettimetick(2) + rs_cast + 1;
 	return;
 }
 function	script	HealStone	{
@@ -150,6 +152,12 @@ function	script	GetRankColor	{
 	return "^E95F1A";
 	else if(.@rank == 3)
 	return "^E9A11A";
+	else if(.@rank == 4)
+	return "^22A599";
+	else if(.@rank == 5)
+	return "^5AAAA3";
+	else if(.@rank == 6)
+	return "^99B1AF";
 	else if(.@rank == 1)
 	return "^000000";
 }
