@@ -304,10 +304,10 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 				mes .NPCName$;
 			}
 			.@class = getelementofarray(getarg(0), .@selected);
-			if( .@class == Job_Gunslinger || .@class == Job_Ninja || .@class == Job_Taekwon){
+			/*if( .@class == Job_Gunslinger || .@class == Job_Ninja || .@class == Job_Taekwon){
 				mes "ไม่เปิดให้ใช้งาน";
 				close;
-			}
+			}*/
 			if ((.@class == Job_Super_Novice || .@class == Job_Super_Baby) &&
 					BaseLevel < .SNovice) {
 				// Special Level Requirement because Super Novice and
@@ -489,12 +489,12 @@ OnInit:
 	// Settings
 	.ThirdClass = true;			// Enable third classes?
 	.RebirthClass = true;			// Enable rebirth classes?
-	.SecondExpanded = false;		// Enable new expanded second classes: Ex. Super Novice, Kagerou/Oboro, Rebellion?
-	.BabyNovice = false;	// Enable Baby novice classes? Disable it if you like player must have parent to get job baby.
-	.BabyClass = false;				// Enable Baby classes?
-	.BabyThird = false;				// Enable Baby third classes?
-	.BabyExpanded = false;			// Enable Baby Expanded classes: Ex. Baby Ninja, Baby Taekwon, etc.
-	.BabySummoner = false;			// Enable Baby Summoner?
+	.SecondExpanded = true;		// Enable new expanded second classes: Ex. Super Novice, Kagerou/Oboro, Rebellion?
+	.BabyNovice = true;	// Enable Baby novice classes? Disable it if you like player must have parent to get job baby.
+	.BabyClass = true;				// Enable Baby classes?
+	.BabyThird = true;				// Enable Baby third classes?
+	.BabyExpanded = true;			// Enable Baby Expanded classes: Ex. Baby Ninja, Baby Taekwon, etc.
+	.BabySummoner = true;			// Enable Baby Summoner?
 	.LastJob = true;				// Enforce linear class changes?
 	.SkillPointCheck = false;		// Force player to use up all skill points?
 	.Platinum = true;				// Get platinum skills automatically?

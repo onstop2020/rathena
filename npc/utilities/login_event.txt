@@ -19,7 +19,7 @@ OnPCLoginEvent:
 	dispbottom "คุณมี " + callfunc("F_InsertComma",kp) + " Kill Points";
 	
 	// No Doram / Expanded Classes
-	setpcblock PCBLOCK_ALL,false;
+	/*setpcblock PCBLOCK_ALL,false;
 	if(Class == 4218){
 		setpcblock PCBLOCK_ALL,true;
 		setpcblock PCBLOCK_MOVE|PCBLOCK_NPCCLICK|PCBLOCK_USEITEM|PCBLOCK_COMMANDS,false;
@@ -44,7 +44,7 @@ OnPCLoginEvent:
 		setpcblock PCBLOCK_MOVE|PCBLOCK_NPCCLICK|PCBLOCK_USEITEM|PCBLOCK_COMMANDS,false;
 		atcommand "@load";
 		addtimer 1,"LoginEvent::OnOtherJobsDisable";
-	}
+	}*/
 	end;
 	
 OnDoramDisable:

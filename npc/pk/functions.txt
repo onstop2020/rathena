@@ -107,6 +107,7 @@ function	script	RebirthStatus	{
 	bonus_script_clear 1;
 	bonus_script "{ bonus bAllStats," + (5 * rebirth_count)
 	+ "; bonus bAddMaxWeight," + (1000 * rebirth_count)
+	+ "; bonus2 bExpAddClass,Class_All," + exp_multiplier
 	+ "; "
 	+ "}"
 	,86400;
