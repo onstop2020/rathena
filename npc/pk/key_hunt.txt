@@ -13,10 +13,10 @@ prontera,56,60,5	script	ห้องล่าของ Legendary	856,{
 	mes "๐ เมื่อกำจัด Monster จะ" + callfunc("GetGoodConditionColor") + "มีโอกาส 50% ที่จะได้ 15 แต้ม^000000 " + callfunc("GetKillPointsColor") + "Kill Points^000000";
 	mes "๐ สามารถใช้ " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",.trade_amount) + callfunc("GetTierColor",5) + " Legendary Soul^000000 เพื่อสุ่มแลก " + callfunc("GetTierColor",5) + "Legendary Item^000000 ได้ 1 ชิ้น";
 	mes "๐ ทุก ๆ 1 นาที จะทำการ Respawn ให้ครบจำนวน";
-	mes "๐ ไม่สามารถใช้ Jump Stone ได้";
 	mes "๐ เมื่อเข้าแล้วต้องรอ " + .enter_cooldown + " วินาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง";
 	next;
 	menu "เข้า",-,"แลก " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",.trade_amount) + callfunc("GetTierColor",5) + " Legendary Soul^000000",L_Trade;
+	announce strcharinfo(0) + " เข้าห้องล่าของ Legendary!",bc_all,0xFFD500;
 	key_hunt_cooldown = gettimetick(2) + .enter_cooldown;
 	warp "evt_bomb",0,0;
 	close;
@@ -47,6 +47,9 @@ prontera,56,60,5	script	ห้องล่าของ Legendary	856,{
 	return;
 	
 OnMonsterDead:
+	if(!playerattached())
+	end;
+
 	if(rand(100) <= 9){
 		ls++;
 		announce "คุณได้รับ 1 Legendary Soul!",bc_self,0xEBB531;
@@ -62,16 +65,7 @@ OnTimer60000:
 	initnpctimer;
 	end;
 	
-	L_RefreshRate:
-	.key_hunt_reward_rate = rand(1,3);
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
-	
 OnInit:
-	callsub L_RefreshRate;
 	.enter_cooldown = 30;
 	.trade_amount = 100;
 	.max_monster_amount = 1000;

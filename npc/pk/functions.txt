@@ -1,6 +1,8 @@
 function	script	JumpStone	{
 	if(strcharinfo(3) == "force_1-1"
-			|| strcharinfo(3) == "evt_bomb"
+			//|| strcharinfo(3) == "evt_bomb"
+			|| strcharinfo(3) == "guild_vs2-2"
+			//|| strcharinfo(3) == "ba_lost"
 			){
 		message strcharinfo(0),"ไม่สามารถใช้งานได้ภายใน Map นี้";
 		end;
