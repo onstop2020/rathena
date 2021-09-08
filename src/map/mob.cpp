@@ -2570,6 +2570,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 	t_tick tick = gettick();
 	bool rebirth, homkillonly, merckillonly;
 
+	bool isHadParty = false;
+
 	status = &md->status;
 
 	if( src && src->type == BL_PC ) {
@@ -2745,6 +2747,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				base_exp = job_exp = 0;
 
 			if ( ( temp = tmpsd[i]->status.party_id)>0 ) {
+				isHadParty = true;
 				int j;
 				for( j = 0; j < pnum && pt[j].id != temp; j++ ); //Locate party.
 
@@ -2795,8 +2798,39 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				pc_damage_log_clear(tmpsd[i],md->bl.id);
 		}
 
+		// PK - RO [Start]
+		// Kill Points
+		int gain_kp = 0;
+		// Check monster level here
+		if (md->db->mexp > 0) // Legendary (MvP)
+			gain_kp = 15;
+		else if (md->db->lv <= 35) // Normal (Level <= 35)
+			gain_kp = 1;
+		else if (md->db->lv <= 99) // Advance (Level 36~99)
+			gain_kp = 2;
+		else if (md->db->lv < 150) // Rare (Level 100~149)
+			gain_kp = 5;
+		else if (md->db->lv >= 150) // Mystic (Level >= 150)
+			gain_kp = 9;
+
+		if (gain_kp > 0) {
+			if (isHadParty) {
+				gain_kp /= 2;
+				if (gain_kp < 1)
+					gain_kp = 1;
+			}
+			pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + gain_kp);
+		}
+
+		if (!pc_readreg2(sd, "is_kp_gain_no_display")) {
+			char output[CHAT_SIZE_MAX];
+			nullpo_retv(sd);
+			sprintf(output, "Kill Points +%d | Total: %d", gain_kp, (int)pc_readreg2(sd, "kp"));
+			clif_messagecolor(&sd->bl, color_table[COLOR_KILL_POINTS], output, false, SELF);
+		}
+
 		for( i = 0; i < pnum; i++ ) //Party share.
-			party_exp_share(pt[i].p, &md->bl, pt[i].base_exp,pt[i].job_exp,pt[i].zeny);
+			party_exp_share(pt[i].p, &md->bl, pt[i].base_exp,pt[i].job_exp,pt[i].zeny,gain_kp);
 
 	} //End EXP giving.
 
@@ -2895,45 +2929,18 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 			}
 
-			// TEAM CRAFT - RO [Start]
-			// Kill Points
-			int gain_kp = 0;
+			// PK - RO [Start]
 			// Check monster level here
 			if (md->db->mexp > 0) // Legendary (MvP)
-			{
 				dropid = rnd_value(10040001, 10050000);
-				gain_kp = 15;
-			}
 			else if (md->db->lv <= 35) // Normal (Level <= 35)
-			{
 				dropid = rnd_value(10000000, 10010000);
-				gain_kp = 1;
-			}
 			else if (md->db->lv <= 99) // Advance (Level 36~99)
-			{
 				dropid = rnd_value(10010001, 10020000);
-				gain_kp = 2;
-			}
 			else if (md->db->lv < 150) // Rare (Level 100~149)
-			{
 				dropid = rnd_value(10020001, 10030000);
-				gain_kp = 5;
-			}
 			else if (md->db->lv >= 150) // Mystic (Level >= 150)
-			{
 				dropid = rnd_value(10030001, 10040000);
-				gain_kp = 9;
-			}
-
-			if (gain_kp > 0)
-			pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + gain_kp);
-
-			if (!pc_readreg2(sd, "is_kp_gain_no_display")) {
-				char output[CHAT_SIZE_MAX];
-				nullpo_retv(sd);
-				sprintf(output, "Kill Points +%d | Total: %d", gain_kp, (int)pc_readreg2(sd, "kp"));
-				clif_messagecolor(&sd->bl, color_table[COLOR_KILL_POINTS], output, false, SELF);
-			}
 
 			// Custom Equipment
 			drop_rate = 500; // 5%
@@ -2948,7 +2955,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				mobdrop.nameid = dropid;
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
 			}
-			// TEAM CRAFT - RO
+			// PK - RO
 
 			// process script-granted zeny bonus (get_zeny_num) [Skotlex]
 			if( sd->bonus.get_zeny_num && rnd()%100 < sd->bonus.get_zeny_rate ) {

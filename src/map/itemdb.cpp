@@ -146,7 +146,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			return 0;
 
 		//item->value_buy = buy;
-		item->value_buy = 1; // TEAM CRAFT [Start]
+		item->value_buy = 1; // PK [Start]
 		item->value_sell = 0;
 	} else {
 		if (!exists) {
@@ -471,7 +471,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 	}
 
     //if (this->nodeExists(node, "Refineable")) {
-	if (this->nodeExists(node, "RefineableNoUse")) { // TEAM CRAFT [Start]
+	if (this->nodeExists(node, "RefineableNoUse")) { // PK [Start]
 		bool refine;
 
 		if (!this->asBool(node, "Refineable", refine))
@@ -481,7 +481,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 	} else {
 		if (!exists)
 			//item->flag.no_refine = true;
-			item->flag.no_refine = false; // TEAM CRAFT [Start]
+			item->flag.no_refine = false; // PK [Start]
 	}
 
 	if (this->nodeExists(node, "View")) {
@@ -807,7 +807,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 	}
 
 	//if (this->nodeExists(node, "Trade")) {
-	if (this->nodeExists(node, "TradeNoUse")) { // TEAM CRAFT [Start]
+	if (this->nodeExists(node, "TradeNoUse")) { // PK [Start]
 		const YAML::Node &tradeNode = node["Trade"];
 
 		if (this->nodeExists(tradeNode, "Override")) {

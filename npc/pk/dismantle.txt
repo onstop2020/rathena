@@ -20,6 +20,8 @@ prontera,102,262,5	script	ÂèÍÂ¢Í§·ÕèäÁèãªé	982,{
 	L_AllIn:
 	getinventorylist;
 	for(.@i = @inventorylist_count - 1;.@i >= 0;.@i--){
+		if(@inventorylist_equip[.@i] > 0)
+		continue;
 		.@d_id = @inventorylist_id[.@i];
 		.@d_amount = @inventorylist_amount[.@i];
 		if (.@d_id >= 10000000 && .@d_id <= 10010000){
