@@ -2925,6 +2925,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				gain_kp = 9;
 			}
 
+			if (gain_kp > 0)
 			pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + gain_kp);
 
 			if (!pc_readreg2(sd, "is_kp_gain_no_display")) {

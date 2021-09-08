@@ -6392,7 +6392,11 @@ int pc_get_skillcooldown(struct map_session_data *sd, uint16 skill_id, uint16 sk
 		}
 	}
 
-	cooldown -= (sd->cooldownrate * 100); // Delayrate will reduce all skill cooldown by 1:0.1s [Start]
+	if (cooldown > 350) {
+		cooldown -= (sd->cooldownrate * 100); // Delayrate will reduce all skill cooldown by 1:0.1s [Start]
+		if (cooldown < 350)
+			cooldown = 350;
+	}
 
 	return max(0, cooldown);
 }
