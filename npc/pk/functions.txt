@@ -6,7 +6,7 @@ function	script	JumpStone	{
 		end;
 	}
 	if (js_cooldown > gettimetick(2)){
-		if(js_cast >= 5){
+		if(js_cast >= js_cast_p){
 			js_party = 1;
 			message strcharinfo(0),"Party Jump!";
 		}
@@ -20,6 +20,7 @@ function	script	JumpStone	{
 	}
 	js_party = 0;
 	js_cast = rand((5 - js_cooldown_upg),5);
+	js_cast_p = js_cast;
 	.@c1 = js_cast;
 	while(.@c1 > 0){
 		.@s$ += "|";

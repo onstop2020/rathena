@@ -9,7 +9,8 @@ prontera,56,60,5	script	ห้องล่าของ Legendary	856,{
 	mes "๐ เข้าได้ทุกคน " + callfunc("GetBadConditionColor") + "แต่ควรเข้าเมื่อคิดว่าพร้อมแล้วเท่านั้น^000000";
 	mes "๐ Monster ในห้องมีทั้งหมด " + callfunc("F_InsertComma",.max_monster_amount) + " ตัว";
 	mes "๐ Monster ในห้อง Level 130+";
-	mes "๐ เมื่อกำจัด Monster จะ" + callfunc("GetGoodConditionColor") + "มีโอกาส 1% ที่จะได้แต้ม^000000 " + callfunc("GetTierColor",5) + "Legendary Soul^000000";
+	mes "๐ เมื่อกำจัด Monster จะ" + callfunc("GetGoodConditionColor") + "มีโอกาส 10% ที่จะได้แต้ม^000000 " + callfunc("GetTierColor",5) + "Legendary Soul^000000";
+	mes "๐ เมื่อกำจัด Monster จะ" + callfunc("GetGoodConditionColor") + "มีโอกาส 50% ที่จะได้ 15 แต้ม^000000 " + callfunc("GetKillPointsColor") + "Kill Points^000000";
 	mes "๐ สามารถใช้ " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",.trade_amount) + callfunc("GetTierColor",5) + " Legendary Soul^000000 เพื่อสุ่มแลก " + callfunc("GetTierColor",5) + "Legendary Item^000000 ได้ 1 ชิ้น";
 	mes "๐ ทุก ๆ 1 นาที จะทำการ Respawn ให้ครบจำนวน";
 	mes "๐ ไม่สามารถใช้ Jump Stone ได้";
@@ -46,9 +47,13 @@ prontera,56,60,5	script	ห้องล่าของ Legendary	856,{
 	return;
 	
 OnMonsterDead:
-	if(rand(100) == 0){
+	if(rand(100) <= 9){
 		ls++;
 		announce "คุณได้รับ 1 Legendary Soul!",bc_self,0xEBB531;
+	}
+	if(rand(100) <= 49){
+		kp += 15;
+		dispbottom "Kill Points +15 | Total: " + kp;
 	}
 	end;
 	
