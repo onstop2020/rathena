@@ -9,12 +9,45 @@ prontera,102,262,5	script	ÂèÍÂ¢Í§·ÕèäÁèãªé	982,{
 	mes callfunc("GetTierColor",5) + "[Legendary] äÁèÊÒÁÒÃ¶ÂèÍÂä´é^000000";
 	next;
 	menu "ÂèÍÂ",-,
+	"ÂèÍÂ·Ñé§ËÁ´",L_AllIn,
 	"áÅ¡ Item " + callfunc("GetTierColor",2) + "[Advance]^000000 (ãªé " + callfunc("GetTierColor",1) + "[Normal]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_AdvanceTrade,
 	"áÅ¡ Item " + callfunc("GetTierColor",3) + "[Rare]^000000 (ãªé " + callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_RareTrade,
 	"áÅ¡ Item " + callfunc("GetTierColor",4) + "[Mystical]^000000 (ãªé " + callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_MysticalTrade;
 	callshop "dismantleshop",2;
 	npcshopattach "dismantleshop";
 	end;
+	
+	L_AllIn:
+	getinventorylist;
+	for(.@i = @inventorylist_count - 1;.@i >= 0;.@i--){
+		.@d_id = @inventorylist_id[.@i];
+		.@d_amount = @inventorylist_amount[.@i];
+		if (.@d_id >= 10000000 && .@d_id <= 10010000){
+			delitem .@d_id,.@d_amount;
+			normal_dm += .@d_amount;
+			.@normal_dm += .@d_amount;
+			continue;
+		}
+		if (.@d_id >= 10010001 && .@d_id <= 10020000){
+			delitem .@d_id,.@d_amount;
+			advance_dm += .@d_amount;
+			.@advance_dm += .@d_amount;
+			continue;
+		}
+		if (.@d_id >= 10020001 && .@d_id <= 10030000){
+			delitem .@d_id,.@d_amount;
+			rare_dm += .@d_amount;
+			.@rare_dm += .@d_amount;
+			continue;
+		}
+	}
+	mes "¤Ø³ä´éÃÑºàÈÉ´Ñ§¹Õé";
+	mes callfunc("GetTierColor",1) + "[Normal]^000000 " + callfunc("F_InsertComma",.@normal_dm);
+	mes callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.@advance_dm);
+	mes callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.@rare_dm);
+	if(.@normal_dm || .@advance_dm || .@rare_dm)
+	specialeffect2 111;
+	close;
 	
 	L_AdvanceTrade:
 	if(normal_dm < .dm_need){
