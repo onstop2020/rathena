@@ -12,6 +12,8 @@ prontera,64,352,3	script	ซื้อ x EXP	664,{
 	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[5]) + "% (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[5]) + "kp^000000)",L_6
 	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[6]) + "% (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[6]) + "kp^000000)",L_7
 	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[7]) + "% (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[7]) + "kp^000000)",L_8
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[8]) + "% (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[8]) + "kp^000000)",L_9
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[9]) + "% (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[9]) + "kp^000000)",L_10
 	;
 	L_1:
 	.@target = 0;
@@ -37,6 +39,12 @@ prontera,64,352,3	script	ซื้อ x EXP	664,{
 	L_8:
 	.@target = 7;
 	goto L_Trade;
+	L_9:
+	.@target = 8;
+	goto L_Trade;
+	L_10:
+	.@target = 9;
+	goto L_Trade;
 	
 	L_Trade:
 	if(kp < .price[.@target]){
@@ -61,6 +69,8 @@ OnInit:
 	,1299					// +300%
 	,3999					// +600%
 	,9999					// +1000%
+	,14999					// +2000%
+	,19999					// +3000%
 	;
 	setarray .multiplier[0],10
 	,30
@@ -70,6 +80,8 @@ OnInit:
 	,300
 	,600
 	,1000
+	,2000
+	,3000
 	;
 	waitingroom "ซื้อ x EXP",0;
 	end;
