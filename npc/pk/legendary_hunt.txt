@@ -1,0 +1,87 @@
+prontera,65,50,0	script	ห้องล่าของ Legendary	657,{
+	if (legend_hunt_cooldown > gettimetick(2)){
+		mes "โปรดรอ " + (legend_hunt_cooldown - gettimetick(2)) + " วินาที";
+		close;	
+	}
+	mes "๐ คุณมี " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",ls) + callfunc("GetTierColor",5) + " Legendary Soul^000000";
+	mes "---";
+	mes "๐ เป็น Map PK " + callfunc("GetBadConditionColor") + "(ฆ่ากันได้อิสระ คนฆ่าจะสุ่มได้รับ " + callfunc("GetKillPointsColor") + "Kill Points^000000" + callfunc("GetBadConditionColor") + " ของผู้ตายด้วย)^000000";
+	mes "๐ เข้าได้ทุกคน " + callfunc("GetBadConditionColor") + "แต่ควรเข้าเมื่อคิดว่าพร้อมแล้วเท่านั้น^000000";
+	mes "๐ Monster ในห้องมีทั้งหมด " + callfunc("F_InsertComma",.max_monster_amount) + " ตัว";
+	mes "๐ Monster ในห้อง Level 130+";
+	mes "๐ เมื่อกำจัด Monster จะ" + callfunc("GetGoodConditionColor") + "มีโอกาส 10% ที่จะได้แต้ม^000000 " + callfunc("GetTierColor",5) + "Legendary Soul^000000";
+	mes "๐ เมื่อกำจัด Monster จะ" + callfunc("GetGoodConditionColor") + "มีโอกาส 50% ที่จะได้ 15 แต้ม^000000 " + callfunc("GetKillPointsColor") + "Kill Points^000000";
+	mes "๐ สามารถใช้ " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",.trade_amount) + callfunc("GetTierColor",5) + " Legendary Soul^000000 เพื่อสุ่มแลก " + callfunc("GetTierColor",5) + "Legendary Item^000000 ได้ 1 ชิ้น";
+	mes "๐ ทุก ๆ 1 นาที จะทำการ Respawn ให้ครบจำนวน";
+	mes "๐ เมื่อเข้าแล้วต้องรอ " + .enter_cooldown + " วินาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง";
+	next;
+	menu "เข้า",-,"แลก " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",.trade_amount) + callfunc("GetTierColor",5) + " Legendary Soul^000000",L_Trade;
+	announce strcharinfo(0) + " เข้าห้องล่าของ Legendary!",bc_all,0xFFD500;
+	legend_hunt_cooldown = gettimetick(2) + .enter_cooldown;
+	warp .mapName$,0,0;
+	close;
+	
+	L_Trade:
+	if(ls < .trade_amount){
+		mes "ต้องการ " + callfunc("GetTierColor",5) + "Legendary Soul^000000 อีก " + callfunc("F_InsertComma",(.trade_amount - ls));
+		close;
+	}
+	ls -= .trade_amount;
+	mes "จ่าย " + callfunc("GetTierColor",5) + "Legendary Soul^000000 ไป: " + callfunc("F_InsertComma",.trade_amount);
+	mes callfunc("GetTierColor",5) + "Legendary Soul^000000 คงเหลือ " + callfunc("GetGoodConditionColor") + callfunc("F_InsertComma",ls);
+	getitem rand(10040001,10050000),1;
+	end;
+	
+	L_Spawn:
+	.@isInit = getarg(0);
+	if(.isInit)
+	.@spawn_amount = .max_monster_amount;
+	else{
+		.@current_amount_left = getmapunits(BL_MOB,.mapName$);
+		.@spawn_amount = .max_monster_amount - .@current_amount_left;
+	}
+	freeloop(1);
+	for(.@i = 0; .@i < .@spawn_amount; .@i++){
+		.@spawn_mob_id = $all_mob_130_plus_ids[rand(0,$all_mob_id_130_plus_size - 1)];
+		while(!isspawn(.@spawn_mob_id))
+		.@spawn_mob_id = $all_mob_130_plus_ids[rand(0,$all_mob_id_130_plus_size - 1)];
+		monster .mapName$,0,0,"--ja--",.@spawn_mob_id,1,"ห้องล่าของ Legendary::OnMonsterDead";
+	}
+	
+	freeloop(0);
+	return;
+	
+OnMonsterDead:
+	if(!playerattached())
+	end;
+
+	if(rand(100) <= 9){
+		ls++;
+		announce "คุณได้รับ 1 Legendary Soul!",bc_self,0xEBB531;
+	}
+	if(rand(100) <= 49){
+		kp += 15;
+		dispbottom "Kill Points +15 | Total: " + kp;
+	}
+	end;
+	
+OnTimer60000:
+	callsub L_Spawn,0;
+	initnpctimer;
+	end;
+	
+OnInit:
+	.enter_cooldown = 30;
+	.trade_amount = 100;
+	.max_monster_amount = 100;
+	.mapName$ = "1@md_gef";
+	waitingroom "ห้องล่าของ Legendary",0;
+	callsub L_Spawn,1;
+	initnpctimer;
+	end;
+}
+
+1@md_gef	mapflag	monster_noteleport
+1@md_gef	mapflag	noteleport
+1@md_gef	mapflag	nomemo
+1@md_gef	mapflag	nosave

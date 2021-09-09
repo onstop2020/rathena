@@ -32,8 +32,13 @@ prontera,75,50,1	script	ห้องล่า Option Soul	604,{
 		.@spawn_amount = .max_monster_amount - .@current_amount_left;
 	}
 	freeloop(1);
-	for(.@i = 0; .@i < .@spawn_amount; .@i++)
-	monster .mapName$,0,0,"--ja--",$all_mob_160_plus_ids[rand(0,$all_mob_id_160_plus_size - 1)],1,"ห้องล่า Option Soul::OnMonsterDead";
+	for(.@i = 0; .@i < .@spawn_amount; .@i++){
+		.@spawn_mob_id = $all_mob_160_plus_ids[rand(0,$all_mob_id_160_plus_size - 1)];
+		while(!isspawn(.@spawn_mob_id))
+		.@spawn_mob_id = $all_mob_160_plus_ids[rand(0,$all_mob_id_160_plus_size - 1)];
+		monster .mapName$,0,0,"--ja--",.@spawn_mob_id,1,"ห้องล่า Option Soul::OnMonsterDead";
+	}
+	
 	freeloop(0);
 	return;
 	

@@ -55,6 +55,9 @@ OnMinute30:
 	
 	// Key Hunt
 	killmonsterall "evt_bomb";
+	killmonsterall "guild_vs2-2";
+	killmonsterall "ba_lost";
+	killmonsterall "1@md_gef";
 	
 	end;
 }

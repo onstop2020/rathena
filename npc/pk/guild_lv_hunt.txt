@@ -27,8 +27,12 @@ prontera,56,50,5	script	ห้องล่า Guild EXP	505,{
 		.@spawn_amount = .max_monster_amount - .@current_amount_left;
 	}
 	freeloop(1);
-	for(.@i = 0; .@i < .@spawn_amount; .@i++)
-	monster .mapName$,0,0,"--ja--",$all_mob_99_to_129_ids[rand(0,$all_mob_id_99_to_129_size - 1)],1,"ห้องล่า Guild EXP::OnMonsterDead";
+	for(.@i = 0; .@i < .@spawn_amount; .@i++){
+		.@spawn_mob_id = $all_mob_99_to_129_ids[rand(0,$all_mob_id_99_to_129_size - 1)];
+		while(!isspawn(.@spawn_mob_id))
+		.@spawn_mob_id = $all_mob_99_to_129_ids[rand(0,$all_mob_id_99_to_129_size - 1)];
+		monster .mapName$,0,0,"--ja--",.@spawn_mob_id,1,"ห้องล่า Guild EXP::OnMonsterDead";
+	}
 	freeloop(0);
 	return;
 	
@@ -52,7 +56,7 @@ OnTimer60000:
 OnInit:
 	.enter_cooldown = 30;
 	.guild_exp_reward = 1000000;
-	.max_monster_amount = 100;
+	.max_monster_amount = 50;
 	.mapName$ = "guild_vs2-2";
 	waitingroom "ห้องล่า Guild EXP",0;
 	callsub L_Spawn,1;
