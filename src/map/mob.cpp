@@ -2795,24 +2795,6 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				pc_damage_log_clear(tmpsd[i],md->bl.id);
 		}
 
-		// PK - RO [Start]
-		// Kill Points
-		int64 gain_kp = 0;
-		// Check monster level here
-		if (md->db->mexp > 0) // Legendary (MvP)
-			gain_kp = 15;
-		else if (md->db->lv <= 35) // Normal (Level <= 35)
-			gain_kp = 1;
-		else if (md->db->lv <= 99) // Advance (Level 36~99)
-			gain_kp = 2;
-		else if (md->db->lv < 150) // Rare (Level 100~149)
-			gain_kp = 5;
-		else if (md->db->lv >= 150) // Mystic (Level >= 150)
-			gain_kp = 9;
-
-		if (gain_kp > 0)
-			pc_getkp(sd, gain_kp, NULL);
-
 		for( i = 0; i < pnum; i++ ) //Party share.
 			party_exp_share(pt[i].p, &md->bl, pt[i].base_exp,pt[i].job_exp,pt[i].zeny);
 
@@ -2914,17 +2896,37 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			}
 
 			// PK - RO [Start]
+			// Kill Points
+			int64 gain_kp = 0;
 			// Check monster level here
 			if (md->db->mexp > 0) // Legendary (MvP)
+			{
+				gain_kp = 15;
 				dropid = rnd_value(10040001, 10050000);
+			}
 			else if (md->db->lv <= 35) // Normal (Level <= 35)
+			{
+				gain_kp = 1;
 				dropid = rnd_value(10000000, 10010000);
+			}
 			else if (md->db->lv <= 99) // Advance (Level 36~99)
+			{
+				gain_kp = 2;
 				dropid = rnd_value(10010001, 10020000);
+			}
 			else if (md->db->lv < 150) // Rare (Level 100~149)
+			{
+				gain_kp = 5;
 				dropid = rnd_value(10020001, 10030000);
+			}
 			else if (md->db->lv >= 150) // Mystic (Level >= 150)
+			{
+				gain_kp = 9;
 				dropid = rnd_value(10030001, 10040000);
+			}
+
+			if (gain_kp > 0)
+				pc_getkp(sd, gain_kp, NULL);
 
 			// Custom Equipment
 			drop_rate = 500; // 5%
