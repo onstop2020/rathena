@@ -5052,7 +5052,7 @@ char pc_getkp(struct map_session_data* sd, int64 kp, struct map_session_data* ts
 	if (!tsd) tsd = sd;
 	if (kp > 0 && !pc_readreg2(sd, "is_kp_gain_no_display")) {
 		char output[255];
-		sprintf(output, "Kill Points +%d | Total: %d", kp, old_kp);
+		sprintf(output, "Kill Points +%d | Total: %d", (int)kp, (int)old_kp);
 		clif_messagecolor(&sd->bl, color_table[COLOR_KILL_POINTS], output, false, SELF);
 	}
 
@@ -7497,7 +7497,7 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 	// Give EXP for Base Level
 	if (base_exp) {
 		// Rebirth EXP Reduction [Start]
-		int rebirth = pc_readreg2(sd, "rebirth_count"); // Start
+		int64 rebirth = pc_readreg2(sd, "rebirth_count"); // Start
 		if (rebirth > 0)
 		base_exp = base_exp / (rebirth + 1);
 		if ((int)base_exp <= 0)
@@ -7511,7 +7511,7 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 	// Give EXP for Job Level
 	if (job_exp) {
 		// Rebirth EXP Reduction [Start]
-		int rebirth = pc_readreg2(sd, "rebirth_count"); // Start
+		int64 rebirth = pc_readreg2(sd, "rebirth_count"); // Start
 		if (rebirth > 0)
 			job_exp = job_exp / (rebirth + 1);
 		if ((int)job_exp <= 0)
