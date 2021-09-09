@@ -1074,7 +1074,7 @@ int party_send_xy_clear(struct party_data *p)
  * @param zeny Zeny gained from killed mob
  * @author Valaris
  **/
-void party_exp_share(struct party_data* p, struct block_list* src, t_exp base_exp, t_exp job_exp, int zeny, int64 kp)
+void party_exp_share(struct party_data* p, struct block_list* src, t_exp base_exp, t_exp job_exp, int zeny)
 {
 	struct map_session_data* sd[MAX_PARTY];
 	unsigned int i, c;
@@ -1130,9 +1130,6 @@ void party_exp_share(struct party_data* p, struct block_list* src, t_exp base_ex
 
 		if (zeny) // zeny from mobs [Valaris]
 			pc_getzeny(sd[i],zeny,LOG_TYPE_PICKDROP_MONSTER,NULL);
-
-		if (kp) // Kill Points [Start]
-			pc_getkp(sd[i], kp, NULL);
 	}
 }
 
