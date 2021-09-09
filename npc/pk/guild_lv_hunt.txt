@@ -28,7 +28,7 @@ prontera,56,50,5	script	ห้องล่า Guild EXP	505,{
 	}
 	freeloop(1);
 	for(.@i = 0; .@i < .@spawn_amount; .@i++)
-	monster .mapName$,0,0,"--ja--",$all_mob_99_to_129_ids[rand(0,$all_mob_id_99_to_129_size - 1)],1,"ห้องล่า Level Guild::OnMonsterDead";
+	monster .mapName$,0,0,"--ja--",$all_mob_99_to_129_ids[rand(0,$all_mob_id_99_to_129_size - 1)],1,"ห้องล่า Guild EXP::OnMonsterDead";
 	freeloop(0);
 	return;
 	

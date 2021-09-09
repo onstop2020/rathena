@@ -1213,6 +1213,7 @@ short pc_search_inventory(struct map_session_data *sd, t_itemid nameid);
 char pc_payzeny(struct map_session_data *sd, int zeny, enum e_log_pick_type type, struct map_session_data *tsd);
 enum e_additem_result pc_additem(struct map_session_data *sd, struct item *item, int amount, e_log_pick_type log_type);
 char pc_getzeny(struct map_session_data *sd, int zeny, enum e_log_pick_type type, struct map_session_data *tsd);
+char pc_getkp(struct map_session_data *sd, int64 kp, struct map_session_data *tsd);
 char pc_delitem(struct map_session_data *sd, int n, int amount, int type, short reason, e_log_pick_type log_type);
 
 uint64 pc_generate_unique_id(struct map_session_data *sd);

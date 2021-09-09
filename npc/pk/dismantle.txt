@@ -19,6 +19,7 @@ prontera,102,262,5	script	ย่อยของที่ไม่ใช้	982,{
 	
 	L_AllIn:
 	getinventorylist;
+	freeloop(1);
 	for(.@i = @inventorylist_count - 1;.@i >= 0;.@i--){
 		if(@inventorylist_equip[.@i] > 0)
 		continue;
@@ -43,6 +44,7 @@ prontera,102,262,5	script	ย่อยของที่ไม่ใช้	982,{
 			continue;
 		}
 	}
+	freeloop(0);
 	mes "คุณได้รับเศษดังนี้";
 	mes callfunc("GetTierColor",1) + "[Normal]^000000 " + callfunc("F_InsertComma",.@normal_dm);
 	mes callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.@advance_dm);

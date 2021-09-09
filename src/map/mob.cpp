@@ -2800,7 +2800,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 		// PK - RO [Start]
 		// Kill Points
-		int gain_kp = 0;
+		int64 gain_kp = 0;
 		// Check monster level here
 		if (md->db->mexp > 0) // Legendary (MvP)
 			gain_kp = 15;
@@ -2819,14 +2819,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				if (gain_kp < 1)
 					gain_kp = 1;
 			}
-			pc_setreg2(sd, "kp", pc_readreg2(sd, "kp") + gain_kp);
-		}
-
-		if (!pc_readreg2(sd, "is_kp_gain_no_display")) {
-			char output[CHAT_SIZE_MAX];
-			nullpo_retv(sd);
-			sprintf(output, "Kill Points +%d | Total: %d", gain_kp, (int)pc_readreg2(sd, "kp"));
-			clif_messagecolor(&sd->bl, color_table[COLOR_KILL_POINTS], output, false, SELF);
+			pc_getkp(sd, gain_kp, NULL);
 		}
 
 		for( i = 0; i < pnum; i++ ) //Party share.
@@ -2945,7 +2938,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			// Custom Equipment
 			drop_rate = 500; // 5%
 			drop_modifier = 100;
-			drop_rate = mob_getdroprate(src, md->db, 500, drop_modifier);
+			drop_rate = mob_getdroprate(src, md->db, 500 * (battle_config.item_rate_equip / 100), drop_modifier);
 
 			// attempt to drop the item
 			if (rnd() % 10000 < drop_rate)

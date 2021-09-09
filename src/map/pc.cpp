@@ -5021,6 +5021,44 @@ char pc_getzeny(struct map_session_data *sd, int zeny, enum e_log_pick_type type
 	return 0;
 }
 
+/// <summary>
+/// Gain Kill Points [Start]
+/// </summary>
+/// <param name="sd"></param>
+/// <param name="kp"></param>
+/// <param name=""></param>
+/// <param name="tsd"></param>
+/// <returns></returns>
+char pc_getkp(struct map_session_data* sd, int64 kp, struct map_session_data* tsd)
+{
+	nullpo_retr(-1, sd);
+
+	kp = cap_value(kp, 0, MAX_ZENY); //prevent command UB
+	int64 old_kp = pc_readreg2(sd, "kp");
+
+	if (kp < 0)
+	{
+		ShowError("pc_getkp: Obtaining negative Kill Points (zeny=%d, account_id=%d, char_id=%d).\n", kp, sd->status.account_id, sd->status.char_id);
+		return 1;
+	}
+
+	if (kp > MAX_ZENY - old_kp)
+		kp = MAX_ZENY - old_kp;
+
+	old_kp += kp;
+
+	pc_setreg2(sd, "kp", old_kp);
+
+	if (!tsd) tsd = sd;
+	if (kp > 0 && !pc_readreg2(sd, "is_kp_gain_no_display")) {
+		char output[255];
+		sprintf(output, "Kill Points +%d | Total: %d", kp, old_kp);
+		clif_messagecolor(&sd->bl, color_table[COLOR_KILL_POINTS], output, false, SELF);
+	}
+
+	return 0;
+}
+
 /**
  * Attempts to remove Cash Points from player
  * @param sd: Player
