@@ -78,6 +78,7 @@ evt_bomb	mapflag	monster_noteleport
 evt_bomb	mapflag	noteleport
 evt_bomb	mapflag	nomemo
 evt_bomb	mapflag	nosave
+evt_bomb	mapflag	pvp
 
 evt_bomb,36,386,0	warp	key_hunt_warp_row1#1	2,2,evt_bomb,0,0
 evt_bomb,76,386,0	warp	key_hunt_warp_row1#2	2,2,evt_bomb,0,0
