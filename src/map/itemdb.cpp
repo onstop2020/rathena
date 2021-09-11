@@ -1078,7 +1078,8 @@ e_sex ItemDatabase::defaultGender( const YAML::Node &node, std::shared_ptr<item_
 		return SEX_MALE;
 	if (id->nameid == WEDDING_RING_F) //Bride Ring
 		return SEX_FEMALE;
-	if( id->type == IT_WEAPON ){
+	// PK [Start]
+	/*if (id->type == IT_WEAPON) {
 		if( id->subtype == W_MUSICAL ){
 			if( id->sex != SEX_MALE ){
 				this->invalidWarning( node, "Musical instruments are always male-only, defaulting to SEX_MALE.\n" );
@@ -1094,7 +1095,7 @@ e_sex ItemDatabase::defaultGender( const YAML::Node &node, std::shared_ptr<item_
 
 			return SEX_FEMALE;
 		}
-	}
+	}*/
 
 	return static_cast<e_sex>( id->sex );
 }
