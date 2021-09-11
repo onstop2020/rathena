@@ -1,24 +1,29 @@
 -	shop	dismantleshop	-1,501:1
 
 prontera,102,262,5	script	ย่อยของที่ไม่ใช้	982,{
+	.@no_legendary_dismantle = 0;
 	mes "คุณมีเศษจากการย่อยดังนี้";
 	mes callfunc("GetTierColor",1) + "[Normal] " + callfunc("F_InsertComma",normal_dm) + "^000000";
 	mes callfunc("GetTierColor",2) + "[Advance] " + callfunc("F_InsertComma",advance_dm) + "^000000";
 	mes callfunc("GetTierColor",3) + "[Rare] " + callfunc("F_InsertComma",rare_dm) + "^000000";
 	mes callfunc("GetTierColor",4) + "[Mystical] " + callfunc("F_InsertComma",mystical_dm) + "^000000";
-	mes callfunc("GetTierColor",5) + "[Legendary] ไม่สามารถย่อยได้^000000";
+	mes callfunc("GetTierColor",5) + "[Legendary] " + callfunc("F_InsertComma",legendary_dm) + "^000000";
 	next;
 	menu "ย่อย",-,
-	"ย่อยทั้งหมด",L_AllIn,
-	"แลก Item " + callfunc("GetTierColor",2) + "[Advance]^000000 (ใช้ " + callfunc("GetTierColor",1) + "[Normal]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_AdvanceTrade,
-	"แลก Item " + callfunc("GetTierColor",3) + "[Rare]^000000 (ใช้ " + callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_RareTrade,
-	"แลก Item " + callfunc("GetTierColor",4) + "[Mystical]^000000 (ใช้ " + callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_MysticalTrade,
-	"แลก Item " + callfunc("GetTierColor",5) + "[Legendary]^000000 (ใช้ " + callfunc("GetTierColor",4) + "[Mystical]^000000 " + callfunc("F_InsertComma",(.dm_need * 3)) + ")",L_LegendaryTrade;
+	"ย่อยทั้งหมด " + callfunc("GetGoodConditionColor") + "(ไม่ย่อย Legendary)^000000",L_AllIn,
+	"ย่อยทั้งหมด " + callfunc("GetBadConditionColor") + "(ย่อย Legendary ด้วย)^000000",L_AllIn2,
+	"แลก " + callfunc("GetTierColor",2) + "[Advance]^000000 (ใช้ " + callfunc("GetTierColor",1) + "[Normal]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_AdvanceTrade,
+	"แลก " + callfunc("GetTierColor",3) + "[Rare]^000000 (ใช้ " + callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_RareTrade,
+	"แลก " + callfunc("GetTierColor",4) + "[Mystical]^000000 (ใช้ " + callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.dm_need) + ")",L_MysticalTrade,
+	"แลก " + callfunc("GetTierColor",5) + "[Legendary]^000000 (ใช้ " + callfunc("GetTierColor",4) + "[Mystical]^000000 " + callfunc("F_InsertComma",(.dm_need * 3)) + ")",L_LegendaryTrade,
+	"แลก " + callfunc("GetTierColor",5) + "[Legendary]^000000 (ใช้ " + callfunc("GetTierColor",5) + "[Legendary]^000000 " + callfunc("F_InsertComma",(.dm_need / 10)) + ")",L_LegendaryTrade2;
 	callshop "dismantleshop",2;
 	npcshopattach "dismantleshop";
 	end;
 	
 	L_AllIn:
+	.@no_legendary_dismantle = 1;
+	L_AllIn2:
 	getinventorylist;
 	freeloop(1);
 	for(.@i = @inventorylist_count - 1;.@i >= 0;.@i--){
@@ -50,6 +55,12 @@ prontera,102,262,5	script	ย่อยของที่ไม่ใช้	982,{
 			.@mystical_dm += .@d_amount;
 			continue;
 		}
+		if (!.@no_legendary_dismantle && (.@d_id >= 10040001 && .@d_id <= 10050000)){
+			delitem .@d_id,.@d_amount;
+			legendary_dm += .@d_amount;
+			.@legendary_dm += .@d_amount;
+			continue;
+		}
 	}
 	freeloop(0);
 	mes "คุณได้รับเศษดังนี้";
@@ -57,7 +68,8 @@ prontera,102,262,5	script	ย่อยของที่ไม่ใช้	982,{
 	mes callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.@advance_dm);
 	mes callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.@rare_dm);
 	mes callfunc("GetTierColor",4) + "[Mystical]^000000 " + callfunc("F_InsertComma",.@mystical_dm);
-	if(.@normal_dm || .@advance_dm || .@rare_dm || .@mystical_dm)
+	mes callfunc("GetTierColor",5) + "[Legendary]^000000 " + callfunc("F_InsertComma",.@legendary_dm);
+	if(.@normal_dm || .@advance_dm || .@rare_dm || .@mystical_dm || .@legendary_dm)
 	specialeffect2 111;
 	close;
 	
@@ -101,6 +113,16 @@ prontera,102,262,5	script	ย่อยของที่ไม่ใช้	982,{
 	mes "เศษ " + callfunc("GetTierColor",4) + "[Mystical]^000000 คงเหลือ " + callfunc("F_InsertComma",mystical_dm);
 	close;
 
+	L_LegendaryTrade2:
+	if(legendary_dm < (.dm_need / 10)){
+		mes "ต้องการเศษ " + callfunc("GetTierColor",5) + "[Legendary]^000000 อีก " + callfunc("F_InsertComma",((.dm_need / 10) - legendary_dm));
+		close;
+	}
+	legendary_dm -= (.dm_need / 10);
+	getitem rand(10040001,10050000),1;
+	mes "เศษ " + callfunc("GetTierColor",5) + "[Legendary]^000000 คงเหลือ " + callfunc("F_InsertComma",legendary_dm);
+	close;
+
 OnSellItem:
 	freeloop(1);
 	for (.@i = 0; .@i < getarraysize(@sold_nameid); .@i++){
@@ -128,6 +150,12 @@ OnSellItem:
 			.@mystical_dm += @sold_quantity[.@i] * 1;
 			continue;
 		}
+		if (@sold_nameid[.@i] >= 10040001 && @sold_nameid[.@i] <= 10050000){
+			delitem @sold_nameid[.@i], @sold_quantity[.@i];
+			legendary_dm += @sold_quantity[.@i] * 1;
+			.@legendary_dm += @sold_quantity[.@i] * 1;
+			continue;
+		}
 	}
 	freeloop(0);
 	deletearray @sold_quantity, getarraysize(@sold_quantity);
@@ -137,7 +165,8 @@ OnSellItem:
 	mes callfunc("GetTierColor",2) + "[Advance]^000000 " + callfunc("F_InsertComma",.@advance_dm);
 	mes callfunc("GetTierColor",3) + "[Rare]^000000 " + callfunc("F_InsertComma",.@rare_dm);
 	mes callfunc("GetTierColor",4) + "[Mystical]^000000 " + callfunc("F_InsertComma",.@mystical_dm);
-	if(.@normal_dm || .@advance_dm || .@rare_dm || .@mystical_dm)
+	mes callfunc("GetTierColor",5) + "[Legendary]^000000 " + callfunc("F_InsertComma",.@legendary_dm);
+	if(.@normal_dm || .@advance_dm || .@rare_dm || .@mystical_dm || .@legendary_dm)
 	specialeffect2 111;
 	end;
 	

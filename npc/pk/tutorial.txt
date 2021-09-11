@@ -41,6 +41,7 @@ OnInit:
 }
 
 prontera,116,246,3	script	สาระน่ารู้#3	837,{
+	mes "๐" + callfunc("GetGoodConditionColor") + " Monster ทุกตัว Drop 5%^000000";
 	mes "๐" + callfunc("GetGoodConditionColor") + " อุปกรณ์สวมใส่ ทุกชิ้นตีบวกได้^000000";
 	mes "๐" + callfunc("GetGoodConditionColor") + " ค่า APSD ของอาวุธทุกชนิด เท่ากันหมด^000000";
 	mes "๐" + callfunc("GetGoodConditionColor") + " อุปกรณ์สวมใส่ ที่ Drop จาก Monster สามารถใส่ได้ทุกอาชีพ^000000";
