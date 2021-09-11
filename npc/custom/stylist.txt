@@ -224,7 +224,7 @@ prontera,206,254,3	script	แต่ง Effect 2	601,{
 	}
 	
 OnInit:
-	.price = 100000;
+	.price = 10000;
 	waitingroom "แต่ง Effect 2",0;
 	end;
 }
@@ -292,7 +292,7 @@ prontera,207,247,3	script	แต่ง Effect 3	603,{
 	}
 	
 OnInit:
-	.price = 10000000;
+	.price = 100000;
 	waitingroom "แต่ง Effect 3",0;
 	end;
 }
@@ -360,7 +360,7 @@ prontera,202,239,1	script	แต่ง Effect 4	604,{
 	}
 	
 OnInit:
-	.price = 1000000000;
+	.price = 1000000;
 	waitingroom "แต่ง Effect 4",0;
 	end;
 }

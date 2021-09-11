@@ -9,9 +9,15 @@ OnPCDieEvent:
 		
 		callfunc("RebirthStatus");
 		
-		.@maxDecreaseLevel = BaseLevel / 10;
+		//if(isloggedin(killerrid))
+		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid))
+		.@maxDecreaseLevel = (BaseLevel / 100) + rebirth_count;
+		else
+		.@maxDecreaseLevel = (BaseLevel / 10);
 		if(.@maxDecreaseLevel <= 1)
 		.@maxDecreaseLevel = 1;
+		//dispbottom ".@maxDecreaseLevel:"+.@maxDecreaseLevel;
+		
 		if(BaseLevel > 1){
 			.@d_lv = rand(.@maxDecreaseLevel);
 			if(.@d_lv > 0){

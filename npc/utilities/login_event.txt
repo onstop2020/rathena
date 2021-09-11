@@ -28,7 +28,7 @@ OnEffectInstall:
 	hateffect($all_hat_effect_ids[rich_hat_effect3],true);
 	if(rich_hat_effect4)
 	hateffect($all_hat_effect_ids[rich_hat_effect4],true);
-	if(rich_size)
-	atcommand "@size " + rich_size;
+	//if(rich_size)
+	//atcommand "@size " + rich_size;
 	end;
 }
