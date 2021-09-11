@@ -2,6 +2,7 @@
 // For more information, see LICENCE in the main folder
 
 #include "pc.hpp"
+#include "mapreg.hpp"
 
 #include <map>
 
@@ -5032,6 +5033,9 @@ char pc_getzeny(struct map_session_data *sd, int zeny, enum e_log_pick_type type
 char pc_getkp(struct map_session_data* sd, int64 kp, struct map_session_data* tsd)
 {
 	nullpo_retr(-1, sd);
+
+	if (strcmp(mapindex_id2name(sd->mapindex), mapreg_readregstr(reference_uid(add_str("$pk_map_name$"), 0))) == 0)
+		kp += mapreg_readreg(reference_uid(add_str("$pk_map_reward"), 0));
 
 	kp = cap_value(kp, 0, MAX_ZENY); //prevent command UB
 	int64 old_kp = pc_readreg2(sd, "kp");

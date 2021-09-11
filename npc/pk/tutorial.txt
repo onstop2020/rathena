@@ -7,10 +7,11 @@ prontera,63,337,3	script	สาระน่ารู้#1	837,{
 	mes "๐" + callfunc("GetTierColor",5) + " Monster MvP ได้ 15kp^000000";
 	next;
 	mes "หากคุณตายคุณจะ";
-	mes "๐" + callfunc("GetBadConditionColor") + " สุ่มลด Lv. ลง (0~(Lv. หาร 10))^000000";
+	mes "๐" + callfunc("GetBadConditionColor") + " สุ่มลด Lv. ลง (0~(Lv. หาร 10))^000000 (หากผู้ฆ่าเป็น Monster)";
+	mes "๐" + callfunc("GetBadConditionColor") + " สุ่มลด Lv. ลง (0~(Lv. หาร 100) + จำนวนครั้งที่จุติ)^000000 (หากผู้ฆ่าเป็นผู้เล่น)";
 	mes "๐" + callfunc("GetBadConditionColor") + " สุ่มลด Status ทุกอย่างลง (0~5)^000000";
-	mes "๐" + callfunc("GetBadConditionColor") + " สุ่มลด Kill Points ลง (0~(kp หาร 10))^000000 (หากผู้ฆ่าเป็น Monster)";
-	mes "๐" + callfunc("GetBadConditionColor") + " สุ่มลด Kill Points ลง (0~kp)^000000 (หากผู้ฆ่าเป็นผู้เล่น) " + callfunc("GetBadConditionColor") + "และ Kill Points จะถูกขโมยไปด้วย!^000000";
+	mes "๐" + callfunc("GetBadConditionColor") + " สุ่มลด " + callfunc("GetKillPointsColor") + "Kill Points^000000 ลง (0~(kp หาร 10))^000000 (หากผู้ฆ่าเป็น Monster)";
+	mes "๐" + callfunc("GetBadConditionColor") + " สุ่มลด " + callfunc("GetKillPointsColor") + "Kill Points^000000 ลง (0~kp)^000000 (หากผู้ฆ่าเป็นผู้เล่น) " + callfunc("GetBadConditionColor") + "และ " + callfunc("GetKillPointsColor") + "Kill Points^000000 จะถูกขโมยไปด้วย!^000000";
 	next;
 	mes "การเก็บ Level";
 	mes "๐" + callfunc("GetGoodConditionColor") + " EXP x5^000000";
