@@ -1,0 +1,45 @@
+prontera,166,201,5	script	ล่า EXP	635,{
+	mes "เมื่อกด 'เข้าสู่ Map PK(EXP)'";
+	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "รับความเสี่ยง ที่จะโดนผู้เล่นอื่นฆ่า^000000";
+	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "ไม่โวยวาย หรือร้องขอให้ปรับอะไรก็ตาม^000000";
+	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "โดน Ban หากทักมาด่า GM หรือไม่ทำตามข้อยินยอมดังกล่าว^000000";
+	mes "---";
+	mes "๐ Monster ภายใน Map '" + .pk_map$[.map_index] + "' จะได้รับ EXP^000000 มากขึ้น " + callfunc("F_InsertComma",$pk_exp_map_reward) + " EXP จากเดิม";
+	mes "๐ โดย Map จะถูกเปลี่ยนทุก ๆ 10 นาที";
+	menu callfunc("GetBadConditionColor") + "เข้าสู่ Map PK(EXP)^000000",-;
+	announce strcharinfo(0) + " เข้าสู่ Map PK(EXP)",bc_all,0x00BDFF;
+	warp .pk_map$[.map_index],0,0;
+	end;
+	
+/*OnTestMap:
+	warp .pk_map$[test_kp_map],0,0;
+	debugmes "test_kp_map:"+test_kp_map;
+	test_kp_map++;
+	end;*/
+	
+OnMinute00:
+OnMinute10:
+OnMinute20:
+OnMinute30:
+OnMinute40:
+OnMinute50:
+	callsub L_RefreshReward;
+	announce "Map PK(EXP) ถูกเปลี่ยนเป็น Map '" + .pk_map$[.map_index] + "' โดย Monster ภายใน Map จะได้รับ EXP มากขึ้น " + callfunc("F_InsertComma",$pk_exp_map_reward) + " EXP",bc_all,0x00BDFF;
+	end;
+	
+	L_RefreshReward:
+	$pk_exp_map_reward = rand(15000,45000);
+	.map_index = rand(0,getarraysize(.pk_map$) - 1);
+	$pk_exp_map_name$ = .pk_map$[.map_index];
+	removemapflag .pk_map$[.map_index],mf_pvp;
+	setmapflag .pk_map$[.map_index],mf_pvp;
+	delwaitingroom;
+	waitingroom "ล่า EXP (ได้เพิ่ม " + callfunc("F_InsertComma",$pk_exp_map_reward) + " EXP)",0;
+	return;
+	
+OnInit:
+	setarray .pk_map$[0],"alde_dun01","alde_dun02","alde_dun03","alde_dun04","gef_dun00","gef_dun01","gef_dun02","gef_dun03","gl_dun01","gl_dun02","iz_dun00","iz_dun01","iz_dun02","iz_dun03","iz_dun04","mjo_dun01","mjo_dun02","mjo_dun03","pay_dun00","pay_dun01","pay_dun02","pay_dun03","pay_dun04","xmas_dun01","xmas_dun02","beach_dun","beach_dun2","beach_dun3","tur_dun01","tur_dun02","tur_dun03","tur_dun04","tur_dun05","gld_dun01","gld_dun02","gld_dun03","gld_dun04","mag_dun01","mag_dun02","ama_dun01","ama_dun02","ama_dun03","gon_dun01","gon_dun02","gon_dun03","lou_dun03","lou_dun02","lou_dun01","ayo_dun01","ayo_dun02","ein_dun01","ein_dun02","lhz_dun01","lhz_dun02","lhz_dun03","kh_dun02","kh_dun01","ice_dun01","ice_dun02","ice_dun03","mosk_dun01","mosk_dun02","mosk_dun03","schg_dun01","arug_dun01","nyd_dun01","bra_dun01","bra_dun02","dic_dun01","dic_dun02","dew_dun01","dew_dun02","mal_dun01","iz_dun05","dic_dun03","lhz_dun04","gld_dun01_2","gld_dun02_2","gld_dun03_2","gld_dun04_2","ma_dun01","teg_dun01","teg_dun02","lhz_dun_n","lasa_dun01","lasa_dun02","lasa_dun03","lasa_dun_q";
+	callsub L_RefreshReward;
+	//bindatcmd "t",strnpcinfo(3) + "::OnTestMap",99,99;
+	end;
+}

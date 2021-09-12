@@ -176,3 +176,17 @@ function	script	GetGoodConditionColor	{
 function	script	GetBadConditionColor	{
 	return "^E91A1A";
 }
+function	script	GetRandomOptionId	{
+	.@optId = rand(1,242);
+	freeloop(1);
+	while((.@optId >= 76 && .@optId <= 85) || (.@optId >= 175 && .@optId <= 184) || .@optId == 203 || .@optId == 204)
+	.@optId = rand(1,242);
+	freeloop(0);
+	return .@optId;
+}
+function	script	IsHadRandomOptionId	{
+	.@optId = getarg(0,0);
+	if(.@optId < 1 || .@optId > 242)
+	return 0;
+	return 1;
+}

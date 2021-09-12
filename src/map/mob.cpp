@@ -4802,7 +4802,8 @@ uint64 MobDatabase::parseBodyNode(const YAML::Node &node) {
 			mob->status.dmotion = 0;
 	}
 	
-	if (this->nodeExists(node, "DamageTaken")) {
+	//if (this->nodeExists(node, "DamageTaken")) {
+	if (this->nodeExists(node, "DamageTakenNoUse")) {
 		uint16 damage;
 
 		if (!this->asUInt16Rate(node, "DamageTaken", damage, 100))

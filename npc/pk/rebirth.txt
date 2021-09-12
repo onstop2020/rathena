@@ -11,6 +11,12 @@ prontera,54,352,5	script	จุติ	10377,{
 	mes "๐ " + callfunc("GetGoodConditionColor") + "All Status +5^000000";
 	mes "๐ " + callfunc("GetGoodConditionColor") + "แบกของได้หนักขึ้น +100^000000";
 	mes "๐ " + callfunc("GetBadConditionColor") + "EXP ที่ได้รับน้อยลง (EXP หาร (จำนวนครั้งที่จุติ + 1))^000000";
+	next;
+	mes "๐ คุณจะกลายเป็น Novice\nหรือ Summoner(หากเล่น Summoner)";
+	mes "๐ Level จะเหลือ 1";
+	mes "๐ Job Level จะเหลือ 1";
+	mes "๐ Status Point จะเหลือ 48";
+	mes "๐ Skill Point จะเหลือ 0";
 	close;
 	
 	L_Rebirth:

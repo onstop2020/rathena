@@ -3655,6 +3655,8 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 				sd->bonus.unstripable_equip |= EQP_WEAPON;
 			break;
 		case SP_UNSTRIPABLE:
+			if (sd->state.lr_flag != 2)
+				sd->bonus.unstripable_equip |= EQP_WEAPON; // All unstripable should protected Weapon too [Start]
 		case SP_UNSTRIPABLE_ARMOR:
 			if(sd->state.lr_flag != 2)
 				sd->bonus.unstripable_equip |= EQP_ARMOR;
@@ -7498,14 +7500,23 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 		}
 	}
 
+	// Rebirth EXP Reduction [Start]
+	int64 rebirth = pc_readreg2(sd, "rebirth_count");
+
+	// PK Map Bonus EXP [Start]
+	int64 pk_map_exp_bonus = 0;
+	if (strcmp(mapindex_id2name(sd->mapindex), mapreg_readregstr(reference_uid(add_str("$pk_exp_map_name$"), 0))) == 0)
+		pk_map_exp_bonus = mapreg_readreg(reference_uid(add_str("$pk_exp_map_reward"), 0));
+
 	// Give EXP for Base Level
 	if (base_exp) {
-		// Rebirth EXP Reduction [Start]
-		int64 rebirth = pc_readreg2(sd, "rebirth_count"); // Start
 		if (rebirth > 0)
 		base_exp = base_exp / (rebirth + 1);
 		if ((int)base_exp <= 0)
-			base_exp = 1; // End
+			base_exp = 1;
+
+		base_exp += pk_map_exp_bonus;
+
 		sd->status.base_exp = util::safe_addition_cap(sd->status.base_exp, base_exp, MAX_EXP);
 
 		if (!pc_checkbaselevelup(sd))
@@ -7514,12 +7525,13 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 
 	// Give EXP for Job Level
 	if (job_exp) {
-		// Rebirth EXP Reduction [Start]
-		int64 rebirth = pc_readreg2(sd, "rebirth_count"); // Start
 		if (rebirth > 0)
 			job_exp = job_exp / (rebirth + 1);
 		if ((int)job_exp <= 0)
-			job_exp = 1; // End
+			job_exp = 1;
+
+		job_exp += pk_map_exp_bonus;
+
 		sd->status.job_exp = util::safe_addition_cap(sd->status.job_exp, job_exp, MAX_EXP);
 
 		if (!pc_checkjoblevelup(sd))
