@@ -6,6 +6,9 @@ OnPCLoginEvent:
 	
 	Zeny = 1000000;
 	
+	if(kp < 0)
+	kp = 0;
+	
 	if(countitem(40042) <= 0)
 	getitem 40042,1;
 	if(countitem(40043) <= 0)
