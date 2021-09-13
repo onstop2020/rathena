@@ -39,7 +39,7 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 	
 	// Check Kill Points requirement
 	function	Require_KillPoints	{
-		$job_change_kp_needed = getarg(0);
+		job_change_kp_needed = getarg(0);
 		if (kp < getarg(0)) {
 			mes "ต้องการ " + callfunc("GetKillPointsColor") + "Kill Points^000000 อีก " + callfunc("F_InsertComma",(getarg(0) - kp));
 			close;
@@ -350,7 +350,7 @@ prontera,51,345,5	script	เปลี่ยนอาชีพ	469,{
 			if (.GetJobEquip)
 			Get_Job_Equip();
 		}
-		kp -= $job_change_kp_needed;
+		kp -= job_change_kp_needed;
 		dispbottom "คุณมี " + callfunc("F_InsertComma",kp) + " Kill Points";
 		close; // Always closes after the change
 	}
