@@ -29,9 +29,9 @@ OnMinute50:
 	
 	L_RefreshReward:
 	$pk_map_reward = rand(15,45);
+	removemapflag .pk_map$[.map_index],mf_pvp;
 	.map_index = rand(0,getarraysize(.pk_map$) - 1);
 	$pk_map_name$ = .pk_map$[.map_index];
-	removemapflag .pk_map$[.map_index],mf_pvp;
 	setmapflag .pk_map$[.map_index],mf_pvp;
 	delwaitingroom;
 	waitingroom "ล่า Kill Points (ได้เพิ่ม " + $pk_map_reward + "kp)",0;

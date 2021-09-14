@@ -29,9 +29,9 @@ OnMinute50:
 	
 	L_RefreshReward:
 	$pk_exp_map_reward = rand(15000,45000);
+	removemapflag .pk_map$[.map_index],mf_pvp;
 	.map_index = rand(0,getarraysize(.pk_map$) - 1);
 	$pk_exp_map_name$ = .pk_map$[.map_index];
-	removemapflag .pk_map$[.map_index],mf_pvp;
 	setmapflag .pk_map$[.map_index],mf_pvp;
 	delwaitingroom;
 	waitingroom "ล่า EXP (ได้เพิ่ม " + callfunc("F_InsertComma",$pk_exp_map_reward) + " EXP)",0;
