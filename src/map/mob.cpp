@@ -4966,9 +4966,9 @@ void MobDatabase::loadingFinished() {
 				maxhp = maxhp * (double)battle_config.monster_hp_rate / 100.;
 		}
 
-		mob->status.max_hp = cap_value(static_cast<uint32>(maxhp), 1, UINT32_MAX);
 		if (mob->get_bosstype() == BOSSTYPE_MVP && battle_config.mvp_hp_rate != 100 && saveMaxhp == mob->status.max_hp) // [Start]
 			mob->status.max_hp = 1000000000; // [Start]
+		mob->status.max_hp = cap_value(static_cast<uint32>(maxhp), 1, static_cast<uint32>(1000000000));
 		mob->status.max_sp = cap_value(mob->status.max_sp, 1, UINT32_MAX);
 		mob->status.hp = mob->status.max_hp;
 		mob->status.sp = mob->status.max_sp;
