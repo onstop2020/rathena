@@ -1,11 +1,10 @@
 prontera,166,201,5	script	ล่า EXP	635,{
+	mes "๐ Monster ภายใน Map '" + .pk_map$[.map_index] + "' จะได้รับ EXP^000000 มากขึ้น " + callfunc("F_InsertComma",$pk_exp_map_reward) + " EXP จากเดิม";
+	mes "---";
 	mes "เมื่อกด 'เข้าสู่ Map PK(EXP)'";
 	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "รับความเสี่ยง ที่จะโดนผู้เล่นอื่นฆ่า^000000";
 	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "ไม่โวยวาย หรือร้องขอให้ปรับอะไรก็ตาม^000000";
 	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "โดน Ban หากทักมาด่า GM หรือไม่ทำตามข้อยินยอมดังกล่าว^000000";
-	mes "---";
-	mes "๐ Monster ภายใน Map '" + .pk_map$[.map_index] + "' จะได้รับ EXP^000000 มากขึ้น " + callfunc("F_InsertComma",$pk_exp_map_reward) + " EXP จากเดิม";
-	mes "๐ โดย Map จะถูกเปลี่ยนทุก ๆ 10 นาที";
 	menu callfunc("GetBadConditionColor") + "เข้าสู่ Map PK(EXP)^000000",-;
 	announce strcharinfo(0) + " เข้าสู่ Map PK(EXP)",bc_all,0x00BDFF;
 	warp .pk_map$[.map_index],0,0;
@@ -28,7 +27,7 @@ OnMinute50:
 	end;
 	
 	L_RefreshReward:
-	$pk_exp_map_reward = rand(15000,45000);
+	$pk_exp_map_reward = rand(50000,100000);
 	removemapflag .pk_map$[.map_index],mf_pvp;
 	.map_index = rand(0,getarraysize(.pk_map$) - 1);
 	$pk_exp_map_name$ = .pk_map$[.map_index];

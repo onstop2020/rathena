@@ -1,11 +1,10 @@
 prontera,162,205,5	script	ล่า Kill Points	685,{
+	mes "๐ Monster ภายใน Map '" + .pk_map$[.map_index] + "' จะได้รับ " + callfunc("GetKillPointsColor") + "Kill Points^000000 มากขึ้น " + $pk_map_reward + "kp จากเดิม";
+	mes "---";
 	mes "เมื่อกด 'เข้าสู่ Map PK'";
 	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "รับความเสี่ยง ที่จะโดนผู้เล่นอื่นฆ่า^000000";
 	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "ไม่โวยวาย หรือร้องขอให้ปรับอะไรก็ตาม^000000";
 	mes "๐ คุณยินยอมที่จะ " + callfunc("GetBadConditionColor") + "โดน Ban หากทักมาด่า GM หรือไม่ทำตามข้อยินยอมดังกล่าว^000000";
-	mes "---";
-	mes "๐ Monster ภายใน Map '" + .pk_map$[.map_index] + "' จะได้รับ " + callfunc("GetKillPointsColor") + "Kill Points^000000 มากขึ้น " + $pk_map_reward + "kp จากเดิม";
-	mes "๐ โดย Map จะถูกเปลี่ยนทุก ๆ 10 นาที";
 	menu callfunc("GetBadConditionColor") + "เข้าสู่ Map PK^000000",-;
 	announce strcharinfo(0) + " เข้าสู่ Map PK",bc_all,0x00FFC5;
 	warp .pk_map$[.map_index],0,0;
