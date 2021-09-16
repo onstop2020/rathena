@@ -39236,7 +39236,7 @@ Body:
     Hp: 99999999
     Defense: 50
     MagicDefense: 50
-    Size: Medium
+    Size: Small
     Race: Formless
     Element: Neutral
     ElementLevel: 1
@@ -39250,8 +39250,8 @@ Body:
     Name: Dummy 100
     Level: 100
     Hp: 99999999
-    Defense: 90
-    MagicDefense: 90
+    Defense: 50
+    MagicDefense: 50
     Size: Medium
     Race: Formless
     Element: Neutral
@@ -39266,9 +39266,9 @@ Body:
     Name: Dummy 150
     Level: 150
     Hp: 99999999
-    Defense: 120
-    MagicDefense: 120
-    Size: Medium
+    Defense: 50
+    MagicDefense: 50
+    Size: Big
     Race: Formless
     Element: Neutral
     ElementLevel: 1
