@@ -1,5 +1,5 @@
 prontera,64,352,3	script	ซื้อ x EXP	664,{
-	mes callfunc("GetGoodConditionColor") + "๐ ขณะนี้ EXP +" + exp_multiplier + "%^000000";
+	mes callfunc("GetGoodConditionColor") + "๐ ขณะนี้ EXP +" + callfunc("F_InsertComma",exp_multiplier) + "%^000000";
 	mes callfunc("GetGoodConditionColor") + "๐ x EXP จะอยู่ถาวร^000000";
 	mes callfunc("GetBadConditionColor") + "๐ หากคุณตาย x EXP จะหายไป^000000";
 	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp) + "^000000";
@@ -65,7 +65,7 @@ prontera,64,352,3	script	ซื้อ x EXP	664,{
 	callfunc("RebirthStatus");
 	specialeffect2 213;
 	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ " + callfunc("F_InsertComma",kp) + "^000000";
-	mes callfunc("GetGoodConditionColor") + "๐ ขณะนี้ EXP +" + exp_multiplier + "%^000000";
+	mes callfunc("GetGoodConditionColor") + "๐ ขณะนี้ EXP +" + callfunc("F_InsertComma",exp_multiplier) + "%^000000";
 	close;
 	
 OnInit:
