@@ -27,7 +27,7 @@ OnMinute50:
 	end;
 	
 	L_RefreshReward:
-	$pk_exp_map_reward = rand(50000,100000);
+	$pk_exp_map_reward = rand(500000,1000000);
 	removemapflag .pk_map$[.map_index],mf_pvp;
 	.map_index = rand(0,getarraysize(.pk_map$) - 1);
 	$pk_exp_map_name$ = .pk_map$[.map_index];
