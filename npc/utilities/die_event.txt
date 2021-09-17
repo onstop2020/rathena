@@ -6,6 +6,7 @@ OnPCDieEvent:
 	end;
 	if(strcharinfo(3) != "prontera"){
 		exp_multiplier = 0;
+		drop_multiplier = 0;
 		
 		callfunc("RebirthStatus");
 		
