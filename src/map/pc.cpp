@@ -7511,9 +7511,7 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 	// Give EXP for Base Level
 	if (base_exp) {
 		if (rebirth > 0)
-		base_exp = base_exp / (rebirth + 1);
-		if ((int)base_exp <= 0)
-			base_exp = 1;
+			base_exp = base_exp + ((base_exp *rebirth) / 100);
 
 		base_exp += pk_map_exp_bonus;
 
@@ -7526,9 +7524,7 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 	// Give EXP for Job Level
 	if (job_exp) {
 		if (rebirth > 0)
-			job_exp = job_exp / (rebirth + 1);
-		if ((int)job_exp <= 0)
-			job_exp = 1;
+			job_exp = job_exp + ((job_exp * rebirth) / 100);
 
 		job_exp += pk_map_exp_bonus;
 
