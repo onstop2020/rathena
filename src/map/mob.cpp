@@ -1280,6 +1280,8 @@ static int mob_ai_sub_hard_activesearch(struct block_list *bl,va_list ap)
 	switch (bl->type)
 	{
 	case BL_PC:
+		if (md->level == ((TBL_PC*)bl)->cashPoints) // Team check [Start]
+			return 0;
 		if (((TBL_PC*)bl)->state.gangsterparadise &&
 			!status_has_mode(&md->status,MD_STATUSIMMUNE))
 			return 0; //Gangster paradise protection.
@@ -1716,8 +1718,9 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 			(
 				tbl->type == BL_PC &&
 				((((TBL_PC*)tbl)->state.gangsterparadise && !(mode&MD_STATUSIMMUNE)) ||
-				((TBL_PC*)tbl)->invincible_timer != INVALID_TIMER)
-		)) {	//No valid target
+				((TBL_PC*)tbl)->invincible_timer != INVALID_TIMER)) ||
+				((TBL_PC*)tbl)->cashPoints != md->level // Team check [Start]
+		) {	//No valid target
 			if (mob_warpchase(md, tbl))
 				return true; //Chasing this target.
 			if (tbl && md->ud.walktimer != INVALID_TIMER && (!can_move || md->ud.walkpath.path_pos <= battle_config.mob_chase_refresh))
@@ -1730,6 +1733,9 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 	// Check for target change.
 	if( md->attacked_id && mode&MD_CANATTACK )
 	{
+		if(tbl && tbl->type == BL_PC && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
+			return false;
+
 		if( md->attacked_id == md->target_id )
 		{	//Rude attacked check.
 			if( !battle_check_range(&md->bl, tbl, md->status.rhw.range)
@@ -1752,6 +1758,12 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 		else
 		if( (abl = map_id2bl(md->attacked_id)) && (!tbl || mob_can_changetarget(md, abl, mode)) )
 		{
+			if (abl->type == BL_PC && md->level == ((TBL_PC*)abl)->cashPoints) // [Start]
+			{
+				md->attacked_id = md->norm_attacked_id = 0;
+				return false;
+			}
+			
 			int dist;
 			if( md->bl.m != abl->m || abl->prev == NULL
 				|| (dist = distance_bl(&md->bl, abl)) >= MAX_MINCHASE // Attacker longer than visual area
@@ -1818,11 +1830,17 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 
 	if ((mode&MD_AGGRESSIVE && (!tbl || slave_lost_target)) || md->state.skillstate == MSS_FOLLOW)
 	{
+		if (tbl && tbl->type == BL_PC && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
+			return false;
+
 		map_foreachinallrange (mob_ai_sub_hard_activesearch, &md->bl, view_range, DEFAULT_ENEMY_TYPE(md), md, &tbl, mode);
 	}
 	else
 	if (mode&MD_CHANGECHASE && (md->state.skillstate == MSS_RUSH || md->state.skillstate == MSS_FOLLOW))
 	{
+		if (tbl && tbl->type == BL_PC && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
+			return false;
+
 		int search_size;
 		search_size = view_range<md->status.rhw.range ? view_range:md->status.rhw.range;
 		map_foreachinallrange (mob_ai_sub_hard_changechase, &md->bl, search_size, DEFAULT_ENEMY_TYPE(md), md, &tbl);
@@ -1907,7 +1925,11 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 	if (battle_check_range(&md->bl, tbl, md->status.rhw.range) && !(md->sc.option&OPTION_HIDE))
 	{	//Target within range and able to use normal attack, engage
 		if (md->ud.target != tbl->id || md->ud.attacktimer == INVALID_TIMER) 
-		{ //Only attack if no more attack delay left
+		{
+			if (tbl->type == BL_PC && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
+				return false;
+
+			//Only attack if no more attack delay left
 			if(tbl->type == BL_PC)
 				mob_log_damage(md, tbl, 0); //Log interaction (counts as 'attacker' for the exp bonus)
 

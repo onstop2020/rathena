@@ -142,9 +142,10 @@ Body:
           ActiveEvent: start#bat_b02::OnCroixActive
           Variable: $@FlaviusBG2_id2
   - Id: 3
-    Name: KVM (Level 80 and up)
-    MinPlayers: 5
-    MinLevel: 80
+    Name: Castle Wars
+    MinPlayers: 2
+    MinLevel: 1
+    Deserter: 0
     Locations:
       - Map: bat_c01
         StartEvent: KvM01_BG::OnStart
