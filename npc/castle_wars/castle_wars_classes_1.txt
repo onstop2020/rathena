@@ -16,7 +16,7 @@ prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
 		end;
 	}
 	else{
-		$c_w_team1_id = bg_create("bat_c01",50,131,strnpcinfo(0) + "::OnQuit",strnpcinfo(0) + "::OnDeath");
+		$c_w_team1_id = bg_create(.mapName$,53,128,strnpcinfo(0) + "::OnQuit",strnpcinfo(0) + "::OnDeath");
 		
 		bg_leave;
 		
@@ -40,7 +40,7 @@ prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
 		end;
 	}
 	else{
-		$c_w_team2_id = bg_create("bat_c01",50,131,strnpcinfo(0) + "::OnQuit",strnpcinfo(0) + "::OnDeath");
+		$c_w_team2_id = bg_create(.mapName$,146,55,strnpcinfo(0) + "::OnQuit",strnpcinfo(0) + "::OnDeath");
 		
 		bg_leave;
 		
@@ -57,11 +57,21 @@ prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
 	// Set block all except talking
 	end;
 	
+	// Re-Order monster to move to their point
+	L_ReOrderMonster:
+	getmapunits(BL_MOB,.mapName$,.gids);
+	for(.@i = 0; .@i < getarraysize(.gids); .@i++){
+		if(unitwalk(.gids[.@i],65,101)){
+			continue;
+		}
+	}
+	return;
+	
 	L_SpawnTeam1Monster:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
-		monster "bat_c01",59,122,"Team 1",1002,1;
-		unitwalk($@mobid[0],64,105);
+		monster .mapName$,59,122,"Team 1",1002,1;
+		unitwalk($@mobid[0],65,101);
 		// walk to bottom left check point area
 		// claim point and push (DOTA)
 	}
@@ -77,6 +87,7 @@ OnDeath:
 	end;
 	
 OnInit:
+	.mapName$ = "bat_c01";
 	$c_w_team1_id = 0;
 	$c_w_team2_id = 0;
 	bg_destroy 1;
