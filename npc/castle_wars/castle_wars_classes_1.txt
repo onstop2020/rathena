@@ -6,55 +6,39 @@ prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
 	menu "เข้าทีม 1",L_Team1,"เข้าทีม 2",L_Team2;
 	
 	L_Team1:
-	if($c_w_team1_id){
-		bg_leave;
-		
-		bg_join($c_w_team1_id);
-		
-		dispbottom "คุณเข้าร่วม Team ที่ 1";
-		
-		end;
-	}
-	else{
-		$c_w_team1_id = bg_create(.mapName$,53,128,strnpcinfo(0) + "::OnQuit",strnpcinfo(0) + "::OnDeath");
-		
-		bg_leave;
-		
-		bg_join($c_w_team1_id);
-		
-		dispbottom "สร้าง Team ที่ 1";
-		
-		dispbottom "คุณเข้าร่วม Team ที่ 1";
-		
-		end;
-	}
+	// Set block all except talking
+	#CASHPOINTS = 1;
+	
+	bg_leave;
 
-	L_Team2:
-	if($c_w_team2_id){
-		bg_leave;
-		
-		bg_join($c_w_team2_id);
-		
-		dispbottom "คุณเข้าร่วม Team ที่ 2";
-		
-		end;
-	}
-	else{
-		$c_w_team2_id = bg_create(.mapName$,146,55,strnpcinfo(0) + "::OnQuit",strnpcinfo(0) + "::OnDeath");
-		
-		bg_leave;
-		
-		bg_join($c_w_team2_id);
-		
-		dispbottom "สร้าง Team ที่ 2";
-		
-		dispbottom "คุณเข้าร่วม Team ที่ 2";
-		
-		end;
+	if(!$c_w_team1_id){
+		$c_w_team1_id = bg_create(.mapName$,53,128);
+
+		dispbottom "สร้าง Team ที่ 1";
 	}
 	
-	// Warp random in team prepare area
+	bg_join($c_w_team1_id);
+	
+	dispbottom "คุณเข้าร่วม Team ที่ 1";
+	
+	end;
+	
+	L_Team2:
 	// Set block all except talking
+	#CASHPOINTS = 2;
+	
+	bg_leave;
+	
+	if(!$c_w_team2_id){
+		$c_w_team2_id = bg_create(.mapName$,146,55);
+		
+		dispbottom "สร้าง Team ที่ 2";
+	}
+	
+	bg_join($c_w_team2_id);
+	
+	dispbottom "คุณเข้าร่วม Team ที่ 2";
+	
 	end;
 	
 	// Re-Order monster to move to their point
@@ -77,14 +61,6 @@ prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
 	}
 	freeloop(0);
 	return;
-	
-OnQuit:
-	// Warp to bat_room
-	end;
-	
-OnDeath:
-	// Respawn now
-	end;
 	
 OnInit:
 	.mapName$ = "bat_c01";

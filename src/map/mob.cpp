@@ -1280,7 +1280,7 @@ static int mob_ai_sub_hard_activesearch(struct block_list *bl,va_list ap)
 	switch (bl->type)
 	{
 	case BL_PC:
-		if (md->level == ((TBL_PC*)bl)->cashPoints) // Team check [Start]
+		if (((TBL_PC*)bl)->cashPoints > 0 && md->level == ((TBL_PC*)bl)->cashPoints) // Team check [Start]
 			return 0;
 		if (((TBL_PC*)bl)->state.gangsterparadise &&
 			!status_has_mode(&md->status,MD_STATUSIMMUNE))
@@ -1716,10 +1716,10 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 			(md->ud.attacktimer == INVALID_TIMER && !status_check_skilluse(&md->bl, tbl, 0, 0)) ||
 			(md->ud.walktimer != INVALID_TIMER && !(battle_config.mob_ai&0x1) && !check_distance_bl(&md->bl, tbl, md->min_chase)) ||
 			(
-				tbl->type == BL_PC &&
+				tbl->type == BL_PC&&
 				((((TBL_PC*)tbl)->state.gangsterparadise && !(mode&MD_STATUSIMMUNE)) ||
 				((TBL_PC*)tbl)->invincible_timer != INVALID_TIMER)) ||
-				((TBL_PC*)tbl)->cashPoints != md->level // Team check [Start]
+				(((TBL_PC*)tbl)->cashPoints > 0 && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
 		) {	//No valid target
 			if (mob_warpchase(md, tbl))
 				return true; //Chasing this target.
@@ -1733,7 +1733,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 	// Check for target change.
 	if( md->attacked_id && mode&MD_CANATTACK )
 	{
-		if(tbl && tbl->type == BL_PC && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
+		if(tbl && tbl->type == BL_PC && (((TBL_PC*)tbl)->cashPoints > 0 && ((TBL_PC*)tbl)->cashPoints == md->level)) // Team check [Start]
 			return false;
 
 		if( md->attacked_id == md->target_id )
@@ -1758,7 +1758,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 		else
 		if( (abl = map_id2bl(md->attacked_id)) && (!tbl || mob_can_changetarget(md, abl, mode)) )
 		{
-			if (abl->type == BL_PC && md->level == ((TBL_PC*)abl)->cashPoints) // [Start]
+			if (abl->type == BL_PC && (((TBL_PC*)abl)->cashPoints > 0 && md->level == ((TBL_PC*)abl)->cashPoints)) // [Start]
 			{
 				md->attacked_id = md->norm_attacked_id = 0;
 				return false;
@@ -1830,7 +1830,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 
 	if ((mode&MD_AGGRESSIVE && (!tbl || slave_lost_target)) || md->state.skillstate == MSS_FOLLOW)
 	{
-		if (tbl && tbl->type == BL_PC && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
+		if (tbl && tbl->type == BL_PC && (((TBL_PC*)tbl)->cashPoints > 0 && ((TBL_PC*)tbl)->cashPoints == md->level)) // Team check [Start]
 			return false;
 
 		map_foreachinallrange (mob_ai_sub_hard_activesearch, &md->bl, view_range, DEFAULT_ENEMY_TYPE(md), md, &tbl, mode);
@@ -1838,7 +1838,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 	else
 	if (mode&MD_CHANGECHASE && (md->state.skillstate == MSS_RUSH || md->state.skillstate == MSS_FOLLOW))
 	{
-		if (tbl && tbl->type == BL_PC && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
+		if (tbl && tbl->type == BL_PC && (((TBL_PC*)tbl)->cashPoints > 0 && ((TBL_PC*)tbl)->cashPoints == md->level)) // Team check [Start]
 			return false;
 
 		int search_size;
@@ -1926,9 +1926,8 @@ static bool mob_ai_sub_hard(struct mob_data *md, t_tick tick)
 	{	//Target within range and able to use normal attack, engage
 		if (md->ud.target != tbl->id || md->ud.attacktimer == INVALID_TIMER) 
 		{
-			if (tbl->type == BL_PC && ((TBL_PC*)tbl)->cashPoints == md->level) // Team check [Start]
+			if (tbl->type == BL_PC && (((TBL_PC*)tbl)->cashPoints > 0 && ((TBL_PC*)tbl)->cashPoints == md->level)) // Team check [Start]
 				return false;
-
 			//Only attack if no more attack delay left
 			if(tbl->type == BL_PC)
 				mob_log_damage(md, tbl, 0); //Log interaction (counts as 'attacker' for the exp bonus)
