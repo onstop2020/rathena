@@ -145,7 +145,7 @@ OnTimer60000:
 	
 OnInit:
 	.enter_cooldown = 30;
-	.trade_amount = 30;
+	.trade_amount = 13;
 	.max_monster_amount = 30;
 	.mapName$ = "ba_lost";
 	waitingroom "ห้องล่า Option Soul",0;
