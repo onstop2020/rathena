@@ -12,7 +12,7 @@ prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
 	bg_leave;
 
 	if(!$c_w_team1_id){
-		$c_w_team1_id = bg_create(.mapName$,53,128);
+		$c_w_team1_id = bg_create(.mapName$,48,79);
 
 		dispbottom "สร้าง Team ที่ 1";
 	}
@@ -30,7 +30,7 @@ prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
 	bg_leave;
 	
 	if(!$c_w_team2_id){
-		$c_w_team2_id = bg_create(.mapName$,146,55);
+		$c_w_team2_id = bg_create(.mapName$,165,112);
 		
 		dispbottom "สร้าง Team ที่ 2";
 	}
@@ -42,28 +42,49 @@ prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
 	end;
 	
 	// Re-Order monster to move to their point
+OnTimer4000:
+	initnpctimer;
 	L_ReOrderMonster:
 	getmapunits(BL_MOB,.mapName$,.gids);
 	for(.@i = 0; .@i < getarraysize(.gids); .@i++){
-		if(unitwalk(.gids[.@i],65,101)){
+		getunitdata(.gids[.@i],.@a);
+		if(.@a[UMOB_LEVEL] == 1){
+			if(unitwalk(.gids[.@i],143,113))
+			continue;
+			if(unitwalk(.gids[.@i],123,113))
+			continue;
+			if(unitwalk(.gids[.@i],94,111))
+			continue;
+			if(unitwalk(.gids[.@i],66,112))
+			continue;
+		}
+		else if(.@a[UMOB_LEVEL] == 2){
+			if(unitwalk(.gids[.@i],66,112))
+			continue;
+			if(unitwalk(.gids[.@i],94,111))
+			continue;
+			if(unitwalk(.gids[.@i],123,113))
+			continue;
+			if(unitwalk(.gids[.@i],143,113))
 			continue;
 		}
 	}
-	return;
+	end;
 	
 	L_SpawnTeam1Monster:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
-		monster .mapName$,59,122,"Team 1",1002,1;
-		unitwalk($@mobid[0],65,101);
+		monster .mapName$,50,88,"Team 1",1002,1;
+		unitwalk($@mobid[0],66,112);
 		// walk to bottom left check point area
 		// claim point and push (DOTA)
 	}
 	freeloop(0);
+	initnpctimer;
 	return;
 	
 OnInit:
-	.mapName$ = "bat_c01";
+	.mapName$ = "new_event";
 	$c_w_team1_id = 0;
 	$c_w_team2_id = 0;
 	bg_destroy 1;

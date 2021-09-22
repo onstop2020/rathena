@@ -2,6 +2,7 @@ function	script	JumpStone	{
 	if(strcharinfo(3) == "force_1-1"
 			//|| strcharinfo(3) == "evt_bomb"
 			|| strcharinfo(3) == "guild_vs2-2"
+			|| strcharinfo(3) == "new_event"
 			//|| strcharinfo(3) == "ba_lost"
 			){
 		message strcharinfo(0),"ไม่สามารถใช้งานได้ภายใน Map นี้";
@@ -34,6 +35,10 @@ function	script	JumpStone	{
 	return;
 }
 function	script	ReturnStone	{
+	if(strcharinfo(3) == "new_event"){
+		message strcharinfo(0),"ไม่สามารถใช้งานได้ภายใน Map นี้";
+		end;
+	}
 	if (js_cooldown > gettimetick(2)){
 		message strcharinfo(0),"โปรดรอ " + (js_cooldown - gettimetick(2)) + " วินาที";
 		end;
@@ -54,6 +59,10 @@ function	script	ReturnStone	{
 	return;
 }
 function	script	HealStone	{
+	if(strcharinfo(3) == "new_event"){
+		message strcharinfo(0),"ไม่สามารถใช้งานได้ภายใน Map นี้";
+		end;
+	}
 	if (hs_cooldown > gettimetick(2)){
 		message strcharinfo(0),"โปรดรอ " + (hs_cooldown - gettimetick(2)) + " วินาที";
 		end;
