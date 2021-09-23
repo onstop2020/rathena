@@ -1,4 +1,4 @@
-prontera,162,205,5	script	ล่า Kill Points	685,{
+prontera,148,205,3	script	ล่า Kill Points	685,{
 	mes "๐ Monster ภายใน Map '" + .pk_map$[.map_index] + "' จะได้รับ " + callfunc("GetKillPointsColor") + "Kill Points^000000 มากขึ้น " + $pk_map_reward + "kp จากเดิม";
 	mes "---";
 	mes "เมื่อกด 'เข้าสู่ Map PK'";

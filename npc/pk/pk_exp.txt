@@ -1,4 +1,4 @@
-prontera,166,201,5	script	ล่า EXP	635,{
+prontera,163,205,5	script	ล่า EXP	635,{
 	mes "๐ Monster ภายใน Map '" + .pk_map$[.map_index] + "' จะได้รับ EXP^000000 มากขึ้น " + callfunc("F_InsertComma",$pk_exp_map_reward) + " EXP จากเดิม";
 	mes "---";
 	mes "เมื่อกด 'เข้าสู่ Map PK(EXP)'";
