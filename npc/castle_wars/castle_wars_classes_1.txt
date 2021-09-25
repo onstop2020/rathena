@@ -1,5 +1,5 @@
 // --- NPC ---
-prontera,156,183,5	script	สงครามปราสาท (คลาส 1)	2035,{
+bat_room,149,179,5	script	สงครามปราสาท (คลาส 1)	2035,{
 	mes "จำนวนคน Team 1 ขณะนี้:" + bg_get_data($c_w_team1_id,0);
 	mes "จำนวนคน Team 2 ขณะนี้:" + bg_get_data($c_w_team2_id,0);
 	mes "เกมจะเริ่มภายใน " + $c_w_1_countdown + " วินาที";
