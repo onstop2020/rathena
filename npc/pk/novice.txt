@@ -1,0 +1,8 @@
+prontera,54,360,5	script	กลับไปเป็น Novice	729,{
+	menu "ไม่ทำอะไร",-,"เปลี่ยนเป็น Novice",L_Novice;
+	end;
+	
+	L_Novice:
+	atcommand "@job 0";
+	end;
+}
