@@ -187,29 +187,6 @@ Body:
           Amount: 15
         - Level: 10
           Amount: 15
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
   - Id: 6
     Name: SM_PROVOKE
     Description: Provoke
@@ -510,9 +487,6 @@ Body:
           Amount: 40
         - Level: 10
           Amount: 40
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
     Unit:
       Id: Safetywall
       Interval: -1
@@ -787,9 +761,6 @@ Body:
           Amount: 17
         - Level: 10
           Amount: 16
-      ItemCost:
-        - Item: Red_Gemstone
-          Amount: 1
   - Id: 17
     Name: MG_FIREBALL
     Description: Fire Ball
@@ -1352,9 +1323,6 @@ Body:
           Amount: 29
         - Level: 4
           Amount: 26
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
     Unit:
       Id: Warp_Active
       AlternateId: Warp_Waiting
@@ -1858,11 +1826,6 @@ Body:
     Duration1: 100
     Requires:
       SpCost: 12
-      Weapon:
-        Bow: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 47
     Name: AC_SHOWER
     Description: Arrow Shower
@@ -1909,11 +1872,6 @@ Body:
     Duration1: 100
     Requires:
       SpCost: 15
-      Weapon:
-        Bow: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 48
     Name: TF_DOUBLE
     Description: Double Attack
@@ -2055,9 +2013,6 @@ Body:
         Time: 0
     Requires:
       SpCost: 60
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
   - Id: 55
     Name: KN_SPEARMASTERY
     Description: Spear Mastery
@@ -2075,9 +2030,6 @@ Body:
     Element: Weapon
     Requires:
       SpCost: 7
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 57
     Name: KN_BRANDISHSPEAR
     Description: Brandish Spear
@@ -2099,9 +2051,6 @@ Body:
     FixedCastTime: 350
     Requires:
       SpCost: 24
-      Weapon:
-        1hSpear: true
-        2hSpear: true
       State: Riding
   - Id: 58
     Name: KN_SPEARSTAB
@@ -2120,9 +2069,6 @@ Body:
     Knockback: 6
     Requires:
       SpCost: 9
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 59
     Name: KN_SPEARBOOMERANG
     Description: Spear Boomerang
@@ -2146,9 +2092,6 @@ Body:
     AfterCastActDelay: 1000
     Requires:
       SpCost: 10
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 60
     Name: KN_TWOHANDQUICKEN
     Description: Twohand Quicken
@@ -2204,8 +2147,6 @@ Body:
           Amount: 46
         - Level: 10
           Amount: 50
-      Weapon:
-        2hSword: true
   - Id: 61
     Name: KN_AUTOCOUNTER
     Description: Counter Attack
@@ -2230,29 +2171,6 @@ Body:
         Time: 2000
     Requires:
       SpCost: 3
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
   - Id: 62
     Name: KN_BOWLINGBASH
     Description: Bowling Bash
@@ -2425,9 +2343,6 @@ Body:
           Amount: 26
         - Level: 5
           Amount: 30
-      ItemCost:
-        - Item: Holy_Water
-          Amount: 1
   - Id: 69
     Name: PR_BENEDICTIO
     Description: B.S. Sacramenti
@@ -2526,9 +2441,6 @@ Body:
           Amount: 39
         - Level: 10
           Amount: 42
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
     Unit:
       Id: Sanctuary
       Layout: -1
@@ -2853,9 +2765,6 @@ Body:
           Amount: 56
         - Level: 10
           Amount: 58
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
     Unit:
       Id: Magnus
       Layout: -1
@@ -2996,22 +2905,6 @@ Body:
         Time: 48
     Requires:
       SpCost: 75
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
-          Level: 6
-        - Item: Blue_Gemstone
-          Amount: 1
-          Level: 7
-        - Item: Blue_Gemstone
-          Amount: 1
-          Level: 8
-        - Item: Blue_Gemstone
-          Amount: 1
-          Level: 9
-        - Item: Blue_Gemstone
-          Amount: 1
-          Level: 10
     Unit:
       Id: Firepillar_Waiting
       AlternateId: Firepillar_Active
@@ -4117,12 +4010,6 @@ Body:
     Duration2: 5000
     Requires:
       SpCost: 10
-      Weapon:
-        Dagger: true
-        1hSword: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
   - Id: 111
     Name: BS_ADRENALINE
     Description: Adrenaline Rush
@@ -4160,10 +4047,6 @@ Body:
           Amount: 29
         - Level: 5
           Amount: 32
-      Weapon:
-        1hAxe: true
-        2hAxe: true
-        Mace: true
   - Id: 112
     Name: BS_WEAPONPERFECT
     Description: Weapon Perfection
@@ -4238,30 +4121,6 @@ Body:
           Amount: 12
         - Level: 5
           Amount: 10
-      Weapon:
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Bow: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
-        2hStaff: true
   - Id: 114
     Name: BS_MAXIMIZE
     Description: Maximize Power
@@ -4327,9 +4186,6 @@ Body:
     Duration2: 3000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 1
     Unit:
       Id: Skidtrap
       Range: 1
@@ -4379,9 +4235,6 @@ Body:
     FixedCastTime: 300
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 1
     Unit:
       Id: Landmine
       Range: 1
@@ -4431,9 +4284,6 @@ Body:
         Time: 20000
     Requires:
       SpCost: 12
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 1
     Unit:
       Id: Anklesnare
       Range: 1
@@ -4475,9 +4325,6 @@ Body:
         Time: 40000
     Requires:
       SpCost: 45
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 2
     Unit:
       Id: Shockwave
       Range: 1
@@ -4519,9 +4366,6 @@ Body:
     Duration2: 20000
     Requires:
       SpCost: 12
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 1
     Unit:
       Id: Sandman
       Range: 1
@@ -4563,9 +4407,6 @@ Body:
     Duration2: 20000
     Requires:
       SpCost: 12
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 2
     Unit:
       Id: Flasher
       Range: 1
@@ -4623,9 +4464,6 @@ Body:
         Time: 17500
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 2
     Unit:
       Id: Freezingtrap
       Range: 1
@@ -4677,9 +4515,6 @@ Body:
     FixedCastTime: 300
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 1
     Unit:
       Id: Blastmine
       Range: 1
@@ -4731,9 +4566,6 @@ Body:
     FixedCastTime: 300
     Requires:
       SpCost: 15
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 2
     Unit:
       Id: Claymoretrap
       Range: 1
@@ -4775,9 +4607,6 @@ Body:
     Duration1: 600000
     Requires:
       SpCost: 1
-      ItemCost:
-        - Item: Booby_Trap
-          Amount: 1
     Unit:
       Id: Talkiebox
       Range: 1
@@ -4979,8 +4808,6 @@ Body:
           Amount: 32
         - Level: 10
           Amount: 34
-      Weapon:
-        Katar: true
   - Id: 137
     Name: AS_GRIMTOOTH
     Description: Grimtooth
@@ -5010,8 +4837,6 @@ Body:
     Duration2: 1000
     Requires:
       SpCost: 3
-      Weapon:
-        Katar: true
       Status:
         Hiding: true
   - Id: 138
@@ -5159,9 +4984,6 @@ Body:
     Duration2: 20000
     Requires:
       SpCost: 20
-      ItemCost:
-        - Item: Red_Gemstone
-          Amount: 1
     Unit:
       Id: Venomdust
       Layout: -1
@@ -5348,11 +5170,6 @@ Body:
     FixedCastTime: 1500
     Requires:
       SpCost: 15
-      Weapon:
-        Bow: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 149
     Name: TF_SPRINKLESAND
     Description: Sand Attack
@@ -5421,9 +5238,6 @@ Body:
     Duration2: 20000
     Requires:
       SpCost: 2
-      ItemCost:
-        - Item: Stone
-          Amount: 1
   - Id: 153
     Name: MC_CARTREVOLUTION
     Description: Cart Revolution
@@ -6586,9 +6400,6 @@ Body:
     Duration1: 180000
     Requires:
       SpCost: 15
-      ItemCost:
-        - Item: Red_Gemstone
-          Amount: 1
     Unit:
       Id: Graffiti
       Interval: -1
@@ -6652,9 +6463,6 @@ Body:
     Hit: Single
     Requires:
       SpCost: 5
-      ItemCost:
-        - Item: Medicine_Bowl
-          Amount: 1
   - Id: 229
     Name: AM_DEMONSTRATION
     Description: Bomb
@@ -6692,9 +6500,6 @@ Body:
     FixedCastTime: 200
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Fire_Bottle
-          Amount: 1
     Unit:
       Id: Demonstration
       Range: 1
@@ -6740,9 +6545,6 @@ Body:
     FixedCastTime: 500
     Requires:
       SpCost: 15
-      ItemCost:
-        - Item: Acid_Bottle
-          Amount: 1
   - Id: 231
     Name: AM_POTIONPITCHER
     Description: Aid Potion
@@ -6760,27 +6562,6 @@ Body:
     AfterCastActDelay: 500
     Requires:
       SpCost: 1
-      ItemCost:
-        - Item: Red_Potion
-          Amount: 1
-        - Item: Orange_Potion
-          Amount: 1
-        - Item: Yellow_Potion
-          Amount: 1
-        - Item: White_Potion
-          Amount: 1
-        - Item: Blue_Potion
-          Amount: 1
-        - Item: Fruit_Of_Mastela
-          Amount: 1
-        - Item: Royal_Jelly
-          Amount: 1
-        - Item: Seed_Of_Yggdrasil
-          Amount: 1
-        - Item: Yggdrasilberry
-          Amount: 1
-        - Item: Berserk_Potion
-          Amount: 1
   - Id: 232
     Name: AM_CANNIBALIZE
     Description: Summon Flora
@@ -6808,9 +6589,6 @@ Body:
     FixedCastTime: 400
     Requires:
       SpCost: 20
-      ItemCost:
-        - Item: MenEater_Plant_Bottle
-          Amount: 1
   - Id: 233
     Name: AM_SPHEREMINE
     Description: Summon Marine Sphere
@@ -6828,9 +6606,6 @@ Body:
     FixedCastTime: 400
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Mini_Bottle
-          Amount: 1
   - Id: 234
     Name: AM_CP_WEAPON
     Description: Alchemical Weapon
@@ -6858,9 +6633,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 30
-      ItemCost:
-        - Item: Coating_Bottle
-          Amount: 1
   - Id: 235
     Name: AM_CP_SHIELD
     Description: Synthesized Shield
@@ -6888,9 +6660,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 25
-      ItemCost:
-        - Item: Coating_Bottle
-          Amount: 1
   - Id: 236
     Name: AM_CP_ARMOR
     Description: Synthetic Armor
@@ -6918,9 +6687,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 25
-      ItemCost:
-        - Item: Coating_Bottle
-          Amount: 1
   - Id: 237
     Name: AM_CP_HELM
     Description: Biochemical Helm
@@ -6948,9 +6714,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 20
-      ItemCost:
-        - Item: Coating_Bottle
-          Amount: 1
   - Id: 238
     Name: AM_BIOETHICS
     Description: Bioethics
@@ -6968,11 +6731,6 @@ Body:
     Duration1: 1800000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Germination_Breed
-          Amount: 1
-        - Item: Seed_Of_Life
-          Amount: 1
   - Id: 244
     Name: AM_REST
     Description: Vaporize
@@ -7356,9 +7114,6 @@ Body:
           Amount: 56
         - Level: 10
           Amount: 60
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 259
     Name: MO_IRONHAND
     Description: Iron Fists
@@ -7569,29 +7324,6 @@ Body:
     Duration2: 10000
     Requires:
       SpCost: 10
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
       SpiritSphereCost: 1
   - Id: 270
     Name: MO_EXPLOSIONSPIRITS
@@ -7662,29 +7394,6 @@ Body:
         Time: 1000
     Requires:
       SpCost: 1
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
       Status:
         Explosionspirits: true
       SpiritSphereCost: 5
@@ -7718,29 +7427,6 @@ Body:
           Amount: 8
         - Level: 5
           Amount: 9
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
   - Id: 273
     Name: MO_COMBOFINISH
     Description: Raging Thrust
@@ -7771,29 +7457,6 @@ Body:
           Amount: 6
         - Level: 5
           Amount: 7
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
       SpiritSphereCost: 1
   - Id: 274
     Name: SA_ADVANCEDBOOK
@@ -7924,9 +7587,6 @@ Body:
     FixedCastTime: 1000
     Requires:
       SpCost: 40
-      ItemCost:
-        - Item: Scarlet_Pts
-          Amount: 1
   - Id: 281
     Name: SA_FROSTWEAPON
     Description: Endow Tsunami
@@ -7958,9 +7618,6 @@ Body:
     FixedCastTime: 1000
     Requires:
       SpCost: 40
-      ItemCost:
-        - Item: Indigo_Pts
-          Amount: 1
   - Id: 282
     Name: SA_LIGHTNINGLOADER
     Description: Endow Tornado
@@ -7992,9 +7649,6 @@ Body:
     FixedCastTime: 1000
     Requires:
       SpCost: 40
-      ItemCost:
-        - Item: Yellow_Wish_Pts
-          Amount: 1
   - Id: 283
     Name: SA_SEISMICWEAPON
     Description: Endow Quake
@@ -8026,9 +7680,6 @@ Body:
     FixedCastTime: 1000
     Requires:
       SpCost: 40
-      ItemCost:
-        - Item: Lime_Green_Pts
-          Amount: 1
   - Id: 284
     Name: SA_DRAGONOLOGY
     Description: Dragonology
@@ -8074,9 +7725,6 @@ Body:
           Amount: 42
         - Level: 5
           Amount: 40
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
     Unit:
       Id: Volcano
       Layout: 3
@@ -8124,9 +7772,6 @@ Body:
           Amount: 42
         - Level: 5
           Amount: 40
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
     Unit:
       Id: Deluge
       Layout: 3
@@ -8174,9 +7819,6 @@ Body:
           Amount: 42
         - Level: 5
           Amount: 40
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
     Unit:
       Id: Violentgale
       Layout: 3
@@ -8221,11 +7863,6 @@ Body:
           Amount: 54
         - Level: 5
           Amount: 50
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
-        - Item: Yellow_Gemstone
-          Amount: 1
     Unit:
       Id: Landprotector
       Layout:
@@ -8264,9 +7901,6 @@ Body:
     FixedCastTime: 400
     Requires:
       SpCost: 1
-      ItemCost:
-        - Item: Yellow_Gemstone
-          Amount: 1
   - Id: 290
     Name: SA_ABRACADABRA
     Description: Hocus-pocus
@@ -8280,9 +7914,6 @@ Body:
     CastCancel: true
     Requires:
       SpCost: 50
-      ItemCost:
-        - Item: Yellow_Gemstone
-          Amount: 2
   - Id: 291
     Name: SA_MONOCELL
     Description: Monocell
@@ -8516,9 +8147,6 @@ Body:
     Cooldown: 10000
     Requires:
       SpCost: 1
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 306
     Name: BD_LULLABY
     Description: Lullaby
@@ -8538,9 +8166,6 @@ Body:
     Cooldown: 20000
     Requires:
       SpCost: 40
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 307
     Name: BD_RICHMANKIM
     Description: Mental Sensing
@@ -8570,9 +8195,6 @@ Body:
           Amount: 80
         - Level: 5
           Amount: 86
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 308
     Name: BD_ETERNALCHAOS
     Description: Down Tempo
@@ -8592,9 +8214,6 @@ Body:
     Cooldown: 60000
     Requires:
       SpCost: 120
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 309
     Name: BD_DRUMBATTLEFIELD
     Description: Battle Theme
@@ -8624,9 +8243,6 @@ Body:
           Amount: 62
         - Level: 5
           Amount: 66
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 310
     Name: BD_RINGNIBELUNGEN
     Description: Harmonic Lick
@@ -8656,9 +8272,6 @@ Body:
           Amount: 52
         - Level: 5
           Amount: 48
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 311
     Name: BD_ROKISWEIL
     Description: Classical Pluck
@@ -8678,9 +8291,6 @@ Body:
     Cooldown: 180000
     Requires:
       SpCost: 180
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 312
     Name: BD_INTOABYSS
     Description: Power Chord
@@ -8700,9 +8310,6 @@ Body:
     Cooldown: 20000
     Requires:
       SpCost: 70
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 313
     Name: BD_SIEGFRIED
     Description: Acoustic Rhythm
@@ -8732,9 +8339,6 @@ Body:
           Amount: 52
         - Level: 5
           Amount: 56
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 315
     Name: BA_MUSICALLESSON
     Description: Music Lessons
@@ -8757,11 +8361,6 @@ Body:
     FixedCastTime: 300
     Requires:
       SpCost: 12
-      Weapon:
-        Musical: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 317
     Name: BA_DISSONANCE
     Description: Unchained Serenade
@@ -8792,8 +8391,6 @@ Body:
           Amount: 44
         - Level: 5
           Amount: 47
-      Weapon:
-        Musical: true
   - Id: 318
     Name: BA_FROSTJOKER
     Description: Unbarring Octave
@@ -8860,9 +8457,6 @@ Body:
           Amount: 38
         - Level: 10
           Amount: 40
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 320
     Name: BA_ASSASSINCROSS
     Description: Impressive Riff
@@ -8902,9 +8496,6 @@ Body:
           Amount: 80
         - Level: 10
           Amount: 85
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 321
     Name: BA_POEMBRAGI
     Description: Magic Strings
@@ -8944,9 +8535,6 @@ Body:
           Amount: 105
         - Level: 10
           Amount: 110
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 322
     Name: BA_APPLEIDUN
     Description: Song of Lutie
@@ -8986,9 +8574,6 @@ Body:
           Amount: 80
         - Level: 10
           Amount: 85
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 323
     Name: DC_DANCINGLESSON
     Description: Dance Lessons
@@ -9010,11 +8595,6 @@ Body:
     FixedCastTime: 300
     Requires:
       SpCost: 12
-      Weapon:
-        Whip: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 325
     Name: DC_UGLYDANCE
     Description: Hip Shaker
@@ -9044,8 +8624,6 @@ Body:
           Amount: 32
         - Level: 5
           Amount: 35
-      Weapon:
-        Whip: true
   - Id: 326
     Name: DC_SCREAM
     Description: Dazzler
@@ -9112,9 +8690,6 @@ Body:
           Amount: 57
         - Level: 10
           Amount: 60
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 328
     Name: DC_DONTFORGETME
     Description: Slow Grace
@@ -9154,9 +8729,6 @@ Body:
           Amount: 62
         - Level: 10
           Amount: 65
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 329
     Name: DC_FORTUNEKISS
     Description: Lady Luck
@@ -9196,9 +8768,6 @@ Body:
           Amount: 80
         - Level: 10
           Amount: 85
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 330
     Name: DC_SERVICEFORYOU
     Description: Gypsy's Kiss
@@ -9238,9 +8807,6 @@ Body:
           Amount: 84
         - Level: 10
           Amount: 87
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 331
     Name: NPC_RANDOMMOVE
     Description: Random Move
@@ -9673,29 +9239,6 @@ Body:
           Amount: 42
         - Level: 5
           Amount: 50
-      Weapon:
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Bow: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
   - Id: 356
     Name: LK_PARRYING
     Description: Parrying
@@ -9729,8 +9272,6 @@ Body:
         Time: 60000
     Requires:
       SpCost: 50
-      Weapon:
-        2hSword: true
   - Id: 357
     Name: LK_CONCENTRATION
     Description: Concentration
@@ -10355,9 +9896,6 @@ Body:
           Amount: 90
         - Level: 5
           Amount: 100
-      ItemCost:
-        - Item: Poison_Bottle
-          Amount: 1
   - Id: 379
     Name: ASC_BREAKER
     Description: Soul Destroyer
@@ -10471,11 +10009,6 @@ Body:
           Amount: 22
         - Level: 5
           Amount: 24
-      Weapon:
-        Bow: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 383
     Name: SN_WINDWALK
     Description: Wind Walker
@@ -10714,9 +10247,6 @@ Body:
     HitCount: 1
     Requires:
       SpCost: 40
-      ItemCost:
-        - Item: MenEater_Plant_Bottle
-          Amount: 1
   - Id: 389
     Name: ST_CHASEWALK
     Description: Stealth
@@ -10855,12 +10385,6 @@ Body:
           Amount: 28
         - Level: 10
           Amount: 30
-      Weapon:
-        Musical: true
-        Whip: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 395
     Name: CG_MOONLIT
     Description: Sheltering Bliss
@@ -10898,9 +10422,6 @@ Body:
           Amount: 60
         - Level: 5
           Amount: 70
-      Weapon:
-        Musical: true
-        Whip: true
     Unit:
       Id: Moonlit
       Layout: 4
@@ -10983,11 +10504,6 @@ Body:
           Amount: 27
         - Level: 5
           Amount: 30
-      Weapon:
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
   - Id: 398
     Name: LK_HEADCRUSH
     Description: Traumatic Blow
@@ -11046,9 +10562,6 @@ Body:
           Amount: 20
         - Level: 10
           Amount: 20
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 400
     Name: HW_NAPALMVULCAN
     Description: Napalm Vulcan
@@ -11199,9 +10712,6 @@ Body:
     Duration2: 8000
     Requires:
       SpCost: 30
-      ItemCost:
-        - Item: Spiderweb
-          Amount: 1
     Unit:
       Id: Spiderweb
       Interval: -1
@@ -11997,9 +11507,6 @@ Body:
     Requires:
       SpCost: 10
       SpRateCost: 8
-      ItemCost:
-        - Item: Berserk_Potion
-          Amount: 2
   - Id: 445
     Name: SL_ALCHEMIST
     Description: Spirit of the Alchemist
@@ -12513,23 +12020,6 @@ Body:
     Duration1: 150000
     Requires:
       SpCost: 64
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
   - Id: 460
     Name: SL_HUNTER
     Description: Spirit of the Hunter
@@ -13108,27 +12598,6 @@ Body:
     FixedCastTime: 1000
     Requires:
       SpCost: 30
-      ItemCost:
-        - Item: Red_Slim_Potion
-          Amount: 1
-        - Item: Red_Slim_Potion
-          Amount: 1
-        - Item: Red_Slim_Potion
-          Amount: 1
-        - Item: Red_Slim_Potion
-          Amount: 1
-        - Item: Red_Slim_Potion
-          Amount: 1
-        - Item: Yellow_Slim_Potion
-          Amount: 1
-        - Item: Yellow_Slim_Potion
-          Amount: 1
-        - Item: Yellow_Slim_Potion
-          Amount: 1
-        - Item: Yellow_Slim_Potion
-          Amount: 1
-        - Item: White_Slim_Potion
-          Amount: 1
   - Id: 479
     Name: CR_FULLPROTECTION
     Description: Full Protection
@@ -13156,9 +12625,6 @@ Body:
     FixedCastTime: 1000
     Requires:
       SpCost: 40
-      ItemCost:
-        - Item: Coating_Bottle
-          Amount: 1
   - Id: 480
     Name: PA_SHIELDCHAIN
     Description: Shield Chain
@@ -13251,11 +12717,6 @@ Body:
     FixedCastTime: 3000
     Requires:
       SpCost: 40
-      ItemCost:
-        - Item: Yellow_Gemstone
-          Amount: 1
-        - Item: Blue_Gemstone
-          Amount: 1
   - Id: 484
     Name: HW_GRAVITATION
     Description: Gravitation Field
@@ -13300,7 +12761,7 @@ Body:
     Unit:
       Id: Gravitation
       Range: 2
-      Interval: 5100 #Using 5s causes a rare bug where another hit occurs at the end
+      Interval: 5100
       Target: Enemy
       Flag:
         PathCheck: true
@@ -13341,29 +12802,6 @@ Body:
           Amount: 1400
         - Level: 10
           Amount: 1500
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
       Status:
         Cartboost: true
   - Id: 486
@@ -13392,29 +12830,6 @@ Body:
           Amount: 4500
         - Level: 5
           Amount: 5000
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
   - Id: 488
     Name: CG_HERMODE
     Description: Wand of Hermode
@@ -13463,9 +12878,6 @@ Body:
           Amount: 50
         - Level: 5
           Amount: 60
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 489
     Name: CG_TAROTCARD
     Description: Tarot Card of Fate
@@ -13520,12 +12932,7 @@ Body:
     FixedCastTime: 1000
     Requires:
       SpCost: 50
-      ItemCost:
-        - Item: Fire_Bottle
-          Amount: 1
-        - Item: Acid_Bottle
-          Amount: 1
-  - Id: 491 # Removed on kRO
+  - Id: 491
     Name: CR_CULTIVATION
     Description: Plant Cultivation
     MaxLevel: 2
@@ -13538,11 +12945,6 @@ Body:
     Duration1: 300000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Mushroom_Spore
-          Amount: 1
-        - Item: Stem
-          Amount: 1
   - Id: 492
     Name: ITEM_ENCHANTARMS
     Description: Weapon Enchantment
@@ -13641,8 +13043,6 @@ Body:
     Duration1: 300000
     Requires:
       SpCost: 100
-      Weapon:
-        1hSword: true
   - Id: 496
     Name: AM_TWILIGHT1
     Description: Twilight Alchemy 1
@@ -13658,9 +13058,6 @@ Body:
       IgnoreDex: true
     Requires:
       SpCost: 200
-      ItemCost:
-        - Item: Medicine_Bowl
-          Amount: 200
   - Id: 497
     Name: AM_TWILIGHT2
     Description: Twilight Alchemy 2
@@ -13676,9 +13073,6 @@ Body:
       IgnoreDex: true
     Requires:
       SpCost: 200
-      ItemCost:
-        - Item: Medicine_Bowl
-          Amount: 200
   - Id: 498
     Name: AM_TWILIGHT3
     Description: Twilight Alchemy 3
@@ -13694,9 +13088,6 @@ Body:
       IgnoreDex: true
     Requires:
       SpCost: 200
-      ItemCost:
-        - Item: Medicine_Bowl
-          Amount: 200
   - Id: 499
     Name: HT_POWER
     Description: Beast Strafing
@@ -13714,11 +13105,6 @@ Body:
     Duration1: 100
     Requires:
       SpCost: 12
-      Weapon:
-        Bow: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 500
     Name: GS_GLITTERING
     Description: Flip the Coin
@@ -13764,17 +13150,6 @@ Body:
     AfterCastActDelay: 1000
     Requires:
       SpCost: 20
-      Ammo:
-        Arrow: true
-        Dagger: true
-        Bullet: true
-        Shell: true
-        Grenade: true
-        Shuriken: true
-        Kunai: true
-        Cannonball: true
-        Throwweapon: true
-      AmmoAmount: 1
       SpiritSphereCost: 1
   - Id: 503
     Name: GS_BULLSEYE
@@ -13796,17 +13171,6 @@ Body:
     FixedCastTime: 200
     Requires:
       SpCost: 30
-      Ammo:
-        Arrow: true
-        Dagger: true
-        Bullet: true
-        Shell: true
-        Grenade: true
-        Shuriken: true
-        Kunai: true
-        Cannonball: true
-        Throwweapon: true
-      AmmoAmount: 1
       SpiritSphereCost: 1
   - Id: 504
     Name: GS_MADNESSCANCEL
@@ -13888,17 +13252,6 @@ Body:
     Duration2: 5000
     Requires:
       SpCost: 10
-      Ammo:
-        Arrow: true
-        Dagger: true
-        Bullet: true
-        Shell: true
-        Grenade: true
-        Shuriken: true
-        Kunai: true
-        Cannonball: true
-        Throwweapon: true
-      AmmoAmount: 1
       SpiritSphereCost: 1
   - Id: 509
     Name: GS_SINGLEACTION
@@ -13977,12 +13330,6 @@ Body:
           Amount: 55
         - Level: 10
           Amount: 60
-      Weapon:
-        Revolver: true
-        Rifle: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
   - Id: 513
     Name: GS_DISARM
     Description: Disarm
@@ -14009,12 +13356,6 @@ Body:
           Amount: 30
         - Level: 5
           Amount: 35
-      Weapon:
-        Revolver: true
-        Rifle: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
   - Id: 514
     Name: GS_PIERCINGSHOT
     Description: Piercing Shot
@@ -14045,12 +13386,6 @@ Body:
           Amount: 14
         - Level: 5
           Amount: 15
-      Weapon:
-        Revolver: true
-        Rifle: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
   - Id: 515
     Name: GS_RAPIDSHOWER
     Description: Rapid Shower
@@ -14086,11 +13421,6 @@ Body:
           Amount: 38
         - Level: 10
           Amount: 40
-      Weapon:
-        Revolver: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
   - Id: 516
     Name: GS_DESPERADO
     Description: Desperado
@@ -14129,11 +13459,6 @@ Body:
           Amount: 48
         - Level: 10
           Amount: 50
-      Weapon:
-        Revolver: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 10
     Unit:
       Id: Dummyskill
       Layout: 3
@@ -14196,8 +13521,6 @@ Body:
           Amount: 46
         - Level: 10
           Amount: 48
-      Weapon:
-        Gatling: true
   - Id: 518
     Name: GS_DUST
     Description: Dust
@@ -14232,11 +13555,6 @@ Body:
           Amount: 27
         - Level: 10
           Amount: 30
-      Weapon:
-        Shotgun: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
   - Id: 519
     Name: GS_FULLBUSTER
     Description: Full Buster
@@ -14296,11 +13614,6 @@ Body:
           Amount: 60
         - Level: 10
           Amount: 65
-      Weapon:
-        Shotgun: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 2
   - Id: 520
     Name: GS_SPREADATTACK
     Description: Spread Attack
@@ -14360,12 +13673,6 @@ Body:
           Amount: 37
         - Level: 10
           Amount: 40
-      Weapon:
-        Shotgun: true
-        Grenade: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 5
   - Id: 521
     Name: GS_GROUNDDRIFT
     Description: Ground Drift
@@ -14437,11 +13744,6 @@ Body:
           Amount: 27
         - Level: 10
           Amount: 30
-      Weapon:
-        Grenade: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
     Unit:
       Id: Grounddrift_Wind
       Range: 1
@@ -14467,9 +13769,6 @@ Body:
     Element: Weapon
     Requires:
       SpCost: 5
-      Ammo:
-        Shuriken: true
-      AmmoAmount: 1
   - Id: 524
     Name: NJ_KUNAI
     Description: Throw Kunai
@@ -14485,9 +13784,6 @@ Body:
     Cooldown: 200
     Requires:
       SpCost: 10
-      Ammo:
-        Kunai: true
-      AmmoAmount: 1
   - Id: 525
     Name: NJ_HUUMA
     Description: Throw Huuma Shuriken
@@ -14539,8 +13835,6 @@ Body:
           Amount: 30
         - Level: 5
           Amount: 35
-      Weapon:
-        Huuma: true
   - Id: 526
     Name: NJ_ZENYNAGE
     Description: Throw Zeny
@@ -14858,9 +14152,6 @@ Body:
           Amount: 46
         - Level: 10
           Amount: 48
-      ItemCost:
-        - Item: Shadow_Orb
-          Amount: 1
   - Id: 533
     Name: NJ_NINPOU
     Description: Spirit of the Blade
@@ -15024,9 +14315,6 @@ Body:
         Time: 300
     Requires:
       SpCost: 25
-      ItemCost:
-        - Item: Flame_Stone
-          Amount: 1
     Unit:
       Id: Kaen
       Layout: -1
@@ -15067,9 +14355,6 @@ Body:
           Amount: 35
         - Level: 5
           Amount: 40
-      ItemCost:
-        - Item: Flame_Stone
-          Amount: 1
     Unit:
       Id: Dummyskill
       Layout: 2
@@ -15258,9 +14543,6 @@ Body:
           Amount: 39
         - Level: 10
           Amount: 42
-      ItemCost:
-        - Item: Ice_Stone
-          Amount: 1
     Unit:
       Id: Suiton
       Layout:
@@ -15340,9 +14622,6 @@ Body:
           Amount: 55
         - Level: 5
           Amount: 60
-      ItemCost:
-        - Item: Ice_Stone
-          Amount: 1
     Unit:
       Id: Dummyskill
       Layout: 3
@@ -15479,9 +14758,6 @@ Body:
           Amount: 28
         - Level: 5
           Amount: 32
-      ItemCost:
-        - Item: Wind_Stone
-          Amount: 1
     Unit:
       Id: Dummyskill
       Layout:
@@ -15552,9 +14828,6 @@ Body:
           Amount: 36
         - Level: 5
           Amount: 40
-      ItemCost:
-        - Item: Wind_Stone
-          Amount: 1
   - Id: 543
     Name: NJ_NEN
     Description: Soul
@@ -15721,8 +14994,8 @@ Body:
     Flags:
       IsNpc: true
       TargetTrap: true
-      ShowScale: true
       IgnoreLandProtector: true
+      ShowScale: true
     Hit: Multi_Hit
     HitCount: 1
     SplashArea:
@@ -17006,10 +16279,10 @@ Body:
     MaxLevel: 5
     Type: Magic
     TargetType: Ground
-    Range: 9
     Flags:
       IsNpc: true
       ShowScale: true
+    Range: 9
     Hit: Single
     HitCount: 1
     Element: Poison
@@ -17079,7 +16352,6 @@ Body:
         Size: 15
     Hit: Single
     HitCount: 1
-    Element: Neutral
     CastCancel: true
   - Id: 742
     Name: NPC_POISON_BUSTER
@@ -17087,25 +16359,25 @@ Body:
     MaxLevel: 2
     Type: Magic
     TargetType: Attack
-    Flags:
-      IsNpc: true
     DamageFlags:
       Splash: true
+    Flags:
+      IsNpc: true
     Range: 9
     Hit: Single
     HitCount: 1
     Element: Poison
-    CastCancel: true
     SplashArea: 1
+    CastCancel: true
   - Id: 743
     Name: NPC_HALLUCINATIONWALK
     Description: Hallucination Walk
     MaxLevel: 5
     TargetType: Self
-    Flags:
-      IsNpc: true
     DamageFlags:
       NoDamage: true
+    Flags:
+      IsNpc: true
     Hit: Single
     HitCount: 1
     CastCancel: true
@@ -17117,8 +16389,8 @@ Body:
     Type: Magic
     TargetType: Self
     Flags:
-      IgnoreHovering: true
       IsNpc: true
+      IgnoreHovering: true
     Hit: Single
     HitCount: 1
     Element: Wind
@@ -17149,8 +16421,8 @@ Body:
     Type: Magic
     TargetType: Self
     Flags:
-      IgnoreHovering: true
       IsNpc: true
+      IgnoreHovering: true
     Hit: Single
     HitCount: 1
     Element: Fire
@@ -17258,9 +16530,6 @@ Body:
         Time: 60000
     Requires:
       SpCost: 15
-      Ammo:
-        Dagger: true
-      AmmoAmount: 1
   - Id: 1005
     Name: RG_CLOSECONFINE
     Description: Close Confine
@@ -17333,9 +16602,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 30
-      ItemCost:
-        - Item: Elemental_Water
-          Amount: 1
   - Id: 1009
     Name: HT_PHANTASMIC
     Description: Phantasmic Arrow
@@ -17355,8 +16621,6 @@ Body:
         Reproduce: true
     Requires:
       SpCost: 10
-      Weapon:
-        Bow: true
   - Id: 1010
     Name: BA_PANGVOICE
     Description: Pang Voice
@@ -17505,9 +16769,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 30
-      ItemCost:
-        - Item: Elemental_Earth
-          Amount: 1
   - Id: 1018
     Name: SA_ELEMENTFIRE
     Description: Elemental Change Fire
@@ -17528,9 +16789,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 30
-      ItemCost:
-        - Item: Elemental_Fire
-          Amount: 1
   - Id: 1019
     Name: SA_ELEMENTWIND
     Description: Elemental Change Wind
@@ -17551,9 +16809,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 30
-      ItemCost:
-        - Item: Elemental_Wind
-          Amount: 1
   - Id: 2001
     Name: RK_ENCHANTBLADE
     Description: Enchant Blade
@@ -17743,9 +16998,6 @@ Body:
     Cooldown: 3000
     Requires:
       SpCost: 60
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 2005
     Name: RK_WINDCUTTER
     Description: Wind Cutter
@@ -17795,12 +17047,6 @@ Body:
           Amount: 32
         - Level: 5
           Amount: 35
-      Weapon:
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
   - Id: 2006
     Name: RK_IGNITIONBREAK
     Description: Ignition Break
@@ -17831,12 +17077,6 @@ Body:
           Amount: 50
         - Level: 5
           Amount: 55
-      Weapon:
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
   - Id: 2007
     Name: RK_DRAGONTRAINING
     Description: Dragon Training
@@ -18131,9 +17371,6 @@ Body:
           Amount: 24
         - Level: 5
           Amount: 27
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 2201
     Name: WL_WHITEIMPRISON
     Description: White Imprison
@@ -18475,9 +17712,6 @@ Body:
           Amount: 38
         - Level: 5
           Amount: 40
-      ItemCost:
-        - Item: Red_Gemstone
-          Amount: 2
   - Id: 2208
     Name: WL_RADIUS
     Description: Radius
@@ -18877,7 +18111,7 @@ Body:
       Skill:
         Reproduce: true
     CastCancel: true
-    CastTime: # !TODO: Confirm cast time
+    CastTime:
       - Level: 1
         Time: 5000
       - Level: 2
@@ -19300,17 +18534,7 @@ Body:
         Time: 1000
       - Level: 5
         Time: 500
-    Cooldown: # !TODO: Confirm cooldown
-      - Level: 1
-        Time: 150
-      - Level: 1
-        Time: 200
-      - Level: 1
-        Time: 250
-      - Level: 1
-        Time: 300
-      - Level: 1
-        Time: 350
+    Cooldown: 350
     CastDelayFlags:
       IgnoreStatus: true
     Requires:
@@ -19370,9 +18594,6 @@ Body:
     HitCount: 1
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Guillotine_Antidote
-          Amount: 1
   - Id: 2027
     Name: GC_POISONINGWEAPON
     Description: Poisoning Weapon
@@ -19407,9 +18628,6 @@ Body:
           Amount: 32
         - Level: 5
           Amount: 36
-      Weapon:
-        Dagger: true
-        Katar: true
   - Id: 2028
     Name: GC_WEAPONBLOCKING
     Description: Weapon Blocking
@@ -19662,8 +18880,6 @@ Body:
     Duration1: 10000
     Requires:
       SpCost: 5
-      Weapon:
-        Katar: true
   - Id: 2037
     Name: GC_CROSSRIPPERSLASHER
     Description: Cross Ripper Slasher
@@ -19685,17 +18901,7 @@ Body:
     HitCount: 1
     Element: Weapon
     AfterCastActDelay: 300
-    Cooldown: # !TODO: Confirm cooldown
-      - Level: 1
-        Time: 0
-      - Level: 1
-        Time: 50
-      - Level: 1
-        Time: 100
-      - Level: 1
-        Time: 150
-      - Level: 1
-        Time: 200
+    Cooldown: 200
     Requires:
       SpCost:
         - Level: 1
@@ -19708,8 +18914,6 @@ Body:
           Amount: 32
         - Level: 5
           Amount: 36
-      Weapon:
-        Katar: true
       Status:
         Rollingcutter: true
   - Id: 2038
@@ -19770,9 +18974,6 @@ Body:
     Requires:
       SpCost: 30
       SpRateCost: -10
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 0
   - Id: 2040
     Name: AB_ADORAMUS
     Description: Adoramus
@@ -19877,9 +19078,6 @@ Body:
           Amount: 70
         - Level: 10
           Amount: 76
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
   - Id: 2041
     Name: AB_CLEMENTIA
     Description: Crementia
@@ -20031,11 +19229,6 @@ Body:
     FixedCastTime: 2000
     Requires:
       SpCost: 300
-      ItemCost:
-        - Item: Ansila
-          Amount: 1
-        - Item: Holy_Water
-          Amount: 1
     Unit:
       Id: Epiclesis
       Range: 2
@@ -20196,7 +19389,7 @@ Body:
           Amount: 70
         - Level: 4
           Amount: 80
-  - Id: 2049 # Removed on kRO
+  - Id: 2049
     Name: AB_EUCHARISTICA
     Description: Eucharistica
     MaxLevel: 10
@@ -20576,11 +19769,6 @@ Body:
           Amount: 56
         - Level: 10
           Amount: 60
-      Weapon:
-        Bow: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 5
   - Id: 2234
     Name: RA_FEARBREEZE
     Description: Fear Breeze
@@ -20619,8 +19807,6 @@ Body:
           Amount: 70
         - Level: 5
           Amount: 75
-      Weapon:
-        Bow: true
   - Id: 2235
     Name: RA_RANGERMAIN
     Description: Ranger Main
@@ -20647,11 +19833,6 @@ Body:
     FixedCastTime: 1000
     Requires:
       SpCost: 40
-      Weapon:
-        Bow: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 3
   - Id: 2237
     Name: RA_DETONATOR
     Description: Detonator
@@ -20701,9 +19882,6 @@ Body:
         Time: 28000
     Requires:
       SpCost: 35
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
     Unit:
       Id: Electricshocker
       Range: 1
@@ -20737,9 +19915,6 @@ Body:
     Duration1: 15000
     Requires:
       SpCost: 20
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
     Unit:
       Id: Clusterbomb
       Range: 1
@@ -20759,9 +19934,6 @@ Body:
     AfterCastActDelay: 1000
     Requires:
       SpCost: 5
-      ItemCost:
-        - Item: Wolf's_Flute
-          Amount: 0
   - Id: 2241
     Name: RA_WUGRIDER
     Description: Warg Rider
@@ -20805,9 +19977,9 @@ Body:
       IgnoreDefCard: true
     Flags:
       AllowOnWarg: true
+      IncreaseDanceWithWugDamage: true
       IgnoreAutoGuard: true
       IgnoreCicada: true
-      IncreaseDanceWithWugDamage: true
     Range: 9
     Hit: Single
     HitCount: 1
@@ -20835,9 +20007,9 @@ Body:
       IgnoreDefCard: true
     Flags:
       AlterRangeVulture: true
+      IncreaseDanceWithWugDamage: true
       IgnoreAutoGuard: true
       IgnoreCicada: true
-      IncreaseDanceWithWugDamage: true
     Range: 9
     Hit: Single
     HitCount: 1
@@ -20950,11 +20122,6 @@ Body:
     Duration1: 15000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
-        - Item: Scarlet_Pts
-          Amount: 1
     Unit:
       Id: Magentatrap
       Range: 1
@@ -20987,11 +20154,6 @@ Body:
     Duration1: 15000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
-        - Item: Indigo_Pts
-          Amount: 1
     Unit:
       Id: Cobalttrap
       Range: 1
@@ -21024,11 +20186,6 @@ Body:
     Duration1: 15000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
-        - Item: Lime_Green_Pts
-          Amount: 1
     Unit:
       Id: Maizetrap
       Range: 1
@@ -21061,11 +20218,6 @@ Body:
     Duration1: 15000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
-        - Item: Yellow_Wish_Pts
-          Amount: 1
     Unit:
       Id: Verduretrap
       Range: 1
@@ -21102,9 +20254,6 @@ Body:
     Duration2: 15000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
     Unit:
       Id: Firingtrap
       Range: 1
@@ -21140,9 +20289,6 @@ Body:
     Duration2: 20000
     Requires:
       SpCost: 10
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
     Unit:
       Id: Iceboundtrap
       Range: 1
@@ -21208,11 +20354,6 @@ Body:
     Requires:
       SpCost: 50
       State: Mado
-      Equipment:
-        Pilebuncker: true
-        Pilebuncker_S: true
-        Pilebuncker_P: true
-        Pilebuncker_T: true
   - Id: 2258
     Name: NC_VULCANARM
     Description: Vulcan Arm
@@ -21240,9 +20381,6 @@ Body:
         - Level: 3
           Amount: 15
       State: Mado
-      ItemCost:
-        - Item: Vulcan_Bullet
-          Amount: 1
   - Id: 2259
     Name: NC_FLAMELAUNCHER
     Description: Flame Launcher
@@ -21282,11 +20420,6 @@ Body:
     Requires:
       SpCost: 20
       State: Mado
-      ItemCost:
-        - Item: Flame_Thrower
-          Amount: 0
-        - Item: Magic_Gear_Fuel
-          Amount: 1
   - Id: 2260
     Name: NC_COLDSLOWER
     Description: Cold Slower
@@ -21328,11 +20461,6 @@ Body:
     Requires:
       SpCost: 20
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
-        - Item: Liquid_Condensed_Bullet
-          Amount: 1
   - Id: 2261
     Name: NC_ARMSCANNON
     Description: Arm Cannon
@@ -21381,7 +20509,7 @@ Body:
       - Level: 4
         Time: 250
       - Level: 5
-        Time: 300 
+        Time: 300
     FixedCastTime:
       - Level: 1
         Time: 500
@@ -21405,13 +20533,7 @@ Body:
           Amount: 55
         - Level: 5
           Amount: 60
-      Ammo:
-        Cannonball: true
-      AmmoAmount: 1
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
   - Id: 2262
     Name: NC_ACCELERATION
     Description: Acceleration
@@ -21439,11 +20561,6 @@ Body:
         - Level: 3
           Amount: 60
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
-      Equipment:
-        Accelerator: true
   - Id: 2263
     Name: NC_HOVERING
     Description: Hovering
@@ -21459,11 +20576,6 @@ Body:
     Requires:
       SpCost: 25
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
-      Equipment:
-        Hovering_Booster: true
   - Id: 2264
     Name: NC_F_SIDESLIDE
     Description: Front-Side Slide
@@ -21480,9 +20592,6 @@ Body:
     Requires:
       SpCost: 5
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
   - Id: 2265
     Name: NC_B_SIDESLIDE
     Description: Back-Side Slide
@@ -21499,9 +20608,6 @@ Body:
     Requires:
       SpCost: 5
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
   - Id: 2266
     Name: NC_MAINFRAME
     Description: Mainframe Restructure
@@ -21544,11 +20650,6 @@ Body:
     Requires:
       SpCost: 200
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 3
-      Equipment:
-        Suicidal_Device: true
   - Id: 2268
     Name: NC_SHAPESHIFT
     Description: Shape Shift
@@ -21571,23 +20672,6 @@ Body:
     Requires:
       SpCost: 100
       State: Mado
-      ItemCost:
-        - Item: Scarlet_Pts
-          Amount: 3
-          Level: 1
-        - Item: Lime_Green_Pts
-          Amount: 3
-          Level: 2
-        - Item: Yellow_Wish_Pts
-          Amount: 3
-          Level: 3
-        - Item: Indigo_Pts
-          Amount: 3
-          Level: 4
-        - Item: Magic_Gear_Fuel
-          Amount: 2
-      Equipment:
-        Shape_Shifter: true
   - Id: 2269
     Name: NC_EMERGENCYCOOL
     Description: Emergency Cool
@@ -21604,13 +20688,6 @@ Body:
     Requires:
       SpCost: 20
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
-      Equipment:
-        Cooling_Device: true
-        High_Quality_Cooler: true
-        Special_Cooler: true
   - Id: 2270
     Name: NC_INFRAREDSCAN
     Description: Infrared Scan
@@ -21654,9 +20731,6 @@ Body:
     Requires:
       SpCost: 30
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
   - Id: 2272
     Name: NC_MAGNETICFIELD
     Description: Magnetic Field
@@ -21693,11 +20767,6 @@ Body:
         - Level: 3
           Amount: 80
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 2
-      Equipment:
-        Mag_Field_Generator: true
   - Id: 2273
     Name: NC_NEUTRALBARRIER
     Description: Neutral Barrier
@@ -21732,11 +20801,6 @@ Body:
         - Level: 3
           Amount: 100
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 1
-      Equipment:
-        Barrier_Builder: true
     Unit:
       Id: Neutralbarrier
       Layout: 2
@@ -21775,11 +20839,6 @@ Body:
         - Level: 3
           Amount: 120
       State: Mado
-      ItemCost:
-        - Item: Magic_Gear_Fuel
-          Amount: 2
-      Equipment:
-        Camouflage_Generator: true
     Unit:
       Id: Stealthfield
       Layout: 2
@@ -21833,19 +20892,6 @@ Body:
         - Level: 5
           Amount: 45
       State: Mado
-      ItemCost:
-        - Item: RepairA
-          Amount: 1
-        - Item: RepairA
-          Amount: 1
-        - Item: RepairB
-          Amount: 1
-        - Item: RepairB
-          Amount: 1
-        - Item: RepairC
-          Amount: 1
-        - Item: Repair_Kit
-          Amount: 0
   - Id: 2276
     Name: NC_TRAININGAXE
     Description: Axe Training
@@ -21910,9 +20956,6 @@ Body:
           Amount: 40
         - Level: 5
           Amount: 45
-      Weapon:
-        1hAxe: true
-        2hAxe: true
   - Id: 2279
     Name: NC_POWERSWING
     Description: Power Swing
@@ -22008,9 +21051,6 @@ Body:
         Time: 2000
     Requires:
       SpCost: 45
-      Weapon:
-        1hAxe: true
-        2hAxe: true
   - Id: 2281
     Name: NC_SILVERSNIPER
     Description: FAW - Silver Sniper
@@ -22063,15 +21103,6 @@ Body:
           Amount: 40
         - Level: 5
           Amount: 45
-      ItemCost:
-        - Item: Portable_Furnace
-          Amount: 0
-        - Item: Oridecon_Hammer
-          Amount: 0
-        - Item: Iron
-          Amount: 1
-        - Item: Steel
-          Amount: 2
   - Id: 2282
     Name: NC_MAGICDECOY
     Description: FAW - Magic Decoy
@@ -22124,15 +21155,6 @@ Body:
           Amount: 55
         - Level: 5
           Amount: 60
-      ItemCost:
-        - Item: Portable_Furnace
-          Amount: 0
-        - Item: Oridecon_Hammer
-          Amount: 0
-        - Item: Iron
-          Amount: 2
-        - Item: Brigan
-          Amount: 1
   - Id: 2283
     Name: NC_DISJOINT
     Description: FAW Removal
@@ -22148,9 +21170,6 @@ Body:
     CastTime: 2000
     Requires:
       SpCost: 15
-      ItemCost:
-        - Item: Monkey_Wrench
-          Amount: 1
   - Id: 2284
     Name: SC_FATALMENACE
     Description: Fatal Menace
@@ -22327,7 +21346,7 @@ Body:
       NoDamage: true
     Flags:
       IgnoreKagehumi: true
-      TargetManHole: true
+      TargetManhole: true
     Range: 5
     Hit: Single
     HitCount: 1
@@ -22413,11 +21432,6 @@ Body:
           Amount: 38
         - Level: 10
           Amount: 40
-      Weapon:
-        Bow: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 3
   - Id: 2289
     Name: SC_BODYPAINT
     Description: Body Painting
@@ -22455,11 +21469,6 @@ Body:
           Amount: 25
         - Level: 5
           Amount: 30
-      ItemCost:
-        - Item: Paint_Brush
-          Amount: 0
-        - Item: Surface_Paint
-          Amount: 1
   - Id: 2290
     Name: SC_INVISIBILITY
     Description: Invisibility
@@ -22548,11 +21557,6 @@ Body:
           Amount: 40
         - Level: 3
           Amount: 50
-      ItemCost:
-        - Item: Face_Paint
-          Amount: 1
-        - Item: Makeover_Brush
-          Amount: 0
   - Id: 2293
     Name: SC_GROOMY
     Description: Masquerade - Gloomy
@@ -22582,11 +21586,6 @@ Body:
           Amount: 40
         - Level: 3
           Amount: 50
-      ItemCost:
-        - Item: Face_Paint
-          Amount: 1
-        - Item: Makeover_Brush
-          Amount: 0
   - Id: 2294
     Name: SC_IGNORANCE
     Description: Masquerade - Ignorance
@@ -22616,11 +21615,6 @@ Body:
           Amount: 40
         - Level: 3
           Amount: 50
-      ItemCost:
-        - Item: Face_Paint
-          Amount: 1
-        - Item: Makeover_Brush
-          Amount: 0
   - Id: 2295
     Name: SC_LAZINESS
     Description: Masquerade - Laziness
@@ -22650,11 +21644,6 @@ Body:
           Amount: 40
         - Level: 3
           Amount: 50
-      ItemCost:
-        - Item: Face_Paint
-          Amount: 1
-        - Item: Makeover_Brush
-          Amount: 0
   - Id: 2296
     Name: SC_UNLUCKY
     Description: Masquerade - Unlucky
@@ -22684,11 +21673,6 @@ Body:
           Amount: 40
         - Level: 3
           Amount: 50
-      ItemCost:
-        - Item: Face_Paint
-          Amount: 1
-        - Item: Makeover_Brush
-          Amount: 0
   - Id: 2297
     Name: SC_WEAKNESS
     Description: Masquerade - Weakness
@@ -22718,11 +21702,6 @@ Body:
           Amount: 40
         - Level: 3
           Amount: 50
-      ItemCost:
-        - Item: Face_Paint
-          Amount: 1
-        - Item: Makeover_Brush
-          Amount: 0
   - Id: 2298
     Name: SC_STRIPACCESSARY
     Description: Strip Accessory
@@ -22796,11 +21775,6 @@ Body:
           Amount: 25
         - Level: 3
           Amount: 30
-      ItemCost:
-        - Item: Paint_Brush
-          Amount: 0
-        - Item: Surface_Paint
-          Amount: 1
     Unit:
       Id: Manhole
       Range: 1
@@ -22839,11 +21813,6 @@ Body:
           Amount: 36
         - Level: 3
           Amount: 42
-      ItemCost:
-        - Item: Paint_Brush
-          Amount: 0
-        - Item: Surface_Paint
-          Amount: 1
     Unit:
       Id: Dimensiondoor
       Interval: 1000
@@ -22892,11 +21861,6 @@ Body:
           Amount: 36
         - Level: 3
           Amount: 42
-      ItemCost:
-        - Item: Paint_Brush
-          Amount: 0
-        - Item: Surface_Paint
-          Amount: 2
     Unit:
       Id: Chaospanic
       Layout: 2
@@ -22942,11 +21906,6 @@ Body:
           Amount: 55
         - Level: 3
           Amount: 60
-      ItemCost:
-        - Item: Paint_Brush
-          Amount: 0
-        - Item: Surface_Paint
-          Amount: 2
     Unit:
       Id: Maelstrom
       Layout: 2
@@ -22984,11 +21943,6 @@ Body:
           Amount: 70
         - Level: 3
           Amount: 80
-      ItemCost:
-        - Item: Paint_Brush
-          Amount: 0
-        - Item: Surface_Paint
-          Amount: 2
     Unit:
       Id: Bloodylust
       Layout: 3
@@ -23059,11 +22013,6 @@ Body:
           Amount: 56
         - Level: 10
           Amount: 60
-      ItemCost:
-        - Item: Paint_Brush
-          Amount: 0
-        - Item: Surface_Paint
-          Amount: 1
     Unit:
       Id: Feintbomb
       Range: 2
@@ -23110,9 +22059,6 @@ Body:
           Amount: 45
         - Level: 5
           Amount: 50
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 2308
     Name: LG_BANISHINGPOINT
     Description: Banishing Point
@@ -23145,9 +22091,6 @@ Body:
           Amount: 25
         - Level: 10
           Amount: 25
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 2309
     Name: LG_TRAMPLE
     Description: Trample
@@ -23246,9 +22189,6 @@ Body:
     Cooldown: 5000
     Requires:
       SpCost: 50
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 2313
     Name: LG_FORCEOFVANGUARD
     Description: Force of Vanguard
@@ -23359,9 +22299,6 @@ Body:
           Amount: 50
         - Level: 5
           Amount: 60
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 2318
     Name: LG_PRESTIGE
     Description: Prestige
@@ -23493,9 +22430,6 @@ Body:
           Amount: 32
         - Level: 5
           Amount: 36
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 2321
     Name: LG_RAYOFGENESIS
     Description: Ray of Genesis
@@ -23510,7 +22444,7 @@ Body:
     Element: Holy
     SplashArea: 5
     CastCancel: true
-    CastTime: # !TODO: Confirm cast delay and cooldown
+    CastTime:
       - Level: 1
         Time: 1000
       - Level: 2
@@ -23603,9 +22537,6 @@ Body:
           Amount: 55
         - Level: 5
           Amount: 60
-      ItemCost:
-        - Item: Holy_Water
-          Amount: 2
   - Id: 2323
     Name: LG_EARTHDRIVE
     Description: Earth Drive
@@ -23697,9 +22628,6 @@ Body:
           Amount: 58
         - Level: 5
           Amount: 65
-      Weapon:
-        1hSpear: true
-        2hSpear: true
   - Id: 2325
     Name: LG_INSPIRATION
     Description: Inspiration
@@ -23748,7 +22676,7 @@ Body:
         - Level: 5
           Amount: 120
   - Id: 2519
-    Name: LG_OVERBRAND_BRANDISH # Removed on kRO
+    Name: LG_OVERBRAND_BRANDISH
     Description: Overbrand Brandish
     MaxLevel: 5
     Type: Weapon
@@ -23764,7 +22692,7 @@ Body:
         Reproduce: true
     CastCancel: true
   - Id: 2520
-    Name: LG_OVERBRAND_PLUSATK # Removed on kRO
+    Name: LG_OVERBRAND_PLUSATK
     Description: Overbrand Plus Attack
     MaxLevel: 5
     Type: Weapon
@@ -24820,9 +23748,6 @@ Body:
           Amount: 144
         - Level: 5
           Amount: 160
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2351
     Name: WA_SYMPHONY_OF_LOVER
     Description: Symphony of Lovers
@@ -24850,9 +23775,6 @@ Body:
           Amount: 87
         - Level: 5
           Amount: 96
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2352
     Name: WA_MOONLIT_SERENADE
     Description: Moonlit Serenade
@@ -24880,9 +23802,6 @@ Body:
           Amount: 120
         - Level: 5
           Amount: 134
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2381
     Name: MI_RUSH_WINDMILL
     Description: Windmill Rush Attack
@@ -24910,9 +23829,6 @@ Body:
           Amount: 100
         - Level: 5
           Amount: 106
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2382
     Name: MI_ECHOSONG
     Description: Echo Song
@@ -24950,9 +23866,6 @@ Body:
           Amount: 104
         - Level: 5
           Amount: 110
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2383
     Name: MI_HARMONIZE
     Description: Harmonize
@@ -24982,9 +23895,6 @@ Body:
           Amount: 85
         - Level: 5
           Amount: 90
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2412
     Name: WM_LESSON
     Description: Lesson
@@ -25003,7 +23913,7 @@ Body:
       Skill:
         Reproduce: true
     CastCancel: true
-    CastTime: # !TODO: Confirm cast times
+    CastTime:
       - Level: 1
         Time: 1000
       - Level: 2
@@ -25082,10 +23992,7 @@ Body:
           Amount: 74
         - Level: 5
           Amount: 80
-      Ammo:
-        Arrow: true
-      AmmoAmount: 5
-  - Id: 2415 # Removed on kRO
+  - Id: 2415
     Name: WM_REVERBERATION_MELEE
     Description: Reverberation Melee
     MaxLevel: 5
@@ -25102,7 +24009,7 @@ Body:
         Reproduce: true
     Requires:
       SpCost: 1
-  - Id: 2416 # Removed on kRO
+  - Id: 2416
     Name: WM_REVERBERATION_MAGIC
     Description: Reverberation Magic
     MaxLevel: 5
@@ -25113,7 +24020,7 @@ Body:
     CopyFlags:
       Skill:
         Reproduce: true
-  - Id: 2417 # Removed on kRO
+  - Id: 2417
     Name: WM_DOMINION_IMPULSE
     Description: Dominion Impulse
     MaxLevel: 1
@@ -25179,13 +24086,6 @@ Body:
           Amount: 110
         - Level: 5
           Amount: 120
-      Weapon:
-        Bow: true
-        Musical: true
-        Whip: true
-      Ammo:
-        Arrow: true
-      AmmoAmount: 10
     Unit:
       Id: Severe_Rainstorm
       Range: 5
@@ -25244,12 +24144,6 @@ Body:
           Amount: 24
         - Level: 5
           Amount: 28
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 2
     Unit:
       Id: Netherworld
       Range: 1
@@ -25317,9 +24211,6 @@ Body:
           Amount: 72
         - Level: 5
           Amount: 80
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2421
     Name: WM_DEADHILLHERE
     Description: Valley of Death
@@ -25356,12 +24247,6 @@ Body:
           Amount: 59
         - Level: 5
           Amount: 62
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Heartbroken_Tears
-          Amount: 1
   - Id: 2422
     Name: WM_LULLABY_DEEPSLEEP
     Description: Deep Sleep Lullaby
@@ -25386,7 +24271,7 @@ Body:
     CastCancel: true
     CastTime: 2000
     AfterCastActDelay: 1000
-    Duration1: # !TODO: What's the updated duration?
+    Duration1:
       - Level: 1
         Time: 12000
       - Level: 2
@@ -25411,12 +24296,6 @@ Body:
           Amount: 110
         - Level: 5
           Amount: 120
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 2
   - Id: 2423
     Name: WM_SIRCLEOFNATURE
     Description: Circle of Nature's Sound
@@ -25445,9 +24324,6 @@ Body:
           Amount: 54
         - Level: 5
           Amount: 58
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2424
     Name: WM_RANDOMIZESPELL
     Description: Improvised Song
@@ -25474,9 +24350,6 @@ Body:
           Amount: 55
         - Level: 5
           Amount: 60
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2425
     Name: WM_GLOOMYDAY
     Description: Gloomy Day
@@ -25505,9 +24378,6 @@ Body:
           Amount: 105
         - Level: 5
           Amount: 120
-      Weapon:
-        Musical: true
-        Whip: true
   - Id: 2426
     Name: WM_GREAT_ECHO
     Description: Great Echo
@@ -25559,9 +24429,6 @@ Body:
           Amount: 110
         - Level: 5
           Amount: 120
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 2
   - Id: 2427
     Name: WM_SONG_OF_MANA
     Description: Song of Mana
@@ -25603,12 +24470,6 @@ Body:
           Amount: 180
         - Level: 5
           Amount: 200
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 1
   - Id: 2428
     Name: WM_DANCE_WITH_WUG
     Description: Dance With A Warg
@@ -25660,12 +24521,6 @@ Body:
           Amount: 180
         - Level: 5
           Amount: 200
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 1
   - Id: 2429
     Name: WM_SOUND_OF_DESTRUCTION
     Description: Sound of Destruction
@@ -25715,12 +24570,6 @@ Body:
           Amount: 80
         - Level: 5
           Amount: 90
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 10
   - Id: 2430
     Name: WM_SATURDAY_NIGHT_FEVER
     Description: Saturday Night Fever
@@ -25793,12 +24642,6 @@ Body:
           Amount: 180
         - Level: 5
           Amount: 190
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 5
   - Id: 2431
     Name: WM_LERADS_DEW
     Description: Lerad's Dew
@@ -25840,12 +24683,6 @@ Body:
           Amount: 150
         - Level: 5
           Amount: 160
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 1
   - Id: 2432
     Name: WM_MELODYOFSINK
     Description: Melody of Sink
@@ -25897,12 +24734,6 @@ Body:
           Amount: 150
         - Level: 5
           Amount: 160
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 2
   - Id: 2433
     Name: WM_BEYOND_OF_WARCRY
     Description: Warcry of Beyond
@@ -25954,12 +24785,6 @@ Body:
           Amount: 150
         - Level: 5
           Amount: 160
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 2
   - Id: 2434
     Name: WM_UNLIMITED_HUMMING_VOICE
     Description: Unlimited Humming Voice
@@ -26021,12 +24846,6 @@ Body:
           Amount: 150
         - Level: 5
           Amount: 160
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Protect_Neck_Candy
-          Amount: 5
   - Id: 2516
     Name: WM_SEVERE_RAINSTORM_MELEE
     Description: Severe Rainstorm Melee
@@ -26758,7 +25577,7 @@ Body:
       Skill:
         Reproduce: true
     CastCancel: true
-    CastTime: # !TODO: Confirm cast and fixed cast
+    CastTime:
       - Level: 1
         Time: 1800
       - Level: 2
@@ -26936,9 +25755,6 @@ Body:
           Amount: 45
         - Level: 5
           Amount: 50
-      ItemCost:
-        - Item: Yellow_Gemstone
-          Amount: 1
   - Id: 2456
     Name: SO_EL_CONTROL
     Description: Spirit Control
@@ -26989,16 +25805,6 @@ Body:
           Amount: 150
         - Level: 3
           Amount: 200
-      ItemCost:
-        - Item: Boody_Red
-          Amount: 3
-          Level: 1
-        - Item: Boody_Red
-          Amount: 6
-          Level: 2
-        - Item: Flame_Heart
-          Amount: 1
-          Level: 3
   - Id: 2458
     Name: SO_SUMMON_AQUA
     Description: Summon Water Spirit Aqua
@@ -27034,16 +25840,6 @@ Body:
           Amount: 150
         - Level: 3
           Amount: 200
-      ItemCost:
-        - Item: Crystal_Blue
-          Amount: 3
-          Level: 1
-        - Item: Crystal_Blue
-          Amount: 6
-          Level: 2
-        - Item: Mistic_Frozen
-          Amount: 1
-          Level: 3
   - Id: 2459
     Name: SO_SUMMON_VENTUS
     Description: Summon Wind Spirit Ventus
@@ -27079,16 +25875,6 @@ Body:
           Amount: 150
         - Level: 3
           Amount: 200
-      ItemCost:
-        - Item: Wind_Of_Verdure
-          Amount: 3
-          Level: 1
-        - Item: Wind_Of_Verdure
-          Amount: 6
-          Level: 2
-        - Item: Rough_Wind
-          Amount: 1
-          Level: 3
   - Id: 2460
     Name: SO_SUMMON_TERA
     Description: Summon Earth Spirit Tera
@@ -27124,16 +25910,6 @@ Body:
           Amount: 150
         - Level: 3
           Amount: 200
-      ItemCost:
-        - Item: Yellow_Live
-          Amount: 3
-          Level: 1
-        - Item: Yellow_Live
-          Amount: 6
-          Level: 2
-        - Item: Great_Nature
-          Amount: 1
-          Level: 3
   - Id: 2461
     Name: SO_EL_ACTION
     Description: Elemental Action
@@ -27214,16 +25990,6 @@ Body:
           Amount: 30
         - Level: 3
           Amount: 38
-      ItemCost:
-        - Item: Scarlet_Pts
-          Amount: 1
-          Level: 1
-        - Item: Scarlet_Pts
-          Amount: 2
-          Level: 2
-        - Item: Scarlet_Pts
-          Amount: 3
-          Level: 3
     Unit:
       Id: Fire_Insignia
       Layout: 1
@@ -27257,16 +26023,6 @@ Body:
           Amount: 30
         - Level: 3
           Amount: 38
-      ItemCost:
-        - Item: Indigo_Pts
-          Amount: 1
-          Level: 1
-        - Item: Indigo_Pts
-          Amount: 2
-          Level: 2
-        - Item: Indigo_Pts
-          Amount: 3
-          Level: 3
     Unit:
       Id: Water_Insignia
       Layout: 1
@@ -27300,16 +26056,6 @@ Body:
           Amount: 30
         - Level: 3
           Amount: 38
-      ItemCost:
-        - Item: Yellow_Wish_Pts
-          Amount: 1
-          Level: 1
-        - Item: Yellow_Wish_Pts
-          Amount: 2
-          Level: 2
-        - Item: Yellow_Wish_Pts
-          Amount: 3
-          Level: 3
     Unit:
       Id: Wind_Insignia
       Layout: 1
@@ -27343,16 +26089,6 @@ Body:
           Amount: 30
         - Level: 3
           Amount: 38
-      ItemCost:
-        - Item: Lime_Green_Pts
-          Amount: 1
-          Level: 1
-        - Item: Lime_Green_Pts
-          Amount: 2
-          Level: 2
-        - Item: Lime_Green_Pts
-          Amount: 3
-          Level: 3
     Unit:
       Id: Earth_Insignia
       Layout: 1
@@ -27447,9 +26183,6 @@ Body:
           Amount: 48
         - Level: 5
           Amount: 50
-      Ammo:
-        Cannonball: true
-      AmmoAmount: 1
       State: Cart
   - Id: 2478
     Name: GN_CARTBOOST
@@ -27519,9 +26252,6 @@ Body:
           Amount: 34
         - Level: 5
           Amount: 38
-      ItemCost:
-        - Item: Seed_Of_Horny_Plant
-          Amount: 1
     Unit:
       Id: Thorns_Trap
       Range: 1
@@ -27574,9 +26304,6 @@ Body:
           Amount: 65
         - Level: 5
           Amount: 70
-      ItemCost:
-        - Item: Bloodsuck_Plant_Seed
-          Amount: 5
   - Id: 2481
     Name: GN_SPORE_EXPLOSION
     Description: Spore Explosion
@@ -27640,9 +26367,6 @@ Body:
           Amount: 80
         - Level: 10
           Amount: 84
-      ItemCost:
-        - Item: Bomb_Mushroom_Spore
-          Amount: 1
   - Id: 2482
     Name: GN_WALLOFTHORN
     Description: Wall of Thorns
@@ -27689,9 +26413,6 @@ Body:
           Amount: 70
         - Level: 5
           Amount: 80
-      ItemCost:
-        - Item: Seed_Of_Horny_Plant
-          Amount: 1
     Unit:
       Id: Wallofthorn
       AlternateId: Firewall
@@ -27765,9 +26486,6 @@ Body:
           Amount: 56
         - Level: 10
           Amount: 60
-      ItemCost:
-        - Item: Seed_Of_Horny_Plant
-          Amount: 1
   - Id: 2484
     Name: GN_CRAZYWEED_ATK
     Description: Crazy Weed Attack
@@ -27877,9 +26595,6 @@ Body:
           Amount: 36
         - Level: 5
           Amount: 40
-      ItemCost:
-        - Item: Fire_Bottle
-          Amount: 1
     Unit:
       Id: Demonic_Fire
       Range: 2
@@ -27913,22 +26628,6 @@ Body:
           Amount: 45
         - Level: 5
           Amount: 50
-      ItemCost:
-        - Item: Oil_Bottle
-          Amount: 1
-          Level: 1
-        - Item: Explosive_Powder
-          Amount: 1
-          Level: 2
-        - Item: Smoke_Powder
-          Amount: 1
-          Level: 3
-        - Item: Tear_Gas
-          Amount: 1
-          Level: 4
-        - Item: Acid_Bottle
-          Amount: 1
-          Level: 5
   - Id: 2487
     Name: GN_FIRE_EXPANSION_SMOKE_POWDER
     Description: Fire Expansion Smoke Powder
@@ -28048,9 +26747,6 @@ Body:
           Amount: 55
         - Level: 5
           Amount: 60
-      ItemCost:
-        - Item: MenEater_Plant_Bottle
-          Amount: 1
   - Id: 2491
     Name: GN_HELLS_PLANT_ATK
     Description: Hell's Plant Attack
@@ -28061,8 +26757,8 @@ Body:
       Splash: true
     Hit: Single
     HitCount: 1
-    SplashArea: 2
     Element: Weapon
+    SplashArea: 2
     CopyFlags:
       Skill:
         Reproduce: true
@@ -28115,10 +26811,7 @@ Body:
           Amount: 55
         - Level: 5
           Amount: 60
-      ItemCost:
-        - Item: Mandragora_Flowerpot
-          Amount: 1
-  - Id: 2493 # Removed on kRO
+  - Id: 2493
     Name: GN_SLINGITEM
     Description: Sling Item
     MaxLevel: 1
@@ -28133,9 +26826,6 @@ Body:
     Cooldown: 1000
     Requires:
       SpCost: 4
-      Ammo:
-        Throwweapon: true
-      AmmoAmount: 1
   - Id: 2494
     Name: GN_CHANGEMATERIAL
     Description: Change Material
@@ -28162,7 +26852,7 @@ Body:
           Amount: 5
         - Level: 2
           Amount: 40
-  - Id: 2496 # Removed on kRO
+  - Id: 2496
     Name: GN_MAKEBOMB
     Description: Create Bomb
     MaxLevel: 2
@@ -28188,7 +26878,7 @@ Body:
     HitCount: 1
     Requires:
       SpCost: 12
-  - Id: 2498 # Removed on kRO
+  - Id: 2498
     Name: GN_SLINGITEM_RANGEMELEEATK
     Description: Sling Item Attack
     MaxLevel: 1
@@ -28242,9 +26932,6 @@ Body:
       IsQuest: true
     Requires:
       SpCost: 30
-      ItemCost:
-        - Item: Buy_Market_Permit
-          Amount: 1
   - Id: 2536
     Name: ALL_GUARDIAN_RECALL
     Description: Guardian's Recall
@@ -28343,14 +27030,6 @@ Body:
           Amount: 52
         - Level: 5
           Amount: 56
-      Weapon:
-        Rifle: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
-      ItemCost:
-        - Item: Full_Metal_Jacket
-          Amount: 1
   - Id: 2554
     Name: RL_BANISHING_BUSTER
     Description: Banishing Buster
@@ -28389,11 +27068,6 @@ Body:
           Amount: 71
         - Level: 10
           Amount: 73
-      Weapon:
-        Shotgun: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
   - Id: 2555
     Name: RL_B_TRAP
     Description: Bind Trap
@@ -28464,16 +27138,7 @@ Body:
           Amount: 36
         - Level: 5
           Amount: 38
-      Weapon:
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
       SpiritSphereCost: 1
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
     Unit:
       Id: B_Trap
       Range:
@@ -28554,11 +27219,6 @@ Body:
           Amount: 65
         - Level: 5
           Amount: 70
-      Weapon:
-        Shotgun: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
   - Id: 2558
     Name: RL_E_CHAIN
     Description: Eternal Chain
@@ -28593,12 +27253,6 @@ Body:
         Time: 180000
     Requires:
       SpCost: 45
-      Weapon:
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
       SpiritSphereCost: 1
   - Id: 2559
     Name: RL_QD_SHOT
@@ -28614,17 +27268,6 @@ Body:
     Duration1: 1500
     Requires:
       SpCost: 5
-      Weapon:
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-      Ammo:
-        Bullet: true
-        Shell: true
-        Grenade: true
-      AmmoAmount: 1
       Status:
         Qd_Shot_Ready: true
   - Id: 2560
@@ -28642,12 +27285,6 @@ Body:
     Cooldown: 1000
     Requires:
       SpCost: 10
-      Weapon:
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
       SpiritSphereCost: 1
   - Id: 2561
     Name: RL_FIREDANCE
@@ -28684,11 +27321,6 @@ Body:
           Amount: 37
         - Level: 10
           Amount: 40
-      Weapon:
-        Revolver: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 3
   - Id: 2562
     Name: RL_H_MINE
     Description: Howling Mine
@@ -28737,11 +27369,6 @@ Body:
           Amount: 60
         - Level: 5
           Amount: 65
-      Weapon:
-        Grenade: true
-      ItemCost:
-        - Item: Shooting_Mine
-          Amount: 1
   - Id: 2563
     Name: RL_P_ALTER
     Description: Platinum Alter
@@ -28775,14 +27402,7 @@ Body:
           Amount: 32
         - Level: 5
           Amount: 36
-      Ammo:
-        Bullet: true
-      AmmoAmount: 1
       SpiritSphereCost: -1
-      Equipment:
-        Silver_Bullet: true
-        Sanctified_Bullet: true
-        Silver_Bullet_: true
   - Id: 2564
     Name: RL_FALLEN_ANGEL
     Description: Fallen Angel
@@ -28796,8 +27416,6 @@ Body:
     Duration1: 2000
     Requires:
       SpCost: 10
-      Weapon:
-        Revolver: true
       SpiritSphereCost: 1
   - Id: 2565
     Name: RL_R_TRIP
@@ -28876,11 +27494,6 @@ Body:
           Amount: 67
         - Level: 10
           Amount: 70
-      Weapon:
-        Gatling: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 5
   - Id: 2566
     Name: RL_D_TAIL
     Description: Dragon Tail
@@ -28939,11 +27552,6 @@ Body:
           Amount: 95
         - Level: 10
           Amount: 100
-      Weapon:
-        Grenade: true
-      ItemCost:
-        - Item: Dragon_Tail_Missile
-          Amount: 1
   - Id: 2567
     Name: RL_FIRE_RAIN
     Description: Fire Rain
@@ -28962,11 +27570,6 @@ Body:
     Cooldown: 5000
     Requires:
       SpCost: 70
-      Weapon:
-        Gatling: true
-      Ammo:
-        Bullet: true
-      AmmoAmount: 10
     Unit:
       Id: Fire_Rain
       Layout: -1
@@ -29039,8 +27642,6 @@ Body:
           Amount: 92
         - Level: 5
           Amount: 96
-      Weapon:
-        Rifle: true
   - Id: 2570
     Name: RL_SLUGSHOT
     Description: Slug Shot
@@ -29078,11 +27679,6 @@ Body:
           Amount: 92
         - Level: 5
           Amount: 96
-      Weapon:
-        Shotgun: true
-      ItemCost:
-        - Item: Slug_Bullet
-          Amount: 1
   - Id: 2571
     Name: RL_HAMMER_OF_GOD
     Description: Hammer of God
@@ -29139,8 +27735,6 @@ Body:
           Amount: 53
         - Level: 10
           Amount: 55
-      Weapon:
-        Rifle: true
       SpiritSphereCost: -1
   - Id: 2572
     Name: RL_R_TRIP_PLUSATK
@@ -30546,9 +29140,6 @@ Body:
           Amount: 8
         - Level: 5
           Amount: 9
-      ItemCost:
-        - Item: Explosive_Kunai
-          Amount: 1
     Unit:
       Id: Dummyskill
       Range: 1
@@ -30593,9 +29184,6 @@ Body:
           Amount: 18
         - Level: 5
           Amount: 20
-      Ammo:
-        Kunai: true
-      AmmoAmount: 2
   - Id: 3008
     Name: KO_MUCHANAGE
     Description: Rapid Throw
@@ -30727,8 +29315,6 @@ Body:
           Amount: 38
         - Level: 10
           Amount: 40
-      Weapon:
-        Huuma: true
     Unit:
       Id: Dummyskill
       Range: 3
@@ -30788,22 +29374,6 @@ Body:
           Amount: 18
         - Level: 5
           Amount: 21
-      ItemCost:
-        - Item: Makibishi
-          Amount: 3
-          Level: 1
-        - Item: Makibishi
-          Amount: 4
-          Level: 2
-        - Item: Makibishi
-          Amount: 5
-          Level: 3
-        - Item: Makibishi
-          Amount: 6
-          Level: 4
-        - Item: Makibishi
-          Amount: 7
-          Level: 5
     Unit:
       Id: Makibishi
       Interval: 5000
@@ -30984,9 +29554,6 @@ Body:
     Duration1: 300000
     Requires:
       SpCost: 20
-      ItemCost:
-        - Item: Charm_Fire
-          Amount: 1
   - Id: 3016
     Name: KO_HYOUHU_HUBUKI
     Description: Ice Charm
@@ -31001,9 +29568,6 @@ Body:
     Duration1: 300000
     Requires:
       SpCost: 20
-      ItemCost:
-        - Item: Charm_Ice
-          Amount: 1
   - Id: 3017
     Name: KO_KAZEHU_SEIRAN
     Description: Wind Charm
@@ -31018,9 +29582,6 @@ Body:
     Duration1: 300000
     Requires:
       SpCost: 20
-      ItemCost:
-        - Item: Charm_Wind
-          Amount: 1
   - Id: 3018
     Name: KO_DOHU_KOUKAI
     Description: Earth Charm
@@ -31035,9 +29596,6 @@ Body:
     Duration1: 300000
     Requires:
       SpCost: 20
-      ItemCost:
-        - Item: Charm_Earth
-          Amount: 1
   - Id: 3019
     Name: KO_KAIHOU
     Description: Release Ninja Spell
@@ -31216,9 +29774,6 @@ Body:
     Cooldown: 20000
     Requires:
       SpCost: 50
-      ItemCost:
-        - Item: Shadow_Orb
-          Amount: 1
   - Id: 3025
     Name: KG_KAGEMUSYA
     Description: Shadow Warrior
@@ -31254,9 +29809,6 @@ Body:
           Amount: 75
         - Level: 5
           Amount: 80
-      ItemCost:
-        - Item: Shadow_Orb
-          Amount: 1
   - Id: 3026
     Name: OB_ZANGETSU
     Description: Distorted Crescent
@@ -31610,9 +30162,6 @@ Body:
           Amount: 90
         - Level: 5
           Amount: 100
-      ItemCost:
-        - Item: Alchol
-          Amount: 1
   - Id: 5004
     Name: RK_DRAGONBREATH_WATER
     Description: Dragon Breath - Water
@@ -31792,12 +30341,6 @@ Body:
           Amount: 290
         - Level: 5
           Amount: 320
-      Weapon:
-        Musical: true
-        Whip: true
-      ItemCost:
-        - Item: Heartbroken_Tears
-          Amount: 1
   - Id: 5008
     Name: SO_ELEMENTAL_SHIELD
     Description: Elemental Shield
@@ -31812,9 +30355,6 @@ Body:
     Requires:
       SpCost: 120
       State: Elementalspirit2
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
   - Id: 5009
     Name: SR_FLASHCOMBO
     Description: Flash Combo
@@ -31899,9 +30439,6 @@ Body:
           Amount: 18
         - Level: 5
           Amount: 14
-      ItemCost:
-        - Item: Special_Alloy_Trap
-          Amount: 1
     Unit:
       Id: Anklesnare
       Range: 1
@@ -32229,9 +30766,6 @@ Body:
           Amount: 28
         - Level: 5
           Amount: 24
-      ItemCost:
-        - Item: Nepeta_Cataria
-          Amount: 1
     Unit:
       Id: Catnippowder
       Layout:
@@ -32619,9 +31153,6 @@ Body:
           Amount: 56
         - Level: 5
           Amount: 60
-      ItemCost:
-        - Item: Prawn
-          Amount: 1
   - Id: 5041
     Name: SU_FRESHSHRIMP
     Description: Fresh Shrimp
@@ -32692,10 +31223,6 @@ Body:
       - Level: 5
         Time: 3500
     Duration2: 20000
-    Requires:
-      ItemCost:
-        - Item: Nepeta_Cataria
-          Amount: 1
     Unit:
       Id: Dummyskill
       Range: 3
@@ -32728,10 +31255,6 @@ Body:
         Area: 3
     CastCancel: true
     Duration2: 5000
-    Requires:
-      ItemCost:
-        - Item: Carrot
-          Amount: 1
   - Id: 5044
     Name: SU_SOULATTACK
     Description: Soul Attack
@@ -33288,9 +31811,6 @@ Body:
           Amount: 92
         - Level: 5
           Amount: 78
-      ItemCost:
-        - Item: Blue_Gemstone
-          Amount: 1
   - Id: 5073
     Name: AB_CONVENIO
     Description: Convenio
@@ -33363,9 +31883,6 @@ Body:
           Amount: 22
         - Level: 5
           Amount: 25
-      ItemCost:
-        - Item: Red_Slim_Potion
-          Amount: 1
   - Id: 8002
     Name: HLIF_AVOID
     Description: Avoid
@@ -33897,7 +32414,7 @@ Body:
         Time: 12000
       - Level: 5
         Time: 15000
-    Duration2: # !TODO: Confirm SC_POISON_MIST duration
+    Duration2:
       - Level: 1
         Time: 4000
       - Level: 2
@@ -34133,7 +32650,7 @@ Body:
     Hit: Multi_Hit
     HitCount: -6
     CastCancel: true
-    CastTime: # !TODO: Confirm cast time
+    CastTime:
       - Level: 1
         Time: 600
       - Level: 2
@@ -34210,7 +32727,7 @@ Body:
         Area: 3
       - Level: 10
         Area: 4
-    CastTime: # !TODO: Confirm cast time
+    CastTime:
       - Level: 1
         Time: 600
       - Level: 2
@@ -34575,7 +33092,7 @@ Body:
         Time: 75000
       - Level: 5
         Time: 90000
-    Cooldown: # !TODO: Confirm cooldown
+    Cooldown:
       - Level: 1
         Time: 12000
       - Level: 2
@@ -34638,7 +33155,7 @@ Body:
         Area: 3
       - Level: 10
         Area: 3
-    CastTime: # !TODO: Confirm cast time
+    CastTime:
       - Level: 1
         Time: 600
       - Level: 2
@@ -35183,29 +33700,6 @@ Body:
           Amount: 15
         - Level: 10
           Amount: 15
-      Weapon:
-        Fist: true
-        Dagger: true
-        1hSword: true
-        2hSword: true
-        1hSpear: true
-        2hSpear: true
-        1hAxe: true
-        2hAxe: true
-        Mace: true
-        2hMace: true
-        Staff: true
-        Knuckle: true
-        Musical: true
-        Whip: true
-        Book: true
-        Katar: true
-        Revolver: true
-        Rifle: true
-        Gatling: true
-        Shotgun: true
-        Grenade: true
-        Huuma: true
   - Id: 8202
     Name: MS_MAGNUM
     Description: Magnum_Break
@@ -35385,9 +33879,6 @@ Body:
     Duration1: 100
     Requires:
       SpCost: 12
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 8208
     Name: MA_SHOWER
     Description: Arrow_Shower
@@ -35430,9 +33921,6 @@ Body:
     Duration1: 100
     Requires:
       SpCost: 15
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 8209
     Name: MA_SKIDTRAP
     Description: Skid_Trap
@@ -35663,9 +34151,6 @@ Body:
       IgnoreItemBonus: true
     Requires:
       SpCost: 15
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 8215
     Name: MA_SHARPSHOOTING
     Description: Focused_Arrow_Strike
@@ -35702,9 +34187,6 @@ Body:
           Amount: 27
         - Level: 5
           Amount: 30
-      Ammo:
-        Arrow: true
-      AmmoAmount: 1
   - Id: 8216
     Name: ML_PIERCE
     Description: Pierce
