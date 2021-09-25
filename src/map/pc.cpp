@@ -4366,8 +4366,6 @@ void pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 	case SP_SUBDEF_ELE: // bonus2 bSubDefEle,e,x;
 		PC_BONUS_CHK_ELEMENT(type2,SP_SUBDEF_ELE);
 		sd->indexed_bonus.subdefele[type2] += val;
-		if (sd->indexed_bonus.subdefele[type2] > 99) // [Start]
-			sd->indexed_bonus.subdefele[type2] = 99; // [Start]
 		break;
 	case SP_COMA_CLASS: // bonus2 bComaClass,c,n;
 		PC_BONUS_CHK_CLASS(type2,SP_COMA_CLASS);
@@ -4402,8 +4400,6 @@ void pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 	case SP_MAGIC_SUBDEF_ELE: // bonus2 bMagicSubDefEle,e,x;
 		PC_BONUS_CHK_ELEMENT(type2, SP_MAGIC_SUBDEF_ELE);
 		sd->indexed_bonus.magic_subdefele[type2] += val;
-		if (sd->indexed_bonus.magic_subdefele[type2] > 99) // [Start]
-			sd->indexed_bonus.magic_subdefele[type2] = 99; // [Start]
 		break;
 	default:
 		if (current_equip_combo_pos > 0) {
@@ -5029,47 +5025,6 @@ char pc_getzeny(struct map_session_data *sd, int zeny, enum e_log_pick_type type
 	}
 
 	achievement_update_objective(sd, AG_GET_ZENY, 1, sd->status.zeny);
-
-	return 0;
-}
-
-/// <summary>
-/// Gain Kill Points [Start]
-/// </summary>
-/// <param name="sd"></param>
-/// <param name="kp"></param>
-/// <param name=""></param>
-/// <param name="tsd"></param>
-/// <returns></returns>
-char pc_getkp(struct map_session_data* sd, int64 kp, struct map_session_data* tsd)
-{
-	nullpo_retr(-1, sd);
-
-	if (strcmp(mapindex_id2name(sd->mapindex), mapreg_readregstr(reference_uid(add_str("$pk_map_name$"), 0))) == 0)
-		kp += mapreg_readreg(reference_uid(add_str("$pk_map_reward"), 0));
-
-	kp = cap_value(kp, 0, MAX_ZENY); //prevent command UB
-	int64 old_kp = pc_readreg2(sd, "kp");
-
-	if (kp < 0)
-	{
-		ShowError("pc_getkp: Obtaining negative Kill Points (zeny=%d, account_id=%d, char_id=%d).\n", kp, sd->status.account_id, sd->status.char_id);
-		return 1;
-	}
-
-	if (kp > MAX_ZENY - old_kp)
-		kp = MAX_ZENY - old_kp;
-
-	old_kp += kp;
-
-	pc_setreg2(sd, "kp", old_kp);
-
-	if (!tsd) tsd = sd;
-	if (kp > 0 && !pc_readreg2(sd, "is_kp_gain_no_display")) {
-		char output[255];
-		sprintf(output, "Kill Points +%d | Total: %d", (int)kp, (int)old_kp);
-		clif_messagecolor(&sd->bl, color_table[COLOR_KILL_POINTS], output, false, SELF);
-	}
 
 	return 0;
 }
@@ -6445,12 +6400,6 @@ int pc_get_skillcooldown(struct map_session_data *sd, uint16 skill_id, uint16 sk
 		}
 	}
 
-	if (cooldown > 350) {
-		cooldown -= (sd->cooldownrate * 100); // Delayrate will reduce all skill cooldown by 1:0.1s [Start]
-		if (cooldown < 350)
-			cooldown = 350;
-	}
-
 	return max(0, cooldown);
 }
 
@@ -7509,21 +7458,8 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 		}
 	}
 
-	// Rebirth EXP Reduction [Start]
-	int64 rebirth = pc_readreg2(sd, "rebirth_count");
-
-	// PK Map Bonus EXP [Start]
-	int64 pk_map_exp_bonus = 0;
-	if (strcmp(mapindex_id2name(sd->mapindex), mapreg_readregstr(reference_uid(add_str("$pk_exp_map_name$"), 0))) == 0)
-		pk_map_exp_bonus = mapreg_readreg(reference_uid(add_str("$pk_exp_map_reward"), 0));
-
 	// Give EXP for Base Level
 	if (base_exp) {
-		if (rebirth > 0)
-			base_exp = base_exp + ((base_exp *rebirth) / 100);
-
-		base_exp += pk_map_exp_bonus;
-
 		sd->status.base_exp = util::safe_addition_cap(sd->status.base_exp, base_exp, MAX_EXP);
 
 		if (!pc_checkbaselevelup(sd))
@@ -7532,11 +7468,6 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 
 	// Give EXP for Job Level
 	if (job_exp) {
-		if (rebirth > 0)
-			job_exp = job_exp + ((job_exp * rebirth) / 100);
-
-		job_exp += pk_map_exp_bonus;
-
 		sd->status.job_exp = util::safe_addition_cap(sd->status.job_exp, job_exp, MAX_EXP);
 
 		if (!pc_checkjoblevelup(sd))

@@ -145,12 +145,11 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		if (!this->asUInt32(node, "Buy", buy))
 			return 0;
 
-		//item->value_buy = buy;
-		item->value_buy = 1; // PK [Start]
+		item->value_buy = buy;
 		item->value_sell = 0;
 	} else {
 		if (!exists) {
-			item->value_buy = 1;
+			item->value_buy = 0;
 		}
 	}
 
@@ -470,8 +469,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->elvmax = MAX_LEVEL;
 	}
 
-    //if (this->nodeExists(node, "Refineable")) {
-	if (this->nodeExists(node, "RefineableNoUse")) { // PK [Start]
+	if (this->nodeExists(node, "Refineable")) {
 		bool refine;
 
 		if (!this->asBool(node, "Refineable", refine))
@@ -480,8 +478,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		item->flag.no_refine = !refine;
 	} else {
 		if (!exists)
-			//item->flag.no_refine = true;
-			item->flag.no_refine = false; // PK [Start]
+			item->flag.no_refine = true;
 	}
 
 	if (this->nodeExists(node, "View")) {
@@ -806,8 +803,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	//if (this->nodeExists(node, "Trade")) {
-	if (this->nodeExists(node, "TradeNoUse")) { // PK [Start]
+	if (this->nodeExists(node, "Trade")) {
 		const YAML::Node &tradeNode = node["Trade"];
 
 		if (this->nodeExists(tradeNode, "Override")) {
@@ -1078,8 +1074,7 @@ e_sex ItemDatabase::defaultGender( const YAML::Node &node, std::shared_ptr<item_
 		return SEX_MALE;
 	if (id->nameid == WEDDING_RING_F) //Bride Ring
 		return SEX_FEMALE;
-	// PK [Start]
-	/*if (id->type == IT_WEAPON) {
+	if( id->type == IT_WEAPON ){
 		if( id->subtype == W_MUSICAL ){
 			if( id->sex != SEX_MALE ){
 				this->invalidWarning( node, "Musical instruments are always male-only, defaulting to SEX_MALE.\n" );
@@ -1095,7 +1090,7 @@ e_sex ItemDatabase::defaultGender( const YAML::Node &node, std::shared_ptr<item_
 
 			return SEX_FEMALE;
 		}
-	}*/
+	}
 
 	return static_cast<e_sex>( id->sex );
 }
@@ -1572,8 +1567,7 @@ char itemdb_isidentified(t_itemid nameid) {
 		case IT_ARMOR:
 		case IT_PETARMOR:
 		case IT_SHADOWGEAR:
-			//return 0;
-			return 1; // Auto Identify Dropped Items [Start]
+			return 0;
 		default:
 			return 1;
 	}

@@ -22184,7 +22184,6 @@ void do_init_clif(void) {
 		"0xFFFF00",
 		"0x00FFFF",
 		"0xB5FFB5",
-		"0xF0A8C2",
 	};
 	int i;
 	/**

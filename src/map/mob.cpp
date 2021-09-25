@@ -2916,54 +2916,6 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 			}
 
-			// PK - RO [Start]
-			// Kill Points
-			int64 gain_kp = 0;
-			// Check monster level here
-			if (md->db->mexp > 0) // Legendary (MvP)
-			{
-				gain_kp = 15;
-				dropid = rnd_value(10040001, 10050000);
-			}
-			else if (md->db->lv <= 35) // Normal (Level <= 35)
-			{
-				gain_kp = 1;
-				dropid = rnd_value(10000000, 10010000);
-			}
-			else if (md->db->lv <= 99) // Advance (Level 36~99)
-			{
-				gain_kp = 2;
-				dropid = rnd_value(10010001, 10020000);
-			}
-			else if (md->db->lv < 150) // Rare (Level 100~149)
-			{
-				gain_kp = 5;
-				dropid = rnd_value(10020001, 10030000);
-			}
-			else if (md->db->lv >= 150) // Mystic (Level >= 150)
-			{
-				gain_kp = 9;
-				dropid = rnd_value(10030001, 10040000);
-			}
-
-			if (gain_kp > 0)
-				pc_getkp(sd, gain_kp, NULL);
-
-			// Custom Equipment
-			drop_rate = 500; // 5%
-			drop_modifier = 100;
-			drop_rate = mob_getdroprate(src, md->db, 500 * (battle_config.item_rate_equip / 100), drop_modifier);
-
-			// attempt to drop the item
-			if (rnd() % 10000 < drop_rate)
-			{
-				struct s_mob_drop mobdrop;
-				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
-				mobdrop.nameid = dropid;
-				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
-			}
-			// PK - RO
-
 			// process script-granted zeny bonus (get_zeny_num) [Skotlex]
 			if( sd->bonus.get_zeny_num && rnd()%100 < sd->bonus.get_zeny_rate ) {
 				i = sd->bonus.get_zeny_num > 0 ? sd->bonus.get_zeny_num : -md->level * sd->bonus.get_zeny_num;
@@ -4823,8 +4775,7 @@ uint64 MobDatabase::parseBodyNode(const YAML::Node &node) {
 			mob->status.dmotion = 0;
 	}
 	
-	//if (this->nodeExists(node, "DamageTaken")) {
-	if (this->nodeExists(node, "DamageTakenNoUse")) {
+	if (this->nodeExists(node, "DamageTaken")) {
 		uint16 damage;
 
 		if (!this->asUInt16Rate(node, "DamageTaken", damage, 100))
@@ -4977,7 +4928,6 @@ void MobDatabase::loadingFinished() {
 
 		// Now that we know if it is a MVP or not, apply battle_config modifiers [Skotlex]
 		double maxhp = (double)mob->status.max_hp;
-		double saveMaxhp = maxhp; // [Start]
 
 		if (mob->get_bosstype() == BOSSTYPE_MVP) { // MVP
 			if (battle_config.mvp_hp_rate != 100)
@@ -4987,9 +4937,7 @@ void MobDatabase::loadingFinished() {
 				maxhp = maxhp * (double)battle_config.monster_hp_rate / 100.;
 		}
 
-		if (mob->get_bosstype() == BOSSTYPE_MVP && battle_config.mvp_hp_rate != 100 && saveMaxhp == mob->status.max_hp) // [Start]
-			mob->status.max_hp = 1000000000; // [Start]
-		mob->status.max_hp = cap_value(static_cast<uint32>(maxhp), 1, static_cast<uint32>(1000000000));
+		mob->status.max_hp = cap_value(static_cast<uint32>(maxhp), 1, UINT32_MAX);
 		mob->status.max_sp = cap_value(mob->status.max_sp, 1, UINT32_MAX);
 		mob->status.hp = mob->status.max_hp;
 		mob->status.sp = mob->status.max_sp;
