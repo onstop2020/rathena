@@ -3642,10 +3642,8 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 				sd->bonus.add_steal_rate+=val;
 			break;
 		case SP_DELAYRATE:
-			if (sd->state.lr_flag != 2) {
+			if (sd->state.lr_flag != 2)
 				sd->delayrate+=val;
-				sd->cooldownrate+=(-val);
-			}
 			break;
 		case SP_CRIT_ATK_RATE:
 			if(sd->state.lr_flag != 2)
