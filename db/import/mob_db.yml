@@ -76,3 +76,97 @@
 Header:
   Type: MOB_DB
   Version: 2
+
+Body:
+  - Id: 3803
+    AegisName: TEAM_2_RANGE
+    Name: Team 2 Range
+    Level: 2
+    Hp: 150
+    Attack: 1
+    Str: 10
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 8000
+    AttackMotion: 900
+    DamageMotion: 300
+    Ai: 04
+    Modes:
+      NoCast: true
+      Assist: true
+      TeleportBlock: true
+  - Id: 3802
+    AegisName: TEAM_2
+    Name: Team 2
+    Level: 2
+    Hp: 300
+    Attack: 1
+    Str: 20
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 4000
+    AttackMotion: 900
+    DamageMotion: 300
+    Ai: 04
+    Modes:
+      NoCast: true
+      Assist: true
+      TeleportBlock: true
+  - Id: 3801
+    AegisName: TEAM_1_RANGE
+    Name: Team 1 Range
+    Level: 1
+    Hp: 150
+    Attack: 1
+    Str: 10
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 8000
+    AttackMotion: 900
+    DamageMotion: 300
+    Ai: 04
+    Modes:
+      NoCast: true
+      Assist: true
+      TeleportBlock: true
+  - Id: 3800
+    AegisName: TEAM_1
+    Name: Team 1
+    Level: 1
+    Hp: 300
+    Attack: 1
+    Str: 20
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 4000
+    AttackMotion: 900
+    DamageMotion: 300
+    Ai: 04
+    Modes:
+      NoCast: true
+      Assist: true
+      TeleportBlock: true

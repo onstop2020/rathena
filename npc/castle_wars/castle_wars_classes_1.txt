@@ -1,5 +1,5 @@
 // --- NPC ---
-bat_room,149,179,5	script	สงครามปราสาท (คลาส 1)	2035,{
+bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	if(Class == 4218)
 	end;
 	mes "จำนวนคน Team 1 ขณะนี้:" + bg_get_data($c_w_team1_id,0);
@@ -50,24 +50,26 @@ OnTimer4000:
 	getmapunits(BL_MOB,.mapName$,.gids);
 	for(.@i = 0; .@i < getarraysize(.gids); .@i++){
 		getunitdata(.gids[.@i],.@a);
+		if(.@a[UMOB_TARGETID] > 0)
+			continue;
 		if(.@a[UMOB_LEVEL] == 1){
-			if(unitwalk(.gids[.@i],143,113))
+			if(unitwalk(.gids[.@i],143,112))
 			continue;
-			if(unitwalk(.gids[.@i],123,113))
+			if(unitwalk(.gids[.@i],123,112))
 			continue;
-			if(unitwalk(.gids[.@i],94,111))
+			if(unitwalk(.gids[.@i],94,112))
 			continue;
 			if(unitwalk(.gids[.@i],66,112))
 			continue;
 		}
 		else if(.@a[UMOB_LEVEL] == 2){
+			if(unitwalk(.gids[.@i],50,112))
+			continue;
 			if(unitwalk(.gids[.@i],66,112))
 			continue;
-			if(unitwalk(.gids[.@i],94,111))
+			if(unitwalk(.gids[.@i],94,112))
 			continue;
-			if(unitwalk(.gids[.@i],123,113))
-			continue;
-			if(unitwalk(.gids[.@i],143,113))
+			if(unitwalk(.gids[.@i],123,112))
 			continue;
 		}
 	}
@@ -76,10 +78,18 @@ OnTimer4000:
 	L_SpawnTeam1Monster:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
-		monster .mapName$,50,88,"Team 1",1002,1;
+		monster .mapName$,50,88,"Team 1",3800,1;
 		unitwalk($@mobid[0],66,112);
-		// walk to bottom left check point area
-		// claim point and push (DOTA)
+	}
+	freeloop(0);
+	initnpctimer;
+	return;
+	
+	L_SpawnTeam2Monster:
+	freeloop(1);
+	for(.@i = 0; .@i < 10; .@i++){
+		monster .mapName$,135,135,"Team 2",3802,1;
+		unitwalk($@mobid[0],123,112);
 	}
 	freeloop(0);
 	initnpctimer;
@@ -92,7 +102,8 @@ OnInit:
 	bg_destroy 1;
 	bg_destroy 2;
 	callsub L_SpawnTeam1Monster;
-	waitingroom "สงครามปราสาท (คลาส 1)",0;
+	callsub L_SpawnTeam2Monster;
+	waitingroom "สงครามปราสาท",0;
 	end;
 	
 	//bg_warp <Battle Group>,"<map name>",<x>,<y>;
