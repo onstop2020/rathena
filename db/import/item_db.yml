@@ -1,23 +1,172 @@
-# This file is a part of rAthena.
-#   Copyright(C) 2021 rAthena Development Team
-#   https://rathena.org - https://github.com/rathena
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-
 Header:
   Type: ITEM_DB
   Version: 1
 
 Body:
+  - Id: 1108
+    AegisName: Blade_
+    Name: Blade
+    Type: Weapon
+    SubType: 1hSword
+    Weight: 700
+    Attack: 53
+    Range: 1
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      Blacksmith: true
+      Crusader: true
+      Knight: true
+      Merchant: true
+      Novice: true
+      Rogue: true
+      SuperNovice: true
+      Swordman: true
+      Thief: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 1
+  - Id: 1602
+    AegisName: Rod_
+    Name: Rod
+    Type: Weapon
+    SubType: Staff
+    Weight: 400
+    Attack: 15
+    MagicAttack: 30
+    Range: 1
+    Jobs:
+      Acolyte: true
+      Mage: true
+      Monk: true
+      Novice: true
+      Priest: true
+      Sage: true
+      SoulLinker: true
+      SuperNovice: true
+      Wizard: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 1
+  - Id: 1705
+    AegisName: Composite_Bow_
+    Name: Composite Bow
+    Type: Weapon
+    SubType: Bow
+    Weight: 600
+    Attack: 29
+    Range: 5
+    Jobs:
+      Archer: true
+      BardDancer: true
+      Hunter: true
+      Rogue: true
+      Thief: true
+    Locations:
+      Both_Hand: true
+    WeaponLevel: 1
+  - Id: 1505
+    AegisName: Mace_
+    Name: Mace
+    Type: Weapon
+    SubType: Mace
+    Weight: 800
+    Attack: 37
+    Range: 1
+    Jobs:
+      Acolyte: true
+      Alchemist: true
+      Blacksmith: true
+      Crusader: true
+      Knight: true
+      Merchant: true
+      Monk: true
+      Novice: true
+      Priest: true
+      SuperNovice: true
+      Swordman: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 1
+  - Id: 1302
+    AegisName: Axe_
+    Name: Axe
+    Type: Weapon
+    SubType: 1hAxe
+    Weight: 800
+    Attack: 38
+    Range: 1
+    Jobs:
+      Alchemist: true
+      Assassin: true
+      Blacksmith: true
+      Crusader: true
+      Knight: true
+      Merchant: true
+      Novice: true
+      SuperNovice: true
+      Swordman: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 1
+  - Id: 1208
+    AegisName: Main_Gauche_
+    Name: Main Gauche
+    Type: Weapon
+    SubType: Dagger
+    Weight: 600
+    Attack: 43
+    Range: 1
+    Jobs:
+      Alchemist: true
+      Archer: true
+      Assassin: true
+      BardDancer: true
+      Blacksmith: true
+      Crusader: true
+      Hunter: true
+      KagerouOboro: true
+      Knight: true
+      Mage: true
+      Merchant: true
+      Ninja: true
+      Novice: true
+      Rogue: true
+      Sage: true
+      SoulLinker: true
+      SuperNovice: true
+      Swordman: true
+      Thief: true
+      Wizard: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 1
+  - Id: 13101
+    AegisName: Six_Shooter_
+    Name: Six Shooter
+    Type: Weapon
+    SubType: Revolver
+    Weight: 400
+    Attack: 30
+    Range: 7
+    Jobs:
+      Gunslinger: true
+      Rebellion: true
+    Locations:
+      Both_Hand: true
+    WeaponLevel: 1
+  - Id: 13010
+    AegisName: Asura
+    Name: Asura
+    Type: Weapon
+    SubType: Dagger
+    Weight: 600
+    Attack: 50
+    MagicAttack: 50
+    Range: 1
+    Jobs:
+      KagerouOboro: true
+      Ninja: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 1
