@@ -170,3 +170,31 @@ Body:
     Locations:
       Right_Hand: true
     WeaponLevel: 1
+  - Id: 1750
+    AegisName: Arrow
+    Name: Arrow
+    Type: Ammo
+    SubType: Arrow
+    Weight: 1
+    Attack: 25
+    Jobs:
+      Archer: true
+      Assassin: true
+      BardDancer: true
+      Hunter: true
+      Rogue: true
+      Thief: true
+    Locations:
+      Ammo: true
+  - Id: 13200
+    AegisName: Bullet
+    Name: Bullet
+    Type: Ammo
+    SubType: Bullet
+    Weight: 1
+    Attack: 25
+    Jobs:
+      Gunslinger: true
+      Rebellion: true
+    Locations:
+      Ammo: true

@@ -22,3 +22,6 @@
 //
 // Example:
 // 8,6  // Endure cannot be used in PvP and GvG maps (2+4)
+
+26,31
+27,31

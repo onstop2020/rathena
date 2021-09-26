@@ -53,14 +53,16 @@ bat_room,154,158,3	script	เลือกอาชีพ	10387,{
 	jobchange getarg(0,0);
 	resetlvl 1;
 	StatusPoint = 0;
-	skill 1,9,0;
+	atcommand "@skillall";
+	percentheal 100,100;
+	sleep2 100;
 	.@eac = eaclass();
 	if( .@eac&EAJL_THIRD ) {
 		switch(BaseJob) {
 			// BaseJob of Third Cls
 			// For Normal Third, Baby Third and Transcended Third Cls
 			case Job_Knight:
-				getitem 5746,1;	break;	//	Rune Circlet [1]
+				getitem 5746,1; break;	//	Rune Circlet [1]
 			case Job_Wizard:
 				getitem 5753,1;	break;	//	Magic Stone Hat [1]
 			case Job_Hunter:
@@ -131,21 +133,21 @@ bat_room,154,158,3	script	เลือกอาชีพ	10387,{
 		switch(BaseClass) {
 			// First Class
 			case Job_Swordman:
-				getitem 1108,1;	break;	//	Blade [4]
+				getitem 1108,1; equip 1108; break;	//	Blade [4]
 			case Job_Mage:
-				getitem 1602,1;	break;	//	Rod [4]
+				getitem 1602,1;	equip 1602; break;	//	Rod [4]
 			case Job_Archer:
-				getitem 1705,1;	break;	//	Composite Bow [4]
+				getitem 1705,1;	equip 1705; getitem 1750,1;	equip 1750; break;	//	Composite Bow [4]
 			case Job_Acolyte:
-				getitem 1505,1;	break;	//	Mace [4]
+				getitem 1505,1;	equip 1505; break;	//	Mace [4]
 			case Job_Merchant:
-				getitem 1302,1;	break;	//	Axe [4]
+				getitem 1302,1;	equip 1302; break;	//	Axe [4]
 			case Job_Thief:
-				getitem 1208,1;	break;	//	Main Gauche [4]
+				getitem 1208,1;	equip 1208; break;	//	Main Gauche [4]
 			case Job_Gunslinger:
-				getitem 13101,1; break;	//	Six Shooter [2]
+				getitem 13101,1; equip 13101; getitem 13200,1; equip 13200; break;	//	Six Shooter [2]
 			case Job_Ninja:
-				getitem 13010,1; break;	//	Asura [2]
+				getitem 13010,1; equip 13010; break;	//	Asura [2]
 		}
 	}
 	return;
