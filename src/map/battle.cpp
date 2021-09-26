@@ -8419,7 +8419,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 			{ //Normal mobs
 				if(
 					( target->type == BL_MOB && t_bl->type == BL_PC && ( ((TBL_MOB*)target)->special_state.ai != AI_ZANZOU && ((TBL_MOB*)target)->special_state.ai != AI_ATTACK ) ) ||
-					( t_bl->type == BL_MOB && !((TBL_MOB*)t_bl)->special_state.ai )
+					( t_bl->type == BL_MOB && !((TBL_MOB*)t_bl)->special_state.ai && ((TBL_MOB*)t_bl)->level == md->level)
 				  )
 					state |= BCT_PARTY; //Normal mobs with no ai are friends.
 				else

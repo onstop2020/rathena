@@ -46,30 +46,30 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	// Re-Order monster to move to their point
 OnTimer4000:
 	initnpctimer;
-	L_ReOrderMonster:
-	getmapunits(BL_MOB,.mapName$,.gids);
-	for(.@i = 0; .@i < getarraysize(.gids); .@i++){
-		getunitdata(.gids[.@i],.@a);
+	getmapunits(BL_MOB,.mapName$,.@gids);
+	debugmes "Array Size:" + getarraysize(.@gids);
+	for(.@i = 0; .@i < getarraysize(.@gids); .@i++){
+		getunitdata(.@gids[.@i],.@a);
 		if(.@a[UMOB_TARGETID] > 0)
 			continue;
 		if(.@a[UMOB_LEVEL] == 1){
-			if(unitwalk(.gids[.@i],143,112))
+			if(unitwalk(.@gids[.@i],143,112))
 			continue;
-			if(unitwalk(.gids[.@i],123,112))
+			if(unitwalk(.@gids[.@i],123,112))
 			continue;
-			if(unitwalk(.gids[.@i],94,112))
+			if(unitwalk(.@gids[.@i],94,112))
 			continue;
-			if(unitwalk(.gids[.@i],66,112))
+			if(unitwalk(.@gids[.@i],66,112))
 			continue;
 		}
 		else if(.@a[UMOB_LEVEL] == 2){
-			if(unitwalk(.gids[.@i],50,112))
+			if(unitwalk(.@gids[.@i],50,112))
 			continue;
-			if(unitwalk(.gids[.@i],66,112))
+			if(unitwalk(.@gids[.@i],66,112))
 			continue;
-			if(unitwalk(.gids[.@i],94,112))
+			if(unitwalk(.@gids[.@i],94,112))
 			continue;
-			if(unitwalk(.gids[.@i],123,112))
+			if(unitwalk(.@gids[.@i],123,112))
 			continue;
 		}
 	}
