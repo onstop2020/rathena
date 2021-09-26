@@ -2,7 +2,6 @@
 // For more information, see LICENCE in the main folder
 
 #include "pc.hpp"
-#include "mapreg.hpp"
 
 #include <map>
 
