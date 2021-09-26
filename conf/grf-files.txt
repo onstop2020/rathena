@@ -4,9 +4,10 @@
 //-----------------------------------------
 //grf: C:\Program Files\Gravity\RO\rdata.grf
 //grf: C:\Program Files\Gravity\RO\data.grf
+//grf: C:\Users\kaifa\Downloads\RO\Castle Wars - RO\mc.grf
 
 //-----------------------------------------
 // Data Directory
 // Use the base folder, not the data\ path.
 //-----------------------------------------
-//data_dir: C:\Program Files\Gravity\RO\
+//data_dir: C:\Users\kaifa\Downloads\RO\Castle Wars - RO\
