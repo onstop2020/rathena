@@ -1,15 +1,3 @@
-//===== rAthena Script =======================================
-//= Universal Rental NPC
-//===== By: ==================================================
-//= Euphy
-//===== Current Version: =====================================
-//= 1.0a
-//===== Compatible With: =====================================
-//= rAthena Project
-//===== Description: =========================================
-//= One-click automatic mount rentals.
-//============================================================
-
 bat_room,146,142,5	script	เช่าของและรับ Skill	10416,{
 	callfunc "F_GetPlatinumSkills";
 	if (ismounting()) {
@@ -35,9 +23,5 @@ bat_room,146,142,5	script	เช่าของและรับ Skill	10416,{
 		message strcharinfo(0),"คุณไม่จำเป็นต้องเช่าอะไร";
 		end;
 	}
-	end;
-	
-	OnInit:
-	waitingroom "เช่าของและรับ Skill",0;
 	end;
 }
