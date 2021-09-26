@@ -1,5 +1,4 @@
-bat_room,146,142,5	script	เช่าของและรับ Skill	10416,{
-	callfunc "F_GetPlatinumSkills";
+bat_room,146,142,5	script	เช่าของ	10416,{
 	if (ismounting()) {
 		message strcharinfo(0),"คุณต้องถอดพาหนะเก่าก่อน";
 		end;
