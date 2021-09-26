@@ -1,6 +1,0 @@
-diff a/src/map/pc.cpp b/src/map/pc.cpp	(rejected hunks)
-@@ -4368,2 +4368,4 @@
- 		sd->indexed_bonus.subdefele[type2] += val;
-+		if (sd->indexed_bonus.subdefele[type2] > 99) // [Start]
-+			sd->indexed_bonus.subdefele[type2] = 99; // [Start]
- 		break;
