@@ -1,21 +1,21 @@
 prontera,68,349,3	script	ซื้อ x Drop	907,{
-	mes callfunc("GetGoodConditionColor") + "๐ ขณะนี้ Drop +" + callfunc("F_InsertComma",drop_multiplier) + "% (" + callfunc("F_InsertComma",(5 * drop_multiplier) / 100) + "%)^000000";
+	mes callfunc("GetGoodConditionColor") + "๐ ขณะนี้ Drop +" + callfunc("F_InsertComma",(drop_multiplier * 2)) + "% (" + callfunc("F_InsertComma",(5 * (drop_multiplier * 2)) / 100) + "%)^000000";
 	mes callfunc("GetGoodConditionColor") + "๐ x Drop จะอยู่ถาวร^000000";
 	mes callfunc("GetBadConditionColor") + "๐ หากคุณตาย x Drop จะหายไป^000000";
 	mes callfunc("GetKillPointsColor") + "Kill Points คงเหลือ: " + callfunc("F_InsertComma",kp) + "^000000";
 	next;
-	menu "(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[0]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[0]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[0]) + "kp^000000)",L_1
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[1]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[1]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[1]) + "kp^000000)",L_2
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[2]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[2]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[2]) + "kp^000000)",L_3
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[3]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[3]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[3]) + "kp^000000)",L_4
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[4]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[4]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[4]) + "kp^000000)",L_5
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[5]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[5]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[5]) + "kp^000000)",L_6
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[6]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[6]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[6]) + "kp^000000)",L_7
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[7]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[7]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[7]) + "kp^000000)",L_8
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[8]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[8]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[8]) + "kp^000000)",L_9
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[9]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[9]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[9]) + "kp^000000)",L_10
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[10]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[10]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[10]) + "kp^000000)",L_11
-	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[11]) + "% (" + callfunc("F_InsertComma",(5 * .multiplier[11]) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[11]) + "kp^000000)",L_12
+	menu "(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[0] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[0] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[0]) + "kp^000000)",L_1
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[1] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[1] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[1]) + "kp^000000)",L_2
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[2] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[2] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[2]) + "kp^000000)",L_3
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[3] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[3] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[3]) + "kp^000000)",L_4
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[4] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[4] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[4]) + "kp^000000)",L_5
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[5] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[5] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[5]) + "kp^000000)",L_6
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[6] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[6] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[6]) + "kp^000000)",L_7
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[7] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[7] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[7]) + "kp^000000)",L_8
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[8] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[8] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[8]) + "kp^000000)",L_9
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[9] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[9] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[9]) + "kp^000000)",L_10
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[10] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[10] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[10]) + "kp^000000)",L_11
+	,"(ทับไม่ได้) +" + callfunc("F_InsertComma",.multiplier[11] * 2) + "% (" + callfunc("F_InsertComma",(5 * (.multiplier[11] * 2)) / 100) + "%) (" + callfunc("GetKillPointsColor") + callfunc("F_InsertComma",.price[11]) + "kp^000000)",L_12
 	;
 	L_1:
 	.@target = 0;

@@ -113,7 +113,7 @@ function	script	RebirthStatus	{
 	bonus_script "{ bonus bAllStats," + (5 * rebirth_count)
 	+ "; bonus bAddMaxWeight," + (1000 * rebirth_count)
 	+ "; bonus2 bExpAddClass,Class_All," + exp_multiplier
-	+ "; bonus2 bDropAddClass,Class_All," + drop_multiplier
+	+ "; bonus2 bDropAddClass,Class_All," + (drop_multiplier * 2)
 	+ "; "
 	+ "}"
 	,86400;
