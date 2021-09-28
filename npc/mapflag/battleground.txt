@@ -1,4 +1,0 @@
-new_event	mapflag	battleground
-event_01	mapflag	battleground
-bat_c01	mapflag	battleground
-aev_fild01	mapflag	battleground

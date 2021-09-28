@@ -8,6 +8,10 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	menu "เข้าทีม 1",L_Team1,"เข้าทีม 2",L_Team2;
 	
 	L_Team1:
+	if(bg_get_data($c_w_team1_id,0) > bg_get_data($c_w_team2_id,0)){
+		mes "โปรดเข้าทีม 2 เนื่องจาก ทีม 2 คนน้อยกว่า";
+		close;
+	}
 	// Set block all except talking
 	#CASHPOINTS = 1;
 	
@@ -26,6 +30,10 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	end;
 	
 	L_Team2:
+	if(bg_get_data($c_w_team2_id,0) > bg_get_data($c_w_team1_id,0)){
+		mes "โปรดเข้าทีม 1 เนื่องจาก ทีม 1 คนน้อยกว่า";
+		close;
+	}
 	// Set block all except talking
 	#CASHPOINTS = 2;
 	
@@ -46,40 +54,90 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	// Re-Order monster to move to their point
 OnTimer4000:
 	initnpctimer;
+
+	.@monster_count_team1 = 0;
+	.@monster_count_team2 = 0;
+	
+	.monster_spawn_timer++;
+	if(.monster_spawn_timer >= 3)
+	.monster_spawn_timer = 0;
+	
+	.monster_score_timer++;
+	if(.monster_score_timer >= 2){
+		.monster_score_timer = 0;
+		getareaunits(BL_MOB,.mapName$,139,108,147,116,.@gids_area_team_1);
+		for(.@i = 0; .@i < getarraysize(.@gids_area_team_1); .@i++){
+			getunitdata(.@gids_area_team_1[.@i],.@a);
+			if(.@a[UMOB_LEVEL] == 1){
+				$team_1_point++;
+				break;
+			}
+		}
+		getareaunits(BL_MOB,.mapName$,46,108,54,116,.@gids_area_team_2);
+		for(.@i = 0; .@i < getarraysize(.@gids_area_team_2); .@i++){
+			getunitdata(.@gids_area_team_2[.@i],.@a);
+			if(.@a[UMOB_LEVEL] == 2){
+				$team_2_point++;
+				break;
+			}
+		}
+		bg_updatescore .mapName$,$team_1_point,$team_2_point;
+		if($team_1_point > .victory_point){
+			$team_1_point = 0;
+			// Add players in maps
+			// Check team
+			// Add perk points
+		}
+		else if($team_2_point > .victory_point){
+			// Add players in maps
+			// Check team
+			// Add perk points
+		}
+	}
+	
 	getmapunits(BL_MOB,.mapName$,.@gids);
-	debugmes "Array Size:" + getarraysize(.@gids);
 	for(.@i = 0; .@i < getarraysize(.@gids); .@i++){
 		getunitdata(.@gids[.@i],.@a);
-		if(.@a[UMOB_TARGETID] > 0)
-			continue;
 		if(.@a[UMOB_LEVEL] == 1){
-			if(unitwalk(.@gids[.@i],143,112))
+			.@monster_count_team1++;
+			if(.@a[UMOB_TARGETID] > 0)
 			continue;
-			if(unitwalk(.@gids[.@i],123,112))
+			if(unitwalk(.@gids[.@i],143 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],94,112))
+			if(unitwalk(.@gids[.@i],123 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],66,112))
+			if(unitwalk(.@gids[.@i],94 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(unitwalk(.@gids[.@i],66 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
 		}
 		else if(.@a[UMOB_LEVEL] == 2){
-			if(unitwalk(.@gids[.@i],50,112))
+			.@monster_count_team2++;
+			if(.@a[UMOB_TARGETID] > 0)
 			continue;
-			if(unitwalk(.@gids[.@i],66,112))
+			if(unitwalk(.@gids[.@i],50 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],94,112))
+			if(unitwalk(.@gids[.@i],66 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],123,112))
+			if(unitwalk(.@gids[.@i],94 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(unitwalk(.@gids[.@i],123 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
 		}
+	}
+	if(.monster_spawn_timer <= 0){
+		if(.@monster_count_team1 < .max_monster)
+		callsub L_SpawnTeam1Monster;
+		if(.@monster_count_team2 < .max_monster)
+		callsub L_SpawnTeam2Monster;
 	}
 	end;
 	
 	L_SpawnTeam1Monster:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
-		monster .mapName$,50,88,"Team 1",3800,1;
-		unitwalk($@mobid[0],66,112);
+		monster .mapName$,50 + rand(-.rand_walk_area,.rand_walk_area),88 + rand(-.rand_walk_area,.rand_walk_area),"Team 1",3800,1;
+		unitwalk($@mobid[0],66 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area));
 	}
 	freeloop(0);
 	initnpctimer;
@@ -88,15 +146,20 @@ OnTimer4000:
 	L_SpawnTeam2Monster:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
-		monster .mapName$,135,135,"Team 2",3802,1;
-		unitwalk($@mobid[0],123,112);
+		monster .mapName$,135 + rand(-.rand_walk_area,.rand_walk_area),135 + rand(-.rand_walk_area,.rand_walk_area),"Team 2",3802,1;
+		unitwalk($@mobid[0],123 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area));
 	}
 	freeloop(0);
 	initnpctimer;
 	return;
 	
 OnInit:
+	.victory_point = 10;
+	.rand_walk_area = 2;
+	.max_monster = 50;
 	.mapName$ = "new_event";
+	.monster_spawn_timer = 0;
+	.monster_score_timer = 0;
 	$c_w_team1_id = 0;
 	$c_w_team2_id = 0;
 	bg_destroy 1;
@@ -105,31 +168,65 @@ OnInit:
 	callsub L_SpawnTeam2Monster;
 	waitingroom "สงครามปราสาท",0;
 	end;
-	
-	//bg_warp <Battle Group>,"<map name>",<x>,<y>;
 }
 
 // --- Mapflag ---
-// No Teleport
-// No Save
-// No Return
-// No Monster Teleport
+new_event	mapflag	noreturn
+new_event	mapflag	noteleport
+new_event	mapflag	nowarp
+new_event	mapflag	nowarpto
+new_event	mapflag	nosave
+new_event	mapflag	nomemo
+new_event	mapflag	nodrop
+new_event	mapflag	noloot
+new_event	mapflag	noexp
+new_event	mapflag	nopenalty
+new_event	mapflag	novending
+new_event	mapflag	monster_noteleport
+new_event	mapflag	notomb
+new_event	mapflag	battleground	2
 
+event_01	mapflag	noreturn
+event_01	mapflag	noteleport
+event_01	mapflag	nowarp
+event_01	mapflag	nowarpto
+event_01	mapflag	nosave
+event_01	mapflag	nomemo
+event_01	mapflag	nodrop
+event_01	mapflag	noloot
+event_01	mapflag	noexp
+event_01	mapflag	nopenalty
+event_01	mapflag	novending
+event_01	mapflag	monster_noteleport
+event_01	mapflag	notomb
+event_01	mapflag	battleground	2
 
-// --- System ---
-// Team Joined Check
-// If had 1+ for each team countdown timer
-// Unblock all
+bat_c01	mapflag	noreturn
+bat_c01	mapflag	noteleport
+bat_c01	mapflag	nowarp
+bat_c01	mapflag	nowarpto
+bat_c01	mapflag	nosave
+bat_c01	mapflag	nomemo
+bat_c01	mapflag	nodrop
+bat_c01	mapflag	noloot
+bat_c01	mapflag	noexp
+bat_c01	mapflag	nopenalty
+bat_c01	mapflag	novending
+bat_c01	mapflag	monster_noteleport
+bat_c01	mapflag	notomb
+bat_c01	mapflag	battleground	2
 
-// Every 30s spawn monster for each side
-// *loop add gid
-
-// Every 4s check monster count in area and +1 points per monster count
-// 50 Points to win
-// *unitwalk
-
-// Every 9s try re-order monster to captured area
-// *getareaunits
-
-// --- Reminder ---
-// Dead in this map == No penalty
+aev_fild01	mapflag	noreturn
+aev_fild01	mapflag	noteleport
+aev_fild01	mapflag	nowarp
+aev_fild01	mapflag	nowarpto
+aev_fild01	mapflag	nosave
+aev_fild01	mapflag	nomemo
+aev_fild01	mapflag	nodrop
+aev_fild01	mapflag	noloot
+aev_fild01	mapflag	noexp
+aev_fild01	mapflag	nopenalty
+aev_fild01	mapflag	novending
+aev_fild01	mapflag	monster_noteleport
+aev_fild01	mapflag	notomb
+aev_fild01	mapflag	battleground	2

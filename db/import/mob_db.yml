@@ -83,7 +83,8 @@ Body:
     Name: Team 2 Range
     Level: 2
     Hp: 150
-    Attack: 1
+    Attack: 8
+    Attack2: 4
     Str: 10
     AttackRange: 9
     SkillRange: 10
@@ -106,7 +107,8 @@ Body:
     Name: Team 2
     Level: 2
     Hp: 300
-    Attack: 1
+    Attack: 10
+    Attack2: 5
     Str: 20
     AttackRange: 1
     SkillRange: 10
@@ -129,7 +131,8 @@ Body:
     Name: Team 1 Range
     Level: 1
     Hp: 150
-    Attack: 1
+    Attack: 8
+    Attack2: 4
     Str: 10
     AttackRange: 9
     SkillRange: 10
@@ -152,7 +155,8 @@ Body:
     Name: Team 1
     Level: 1
     Hp: 300
-    Attack: 1
+    Attack: 10
+    Attack2: 5
     Str: 20
     AttackRange: 1
     SkillRange: 10
