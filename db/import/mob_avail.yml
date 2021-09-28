@@ -51,3 +51,8 @@ Body:
     Sprite: RAYDRIC
   - Mob: TEAM_2_RANGE
     Sprite: Raydric_Archer
+  - Mob: TEAM_1_TOWER
+    Sprite: GREATEST_GENERAL
+  - Mob: TEAM_2_TOWER
+    Sprite: MONEMUS
+

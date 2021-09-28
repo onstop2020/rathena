@@ -102,6 +102,60 @@ Body:
       NoCast: true
       Assist: true
       TeleportBlock: true
+  - Id: 3804
+    AegisName: TEAM_1_TOWER
+    Name: Team 1 Tower
+    Level: 1
+    Hp: 9000
+    Attack: 12
+    Attack2: 6
+    Str: 10
+    AttackRange: 5
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 1000
+    AttackMotion: 900
+    DamageMotion: 300
+    Ai: 10
+    Modes:
+      NoCast: true
+      Assist: true
+      Angry: true
+      ChangeTargetMelee: true
+      ChangeTargetChase: true
+      TeleportBlock: true
+  - Id: 3805
+    AegisName: TEAM_2_TOWER
+    Name: Team 2 Tower
+    Level: 2
+    Hp: 9000
+    Attack: 12
+    Attack2: 6
+    Str: 10
+    AttackRange: 5
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 1000
+    AttackMotion: 900
+    DamageMotion: 300
+    Ai: 10
+    Modes:
+      NoCast: true
+      Assist: true
+      Angry: true
+      ChangeTargetMelee: true
+      ChangeTargetChase: true
+      TeleportBlock: true
   - Id: 3802
     AegisName: TEAM_2
     Name: Team 2

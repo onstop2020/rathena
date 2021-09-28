@@ -260,6 +260,8 @@ OnTimer4000:
 	return;
 	
 	L_MapSetup:
+	killmonsterall .map_name$[$current_map];
+	
 	$is_playing = 0;
 	
 	$team_1_point = 0;
@@ -278,7 +280,9 @@ OnTimer4000:
 	
 	.monster_spawn_timer = 0;
 	.monster_score_timer = 0;
-	
+
+	monster .map_name$[$current_map],.map_tower_spawn_x_team_1[$current_map],.map_tower_spawn_y_team_1[$current_map],"Team 1",3804,1;
+	monster .map_name$[$current_map],.map_tower_spawn_x_team_2[$current_map],.map_tower_spawn_y_team_2[$current_map],"Team 2",3805,1;
 	return;
 	
 	// Initialize (Always reset match when reload scripts)
@@ -301,6 +305,9 @@ OnInit:
 	setarray .victory_y_start_team_1[0],108,0,0,0;
 	setarray .victory_x_stop_team_1[0],147,0,0,0;
 	setarray .victory_y_stop_team_1[0],116,0,0,0;
+	// Team 1 Tower Spawn Points
+	setarray .map_tower_spawn_x_team_1[0],60,0,0,0;
+	setarray .map_tower_spawn_y_team_1[0],112,0,0,0;
 	// Team 1 Monster Spawn Points
 	setarray .map_monster_spawn_x_team_1[0],50,0,0,0;
 	setarray .map_monster_spawn_y_team_1[0],88,0,0,0;
@@ -322,6 +329,9 @@ OnInit:
 	setarray .victory_y_start_team_2[0],108,0,0,0;
 	setarray .victory_x_stop_team_2[0],54,0,0,0;
 	setarray .victory_y_stop_team_2[0],116,0,0,0;
+	// Team 2 Tower Spawn Points
+	setarray .map_tower_spawn_x_team_2[0],125,0,0,0;
+	setarray .map_tower_spawn_y_team_2[0],112,0,0,0;
 	// Team 2 Monster Spawn Points
 	setarray .map_monster_spawn_x_team_2[0],135,0,0,0;
 	setarray .map_monster_spawn_y_team_2[0],135,0,0,0;
