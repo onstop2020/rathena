@@ -1,0 +1,4 @@
+new_event,157,124,0	warp	warp#1	2,2,new_event,154,127
+new_event,157,99,0	warp	warp#2	2,2,new_event,154,97
+new_event,152,111,0	warp	warp#3	2,2,new_event,148,111
+new_event,70,150,0	warp	warp#4	2,2,new_event,114,172

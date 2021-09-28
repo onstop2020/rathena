@@ -1,0 +1,73 @@
+// --- Mapflag ---
+bat_room	mapflag	noreturn
+bat_room	mapflag	noteleport
+bat_room	mapflag	nowarp
+bat_room	mapflag	nowarpto
+bat_room	mapflag	nomemo
+bat_room	mapflag	nodrop
+bat_room	mapflag	noloot
+bat_room	mapflag	noexp
+bat_room	mapflag	nopenalty
+bat_room	mapflag	novending
+bat_room	mapflag	monster_noteleport
+bat_room	mapflag	notomb
+
+new_event	mapflag	noreturn
+new_event	mapflag	noteleport
+new_event	mapflag	nowarp
+new_event	mapflag	nowarpto
+new_event	mapflag	nosave
+new_event	mapflag	nomemo
+new_event	mapflag	nodrop
+new_event	mapflag	noloot
+new_event	mapflag	noexp
+new_event	mapflag	nopenalty
+new_event	mapflag	novending
+new_event	mapflag	monster_noteleport
+new_event	mapflag	notomb
+new_event	mapflag	battleground	2
+
+event_01	mapflag	noreturn
+event_01	mapflag	noteleport
+event_01	mapflag	nowarp
+event_01	mapflag	nowarpto
+event_01	mapflag	nosave
+event_01	mapflag	nomemo
+event_01	mapflag	nodrop
+event_01	mapflag	noloot
+event_01	mapflag	noexp
+event_01	mapflag	nopenalty
+event_01	mapflag	novending
+event_01	mapflag	monster_noteleport
+event_01	mapflag	notomb
+event_01	mapflag	battleground	2
+
+bat_c01	mapflag	noreturn
+bat_c01	mapflag	noteleport
+bat_c01	mapflag	nowarp
+bat_c01	mapflag	nowarpto
+bat_c01	mapflag	nosave
+bat_c01	mapflag	nomemo
+bat_c01	mapflag	nodrop
+bat_c01	mapflag	noloot
+bat_c01	mapflag	noexp
+bat_c01	mapflag	nopenalty
+bat_c01	mapflag	novending
+bat_c01	mapflag	monster_noteleport
+bat_c01	mapflag	notomb
+bat_c01	mapflag	battleground	2
+
+aev_fild01	mapflag	noreturn
+aev_fild01	mapflag	noteleport
+aev_fild01	mapflag	nowarp
+aev_fild01	mapflag	nowarpto
+aev_fild01	mapflag	nosave
+aev_fild01	mapflag	nomemo
+aev_fild01	mapflag	nodrop
+aev_fild01	mapflag	noloot
+aev_fild01	mapflag	noexp
+aev_fild01	mapflag	nopenalty
+aev_fild01	mapflag	novending
+aev_fild01	mapflag	monster_noteleport
+aev_fild01	mapflag	notomb
+aev_fild01	mapflag	battleground	2

@@ -1,24 +1,36 @@
-// --- NPC ---
+// --- Main Gameplay ---
 bat_room,149,179,5	script	สงครามปราสาท	2035,{
+	// No Doram allow
 	if(Class == 4218)
 	end;
-	mes "จำนวนคน Team 1 ขณะนี้:" + bg_get_data($c_w_team1_id,0);
-	mes "จำนวนคน Team 2 ขณะนี้:" + bg_get_data($c_w_team2_id,0);
-	mes "เกมจะเริ่มภายใน " + $c_w_1_countdown + " วินาที";
+
+	// Information
+	mes "จำนวนคน Team 1 ขณะนี้: " + bg_get_data($c_w_team1_id,0);
+	mes "จำนวนคน Team 2 ขณะนี้: " + bg_get_data($c_w_team2_id,0);
+	// Choose team
 	menu "เข้าทีม 1",L_Team1,"เข้าทีม 2",L_Team2;
 	
 	L_Team1:
-	if(bg_get_data($c_w_team1_id,0) > bg_get_data($c_w_team2_id,0)){
+	// Check team balance
+	.@t1_players = bg_get_data($c_w_team1_id,0);
+	.@t2_players = bg_get_data($c_w_team2_id,0);
+	if((.@t1_players > .@t2_players) && (.@t1_players - .@t2_players >= .too_much_diff_player)){
 		mes "โปรดเข้าทีม 2 เนื่องจาก ทีม 2 คนน้อยกว่า";
 		close;
 	}
-	// Set block all except talking
+	// Blocking actions if game is not start yet
+	if(!$is_playing){
+		setpcblock PCBLOCK_MOVE,true;
+		setpcblock PCBLOCK_SKILL,true;
+	}
+
+	// Join now
 	#CASHPOINTS = 1;
 	
 	bg_leave;
 
 	if(!$c_w_team1_id){
-		$c_w_team1_id = bg_create(.mapName$,48,79);
+		$c_w_team1_id = bg_create(.map_name$[$current_map],.map_start_x_team_1[$current_map],.map_start_y_team_1[$current_map]);
 
 		dispbottom "สร้าง Team ที่ 1";
 	}
@@ -27,20 +39,30 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	
 	dispbottom "คุณเข้าร่วม Team ที่ 1";
 	
-	end;
+	// Check to starting new match
+	goto L_CheckToStart;
 	
 	L_Team2:
-	if(bg_get_data($c_w_team2_id,0) > bg_get_data($c_w_team1_id,0)){
+	// Check team balance
+	.@t1_players = bg_get_data($c_w_team1_id,0);
+	.@t2_players = bg_get_data($c_w_team2_id,0);
+	if((.@t2_players > .@t1_players) && (.@t2_players - .@t1_players >= .too_much_diff_player)){
 		mes "โปรดเข้าทีม 1 เนื่องจาก ทีม 1 คนน้อยกว่า";
 		close;
 	}
-	// Set block all except talking
+	// Blocking actions if game is not start yet
+	if(!$is_playing){
+		setpcblock PCBLOCK_MOVE,true;
+		setpcblock PCBLOCK_SKILL,true;
+	}
+
+	// Join now
 	#CASHPOINTS = 2;
 	
 	bg_leave;
 	
 	if(!$c_w_team2_id){
-		$c_w_team2_id = bg_create(.mapName$,165,112);
+		$c_w_team2_id = bg_create(.map_name$[$current_map],.map_start_x_team_2[$current_map],.map_start_y_team_2[$current_map]);
 		
 		dispbottom "สร้าง Team ที่ 2";
 	}
@@ -49,184 +71,284 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	
 	dispbottom "คุณเข้าร่วม Team ที่ 2";
 	
+	// Check to starting new match
+	goto L_CheckToStart;
+	
+	L_CheckToStart:
+	// Both team has players, start the match now
+	if(bg_get_data($c_w_team1_id,0) > 0 && bg_get_data($c_w_team2_id,0) > 0){
+		$is_playing = 1;
+		
+		initnpctimer;
+		
+		// Add players in maps
+		addrid(5,0,.map_name$[$current_map]);
+		
+		// Remove all blocking actions
+		setpcblock PCBLOCK_ALL,false;
+	}
 	end;
 	
-	// Re-Order monster to move to their point
+	// Re-Order monster to move to their closet paths, update score
 OnTimer4000:
+	// Restart timer
 	initnpctimer;
 
+	// Reset monster counting per team
 	.@monster_count_team1 = 0;
 	.@monster_count_team2 = 0;
 	
+	// Respawn monster increment
 	.monster_spawn_timer++;
 	if(.monster_spawn_timer >= 3)
 	.monster_spawn_timer = 0;
 	
+	// Checking score increment
 	.monster_score_timer++;
+	
+	freeloop(1);
+	
+	// Score
 	if(.monster_score_timer >= 2){
 		.monster_score_timer = 0;
-		getareaunits(BL_MOB,.mapName$,139,108,147,116,.@gids_area_team_1);
+		getareaunits(BL_MOB,.map_name$[$current_map],.victory_x_start_team_1[$current_map],.victory_y_start_team_1[$current_map],.victory_x_stop_team_1[$current_map],.victory_y_stop_team_1[$current_map],.@gids_area_team_1);
 		for(.@i = 0; .@i < getarraysize(.@gids_area_team_1); .@i++){
 			getunitdata(.@gids_area_team_1[.@i],.@a);
+			// Checking teams and add score
 			if(.@a[UMOB_LEVEL] == 1){
 				$team_1_point++;
 				break;
 			}
 		}
-		getareaunits(BL_MOB,.mapName$,46,108,54,116,.@gids_area_team_2);
+		getareaunits(BL_MOB,.map_name$[$current_map],.victory_x_start_team_2[$current_map],.victory_y_start_team_2[$current_map],.victory_x_stop_team_2[$current_map],.victory_y_stop_team_2[$current_map],.@gids_area_team_2);
 		for(.@i = 0; .@i < getarraysize(.@gids_area_team_2); .@i++){
 			getunitdata(.@gids_area_team_2[.@i],.@a);
+			// Checking teams and add score
 			if(.@a[UMOB_LEVEL] == 2){
 				$team_2_point++;
 				break;
 			}
 		}
-		bg_updatescore .mapName$,$team_1_point,$team_2_point;
-		if($team_1_point > .victory_point){
-			$team_1_point = 0;
-			// Add players in maps
-			// Check team
-			// Add perk points
+	}
+	
+	// Re-Order monster to move
+	getmapunits(BL_MOB,.map_name$[$current_map],.@gids);
+	for(.@i = 0; .@i < getarraysize(.@gids); .@i++){
+		getunitdata(.@gids[.@i],.@a);
+		// Checking teams
+		if(.@a[UMOB_LEVEL] == 1){
+			// Counting monster to use in respawn
+			.@monster_count_team1++;
+			// This monster still fight
+			if(.@a[UMOB_TARGETID] > 0)
+			continue;
+			// Move to closet paths
+			if(unitwalk(.@gids[.@i],.map_monster_path_x_4_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_4_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(unitwalk(.@gids[.@i],.map_monster_path_x_3_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_3_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(unitwalk(.@gids[.@i],.map_monster_path_x_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(unitwalk(.@gids[.@i],.map_monster_path_x_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
 		}
-		else if($team_2_point > .victory_point){
-			// Add players in maps
-			// Check team
-			// Add perk points
+		// Checking teams
+		else if(.@a[UMOB_LEVEL] == 2){
+			// Counting monster to use in respawn
+			.@monster_count_team2++;
+			// This monster still fight
+			if(.@a[UMOB_TARGETID] > 0)
+			continue;
+			// Move to closet paths
+			if(unitwalk(.@gids[.@i],.map_monster_path_x_4_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_4_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(unitwalk(.@gids[.@i],.map_monster_path_x_3_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_3_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(unitwalk(.@gids[.@i],.map_monster_path_x_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(unitwalk(.@gids[.@i],.map_monster_path_x_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
 		}
 	}
 	
-	getmapunits(BL_MOB,.mapName$,.@gids);
-	for(.@i = 0; .@i < getarraysize(.@gids); .@i++){
-		getunitdata(.@gids[.@i],.@a);
-		if(.@a[UMOB_LEVEL] == 1){
-			.@monster_count_team1++;
-			if(.@a[UMOB_TARGETID] > 0)
-			continue;
-			if(unitwalk(.@gids[.@i],143 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
-			continue;
-			if(unitwalk(.@gids[.@i],123 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
-			continue;
-			if(unitwalk(.@gids[.@i],94 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
-			continue;
-			if(unitwalk(.@gids[.@i],66 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
-			continue;
-		}
-		else if(.@a[UMOB_LEVEL] == 2){
-			.@monster_count_team2++;
-			if(.@a[UMOB_TARGETID] > 0)
-			continue;
-			if(unitwalk(.@gids[.@i],50 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
-			continue;
-			if(unitwalk(.@gids[.@i],66 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
-			continue;
-			if(unitwalk(.@gids[.@i],94 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
-			continue;
-			if(unitwalk(.@gids[.@i],123 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area)))
-			continue;
-		}
-	}
+	freeloop(0);
+	
+	// Respawn monster if not full
 	if(.monster_spawn_timer <= 0){
 		if(.@monster_count_team1 < .max_monster)
 		callsub L_SpawnTeam1Monster;
 		if(.@monster_count_team2 < .max_monster)
 		callsub L_SpawnTeam2Monster;
 	}
+	
+	// Win Lose
+	if($team_1_point >= .victory_point){
+		// Remember map index before reset it
+		.temp_map_index = $current_map;
+		
+		// Reset match
+		callsub L_MapSetup;
+
+		// Add players in maps
+		addrid(5,0,.map_name$[.temp_map_index]);
+		
+		// Check team and add perk points
+		.@is_won = 0;
+		if(#CASHPOINTS == 1){
+			.@is_won = 1;
+			pp++;
+		}
+		
+		// Warp them back to waiting room
+		warp "bat_room",154,149;
+		
+		sleep2 100;
+		
+		// Notify current Perk Points
+		if(.@is_won)
+		message strcharinfo(0),"คุณชนะ! และได้รับ 1 Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
+	}
+	else if($team_2_point >= .victory_point){
+		// Remember map index before reset it
+		.temp_map_index = $current_map;
+		
+		// Reset match
+		callsub L_MapSetup;
+		
+		// Add players in maps
+		addrid(5,0,.map_name$[.temp_map_index]);
+		
+		// Check team and add perk points
+		.@is_won = 0;
+		if(#CASHPOINTS == 2){
+			.@is_won = 1;
+			pp++;
+		}
+		
+		// Warp them back to waiting room
+		warp "bat_room",154,149;
+		
+		sleep2 100;
+		
+		// Notify current Perk Points
+		if(.@is_won)
+		message strcharinfo(0),"คุณชนะ! และได้รับ 1 Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
+	}
+	
+	// Scoreboard Update
+	bg_updatescore .map_name$[$current_map],$team_1_point,$team_2_point;
 	end;
 	
+	// Respawn monster for team 1
 	L_SpawnTeam1Monster:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
-		monster .mapName$,50 + rand(-.rand_walk_area,.rand_walk_area),88 + rand(-.rand_walk_area,.rand_walk_area),"Team 1",3800,1;
-		unitwalk($@mobid[0],66 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area));
+		monster .map_name$[$current_map],.map_monster_spawn_x_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_spawn_y_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),"Team 1",3800,1;
+		unitwalk($@mobid[0],.map_monster_path_x_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
 	}
 	freeloop(0);
-	initnpctimer;
 	return;
 	
+	// Respawn monster for team 2
 	L_SpawnTeam2Monster:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
-		monster .mapName$,135 + rand(-.rand_walk_area,.rand_walk_area),135 + rand(-.rand_walk_area,.rand_walk_area),"Team 2",3802,1;
-		unitwalk($@mobid[0],123 + rand(-.rand_walk_area,.rand_walk_area),112 + rand(-.rand_walk_area,.rand_walk_area));
+		monster .map_name$[$current_map],.map_monster_spawn_x_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_spawn_y_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),"Team 2",3802,1;
+		unitwalk($@mobid[0],.map_monster_path_x_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
 	}
 	freeloop(0);
-	initnpctimer;
 	return;
 	
-OnInit:
-	.victory_point = 10;
-	.rand_walk_area = 2;
-	.max_monster = 50;
-	.mapName$ = "new_event";
-	.monster_spawn_timer = 0;
-	.monster_score_timer = 0;
+	L_MapSetup:
+	$is_playing = 0;
+	
+	$team_1_point = 0;
+	$team_2_point = 0;
+	
 	$c_w_team1_id = 0;
 	$c_w_team2_id = 0;
+	
 	bg_destroy 1;
 	bg_destroy 2;
-	callsub L_SpawnTeam1Monster;
-	callsub L_SpawnTeam2Monster;
+	
+	$current_map = rand(0,getarraysize(.map_name$) - 1);
+	$current_map = 0; // Please remove after test
+	
+	.rand_walk_area = .map_rand_walk_area[$current_map];
+	
+	.monster_spawn_timer = 0;
+	.monster_score_timer = 0;
+	
+	return;
+	
+	// Initialize (Always reset match when reload scripts)
+OnInit:
+	// Settings
+	.too_much_diff_player = 2;	// How many players can be greater than other teams
+	.victory_point = 10;		// How many points to win
+	.max_monster = 50;			// Max monster per team
+	
+	// Maps and paths
+	setarray .map_name$[0],"new_event","event_01","bat_c01","aev_fild01";
+	
+	setarray .map_rand_walk_area[0],2,1,3,4;
+	
+	// Team 1 Start Points
+	setarray .map_start_x_team_1[0],48,0,0,0;
+	setarray .map_start_y_team_1[0],79,0,0,0;
+	// Team 1 Victory Points
+	setarray .victory_x_start_team_1[0],139,0,0,0;
+	setarray .victory_y_start_team_1[0],108,0,0,0;
+	setarray .victory_x_stop_team_1[0],147,0,0,0;
+	setarray .victory_y_stop_team_1[0],116,0,0,0;
+	// Team 1 Monster Spawn Points
+	setarray .map_monster_spawn_x_team_1[0],50,0,0,0;
+	setarray .map_monster_spawn_y_team_1[0],88,0,0,0;
+	// Team 1 Monster Path
+	setarray .map_monster_path_x_4_team_1[0],143,0,0,0;
+	setarray .map_monster_path_x_3_team_1[0],123,0,0,0;
+	setarray .map_monster_path_x_2_team_1[0],94,0,0,0;
+	setarray .map_monster_path_x_1_team_1[0],66,0,0,0;
+	setarray .map_monster_path_y_4_team_1[0],112,0,0,0;
+	setarray .map_monster_path_y_3_team_1[0],112,0,0,0;
+	setarray .map_monster_path_y_2_team_1[0],112,0,0,0;
+	setarray .map_monster_path_y_1_team_1[0],112,0,0,0;
+	
+	// Team 2 Start Points
+	setarray .map_start_x_team_2[0],165,0,0,0;
+	setarray .map_start_y_team_2[0],112,0,0,0;
+	// Team 2 Victory Points
+	setarray .victory_x_start_team_2[0],46,0,0,0;
+	setarray .victory_y_start_team_2[0],108,0,0,0;
+	setarray .victory_x_stop_team_2[0],54,0,0,0;
+	setarray .victory_y_stop_team_2[0],116,0,0,0;
+	// Team 2 Monster Spawn Points
+	setarray .map_monster_spawn_x_team_2[0],135,0,0,0;
+	setarray .map_monster_spawn_y_team_2[0],135,0,0,0;
+	// Team 2 Monster Path
+	setarray .map_monster_path_x_4_team_2[0],50,0,0,0;
+	setarray .map_monster_path_x_3_team_2[0],66,0,0,0;
+	setarray .map_monster_path_x_2_team_2[0],94,0,0,0;
+	setarray .map_monster_path_x_1_team_2[0],123,0,0,0;
+	setarray .map_monster_path_y_4_team_2[0],112,0,0,0;
+	setarray .map_monster_path_y_3_team_2[0],112,0,0,0;
+	setarray .map_monster_path_y_2_team_2[0],112,0,0,0;
+	setarray .map_monster_path_y_1_team_2[0],112,0,0,0;
+	
+	// Reset gameplay variables
+	callsub L_MapSetup;
+
 	waitingroom "สงครามปราสาท",0;
+	
+	// Wait a bit to warp all players back to waiting room
+	sleep 100;
+	
+	// Warp them now
+	addrid(0);
+	warp "bat_room",154,149;
+	
+	// Also reset pc block in case someone already had it
+	setpcblock PCBLOCK_ALL,false;
+	message strcharinfo(0),"GM ทำการ Reload สคริป คุณจึงโดนเคลื่อนย้ายกลับไปยัง ห้องเตรียมตัว";
 	end;
 }
-
-// --- Mapflag ---
-new_event	mapflag	noreturn
-new_event	mapflag	noteleport
-new_event	mapflag	nowarp
-new_event	mapflag	nowarpto
-new_event	mapflag	nosave
-new_event	mapflag	nomemo
-new_event	mapflag	nodrop
-new_event	mapflag	noloot
-new_event	mapflag	noexp
-new_event	mapflag	nopenalty
-new_event	mapflag	novending
-new_event	mapflag	monster_noteleport
-new_event	mapflag	notomb
-new_event	mapflag	battleground	2
-
-event_01	mapflag	noreturn
-event_01	mapflag	noteleport
-event_01	mapflag	nowarp
-event_01	mapflag	nowarpto
-event_01	mapflag	nosave
-event_01	mapflag	nomemo
-event_01	mapflag	nodrop
-event_01	mapflag	noloot
-event_01	mapflag	noexp
-event_01	mapflag	nopenalty
-event_01	mapflag	novending
-event_01	mapflag	monster_noteleport
-event_01	mapflag	notomb
-event_01	mapflag	battleground	2
-
-bat_c01	mapflag	noreturn
-bat_c01	mapflag	noteleport
-bat_c01	mapflag	nowarp
-bat_c01	mapflag	nowarpto
-bat_c01	mapflag	nosave
-bat_c01	mapflag	nomemo
-bat_c01	mapflag	nodrop
-bat_c01	mapflag	noloot
-bat_c01	mapflag	noexp
-bat_c01	mapflag	nopenalty
-bat_c01	mapflag	novending
-bat_c01	mapflag	monster_noteleport
-bat_c01	mapflag	notomb
-bat_c01	mapflag	battleground	2
-
-aev_fild01	mapflag	noreturn
-aev_fild01	mapflag	noteleport
-aev_fild01	mapflag	nowarp
-aev_fild01	mapflag	nowarpto
-aev_fild01	mapflag	nosave
-aev_fild01	mapflag	nomemo
-aev_fild01	mapflag	nodrop
-aev_fild01	mapflag	noloot
-aev_fild01	mapflag	noexp
-aev_fild01	mapflag	nopenalty
-aev_fild01	mapflag	novending
-aev_fild01	mapflag	monster_noteleport
-aev_fild01	mapflag	notomb
-aev_fild01	mapflag	battleground	2
