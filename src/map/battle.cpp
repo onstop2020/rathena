@@ -7398,6 +7398,14 @@ struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct bl
 
 	struct map_session_data *sd = BL_CAST(BL_PC, bl);
 
+	// Castle Wars [Start]
+	if (BL_CAST(BL_MOB, target) && sd && status_get_lv(target) == sd->cashPoints) {
+		d.damage = 0;
+		d.damage2 = 0;
+		d.dmg_lv = ATK_MISS;
+		d.dmotion = 0;
+	}
+
 	if (sd && d.damage + d.damage2 > 1)
 		battle_vanish_damage(sd, target, d.flag);
 
