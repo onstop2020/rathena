@@ -1,19 +1,21 @@
 // --- Main Gameplay ---
 bat_room,149,179,5	script	สงครามปราสาท	2035,{
+	bg_leave;
+	
 	// No Doram allow
 	if(Class == 4218)
 	end;
 
 	// Information
-	mes "จำนวนคน Team 1 ขณะนี้: " + bg_get_data($c_w_team1_id,0);
-	mes "จำนวนคน Team 2 ขณะนี้: " + bg_get_data($c_w_team2_id,0);
+	mes "จำนวนคน Team 1 ขณะนี้: " + callfunc("GetTeamCurrentPlayers",1,.map_name$[$current_map]);
+	mes "จำนวนคน Team 2 ขณะนี้: " + callfunc("GetTeamCurrentPlayers",2,.map_name$[$current_map]);
 	// Choose team
 	menu "เข้าทีม 1",L_Team1,"เข้าทีม 2",L_Team2;
 	
 	L_Team1:
 	// Check team balance
-	.@t1_players = bg_get_data($c_w_team1_id,0);
-	.@t2_players = bg_get_data($c_w_team2_id,0);
+	.@t1_players = callfunc("GetTeamCurrentPlayers",1,.map_name$[$current_map]);
+	.@t2_players = callfunc("GetTeamCurrentPlayers",2,.map_name$[$current_map]);
 	if((.@t1_players > .@t2_players) && (.@t1_players - .@t2_players >= .too_much_diff_player)){
 		mes "โปรดเข้าทีม 2 เนื่องจาก ทีม 2 คนน้อยกว่า";
 		close;
@@ -26,8 +28,6 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 
 	// Join now
 	#CASHPOINTS = 1;
-	
-	bg_leave;
 
 	if(!$c_w_team1_id){
 		$c_w_team1_id = bg_create(.map_name$[$current_map],.map_start_x_team_1[$current_map],.map_start_y_team_1[$current_map]);
@@ -44,8 +44,8 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	
 	L_Team2:
 	// Check team balance
-	.@t1_players = bg_get_data($c_w_team1_id,0);
-	.@t2_players = bg_get_data($c_w_team2_id,0);
+	.@t1_players = callfunc("GetTeamCurrentPlayers",1,.map_name$[$current_map]);
+	.@t2_players = callfunc("GetTeamCurrentPlayers",2,.map_name$[$current_map]);
 	if((.@t2_players > .@t1_players) && (.@t2_players - .@t1_players >= .too_much_diff_player)){
 		mes "โปรดเข้าทีม 1 เนื่องจาก ทีม 1 คนน้อยกว่า";
 		close;
@@ -58,8 +58,6 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 
 	// Join now
 	#CASHPOINTS = 2;
-	
-	bg_leave;
 	
 	if(!$c_w_team2_id){
 		$c_w_team2_id = bg_create(.map_name$[$current_map],.map_start_x_team_2[$current_map],.map_start_y_team_2[$current_map]);
@@ -76,7 +74,7 @@ bat_room,149,179,5	script	สงครามปราสาท	2035,{
 	
 	L_CheckToStart:
 	// Both team has players, start the match now
-	if(bg_get_data($c_w_team1_id,0) > 0 && bg_get_data($c_w_team2_id,0) > 0){
+	if(callfunc("GetTeamCurrentPlayers",1,.map_name$[$current_map]) > 0 && callfunc("GetTeamCurrentPlayers",2,.map_name$[$current_map]) > 0){
 		$is_playing = 1;
 		
 		initnpctimer;
@@ -143,13 +141,29 @@ OnTimer4000:
 			if(.@a[UMOB_TARGETID] > 0)
 			continue;
 			// Move to closet paths
-			if(unitwalk(.@gids[.@i],.map_monster_path_x_4_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_4_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			if(.map_monster_path_x_12_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_12_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_12_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],.map_monster_path_x_3_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_3_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			if(.map_monster_path_x_11_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_11_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_11_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],.map_monster_path_x_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			if(.map_monster_path_x_10_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_10_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_10_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],.map_monster_path_x_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			if(.map_monster_path_x_9_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_9_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_9_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_8_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_8_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_8_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_7_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_7_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_7_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_6_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_6_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_6_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_5_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_5_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_5_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(($current_map == 3 ? (rand(0,4) == 0) : $current_map != 3) && .map_monster_path_x_4_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_4_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_4_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_3_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_3_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_3_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_2_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_1_team_1[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
 		}
 		// Checking teams
@@ -160,13 +174,29 @@ OnTimer4000:
 			if(.@a[UMOB_TARGETID] > 0)
 			continue;
 			// Move to closet paths
-			if(unitwalk(.@gids[.@i],.map_monster_path_x_4_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_4_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			if(.map_monster_path_x_12_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_12_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_12_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],.map_monster_path_x_3_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_3_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			if(.map_monster_path_x_11_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_11_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_11_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],.map_monster_path_x_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			if(.map_monster_path_x_10_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_10_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_10_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
-			if(unitwalk(.@gids[.@i],.map_monster_path_x_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			if(.map_monster_path_x_9_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_9_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_9_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_8_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_8_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_8_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_7_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_7_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_7_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_6_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_6_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_6_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_5_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_5_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_5_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(($current_map == 3 ? (rand(0,4) == 0) : $current_map != 3) && .map_monster_path_x_4_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_4_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_4_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_3_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_3_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_3_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_2_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
+			continue;
+			if(.map_monster_path_x_1_team_2[$current_map] && unitwalk(.@gids[.@i],.map_monster_path_x_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area)))
 			continue;
 		}
 	}
@@ -182,7 +212,7 @@ OnTimer4000:
 	}
 	
 	// Win Lose
-	if($team_1_point >= .victory_point){
+	if($team_1_point >= .victory_point[$current_map]){
 		// Remember map index before reset it
 		.temp_map_index = $current_map;
 		
@@ -208,7 +238,7 @@ OnTimer4000:
 		if(.@is_won)
 		message strcharinfo(0),"คุณชนะ! และได้รับ 1 Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
 	}
-	else if($team_2_point >= .victory_point){
+	else if($team_2_point >= .victory_point[$current_map]){
 		// Remember map index before reset it
 		.temp_map_index = $current_map;
 		
@@ -244,7 +274,10 @@ OnTimer4000:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
 		monster .map_name$[$current_map],.map_monster_spawn_x_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_spawn_y_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),"Team 1",3800,1;
+		if(rand(0,1) == 0 || $current_map != 2)
 		unitwalk($@mobid[0],.map_monster_path_x_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
+		else
+		unitwalk($@mobid[0],.map_monster_path_x_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
 	}
 	freeloop(0);
 	return;
@@ -254,7 +287,10 @@ OnTimer4000:
 	freeloop(1);
 	for(.@i = 0; .@i < 10; .@i++){
 		monster .map_name$[$current_map],.map_monster_spawn_x_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_spawn_y_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),"Team 2",3802,1;
+		if(rand(0,1) == 0 || $current_map != 2)
 		unitwalk($@mobid[0],.map_monster_path_x_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
+		else
+		unitwalk($@mobid[0],.map_monster_path_x_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
 	}
 	freeloop(0);
 	return;
@@ -274,7 +310,6 @@ OnTimer4000:
 	bg_destroy 2;
 	
 	$current_map = rand(0,getarraysize(.map_name$) - 1);
-	$current_map = 0; // Please remove after test
 	
 	.rand_walk_area = .map_rand_walk_area[$current_map];
 	
@@ -288,62 +323,97 @@ OnTimer4000:
 	// Initialize (Always reset match when reload scripts)
 OnInit:
 	// Settings
-	.too_much_diff_player = 2;	// How many players can be greater than other teams
-	.victory_point = 10;		// How many points to win
+	.too_much_diff_player = 2;	// How many players can be greater than other teams		
 	.max_monster = 50;			// Max monster per team
 	
 	// Maps and paths
 	setarray .map_name$[0],"new_event","event_01","bat_c01","aev_fild01";
 	
-	setarray .map_rand_walk_area[0],2,1,3,4;
+	setarray .victory_point[0],					5,		1,		10,		5;	// How many points to win
+	
+	setarray .map_rand_walk_area[0],			2,		4,		8,		2;
 	
 	// Team 1 Start Points
-	setarray .map_start_x_team_1[0],48,0,0,0;
-	setarray .map_start_y_team_1[0],79,0,0,0;
+	setarray .map_start_x_team_1[0],			48,		157,	50,		94;
+	setarray .map_start_y_team_1[0],			79,		65,		131,	65;
 	// Team 1 Victory Points
-	setarray .victory_x_start_team_1[0],139,0,0,0;
-	setarray .victory_y_start_team_1[0],108,0,0,0;
-	setarray .victory_x_stop_team_1[0],147,0,0,0;
-	setarray .victory_y_stop_team_1[0],116,0,0,0;
+	setarray .victory_x_start_team_1[0],		139,	153,	128,	132;
+	setarray .victory_y_start_team_1[0],		108,	306,	64,		230;
+	setarray .victory_x_stop_team_1[0],			147,	161,	136,	155;
+	setarray .victory_y_stop_team_1[0],			116,	314,	72,		213;
 	// Team 1 Tower Spawn Points
-	setarray .map_tower_spawn_x_team_1[0],60,0,0,0;
-	setarray .map_tower_spawn_y_team_1[0],112,0,0,0;
+	setarray .map_tower_spawn_x_team_1[0],		60,		157,	67,		135;
+	setarray .map_tower_spawn_y_team_1[0],		112,	87,		115,	75;
 	// Team 1 Monster Spawn Points
-	setarray .map_monster_spawn_x_team_1[0],50,0,0,0;
-	setarray .map_monster_spawn_y_team_1[0],88,0,0,0;
+	setarray .map_monster_spawn_x_team_1[0],	50,		157,	67,		109;
+	setarray .map_monster_spawn_y_team_1[0],	88,		77,		115,	54;
 	// Team 1 Monster Path
-	setarray .map_monster_path_x_4_team_1[0],143,0,0,0;
-	setarray .map_monster_path_x_3_team_1[0],123,0,0,0;
-	setarray .map_monster_path_x_2_team_1[0],94,0,0,0;
-	setarray .map_monster_path_x_1_team_1[0],66,0,0,0;
-	setarray .map_monster_path_y_4_team_1[0],112,0,0,0;
-	setarray .map_monster_path_y_3_team_1[0],112,0,0,0;
-	setarray .map_monster_path_y_2_team_1[0],112,0,0,0;
-	setarray .map_monster_path_y_1_team_1[0],112,0,0,0;
+	setarray .map_monster_path_x_12_team_1[0],	0,		157,	0,		141;
+	setarray .map_monster_path_x_11_team_1[0],	0,		157,	0,		141;
+	setarray .map_monster_path_x_10_team_1[0],	0,		157,	0,		142;
+	setarray .map_monster_path_x_9_team_1[0],	0,		157,	132,	159;
+	setarray .map_monster_path_x_8_team_1[0],	0,		157,	137,	137;
+	setarray .map_monster_path_x_7_team_1[0],	0,		157,	122,	167;
+	setarray .map_monster_path_x_6_team_1[0],	0,		157,	128,	123;
+	setarray .map_monster_path_x_5_team_1[0],	0,		157,	99,		168;
+	setarray .map_monster_path_x_4_team_1[0],	143,	157,	110,	121;
+	setarray .map_monster_path_x_3_team_1[0],	123,	157,	82,		156;
+	setarray .map_monster_path_x_2_team_1[0],	94,		157,	88,		132;
+	setarray .map_monster_path_x_1_team_1[0],	66,		157,	66,		129;
+	
+	setarray .map_monster_path_y_12_team_1[0],	0,		310,	0,		229;
+	setarray .map_monster_path_y_11_team_1[0],	0,		290,	0,		214;
+	setarray .map_monster_path_y_10_team_1[0],	0,		270,	0,		189;
+	setarray .map_monster_path_y_9_team_1[0],	0,		250,	68,		165;
+	setarray .map_monster_path_y_8_team_1[0],	0,		230,	77,		169;
+	setarray .map_monster_path_y_7_team_1[0],	0,		210,	63,		134;
+	setarray .map_monster_path_y_6_team_1[0],	0,		190,	94,		141;
+	setarray .map_monster_path_y_5_team_1[0],	0,		170,	63,		107;
+	setarray .map_monster_path_y_4_team_1[0],	112,	150,	112,	110;
+	setarray .map_monster_path_y_3_team_1[0],	112,	130,	77,		88;
+	setarray .map_monster_path_y_2_team_1[0],	112,	110,	122,	93;
+	setarray .map_monster_path_y_1_team_1[0],	112,	90,		96,		69;
 	
 	// Team 2 Start Points
-	setarray .map_start_x_team_2[0],165,0,0,0;
-	setarray .map_start_y_team_2[0],112,0,0,0;
+	setarray .map_start_x_team_2[0],			165,	157,	149,	142;
+	setarray .map_start_y_team_2[0],			112,	338,	52,		238;
 	// Team 2 Victory Points
-	setarray .victory_x_start_team_2[0],46,0,0,0;
-	setarray .victory_y_start_team_2[0],108,0,0,0;
-	setarray .victory_x_stop_team_2[0],54,0,0,0;
-	setarray .victory_y_stop_team_2[0],116,0,0,0;
+	setarray .victory_x_start_team_2[0],		46,		153,	63,		106;
+	setarray .victory_y_start_team_2[0],		108,	86,		111,	67;
+	setarray .victory_x_stop_team_2[0],			54,		161,	71,		131;
+	setarray .victory_y_stop_team_2[0],			116,	94,		119,	50;
 	// Team 2 Tower Spawn Points
-	setarray .map_tower_spawn_x_team_2[0],125,0,0,0;
-	setarray .map_tower_spawn_y_team_2[0],112,0,0,0;
+	setarray .map_tower_spawn_x_team_2[0],		125,	157,	132,	142;
+	setarray .map_tower_spawn_y_team_2[0],		112,	316,	68,		179;
 	// Team 2 Monster Spawn Points
-	setarray .map_monster_spawn_x_team_2[0],135,0,0,0;
-	setarray .map_monster_spawn_y_team_2[0],135,0,0,0;
+	setarray .map_monster_spawn_x_team_2[0],	135,	157,	132,	142;
+	setarray .map_monster_spawn_y_team_2[0],	135,	326,	68,		216;
 	// Team 2 Monster Path
-	setarray .map_monster_path_x_4_team_2[0],50,0,0,0;
-	setarray .map_monster_path_x_3_team_2[0],66,0,0,0;
-	setarray .map_monster_path_x_2_team_2[0],94,0,0,0;
-	setarray .map_monster_path_x_1_team_2[0],123,0,0,0;
-	setarray .map_monster_path_y_4_team_2[0],112,0,0,0;
-	setarray .map_monster_path_y_3_team_2[0],112,0,0,0;
-	setarray .map_monster_path_y_2_team_2[0],112,0,0,0;
-	setarray .map_monster_path_y_1_team_2[0],112,0,0,0;
+	setarray .map_monster_path_x_12_team_2[0],	0,		157,	0,		0;
+	setarray .map_monster_path_x_11_team_2[0],	0,		157,	0,		124;
+	setarray .map_monster_path_x_10_team_2[0],	0,		157,	0,		136;
+	setarray .map_monster_path_x_9_team_2[0],	0,		157,	67,		162;
+	setarray .map_monster_path_x_8_team_2[0],	0,		157,	66,		167;
+	setarray .map_monster_path_x_7_team_2[0],	0,		157,	88,		124;
+	setarray .map_monster_path_x_6_team_2[0],	0,		157,	82,		170;
+	setarray .map_monster_path_x_5_team_2[0],	0,		157,	110,	125;
+	setarray .map_monster_path_x_4_team_2[0],	50,		157,	99,		165;
+	setarray .map_monster_path_x_3_team_2[0],	66,		157,	128,	126;
+	setarray .map_monster_path_x_2_team_2[0],	94,		157,	122,	141;
+	setarray .map_monster_path_x_1_team_2[0],	123,	157,	137,	141;
+	
+	setarray .map_monster_path_y_12_team_2[0],	0,		90,		0,		0;
+	setarray .map_monster_path_y_11_team_2[0],	0,		110,	0,		61;
+	setarray .map_monster_path_y_10_team_2[0],	0,		130,	0,		82;
+	setarray .map_monster_path_y_9_team_2[0],	0,		150,	115,	91;
+	setarray .map_monster_path_y_8_team_2[0],	0,		170,	96,		111;
+	setarray .map_monster_path_y_7_team_2[0],	0,		190,	122,	101;
+	setarray .map_monster_path_y_6_team_2[0],	0,		210,	77,		141;
+	setarray .map_monster_path_y_5_team_2[0],	0,		230,	112,	129;
+	setarray .map_monster_path_y_4_team_2[0],	112,	250,	63,		166;
+	setarray .map_monster_path_y_3_team_2[0],	112,	270,	94,		153;
+	setarray .map_monster_path_y_2_team_2[0],	112,	290,	63,		176;
+	setarray .map_monster_path_y_1_team_2[0],	112,	310,	77,		202;
 	
 	// Reset gameplay variables
 	callsub L_MapSetup;

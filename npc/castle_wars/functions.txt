@@ -1,0 +1,3 @@
+function	script	GetTeamCurrentPlayers	{
+	return bg_getareausers(getarg(0) == 1 ? $c_w_team1_id : $c_w_team2_id,getarg(1),0,0,500,500);
+}
