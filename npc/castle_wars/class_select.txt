@@ -1,4 +1,4 @@
-bat_room,154,158,3	script	เลือกอาชีพ	10387,{
+bat_room,148,159,5	script	เลือกอาชีพ	10387,{
 	menu "นักดาบ",L_Swordsman,
 	"นักเวทย์",L_Magician,
 	"นักธนู",L_Archer,

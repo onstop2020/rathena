@@ -1,0 +1,36 @@
+bat_room,159,159,3	script	Perks	10364,{
+	mes "ขณะนี้คุณมี " + pp + " Perk Points";
+	next;
+	menu "สวมใส่ Perk ช่องที่ 1",L_Slot1,"สวมใส่ Perk ช่องที่ 2",L_Slot2,"สวมใส่ Perk ช่องที่ 3",L_Slot3,"สวมใส่ Perk ช่องที่ 4",L_Slot4;
+	
+	L_Slot1:
+	.@slot = 1;
+	goto L_Pick;
+
+	L_Slot2:
+	.@slot = 2;
+	goto L_Pick;
+	
+	L_Slot3:
+	.@slot = 3;
+	goto L_Pick;
+	
+	L_Slot4:
+	.@slot = 4;
+	goto L_Pick;
+	
+	L_Pick:
+	mes "รายละเอียด Perk คลิก";
+	mes "---";
+	mes "โปรดระบุเลข Perk ที่ต้องการสวมใส่";
+	mes "ใส่ 0 เพื่อยกเลิก";
+	mes "---";
+	mes "ขณะนี้คุณมี " + pp + " Perk Points";
+	next;
+	input .@i;
+	if(.@i <= 0){
+		mes "ยกเลิกเรียบร้อยแล้ว";
+		close;
+	}
+	close;
+}
