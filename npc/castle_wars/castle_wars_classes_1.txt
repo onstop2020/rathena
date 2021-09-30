@@ -1,5 +1,7 @@
 // --- Main Gameplay ---
-bat_room,149,179,5	script	สงครามปราสาท	2035,{
+bat_room,153,171,5	script	สงครามปราสาท	2035,{
+	percentheal 100,100;
+	
 	bg_leave;
 	
 	// No Doram allow

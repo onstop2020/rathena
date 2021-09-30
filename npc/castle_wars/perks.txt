@@ -1,36 +1,122 @@
 bat_room,159,159,3	script	Perks	10364,{
 	mes "ขณะนี้คุณมี " + pp + " Perk Points";
+	if(perk_equip[0] > 0)
+	.@menu_1$ = .perk_names$[perk_equip[0] - 1];
+	else
+	.@menu_1$ = "สวมใส่ Perk ช่องที่ 1";
+	if(perk_equip[1] > 0)
+	.@menu_2$ = .perk_names$[perk_equip[1] - 1];
+	else
+	.@menu_2$ = "สวมใส่ Perk ช่องที่ 2";
+	if(perk_equip[2] > 0)
+	.@menu_3$ = .perk_names$[perk_equip[2] - 1];
+	else
+	.@menu_3$ = "สวมใส่ Perk ช่องที่ 3";
+	if(perk_equip[3] > 0)
+	.@menu_4$ = .perk_names$[perk_equip[3] - 1];
+	else
+	.@menu_4$ = "สวมใส่ Perk ช่องที่ 4";
 	next;
-	menu "สวมใส่ Perk ช่องที่ 1",L_Slot1,"สวมใส่ Perk ช่องที่ 2",L_Slot2,"สวมใส่ Perk ช่องที่ 3",L_Slot3,"สวมใส่ Perk ช่องที่ 4",L_Slot4;
+	menu .@menu_1$,L_Slot1,.@menu_2$,L_Slot2,.@menu_3$,L_Slot3,.@menu_4$,L_Slot4;
 	
 	L_Slot1:
-	.@slot = 1;
+	.@slot = 0;
 	goto L_Pick;
 
 	L_Slot2:
-	.@slot = 2;
+	.@slot = 1;
 	goto L_Pick;
 	
 	L_Slot3:
-	.@slot = 3;
+	.@slot = 2;
 	goto L_Pick;
 	
 	L_Slot4:
-	.@slot = 4;
+	.@slot = 3;
 	goto L_Pick;
 	
 	L_Pick:
 	mes "รายละเอียด Perk คลิก";
 	mes "---";
 	mes "โปรดระบุเลข Perk ที่ต้องการสวมใส่";
-	mes "ใส่ 0 เพื่อยกเลิก";
+	mes "ใส่ 0 เพื่อถอด Perk หรือยกเลิก";
 	mes "---";
 	mes "ขณะนี้คุณมี " + pp + " Perk Points";
 	next;
 	input .@i;
 	if(.@i <= 0){
-		mes "ยกเลิกเรียบร้อยแล้ว";
+		// Unequip
+		perk_equip[.@slot] = 0;
+		
+		// Refresh perk bonus
+		callfunc("RefreshPerks");
+		mes "ถอด/ยกเลิก เรียบร้อยแล้ว";
 		close;
 	}
+	
+	// Check perks level
+	if(perks_lvs[.@i] > 0){
+		// Check for other perk slots
+		for(.@j = 0; .@j < 4; .@j++){
+			if(perk_equip[.@j] == .@i && .@j != .@slot){
+				mes .perk_names$[.@i - 1] + " ถูกใส่อยู่ในช่องที่ " + (.@j + 1);
+				close;
+			}
+		}
+		
+		// Equip it now
+		perk_equip[.@slot] = .@i;
+		
+		// Refresh perk bonus
+		callfunc("RefreshPerks");
+		if(perks_lvs[.@i] < 3){
+			// Ask player to upgrade it
+			mes "ขณะนี้ '" + .perk_names$[.@i - 1] + "' ระดับ " + perks_lvs[.@i];
+			next;
+			menu "เพิ่มระดับ",-;
+			
+			// Not enough Perk Points
+			if(pp < .perk_prices[perks_lvs[.@i]]){
+				mes "ต้องการ Perk Points อีก " + (.perk_prices[perks_lvs[.@i]] - pp);
+				close;
+			}
+			
+			// Trade now
+			pp -= .perk_prices[perks_lvs[.@i]];
+			perks_lvs[.@i]++;
+			mes "ระดับ '" + .perk_names$[.@i - 1] + "' เพิ่มขึ้น 1 ระดับ!!";
+			mes "ระดับขณะนี้ " + perks_lvs[.@i];
+			
+			// Refresh perk bonus
+			callfunc("RefreshPerks");
+			close;
+		}
+		else{
+			mes "'" + .perk_names$[.@i - 1] + "' ไม่สามารถ เพิ่มระดับ ได้อีกแล้ว";
+			close;
+		}
+	}
+
+	// Not enough Perk Points
+	if(pp < .perk_prices[0]){
+		mes "ต้องการ Perk Points อีก " + (.perk_prices[0] - pp);
+		close;
+	}
+	
+	// Equip perks and store to save
+	perk_equip[.@slot] = .@i;
+	setarray perks_lvs[.@i],1;
+	
+	// Trade now
+	pp -= .perk_prices[0];
+	mes "ซื้อและสวมใส่ '" + .perk_names$[.@i - 1] + "' เรียบร้อย!!";
+	
+	// Refresh perk bonus
+	callfunc("RefreshPerks");
 	close;
+	
+OnInit:
+	setarray .perk_prices[0],10,30,100;
+	setarray .perk_names$[0],"บึกบึน","ปราดเปรียว","ชำนาญอาวุธ","เก่งทุกด้าน","ตั้งสติ","ฟื้นตัวเร็ว","ยอดนักหลบ","ต่อต้าน","ปัดกระสุน","แก้ขุนไสย","แพทย์สนาม","เล็งจุดตาย";
+	end;
 }

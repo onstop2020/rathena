@@ -1,3 +1,59 @@
 function	script	GetTeamCurrentPlayers	{
 	return bg_getareausers(getarg(0) == 1 ? $c_w_team1_id : $c_w_team2_id,getarg(1),0,0,500,500);
 }
+
+function	script	RefreshPerks	{
+	// Clear bonus script
+	bonus_script_clear 1;
+	// Add new if available
+	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[0]));
+	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[1]));
+	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[2]));
+	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[3]));
+	bonus_script .@sum$,86400000;
+	percentheal 100,100;
+	return;
+}
+
+// ID	ชื่อ		|	คุณสมบัติ Level 1, 2, 3
+// 1	บึกบึน		|	Max HP +100, 200, 300
+// 2	ปราดเปรียว	|	Movespeed +5, 10, 15%
+// 3	ชำนาญอาวุธ	|	ASPD +3, 6, 9
+// 4	เก่งทุกด้าน	|	All Status +1, 2, 3
+// 5	ตั้งสติ		|	ฟื้นฟู 1 SP ทุก ๆ 5, 4, 3 วินาที
+// 6	ฟื้นตัวเร็ว	|	ฟื้นฟู 10 HP ทุก ๆ 5, 4, 3 วินาที
+// 7	ยอดนักหลบ	|	Flee +5, 10, 15
+// 8	ต่อต้าน		|	โดนโจมตีระยะใกล้เบาลง 3, 6, 9%
+// 9	ปัดกระสุน	|	โดนโจมตีระยะไกลเบาลง 3, 6, 9%
+// 10	แก้ขุนไสย	|	โดนโจมตีเวทย์เบาลง 3, 6, 9%
+// 11	แพทย์สนาม	|	Skill ฟื้นฟูแรงขึ้น 10, 20, 30%
+// 12	เล็งจุดตาย	|	มีโอกาส 1, 2, 3% ที่เป้าหมายจะติดสถานะ Coma
+function	script	GetPerkBonuses	{
+	.@perk_id = getarg(0,0);
+	if(.@perk_id == 1)
+	return "bonus bMaxHP," + (100 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 2)
+	return "bonus bSpeedAddRate," + (5 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 3)
+	return "bonus bAspd," + (3 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 4)
+	return "bonus bAllStats," + (100 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 5)
+	return "bonus2 bSPRegenRate,1," + (6000 - (1000 * perks_lvs[.@perk_id])) + ";";
+	else if(.@perk_id == 6)
+	return "bonus2 bHPRegenRate,1," + (6000 - (1000 * perks_lvs[.@perk_id])) + ";";
+	else if(.@perk_id == 7)
+	return "bonus bFlee," + (5 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 8)
+	return "bonus bNearAtkDef," + (3 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 9)
+	return "bonus bLongAtkDef," + (3 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 10)
+	return "bonus bMagicAtkDef," + (3 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 11)
+	return "bonus bHealPower," + (10 * perks_lvs[.@perk_id]) + ";";
+	else if(.@perk_id == 12)
+	return "bonus2 bComaClass,Class_All," + (1 * perks_lvs[.@perk_id]) + ";";
+	else
+	return "";
+}
