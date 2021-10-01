@@ -36,7 +36,7 @@ bat_room,159,159,3	script	Perks	10364,{
 	goto L_Pick;
 	
 	L_Pick:
-	mes "รายละเอียด Perk คลิก";
+	mes "รายละเอียด Perk <URL>คลิก<INFO>https://sites.google.com/view/start-ro/cw_perks</INFO></URL>";
 	mes "---";
 	mes "โปรดระบุเลข Perk ที่ต้องการสวมใส่";
 	mes "ใส่ 0 เพื่อถอด Perk หรือยกเลิก";
