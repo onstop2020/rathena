@@ -10,6 +10,15 @@ function	script	RefreshPerks	{
 	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[1]));
 	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[2]));
 	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[3]));
+	.@max_stage = getarraysize($pp_reward);
+	while(.@max_stage >= 0){
+		if(is_rewarded[.@max_stage]){
+			.@sum$ += "bonus bAllStats," + (1 * (.@max_stage + 1)) + ";";
+			break;
+		}
+		.@max_stage--;
+	}
+	
 	bonus_script "{" + .@sum$ + "}",86400000;
 	percentheal 100,100;
 	return;

@@ -1,5 +1,20 @@
 // --- Main Gameplay ---
 bat_room,157,167,3	script	ตลุยด่าน	10279,{
+	.@max_stage = getarraysize($pp_reward);
+	while(.@max_stage >= 0){
+		if(is_rewarded[.@max_stage]){
+			.@hint = (1 * (.@max_stage + 1));
+			break;
+		}
+		.@max_stage--;
+	}
+	mes "^232EDAขณะนี้คุณมี Bonus All Status +" + .@hint + "^000000 จากการผ่านด่าน";
+	next;
+	mes "โปรดเลือกด่านที่ต้องการเล่น";
+	mes "^232EDA๐ Monster จะไม่เกิดใหม่";
+	mes "^232EDA๐ เมื่อ Boss ถูกกำจัด เกมจะจบลง และผู้เล่นทุกคนในด่าน จะได้รับรางวัล";
+	mes "^DA2323๐ หากเคยผ่านด่านนั้น ๆ ไปแล้ว รางวัลจะเหลือเพียง 1 Perk Points";
+	mes "^DA2323๐ เมื่อผู้เล่นตายครบจำนวน เกมจะจบลง";
 	percentheal 100,100;
 	bg_leave;
 	#CASHPOINTS = 0;
@@ -10,27 +25,31 @@ bat_room,157,167,3	script	ตลุยด่าน	10279,{
 
 	L_ReTalk:
 	if($is_stage_playing){
-		mes "ขณะนี้มีผู้เล่นกำลังเล่นด่าน: " + (.stage + 1);
+		mes "ขณะนี้มีผู้เล่นกำลังเล่นด่าน: " + ($stage + 1);
 		mes "ตายได้อีก " + ($stage_lives) + " ครั้ง";
 		next;
 		menu "ร่วมเล่น",-;
 		// Warp to stage
+		is_summon = 0;
 		announce strcharinfo(0) + " เข้าสู่ห้องตลุยด่าน",bc_map,0x2AF9FF;
 		warp .map_name$,24,35;
 		end;
 	}
 	else{
-		for(.@i = 0; .@i < getarraysize(.pp_reward); .@i++)
+		for(.@i = 0; .@i < getarraysize($pp_reward); .@i++)
 		.@menu$ += "ด่านที่ " + (.@i + 1) + ":";
+		next;
 		.@i = select(.@menu$);
 		if(.@i <= 0){
 			mes "ยกเลิก เรียบร้อยแล้ว";
 			close;
 		}
 		// Check is previous map is pass
-		if(.@i > 1 && !is_rewarded[.@i - 2]){
-			mes "คุณต้องผ่านด่าน " + (.@i - 1) + " เสียก่อน";
-			close;
+		if(.@i > 1){
+			if(!is_rewarded[.@i - 2]){
+				mes "คุณต้องผ่านด่าน " + (.@i - 1) + " เสียก่อน";
+				close;
+			}
 		}
 		if($is_stage_playing)
 		goto L_ReTalk;
@@ -38,10 +57,11 @@ bat_room,157,167,3	script	ตลุยด่าน	10279,{
 			$is_stage_playing = 1;
 			$stage_lives = 10;
 			// Set current stage
-			.stage = (.@i - 1);
+			$stage = (.@i - 1);
 			// Spawn stage monster
 			callsub L_SpawnMonster;
 			// Warp to stage
+			is_summon = 0;
 			announce strcharinfo(0) + " เข้าสู่ห้องตลุยด่าน",bc_map,0x2AF9FF;
 			warp .map_name$,24,35;
 			end;
@@ -53,18 +73,18 @@ bat_room,157,167,3	script	ตลุยด่าน	10279,{
 	L_SpawnMonster:
 	freeloop(1);
 	for(.@i = 0; .@i < .max_monster; .@i++){
-		monster .map_name$,0,0,"ลูกกระจ๊อก",.monster_id[.stage],1;
+		monster .map_name$,0,0,"ลูกกระจ๊อก",$monster_id[$stage],1;
 		setunitdata $@mobid[0],UMOB_LEVEL,99;
 	}
 	for(.@i = 0; .@i < .max_boss_monster; .@i++){
-		monster .map_name$,250,99,"ลูกพี่",.boss_monster_id[.stage],1,strnpcinfo(0) + "::OnBossDead";
+		monster .map_name$,250,99,"Boss",$boss_monster_id[$stage],1,strnpcinfo(0) + "::OnBossDead";
 		setunitdata $@mobid[0],UMOB_LEVEL,99;
 	}
 	freeloop(0);
 	return;
 
 OnBossDead:
-	announce "ลูกพี่ ตายแล้ว.. ผู้เล่นชนะ!!",bc_map,0xFCFF2A;
+	announce "Boss ถูกกำจัดแล้ว.. ผู้เล่นชนะ!!",bc_map,0xFCFF2A;
 	
 	killmonsterall .map_name$;
 	
@@ -73,11 +93,13 @@ OnBossDead:
 	
 	// Check already won and add perk points
 	.@is_rewarded = 0;
-	if(!is_rewarded[.stage]){
-		setarray is_rewarded[.stage],1;
-		pp += .pp_reward[.stage];
+	if(!is_rewarded[$stage]){
+		setarray is_rewarded[$stage],1;
+		pp += $pp_reward[$stage];
 		.@is_rewarded = 1;
 	}
+	else
+	pp++;
 	
 	// Warp them back to waiting room
 	warp "bat_room",154,149;
@@ -86,25 +108,61 @@ OnBossDead:
 	
 	// Notify current Perk Points
 	if(.@is_rewarded)
-	message strcharinfo(0),"คุณชนะ! และได้รับ " + .pp_reward[.stage] + " Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
+	message strcharinfo(0),"คุณชนะ! และได้รับ " + $pp_reward[$stage] + " Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
 	else
-	message strcharinfo(0),"คุณชนะ! แต่คุณได้รับรางวัลภายในด่านนี้ไปแล้ว";
+	message strcharinfo(0),"คุณชนะ! และได้รับ 1 Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
+
+	callfunc("RefreshPerks");
 	end;
 	
 	// Initialize (Always reset stage when reload scripts)
 OnInit:
 	$is_stage_playing = 0;
-	.stage = 0;
+	$stage = 0;
 	
 	// Settings
 	.max_monster = 100;				// Max monster per map
 	.max_boss_monster = 1;			// Max boss per map
-	setarray .monster_id[0],1002,1011,1004;
-	setarray .boss_monster_id[0],1090,2642,1059;
-	setarray .pp_reward[0],10,15,20;
+	setarray $monster_id[0],1002,1011,1004;
+	setarray $boss_monster_id[0],1090,2642,1059;
+	setarray $pp_reward[0],10,15,20;
 	
 	// Maps
 	.map_name$ = "anexus";
 	
+	end;
+}
+
+// --- Helper ---
+anexus,29,40,5	script	Monster รับจ้าง	10303,{
+	if(is_summon){
+		message strcharinfo(0),"คุณได้จ้าง Monster ไปแล้ว";
+		end;
+	}
+	mes "คุณต้องการจ้าง Monster ด้วย \n" + .price + " Perk Points หรือไม่?";
+	mes "โดยคุณจะได้ Monster " + .amount + " ตัว จากด่านก่อนหน้านี้มาช่วยต่อสู้";
+	mes "---";
+	mes "ขณะนี้คุณมี " + pp + " Perk Points";
+	next;
+	menu "จ่าย",-;
+	if(pp >= .price){
+		if($stage > 0){
+			pp -= .price;
+			for(.@i = 0; .@i < .amount; .@i++)
+			summon "--ja--",$monster_id[$stage - 1],86400;
+			is_summon = 1;
+			close;
+		}
+		else{
+			mes "ไม่สามารถจ้าง Monster ในด่าน 1 ได้";
+			close;
+		}
+	}
+	mes "ต้องการ Perk Points อีก " + (.price - pp);
+	close;
+	
+OnInit:
+	.price = 1;
+	.amount = 5;
 	end;
 }

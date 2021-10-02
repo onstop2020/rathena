@@ -1580,9 +1580,9 @@ Body:
     AegisName: MISTRESS
     Name: Mistress
     Level: 78
-    Hp: 25000
-    Attack: 985
-    Attack2: 1967
+    Hp: 15000
+    Attack: 60
+    Attack2: 1
     Defense: 287
     MagicDefense: 192
     Str: 76
@@ -2358,7 +2358,7 @@ Body:
     AegisName: MASTERING
     Name: Mastering
     Level: 42
-    Hp: 15000
+    Hp: 5000
     Attack: 80
     Attack2: 40
     Defense: 48
@@ -39459,7 +39459,7 @@ Body:
     AegisName: C2_STEEL_CHONCHON
     Name: Solid Steel Chonchon
     Level: 48
-    Hp: 20000
+    Hp: 10000
     Attack: 92
     Attack2: 35
     Defense: 57

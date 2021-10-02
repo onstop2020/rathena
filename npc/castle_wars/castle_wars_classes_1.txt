@@ -9,8 +9,8 @@ bat_room,150,167,5	script	สงครามปราสาท	10382,{
 	end;
 
 	// Information
-	mes "จำนวนคน Team 1 ขณะนี้: " + callfunc("GetTeamCurrentPlayers",1,.map_name$[$current_map]);
-	mes "จำนวนคน Team 2 ขณะนี้: " + callfunc("GetTeamCurrentPlayers",2,.map_name$[$current_map]);
+	mes "^DA2323จำนวนคน Team 1 ขณะนี้: " + callfunc("GetTeamCurrentPlayers",1,.map_name$[$current_map]);
+	mes "^232EDAจำนวนคน Team 2 ขณะนี้: " + callfunc("GetTeamCurrentPlayers",2,.map_name$[$current_map]);
 	// Choose team
 	menu "เข้าทีม 1",L_Team1,"เข้าทีม 2",L_Team2;
 	

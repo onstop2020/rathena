@@ -71,3 +71,17 @@ aev_fild01	mapflag	novending
 aev_fild01	mapflag	monster_noteleport
 aev_fild01	mapflag	notomb
 aev_fild01	mapflag	battleground	2
+
+anexus	mapflag	noreturn
+anexus	mapflag	noteleport
+anexus	mapflag	nowarp
+anexus	mapflag	nowarpto
+anexus	mapflag	nosave
+anexus	mapflag	nomemo
+anexus	mapflag	nodrop
+anexus	mapflag	noloot
+anexus	mapflag	noexp
+anexus	mapflag	nopenalty
+anexus	mapflag	novending
+anexus	mapflag	monster_noteleport
+anexus	mapflag	notomb
