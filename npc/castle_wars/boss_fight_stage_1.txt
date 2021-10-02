@@ -1,0 +1,30 @@
+// --- Main Gameplay ---
+bat_room,154,164,5	script	µ≈ÿ¬¥Ë“π 1	2035,{
+	percentheal 100,100;
+	bg_leave;
+	#CASHPOINTS = 0;
+	
+	// No Doram allow
+	if(Class == 4218)
+	end;
+
+// @summon 3800 86400
+
+OnBossDead:
+	end;
+
+OnPlayerDead:
+	end;
+
+OnInit:
+	// Settings
+	.max_monster = 50;			// Max monster per map
+	.max_boss_monster = 1;			// Max boss per map
+	
+	// Maps
+	.map_name$ = "new_event";
+	
+	waitingroom "µ≈ÿ¬¥Ë“π 1",0;
+	
+	end;
+}

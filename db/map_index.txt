@@ -14,3 +14,8 @@ new_event
 event_01
 bat_c01
 aev_fild01
+hallow01
+anexus
+prontera
+soularena
+veil
