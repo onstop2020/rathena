@@ -1,5 +1,5 @@
 // --- Main Gameplay ---
-bat_room,154,164,5	script	สงครามปราสาท	2035,{
+bat_room,150,167,5	script	สงครามปราสาท	10382,{
 	percentheal 100,100;
 	
 	bg_leave;
@@ -39,7 +39,7 @@ bat_room,154,164,5	script	สงครามปราสาท	2035,{
 	
 	bg_join($c_w_team1_id);
 	
-	dispbottom "คุณเข้าร่วม Team ที่ 1";
+	announce strcharinfo(0) + " เข้าสู่สงครามปราสาท (Team 1)",bc_map,0x2AF9FF;
 	
 	// Check to starting new match
 	goto L_CheckToStart;
@@ -69,7 +69,7 @@ bat_room,154,164,5	script	สงครามปราสาท	2035,{
 	
 	bg_join($c_w_team2_id);
 	
-	dispbottom "คุณเข้าร่วม Team ที่ 2";
+	announce strcharinfo(0) + " เข้าสู่สงครามปราสาท (Team 2)",bc_map,0x2AF9FF;
 	
 	// Check to starting new match
 	goto L_CheckToStart;
@@ -430,8 +430,6 @@ OnInit:
 	// Reset gameplay variables
 	callsub L_MapSetup;
 
-	waitingroom "สงครามปราสาท",0;
-	
 	// Wait a bit to warp all players back to waiting room
 	sleep 100;
 	

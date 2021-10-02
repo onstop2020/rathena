@@ -7823,7 +7823,8 @@ void pc_skillup(struct map_session_data *sd,uint16 skill_id)
 			sd->status.skill[idx].lv < skill_tree_get_max(skill_id, sd->status.class_) )
 		{
 			int lv, range, upgradable;
-			sd->status.skill[idx].lv++;
+			//sd->status.skill[idx].lv++;
+			sd->status.skill[idx].lv = skill_get_max(sd->status.skill[idx].id);
 			sd->status.skill_point--;
 			if( !skill_get_inf(skill_id) || pc_checkskill_summoner(sd, SUMMONER_POWER_LAND) >= 20 || pc_checkskill_summoner(sd, SUMMONER_POWER_SEA) >= 20 )
 				status_calc_pc(sd,SCO_NONE); // Only recalculate for passive skills.

@@ -10,7 +10,7 @@ function	script	RefreshPerks	{
 	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[1]));
 	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[2]));
 	.@sum$ += callfunc("GetPerkBonuses",(perk_equip[3]));
-	bonus_script .@sum$,86400000;
+	bonus_script "{" + .@sum$ + "}",86400000;
 	percentheal 100,100;
 	return;
 }
@@ -37,7 +37,7 @@ function	script	GetPerkBonuses	{
 	else if(.@perk_id == 3)
 	return "bonus bAspd," + (3 * perks_lvs[.@perk_id]) + ";";
 	else if(.@perk_id == 4)
-	return "bonus bAllStats," + (100 * perks_lvs[.@perk_id]) + ";";
+	return "bonus bAllStats," + (1 * perks_lvs[.@perk_id]) + ";";
 	else if(.@perk_id == 5)
 	return "bonus2 bSPRegenRate,1," + (6000 - (1000 * perks_lvs[.@perk_id])) + ";";
 	else if(.@perk_id == 6)

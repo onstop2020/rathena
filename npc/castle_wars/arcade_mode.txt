@@ -1,0 +1,110 @@
+// --- Main Gameplay ---
+bat_room,157,167,3	script	ตลุยด่าน	10279,{
+	percentheal 100,100;
+	bg_leave;
+	#CASHPOINTS = 0;
+	
+	// No Doram allow
+	if(Class == 4218)
+	end;
+
+	L_ReTalk:
+	if($is_stage_playing){
+		mes "ขณะนี้มีผู้เล่นกำลังเล่นด่าน: " + (.stage + 1);
+		mes "ตายได้อีก " + ($stage_lives) + " ครั้ง";
+		next;
+		menu "ร่วมเล่น",-;
+		// Warp to stage
+		announce strcharinfo(0) + " เข้าสู่ห้องตลุยด่าน",bc_map,0x2AF9FF;
+		warp .map_name$,24,35;
+		end;
+	}
+	else{
+		for(.@i = 0; .@i < getarraysize(.pp_reward); .@i++)
+		.@menu$ += "ด่านที่ " + (.@i + 1) + ":";
+		.@i = select(.@menu$);
+		if(.@i <= 0){
+			mes "ยกเลิก เรียบร้อยแล้ว";
+			close;
+		}
+		// Check is previous map is pass
+		if(.@i > 1 && !is_rewarded[.@i - 2]){
+			mes "คุณต้องผ่านด่าน " + (.@i - 1) + " เสียก่อน";
+			close;
+		}
+		if($is_stage_playing)
+		goto L_ReTalk;
+		else{
+			$is_stage_playing = 1;
+			$stage_lives = 10;
+			// Set current stage
+			.stage = (.@i - 1);
+			// Spawn stage monster
+			callsub L_SpawnMonster;
+			// Warp to stage
+			announce strcharinfo(0) + " เข้าสู่ห้องตลุยด่าน",bc_map,0x2AF9FF;
+			warp .map_name$,24,35;
+			end;
+		}
+	}
+	// @summon 3800 86400
+
+	// Respawn monster
+	L_SpawnMonster:
+	freeloop(1);
+	for(.@i = 0; .@i < .max_monster; .@i++){
+		monster .map_name$,0,0,"ลูกกระจ๊อก",.monster_id[.stage],1;
+		setunitdata $@mobid[0],UMOB_LEVEL,99;
+	}
+	for(.@i = 0; .@i < .max_boss_monster; .@i++){
+		monster .map_name$,250,99,"ลูกพี่",.boss_monster_id[.stage],1,strnpcinfo(0) + "::OnBossDead";
+		setunitdata $@mobid[0],UMOB_LEVEL,99;
+	}
+	freeloop(0);
+	return;
+
+OnBossDead:
+	announce "ลูกพี่ ตายแล้ว.. ผู้เล่นชนะ!!",bc_map,0xFCFF2A;
+	
+	killmonsterall .map_name$;
+	
+	// Add players in maps
+	addrid(5,0,.map_name$);
+	
+	// Check already won and add perk points
+	.@is_rewarded = 0;
+	if(!is_rewarded[.stage]){
+		setarray is_rewarded[.stage],1;
+		pp += .pp_reward[.stage];
+		.@is_rewarded = 1;
+	}
+	
+	// Warp them back to waiting room
+	warp "bat_room",154,149;
+	
+	sleep2 100;
+	
+	// Notify current Perk Points
+	if(.@is_rewarded)
+	message strcharinfo(0),"คุณชนะ! และได้รับ " + .pp_reward[.stage] + " Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
+	else
+	message strcharinfo(0),"คุณชนะ! แต่คุณได้รับรางวัลภายในด่านนี้ไปแล้ว";
+	end;
+	
+	// Initialize (Always reset stage when reload scripts)
+OnInit:
+	$is_stage_playing = 0;
+	.stage = 0;
+	
+	// Settings
+	.max_monster = 100;				// Max monster per map
+	.max_boss_monster = 1;			// Max boss per map
+	setarray .monster_id[0],1002,1011,1004;
+	setarray .boss_monster_id[0],1090,2642,1059;
+	setarray .pp_reward[0],10,15,20;
+	
+	// Maps
+	.map_name$ = "anexus";
+	
+	end;
+}

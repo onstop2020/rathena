@@ -90,7 +90,7 @@ Body:
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
-    Race: Demihuman
+    Race: Formless
     Element: Neutral
     ElementLevel: 1
     WalkSpeed: 400
@@ -114,7 +114,7 @@ Body:
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
-    Race: Demihuman
+    Race: Formless
     Element: Neutral
     ElementLevel: 1
     WalkSpeed: 400
@@ -129,6 +129,7 @@ Body:
       ChangeTargetMelee: true
       ChangeTargetChase: true
       TeleportBlock: true
+      Mvp: true
   - Id: 3805
     AegisName: TEAM_2_TOWER
     Name: Team 2 Tower
@@ -141,7 +142,7 @@ Body:
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
-    Race: Demihuman
+    Race: Formless
     Element: Neutral
     ElementLevel: 1
     WalkSpeed: 400
@@ -156,6 +157,7 @@ Body:
       ChangeTargetMelee: true
       ChangeTargetChase: true
       TeleportBlock: true
+      Mvp: true
   - Id: 3802
     AegisName: TEAM_2
     Name: Team 2
@@ -168,7 +170,7 @@ Body:
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
-    Race: Demihuman
+    Race: Formless
     Element: Neutral
     ElementLevel: 1
     WalkSpeed: 400
@@ -192,7 +194,7 @@ Body:
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
-    Race: Demihuman
+    Race: Formless
     Element: Neutral
     ElementLevel: 1
     WalkSpeed: 400
@@ -216,7 +218,7 @@ Body:
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
-    Race: Demihuman
+    Race: Formless
     Element: Neutral
     ElementLevel: 1
     WalkSpeed: 400

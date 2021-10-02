@@ -1,0 +1,26 @@
+-	script	DeadEvent	-1,{
+OnPCDieEvent:
+	if(strcharinfo(3) == "anexus"){
+		$stage_lives--;
+		
+		announce strcharinfo(0) + " ตาย.. สามารถตายได้อีก " + $stage_lives + " ครั้ง",bc_map,0xFF942A;
+		
+		if($stage_lives <= 0){
+			$is_stage_playing = 0;
+			
+			killmonsterall "anexus";
+			
+			// Add players in maps
+			addrid(5,0,"anexus");
+			
+			// Warp them back to waiting room
+			warp "bat_room",154,149;
+			
+			sleep2 100;
+			
+			// Notify no reward
+			message strcharinfo(0),"คุณแพ้.. สู้ ๆ คุณต้องชนะในรอบหน้าแน่ ๆ!";
+		}
+	}
+	end;
+}

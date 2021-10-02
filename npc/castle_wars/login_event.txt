@@ -1,0 +1,16 @@
+-	script	LoginEvent	-1,{
+OnPCLoginEvent:
+	if(!is_reset){
+		nude;
+		atcommand "@clearinventory";
+		jobchange 0;
+		resetlvl 1;
+		StatusPoint = 0;
+		SkillPoint = 3;
+		skill 1,9,0;
+		percentheal 100,100;
+		is_reset = 1;
+	}
+	callfunc("RefreshPerks");
+	end;
+}

@@ -1,4 +1,6 @@
 bat_room,148,159,5	script	เลือกอาชีพ	10387,{
+	message strcharinfo(0),"โปรดย่อหน้าต่าง Skill โดยกดปุ่ม (-) ตอนเพิ่ม Level Skill ไม่งั้นเพิ่ม Level Skill ไม่ได้";
+	next;
 	menu "นักดาบ",L_Swordsman,
 	"นักเวทย์",L_Magician,
 	"นักธนู",L_Archer,
@@ -53,7 +55,8 @@ bat_room,148,159,5	script	เลือกอาชีพ	10387,{
 	jobchange getarg(0,0);
 	resetlvl 1;
 	StatusPoint = 0;
-	atcommand "@skillall";
+	SkillPoint = 3;
+	skill 1,9,0;
 	percentheal 100,100;
 	.@eac = eaclass();
 	if( .@eac&EAJL_THIRD ) {
@@ -149,5 +152,7 @@ bat_room,148,159,5	script	เลือกอาชีพ	10387,{
 				getitem 13010,1; equip 13010; break;	//	Asura [2]
 		}
 	}
+	message strcharinfo(0),"โปรดย่อหน้าต่าง Skill โดยกดปุ่ม (-) ตอนเพิ่ม Level Skill ไม่งั้นเพิ่ม Level Skill ไม่ได้";
+	announce "โปรดย่อหน้าต่าง Skill โดยกดปุ่ม (-) ตอนเพิ่ม Level Skill ไม่งั้นเพิ่ม Level Skill ไม่ได้",bc_self,0x2AFF30;
 	return;
 }
