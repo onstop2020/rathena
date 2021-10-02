@@ -86,6 +86,8 @@ bat_room,157,167,3	script	ตลุยด่าน	10279,{
 OnBossDead:
 	announce "Boss ถูกกำจัดแล้ว.. ผู้เล่นชนะ!!",bc_map,0xFCFF2A;
 	
+	$is_stage_playing = 0;
+	
 	killmonsterall .map_name$;
 	
 	// Add players in maps
