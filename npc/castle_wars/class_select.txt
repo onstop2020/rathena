@@ -1,6 +1,5 @@
 bat_room,148,159,5	script	เลือกอาชีพ	10387,{
 	message strcharinfo(0),"โปรดย่อหน้าต่าง Skill โดยกดปุ่ม (-) ตอนเพิ่ม Level Skill ไม่งั้นเพิ่ม Level Skill ไม่ได้";
-	next;
 	menu "นักดาบ",L_Swordsman,
 	"นักเวทย์",L_Magician,
 	"นักธนู",L_Archer,

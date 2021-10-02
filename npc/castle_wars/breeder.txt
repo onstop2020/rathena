@@ -2,7 +2,8 @@ bat_room,146,142,5	script	เช่าของ	10416,{
 	if (ismounting()) {
 		message strcharinfo(0),"คุณต้องถอดพาหนะเก่าก่อน";
 		end;
-	} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER) && !countitem(6124)) {
+	//} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER) && !countitem(6124)) {
+	} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER)) {
 		if (!checkfalcon() && getskilllv("HT_FALCON") && !checkwug()) {
 			if(select(" ~ Falcon: ~ Warg")==1) setfalcon;
 			else getitem 6124,1; //Wolf's_Flute
