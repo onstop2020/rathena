@@ -282,6 +282,11 @@ OnTimer4000:
 		unitwalk($@mobid[0],.map_monster_path_x_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
 	}
 	freeloop(0);
+	monster .map_name$[$current_map],.map_monster_spawn_x_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_spawn_y_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),"Team 1",3801,1;
+	if(rand(0,1) == 0 || $current_map != 2)
+	unitwalk($@mobid[0],.map_monster_path_x_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
+	else
+	unitwalk($@mobid[0],.map_monster_path_x_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_1[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
 	return;
 	
 	// Respawn monster for team 2
@@ -295,6 +300,11 @@ OnTimer4000:
 		unitwalk($@mobid[0],.map_monster_path_x_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
 	}
 	freeloop(0);
+	monster .map_name$[$current_map],.map_monster_spawn_x_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_spawn_y_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),"Team 2",3803,1;
+	if(rand(0,1) == 0 || $current_map != 2)
+	unitwalk($@mobid[0],.map_monster_path_x_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_1_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
+	else
+	unitwalk($@mobid[0],.map_monster_path_x_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area),.map_monster_path_y_2_team_2[$current_map] + rand(-.rand_walk_area,.rand_walk_area));
 	return;
 	
 	L_MapSetup:
