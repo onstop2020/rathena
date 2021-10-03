@@ -1,13 +1,17 @@
 // --- Main Gameplay ---
 bat_room,157,167,3	script	ตลุยด่าน	10279,{
+	if($is_stage_playing == -1){
+		mes "โปรดรอสักครู่";
+		close;
+	}
 	.@max_stage = getarraysize($pp_reward);
+	freeloop(1);
 	while(.@max_stage >= 0){
-		if(is_rewarded[.@max_stage]){
-			.@hint = (1 * (.@max_stage + 1));
-			break;
-		}
+		if(is_rewarded[.@max_stage])
+		.@hint++;
 		.@max_stage--;
 	}
+	freeloop(0);
 	mes "^232EDAขณะนี้คุณมี Bonus All Status +" + .@hint + "^000000 จากการผ่านด่าน";
 	next;
 	mes "โปรดเลือกด่านที่ต้องการเล่น";
@@ -56,6 +60,7 @@ bat_room,157,167,3	script	ตลุยด่าน	10279,{
 		else{
 			$is_stage_playing = 1;
 			$stage_lives = 10;
+			$stage_monster_count = .max_monster;
 			// Set current stage
 			$stage = (.@i - 1);
 			// Spawn stage monster
@@ -67,13 +72,12 @@ bat_room,157,167,3	script	ตลุยด่าน	10279,{
 			end;
 		}
 	}
-	// @summon 3800 86400
-
+	
 	// Respawn monster
 	L_SpawnMonster:
 	freeloop(1);
 	for(.@i = 0; .@i < .max_monster; .@i++){
-		monster .map_name$,0,0,"ลูกกระจ๊อก",$monster_id[$stage],1;
+		monster .map_name$,0,0,"ลูกกระจ๊อก",$monster_id[$stage],1,strnpcinfo(0) + "::OnMonsterDead";
 		setunitdata $@mobid[0],UMOB_LEVEL,99;
 	}
 	for(.@i = 0; .@i < .max_boss_monster; .@i++){
@@ -83,10 +87,15 @@ bat_room,157,167,3	script	ตลุยด่าน	10279,{
 	freeloop(0);
 	return;
 
+OnMonsterDead:
+	$stage_monster_count--;
+	announce "Monster เหลือ " + $stage_monster_count + " ตัว",bc_map,0xFEFFA3;
+	end;
+
 OnBossDead:
 	announce "Boss ถูกกำจัดแล้ว.. ผู้เล่นชนะ!!",bc_map,0xFCFF2A;
 	
-	$is_stage_playing = 0;
+	$is_stage_playing = -1;
 	
 	killmonsterall .map_name$;
 	
@@ -102,12 +111,9 @@ OnBossDead:
 	}
 	else
 	pp++;
-	
-	// Warp them back to waiting room
-	warp "bat_room",154,149;
-	
-	sleep2 100;
-	
+
+	sleep2 4000;
+
 	// Notify current Perk Points
 	if(.@is_rewarded)
 	message strcharinfo(0),"คุณชนะ! และได้รับ " + $pp_reward[$stage] + " Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
@@ -115,12 +121,22 @@ OnBossDead:
 	message strcharinfo(0),"คุณชนะ! และได้รับ 1 Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
 
 	callfunc("RefreshPerks");
+	
+	sleep2 4000;
+	
+	$is_stage_playing = 0;
+	
+	// Warp them back to waiting room
+	warp "bat_room",154,149;
+	
 	end;
 	
 	// Initialize (Always reset stage when reload scripts)
 OnInit:
 	$is_stage_playing = 0;
 	$stage = 0;
+	$stage_check_point = 0;
+	disablenpc "Check Point";
 	
 	// Settings
 	.max_monster = 100;				// Max monster per map
@@ -151,7 +167,7 @@ anexus,29,40,5	script	Monster รับจ้าง	10303,{
 		if($stage > 0){
 			pp -= .price;
 			for(.@i = 0; .@i < .amount; .@i++)
-			summon "--ja--",$monster_id[$stage - 1],86400;
+			atcommand "@summon " + $monster_id[$stage - 1] + " 86400";
 			is_summon = 1;
 			close;
 		}
@@ -166,5 +182,60 @@ anexus,29,40,5	script	Monster รับจ้าง	10303,{
 OnInit:
 	.price = 1;
 	.amount = 5;
+	end;
+}
+
+// --- Check Point 1 ---
+anexus,54,185,5	script	Check Point 1	723,3,3,{
+	end;
+	
+OnTouch:
+	if($stage_check_point < 1){
+		$stage_check_point = 1;
+		announce "เปิดการใช้งาน Check Point ที่ 1 เรียบร้อย!",bc_map,0xABFFA3;
+		enablenpc "Check Point";
+		end;
+	}
+	end;
+}
+
+// --- Check Point 2 ---
+anexus,222,176,5	script	Check Point 2	723,3,3,{
+	end;
+	
+OnTouch:
+	if($stage_check_point < 2){
+		$stage_check_point = 2;
+		announce "เปิดการใช้งาน Check Point ที่ 2 เรียบร้อย!",bc_map,0xABFFA3;
+		disablenpc "Check Point 1";
+		enablenpc "Check Point";
+		end;
+	}
+	end;
+}
+
+// --- Check Point 3 ---
+anexus,246,52,5	script	Check Point 3	723,3,3,{
+	end;
+	
+OnTouch:
+	if($stage_check_point < 3){
+		$stage_check_point = 3;
+		announce "เปิดการใช้งาน Check Point ที่ 3 เรียบร้อย!",bc_map,0xABFFA3;
+		disablenpc "Check Point 1";
+		disablenpc "Check Point 2";
+		enablenpc "Check Point";
+		end;
+	}
+	end;
+}
+
+// --- Check Point Warper ---
+anexus,29,30,5	script	Check Point	723,3,3,{
+	end;
+	
+OnTouch:
+	if($stage_check_point)
+	atcommand "@tonpc Check Point " + $stage_check_point; 
 	end;
 }

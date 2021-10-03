@@ -1,5 +1,10 @@
 // --- Main Gameplay ---
 bat_room,150,167,5	script	สงครามปราสาท	10382,{
+	if($is_playing == -1){
+		mes "โปรดรอสักครู่";
+		close;
+	}
+	
 	percentheal 100,100;
 	
 	bg_leave;
@@ -221,6 +226,8 @@ OnTimer4000:
 		// Reset match
 		callsub L_MapSetup;
 
+		$is_playing = -1;
+
 		// Add players in maps
 		addrid(5,0,.map_name$[.temp_map_index]);
 		
@@ -231,14 +238,18 @@ OnTimer4000:
 			pp++;
 		}
 		
-		// Warp them back to waiting room
-		warp "bat_room",154,149;
-		
-		sleep2 100;
-		
 		// Notify current Perk Points
 		if(.@is_won)
 		message strcharinfo(0),"คุณชนะ! และได้รับ 1 Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
+		else
+		message strcharinfo(0),"คุณแพ้..";
+		
+		sleep2 4000;
+		
+		$is_playing = 0;
+		
+		// Warp them back to waiting room
+		warp "bat_room",154,149;
 	}
 	else if($team_2_point >= .victory_point[$current_map]){
 		// Remember map index before reset it
@@ -246,6 +257,8 @@ OnTimer4000:
 		
 		// Reset match
 		callsub L_MapSetup;
+		
+		$is_playing = -1;
 		
 		// Add players in maps
 		addrid(5,0,.map_name$[.temp_map_index]);
@@ -257,14 +270,18 @@ OnTimer4000:
 			pp++;
 		}
 		
-		// Warp them back to waiting room
-		warp "bat_room",154,149;
-		
-		sleep2 100;
-		
 		// Notify current Perk Points
 		if(.@is_won)
 		message strcharinfo(0),"คุณชนะ! และได้รับ 1 Perk Points | ขณะนี้คุณมี " + pp + " Perk Points";
+		else
+		message strcharinfo(0),"คุณแพ้..";
+		
+		sleep2 4000;
+		
+		$is_playing = 0;
+		
+		// Warp them back to waiting room
+		warp "bat_room",154,149;
 	}
 	
 	// Scoreboard Update
