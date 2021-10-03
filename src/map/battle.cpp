@@ -2859,6 +2859,9 @@ static bool is_attack_hitting(struct Damage* wd, struct block_list *src, struct 
 		}
 	}
 
+	if(BL_CAST(BL_MOB, target))
+		flee = 1;
+
 	hitrate += sstatus->hit - flee;
 
 	//Fogwall's hit penalty is only for normal ranged attacks.
