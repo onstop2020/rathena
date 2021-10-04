@@ -18979,7 +18979,9 @@ int skill_delunitgroup_(std::shared_ptr<s_skill_unit_group> group, const char* f
 
 	if (skillunit_group_db.erase(group->group_id) != 1)
 		ShowError("skill_delunitgroup: Group not found! (src_id: %d skill_id: %d)\n", group->src_id, group->skill_id);
+
 	util::vector_erase_if_exists(ud->skillunits, group);
+
 	if(link_group_id) {
 		std::shared_ptr<s_skill_unit_group> group_cur = skill_id2group(link_group_id);
 
@@ -19001,6 +19003,7 @@ void skill_clear_unitgroup(struct block_list *src)
 	unit_data *ud = unit_bl2ud(src);
 
 	nullpo_retv(ud);
+
 	// The after loop statement might look stupid, but this prevents iteration problems, if an entry was deleted
 	for (auto it = ud->skillunits.begin(); it != ud->skillunits.end(); it = ud->skillunits.begin()) {
 		skill_delunitgroup(*it);
