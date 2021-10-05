@@ -15,7 +15,12 @@ prontera,152,200,5	script	ห้องล่ากุญแจ	10007,{
 	mes "๐ ^EC1500เมื่อเข้าแล้วต้องรอ " + .enter_cooldown + " วินาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง^000000";
 	mes "๐ ^D10687ค่าจะเปลี่ยนทุก ๆ xx:30น.^000000";
 	next;
-	menu "เข้า",-;
+	menu "เข้า " + callfunc("F_InsertComma",.price) + "z",-;
+	if(Zeny < .price){
+		mes "ต้องการ Zeny อีก " + callfunc("F_InsertComma",.price - Zeny) + "z";
+		close;
+	}
+	Zeny -= .price;
 	key_hunt_cooldown = gettimetick(2) + .enter_cooldown;
 	warp "evt_bomb",0,0;
 	close;
@@ -59,11 +64,12 @@ OnMinute30:
 	end;
 	
 OnInit:
+	.price = 10000;
 	callsub L_RefreshRate;
 	.enter_cooldown = 30;
-	.max_reward_rate_tier1 = 30;
-	.max_reward_rate_tier2 = 15;
-	.max_reward_rate_tier3 = 3;
+	.max_reward_rate_tier1 = 10;
+	.max_reward_rate_tier2 = 5;
+	.max_reward_rate_tier3 = 2;
 	.max_monster_amount = 1000;
 	.mapName$ = "evt_bomb";
 	waitingroom "ห้องล่ากุญแจ",0;

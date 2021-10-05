@@ -67,12 +67,18 @@ prontera,163,203,5	script	Mystery Boss	459,{
 	mes "๐ มันจะสุ่ม^A15008การป้องกัน^000000 {^EC1500ตีใกล้, ตีไกล, ตีเวทย์, อื่น ๆ^000000}";
 	mes "๐ ^EC1500เมื่อเข้าแล้วต้องรอ " + .enter_cooldown + " วินาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง^000000";
 	next;
-	menu "เข้า",-;
+	menu "เข้า " + callfunc("F_InsertComma",.price) + "z",-;
+	if(Zeny < .price){
+		mes "ต้องการ Zeny อีก " + callfunc("F_InsertComma",.price - Zeny) + "z";
+		close;
+	}
+	Zeny -= .price;
 	mystery_boss_cd = gettimetick(2) + .enter_cooldown;
 	warp "x_prt",0,0;
 	close;
 	
 OnInit:
+	.price = 50000;
 	.enter_cooldown = 30;
 	waitingroom "Mystery Boss (MvP Refine)",0;
 	end;
@@ -145,7 +151,12 @@ prontera,157,213,1	script	Mystery Boss#2	10183,{
 	mes "๐ มันจะมี All Status ^EC1500400^000000";
 	mes "๐ ^EC1500เมื่อเข้าแล้วต้องรอ " + .enter_cooldown + " วินาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง^000000";
 	next;
-	menu "เข้า",-;
+	menu "เข้า " + callfunc("F_InsertComma",.price) + "z",-;
+	if(Zeny < .price){
+		mes "ต้องการ Zeny อีก " + callfunc("F_InsertComma",.price - Zeny) + "z";
+		close;
+	}
+	Zeny -= .price;
 	mystery_boss_sk_cd = gettimetick(2) + .enter_cooldown;
 	.@x_spawn = rand(61,77);
 	.@y_spawn = rand(48,59);
@@ -153,6 +164,7 @@ prontera,157,213,1	script	Mystery Boss#2	10183,{
 	close;
 	
 OnInit:
+	.price = 10000;
 	.enter_cooldown = 30;
 	waitingroom "Mystery Boss (Skill Point)",0;
 	end;
@@ -215,7 +227,12 @@ prontera,154,211,8	script	Mystery Boss#3	10416,{
 	mes "๐ โทษ ^EC1500ดีเลย์หลังร่ายนานขึ้น 100%^000000";
 	mes "๐ ^EC1500เมื่อเข้าแล้วต้องรอ " + .enter_cooldown + " วินาที จึงจะกดเข้าห้องนี้ได้อีกครั้ง^000000";
 	next;
-	menu "เข้า",-,"เอาโทษออก",L_Clean;
+	menu "เข้า " + callfunc("F_InsertComma",.price) + "z",-,"เอาโทษออก",L_Clean;
+	if(Zeny < .price){
+		mes "ต้องการ Zeny อีก " + callfunc("F_InsertComma",.price - Zeny) + "z";
+		close;
+	}
+	Zeny -= .price;
 	mystery_boss_ak_cd = gettimetick(2) + .enter_cooldown;
 	bonus_script_clear 1;
 	bonus_script "{ bonus bAllStats,-130; bonus bMaxHPrate,-300; bonus bMaxSPrate,-100; bonus bFleeRate,-100; bonus bFlee2Rate,-100; bonus2 bSubClass,Class_All,-1000; bonus bFixedCastrate,-100; bonus bVariableCastrate,-100; bonus bDelayrate,-100; }",86400;
@@ -227,6 +244,7 @@ prontera,154,211,8	script	Mystery Boss#3	10416,{
 	close;
 	
 OnInit:
+	.price = 100000;
 	.enter_cooldown = 30;
 	waitingroom "Mystery Boss (กุญแจทุกชนิด)",0;
 	end;
