@@ -1,4 +1,4 @@
-prontera,127,254,1	script	Random Option	869,{
+/*prontera,127,254,1	script	Random Option	869,{
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
 	mes "^3F28FFZeny ที่ต้องใช้:^000000 " + callfunc("F_InsertComma",.price) + "z";
@@ -65,9 +65,9 @@ OnInit:
 	.price = 5000000;
 	waitingroom "(Zeny)Random Option",0;
 	end;
-}
+}*/
 
-prontera,132,254,1	script	Random Option#2	869,{
+prontera,127,254,1	script	Random Option#2	869,{
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
 	mes "^3F28FFItem ที่ต้องใช้:^000000 " + getitemname(.itemId);
@@ -136,7 +136,7 @@ OnInit:
 	end;
 }
 
-prontera,134,249,5	script	Target Option	869,{
+prontera,132,254,1	script	Target Option	869,{
 	if(!option_item_id)
 	goto L_SetItemId;
 	mes "ต้องการ " + $option_target_amount + " " + getitemname(.itemId)+ " ในการแลก";

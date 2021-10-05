@@ -87,104 +87,70 @@ Header:
   Version: 1
 
 Body:
-  - Id: 40001
-    AegisName: 10_Cash
-    Name: 10 Cash
-    Type: Usable
-    Buy: 1
-    Script: |
-      #CASHPOINTS += 10;
-  - Id: 40002
-    AegisName: 100_Cash
-    Name: 100 Cash
-    Type: Usable
-    Buy: 1
-    Script: |
-      #CASHPOINTS += 100;
-  - Id: 40003
-    AegisName: 1000_Cash
-    Name: 1000 Cash
-    Type: Usable
-    Buy: 1
-    Script: |
-      #CASHPOINTS += 1000;
   - Id: 40004
     AegisName: Weapon_Key
     Name: Weapon Key
     Type: Etc
-    Buy: 6000
   - Id: 40005
     AegisName: Equipment_Key
     Name: Equipment Key
     Type: Etc
-    Buy: 6000
   - Id: 40006
     AegisName: Costume_Key
     Name: Costume Key
     Type: Etc
-    Buy: 26000
   - Id: 40007
     AegisName: Card_Key
     Name: Card Key
     Type: Etc
-    Buy: 60000
   - Id: 40008
     AegisName: EXP_100
     Name: EXP +100%
     Type: Usable
-    Weight: 10
     Script: |
       sc_start SC_EXPBOOST,3600000,100;
   - Id: 40009
     AegisName: EXP_200
     Name: EXP +200%
     Type: Usable
-    Weight: 10
     Script: |
       sc_start SC_EXPBOOST,3600000,200;
   - Id: 40010
     AegisName: EXP_300
     Name: EXP +300%
     Type: Usable
-    Weight: 10
     Script: |
       sc_start SC_EXPBOOST,3600000,300;
   - Id: 40011
     AegisName: DROP_100
     Name: Drop +100%
     Type: Usable
-    Weight: 10
     Script: |
       sc_start SC_ITEMBOOST,3600000,100;
   - Id: 40012
     AegisName: DROP_200
     Name: Drop +200%
     Type: Usable
-    Weight: 10
     Script: |
       sc_start SC_ITEMBOOST,3600000,200;
   - Id: 40013
     AegisName: DROP_300
     Name: Drop +300%
     Type: Usable
-    Weight: 10
     Script: |
       sc_start SC_ITEMBOOST,3600000,300;
   - Id: 40014
     AegisName: Random_Option_Key
     Name: Random Option Key
     Type: Etc
-    Buy: 140000
   - Id: 40015
     AegisName: Random_Enchant_Key
     Name: Random Enchant Key
     Type: Etc
-    Buy: 140000
   - Id: 40016
     AegisName: MvP_Refine
     Name: MvP Refine
     Type: Etc
-    Buy: 1
   - Id: 601
     AegisName: Wing_Of_Fly
     Name: Fly Wing

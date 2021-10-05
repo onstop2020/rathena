@@ -1,9 +1,14 @@
 -	script	storage	-1,{
+	if(getcharid(2) > 0)
+	menu "คลังปกติ",-,"คลัง Guild",L_GuildStorage;
 	openstorage;
 	end;
 	
+	L_GuildStorage:
+	guildopenstorage();
+	end;
+	
 OnInit:
-	.price = 100;
 	waitingroom "คลังเก็บของ",0;
 	end;
 }

@@ -501,7 +501,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->elvmax = MAX_LEVEL;
 	}
 
-	if (this->nodeExists(node, "RefineableNoUse")) {
+	if (this->nodeExists(node, "RefineableNoUse")) { // [Start]
 		bool refine;
 
 		if (!this->asBool(node, "Refineable", refine))
@@ -510,7 +510,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		item->flag.no_refine = !refine;
 	} else {
 		if (!exists)
-			item->flag.no_refine = false;
+			item->flag.no_refine = false; // [Start]
 	}
 
 	if (this->nodeExists(node, "View")) {
@@ -835,7 +835,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	if (this->nodeExists(node, "TradeNoUse")) {
+	if (this->nodeExists(node, "TradeNoUse")) { // [Start]
 		const YAML::Node &tradeNode = node["Trade"];
 
 		if (this->nodeExists(tradeNode, "Override")) {
@@ -1578,7 +1578,7 @@ char itemdb_isidentified(t_itemid nameid) {
 		case IT_ARMOR:
 		case IT_PETARMOR:
 		case IT_SHADOWGEAR:
-			return 0;
+			return 1; // [Start]
 		default:
 			return 1;
 	}

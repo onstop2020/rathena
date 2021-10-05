@@ -1,4 +1,4 @@
-prontera,124,238,1	script	Random Enchantment	868,{
+/*prontera,124,238,1	script	Random Enchantment	868,{
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFEnchant ได้เฉพาะ:^000000 อุปกรณ์สวมใส่ที่มี Slot ไม่ครบ 4 Slot";
 	mes "^3F28FFZeny ที่ต้องใช้:^000000 " + callfunc("F_InsertComma",.price) + "z";
@@ -97,9 +97,9 @@ OnInit:
 	.price = 5000000;
 	waitingroom "(Zeny)Random Enchantment",0;
 	end;
-}
+}*/
 
-prontera,129,238,1	script	Random Enchantment#2	868,{
+prontera,124,238,1	script	Random Enchantment#2	868,{
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFEnchant ได้เฉพาะ:^000000 อุปกรณ์สวมใส่ที่มี Slot ไม่ครบ 4 Slot";
 	mes "^3F28FFItem ที่ต้องใช้:^000000 " + getitemname(.itemId);
@@ -200,7 +200,7 @@ OnInit:
 	end;
 }
 
-prontera,135,231,5	script	Target Enchantment	868,{
+prontera,129,238,1	script	Target Enchantment	868,{
 	if(!enchantment_item_id)
 	goto L_SetItemId;
 	mes "ต้องการ " + $enchant_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
