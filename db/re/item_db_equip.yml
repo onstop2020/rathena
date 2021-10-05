@@ -52758,7 +52758,6 @@ Body:
     AegisName: Roundly_Woolly_Hat
     Name: Costume Angel Veil
     Type: Armor
-    View: 1168
     Buy: 20
     Weight: 300
     Defense: 10
@@ -74517,7 +74516,6 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 880
     EquipScript: |
       sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
     UnEquipScript: |
@@ -88789,7 +88787,6 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 1299
     EquipScript: |
       sc_start SC_MERMAID_LONGING,INFINITE_TICK,0;
     UnEquipScript: |
@@ -123217,7 +123214,6 @@ Body:
     Locations:
       Costume_Head_Top: true
     EquipLevelMin: 1
-    View: 1807
     Script: |
       hateffect(HAT_EF_MIDGARTS_GLORY,true);
     UnEquipScript: |
