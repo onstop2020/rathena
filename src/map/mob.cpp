@@ -2926,7 +2926,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			{
 				struct s_mob_drop mobdrop;
 				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
-				mobdrop.nameid = 40007;
+				mobdrop.nameid = 40006;
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
 			}
 			// Card Key
@@ -2937,7 +2937,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			{
 				struct s_mob_drop mobdrop;
 				memset(&mobdrop, 0, sizeof(struct s_mob_drop));
-				mobdrop.nameid = 40008;
+				mobdrop.nameid = 40007;
 				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
 			}
 			// Random Option Key
