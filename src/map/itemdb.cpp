@@ -836,7 +836,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 	}
 
 	if (this->nodeExists(node, "TradeNoUse")) { // [Start]
-		const YAML::Node &tradeNode = node["Trade"];
+		const YAML::Node &tradeNode = node["TradeNoUse"];
 
 		if (this->nodeExists(tradeNode, "Override")) {
 			uint16 override;

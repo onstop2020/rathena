@@ -91,66 +91,105 @@ Body:
     AegisName: Weapon_Key
     Name: Weapon Key
     Type: Etc
+    TradeNoUse:
+      Override: 100
+      NoSell: true
   - Id: 40005
     AegisName: Equipment_Key
     Name: Equipment Key
     Type: Etc
+    TradeNoUse:
+      Override: 100
+      NoSell: true
   - Id: 40006
     AegisName: Costume_Key
     Name: Costume Key
     Type: Etc
+    TradeNoUse:
+      Override: 100
+      NoSell: true
   - Id: 40007
     AegisName: Card_Key
     Name: Card Key
     Type: Etc
+    TradeNoUse:
+      Override: 100
+      NoSell: true
   - Id: 40008
     AegisName: EXP_100
     Name: EXP +100%
     Type: Usable
+    TradeNoUse:
+      Override: 100
+      NoSell: true
     Script: |
       sc_start SC_EXPBOOST,3600000,100;
   - Id: 40009
     AegisName: EXP_200
     Name: EXP +200%
     Type: Usable
+    TradeNoUse:
+      Override: 100
+      NoSell: true
     Script: |
       sc_start SC_EXPBOOST,3600000,200;
   - Id: 40010
     AegisName: EXP_300
     Name: EXP +300%
     Type: Usable
+    TradeNoUse:
+      Override: 100
+      NoSell: true
     Script: |
       sc_start SC_EXPBOOST,3600000,300;
   - Id: 40011
     AegisName: DROP_100
     Name: Drop +100%
     Type: Usable
+    TradeNoUse:
+      Override: 100
+      NoSell: true
     Script: |
       sc_start SC_ITEMBOOST,3600000,100;
   - Id: 40012
     AegisName: DROP_200
     Name: Drop +200%
     Type: Usable
+    TradeNoUse:
+      Override: 100
+      NoSell: true
     Script: |
       sc_start SC_ITEMBOOST,3600000,200;
   - Id: 40013
     AegisName: DROP_300
     Name: Drop +300%
     Type: Usable
+    TradeNoUse:
+      Override: 100
+      NoSell: true
     Script: |
       sc_start SC_ITEMBOOST,3600000,300;
   - Id: 40014
     AegisName: Random_Option_Key
     Name: Random Option Key
     Type: Etc
+    TradeNoUse:
+      Override: 100
+      NoSell: true
   - Id: 40015
     AegisName: Random_Enchant_Key
     Name: Random Enchant Key
     Type: Etc
+    TradeNoUse:
+      Override: 100
+      NoSell: true
   - Id: 40016
     AegisName: MvP_Refine
     Name: MvP Refine
     Type: Etc
+    TradeNoUse:
+      Override: 100
+      NoSell: true
   - Id: 601
     AegisName: Wing_Of_Fly
     Name: Fly Wing
@@ -158,10 +197,80 @@ Body:
     Buy: 1
     Sell: 0
     Weight: 50
-    Flags:
-      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
     Script: |
       itemskill "AL_TELEPORT",1;
+  - Id: 12884
+    AegisName: Infinite_Concentration_Potion
+    Name: Infinite Concentration Potion
+    Type: Delayconsume
+    Buy: 10
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      sc_start SC_ASPDPOTION0,1800000,4;
+  - Id: 12885
+    AegisName: Infinite_Awakening_Potion
+    Name: Infinite Awakening Potion
+    Type: Delayconsume
+    Buy: 10
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      sc_start SC_ASPDPOTION1,1800000,6;
+  - Id: 12886
+    AegisName: Infinite_Berserk_Potion
+    Name: Infinite Berserk Potion
+    Type: Delayconsume
+    Buy: 10
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      sc_start SC_ASPDPOTION2,1800000,9;
+  - Id: 12887
+    AegisName: C_Wing_Of_Fly
+    Name: Infinite Flywing
+    Type: Usable
+    Flags:
+      NoConsume: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      itemskill "AL_TELEPORT",1;
+  - Id: 12622
+    AegisName: Boarding_Halter
+    Name: Reins Of Mount
+    Type: Usable
+    Flags:
+      NoConsume: true
+    Delay:
+      Duration: 3000
+      Status: All_Riding_Reuse_Limit
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      setmounting();
+    UnEquipScript: |
+      if (ismounting())
+         setmounting();
+  - Id: 12214
+    AegisName: Convex_Mirror
+    Name: Convex Mirror
+    Type: Usable
+    Buy: 2
+    Weight: 10
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      sc_start SC_BOSSMAPINFO,600000,0;
   - Id: 1599
     AegisName: Angra_Manyu
     Name: Angra Manyu
