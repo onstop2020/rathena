@@ -39,7 +39,8 @@
 #   Classes                 Upper class types that can equip the item. (Map default is 'All: true')
 #   Gender                  Gender that can equip the item. (Default: Both)
 #   Locations               Equipment's placement. (Default: None)
-#   WeaponLevel             Weapon level. (Default: 0)
+#   WeaponLevel             Weapon level. (Default: 1 for Weapons)
+#   ArmorLevel              Armor level. (Default: 1 for Armors)
 #   EquipLevelMin           Minimum required level to equip. (Default: 0)
 #   EquipLevelMax           Maximum level that can equip. (Default: 0)
 #   Refineable              If the item can be refined. (Default: false)
@@ -84,7 +85,7 @@
 
 Header:
   Type: ITEM_DB
-  Version: 1
+  Version: 2
 
 Body:
   - Id: 670
@@ -12241,7 +12242,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"GC_CROSSIMPACT",20+.@b;
   - Id: 4685
@@ -12258,7 +12259,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"AB_ADORAMUS",20+.@b;
   - Id: 4686
@@ -12275,7 +12276,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"WL_CRIMSONROCK",20+.@b;
   - Id: 4687
@@ -12292,7 +12293,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"RA_CLUSTERBOMB",20+.@b;
   - Id: 4688
@@ -12309,7 +12310,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"NC_AXETORNADO",20+.@b;
   - Id: 4689
@@ -12326,7 +12327,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"RK_IGNITIONBREAK",20+.@b;
   - Id: 4690
@@ -12343,7 +12344,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"LG_EARTHDRIVE",20+.@b;
   - Id: 4691
@@ -12360,7 +12361,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"GN_CART_TORNADO",20+.@b;
   - Id: 4692
@@ -12377,7 +12378,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"SO_VARETYR_SPEAR",20+.@b;
   - Id: 4693
@@ -12394,7 +12395,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"SR_RAMPAGEBLASTER",20+.@b;
   - Id: 4694
@@ -12411,7 +12412,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"SC_FEINTBOMB",20+.@b;
   - Id: 4695
@@ -12428,7 +12429,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM",20+.@b;
   - Id: 4696
@@ -12445,7 +12446,7 @@ Body:
     Script: |
       if (getrefine() > 9)
          .@b += 20;
-      if (getequipweaponlv(-1) == 4)
+      if (getequipweaponlv() == 4)
          .@b += 20;
       bonus2 bSkillAtk,"WM_REVERBERATION",20+.@b;
   - Id: 4697
