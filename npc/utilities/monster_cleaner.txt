@@ -56,5 +56,10 @@ OnMinute30:
 	// Key Hunt
 	killmonsterall "evt_bomb";
 	
+	// Mystery Boss
+	killmonsterall "x_prt";
+	killmonsterall "x_ra";
+	killmonsterall "x_lhz";
+	
 	end;
 }
