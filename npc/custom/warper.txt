@@ -299,7 +299,7 @@ Dungeons:
 	"Thor Volcano",D38, "Toy Factory",D39, "Turtle Dungeon",D40, "Umbala Dungeon",D41;
 
 D44: setarray @c[2],0,0,0,0;
-	Disp("Prontera Underground Prison","Prontera Invasion"); Pick("","prt_prison","prt_q");
+	Disp("Prontera Underground Prison:Prontera Invasion"); Pick("","prt_prison","prt_q");
 D43: setarray @c[2],0,0,0,0,0,0;
 	Disp("Rock Ridge Mine 1:Rock Ridge Mine 2:Culvert"); Pick("","rockmi1","rockmi2","harboro2");
 D1: setarray @c[2],261,272,275,270,116,27;
