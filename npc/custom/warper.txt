@@ -293,11 +293,13 @@ Dungeons:
 	"Ice Dungeon",D20, "Juperos",D21, "Kiel Dungeon",D22, "Lasagna Dungeon",D23,
 	"Luoyang Dungeon",D24, "Magma Dungeon",D25, "Malangdo Dungeon",D26,
 	"Moscovia Dungeon",D27, "Nidhogg's Dungeon",D28, "Odin Temple",D29,
-	"Orc Dungeon",D30, "Payon Dungeon",D31, "Pyramids",D32, "Rachel Sanctuary",D33,
+	"Orc Dungeon",D30, "Payon Dungeon",D31, "Prontera Dungeon",D44, "Pyramids",D32, "Rachel Sanctuary",D33,
 	"Rockridge Dungeon",D43,
 	"Scaraba Hole",D34, "Sphinx",D35, "Sunken Ship",D36, "Thanatos Tower",D37,
 	"Thor Volcano",D38, "Toy Factory",D39, "Turtle Dungeon",D40, "Umbala Dungeon",D41;
 
+D44: setarray @c[2],0,0,0,0;
+	Disp("Prontera Underground Prison","Prontera Invasion"); Pick("","prt_prison","prt_q");
 D43: setarray @c[2],0,0,0,0,0,0;
 	Disp("Rock Ridge Mine 1:Rock Ridge Mine 2:Culvert"); Pick("","rockmi1","rockmi2","harboro2");
 D1: setarray @c[2],261,272,275,270,116,27;
@@ -379,7 +381,7 @@ D33: setarray @c[2],140,11,32,21,8,149,204,218,150,9;
 	Disp("Rachel Sanctuary",1,5); Pick("ra_san");
 D34: Restrict("RE");
 	setarray @c[2],364,44,101,141;
-	Disp("Scaraba Hole",1,2); Pick("dic_dun");
+	Disp("Scaraba Hole",1,2,3); Pick("dic_dun");
 D35: setarray @c[2],288,9,149,81,210,54,10,222,100,99;
 	Disp("Sphinx",1,5); Pick("","in_sphinx1","in_sphinx2","in_sphinx3","in_sphinx4","in_sphinx5");
 D36: setarray @c[2],69,24,102,27;
@@ -391,7 +393,7 @@ D38: setarray @c[2],21,228,75,205,34,272;
 D39: setarray @c[2],205,15,129,133;
 	Disp("Toy Factory",1,2); Pick("xmas_dun");
 D40: setarray @c[2],154,49,148,261,132,189,100,192;
-	Disp("Entrance:Turtle Dungeon 1:Turtle Dungeon 2:Turtle Dungeon 3"); Pick("tur_dun");
+	Disp("Entrance:Turtle Dungeon 1:Turtle Dungeon 2:Turtle Dungeon 3:Turtle Dungeon 4"); Pick("tur_dun");
 D41: Restrict("Pre-RE",1,2);
 	setarray @c[2],42,31,48,30,204,78;
 	Disp("Carpenter's Shop in the Tree:Passage to a Foreign World:Hvergermil's Fountain");
