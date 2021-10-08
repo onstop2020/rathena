@@ -2,6 +2,14 @@
 -	script	MysteryBoss	-1,{
 	end;
 	
+OnCleanUp:
+	killmonsterall .map_name$;
+	if(getmapunits(BL_MOB,.map_name$) <= 0){
+		$mystery_boss_killed = 0;
+		callsub L_Spawn;
+	}
+	end;
+	
 OnBossDead:
 	.@chance = rand(0,.amount);
 
@@ -12,8 +20,7 @@ OnBossDead:
 	else
 	getitem 608,1;
 
-	$mystery_boss_killed++;
-	if($mystery_boss_killed >= $mystery_boss_amount){
+	if(getmapunits(BL_MOB,.map_name$) <= 0){
 		killmonsterall .map_name$;
 		$mystery_boss_killed = 0;
 		callsub L_Spawn;
@@ -88,6 +95,14 @@ OnInit:
 -	script	MysteryBossSkillPoint	-1,{
 	end;
 	
+OnCleanUp:
+	killmonsterall .map_name$;
+	if(getmapunits(BL_MOB,.map_name$) <= 0){
+		$mystery_boss_sk_killed = 0;
+		callsub L_Spawn;
+	}
+	end;
+	
 OnBossDead:
 	if(rand(0,100) <= 0){
 		SkillPoint += 1;
@@ -96,8 +111,7 @@ OnBossDead:
 	else
 	getitem 608,1;
 
-	$mystery_boss_sk_killed++;
-	if($mystery_boss_sk_killed >= $mystery_boss_sk_amount){
+	if(getmapunits(BL_MOB,.map_name$) <= 0){
 		killmonsterall .map_name$;
 		$mystery_boss_sk_killed = 0;
 		callsub L_Spawn;
@@ -174,11 +188,18 @@ OnInit:
 -	script	MysteryBossAllKey	-1,{
 	end;
 	
+OnCleanUp:
+	killmonsterall .map_name$;
+	if(getmapunits(BL_MOB,.map_name$) <= 0){
+		$mystery_boss_ak_killed = 0;
+		callsub L_Spawn;
+	}
+	end;
+	
 OnBossDead:
 	getitem $all_key_ids[rand(0,$all_key_id_size - 1)],rand(30,60);
 
-	$mystery_boss_ak_killed++;
-	if($mystery_boss_ak_killed >= $mystery_boss_ak_amount){
+	if(getmapunits(BL_MOB,.map_name$) <= 0){
 		killmonsterall .map_name$;
 		$mystery_boss_ak_killed = 0;
 		callsub L_Spawn;

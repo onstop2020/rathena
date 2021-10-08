@@ -57,9 +57,8 @@ OnMinute30:
 	killmonsterall "evt_bomb";
 	
 	// Mystery Boss
-	killmonsterall "x_prt";
-	killmonsterall "x_ra";
-	killmonsterall "x_lhz";
-	
+	donpcevent "MysteryBoss::OnCleanUp";
+	donpcevent "MysteryBossSkillPoint::OnCleanUp";
+	donpcevent "MysteryBossAllKey::OnCleanUp";
 	end;
 }
