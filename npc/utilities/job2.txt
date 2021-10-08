@@ -11,6 +11,7 @@ OnJob2:
 	atcommand "@statsall";
 	atcommand "@skillall";
 	atcommand "@stpoint -999999";
+	sc_end SC_ALL;
 	callfunc("F_GetPlatinumSkills");
 	end;
 }
