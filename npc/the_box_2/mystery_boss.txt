@@ -11,16 +11,19 @@ OnCleanUp:
 	end;
 	
 OnBossDead:
-	.@chance = rand(0,.amount);
+	$mystery_boss_killed--;
 
-	if(rand(0,100) <= .@chance){
+	if(!playerattached())
+	end;
+
+	if(rand(0,100) <= rand(0,.amount)){
 		getitem .reward_id,1;
 		announce "ยินดีด้วย! คุณได้รับ " + getitemname(.reward_id) + "!",0xEBB531|bc_self;
 	}
 	else
 	getitem 608,1;
 
-	if(getmapunits(BL_MOB,.map_name$) <= 0){
+	if($mystery_boss_killed <= 0){
 		killmonsterall .map_name$;
 		$mystery_boss_killed = 0;
 		callsub L_Spawn;
@@ -28,8 +31,9 @@ OnBossDead:
 	end;
 	
 	L_Spawn:
-	$mystery_boss_amount = rand(.min_amount,.max_amount);
-	for(.@i = 0; .@i < $mystery_boss_amount; .@i++){
+	.spawn_amount = rand(.min_amount,.max_amount);
+	$mystery_boss_killed = .spawn_amount;
+	for(.@i = 0; .@i < .spawn_amount; .@i++){
 		monster .map_name$,0,0,"--ja--",$all_boss_ids[rand(0,($all_boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
 		
 		// Random Ignore Mode (Ignore Magic, Ignore Melee, Ignore Misc, Ignore Ranged)
@@ -46,6 +50,7 @@ OnBossDead:
 	return;
 	
 OnInit:
+	.amount = 10;
 	.min_amount = 10;
 	.max_amount = 30;
 	
@@ -104,6 +109,11 @@ OnCleanUp:
 	end;
 	
 OnBossDead:
+	$mystery_boss_sk_killed--;
+
+	if(!playerattached())
+	end;
+
 	if(rand(0,100) <= 0){
 		SkillPoint += 1;
 		announce "ยินดีด้วย! คุณได้รับ Skill Point!",0xEBB531|bc_self;
@@ -111,7 +121,7 @@ OnBossDead:
 	else
 	getitem 608,1;
 
-	if(getmapunits(BL_MOB,.map_name$) <= 0){
+	if($mystery_boss_sk_killed <= 0){
 		killmonsterall .map_name$;
 		$mystery_boss_sk_killed = 0;
 		callsub L_Spawn;
@@ -119,8 +129,9 @@ OnBossDead:
 	end;
 
 	L_Spawn:
-	$mystery_boss_sk_amount = rand(.min_amount,.max_amount);
-	for(.@i = 0; .@i < $mystery_boss_sk_amount; .@i++){
+	.spawn_amount = rand(.min_amount,.max_amount);
+	$mystery_boss_sk_killed = .spawn_amount;
+	for(.@i = 0; .@i < .spawn_amount; .@i++){
 		.@x_spawn = rand(61,77);
 		.@y_spawn = rand(48,59);
 		monster .map_name$,.@x_spawn,.@y_spawn,"--ja--",$all_boss_ids[rand(0,($all_boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
@@ -138,8 +149,8 @@ OnBossDead:
 	return;
 	
 OnInit:
-	.min_amount = 10;
-	.max_amount = 30;
+	.min_amount = 5;
+	.max_amount = 10;
 	
 	.map_name$ = "x_ra";
 	
@@ -197,9 +208,14 @@ OnCleanUp:
 	end;
 	
 OnBossDead:
+	$mystery_boss_ak_killed--;
+
+	if(!playerattached())
+	end;
+
 	getitem $all_key_ids[rand(0,$all_key_id_size - 1)],rand(30,60);
 
-	if(getmapunits(BL_MOB,.map_name$) <= 0){
+	if($mystery_boss_ak_killed <= 0){
 		killmonsterall .map_name$;
 		$mystery_boss_ak_killed = 0;
 		callsub L_Spawn;
@@ -207,14 +223,15 @@ OnBossDead:
 	end;
 	
 	L_Spawn:
-	$mystery_boss_ak_amount = rand(.min_amount,.max_amount);
-	for(.@i = 0; .@i < $mystery_boss_ak_amount; .@i++)
+	.spawn_amount = rand(.min_amount,.max_amount);
+	$mystery_boss_ak_killed = .spawn_amount;
+	for(.@i = 0; .@i < .spawn_amount; .@i++)
 	monster .map_name$,0,0,"--ja--",$all_boss_ids[rand(0,($all_boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
 	return;
 	
 OnInit:
 	.min_amount = 10;
-	.max_amount = 60;
+	.max_amount = 30;
 	
 	.map_name$ = "x_lhz";
 	
