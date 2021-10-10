@@ -1863,23 +1863,7 @@ int64 battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int64
 	if(skill_get_inf2(skill_id, INF2_IGNOREBGREDUCTION))
 		return damage; //skill that ignore bg map reduction
 
-	if (BL_CAST(BL_PC, src)) {
-		if (flag & BF_SKILL) { //Skills get a different reduction than non-skills. [Skotlex]
-			if (flag & BF_WEAPON)
-				damage = damage * battle_config.bg_weapon_damage_rate / 10000;
-			if (flag & BF_MAGIC)
-				damage = damage * battle_config.bg_magic_damage_rate / 10000;
-			if (flag & BF_MISC)
-				damage = damage * battle_config.bg_misc_damage_rate / 10000;
-		}
-		else { //Normal attacks get reductions based on range.
-			if (flag & BF_SHORT)
-				damage = damage * battle_config.bg_short_damage_rate / 10000;
-			if (flag & BF_LONG)
-				damage = damage * battle_config.bg_long_damage_rate / 10000;
-		}
-	}
-	else {
+	if (BL_CAST(BL_MOB, src)) {
 		if (flag & BF_SKILL) { //Skills get a different reduction than non-skills. [Skotlex]
 			if (flag & BF_WEAPON)
 				damage += damage * (100 - battle_config.bg_weapon_damage_rate);
@@ -1893,6 +1877,22 @@ int64 battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int64
 				damage += damage * (100 - battle_config.bg_short_damage_rate);
 			if (flag & BF_LONG)
 				damage += damage * (100 - battle_config.bg_long_damage_rate);
+		}
+	}
+	else {
+		if (flag & BF_SKILL) { //Skills get a different reduction than non-skills. [Skotlex]
+			if (flag & BF_WEAPON)
+				damage = damage * battle_config.bg_weapon_damage_rate / 10000;
+			if (flag & BF_MAGIC)
+				damage = damage * battle_config.bg_magic_damage_rate / 10000;
+			if (flag & BF_MISC)
+				damage = damage * battle_config.bg_misc_damage_rate / 10000;
+		}
+		else { //Normal attacks get reductions based on range.
+			if (flag & BF_SHORT)
+				damage = damage * battle_config.bg_short_damage_rate / 10000;
+			if (flag & BF_LONG)
+				damage = damage * battle_config.bg_long_damage_rate / 10000;
 		}
 	}
 	
