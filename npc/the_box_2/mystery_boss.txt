@@ -295,15 +295,13 @@ OnBossDead:
 	end;
 	
 	L_Spawn:
-	.spawn_amount = rand(.min_amount,.max_amount);
-	$mystery_boss_ult_killed = .spawn_amount;
-	for(.@i = 0; .@i < .spawn_amount; .@i++)
+	$mystery_boss_ult_killed = .amount;
+	for(.@i = 0; .@i < .amount; .@i++)
 	monster .map_name$,0,0,"--ja--",$all_boss_ids[rand(0,($all_boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
 	return;
 	
 OnInit:
-	.min_amount = 10;
-	.max_amount = 30;
+	.amount = 30;
 	
 	.reward_id = 40016;
 	
@@ -322,9 +320,9 @@ bat_a01	mapflag	nosave
 prontera,160,214,8	script	Mystery Boss#4	10348,{
 	mes "ð ¦èÒä´é ^7A31EB¡Ø­á¨·Ø¡ª¹Ô´^000000 (^D10687ª¹Ô´ÅÐ 999 ªÔé¹^000000)";
 	mes "ð ¦èÒä´é ^7A31EBMvP Refine^000000 (^D106879 ªÔé¹^000000)";
-	mes "ð â·É ^EC1500Damage ¨ÐàËÅ×Í 0.01%^000000";
+	mes "ð â·É ^EC1500Damage ¨ÐàËÅ×Í 0.05%^000000";
 	mes "ð â·É ^EC1500Flee -99%^000000";
-	mes "ð Monster ^EC1500Damage ¨ÐáÃ§¢Öé¹ 99 à·èÒ^000000";
+	mes "ð Monster ^EC1500Damage ¨ÐáÃ§¢Öé¹ 200 à·èÒ^000000";
 	next;
 	menu "à¢éÒ " + callfunc("F_InsertComma",.price) + "z",-;
 	if(Zeny < .price){
