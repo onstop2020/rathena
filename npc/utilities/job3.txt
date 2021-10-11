@@ -3,7 +3,7 @@ OnInit:
 	bindatcmd "job3",strnpcinfo(3) + "::OnJob3",99,99;
 	end;
 	
-OnJob2:
+OnJob3:
 	.@job_id = .@atcmd_parameters$[0];
 	atcommand "@job " + .@job_id;
 	atcommand "@lvup -99999";
