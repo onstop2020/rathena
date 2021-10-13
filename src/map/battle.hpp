@@ -296,6 +296,7 @@ struct Battle_Config
 	int pc_cloak_check_type;
 	int monster_cloak_check_type;
 	int estimation_type;
+	int gvg_monster_damage_multiplier;
 	int gvg_short_damage_rate;
 	int gvg_long_damage_rate;
 	int gvg_weapon_damage_rate;

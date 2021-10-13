@@ -61,5 +61,6 @@ OnMinute30:
 	donpcevent "MysteryBossSkillPoint::OnCleanUp";
 	donpcevent "MysteryBossAllKey::OnCleanUp";
 	donpcevent "UltimateMysteryBoss::OnCleanUp";
+	donpcevent "Mystery Monster::OnCleanUp";
 	end;
 }

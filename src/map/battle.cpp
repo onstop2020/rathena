@@ -1943,18 +1943,23 @@ int64 battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int64 
 	if (skill_get_inf2(skill_id, INF2_IGNOREGVGREDUCTION)) //Skills with no gvg damage reduction.
 		return damage;
 
-	if (flag & BF_SKILL) { //Skills get a different reduction than non-skills. [Skotlex]
-		if (flag&BF_WEAPON)
-			damage = damage * battle_config.gvg_weapon_damage_rate / 100;
-		if (flag&BF_MAGIC)
-			damage = damage * battle_config.gvg_magic_damage_rate / 100;
-		if (flag&BF_MISC)
-			damage = damage * battle_config.gvg_misc_damage_rate / 100;
-	} else { //Normal attacks get reductions based on range.
-		if (flag & BF_SHORT)
-			damage = damage * battle_config.gvg_short_damage_rate / 100;
-		if (flag & BF_LONG)
-			damage = damage * battle_config.gvg_long_damage_rate / 100;
+	if (BL_CAST(BL_MOB, src)) // [Start]
+		damage = damage * battle_config.gvg_monster_damage_multiplier;
+	else {
+		if (flag & BF_SKILL) { //Skills get a different reduction than non-skills. [Skotlex]
+			if (flag & BF_WEAPON)
+				damage = damage * battle_config.gvg_weapon_damage_rate / 10000;
+			if (flag & BF_MAGIC)
+				damage = damage * battle_config.gvg_magic_damage_rate / 10000;
+			if (flag & BF_MISC)
+				damage = damage * battle_config.gvg_misc_damage_rate / 10000;
+		}
+		else { //Normal attacks get reductions based on range.
+			if (flag & BF_SHORT)
+				damage = damage * battle_config.gvg_short_damage_rate / 10000;
+			if (flag & BF_LONG)
+				damage = damage * battle_config.gvg_long_damage_rate / 10000;
+		}
 	}
 	damage = i64max(damage,1);
 	return damage;
@@ -8744,6 +8749,7 @@ static const struct _battle_data {
 	{ "player_cloak_check_type",            &battle_config.pc_cloak_check_type,             1,      0,      1|2|4,          },
 	{ "monster_cloak_check_type",           &battle_config.monster_cloak_check_type,        4,      0,      1|2|4,          },
 	{ "sense_type",                         &battle_config.estimation_type,                 1|2,    0,      1|2,            },
+	{ "gvg_monster_damage_multiplier",      &battle_config.gvg_monster_damage_multiplier,   1,      0,      INT_MAX,        },
 	{ "gvg_short_attack_damage_rate",       &battle_config.gvg_short_damage_rate,           80,     0,      INT_MAX,        },
 	{ "gvg_long_attack_damage_rate",        &battle_config.gvg_long_damage_rate,            80,     0,      INT_MAX,        },
 	{ "gvg_weapon_attack_damage_rate",      &battle_config.gvg_weapon_damage_rate,          60,     0,      INT_MAX,        },
