@@ -94,7 +94,7 @@ OnInit:
 	end;
 }
 
-prontera,106,264,5	script	Target Weapon Box	10249,{
+/*prontera,106,264,5	script	Target Weapon Box	10249,{
 	if(!weapon_box_item_id)
 	goto L_SetItemId;
 	mes "ต้องการ " + $weapon_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
@@ -360,4 +360,4 @@ OnInit:
 	waitingroom "(กำหนด)กล่อง Card",0;
 	.itemId = 40007;
 	end;
-}
+}*/

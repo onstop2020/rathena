@@ -67,7 +67,7 @@ OnInit:
 	end;
 }*/
 
-prontera,127,254,1	script	Random Option#2	869,{
+prontera,124,246,3	script	Random Option#2	869,{
 	mes "^3F28FFโอกาสติด:^000000 100%";
 	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
 	mes "^3F28FFItem ที่ต้องใช้:^000000 " + getitemname(.itemId);
@@ -132,11 +132,11 @@ prontera,127,254,1	script	Random Option#2	869,{
 
 OnInit:
 	.itemId = 40014;
-	waitingroom "(Key)Random Option",0;
+	waitingroom "Random Option",0;
 	end;
 }
 
-prontera,132,254,1	script	Target Option	869,{
+/*prontera,132,254,1	script	Target Option	869,{
 	if(!option_item_id)
 	goto L_SetItemId;
 	mes "ต้องการ " + $option_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
@@ -248,7 +248,7 @@ OnInit:
 	.itemId = 40014;
 	waitingroom "(กำหนด)(Key)Option",0;
 	end;
-}
+}*/
 
 function	script	GetRandomOptionId	{
 	.@optId = rand(1,242);
