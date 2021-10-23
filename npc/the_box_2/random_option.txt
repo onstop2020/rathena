@@ -1,4 +1,4 @@
-prontera,131,258,5	script	Random Option	10267,{
+prontera,131,261,5	script	Random Option	10267,{
 	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
 	next;
 	
@@ -65,7 +65,7 @@ OnInit:
 	end;
 }
 
-prontera,131,264,5	script	Target Option	10249,{
+prontera,133,264,5	script	Target Option	10249,{
 	if(!option_item_id)
 	goto L_SetItemId;
 	mes "คุณอยากได้ Option ID: " + option_item_id;

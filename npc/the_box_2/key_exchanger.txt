@@ -1,196 +1,204 @@
-prontera,103,252,5	script	Weapon Key S.	10250,{
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + weapon_key_storage;
+prontera,117,246,5	script	คลังกุญแจ	10250,{
+	menu "คลัง Weapon Key",L_1,"คลัง Equipment Key",L_2,"คลัง Costume Key",L_3,"คลัง Card Key",L_4,"คลัง Random Option Key",L_5,"คลัง Random Enchant Key",L_6;
+	
+	L_1:
+	callfunc("Weapon Key S.");
+	end;
+	
+	L_2:
+	callfunc("Equipment Key S.");
+	end;
+	
+	L_3:
+	callfunc("Costume Key S.");
+	end;
+	
+	L_4:
+	callfunc("Card Key S.");
+	end;
+	
+	L_5:
+	callfunc("Random Key S.");
+	end;
+	
+	L_6:
+	callfunc("Random Key S.");
+	end;
+	
+OnInit:
+	waitingroom "คลังกุญแจ",0;
+	end;
+}
+
+function	script	Weapon Key S.	{
+	.@item_id = 40004;
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + weapon_key_storage;
 	next;
 	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
-	weapon_key_storage += countitem(.itemId);
-	delitem .itemId,countitem(.itemId);
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + weapon_key_storage;
+	weapon_key_storage += countitem(.@item_id);
+	delitem .@item_id,countitem(.@item_id);
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + weapon_key_storage;
 	close;
 	
 	L_Pick:
-	if(countitem(.itemId) < 30000){
-		.@player_need = 30000 - countitem(.itemId);
+	if(countitem(.@item_id) < 30000){
+		.@player_need = 30000 - countitem(.@item_id);
 		if(weapon_key_storage >= .@player_need){
 			weapon_key_storage -= .@player_need;
-			getitem .itemId,.@player_need;
+			getitem .@item_id,.@player_need;
 		}
 		else{
-			getitem .itemId,weapon_key_storage;
+			getitem .@item_id,weapon_key_storage;
 			weapon_key_storage = 0;
 		}
-		mes getitemname(.itemId) + " ในคลัง เหลือ " + weapon_key_storage;
+		mes getitemname(.@item_id) + " ในคลัง เหลือ " + weapon_key_storage;
 	}
 	else
 	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
 	close;
-	
-OnInit:
-	waitingroom "(คลัง) Weapon Key",0;
-	.itemId = 40004;
-	end;
 }
 
-prontera,110,252,5	script	Equipment Key S.	10250,{
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + equipment_key_storage;
+function	script	Equipment Key S.	{
+	.@item_id = 40005;
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + equipment_key_storage;
 	next;
 	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
-	equipment_key_storage += countitem(.itemId);
-	delitem .itemId,countitem(.itemId);
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + equipment_key_storage;
+	equipment_key_storage += countitem(.@item_id);
+	delitem .@item_id,countitem(.@item_id);
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + equipment_key_storage;
 	close;
 	
 	L_Pick:
-	if(countitem(.itemId) < 30000){
-		.@player_need = 30000 - countitem(.itemId);
+	if(countitem(.@item_id) < 30000){
+		.@player_need = 30000 - countitem(.@item_id);
 		if(equipment_key_storage >= .@player_need){
 			equipment_key_storage -= .@player_need;
-			getitem .itemId,.@player_need;
+			getitem .@item_id,.@player_need;
 		}
 		else{
-			getitem .itemId,equipment_key_storage;
+			getitem .@item_id,equipment_key_storage;
 			equipment_key_storage = 0;
 		}
-		mes getitemname(.itemId) + " ในคลัง เหลือ " + equipment_key_storage;
+		mes getitemname(.@item_id) + " ในคลัง เหลือ " + equipment_key_storage;
 	}
 	else
 	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
 	close;
-
-OnInit:
-	waitingroom "(คลัง) Equipment Key",0;
-	.itemId = 40005;
-	end;
 }
 
-prontera,117,252,5	script	Costume Key S.	10250,{
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + costume_key_storage;
+function	script	Costume Key S.	{
+	.@item_id = 40006;
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + costume_key_storage;
 	next;
 	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
-	costume_key_storage += countitem(.itemId);
-	delitem .itemId,countitem(.itemId);
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + costume_key_storage;
+	costume_key_storage += countitem(.@item_id);
+	delitem .@item_id,countitem(.@item_id);
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + costume_key_storage;
 	close;
 	
 	L_Pick:
-	if(countitem(.itemId) < 30000){
-		.@player_need = 30000 - countitem(.itemId);
+	if(countitem(.@item_id) < 30000){
+		.@player_need = 30000 - countitem(.@item_id);
 		if(costume_key_storage >= .@player_need){
 			costume_key_storage -= .@player_need;
-			getitem .itemId,.@player_need;
+			getitem .@item_id,.@player_need;
 		}
 		else{
-			getitem .itemId,costume_key_storage;
+			getitem .@item_id,costume_key_storage;
 			costume_key_storage = 0;
 		}
-		mes getitemname(.itemId) + " ในคลัง เหลือ " + costume_key_storage;
+		mes getitemname(.@item_id) + " ในคลัง เหลือ " + costume_key_storage;
 	}
 	else
 	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
 	close;
-
-OnInit:
-	waitingroom "(คลัง) Costume Key",0;
-	.itemId = 40006;
-	end;
 }
 
-prontera,124,252,5	script	Card Key S.	10250,{
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + card_key_storage;
+function	script	Card Key S.	{
+	.@item_id = 40007;
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + card_key_storage;
 	next;
 	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
-	card_key_storage += countitem(.itemId);
-	delitem .itemId,countitem(.itemId);
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + card_key_storage;
+	card_key_storage += countitem(.@item_id);
+	delitem .@item_id,countitem(.@item_id);
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + card_key_storage;
 	close;
 	
 	L_Pick:
-	if(countitem(.itemId) < 30000){
-		.@player_need = 30000 - countitem(.itemId);
+	if(countitem(.@item_id) < 30000){
+		.@player_need = 30000 - countitem(.@item_id);
 		if(card_key_storage >= .@player_need){
 			card_key_storage -= .@player_need;
-			getitem .itemId,.@player_need;
+			getitem .@item_id,.@player_need;
 		}
 		else{
-			getitem .itemId,card_key_storage;
+			getitem .@item_id,card_key_storage;
 			card_key_storage = 0;
 		}
-		mes getitemname(.itemId) + " ในคลัง เหลือ " + card_key_storage;
+		mes getitemname(.@item_id) + " ในคลัง เหลือ " + card_key_storage;
 	}
 	else
 	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
 	close;
-
-OnInit:
-	waitingroom "(คลัง) Card Key",0;
-	.itemId = 40007;
-	end;
 }
 
-prontera,131,252,5	script	Random Option Key S.	10250,{
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + random_option_key_storage;
+function	script	Random Option Key S.	{
+	.@item_id = 40014;
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + random_option_key_storage;
 	next;
 	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
-	random_option_key_storage += countitem(.itemId);
-	delitem .itemId,countitem(.itemId);
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + random_option_key_storage;
+	random_option_key_storage += countitem(.@item_id);
+	delitem .@item_id,countitem(.@item_id);
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + random_option_key_storage;
 	close;
 	
 	L_Pick:
-	if(countitem(.itemId) < 30000){
-		.@player_need = 30000 - countitem(.itemId);
+	if(countitem(.@item_id) < 30000){
+		.@player_need = 30000 - countitem(.@item_id);
 		if(random_option_key_storage >= .@player_need){
 			random_option_key_storage -= .@player_need;
-			getitem .itemId,.@player_need;
+			getitem .@item_id,.@player_need;
 		}
 		else{
-			getitem .itemId,random_option_key_storage;
+			getitem .@item_id,random_option_key_storage;
 			random_option_key_storage = 0;
 		}
-		mes getitemname(.itemId) + " ในคลัง เหลือ " + random_option_key_storage;
+		mes getitemname(.@item_id) + " ในคลัง เหลือ " + random_option_key_storage;
 	}
 	else
 	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
 	close;
-
-OnInit:
-	waitingroom "(คลัง) Random Option Key",0;
-	.itemId = 40014;
-	end;
 }
 
-prontera,138,252,5	script	Random Enchant Key S.	10250,{
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + random_enchant_key_storage;
+function	script	Random Enchant Key S.	{
+	.@item_id = 40015;
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + random_enchant_key_storage;
 	next;
 	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
-	random_enchant_key_storage += countitem(.itemId);
-	delitem .itemId,countitem(.itemId);
-	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + random_enchant_key_storage;
+	random_enchant_key_storage += countitem(.@item_id);
+	delitem .@item_id,countitem(.@item_id);
+	mes "คุณมี " + getitemname(.@item_id) + " ฝากอยู่ " + random_enchant_key_storage;
 	close;
 	
 	L_Pick:
-	if(countitem(.itemId) < 30000){
-		.@player_need = 30000 - countitem(.itemId);
+	if(countitem(.@item_id) < 30000){
+		.@player_need = 30000 - countitem(.@item_id);
 		if(random_enchant_key_storage >= .@player_need){
 			random_enchant_key_storage -= .@player_need;
-			getitem .itemId,.@player_need;
+			getitem .@item_id,.@player_need;
 		}
 		else{
-			getitem .itemId,random_enchant_key_storage;
+			getitem .@item_id,random_enchant_key_storage;
 			random_enchant_key_storage = 0;
 		}
-		mes getitemname(.itemId) + " ในคลัง เหลือ " + random_enchant_key_storage;
+		mes getitemname(.@item_id) + " ในคลัง เหลือ " + random_enchant_key_storage;
 	}
 	else
 	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
 	close;
-
-OnInit:
-	waitingroom "(คลัง) Random Enchant Key",0;
-	.itemId = 40015;
-	end;
 }
 
-prontera,103,258,5	script	Weapon Box	10267,{
+prontera,103,261,5	script	Weapon Box	10267,{
 	.@itemCount = weapon_key_storage;
 	if(.@itemCount > 10)
 	.@itemCount = 10;
@@ -214,7 +222,7 @@ OnInit:
 	end;
 }
 
-prontera,110,258,5	script	Equipment Box	10267,{
+prontera,110,261,5	script	Equipment Box	10267,{
 	.@itemCount = equipment_key_storage;
 	if(.@itemCount > 10)
 	.@itemCount = 10;
@@ -238,7 +246,7 @@ OnInit:
 	end;
 }
 
-prontera,117,258,5	script	Costume Box	10267,{
+prontera,117,261,5	script	Costume Box	10267,{
 	.@itemCount = costume_key_storage;
 	if(.@itemCount > 10)
 	.@itemCount = 10;
@@ -262,7 +270,7 @@ OnInit:
 	end;
 }
 
-prontera,124,258,5	script	Card Box	10267,{
+prontera,124,261,5	script	Card Box	10267,{
 	.@itemCount = card_key_storage;
 	if(.@itemCount > 10)
 	.@itemCount = 10;
@@ -286,7 +294,7 @@ OnInit:
 	end;
 }
 
-prontera,103,264,5	script	Target Weapon Box	10249,{
+prontera,105,264,5	script	Target Weapon Box	10249,{
 	if(!weapon_box_item_id)
 	goto L_SetItemId;
 	mes "คุณอยากได้: " + getitemname(weapon_box_item_id);
@@ -359,7 +367,7 @@ OnInit:
 	end;
 }
 
-prontera,110,264,5	script	Target Equipment Box	10249,{
+prontera,112,264,5	script	Target Equipment Box	10249,{
 	if(!equipment_box_item_id)
 	goto L_SetItemId;
 	mes "คุณอยากได้: " + getitemname(equipment_box_item_id);
@@ -432,7 +440,7 @@ OnInit:
 	end;
 }
 
-prontera,117,264,5	script	Target Costume Box	10249,{
+prontera,119,264,5	script	Target Costume Box	10249,{
 	if(!costume_box_item_id)
 	goto L_SetItemId;
 	mes "คุณอยากได้: " + getitemname(costume_box_item_id);
@@ -505,7 +513,7 @@ OnInit:
 	end;
 }
 
-prontera,124,264,5	script	Target Card Box	10249,{
+prontera,126,264,5	script	Target Card Box	10249,{
 	if(!card_box_item_id)
 	goto L_SetItemId;
 	mes "คุณอยากได้: " + getitemname(card_box_item_id);

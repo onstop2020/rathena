@@ -1,4 +1,4 @@
-prontera,138,258,5	script	Random Enchantment	10267,{
+prontera,138,261,5	script	Random Enchantment	10267,{
 	mes "^3F28FFEnchant ได้เฉพาะ:^000000 อุปกรณ์สวมใส่ที่มี Slot ไม่ครบ 4 Slot";
 	next;
 	
@@ -97,10 +97,9 @@ OnInit:
 	end;
 }
 
-prontera,138,264,5	script	Target Enchantment	10249,{
+prontera,140,264,5	script	Target Enchantment	10249,{
 	if(!enchantment_item_id)
 	goto L_SetItemId;
-	mes "ต้องการ " + $enchant_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้ Enchant: " + getitemname(enchantment_item_id);
 	next;
 	menu "กำหนด Enchant",-,"เริ่มสุ่มจนกว่าจะได้ (โอกาสขณะนี้ " + (1 + target_enchant_rand) + " ใน " + .rate +")",L_Start;
