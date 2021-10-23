@@ -18,11 +18,11 @@ prontera,117,246,5	script	¤ÅÑ§¡Ø­á¨	10250,{
 	end;
 	
 	L_5:
-	callfunc("Random Key S.");
+	callfunc("Random Option Key S.");
 	end;
 	
 	L_6:
-	callfunc("Random Key S.");
+	callfunc("Random Enchant Key S.");
 	end;
 	
 OnInit:
