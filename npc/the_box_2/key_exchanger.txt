@@ -1,106 +1,296 @@
-prontera,103,261,5	script	Weapon Box	10249,{
-	.@itemCount = countitem(.itemId);
+prontera,103,252,5	script	Weapon Key S.	10250,{
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + weapon_key_storage;
+	next;
+	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
+	weapon_key_storage += countitem(.itemId);
+	delitem .itemId,countitem(.itemId);
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + weapon_key_storage;
+	close;
+	
+	L_Pick:
+	if(countitem(.itemId) < 30000){
+		.@player_need = 30000 - countitem(.itemId);
+		if(weapon_key_storage >= .@player_need){
+			weapon_key_storage -= .@player_need;
+			getitem .itemId,.@player_need;
+		}
+		else{
+			getitem .itemId,weapon_key_storage;
+			weapon_key_storage = 0;
+		}
+		mes getitemname(.itemId) + " ในคลัง เหลือ " + weapon_key_storage;
+	}
+	else
+	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
+	close;
+	
+OnInit:
+	waitingroom "(คลัง) Weapon Key",0;
+	.itemId = 40004;
+	end;
+}
+
+prontera,110,252,5	script	Equipment Key S.	10250,{
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + equipment_key_storage;
+	next;
+	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
+	equipment_key_storage += countitem(.itemId);
+	delitem .itemId,countitem(.itemId);
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + equipment_key_storage;
+	close;
+	
+	L_Pick:
+	if(countitem(.itemId) < 30000){
+		.@player_need = 30000 - countitem(.itemId);
+		if(equipment_key_storage >= .@player_need){
+			equipment_key_storage -= .@player_need;
+			getitem .itemId,.@player_need;
+		}
+		else{
+			getitem .itemId,equipment_key_storage;
+			equipment_key_storage = 0;
+		}
+		mes getitemname(.itemId) + " ในคลัง เหลือ " + equipment_key_storage;
+	}
+	else
+	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
+	close;
+
+OnInit:
+	waitingroom "(คลัง) Equipment Key",0;
+	.itemId = 40005;
+	end;
+}
+
+prontera,117,252,5	script	Costume Key S.	10250,{
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + costume_key_storage;
+	next;
+	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
+	costume_key_storage += countitem(.itemId);
+	delitem .itemId,countitem(.itemId);
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + costume_key_storage;
+	close;
+	
+	L_Pick:
+	if(countitem(.itemId) < 30000){
+		.@player_need = 30000 - countitem(.itemId);
+		if(costume_key_storage >= .@player_need){
+			costume_key_storage -= .@player_need;
+			getitem .itemId,.@player_need;
+		}
+		else{
+			getitem .itemId,costume_key_storage;
+			costume_key_storage = 0;
+		}
+		mes getitemname(.itemId) + " ในคลัง เหลือ " + costume_key_storage;
+	}
+	else
+	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
+	close;
+
+OnInit:
+	waitingroom "(คลัง) Costume Key",0;
+	.itemId = 40006;
+	end;
+}
+
+prontera,124,252,5	script	Card Key S.	10250,{
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + card_key_storage;
+	next;
+	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
+	card_key_storage += countitem(.itemId);
+	delitem .itemId,countitem(.itemId);
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + card_key_storage;
+	close;
+	
+	L_Pick:
+	if(countitem(.itemId) < 30000){
+		.@player_need = 30000 - countitem(.itemId);
+		if(card_key_storage >= .@player_need){
+			card_key_storage -= .@player_need;
+			getitem .itemId,.@player_need;
+		}
+		else{
+			getitem .itemId,card_key_storage;
+			card_key_storage = 0;
+		}
+		mes getitemname(.itemId) + " ในคลัง เหลือ " + card_key_storage;
+	}
+	else
+	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
+	close;
+
+OnInit:
+	waitingroom "(คลัง) Card Key",0;
+	.itemId = 40007;
+	end;
+}
+
+prontera,131,252,5	script	Random Option Key S.	10250,{
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + random_option_key_storage;
+	next;
+	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
+	random_option_key_storage += countitem(.itemId);
+	delitem .itemId,countitem(.itemId);
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + random_option_key_storage;
+	close;
+	
+	L_Pick:
+	if(countitem(.itemId) < 30000){
+		.@player_need = 30000 - countitem(.itemId);
+		if(random_option_key_storage >= .@player_need){
+			random_option_key_storage -= .@player_need;
+			getitem .itemId,.@player_need;
+		}
+		else{
+			getitem .itemId,random_option_key_storage;
+			random_option_key_storage = 0;
+		}
+		mes getitemname(.itemId) + " ในคลัง เหลือ " + random_option_key_storage;
+	}
+	else
+	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
+	close;
+
+OnInit:
+	waitingroom "(คลัง) Random Option Key",0;
+	.itemId = 40014;
+	end;
+}
+
+prontera,138,252,5	script	Random Enchant Key S.	10250,{
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + random_enchant_key_storage;
+	next;
+	menu "เก็บกุญแจ",-,"หยิบกุญแจ",L_Pick;
+	random_enchant_key_storage += countitem(.itemId);
+	delitem .itemId,countitem(.itemId);
+	mes "คุณมี " + getitemname(.itemId) + " ฝากอยู่ " + random_enchant_key_storage;
+	close;
+	
+	L_Pick:
+	if(countitem(.itemId) < 30000){
+		.@player_need = 30000 - countitem(.itemId);
+		if(random_enchant_key_storage >= .@player_need){
+			random_enchant_key_storage -= .@player_need;
+			getitem .itemId,.@player_need;
+		}
+		else{
+			getitem .itemId,random_enchant_key_storage;
+			random_enchant_key_storage = 0;
+		}
+		mes getitemname(.itemId) + " ในคลัง เหลือ " + random_enchant_key_storage;
+	}
+	else
+	mes "ไม่สามารถหยิบเพิ่มได้ เนื่องจากถือกุญแจมากเกินไป";
+	close;
+
+OnInit:
+	waitingroom "(คลัง) Random Enchant Key",0;
+	.itemId = 40015;
+	end;
+}
+
+prontera,103,258,5	script	Weapon Box	10267,{
+	.@itemCount = weapon_key_storage;
 	if(.@itemCount > 10)
 	.@itemCount = 10;
 	if(.@itemCount < 1)
 	{
-		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId) + " ในคลัง";
 		end;
 	}
 	if (!checkweight(21007,1)){
 		mes "ของเต็ม/น้ำหนักเกิน";
 		close;
 	}
-	delitem .itemId,.@itemCount;
+	weapon_key_storage -= .@itemCount;
 	for(.@i = 0; .@i < .@itemCount; .@i++)
 	getitem $weaponIds[rand(0,$weaponIdArraySize - 1)],1;
 	end;
 	
 OnInit:
-	waitingroom "กล่องอาวุธ",0;
+	waitingroom "(สุ่ม) Weapon",0;
 	.itemId = 40004;
 	end;
 }
 
-prontera,110,261,5	script	Equipment Box	10249,{
-	.@itemCount = countitem(.itemId);
+prontera,110,258,5	script	Equipment Box	10267,{
+	.@itemCount = equipment_key_storage;
 	if(.@itemCount > 10)
 	.@itemCount = 10;
 	if(.@itemCount < 1)
 	{
-		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId) + " ในคลัง";
 		end;
 	}
 	if (!checkweight(21007,1)){
 		mes "ของเต็ม/น้ำหนักเกิน";
 		close;
 	}
-	delitem .itemId,.@itemCount;
+	equipment_key_storage -= .@itemCount;
 	for(.@i = 0; .@i < .@itemCount; .@i++)
 	getitem $equipmentIds[rand(0,$equipmentIdArraySize - 1)],1;
 	end;
 
 OnInit:
-	waitingroom "กล่องอุปกรณ์สวมใส่",0;
+	waitingroom "(สุ่ม) Equipment",0;
 	.itemId = 40005;
 	end;
 }
 
-prontera,117,261,5	script	Costume Box	10249,{
-	.@itemCount = countitem(.itemId);
+prontera,117,258,5	script	Costume Box	10267,{
+	.@itemCount = costume_key_storage;
 	if(.@itemCount > 10)
 	.@itemCount = 10;
 	if(.@itemCount < 1)
 	{
-		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId) + " ในคลัง";
 		end;
 	}
 	if (!checkweight(21007,1)){
 		mes "ของเต็ม/น้ำหนักเกิน";
 		close;
 	}
-	delitem .itemId,.@itemCount;
+	costume_key_storage -= .@itemCount;
 	for(.@i = 0; .@i < .@itemCount; .@i++)
 	getitem $costumeIds[rand(0,$costumeIdArraySize - 1)],1;
 	end;
 
 OnInit:
-	waitingroom "กล่อง Costume",0;
+	waitingroom "(สุ่ม) Costume",0;
 	.itemId = 40006;
 	end;
 }
 
-prontera,124,261,5	script	Card Box	10249,{
-	.@itemCount = countitem(.itemId);
+prontera,124,258,5	script	Card Box	10267,{
+	.@itemCount = card_key_storage;
 	if(.@itemCount > 10)
 	.@itemCount = 10;
 	if(.@itemCount < 1)
 	{
-		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId) + " ในคลัง";
 		end;
 	}
 	if (!checkweight(21007,1)){
 		mes "ของเต็ม/น้ำหนักเกิน";
 		close;
 	}
-	delitem .itemId,.@itemCount;
+	card_key_storage -= .@itemCount;
 	for(.@i = 0; .@i < .@itemCount; .@i++)
 	getitem $cardIds[rand(0,$cardIdArraySize - 1)],1;
 	end;
 
 OnInit:
-	waitingroom "กล่อง Card",0;
+	waitingroom "(สุ่ม) Card",0;
 	.itemId = 40007;
 	end;
 }
 
-/*prontera,106,264,5	script	Target Weapon Box	10249,{
+prontera,103,264,5	script	Target Weapon Box	10249,{
 	if(!weapon_box_item_id)
 	goto L_SetItemId;
-	mes "ต้องการ " + $weapon_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(weapon_box_item_id);
-	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000";
-	menu "กำหนด Item",-,"แลก",L_Start;
+	menu "กำหนด Item",-,"เริ่มสุ่มจนกว่าจะได้ (โอกาสขณะนี้ " + (1 + target_weapon_rand) + " ใน " + .rate +")",L_Start;
 	next;
 	L_SetItemId:
 	mes "โปรดใส่ Item ID ที่อยากได้";
@@ -126,48 +316,54 @@ OnInit:
 		close;
 	}
 
-	if(countitem(.itemId) < $weapon_target_amount)
+	.@player_item_count = weapon_key_storage;
+
+	if(.@player_item_count < 1)
 	{
-		message strcharinfo(0),"คุณไม่มี " + $weapon_target_amount + " " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId) + " ในคลัง";
 		end;
 	}
 	if (!checkweight(21007,1)){
 		mes "ของเต็ม";
 		close;
 	}
-	
-	delitem .itemId,$weapon_target_amount;
-	getitem weapon_box_item_id,1;
 
-	end;
+	.@t = rand(0,.rate);
+
+	freeloop(1);
+	while(.@del_count < .@player_item_count && !.@is_success){
+		.@del_count++;
+		
+		if(.@t <= target_weapon_rand)
+		.@is_success = 1;
+		
+		target_weapon_rand++;
+	}
+	freeloop(0);
 	
-	L_RefreshRate:
-	if($weaponIdArraySize)
-	$weapon_target_amount = rand($weaponIdArraySize,($weaponIdArraySize * 4));
+	weapon_key_storage -= .@del_count;
+	if(.@is_success){
+		mes "ได้ของที่ต้องการแล้ว! ด้วยโอกาส " + (1 + target_weapon_rand) + " ใน " + .rate;
+		getitem weapon_box_item_id,1;
+		target_weapon_rand = 0;
+	}
 	else
-	$weapon_target_amount = 4000;
-	if($weapon_target_amount > 30000)
-	$weapon_target_amount = 30000;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
+	mes "ยังสุ่มไม่เจอ! โอกาสขณะนี้ " + (1 + target_weapon_rand) + " ใน " + .rate;
+
+	close;
 	
 OnInit:
-	callsub L_RefreshRate;
-	waitingroom "(กำหนด)กล่องอาวุธ",0;
+	waitingroom "(สุ่มจนกว่าจะได้) Weapon",0;
 	.itemId = 40004;
+	.rate = 30000;
 	end;
 }
 
-prontera,113,264,5	script	Target Equipment Box	10249,{
+prontera,110,264,5	script	Target Equipment Box	10249,{
 	if(!equipment_box_item_id)
 	goto L_SetItemId;
-	mes "ต้องการ " + $equipment_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(equipment_box_item_id);
-	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000";
-	menu "กำหนด Item",-,"แลก",L_Start;
+	menu "กำหนด Item",-,"เริ่มสุ่มจนกว่าจะได้ (โอกาสขณะนี้ " + (1 + target_equipment_rand) + " ใน " + .rate + ")",L_Start;
 	next;
 	L_SetItemId:
 	mes "โปรดใส่ Item ID ที่อยากได้";
@@ -192,49 +388,55 @@ prontera,113,264,5	script	Target Equipment Box	10249,{
 		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
 		close;
 	}
-	
-	if(countitem(.itemId) < $equipment_target_amount)
+
+	.@player_item_count = equipment_key_storage;
+
+	if(.@player_item_count < 1)
 	{
-		message strcharinfo(0),"คุณไม่มี " + $equipment_target_amount + " " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId) + " ในคลัง";
 		end;
 	}
 	if (!checkweight(21007,1)){
 		mes "ของเต็ม";
 		close;
 	}
+
+	.@t = rand(0,.rate);
+
+	freeloop(1);
+	while(.@del_count < .@player_item_count && !.@is_success){
+		.@del_count++;
+		
+		if(.@t <= target_equipment_rand)
+		.@is_success = 1;
+		
+		target_equipment_rand++;
+	}
+	freeloop(0);
 	
-	delitem .itemId,$equipment_target_amount;
-	getitem equipment_box_item_id,1;
-	
-	end;
-	
-	L_RefreshRate:
-	if($equipmentIdArraySize)
-	$equipment_target_amount = rand($equipmentIdArraySize,($equipmentIdArraySize * 4));
+	equipment_key_storage -= .@del_count;
+	if(.@is_success){
+		mes "ได้ของที่ต้องการแล้ว! ด้วยโอกาส " + (1 + target_equipment_rand) + " ใน " + .rate;
+		getitem equipment_box_item_id,1;
+		target_equipment_rand = 0;
+	}
 	else
-	$equipment_target_amount = 4000;
-	if($equipment_target_amount > 30000)
-	$equipment_target_amount = 30000;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
+	mes "ยังสุ่มไม่เจอ! โอกาสขณะนี้ " + (1 + target_equipment_rand) + " ใน " + .rate;
+
+	close;
 	
 OnInit:
-	callsub L_RefreshRate;
-	waitingroom "(กำหนด)กล่องอุปกรณ์สวมใส่",0;
+	waitingroom "(สุ่มจนกว่าจะได้) Equipment",0;
 	.itemId = 40005;
+	.rate = 30000;
 	end;
 }
 
-prontera,120,264,5	script	Target Costume Box	10249,{
+prontera,117,264,5	script	Target Costume Box	10249,{
 	if(!costume_box_item_id)
 	goto L_SetItemId;
-	mes "ต้องการ " + $costume_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(costume_box_item_id);
-	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000";
-	menu "กำหนด Item",-,"แลก",L_Start;
+	menu "กำหนด Item",-,"เริ่มสุ่มจนกว่าจะได้ (โอกาสขณะนี้ " + (1 + target_costume_rand) + " ใน " + .rate + ")",L_Start;
 	next;
 	L_SetItemId:
 	mes "โปรดใส่ Item ID ที่อยากได้";
@@ -259,49 +461,55 @@ prontera,120,264,5	script	Target Costume Box	10249,{
 		mes "คุณยังไม่ได้กำหนด Item ที่อยากได้";
 		close;
 	}
-	
-	if(countitem(.itemId) < $costume_target_amount)
+
+	.@player_item_count = costume_key_storage;
+
+	if(.@player_item_count < 1)
 	{
-		message strcharinfo(0),"คุณไม่มี " + $costume_target_amount + " " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId) + " ในคลัง";
 		end;
 	}
 	if (!checkweight(21007,1)){
 		mes "ของเต็ม";
 		close;
 	}
+
+	.@t = rand(0,.rate);
+
+	freeloop(1);
+	while(.@del_count < .@player_item_count && !.@is_success){
+		.@del_count++;
+		
+		if(.@t <= target_costume_rand)
+		.@is_success = 1;
+		
+		target_costume_rand++;
+	}
+	freeloop(0);
 	
-	delitem .itemId,$costume_target_amount;
-	getitem costume_box_item_id,1;
-	
-	end;
-	
-	L_RefreshRate:
-	if($costumeIdArraySize)
-	$costume_target_amount = rand($costumeIdArraySize,($costumeIdArraySize * 4));
+	costume_key_storage -= .@del_count;
+	if(.@is_success){
+		mes "ได้ของที่ต้องการแล้ว! ด้วยโอกาส " + (1 + target_costume_rand) + " ใน " + .rate;
+		getitem costume_box_item_id,1;
+		target_costume_rand = 0;
+	}
 	else
-	$costume_target_amount = 4000;
-	if($costume_target_amount > 30000)
-	$costume_target_amount = 30000;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
+	mes "ยังสุ่มไม่เจอ! โอกาสขณะนี้ " + (1 + target_costume_rand) + " ใน " + .rate;
+
+	close;
 	
 OnInit:
-	callsub L_RefreshRate;
-	waitingroom "(กำหนด)กล่อง Costume",0;
+	waitingroom "(สุ่มจนกว่าจะได้) Costume",0;
 	.itemId = 40006;
+	.rate = 10000;
 	end;
 }
 
-prontera,127,264,5	script	Target Card Box	10249,{
+prontera,124,264,5	script	Target Card Box	10249,{
 	if(!card_box_item_id)
 	goto L_SetItemId;
-	mes "ต้องการ " + $card_target_amount + " " + getitemname(.itemId)+ " ในการแลก";
 	mes "คุณอยากได้: " + getitemname(card_box_item_id);
-	mes "๐ ^D10687จำนวนที่ใช้แลกจะเปลี่ยนทุก ๆ xx:30น.^000000";
-	menu "กำหนด Item",-,"แลก",L_Start;
+	menu "กำหนด Item",-,"เริ่มสุ่มจนกว่าจะได้ (โอกาสขณะนี้ " + (1 + target_card_rand) + " ใน " + .rate + ")",L_Start;
 	next;
 	L_SetItemId:
 	mes "โปรดใส่ Item ID ที่อยากได้";
@@ -327,9 +535,11 @@ prontera,127,264,5	script	Target Card Box	10249,{
 		close;
 	}
 
-	if(countitem(.itemId) < $card_target_amount)
+	.@player_item_count = card_key_storage;
+
+	if(.@player_item_count < 1)
 	{
-		message strcharinfo(0),"คุณไม่มี " + $card_target_amount + " " + getitemname(.itemId);
+		message strcharinfo(0),"คุณไม่มี " + getitemname(.itemId) + " ในคลัง";
 		end;
 	}
 	if (!checkweight(21007,1)){
@@ -337,27 +547,33 @@ prontera,127,264,5	script	Target Card Box	10249,{
 		close;
 	}
 
-	delitem .itemId,$card_target_amount;
-	getitem card_box_item_id,1;
+	.@t = rand(0,.rate);
+
+	freeloop(1);
+	while(.@del_count < .@player_item_count && !.@is_success){
+		.@del_count++;
+		
+		if(.@t <= target_card_rand)
+		.@is_success = 1;
+		
+		target_card_rand++;
+	}
+	freeloop(0);
 	
-	end;
-	
-	L_RefreshRate:
-	if($cardIdArraySize)
-	$card_target_amount = rand($cardIdArraySize,($cardIdArraySize * 4));
+	card_key_storage -= .@del_count;
+	if(.@is_success){
+		mes "ได้ของที่ต้องการแล้ว! ด้วยโอกาส " + (1 + target_card_rand) + " ใน " + .rate;
+		getitem card_box_item_id,1;
+		target_card_rand = 0;
+	}
 	else
-	$card_target_amount = 4000;
-	if($card_target_amount > 30000)
-	$card_target_amount = 30000;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
-	end;
+	mes "ยังสุ่มไม่เจอ! โอกาสขณะนี้ " + (1 + target_card_rand) + " ใน " + .rate;
+
+	close;
 	
 OnInit:
-	callsub L_RefreshRate;
-	waitingroom "(กำหนด)กล่อง Card",0;
+	waitingroom "(สุ่มจนกว่าจะได้) Card",0;
 	.itemId = 40007;
+	.rate = 20000;
 	end;
-}*/
+}

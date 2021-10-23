@@ -5,7 +5,7 @@ OnPCLoginEvent:
 	bonus_script_clear 1;
 	
 	// Effect
-	addtimer 1,"LoginEvent::OnEffectInstall";
+	//addtimer 1,"LoginEvent::OnEffectInstall";
 	
 	end;
 	
