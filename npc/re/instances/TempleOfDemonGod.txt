@@ -33,6 +33,10 @@ prontera,154,176,3	script	Guardian Nidhogg#epeom01	4_F_NYDHOG,{
 		next;
 		mes "[Nidhogg]";
 		mes "Please go to Commander Hiva Agip and receive the Demon God Subjugation quest.";
+		next;
+		mes "[Start]";
+		mes "กดคุยใหม่อีกทีครับ";
+		setquest 7593;
 		close3;
 	case 0:
 	case 1:
