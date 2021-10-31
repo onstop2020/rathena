@@ -300,3 +300,38 @@ Body:
     Refineable: true
     View: 1
     Script: |
+  - Id: 10000000
+    AegisName: Food_Buffs
+    Name: Food Buffs
+    Type: Healing
+    Buy: 1
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      sc_end SC_POISON;
+      sc_end SC_SILENCE;
+      sc_end SC_BLIND;
+      sc_end SC_CONFUSION;
+      sc_end SC_CURSE;
+      sc_end SC_Hallucination;
+      sc_end SC_BLEEDING;
+      sc_end SC_ORCISH;
+      sc_end SC_CHANGEUNDEAD;
+      sc_start SC_ASPDPOTION0,1800000,4;
+      sc_start SC_ASPDPOTION1,1800000,6;
+      sc_start SC_ASPDPOTION2,1800000,9;
+      sc_start2 SC_PROMOTE_HEALTH_RESERCH,1800000,1,3;
+      sc_start2 SC_ENERGY_DRINK_RESERCH,1800000,1,3;
+      sc_start SC_EXTRACT_WHITE_POTION_Z,1800000,20;
+      sc_start SC_SAVAGE_STEAK,1800000,20;
+      sc_start SC_COCKTAIL_WARG_BLOOD,1800000,20;
+      sc_start SC_MINOR_BBQ,1800000,20;
+      sc_start SC_SIROMA_ICE_TEA,1800000,20;
+      sc_start SC_DROCERA_HERB_STEAMED,1800000,20;
+      sc_start SC_PUTTI_TAILS_NOODLES,1800000,20;
+      sc_start2 SC_VITATA_500,1800000,20,5;
+      sc_start SC_EXTRACT_SALAMINE_JUICE,1800000,10;
+      sc_start SC_ADD_ATK_DAMAGE,1800000,15;
+      sc_start SC_ADD_MATK_DAMAGE,1800000,15;
+      sc_start SC_SPEEDUP1,1800000,50;
