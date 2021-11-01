@@ -64,3 +64,113 @@ OnMinute30:
 	donpcevent "Mystery Monster::OnCleanUp";
 	end;
 }
+
+prontera,145,201,3	script	คืนชีพ Mystery Boss	10237,{
+	mes "เลือกจ่ายได้ตามสะดวก";
+	mes "เมื่อจ่ายแล้วจะได้ผลดังนี้";
+	mes "๐ คืนชีพ Monster ให้ Mystery Boss ทุกห้อง";
+	next;
+	menu .pay_type_1_req + " " + getitemname(.pay_type_1_id),L_PayType1
+	,.pay_type_2_req + " " + getitemname(.pay_type_2_id),L_PayType2
+	,.pay_type_3_req + " " + getitemname(.pay_type_3_id),L_PayType3
+	,.pay_type_4_req + " " + getitemname(.pay_type_4_id),L_PayType4
+	,.pay_type_5_req + " " + getitemname(.pay_type_5_id),L_PayType5
+	,.pay_type_6_req + " " + getitemname(.pay_type_6_id),L_PayType6
+	,.pay_type_7_req + " " + getitemname(.pay_type_7_id),L_PayType7;
+	close;
+
+	L_PayType1:
+	if(countitem(.pay_type_1_id) >= .pay_type_1_req){
+		delitem .pay_type_1_id,.pay_type_1_req;
+		mes "เรียบร้อยแล้ว";
+		callsub L_Respawn;
+	}
+	else
+	mes "ต้องการ " + getitemname(.pay_type_1_id) + " อีก " + (.pay_type_1_req - countitem(.pay_type_1_id));
+	close;
+
+	L_PayType2:
+	if(countitem(.pay_type_2_id) >= .pay_type_2_req){
+		delitem .pay_type_2_id,.pay_type_2_req;
+		mes "เรียบร้อยแล้ว";
+		callsub L_Respawn;
+	}
+	else
+	mes "ต้องการ " + getitemname(.pay_type_2_id) + " อีก " + (.pay_type_2_req - countitem(.pay_type_2_id));
+	close;
+	
+	L_PayType3:
+	if(countitem(.pay_type_3_id) >= .pay_type_3_req){
+		delitem .pay_type_3_id,.pay_type_3_req;
+		mes "เรียบร้อยแล้ว";
+		callsub L_Respawn;
+	}
+	else
+	mes "ต้องการ " + getitemname(.pay_type_3_id) + " อีก " + (.pay_type_3_req - countitem(.pay_type_3_id));
+	close;
+	
+	L_PayType4:
+	if(countitem(.pay_type_4_id) >= .pay_type_4_req){
+		delitem .pay_type_4_id,.pay_type_4_req;
+		mes "เรียบร้อยแล้ว";
+		callsub L_Respawn;
+	}
+	else
+	mes "ต้องการ " + getitemname(.pay_type_4_id) + " อีก " + (.pay_type_4_req - countitem(.pay_type_4_id));
+	close;
+	
+	L_PayType5:
+	if(countitem(.pay_type_5_id) >= .pay_type_5_req){
+		delitem .pay_type_5_id,.pay_type_5_req;
+		mes "เรียบร้อยแล้ว";
+		callsub L_Respawn;
+	}
+	else
+	mes "ต้องการ " + getitemname(.pay_type_5_id) + " อีก " + (.pay_type_5_req - countitem(.pay_type_5_id));
+	close;
+	
+	L_PayType6:
+	if(countitem(.pay_type_6_id) >= .pay_type_6_req){
+		delitem .pay_type_6_id,.pay_type_6_req;
+		mes "เรียบร้อยแล้ว";
+		callsub L_Respawn;
+	}
+	else
+	mes "ต้องการ " + getitemname(.pay_type_6_id) + " อีก " + (.pay_type_6_req - countitem(.pay_type_6_id));
+	close;
+	
+	L_PayType7:
+	if(countitem(.pay_type_7_id) >= .pay_type_7_req){
+		delitem .pay_type_7_id,.pay_type_7_req;
+		mes "เรียบร้อยแล้ว";
+		callsub L_Respawn;
+	}
+	else
+	mes "ต้องการ " + getitemname(.pay_type_7_id) + " อีก " + (.pay_type_7_req - countitem(.pay_type_7_id));
+	close;
+	
+	L_Respawn:
+	donpcevent "MysteryBoss::OnCleanUp";
+	donpcevent "MysteryBossSkillPoint::OnCleanUp";
+	donpcevent "MysteryBossAllKey::OnCleanUp";
+	donpcevent "UltimateMysteryBoss::OnCleanUp";
+	return;
+
+OnInit:
+	.pay_type_1_req = 29000;
+	.pay_type_2_req = 29000;
+	.pay_type_3_req = 19000;
+	.pay_type_4_req = 19000;
+	.pay_type_5_req = 9000;
+	.pay_type_6_req = 9000;
+	.pay_type_7_req = 90;
+	.pay_type_1_id = 40004;
+	.pay_type_2_id = 40005;
+	.pay_type_3_id = 40006;
+	.pay_type_4_id = 40007;
+	.pay_type_5_id = 40014;
+	.pay_type_6_id = 40015;
+	.pay_type_7_id = 40016;
+	waitingroom "คืนชีพ Mystery Boss",0;
+	end;
+}

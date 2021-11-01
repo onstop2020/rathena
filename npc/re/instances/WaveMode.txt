@@ -58,7 +58,7 @@ function	script	F_mobidle	{
 	end;
 }
 
-prontera,157,176,1	script	Zonda Rep#pron	4_F_ZONDAGIRL,{
+prontera,164,172,3	script	Zonda Rep#pron	4_F_ZONDAGIRL,{
 	.@player_name$ = strcharinfo(0);
 	getmapxy .@map_name$,.@x,.@y, BL_PC;
 
