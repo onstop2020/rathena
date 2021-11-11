@@ -4944,12 +4944,12 @@ uint64 MobDatabase::parseBodyNode(const YAML::Node &node) {
 	}
 
 	if (this->nodeExists(node, "MvpDropsNoUse")) { // [Start]
-		if (!this->parseDropNode("MvpDrops", node, MAX_MVP_DROP, mob->mvpitem))
+		if (!this->parseDropNode("MvpDropsNoUse", node, MAX_MVP_DROP, mob->mvpitem))
 			return 0;
 	}
 
 	if (this->nodeExists(node, "DropsNoUse")) { // [Start]
-		if (!this->parseDropNode("Drops", node, MAX_MOB_DROP, mob->dropitem))
+		if (!this->parseDropNode("DropsNoUse", node, MAX_MOB_DROP, mob->dropitem))
 			return 0;
 	}
 
