@@ -1,4 +1,4 @@
-prontera,147,166,5	script	ลบ Item ทุกอย่างในตัว	496,{
+prontera,163,166,3	script	ลบ Item ทุกอย่างในตัว	864,{
 	menu "ไม่ลบ",-,"ลบทุกอย่างในตัว (ไม่ลบที่สวมใส่อยู่)",L_Clear;
 	end;
 	L_Clear:
@@ -9,5 +9,3 @@ OnInit:
 	waitingroom "ลบ Item ทุกอย่างในตัว",0;
 	end;
 }
-
-prontera,98,232,5	duplicate(ลบ Item ทุกอย่างในตัว)	ลบ Item ทุกอย่างในตัว#2	496

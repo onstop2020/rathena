@@ -1,4 +1,4 @@
-prontera,151,185,5	script	จัดตั้ง Guild	564,{
+prontera,152,200,3	script	จัดตั้ง Guild	857,{
 	// Check is character already had a guild?
 	if(getcharid(2) > 0){
 		mes "คุณมี Guild อยู่แล้ว";

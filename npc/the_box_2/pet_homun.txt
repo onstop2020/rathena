@@ -1,17 +1,4 @@
-prontera,196,249,5	script	ฟักไข่	918,{
-	bpet;
-	end;
-	
-OnInit:
-	waitingroom "ฟักไข่",0;
-	end;
-}
-
-prontera,202,249,3	script	Pet & Hom. อิ่มสนิท	919,{
-	if(getpetinfo(PETINFO_ID) > 0){
-		atcommand "@petfriendly 1000";
-		atcommand "@pethungry 100";
-	}
+prontera,202,249,3	script	Hom. อิ่มสนิท	919,{
 	if(gethominfo(0) > 0){
 		addhomintimacy 100000;
 		atcommand "@homhungry 100";
@@ -19,7 +6,7 @@ prontera,202,249,3	script	Pet & Hom. อิ่มสนิท	919,{
 	end;
 	
 OnInit:
-	waitingroom "Pet & Hom. อิ่มสนิท",0;
+	waitingroom "Hom. อิ่มสนิท",0;
 	end;
 }
 

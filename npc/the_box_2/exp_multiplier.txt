@@ -1,4 +1,4 @@
-prontera,148,185,5	script	ซื้อ x Exp	564,{
+prontera,146,193,5	script	ซื้อ x Exp	852,{
 	callsub L_CurrentExpMultiplier;
 	mes $hint_color$ + "๐ วิธีคิดง่าย ๆ คือ ทุก ๆ " + $end_color$ + $reward_color$ + "100%" + $end_color$ + " จะได้ " + $reward_color$ + "x2" + $end_color$;
 	mes $hint_color$ + "๐ เมื่อตาย " + $end_color$ + $important_color$ + "x Exp จะหายไปทั้งหมด" + $end_color$;
