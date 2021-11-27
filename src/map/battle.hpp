@@ -296,7 +296,6 @@ struct Battle_Config
 	int pc_cloak_check_type;
 	int monster_cloak_check_type;
 	int estimation_type;
-	int gvg_monster_damage_multiplier;
 	int gvg_short_damage_rate;
 	int gvg_long_damage_rate;
 	int gvg_weapon_damage_rate;
@@ -517,7 +516,6 @@ struct Battle_Config
 	int bg_magic_damage_rate;
 	int bg_misc_damage_rate;
 	int bg_flee_penalty;
-	int bg_monster_damage_multiplier;
 
 	// rAthena
 	int max_third_parameter;

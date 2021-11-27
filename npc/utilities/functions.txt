@@ -1,0 +1,19 @@
+-	script	ColorCodes	-1,{
+	end;
+	
+OnInit:
+	$end_color$ = "^000000";
+	$important_color$ = "^FF1D1D";
+	$reward_color$ = "^1D9FFF";
+	$currency_color$ = "^D21DFF";
+	$hint_color$ = "^22A95D";
+	end;
+}
+
+function	script	RecalculateBonus	{
+	bonus_script_clear 1;
+	
+	// Exp Multiplier
+	bonus_script "bonus2 bExpAddClass,Class_All," + exp_multiplier + ";",86400,8,1;
+	return;
+}

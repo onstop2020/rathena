@@ -1,8 +1,0 @@
--	script	GlobalTheBox2KeyId	-1,{
-	end;
-	
-OnInit:
-	setarray $all_key_ids[0],40004,40005,40006,40007,40014,40015;
-	$all_key_id_size = getarraysize($all_key_ids);
-	end;
-}

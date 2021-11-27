@@ -1,0 +1,44 @@
+prontera,148,185,5	script	ซื้อ x Exp	564,{
+	callsub L_CurrentExpMultiplier;
+	mes $hint_color$ + "๐ วิธีคิดง่าย ๆ คือ ทุก ๆ " + $end_color$ + $reward_color$ + "100%" + $end_color$ + " จะได้ " + $reward_color$ + "x2" + $end_color$;
+	mes $hint_color$ + "๐ เมื่อตาย " + $end_color$ + $important_color$ + "x Exp จะหายไปทั้งหมด" + $end_color$;
+	mes $hint_color$ + "๐ เพิ่มได้มากสุด " + $end_color$ + $reward_color$ + .max_multiplier + "%" + $end_color$;
+	next;
+	menu "ซื้อ (" + $currency_color$ + .price + "z" + $end_color$ + " ได้ " + $reward_color$ + .multiplier_per_buy + "%" + $end_color$ + ")",-;
+	mes "โปรดระบุจำนวน x Exp ที่ต้องการเพิ่ม";
+	mes $currency_color$ + .price + "z" + $end_color$ + " ได้ " + $reward_color$ + .multiplier_per_buy + "%" + $end_color$;
+	next;
+	input .@i;
+	if((exp_multiplier + (.multiplier_per_buy * .@i)) > .max_multiplier){
+		mes "จำนวนที่ระบุเกินกำหนด";
+		close;
+	}
+	if(.@i <= 0){
+		mes "ยกเลิกเรียบร้อยแล้ว";
+		close;
+	}
+	if((.price * .@i) > Zeny){
+		mes "คุณมี Zeny ไม่เพียงพอ";
+		close;
+	}
+	Zeny -= (.price * .@i);
+	exp_multiplier += (.multiplier_per_buy * .@i);
+	mes "คุณจ่าย " + $currency_color$ + (.price * .@i) + "z" + $end_color$;
+	mes "เพื่อได้รับ Exp มากขึ้นอีก " + $reward_color$ + (.multiplier_per_buy * .@i) + "%" + $end_color$;
+	callsub L_CurrentExpMultiplier;
+	callfunc("RecalculateBonus");
+	close;
+	
+	L_CurrentExpMultiplier:
+	mes "ขณะนี้จะได้รับ Exp มากขึ้น " + $reward_color$ + exp_multiplier + "%" + $end_color$;
+	return;
+	
+OnInit:
+	.price = 1;
+	.multiplier_per_buy = 10;
+	.max_multiplier = 1000000000;
+	waitingroom "ซื้อ x Exp",0;
+	end;
+}
+
+

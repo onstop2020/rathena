@@ -54,7 +54,6 @@ Body:
               - Type: Normal
                 Rate: 10000
                 Price: 2000
-                Material: Elunium
           - Level: 2
             Bonus: 200
             Chances:

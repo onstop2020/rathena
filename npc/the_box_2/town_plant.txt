@@ -1,6 +1,0 @@
-prontera,0,0	monster	--ja--	1078,10,5000
-prontera,0,0	monster	--ja--	1079,10,5000
-prontera,0,0	monster	--ja--	1080,10,5000
-prontera,0,0	monster	--ja--	1081,10,5000
-prontera,0,0	monster	--ja--	1082,10,5000
-prontera,0,0	monster	--ja--	1083,10,5000
