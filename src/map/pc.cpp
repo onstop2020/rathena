@@ -5529,7 +5529,7 @@ bool pc_isUseitem(struct map_session_data *sd,int n)
 		case ITEMID_WING_OF_FLY:
 		case ITEMID_GIANT_FLY_WING:
 		case ITEMID_N_FLY_WING:
-			if( mapdata->flag[MF_NOTELEPORT] || mapdata_flag_gvg2(mapdata) ) {
+			if( mapdata->flag[MF_NOTELEPORT] ) { // [Start]
 				clif_skill_teleportmessage(sd,0);
 				return false;
 			}
