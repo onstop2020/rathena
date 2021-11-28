@@ -12,25 +12,29 @@
 //= 1.5 Added sc_end_class to reset related status changes [sader1992]
 //============================================================
 prontera,147,174,5	script	Reset	859,{
-	//	 		Skills,	Stats,	Both,	Limit
-	setarray .@Reset,	500000,	500000,	900000,	0;
-	mes "Reset Stats: "+ callfunc("F_InsertComma",.@Reset[1]) +"z";
-	mes "Reset Skills: "+ callfunc("F_InsertComma",.@Reset[0]) +"z";
-	mes "Reset Both: "+ callfunc("F_InsertComma",.@Reset[2]) +"z";
+	// Skills,Stats,Both
+	setarray .@price,5000,5000,9000;
+	mes "Reset Status: " + $currency_color$ + .@price[1] + "z" + $end_color$;
+	mes "Reset Skills: " + $currency_color$ + .@price[0] + "z" + $end_color$;
+	mes "Reset Both: " + $currency_color$ + .@price[2] + "z" + $end_color$;
 	next;
-	set .@i,(select("^FF3355Reset Skills:Reset Stats:Reset Both^000000:ยกเลิก"));
-	if(.@i > 3) close;
-	if (Zeny < .@Reset[.@i-1]) {
-		mes "Zeny ไม่เพียงพอ";
+	.@i = select($important_color$ + "Reset Skills:Reset Status:Reset ทั้งคู่^000000:ยกเลิก");
+	if(.@i > 3){
+		mes "ยกเลิกเรียบร้อยแล้ว";
 		close;
 	}
-	Zeny -= .@Reset[.@i-1];
+	if (Zeny < .@price[(.@i - 1)]){
+		mes "คุณมี Zeny ไม่เพียงพอ";
+		close;
+	}
+	Zeny -= .@price[(.@i - 1)];
 	if(.@i&1){
 		sc_end_class;
 		ResetSkill;
 	}
-	if(.@i&2) ResetStatus;
-	mes "เรียบร้อยแล้ว!";
+	if(.@i&2)
+	ResetStatus;
+	mes $reward_color$ + "Reset" + $end_color$ + " สำเร็จเรียบร้อย!";
 	close;
 	
 OnInit:

@@ -18,9 +18,9 @@
 //============================================================ 
 
 prontera,147,166,5	script	เพิ่มแรงแบกของ	871,{
-	mes "ใช้ " + callfunc("F_InsertComma",.price) + " Zeny ในการเพิ่มแรงแบกของ";
+	mes "ใช้ " + $currency_color$ + .price + "z" + $end_color$ + " ในการ" + $reward_color$ + "เพิ่มแรงแบกของ" + $end_color$;
 	next;
-	switch(select("เพิ่มแรงแบกของ:ยกเลิก:แก้บัคแรงแบกของหาย")) {
+	switch(select($reward_color$ + "เพิ่มแรงแบกของ" + $end_color$ + ":ยกเลิก:" + $hint_color$ + "แก้บัคแรงแบกของหาย" + $end_color$)) {
 	case 1:
 		if (gympassmemory < 10) {
 			.@add_carry = gympassmemory + 1;
@@ -29,33 +29,35 @@ prontera,147,166,5	script	เพิ่มแรงแบกของ	871,{
 				Zeny -= .price;
 				gympassmemory = .@add_carry;
 				skill "ALL_INCCARRY",.@add_carry,SKILL_PERM_GRANT;
+				mes $reward_color$ + "เพิ่มแรงแบกของ" + $end_color$ + " สำเร็จเรียบร้อย!";
 				close;
 			}
 			else {
-				mes "ต้องมี " + callfunc("F_InsertComma",.price) + " Zeny";
+				mes "คุณมี Zeny ไม่เพียงพอ";
 				close;
 			}
 		}
 		else {
-			mes "เพิ่มแรงแบกของถึงขั้นสูงสุดแล้ว";
+			mes $hint_color$ + "คุณได้เพิ่มแรงแบกของ ถึงขั้นสูงสุดแล้ว" + $end_color$;
 			close;
 		}
 	case 2:
-		mes "ไว้มาหาข้าใหม่ได้เสมอ เมื่อเจ้าต้องการเพิ่มแรงแบกของ";
+		mes "ยกเลิกเรียบร้อยแล้ว";
 		close;
 	case 3:
 		if (gympassmemory > 0) {
 			skill "ALL_INCCARRY",gympassmemory,SKILL_PERM_GRANT;
+			mes $hint_color$ + "แก้บัค เรียบร้อยแล้ว" + $end_color$;
 			close;
 		}
-		else {
-			mes "เจ้ายังไม่เคยเพิ่มแรงแบกของ";
+		else{
+			mes $important_color$ + "คุณยังไม่เคยเพิ่มแรงแบกของ" + $end_color$;
 			close;
 		}
 	}
 	
-	OnInit:
-	.price = 10000000;
+OnInit:
+	.price = 10000;
 	waitingroom "เพิ่มแรงแบกของ",0;
 	end;
 }

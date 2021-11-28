@@ -3666,6 +3666,10 @@ void pc_bonus(struct map_session_data *sd,int type,int val)
 			if(sd->state.lr_flag != 2)
 				sd->bonus.delayrate -= val;
 			break;
+		case SP_ADD_SKILLCOOLDOWN:
+			if (sd->state.lr_flag != 2)
+				sd->bonus.add_skillcooldown += val;
+			break;
 		case SP_CRIT_ATK_RATE:
 			if(sd->state.lr_flag != 2)
 				sd->bonus.crit_atk_rate += val;
@@ -6456,6 +6460,12 @@ int pc_get_skillcooldown(struct map_session_data *sd, uint16 skill_id, uint16 sk
 		}
 	}
 
+	if (cooldown > 2000) { // [Start]
+		cooldown -= (sd->bonus.add_skillcooldown);
+		if (cooldown < 2000)
+			cooldown = 2000;
+	}
+
 	return max(0, cooldown);
 }
 
@@ -9066,6 +9076,7 @@ int64 pc_readparam(struct map_session_data* sd,int64 type)
 		case SP_BREAK_ARMOR_RATE: val = sd->bonus.break_armor_rate; break;
 		case SP_ADD_STEAL_RATE:  val = sd->bonus.add_steal_rate; break;
 		case SP_DELAYRATE:       val = sd->bonus.delayrate; break;
+		case SP_ADD_SKILLCOOLDOWN:       val = sd->bonus.add_skillcooldown; break; // [Start]
 		case SP_CRIT_ATK_RATE:   val = sd->bonus.crit_atk_rate; break;
 		case SP_UNSTRIPABLE_WEAPON: val = (sd->bonus.unstripable_equip&EQP_WEAPON)?1:0; break;
 		case SP_UNSTRIPABLE:

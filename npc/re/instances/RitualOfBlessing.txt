@@ -1,6 +1,6 @@
 2@mir,0,0	monster	--ja--	3454,60,30000,30000
 
-prontera,208,199,1	script	Ritual of Blessing	3454,{
+prontera,156,224,4	script	Ritual of Blessing	2035,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
 	end;
@@ -8,5 +8,6 @@ prontera,208,199,1	script	Ritual of Blessing	3454,{
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"2@mir";
+	waitingroom strnpcinfo(0),0;
 	end;
 }

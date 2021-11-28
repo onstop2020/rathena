@@ -2,10 +2,10 @@
 1@tower,0,0	monster	--ja--	1242,3,30000,30000
 1@tower,0,0	monster	--ja--	1031,3,30000,30000
 1@tower,0,0	monster	--ja--	1113,3,30000,30000
-1@tower,0,0	boss_monster	--ja--	1090,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@tower,0,0	boss_monster	--ja--	1090,1,180000,180000
 1@tower,0,0	monster	--ja--	1002,3,30000,30000
 1@tower,0,0	monster	--ja--	1106,3,30000,30000
-1@tower,0,0	boss_monster	--ja--	1092,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@tower,0,0	boss_monster	--ja--	1092,1,180000,180000
 1@tower,0,0	monster	--ja--	1107,3,30000,30000
 1@tower,0,0	monster	--ja--	1016,3,30000,30000
 1@tower,0,0	monster	--ja--	1169,3,30000,30000
@@ -16,10 +16,10 @@
 1@tower,0,0	monster	--ja--	1099,3,30000,30000
 1@tower,0,0	monster	--ja--	1139,3,30000,30000
 1@tower,0,0	monster	--ja--	1100,3,30000,30000
-1@tower,0,0	boss_monster	--ja--	1088,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@tower,0,0	boss_monster	--ja--	1088,1,180000,180000
 1@tower,0,0	monster	--ja--	1052,3,30000,30000
 1@tower,0,0	monster	--ja--	1004,3,30000,30000
-1@tower,0,0	boss_monster	--ja--	1086,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@tower,0,0	boss_monster	--ja--	1086,1,180000,180000
 1@tower,0,0	monster	--ja--	1054,3,30000,30000
 1@tower,0,0	monster	--ja--	1053,3,30000,30000
 1@tower,0,0	monster	--ja--	1051,3,30000,30000
@@ -36,7 +36,7 @@
 1@tower,0,0	monster	--ja--	1615,3,30000,30000
 1@tower,0,0	monster	--ja--	1040,3,30000,30000
 1@tower,0,0	monster	--ja--	1784,3,30000,30000
-1@tower,0,0	boss_monster	--ja--	1059,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@tower,0,0	boss_monster	--ja--	1059,1,180000,180000
 1@tower,0,0	monster	--ja--	1303,3,30000,30000
 1@tower,0,0	monster	--ja--	1493,3,30000,30000
 1@tower,0,0	monster	--ja--	1500,3,30000,30000
@@ -52,8 +52,8 @@
 1@tower,0,0	monster	--ja--	1273,3,30000,30000
 1@tower,0,0	monster	--ja--	1023,3,30000,30000
 1@tower,0,0	monster	--ja--	1686,3,30000,30000
-1@tower,0,0	boss_monster	--ja--	1147,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@tower,0,0	boss_monster	--ja--	1159,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@tower,0,0	boss_monster	--ja--	1147,1,180000,180000
+1@tower,0,0	boss_monster	--ja--	1159,1,180000,180000
 1@tower,0,0	monster	--ja--	1105,3,30000,30000
 1@tower,0,0	monster	--ja--	1160,3,30000,30000
 1@tower,0,0	monster	--ja--	1095,3,30000,30000
@@ -69,7 +69,7 @@
 1@tower,0,0	monster	--ja--	1064,3,30000,30000
 1@tower,0,0	monster	--ja--	1069,3,30000,30000
 1@tower,0,0	monster	--ja--	1158,3,30000,30000
-1@tower,0,0	boss_monster	--ja--	1112,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@tower,0,0	boss_monster	--ja--	1112,1,180000,180000
 1@tower,0,0	monster	--ja--	1071,3,30000,30000
 1@tower,0,0	monster	--ja--	1693,3,30000,30000
 1@tower,0,0	monster	--ja--	1696,3,30000,30000
@@ -112,21 +112,21 @@
 2@tower,0,0	monster	--ja--	1508,4,30000,30000
 2@tower,0,0	monster	--ja--	1509,4,30000,30000
 2@tower,0,0	monster	--ja--	1179,4,30000,30000
-2@tower,0,0	boss_monster	--ja--	1630,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@tower,0,0	boss_monster	--ja--	1630,1,180000,180000
 2@tower,0,0	monster	--ja--	1416,4,30000,30000
 2@tower,0,0	monster	--ja--	1387,4,30000,30000
 2@tower,0,0	monster	--ja--	1212,4,30000,30000
 2@tower,0,0	monster	--ja--	1099,4,30000,30000
 2@tower,0,0	monster	--ja--	1001,4,30000,30000
 2@tower,0,0	monster	--ja--	1299,4,30000,30000
-2@tower,0,0	boss_monster	--ja--	1296,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@tower,0,0	boss_monster	--ja--	1296,1,180000,180000
 2@tower,0,0	monster	--ja--	1133,4,30000,30000
 2@tower,0,0	monster	--ja--	1282,4,30000,30000
 2@tower,0,0	monster	--ja--	1134,4,30000,30000
 2@tower,0,0	monster	--ja--	1135,4,30000,30000
 2@tower,0,0	monster	--ja--	1869,4,30000,30000
 2@tower,0,0	monster	--ja--	1186,4,30000,30000
-2@tower,0,0	boss_monster	--ja--	1312,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@tower,0,0	boss_monster	--ja--	1312,1,180000,180000
 2@tower,0,0	monster	--ja--	1319,4,30000,30000
 2@tower,0,0	monster	--ja--	1316,4,30000,30000
 2@tower,0,0	monster	--ja--	1318,4,30000,30000
@@ -143,7 +143,7 @@
 2@tower,0,0	monster	--ja--	1412,4,30000,30000
 2@tower,0,0	monster	--ja--	1514,4,30000,30000
 2@tower,0,0	monster	--ja--	1517,4,30000,30000
-2@tower,0,0	boss_monster	--ja--	1492,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@tower,0,0	boss_monster	--ja--	1492,1,180000,180000
 2@tower,0,0	monster	--ja--	1401,4,30000,30000
 2@tower,0,0	monster	--ja--	1405,4,30000,30000
 2@tower,0,0	monster	--ja--	1403,4,30000,30000
@@ -164,7 +164,7 @@
 2@tower,0,0	monster	--ja--	1686,4,30000,30000
 2@tower,0,0	monster	--ja--	1107,4,30000,30000
 2@tower,0,0	monster	--ja--	1167,4,30000,30000
-2@tower,0,0	boss_monster	--ja--	1038,1,180000,180000,"BossMonsterDrop::OnBossDead"
+2@tower,0,0	boss_monster	--ja--	1038,1,180000,180000
 2@tower,0,0	monster	--ja--	1297,4,30000,30000
 2@tower,0,0	monster	--ja--	1032,4,30000,30000
 2@tower,0,0	monster	--ja--	1041,4,30000,30000
@@ -183,8 +183,8 @@
 3@tower,0,0	monster	--ja--	1417,5,30000,30000
 3@tower,0,0	monster	--ja--	1243,5,30000,30000
 3@tower,0,0	monster	--ja--	1060,5,30000,30000
-3@tower,0,0	boss_monster	--ja--	1157,1,180000,180000,"BossMonsterDrop::OnBossDead"
-3@tower,0,0	boss_monster	--ja--	1511,1,180000,180000,"BossMonsterDrop::OnBossDead"
+3@tower,0,0	boss_monster	--ja--	1157,1,180000,180000
+3@tower,0,0	boss_monster	--ja--	1511,1,180000,180000
 3@tower,0,0	monster	--ja--	1098,5,30000,30000
 3@tower,0,0	monster	--ja--	1140,5,30000,30000
 3@tower,0,0	monster	--ja--	1146,5,30000,30000
@@ -203,7 +203,7 @@
 3@tower,0,0	monster	--ja--	1143,5,30000,30000
 3@tower,0,0	monster	--ja--	1404,5,30000,30000
 3@tower,0,0	monster	--ja--	1148,5,30000,30000
-3@tower,0,0	boss_monster	--ja--	1418,1,180000,180000,"BossMonsterDrop::OnBossDead"
+3@tower,0,0	boss_monster	--ja--	1418,1,180000,180000
 3@tower,0,0	monster	--ja--	1029,5,30000,30000
 3@tower,0,0	monster	--ja--	1037,5,30000,30000
 3@tower,0,0	monster	--ja--	1319,5,30000,30000
@@ -211,11 +211,11 @@
 3@tower,0,0	monster	--ja--	1777,5,30000,30000
 3@tower,0,0	monster	--ja--	1775,5,30000,30000
 3@tower,0,0	monster	--ja--	1778,5,30000,30000
-3@tower,0,0	boss_monster	--ja--	1388,1,180000,180000,"BossMonsterDrop::OnBossDead"
-3@tower,0,0	boss_monster	--ja--	1582,1,180000,180000,"BossMonsterDrop::OnBossDead"
-3@tower,0,0	boss_monster	--ja--	1096,1,180000,180000,"BossMonsterDrop::OnBossDead"
-3@tower,0,0	boss_monster	--ja--	1120,1,180000,180000,"BossMonsterDrop::OnBossDead"
-3@tower,0,0	boss_monster	--ja--	1090,1,180000,180000,"BossMonsterDrop::OnBossDead"
+3@tower,0,0	boss_monster	--ja--	1388,1,180000,180000
+3@tower,0,0	boss_monster	--ja--	1582,1,180000,180000
+3@tower,0,0	boss_monster	--ja--	1096,1,180000,180000
+3@tower,0,0	boss_monster	--ja--	1120,1,180000,180000
+3@tower,0,0	boss_monster	--ja--	1090,1,180000,180000
 3@tower,0,0	monster	--ja--	1613,5,30000,30000
 3@tower,0,0	monster	--ja--	1242,5,30000,30000
 3@tower,0,0	monster	--ja--	1031,5,30000,30000
@@ -229,8 +229,8 @@
 4@tower,0,0	monster	--ja--	1699,4,30000,30000
 4@tower,0,0	monster	--ja--	1191,4,30000,30000
 4@tower,0,0	monster	--ja--	1249,4,30000,30000
-4@tower,0,0	boss_monster	--ja--	1658,1,180000,180000,"BossMonsterDrop::OnBossDead"
-4@tower,0,0	boss_monster	--ja--	1046,1,180000,180000,"BossMonsterDrop::OnBossDead"
+4@tower,0,0	boss_monster	--ja--	1658,1,180000,180000
+4@tower,0,0	boss_monster	--ja--	1046,1,180000,180000
 4@tower,0,0	monster	--ja--	1654,4,30000,30000
 4@tower,0,0	monster	--ja--	1653,4,30000,30000
 4@tower,0,0	monster	--ja--	1657,4,30000,30000
@@ -254,7 +254,7 @@
 4@tower,0,0	monster	--ja--	1293,4,30000,30000
 4@tower,0,0	monster	--ja--	1294,4,30000,30000
 4@tower,0,0	monster	--ja--	1303,4,30000,30000
-4@tower,0,0	boss_monster	--ja--	1785,1,180000,180000,"BossMonsterDrop::OnBossDead"
+4@tower,0,0	boss_monster	--ja--	1785,1,180000,180000
 4@tower,0,0	monster	--ja--	1783,4,30000,30000
 4@tower,0,0	monster	--ja--	1374,4,30000,30000
 4@tower,0,0	monster	--ja--	1736,4,30000,30000
@@ -273,8 +273,8 @@
 4@tower,0,0	monster	--ja--	1702,4,30000,30000
 4@tower,0,0	monster	--ja--	1703,4,30000,30000
 4@tower,0,0	monster	--ja--	1371,4,30000,30000
-4@tower,0,0	boss_monster	--ja--	1087,1,180000,180000,"BossMonsterDrop::OnBossDead"
-4@tower,0,0	boss_monster	--ja--	1190,1,180000,180000,"BossMonsterDrop::OnBossDead"
+4@tower,0,0	boss_monster	--ja--	1087,1,180000,180000
+4@tower,0,0	boss_monster	--ja--	1190,1,180000,180000
 4@tower,0,0	monster	--ja--	1686,4,30000,30000
 
 5@tower,0,0	monster	--ja--	1370,1,30000,30000
@@ -299,8 +299,8 @@
 5@tower,0,0	monster	--ja--	1678,1,30000,30000
 5@tower,0,0	monster	--ja--	1679,1,30000,30000
 5@tower,0,0	monster	--ja--	1676,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1039,1,180000,180000,"BossMonsterDrop::OnBossDead"
-5@tower,0,0	boss_monster	--ja--	1272,1,180000,180000,"BossMonsterDrop::OnBossDead"
+5@tower,0,0	boss_monster	--ja--	1039,1,180000,180000
+5@tower,0,0	boss_monster	--ja--	1272,1,180000,180000
 5@tower,0,0	monster	--ja--	1101,1,30000,30000
 5@tower,0,0	monster	--ja--	1302,1,30000,30000
 5@tower,0,0	monster	--ja--	1219,1,30000,30000
@@ -318,7 +318,7 @@
 5@tower,0,0	monster	--ja--	1717,1,30000,30000
 5@tower,0,0	monster	--ja--	1385,1,30000,30000
 5@tower,0,0	monster	--ja--	1155,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1871,1,180000,180000,"BossMonsterDrop::OnBossDead"
+5@tower,0,0	boss_monster	--ja--	1871,1,180000,180000
 5@tower,0,0	monster	--ja--	1870,1,30000,30000
 5@tower,0,0	monster	--ja--	1203,1,30000,30000
 5@tower,0,0	monster	--ja--	1204,1,30000,30000
@@ -332,7 +332,7 @@
 5@tower,0,0	monster	--ja--	1283,1,30000,30000
 5@tower,0,0	monster	--ja--	1320,1,30000,30000
 5@tower,0,0	monster	--ja--	1295,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1832,1,180000,180000,"BossMonsterDrop::OnBossDead"
+5@tower,0,0	boss_monster	--ja--	1832,1,180000,180000
 5@tower,0,0	monster	--ja--	1310,1,30000,30000
 5@tower,0,0	monster	--ja--	1831,1,30000,30000
 5@tower,0,0	monster	--ja--	1833,1,30000,30000
@@ -345,7 +345,7 @@
 5@tower,0,0	monster	--ja--	1705,1,30000,30000
 5@tower,0,0	monster	--ja--	1706,1,30000,30000
 5@tower,0,0	monster	--ja--	1707,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1751,1,180000,180000,"BossMonsterDrop::OnBossDead"
+5@tower,0,0	boss_monster	--ja--	1751,1,180000,180000
 5@tower,0,0	monster	--ja--	1702,1,30000,30000
 5@tower,0,0	monster	--ja--	1703,1,30000,30000
 5@tower,0,0	monster	--ja--	1371,1,30000,30000
@@ -358,7 +358,7 @@
 5@tower,0,0	monster	--ja--	1140,1,30000,30000
 5@tower,0,0	monster	--ja--	1634,1,30000,30000
 5@tower,0,0	monster	--ja--	1208,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1873,1,180000,180000,"BossMonsterDrop::OnBossDead"
+5@tower,0,0	boss_monster	--ja--	1873,1,180000,180000
 5@tower,0,0	monster	--ja--	1035,1,30000,30000
 5@tower,0,0	monster	--ja--	1042,1,30000,30000
 5@tower,0,0	monster	--ja--	1091,1,30000,30000
@@ -406,26 +406,16 @@
 6@tower,0,0	monster	--ja--	1152,4,30000,30000
 6@tower,0,0	monster	--ja--	1132,4,30000,30000
 
-6@tower,0,0	boss_monster	--ja--	1956,1,180000,180000,"BossMonsterDrop::OnBossDead"
+6@tower,0,0	boss_monster	--ja--	1956,1,180000,180000
 
-prontera,146,236,5	script	Endless Tower	1956,{
+prontera,144,200,4	script	Endless Tower	2035,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-	L_RefreshRate:
-	$mvpRefineRate1 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate1 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
 	end;
 	
 OnInit:
 	.m$ = "股暽 1:股暽 2:股暽 3:股暽 4:股暽 5:股暽 6";
 	setarray .mapName$[0],"1@tower","2@tower","3@tower","4@tower","5@tower","6@tower";
-	callsub L_RefreshRate;
+	waitingroom strnpcinfo(0),0;
 	end;
 }

@@ -1,0 +1,10 @@
+-	script	LoadCommands	-1,{
+OnInit:
+	bindatcmd "load",strnpcinfo(3) + "::OnLoad",99,99;
+	end;
+	
+OnLoad:
+	progressbar "",5;
+	warp "prontera",156,191;
+	end;
+}

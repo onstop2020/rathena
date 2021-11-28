@@ -4,8 +4,8 @@ prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
 		close;
 	}
 	
-	if(ro_max_value > 199)
-	.@price = .price_greater_199;
+	if(ro_max_value > 399)
+	.@price = .price_greater_399;
 	else if(ro_max_value < 10)
 	.@price = .price_below_10;
 	else if(ro_max_value < 20)
@@ -22,6 +22,10 @@ prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
 	.@price = .price_below_150;
 	else if(ro_max_value < 200)
 	.@price = .price_below_200;
+	else if(ro_max_value < 300)
+	.@price = .price_below_300;
+	else if(ro_max_value < 400)
+	.@price = .price_below_400;
 	else
 	.@price = .price_max;
 	
@@ -52,17 +56,19 @@ prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
 	return;
 	
 OnInit:
-	.price_below_10 = 2;
-	.price_below_20 = 20;
-	.price_below_30 = 200;
-	.price_below_40 = 1000;
-	.price_below_50 = 2000;
-	.price_below_100 = 3000;
-	.price_below_150 = 13000;
-	.price_below_200 = 23000;
-	.price_greater_199 = 33000;
-	.price_max = 10000000;
-	.max_value = 250;
+	.price_below_10 = 3;
+	.price_below_20 = 9;
+	.price_below_30 = 30;
+	.price_below_40 = 300;
+	.price_below_50 = 1300;
+	.price_below_100 = 1900;
+	.price_below_150 = 3300;
+	.price_below_200 = 9300;
+	.price_below_300 = 13000;
+	.price_below_400 = 19000;
+	.price_greater_399 = 33000;
+	.price_max = 30000000;
+	.max_value = 500;
 	waitingroom "Upgrade สุ่ม Option",0;
 	end;
 }
@@ -74,7 +80,9 @@ prontera,176,176,3	script	สุ่ม Option	10267,{
 		close;
 	}
 	// Hint max value
-	mes $reward_color$ + "ค่าที่จะสุ่มได้: 0~" + ro_max_value + $end_color$;
+	mes "ใช้ " + $currency_color$ + .price + "z" + $end_color$ + " ต่อการสุ่ม 1 ครั้ง";
+	mes $hint_color$ + "๐ ค่าที่จะสุ่มได้: 0~" + $reward_color$ + ro_max_value + $end_color$;
+	mes $important_color$ + "๐ ไม่สามารถเลือกแถวได้" + $end_color$;
 	next;
 	// Setup
 	setarray .@indices[1],EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_COSTUME_GARMENT,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
@@ -100,20 +108,6 @@ prontera,176,176,3	script	สุ่ม Option	10267,{
 	}
 	// Remember item id
 	.@selectedItemId = getequipid(.@part);
-	// Hint to select index
-	mes "โปรดเลือกช่องที่ต้องการ";
-	next;
-	// Setup index
-	.@menu$ = "ช่องที่ 1:";
-	for(.@i = 1; .@i < 5; ++.@i){
-		if(getequiprandomoption(.@part,(.@i - 1),ROA_ID) > 0)
-		.@menu$ += "ช่องที่ " + (.@i + 1);
-		else
-		break;
-		.@menu$ = .@menu$ + ":";
-	}
-	// Select index
-	.@slot = select(.@menu$);
 	// Trade
 	if(Zeny < .price) {
 		mes "คุณมี Zeny ไม่เพียงพอ";
@@ -126,10 +120,27 @@ prontera,176,176,3	script	สุ่ม Option	10267,{
 		close;
 	}
 	// Set random option now
-	.@random_option = rand(1,23);
-	.@random_value = rand(0,ro_max_value);
-	setrandomoption(.@part,.@slot - 1,.@random_option,.@random_value,0);
-	mes "คุณได้รับ " + $reward_color$ + OptionDescription(.@random_option,.@random_value) + $end_color$ + " ที่ช่อง " + .@slot + "!";
+	.@random_option_1 = rand(1,23);
+	.@random_value_1 = rand(0,ro_max_value);
+	.@random_option_2 = rand(1,23);
+	.@random_value_2 = rand(0,ro_max_value);
+	.@random_option_3 = rand(1,23);
+	.@random_value_3 = rand(0,ro_max_value);
+	.@random_option_4 = rand(1,23);
+	.@random_value_4 = rand(0,ro_max_value);
+	.@random_option_5 = rand(1,23);
+	.@random_value_5 = rand(0,ro_max_value);
+	setrandomoption(.@part,0,.@random_option_1,.@random_value_1,0);
+	setrandomoption(.@part,1,.@random_option_2,.@random_value_2,0);
+	setrandomoption(.@part,2,.@random_option_3,.@random_value_3,0);
+	setrandomoption(.@part,3,.@random_option_4,.@random_value_4,0);
+	setrandomoption(.@part,4,.@random_option_5,.@random_value_5,0);
+	mes "คุณได้รับ";
+	mes "๐ " + $reward_color$ + OptionDescription(.@random_option_1,.@random_value_1) + $end_color$ + " ที่ช่อง 1!";
+	mes "๐ " + $reward_color$ + OptionDescription(.@random_option_2,.@random_value_2) + $end_color$ + " ที่ช่อง 2!";
+	mes "๐ " + $reward_color$ + OptionDescription(.@random_option_3,.@random_value_3) + $end_color$ + " ที่ช่อง 3!";
+	mes "๐ " + $reward_color$ + OptionDescription(.@random_option_4,.@random_value_4) + $end_color$ + " ที่ช่อง 4!";
+	mes "๐ " + $reward_color$ + OptionDescription(.@random_option_5,.@random_value_5) + $end_color$ + " ที่ช่อง 5!";
 	close;
 
 OnInit:

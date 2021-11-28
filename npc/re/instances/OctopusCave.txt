@@ -4,26 +4,16 @@
 1@cash,0,0	monster	--ja--	1784,25,30000,30000
 1@cash,0,0	monster	--ja--	2175,25,30000,30000
 
-1@cash,0,0	boss_monster	--ja--	2194,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@cash,0,0	boss_monster	--ja--	2194,1,180000,180000
 
-prontera,127,197,7	script	Octopus Cave	2194,{
+prontera,144,224,4	script	Octopus Cave	2035,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
-	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate23 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate23 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
 	end;
 
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@cash";
-	callsub L_RefreshRate;
+	waitingroom strnpcinfo(0),0;
 	end;
 }

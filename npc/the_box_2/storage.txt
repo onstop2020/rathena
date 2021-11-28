@@ -1,6 +1,6 @@
 -	script	storage	-1,{
 	if(getcharid(2) > 0)
-	menu "คลังปกติ",-,"คลัง Guild",L_GuildStorage;
+	menu "คลังปกติ",-,"คลัง Guild (" + $important_color$ + "ต้องมี Skill คลัง Guild" + $end_color$ + ")",L_GuildStorage;
 	openstorage;
 	end;
 	

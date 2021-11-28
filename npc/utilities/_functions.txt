@@ -54,13 +54,13 @@ function	script	OptionDescription	{
 	else if(.@id == 16)
 	return "ได้รับการฟื้นฟู HP จาก Skill มากขึ้น +" + .@value + "%";
 	else if(.@id == 17)
-	return "ร่าย Fixed Cast เร็วขึ้น +" + .@value + " มิลลิวินาที";
+	return "ร่าย Fixed Cast เร็วขึ้น +" + (.@value * 5) + " มิลลิวินาที";
 	else if(.@id == 18)
-	return "ร่าย Variable Cast เร็วขึ้น +" + .@value + " มิลลิวินาที";
+	return "ร่าย Variable Cast เร็วขึ้น +" + (.@value * 5) + " มิลลิวินาที";
 	else if(.@id == 19)
 	return "ลด Delay หลังร่าย +" + .@value + "%";
 	else if(.@id == 20)
-	return "ลด Skill Cooldown +" + .@value + " มิลลิวินาที";
+	return "ลด Skill Cooldown +" + (.@value * 5) + " มิลลิวินาที";
 	else if(.@id == 21)
 	return "โจมตีกายภาพแรงขึ้น +" + .@value + "%";
 	else if(.@id == 22)

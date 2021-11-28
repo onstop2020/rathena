@@ -28,65 +28,21 @@ alb_ship,0,0	monster	Strange Mouse	2057,25
 //==================================================
 // Prontera, Training Dummy Area
 //==================================================
-prontera,251,77	monster	Dummy Lv50	2409,1,5000
-prontera,258,77	monster	Dummy Lv50	2409,1,5000
-prontera,259,76	monster	Dummy Lv50	2409,1,5000
-prontera,259,77	monster	Dummy Lv50	2409,1,5000
-prontera,259,78	monster	Dummy Lv50	2409,1,5000
-prontera,260,77	monster	Dummy Lv50	2409,1,5000
-prontera,251,66	monster	Dummy Lv100	2410,1,5000
-prontera,258,66	monster	Dummy Lv100	2410,1,5000
-prontera,259,65	monster	Dummy Lv100	2410,1,5000
-prontera,259,66	monster	Dummy Lv100	2410,1,5000
-prontera,259,67	monster	Dummy Lv100	2410,1,5000
-prontera,260,66	monster	Dummy Lv100	2410,1,5000
-prontera,251,55	monster	Dummy Lv150	2411,1,5000
-prontera,258,55	monster	Dummy Lv150	2411,1,5000
-prontera,259,54	monster	Dummy Lv150	2411,1,5000
-prontera,259,55	monster	Dummy Lv150	2411,1,5000
-prontera,259,56	monster	Dummy Lv150	2411,1,5000
-prontera,260,55	monster	Dummy Lv150	2411,1,5000
-
-//==================================================
-// THE BOX 2, Battle Ground Damage Training Dummy Area
-//==================================================
-force_1-1,89,110	monster	Dummy Lv50	2409,1,5000
-force_1-1,109,110	monster	Dummy Lv50	2409,1,5000
-force_1-1,110,110	monster	Dummy Lv50	2409,1,5000
-force_1-1,111,110	monster	Dummy Lv50	2409,1,5000
-force_1-1,110,111	monster	Dummy Lv50	2409,1,5000
-force_1-1,110,109	monster	Dummy Lv50	2409,1,5000
-force_1-1,89,100	monster	Dummy Lv100	2410,1,5000
-force_1-1,109,100	monster	Dummy Lv100	2410,1,5000
-force_1-1,110,100	monster	Dummy Lv100	2410,1,5000
-force_1-1,111,100	monster	Dummy Lv100	2410,1,5000
-force_1-1,110,101	monster	Dummy Lv100	2410,1,5000
-force_1-1,110,99	monster	Dummy Lv100	2410,1,5000
-force_1-1,89,90	monster	Dummy Lv150	2411,1,5000
-force_1-1,109,90	monster	Dummy Lv150	2411,1,5000
-force_1-1,110,90	monster	Dummy Lv150	2411,1,5000
-force_1-1,111,90	monster	Dummy Lv150	2411,1,5000
-force_1-1,110,91	monster	Dummy Lv150	2411,1,5000
-force_1-1,110,89	monster	Dummy Lv150	2411,1,5000
-
-//==================================================
-// THE BOX 2, Guild versus Guild Damage Training Dummy Area
-//==================================================
-force_1-2,166,167	monster	Dummy Lv50	2409,1,5000
-force_1-2,180,167	monster	Dummy Lv50	2409,1,5000
-force_1-2,181,167	monster	Dummy Lv50	2409,1,5000
-force_1-2,182,167	monster	Dummy Lv50	2409,1,5000
-force_1-2,181,168	monster	Dummy Lv50	2409,1,5000
-force_1-2,181,166	monster	Dummy Lv50	2409,1,5000
-force_1-2,166,157	monster	Dummy Lv100	2410,1,5000
-force_1-2,180,157	monster	Dummy Lv100	2410,1,5000
-force_1-2,181,157	monster	Dummy Lv100	2410,1,5000
-force_1-2,182,157	monster	Dummy Lv100	2410,1,5000
-force_1-2,181,158	monster	Dummy Lv100	2410,1,5000
-force_1-2,181,156	monster	Dummy Lv100	2410,1,5000
-force_1-2,166,147	monster	Dummy Lv150	2411,1,5000
-force_1-2,180,147	monster	Dummy Lv150	2411,1,5000
-force_1-2,181,147	monster	Dummy Lv150	2411,1,5000
-force_1-2,182,147	monster	Dummy Lv150	2411,1,5000
-force_1-2,181,148	monster	Dummy Lv150	2411,1,5000
-force_1-2,181,146	monster	Dummy Lv150	2411,1,5000
+prontera,147,153	monster	Dummy Lv50	2409,1,5000
+prontera,153,153	monster	Dummy Lv50	2409,1,5000
+prontera,154,153	monster	Dummy Lv50	2409,1,5000
+prontera,155,153	monster	Dummy Lv50	2409,1,5000
+prontera,154,152	monster	Dummy Lv50	2409,1,5000
+prontera,154,154	monster	Dummy Lv50	2409,1,5000
+prontera,147,147	monster	Dummy Lv100	2410,1,5000
+prontera,153,147	monster	Dummy Lv100	2410,1,5000
+prontera,154,147	monster	Dummy Lv100	2410,1,5000
+prontera,155,147	monster	Dummy Lv100	2410,1,5000
+prontera,154,146	monster	Dummy Lv100	2410,1,5000
+prontera,154,148	monster	Dummy Lv100	2410,1,5000
+prontera,147,141	monster	Dummy Lv150	2411,1,5000
+prontera,153,141	monster	Dummy Lv150	2411,1,5000
+prontera,154,141	monster	Dummy Lv150	2411,1,5000
+prontera,155,141	monster	Dummy Lv150	2411,1,5000
+prontera,154,140	monster	Dummy Lv150	2411,1,5000
+prontera,154,142	monster	Dummy Lv150	2411,1,5000

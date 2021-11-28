@@ -589,7 +589,7 @@ struct map_session_data {
 		unsigned short unbreakable_equip; //100% break resistance on certain equipment
 		unsigned short unstripable_equip;
 		int fixcastrate, varcastrate, delayrate; // n/100
-		int add_fixcast, add_varcast; // in milliseconds
+		int add_fixcast, add_varcast, add_skillcooldown; // in milliseconds // add_skillcooldown [Start]
 		int ematk; // matk bonus from equipment
 		int eatk; // atk bonus from equipment
 		uint8 absorb_dmg_maxhp; // [Cydh]

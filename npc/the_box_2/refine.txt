@@ -1,8 +1,9 @@
 prontera,178,174,3	script	ตีบวก	10366,{
-	mes "คุณต้องการตีบวกทั้งตัว +20 หรือไม่?";
+	mes "คุณต้องการ" + $reward_color$ + "ตีบวกทั้งตัว +20" + $end_color$ + " หรือไม่?";
 	mes $hint_color$ + "ราคาเหมาจ่าย " + $end_color$ + $currency_color$ + .price + "z" + $end_color$;
 	next;
-	menu "ยกเลิก",-,"ตีบวก",L_Trade;
+	menu "ยกเลิก",-,$reward_color$ + "ตีบวก" + $end_color$,L_Trade;
+	mes "ยกเลิกเรียบร้อยแล้ว";
 	close;
 	
 	L_Trade:
@@ -12,7 +13,7 @@ prontera,178,174,3	script	ตีบวก	10366,{
 	}
 	Zeny -= .price;
 	atcommand "@refine 0 20";
-	mes "การตีบวก สำเร็จเรียบร้อย!";
+	mes $reward_color$ + "ตีบวก" + $end_color$ + " สำเร็จเรียบร้อย!";
 	close;
 	
 OnInit:

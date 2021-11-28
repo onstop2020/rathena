@@ -674,6 +674,7 @@
 	export_constant2("bWeaponAtk",SP_WEAPON_ATK);
 	export_constant2("bWeaponDamageRate",SP_WEAPON_DAMAGE_RATE);
 	export_constant2("bDelayrate",SP_DELAYRATE);
+	export_constant2("bAddSkillCooldown",SP_ADD_SKILLCOOLDOWN);
 	export_constant2("bHPDrainValueRace",SP_HP_DRAIN_VALUE_RACE);
 	export_constant2("bSPDrainValueRace",SP_SP_DRAIN_VALUE_RACE);
 	export_constant2("bIgnoreMdefRaceRate",SP_IGNORE_MDEF_RACE_RATE);

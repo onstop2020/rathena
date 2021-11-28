@@ -9,27 +9,17 @@
 1@xm_d,0,0	monster	--ja--	2988,20,30000,30000
 1@xm_d,0,0	monster	--ja--	3038,20,30000,30000
 
-1@xm_d,0,0	boss_monster	--ja--	2996,1,180000,180000,"BossMonsterDrop::OnBossDead"
-1@xm_d,0,0	boss_monster	--ja--	2997,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@xm_d,0,0	boss_monster	--ja--	2996,1,180000,180000
+1@xm_d,0,0	boss_monster	--ja--	2997,1,180000,180000
 
-prontera,227,208,3	script	Horror Toy Factory	2996,{
+prontera,162,216,4	script	Horror Toy Factory	2035,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
-	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate17 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate17 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
 	end;
 
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@xm_d";
-	callsub L_RefreshRate;
+	waitingroom strnpcinfo(0),0;
 	end;
 }

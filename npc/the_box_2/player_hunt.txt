@@ -1,0 +1,13 @@
+prontera,166,200,5	script	ล่าผู้เล่นอื่น	615,{
+	if (#player_hunt_cd > gettimetick(2)){
+		message strcharinfo(0),"โปรดรอ " + (#player_hunt_cd - gettimetick(2)) + " วินาที";
+		end;	
+	}
+	atcommand "@users";
+	#player_hunt_cd = gettimetick(2) + 30;
+	end;
+	
+OnInit:
+	waitingroom "ล่าผู้เล่นอื่น",0;
+	end;
+}

@@ -16,7 +16,7 @@
 1@ge_st,0,0	monster	--ja--	2563,1,180000,180000
 1@ge_st,0,0	monster	--ja--	2565,1,180000,180000
 
-1@ge_st,0,0	boss_monster	--ja--	2564,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@ge_st,0,0	boss_monster	--ja--	2564,1,180000,180000
 
 1@gef,0,0	monster	--ja--	2568,30,180000,180000
 1@gef,0,0	monster	--ja--	2567,30,180000,180000

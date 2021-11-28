@@ -5,26 +5,16 @@
 1@jtb,0,0	monster	--ja--	3109,25,30000,30000
 1@jtb,0,0	monster	--ja--	3072,25,30000,30000
 
-1@jtb,0,0	boss_monster	--ja--	3073,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@jtb,0,0	boss_monster	--ja--	3073,1,180000,180000
 
-prontera,244,197,1	script	Nightmarish Jitterbug	3073,{
+prontera,138,220,4	script	Nightmarish Jitterbug	2035,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
-	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate22 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate22 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
 	end;
 
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@jtb";
-	callsub L_RefreshRate;
+	waitingroom strnpcinfo(0),0;
 	end;
 }

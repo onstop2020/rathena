@@ -5,26 +5,16 @@
 1@mist,0,0	monster	--ja--	2132,25,30000,30000
 1@mist,0,0	monster	--ja--	2138,25,30000,30000
 
-1@mist,0,0	boss_monster	--ja--	2131,1,180000,180000,"BossMonsterDrop::OnBossDead"
+1@mist,0,0	boss_monster	--ja--	2131,1,180000,180000
 
-prontera,149,108,7	script	Hazy Forest	2131,{
+prontera,150,216,4	script	Hazy Forest	2035,{
 	.@index = select(.m$);
 	warp .mapName$[.@index - 1],0,0;
-	end;
-		
-	L_RefreshRate:
-	$mvpRefineRate15 = rand(1,50);
-	delwaitingroom;
-	waitingroom "MvP Refine (" + $mvpRefineRate15 + "%)",0;
-	return;
-	
-OnMinute30:
-	callsub L_RefreshRate;
 	end;
 
 OnInit:
 	.m$ = "ชั้น 1";
 	setarray .mapName$[0],"1@mist";
-	callsub L_RefreshRate;
+	waitingroom strnpcinfo(0),0;
 	end;
 }

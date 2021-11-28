@@ -1,5 +1,5 @@
 prontera,163,166,3	script	ลบ Item ทุกอย่างในตัว	864,{
-	menu "ไม่ลบ",-,"ลบทุกอย่างในตัว (ไม่ลบที่สวมใส่อยู่)",L_Clear;
+	menu "ไม่ลบ",-,"ลบทุกอย่างในตัว (" + $hint_color$ + "ไม่ลบที่สวมใส่อยู่" + $end_color$ + ")",L_Clear;
 	end;
 	L_Clear:
 	atcommand "@clearinventory";

@@ -2,19 +2,81 @@
 	end;
 	
 OnPCDieEvent:
-	// Random Option Value
-	if(ro_max_value > 0)
-	ro_max_value--;
-
-	// Random Drop 1 equipped equipment
-
-	// Exp Multiplier
-	exp_multiplier = 0;
-	RecalculateBonus();
+	.is_killed_by_player = (isloggedin(killerrid) && (getcharip() != getcharip(killerrid)));
 	
-	// Announce
+	// Random Drop 1 equipped equipment (If killed by players)
+	if(.is_killed_by_player){
+		setarray .@indices[1],EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_COSTUME_GARMENT,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
+		for(.@i = 1; .@i < getarraysize(.@indices); ++.@i)
+		{
+			.@rand_drop = .@indices[rand(1,getarraysize(.@indices))];
+			
+			if(getequipisequiped(.@rand_drop))
+			{
+				.item_id = getequipid(.@rand_drop);
+				.item_refine = getequiprefinerycnt(.@rand_drop);
+				.item_opt_id_1 = getequiprandomoption(.@rand_drop,0,ROA_ID);
+				.item_opt_id_2 = getequiprandomoption(.@rand_drop,1,ROA_ID);
+				.item_opt_id_3 = getequiprandomoption(.@rand_drop,2,ROA_ID);
+				.item_opt_id_4 = getequiprandomoption(.@rand_drop,3,ROA_ID);
+				.item_opt_id_5 = getequiprandomoption(.@rand_drop,4,ROA_ID);
+				.item_opt_value_1 = getequiprandomoption(.@rand_drop,0,ROA_VALUE);
+				.item_opt_value_2 = getequiprandomoption(.@rand_drop,1,ROA_VALUE);
+				.item_opt_value_3 = getequiprandomoption(.@rand_drop,2,ROA_VALUE);
+				.item_opt_value_4 = getequiprandomoption(.@rand_drop,3,ROA_VALUE);
+				.item_opt_value_5 = getequiprandomoption(.@rand_drop,4,ROA_VALUE);
+				delequip .@rand_drop;
+				dispbottom "คุณสูญเสีย " + getitemname(.item_id) + "..";
+				break;
+			}
+		}
+		// Random not found then finding in order again
+		if(!.item_id){
+			for(.@i = 1; .@i < getarraysize(.@indices); ++.@i)
+			{
+				.@rand_drop = .@i;
+				
+				if(getequipisequiped(.@rand_drop))
+				{
+					.item_id = getequipid(.@rand_drop);
+					.item_refine = getequiprefinerycnt(.@rand_drop);
+					.item_opt_id_1 = getequiprandomoption(.@rand_drop,0,ROA_ID);
+					.item_opt_id_2 = getequiprandomoption(.@rand_drop,1,ROA_ID);
+					.item_opt_id_3 = getequiprandomoption(.@rand_drop,2,ROA_ID);
+					.item_opt_id_4 = getequiprandomoption(.@rand_drop,3,ROA_ID);
+					.item_opt_id_5 = getequiprandomoption(.@rand_drop,4,ROA_ID);
+					.item_opt_value_1 = getequiprandomoption(.@rand_drop,0,ROA_VALUE);
+					.item_opt_value_2 = getequiprandomoption(.@rand_drop,1,ROA_VALUE);
+					.item_opt_value_3 = getequiprandomoption(.@rand_drop,2,ROA_VALUE);
+					.item_opt_value_4 = getequiprandomoption(.@rand_drop,3,ROA_VALUE);
+					.item_opt_value_5 = getequiprandomoption(.@rand_drop,4,ROA_VALUE);
+					delequip .@rand_drop;
+					dispbottom "คุณสูญเสีย " + getitemname(.item_id) + "..";
+					break;
+				}
+			}
+		}
+	}
+
+	// Dead outside towns
 	if(strcharinfo(3) != "prontera"){
-		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
+		// Random Option Value
+		if(ro_max_value > 0){
+			ro_max_value--;
+			dispbottom "ค่ามากสุดที่จะสุ่ม Random Option ได้ขณะนี้: " + ro_max_value + "..";
+		}
+		
+		// Exp Multiplier
+		if(exp_multiplier > 0){
+			exp_multiplier = 0;
+			dispbottom "คุณสูญเสีย x Exp ไปทั้งหมด..";
+		}
+		
+		// Always recalculate bonus
+		RecalculateBonus();
+		
+		// Killer
+		if(.is_killed_by_player){
 			// Dead man name
 			.a_deadman$ = strcharinfo(0);
 			
@@ -23,10 +85,33 @@ OnPCDieEvent:
 			// Increase killer kill count
 			kill_count++;
 			
+			// Announce
 			announce strcharinfo(0) + " ฆ่า " + .a_deadman$ + "!!",bc_all,0xFF29C5;
+			
+			// Stealing item (If available)
+			if(.item_id){
+				setarray .@OptID[0],.item_opt_id_1,.item_opt_id_2,.item_opt_id_3,.item_opt_id_4,.item_opt_id_5;
+				setarray .@OptVal[0],.item_opt_value_1,.item_opt_value_2,.item_opt_value_3,.item_opt_value_4,.item_opt_value_5;
+				setarray .@OptParam[0],0;
+				getitem3 .item_id,1,1,.item_refine,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+			}
 			
 			detachrid;
 		}
 	}
+	
+	// Clean up
+	.item_id = 0;
+	.item_refine = 0;
+	.item_opt_id_1 = 0;
+	.item_opt_id_2 = 0;
+	.item_opt_id_3 = 0;
+	.item_opt_id_4 = 0;
+	.item_opt_id_5 = 0;
+	.item_opt_value_1 = 0;
+	.item_opt_value_2 = 0;
+	.item_opt_value_3 = 0;
+	.item_opt_value_4 = 0;
+	.item_opt_value_5 = 0;
 	end;
 }
