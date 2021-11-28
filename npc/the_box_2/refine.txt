@@ -1,8 +1,22 @@
-prontera,175,177,3	script	ตีบวก	10366,{
-	refineui;
-	end;
+prontera,178,174,3	script	ตีบวก	10366,{
+	mes "คุณต้องการตีบวกทั้งตัว +20 หรือไม่?";
+	mes $hint_color$ + "ราคาเหมาจ่าย " + $end_color$ + $currency_color$ + .price + "z" + $end_color$;
+	next;
+	menu "ยกเลิก",-,"ตีบวก",L_Trade;
+	close;
+	
+	L_Trade:
+	if(Zeny < .price){
+		mes "คุณมี Zeny ไม่เพียงพอ";
+		close;
+	}
+	Zeny -= .price;
+	atcommand "@refine 0 20";
+	mes "การตีบวก สำเร็จเรียบร้อย!";
+	close;
 	
 OnInit:
+	.price = 2000;
 	waitingroom "ตีบวก",0;
 	end;
 }

@@ -193,7 +193,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Sell")) {
+	if (this->nodeExists(node, "SellNoUse")) { // [Start]
 		uint32 sell;
 
 		if (!this->asUInt32(node, "Sell", sell))
@@ -279,7 +279,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->range = 0;
 	}
 
-	if (this->nodeExists(node, "Slots")) {
+	if (this->nodeExists(node, "SlotsNoUse")) { // [Start]
 		uint16 slots;
 
 		if (!this->asUInt16(node, "Slots", slots))
@@ -296,7 +296,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->slots = 0;
 	}
 
-	if (this->nodeExists(node, "Jobs")) {
+	if (this->nodeExists(node, "JobsNoUse")) { // [Start]
 		const YAML::Node &jobNode = node["Jobs"];
 
 		item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
@@ -341,7 +341,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Classes")) {
+	if (this->nodeExists(node, "ClassesNoUse")) { // [Start]
 		const YAML::Node &classNode = node["Classes"];
 
 		if (this->nodeExists(classNode, "All")) {
@@ -494,7 +494,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	if (this->nodeExists(node, "EquipLevelMin")) {
+	if (this->nodeExists(node, "EquipLevelMinNoUse")) { // [Start]
 		uint16 lv;
 
 		if (!this->asUInt16(node, "EquipLevelMin", lv))
@@ -511,7 +511,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->elv = 0;
 	}
 
-	if (this->nodeExists(node, "EquipLevelMax")) {
+	if (this->nodeExists(node, "EquipLevelMaxNoUse")) { // [Start]
 		uint16 lv;
 
 		if (!this->asUInt16(node, "EquipLevelMax", lv))
@@ -1009,7 +1009,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Script")) {
+	if (this->nodeExists(node, "Script") && item->equip == 0) { // [Start]
 		std::string script;
 
 		if (!this->asString(node, "Script", script))
@@ -1026,7 +1026,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->script = nullptr;
 	}
 
-	if (this->nodeExists(node, "EquipScript")) {
+	if (this->nodeExists(node, "EquipScript") && item->equip == 0) { // [Start]
 		std::string script;
 
 		if (!this->asString(node, "EquipScript", script))
@@ -1043,7 +1043,7 @@ uint64 ItemDatabase::parseBodyNode(const YAML::Node &node) {
 			item->equip_script = nullptr;
 	}
 
-	if (this->nodeExists(node, "UnEquipScript")) {
+	if (this->nodeExists(node, "UnEquipScript") && item->equip == 0) { // [Start]
 		std::string script;
 
 		if (!this->asString(node, "UnEquipScript", script))
@@ -1120,6 +1120,8 @@ void ItemDatabase::loadingFinished(){
 			ShowWarning("Buying/Selling [%d/%d] price of %s (%u) allows Zeny making exploit through buying/selling at discounted/overcharged prices! Defaulting Sell to 1 Zeny.\n", item->value_buy, item->value_sell, item->name.c_str(), item->nameid);
 			item->value_sell = 1;
 		}
+
+		item->value_sell = 0; // [Start]
 	}
 
 	if( !this->exists( ITEMID_DUMMY ) ){

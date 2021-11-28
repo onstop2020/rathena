@@ -1,0 +1,78 @@
+prontera,169,180,1	script	สุ่ม Item	10267,{
+	menu "สุ่ม Weapon",L_Weapon,"สุ่ม Equipment",L_Equipment,"สุ่ม Costume",L_Costume;
+	
+	L_Weapon:
+	.@reward_type$ = "Weapon";
+	.mode = 1;
+	.@price = .weapon_price;
+	goto L_Price;
+	
+	L_Equipment:
+	.@reward_type$ = "Equipment";
+	.mode = 2;
+	.@price = .equipment_price;
+	goto L_Price;
+	
+	L_Costume:
+	.@reward_type$ = "Costume";
+	.mode = 3;
+	.@price = .costume_price;
+	goto L_Price;
+	
+	L_Price:
+	mes $currency_color$ + .@price + "z" + $end_color$ + " ต่อการ" + $reward_color$ + "สุ่มรับ " + .@reward_type$ + " 1 ชิ้น" + $end_color$;
+	next;
+	menu "สุ่ม 1 รอบ",L_Trade1,"สุ่ม 10 รอบ",L_Trade10,"สุ่ม 100 รอบ",L_Trade100;
+	
+	L_Trade1:
+	.@loop = 1;
+	goto L_Trade;
+	
+	L_Trade10:
+	.@loop = 10;
+	goto L_Trade;
+	
+	L_Trade100:
+	.@loop = 100;
+	goto L_Trade;
+	
+	L_Trade:
+	while(.@loop > 0){
+		.@loop--;
+		
+		// Random item
+		if(.mode == 1)
+		.@reward = $weaponIds[rand(0,$weaponIdArraySize - 1)];
+		else if(.mode == 2)
+		.@reward = $equipmentIds[rand(0,$equipmentIdArraySize - 1)];
+		else if(.mode == 3)
+		.@reward = $costumeIds[rand(0,$costumeIdArraySize - 1)];
+		
+		// Check weight
+		if(!checkweight(.@reward,1)){
+			mes "การสุ่มถูกหยุด เนื่องจาก คุณแบกของมากกว่านี้ ไม่ไหวแล้ว";
+			close;
+		}
+		
+		// Check zeny
+		if(Zeny < .@price){
+			mes "การสุ่มถูกหยุด เนื่องจาก คุณมี Zeny ไม่เพียงพอ";
+			close;
+		}
+		
+		// Trade
+		Zeny -= .@price;
+		
+		// Get item
+		getitem .@reward,1;
+	}
+	mes "การสุ่ม Item สำเร็จเรียบร้อย!";
+	close;
+	
+OnInit:
+	.weapon_price = 15;
+	.equipment_price = 25;
+	.costume_price = 5;
+	waitingroom "สุ่ม Item",0;
+	end;
+}

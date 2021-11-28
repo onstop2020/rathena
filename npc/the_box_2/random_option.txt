@@ -1,82 +1,139 @@
-prontera,169,180,1	script	สุ่ม Option	10267,{
-	mes "^3F28FFค่าที่ได้รับ:^000000 1~5";
+prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
+	if(ro_max_value > .max_value){
+		mes $hint_color$ + "คุณ Upgrade ถึงขั้นสูงสุดแล้ว (" + .max_value + ")" + $end_color$;
+		close;
+	}
+	
+	if(ro_max_value > 199)
+	.@price = .price_greater_199;
+	else if(ro_max_value < 10)
+	.@price = .price_below_10;
+	else if(ro_max_value < 20)
+	.@price = .price_below_20;
+	else if(ro_max_value < 30)
+	.@price = .price_below_30;
+	else if(ro_max_value < 40)
+	.@price = .price_below_40;
+	else if(ro_max_value < 50)
+	.@price = .price_below_50;
+	else if(ro_max_value < 100)
+	.@price = .price_below_100;
+	else if(ro_max_value < 150)
+	.@price = .price_below_150;
+	else if(ro_max_value < 200)
+	.@price = .price_below_200;
+	else
+	.@price = .price_max;
+	
+	callsub L_CurrentValue;
 	next;
+	menu "Upgrade (" + $currency_color$ + .@price + "z" + $end_color$ + ")",-,"Upgrade ทีเดียวเต็ม (" + $currency_color$ + .price_max + "z" + $end_color$ + ")",L_Max;
+	if(Zeny < .@price){
+		mes "คุณมี Zeny ไม่เพียงพอ";
+		close;
+	}
+	Zeny -= .@price;
+	ro_max_value++;
+	callsub L_CurrentValue;
+	close;
 	
-	setarray .@indices[1], EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_COSTUME_GARMENT, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_L, EQI_SHADOW_ACC_R;
+	L_Max:
+	if(Zeny < .price_max){
+		mes "คุณมี Zeny ไม่เพียงพอ";
+		close;
+	}
+	Zeny -= .price_max;
+	ro_max_value = .max_value;
+	callsub L_CurrentValue;
+	close;
 	
-	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
-		if(getequipisequiped(.@indices[.@i])) {
+	L_CurrentValue:
+	mes "ค่ามากสุดที่จะสุ่มได้ขณะนี้: " + $hint_color$ + ro_max_value + $end_color$;
+	return;
+	
+OnInit:
+	.price_below_10 = 2;
+	.price_below_20 = 20;
+	.price_below_30 = 200;
+	.price_below_40 = 1000;
+	.price_below_50 = 2000;
+	.price_below_100 = 3000;
+	.price_below_150 = 13000;
+	.price_below_200 = 23000;
+	.price_greater_199 = 33000;
+	.price_max = 10000000;
+	.max_value = 250;
+	waitingroom "Upgrade สุ่ม Option",0;
+	end;
+}
+
+prontera,176,176,3	script	สุ่ม Option	10267,{
+	// Is not had max value?
+	if(!ro_max_value){
+		mes "โปรด Upgrade ค่าการสุ่มมากสุดเสียก่อน";
+		close;
+	}
+	// Hint max value
+	mes $reward_color$ + "ค่าที่จะสุ่มได้: 0~" + ro_max_value + $end_color$;
+	next;
+	// Setup
+	setarray .@indices[1],EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_COSTUME_GARMENT,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
+	for(.@i = 1; .@i < getarraysize(.@indices); ++.@i)
+	{
+		if(getequipisequiped(.@indices[.@i])){
 			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
 			.@equipped = 1;
 		}
 		.@menu$ = .@menu$ + ":";
 	}
-	
-	if (.@equipped == 0) {
-		mes "เจ้าไม่ได้สวมใส่ อุปกรณ์สวมใส่ใด ๆ เลย ข้าไม่สามารถทำอะไรได้";
+	// Is had any equipments?
+	if (!.@equipped){
+		mes "คุณไม่ได้สวมใส่ อุปกรณ์สวมใส่ ใด ๆ เลย";
 		close;
 	}
-	
+	// Select
 	.@part = .@indices[select(.@menu$)];
-
+	// Unexpected error
 	if(!getequipisequiped(.@part)) {
-		mes "เจ้าเลือกช่องที่ ไม่ได้สวมใส่อะไรอยู่เลย";
+		mes "คุณเลือกช่องที่ ไม่มีอุปกรณ์สวมใส่ สวมใส่อยู่";
 		close;
 	}
-	
+	// Remember item id
 	.@selectedItemId = getequipid(.@part);
-
+	// Hint to select index
 	mes "โปรดเลือกช่องที่ต้องการ";
 	next;
-
+	// Setup index
 	.@menu$ = "ช่องที่ 1:";
-	
-	for(.@i = 1; .@i < 5; ++.@i) {
-		if(getequiprandomoption(.@part,.@i - 1,ROA_ID) > 0)
+	for(.@i = 1; .@i < 5; ++.@i){
+		if(getequiprandomoption(.@part,(.@i - 1),ROA_ID) > 0)
 		.@menu$ += "ช่องที่ " + (.@i + 1);
 		else
 		break;
 		.@menu$ = .@menu$ + ":";
 	}
-	
+	// Select index
 	.@slot = select(.@menu$);
-
-	.@maxRandomize = 5;
-
-	if(random_option_key_storage < 1) {
-		mes getitemname(.itemId) + " ในคลังไม่เพียงพอ";
+	// Trade
+	if(Zeny < .price) {
+		mes "คุณมี Zeny ไม่เพียงพอ";
 		close;
 	}
-	random_option_key_storage--;
-
+	Zeny -= .price;
+	// Is hack?
 	if (callfunc("F_IsEquipIDHack", .@part, .@selectedItemId)) {
-		mes "เหมือนว่าเจ้าจะสลับอุปกรณ์ ระหว่างข้าดำเนินการอยู่นะ";
+		mes "คุณสลับอุปกรณ์สวมใส่ ระหว่างการดำเนินการ";
 		close;
 	}
-	
-	setrandomoption(.@part,.@slot - 1,callfunc("GetRandomOptionId"),rand(1,.@maxRandomize),0);
-
-	mes "เรียบร้อยแล้ว!";
+	// Set random option now
+	.@random_option = rand(1,23);
+	.@random_value = rand(0,ro_max_value);
+	setrandomoption(.@part,.@slot - 1,.@random_option,.@random_value,0);
+	mes "คุณได้รับ " + $reward_color$ + OptionDescription(.@random_option,.@random_value) + $end_color$ + " ที่ช่อง " + .@slot + "!";
 	close;
 
 OnInit:
-	.itemId = 40014;
+	.price = 1;
 	waitingroom "สุ่ม Option",0;
 	end;
-}
-
-function	script	GetRandomOptionId	{
-	.@optId = rand(1,242);
-	freeloop(1);
-	while((.@optId >= 76 && .@optId <= 85) || (.@optId >= 175 && .@optId <= 184) || .@optId == 203 || .@optId == 204)
-	.@optId = rand(1,242);
-	freeloop(0);
-	return .@optId;
-}
-
-function	script	IsHadRandomOptionId	{
-	.@optId = getarg(0,0);
-	if(.@optId < 1 || .@optId > 242)
-	return 0;
-	return 1;
 }

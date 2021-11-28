@@ -2,7 +2,9 @@
 	end;
 	
 OnPCLoginEvent:
-	callfunc("RecalculateBonus");
+	RecalculateBonus();
 	
+	#CASHPOINTS = 1000000000;
+
 	end;
 }

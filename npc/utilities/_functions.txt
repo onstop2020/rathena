@@ -1,0 +1,71 @@
+-	script	ColorCodes	-1,{
+	end;
+	
+OnInit:
+	$end_color$ = "^000000";
+	$important_color$ = "^FF1D1D";
+	$reward_color$ = "^1D9FFF";
+	$currency_color$ = "^D21DFF";
+	$hint_color$ = "^22A95D";
+	end;
+}
+
+function	script	RecalculateBonus	{
+	bonus_script_clear 1;
+	
+	// Exp Multiplier
+	bonus_script "bonus2 bExpAddClass,Class_All," + exp_multiplier + ";",86400,8,1;
+	return;
+}
+
+function	script	OptionDescription	{
+	.@id = getarg(0);
+	.@value = getarg(1);
+	if(.@id == 1)
+	return "STR +" + .@value;
+	else if(.@id == 2)
+	return "AGI +" + .@value;
+	else if(.@id == 3)
+	return "VIT +" + .@value;
+	else if(.@id == 4)
+	return "INT +" + .@value;
+	else if(.@id == 5)
+	return "DEX +" + .@value;
+	else if(.@id == 6)
+	return "LUK +" + .@value;
+	else if(.@id == 7)
+	return "Max HP +" + .@value + "%";
+	else if(.@id == 8)
+	return "Max SP +" + .@value + "%";
+	else if(.@id == 9)
+	return "DEF +" + .@value;
+	else if(.@id == 10)
+	return "VIT DEF +" + .@value;
+	else if(.@id == 11)
+	return "MDEF +" + .@value;
+	else if(.@id == 12)
+	return "INT MDEF +" + .@value;
+	else if(.@id == 13)
+	return "เคลื่อนที่เร็วขึ้น +" + .@value + "%";
+	else if(.@id == 14)
+	return "ASPD +" + .@value + "%";
+	else if(.@id == 15)
+	return "Skill ฟื้นฟู HP แรงขึ้น +" + .@value + "%";
+	else if(.@id == 16)
+	return "ได้รับการฟื้นฟู HP จาก Skill มากขึ้น +" + .@value + "%";
+	else if(.@id == 17)
+	return "ร่าย Fixed Cast เร็วขึ้น +" + .@value + " มิลลิวินาที";
+	else if(.@id == 18)
+	return "ร่าย Variable Cast เร็วขึ้น +" + .@value + " มิลลิวินาที";
+	else if(.@id == 19)
+	return "ลด Delay หลังร่าย +" + .@value + "%";
+	else if(.@id == 20)
+	return "ลด Skill Cooldown +" + .@value + " มิลลิวินาที";
+	else if(.@id == 21)
+	return "โจมตีกายภาพแรงขึ้น +" + .@value + "%";
+	else if(.@id == 22)
+	return "โจมตีเวทย์แรงขึ้น +" + .@value + "%";
+	else if(.@id == 23)
+	return "โดนสะท้อนเบาลง +" + .@value + "%";
+	return;
+}

@@ -2,9 +2,31 @@
 	end;
 	
 OnPCDieEvent:
+	// Random Option Value
+	if(ro_max_value > 0)
+	ro_max_value--;
+
+	// Random Drop 1 equipped equipment
+
 	// Exp Multiplier
 	exp_multiplier = 0;
-	callfunc("RecalculateBonus");
-
+	RecalculateBonus();
+	
+	// Announce
+	if(strcharinfo(3) != "prontera"){
+		if(isloggedin(killerrid) && getcharip() != getcharip(killerrid)){
+			// Dead man name
+			.a_deadman$ = strcharinfo(0);
+			
+			attachrid(killerrid);
+			
+			// Increase killer kill count
+			kill_count++;
+			
+			announce strcharinfo(0) + " ฆ่า " + .a_deadman$ + "!!",bc_all,0xFF29C5;
+			
+			detachrid;
+		}
+	}
 	end;
 }

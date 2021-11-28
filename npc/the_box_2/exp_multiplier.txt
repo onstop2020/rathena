@@ -26,7 +26,7 @@ prontera,146,193,5	script	ซื้อ x Exp	852,{
 	mes "คุณจ่าย " + $currency_color$ + (.price * .@i) + "z" + $end_color$;
 	mes "เพื่อได้รับ Exp มากขึ้นอีก " + $reward_color$ + (.multiplier_per_buy * .@i) + "%" + $end_color$;
 	callsub L_CurrentExpMultiplier;
-	callfunc("RecalculateBonus");
+	RecalculateBonus();
 	close;
 	
 	L_CurrentExpMultiplier:
