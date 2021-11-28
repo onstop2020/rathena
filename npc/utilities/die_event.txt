@@ -61,9 +61,9 @@ OnPCDieEvent:
 	// Dead outside towns
 	if(strcharinfo(3) != "prontera"){
 		// Random Option Value
-		if(ro_max_value > 0){
-			ro_max_value--;
-			dispbottom "ค่ามากสุดที่จะสุ่ม Random Option ได้ขณะนี้: " + ro_max_value + "..";
+		if(#ro_max_value > 0){
+			#ro_max_value--;
+			dispbottom "ค่ามากสุดที่จะสุ่ม Random Option ได้ขณะนี้: " + #ro_max_value + "..";
 		}
 		
 		// Exp Multiplier

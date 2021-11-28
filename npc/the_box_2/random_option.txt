@@ -1,30 +1,30 @@
 prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
-	if(ro_max_value > .max_value){
+	if(#ro_max_value > .max_value){
 		mes $hint_color$ + "คุณ Upgrade ถึงขั้นสูงสุดแล้ว (" + .max_value + ")" + $end_color$;
 		close;
 	}
 	
-	if(ro_max_value > 399)
+	if(#ro_max_value > 399)
 	.@price = .price_greater_399;
-	else if(ro_max_value < 10)
+	else if(#ro_max_value < 10)
 	.@price = .price_below_10;
-	else if(ro_max_value < 20)
+	else if(#ro_max_value < 20)
 	.@price = .price_below_20;
-	else if(ro_max_value < 30)
+	else if(#ro_max_value < 30)
 	.@price = .price_below_30;
-	else if(ro_max_value < 40)
+	else if(#ro_max_value < 40)
 	.@price = .price_below_40;
-	else if(ro_max_value < 50)
+	else if(#ro_max_value < 50)
 	.@price = .price_below_50;
-	else if(ro_max_value < 100)
+	else if(#ro_max_value < 100)
 	.@price = .price_below_100;
-	else if(ro_max_value < 150)
+	else if(#ro_max_value < 150)
 	.@price = .price_below_150;
-	else if(ro_max_value < 200)
+	else if(#ro_max_value < 200)
 	.@price = .price_below_200;
-	else if(ro_max_value < 300)
+	else if(#ro_max_value < 300)
 	.@price = .price_below_300;
-	else if(ro_max_value < 400)
+	else if(#ro_max_value < 400)
 	.@price = .price_below_400;
 	else
 	.@price = .price_max;
@@ -37,7 +37,7 @@ prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
 		close;
 	}
 	Zeny -= .@price;
-	ro_max_value++;
+	#ro_max_value++;
 	callsub L_CurrentValue;
 	close;
 	
@@ -47,12 +47,12 @@ prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
 		close;
 	}
 	Zeny -= .price_max;
-	ro_max_value = .max_value;
+	#ro_max_value = .max_value;
 	callsub L_CurrentValue;
 	close;
 	
 	L_CurrentValue:
-	mes "ค่ามากสุดที่จะสุ่มได้ขณะนี้: " + $hint_color$ + ro_max_value + $end_color$;
+	mes "ค่ามากสุดที่จะสุ่มได้ขณะนี้: " + $hint_color$ + #ro_max_value + $end_color$;
 	return;
 	
 OnInit:
@@ -75,13 +75,13 @@ OnInit:
 
 prontera,176,176,3	script	สุ่ม Option	10267,{
 	// Is not had max value?
-	if(!ro_max_value){
+	if(!#ro_max_value){
 		mes "โปรด Upgrade ค่าการสุ่มมากสุดเสียก่อน";
 		close;
 	}
 	// Hint max value
 	mes "ใช้ " + $currency_color$ + .price + "z" + $end_color$ + " ต่อการสุ่ม 1 ครั้ง";
-	mes $hint_color$ + "๐ ค่าที่จะสุ่มได้: 0~" + $reward_color$ + ro_max_value + $end_color$;
+	mes $hint_color$ + "๐ ค่าที่จะสุ่มได้: 0~" + $reward_color$ + #ro_max_value + $end_color$;
 	mes $important_color$ + "๐ ไม่สามารถเลือกแถวได้" + $end_color$;
 	next;
 	// Setup
@@ -121,15 +121,15 @@ prontera,176,176,3	script	สุ่ม Option	10267,{
 	}
 	// Set random option now
 	.@random_option_1 = rand(1,23);
-	.@random_value_1 = rand(0,ro_max_value);
+	.@random_value_1 = rand(0,#ro_max_value);
 	.@random_option_2 = rand(1,23);
-	.@random_value_2 = rand(0,ro_max_value);
+	.@random_value_2 = rand(0,#ro_max_value);
 	.@random_option_3 = rand(1,23);
-	.@random_value_3 = rand(0,ro_max_value);
+	.@random_value_3 = rand(0,#ro_max_value);
 	.@random_option_4 = rand(1,23);
-	.@random_value_4 = rand(0,ro_max_value);
+	.@random_value_4 = rand(0,#ro_max_value);
 	.@random_option_5 = rand(1,23);
-	.@random_value_5 = rand(0,ro_max_value);
+	.@random_value_5 = rand(0,#ro_max_value);
 	setrandomoption(.@part,0,.@random_option_1,.@random_value_1,0);
 	setrandomoption(.@part,1,.@random_option_2,.@random_value_2,0);
 	setrandomoption(.@part,2,.@random_option_3,.@random_value_3,0);
