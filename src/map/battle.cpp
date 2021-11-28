@@ -3151,8 +3151,8 @@ static int battle_get_weapon_element(struct Damage* wd, struct block_list *src, 
 			break;
 		case GN_CARTCANNON:
 		case NC_ARMSCANNON:
-			if (sd && sd->state.arrow_atk > 0)
-				element = sd->bonus.arrow_ele;
+			//if (sd && sd->state.arrow_atk > 0) // [Start]
+			//	element = sd->bonus.arrow_ele;
 			break;
 		case SJ_PROMINENCEKICK:
  				element = ELE_FIRE;
