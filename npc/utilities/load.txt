@@ -1,6 +1,6 @@
 -	script	LoadCommands	-1,{
 OnInit:
-	bindatcmd "load",strnpcinfo(3) + "::OnLoad",99,99;
+	bindatcmd "load",strnpcinfo(3) + "::OnLoad",0,99;
 	end;
 	
 OnLoad:
