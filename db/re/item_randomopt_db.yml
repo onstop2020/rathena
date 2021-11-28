@@ -99,11 +99,11 @@ Body:
   - Id: 17
     Option: VAR_F_CAST
     Script: |
-      bonus bFixedCast,-(getrandomoptinfo(ROA_VALUE) * 5);
+      bonus bFixedCast,-getrandomoptinfo(ROA_VALUE);
   - Id: 18
     Option: VAR_V_CAST
     Script: |
-      bonus bVariableCast,-(getrandomoptinfo(ROA_VALUE) * 5);
+      bonus bVariableCast,-getrandomoptinfo(ROA_VALUE);
   - Id: 19
     Option: VAR_DELAY_RATE
     Script: |
@@ -111,7 +111,7 @@ Body:
   - Id: 20
     Option: VAR_SKILL_CD
     Script: |
-      bonus bAddSkillCooldown,(getrandomoptinfo(ROA_VALUE) * 5);
+      bonus bAddSkillCooldown,getrandomoptinfo(ROA_VALUE);
   - Id: 21
     Option: VAR_ATK_RATE
     Script: |
