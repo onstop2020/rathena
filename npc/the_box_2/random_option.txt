@@ -1,6 +1,6 @@
 prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
 	if(#ro_max_value > .max_value){
-		mes $hint_color$ + "คุณ Upgrade ถึงขั้นสูงสุดแล้ว (" + .max_value + ")" + $end_color$;
+		mes $hint_color$ + "คุณ Upgrade ถึงขั้นสูงสุดแล้ว (" + .max_value + ") (ใช้ร่วมกันทั้ง ID)" + $end_color$;
 		close;
 	}
 	
@@ -52,7 +52,7 @@ prontera,174,178,3	script	Upgrade สุ่ม Option	869,{
 	close;
 	
 	L_CurrentValue:
-	mes "ค่ามากสุดที่จะสุ่มได้ขณะนี้: " + $hint_color$ + #ro_max_value + $end_color$;
+	mes "ค่ามากสุดที่จะสุ่มได้: " + $hint_color$ + #ro_max_value + $end_color$ + " (ใช้ร่วมกันทั้ง ID)";
 	return;
 	
 OnInit:
