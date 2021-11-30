@@ -22432,7 +22432,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 				memset(skill->require.mhp, 0, sizeof(skill->require.mhp));
 		}
 
-		if (this->nodeExists(requireNode, "ZenyCost")) {
+		if (this->nodeExists(requireNode, "ZenyCostNoUse")) {
 			if (!this->parseNode("ZenyCost", "Amount", requireNode, skill->require.zeny))
 				return 0;
 		} else {
@@ -22440,7 +22440,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 				memset(skill->require.zeny, 0, sizeof(skill->require.zeny));
 		}
 
-		if (this->nodeExists(requireNode, "Weapon")) {
+		if (this->nodeExists(requireNode, "WeaponNoUse")) {
 			const YAML::Node &weaponNode = requireNode["Weapon"];
 
 			if (this->nodeExists(weaponNode, "All")) {
@@ -22477,7 +22477,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 				skill->require.weapon = 0;
 		}
 
-		if (this->nodeExists(requireNode, "Ammo")) {
+		if (this->nodeExists(requireNode, "AmmoNoUse")) {
 			const YAML::Node &ammoNode = requireNode["Ammo"];
 
 			if (this->nodeExists(ammoNode, "None")) {
@@ -22514,7 +22514,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 				skill->require.ammo = 0;
 		}
 
-		if (this->nodeExists(requireNode, "AmmoAmount")) {
+		if (this->nodeExists(requireNode, "AmmoAmountNoUse")) {
 			if (skill->require.ammo == 0) {
 				this->invalidWarning(requireNode["AmmoAmount"], "An ammo type is required before specifying ammo amount.\n");
 				return 0;
@@ -22527,7 +22527,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 				memset(skill->require.ammo_qty, 0, sizeof(skill->require.ammo_qty));
 		}
 
-		if (this->nodeExists(requireNode, "State")) {
+		if (this->nodeExists(requireNode, "StateNoUse")) {
 			std::string state;
 
 			if (!this->asString(requireNode, "State", state))
@@ -22544,7 +22544,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 			skill->require.state = static_cast<int32>(constant);
 		}
 
-		if (this->nodeExists(requireNode, "Status")) {
+		if (this->nodeExists(requireNode, "StatusNoUse")) {
 			const YAML::Node &statusNode = requireNode["Status"];
 
 			for (const auto &it : statusNode) {
@@ -22570,7 +22570,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 			}
 		}
 
-		if (this->nodeExists(requireNode, "SpiritSphereCost")) {
+		if (this->nodeExists(requireNode, "SpiritSphereCostNoUse")) {
 			if (!this->parseNode("SpiritSphereCost", "Amount", requireNode, skill->require.spiritball))
 				return 0;
 		} else {
@@ -22578,7 +22578,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 				memset(skill->require.spiritball, 0, sizeof(skill->require.spiritball));
 		}
 
-		if (this->nodeExists(requireNode, "ItemCost")) {
+		if (this->nodeExists(requireNode, "ItemCostNoUse")) {
 			const YAML::Node &itemNode = requireNode["ItemCost"];
 			int32 count = 0;
 
@@ -22623,7 +22623,7 @@ uint64 SkillDatabase::parseBodyNode(const YAML::Node &node) {
 			}
 		}
 
-		if (this->nodeExists(requireNode, "Equipment")) {
+		if (this->nodeExists(requireNode, "EquipmentNoUse")) {
 			const YAML::Node &equipNode = requireNode["Equipment"];
 
 			for (const auto &it : equipNode) {
