@@ -1,3 +1,14 @@
+prontera,126,247,3	script	เช็คว่า Item มีไหม	566,{
+	mes "โปรดระบุเลข Item ID เพื่อเช็ค";
+	input .@i;
+	atcommand "@ii " + .@i;
+	end;
+	
+OnInit:
+	waitingroom "เช็คว่า Item มีไหม",0;
+	end;
+}
+
 prontera,124,250,3	script	ดู Item ที่มีใน Server	566,{
 	mes "โปรดระบุเลข 1~170 เพื่อดู";
 	input .@i;
