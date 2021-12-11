@@ -2,8 +2,10 @@
 	end;
 	
 OnInit:
+	deletearray $all_key_ids[0],getarraysize($all_key_ids);
+
 	setarray $all_key_ids[0],40004,40005,40006,40007,40014,40015;
-	deletearray $all_key_id_size[0],getarraysize($all_key_id_size);
+	
 	$all_key_id_size = getarraysize($all_key_ids);
 	end;
 }
