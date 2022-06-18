@@ -203,7 +203,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			buy = MAX_ZENY;
 		}
 
-		item->value_buy = buy;
+		//item->value_buy = buy;
+		item->value_buy = 0; // [Start]
 	} else {
 		if (!exists) {
 			item->value_buy = 0;
@@ -221,7 +222,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			sell = MAX_ZENY;
 		}
 
-		item->value_sell = sell;
+		//item->value_sell = sell;
+		item->value_sell = 0; // [Start]
 	} else {
 		if (!exists) {
 			item->value_sell = 0;
@@ -246,7 +248,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt32(node, "Attack", atk))
 			return 0;
 
-		item->atk = atk;
+		//item->atk = atk;
+		item->atk = 0; // [Start]
 	} else {
 		if (!exists)
 			item->atk = 0;
@@ -259,7 +262,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asUInt32(node, "MagicAttack", matk))
 			return 0;
 
-		item->matk = matk;
+		//item->matk = matk;
+		item->matk = 0;
 	} else {
 		if (!exists)
 			item->matk = 0;
@@ -277,7 +281,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			def = DEFTYPE_MAX;
 		}
 
-		item->def = def;
+		//item->def = def;
+		item->def = 0;
 	} else {
 		if (!exists)
 			item->def = 0;
@@ -311,7 +316,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			slots = MAX_SLOTS;
 		}
 
-		item->slots = slots;
+		//item->slots = slots;
+		item->slots = 0; // [Start]
 	} else {
 		if (!exists)
 			item->slots = 0;
@@ -531,7 +537,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			lv = MAX_LEVEL;
 		}
 
-		item->elv = lv;
+		//item->elv = lv;
+		item->elv = 0; // [Start]
 	} else {
 		if (!exists)
 			item->elv = 0;
@@ -553,7 +560,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			lv = MAX_LEVEL;
 		}
 
-		item->elvmax = lv;
+		//item->elvmax = lv;
+		item->elvmax = 0; // [Start]
 	} else {
 		if (!exists)
 			item->elvmax = MAX_LEVEL;
@@ -565,7 +573,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!this->asBool(node, "Refineable", refine))
 			return 0;
 
-		item->flag.no_refine = !refine;
+		//item->flag.no_refine = !refine;
+		item->flag.no_refine = false; // [Start]
 	} else {
 		if (!exists)
 			item->flag.no_refine = true;
@@ -616,7 +625,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				active = false;
 			}
 
-			item->flag.buyingstore = active;
+			//item->flag.buyingstore = active;
+			item->flag.buyingstore = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.buyingstore = false;
@@ -669,7 +679,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(flagNode, "BindOnEquip", active))
 				return 0;
 
-			item->flag.bindOnEquip = active;
+			//item->flag.bindOnEquip = active;
+			item->flag.bindOnEquip = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.bindOnEquip = false;
@@ -681,7 +692,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(flagNode, "DropAnnounce", active))
 				return 0;
 
-			item->flag.broadcast = active;
+			//item->flag.broadcast = active;
+			item->flag.broadcast = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.broadcast = false;
@@ -718,7 +730,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				constant = DROPEFFECT_NONE;
 			}
 
-			item->flag.dropEffect = static_cast<e_item_drop_effect>(constant);
+			//item->flag.dropEffect = static_cast<e_item_drop_effect>(constant);
+			item->flag.dropEffect = DROPEFFECT_NONE; // [Start]
 		} else {
 			if (!exists)
 				item->flag.dropEffect = DROPEFFECT_NONE;
@@ -792,7 +805,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				amount = 0;
 			}
 
-			item->stack.amount = amount;
+			//item->stack.amount = amount;
+			item->stack.amount = 0; // [Start]
 		} else {
 			if (!exists)
 				item->stack.amount = 0;
@@ -804,7 +818,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(stackNode, "Inventory", active))
 				return 0;
 
-			item->stack.inventory = active;
+			//item->stack.inventory = active;
+			item->stack.inventory = false; // [Start]
 		} else {
 			if (!exists)
 				item->stack.inventory = false;
@@ -816,7 +831,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(stackNode, "Cart", active))
 				return 0;
 
-			item->stack.cart = active;
+			//item->stack.cart = active;
+			item->stack.cart = false; // [Start]
 		} else {
 			if (!exists)
 				item->stack.cart = false;
@@ -828,7 +844,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(stackNode, "Storage", active))
 				return 0;
 
-			item->stack.storage = active;
+			//item->stack.storage = active;
+			item->stack.storage = false; // [Start]
 		} else {
 			if (!exists)
 				item->stack.storage = false;
@@ -840,7 +857,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(stackNode, "GuildStorage", active))
 				return 0;
 
-			item->stack.guild_storage = active;
+			//item->stack.guild_storage = active;
+			item->stack.guild_storage = false; // [Start]
 		} else {
 			if (!exists)
 				item->stack.guild_storage = false;
@@ -919,7 +937,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "NoDrop", active))
 				return 0;
 
-			item->flag.trade_restriction.drop = active;
+			//item->flag.trade_restriction.drop = active;
+			item->flag.trade_restriction.drop = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.drop = false;
@@ -931,7 +950,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "NoTrade", active))
 				return 0;
 
-			item->flag.trade_restriction.trade = active;
+			//item->flag.trade_restriction.trade = active;
+			item->flag.trade_restriction.trade = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.trade = false;
@@ -943,7 +963,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "TradePartner", active))
 				return 0;
 
-			item->flag.trade_restriction.trade_partner = active;
+			//item->flag.trade_restriction.trade_partner = active;
+			item->flag.trade_restriction.trade_partner = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.trade_partner = false;
@@ -955,7 +976,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "NoSell", active))
 				return 0;
 
-			item->flag.trade_restriction.sell = active;
+			//item->flag.trade_restriction.sell = active;
+			item->flag.trade_restriction.sell = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.sell = false;
@@ -967,7 +989,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "NoCart", active))
 				return 0;
 
-			item->flag.trade_restriction.cart = active;
+			//item->flag.trade_restriction.cart = active;
+			item->flag.trade_restriction.cart = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.cart = false;
@@ -979,7 +1002,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "NoStorage", active))
 				return 0;
 
-			item->flag.trade_restriction.storage = active;
+			//item->flag.trade_restriction.storage = active;
+			item->flag.trade_restriction.storage = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.storage = false;
@@ -991,7 +1015,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "NoGuildStorage", active))
 				return 0;
 
-			item->flag.trade_restriction.guild_storage = active;
+			//item->flag.trade_restriction.guild_storage = active;
+			item->flag.trade_restriction.guild_storage = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.guild_storage = false;
@@ -1003,7 +1028,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "NoMail", active))
 				return 0;
 
-			item->flag.trade_restriction.mail = active;
+			//item->flag.trade_restriction.mail = active;
+			item->flag.trade_restriction.mail = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.mail = false;
@@ -1015,7 +1041,8 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			if (!this->asBool(tradeNode, "NoAuction", active))
 				return 0;
 
-			item->flag.trade_restriction.auction = active;
+			//item->flag.trade_restriction.auction = active;
+			item->flag.trade_restriction.auction = false; // [Start]
 		} else {
 			if (!exists)
 				item->flag.trade_restriction.auction = false;

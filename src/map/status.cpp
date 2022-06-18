@@ -3689,8 +3689,13 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 			}
 #ifdef RENEWAL
 			if (sd->bonus.weapon_atk_rate)
-				wa->atk += wa->atk * sd->bonus.weapon_atk_rate / 100;
+				//wa->atk += wa->atk * sd->bonus.weapon_atk_rate / 100;
+				wa->atk += sd->bonus.weapon_atk_rate; // [Start]
 			wa->matk += sd->inventory_data[index]->matk;
+#ifdef RENEWAL
+			if (sd->bonus.weapon_matk_rate) // [Start]
+				wa->matk += sd->bonus.weapon_matk_rate; // [Start]
+#endif
 			wa->wlv = wlv;
 			// Renewal magic attack refine bonus
 			if( info != nullptr && sd->weapontype1 != W_BOW ){
@@ -3717,10 +3722,10 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 				if (!calculating) // Abort, run_script retriggered this. [Skotlex]
 					return 1;
 			}
-#ifdef RENEWAL
-			if (sd->bonus.weapon_matk_rate)
-				wa->matk += wa->matk * sd->bonus.weapon_matk_rate / 100;
-#endif
+//#ifdef RENEWAL
+//			if (sd->bonus.weapon_matk_rate)
+//				wa->matk += wa->matk * sd->bonus.weapon_matk_rate / 100;
+//#endif
 			if(sd->inventory.u.items_inventory[index].card[0] == CARD0_FORGE) { // Forged weapon
 				wd->star += (sd->inventory.u.items_inventory[index].card[1]>>8);
 				if(wd->star >= 15) wd->star = 40; // 3 Star Crumbs now give +40 dmg
