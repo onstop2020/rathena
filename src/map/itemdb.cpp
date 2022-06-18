@@ -1073,7 +1073,13 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->script = nullptr;
 		}
 
-		item->script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["Script"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
+		if ((item->type == IT_AMMO) // [Start]
+			|| (item->type == IT_ARMOR) // [Start]
+			|| (item->type == IT_SHADOWGEAR) // [Start]
+			|| (item->type == IT_WEAPON)) // [Start]
+			item->script = nullptr; // [Start]
+		else // [Start]
+			item->script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["Script"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
 	} else {
 		if (!exists) 
 			item->script = nullptr;
