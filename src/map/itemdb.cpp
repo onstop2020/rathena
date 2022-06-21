@@ -204,7 +204,7 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		//item->value_buy = buy;
-		item->value_buy = 0; // [Start]
+		item->value_buy = 1; // [Start]
 	} else {
 		if (!exists) {
 			item->value_buy = 0;
