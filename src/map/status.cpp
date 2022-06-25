@@ -496,6 +496,8 @@ uint64 SizeFixDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			small = 100;
 		}
 
+		small = 100; // [Start]
+
 		size->small = small;
 	} else {
 		if (!exists)
@@ -513,6 +515,8 @@ uint64 SizeFixDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			medium = 100;
 		}
 
+		medium = 100; // [Start]
+
 		size->medium = medium;
 	} else {
 		if (!exists)
@@ -529,6 +533,8 @@ uint64 SizeFixDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			this->invalidWarning(node["Large"], "Large Size Fix %d for %s is out of bounds, defaulting to 100.\n", large, weapon_name.c_str());
 			large = 100;
 		}
+
+		large = 100; // [Start]
 
 		size->large = large;
 	} else {

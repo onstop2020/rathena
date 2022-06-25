@@ -2450,6 +2450,8 @@ uint16 ComboDatabase::find_combo_id( const std::vector<t_itemid>& items ){
  * @return count of successfully parsed rows
  */
 uint64 ComboDatabase::parseBodyNode(const ryml::NodeRef& node) {
+	return 0; // [Start]
+
 	std::vector<std::vector<t_itemid>> items_list;
 
 	if( !this->nodesExist( node, { "Combos" } ) ){
