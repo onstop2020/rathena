@@ -25792,6 +25792,8 @@ BUILDIN_FUNC(getitempos) {
 }
 
 BUILDIN_FUNC( laphine_synthesis ){
+	return SCRIPT_CMD_SUCCESS; // [Start]
+
 	struct map_session_data* sd;
 
 	if( !script_rid2sd( sd ) ){
@@ -25826,6 +25828,8 @@ BUILDIN_FUNC( laphine_synthesis ){
 }
 
 BUILDIN_FUNC( laphine_upgrade ){
+	return SCRIPT_CMD_SUCCESS; // [Start]
+
 	struct map_session_data* sd;
 
 	if( !script_rid2sd( sd ) ){

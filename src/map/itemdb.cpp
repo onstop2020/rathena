@@ -1315,6 +1315,8 @@ const std::string LaphineSynthesisDatabase::getDefaultLocation(){
 }
 
 uint64 LaphineSynthesisDatabase::parseBodyNode( const ryml::NodeRef& node ){
+	return 0; // [Start]
+
 	t_itemid item_id;
 
 	{
@@ -1486,6 +1488,8 @@ const std::string LaphineUpgradeDatabase::getDefaultLocation(){
 }
 
 uint64 LaphineUpgradeDatabase::parseBodyNode( const ryml::NodeRef& node ){
+	return 0; // [Start]
+
 	t_itemid item_id;
 
 	{
