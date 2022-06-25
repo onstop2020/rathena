@@ -23607,15 +23607,17 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				memset(skill->require.mhp, 0, sizeof(skill->require.mhp));
 		}
 
-		if (this->nodeExists(requireNode, "ZenyCost")) {
+		/*if (this->nodeExists(requireNode, "ZenyCost")) {
 			if (!this->parseNode("ZenyCost", "Amount", requireNode, skill->require.zeny))
 				return 0;
 		} else {
 			if (!exists)
 				memset(skill->require.zeny, 0, sizeof(skill->require.zeny));
-		}
+		}*/
+		if (!exists)
+			memset(skill->require.zeny, 0, sizeof(skill->require.zeny)); // [Start]
 
-		if (this->nodeExists(requireNode, "Weapon")) {
+		/*if (this->nodeExists(requireNode, "Weapon")) {
 			const auto& weaponNode = requireNode["Weapon"];
 
 			if (this->nodeExists(weaponNode, "All")) {
@@ -23652,9 +23654,11 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		} else {
 			if (!exists)
 				skill->require.weapon = 0;
-		}
+		}*/
+		if (!exists)
+			skill->require.weapon = 0; // [Start]
 
-		if (this->nodeExists(requireNode, "Ammo")) {
+		/*if (this->nodeExists(requireNode, "Ammo")) {
 			const auto& ammoNode = requireNode["Ammo"];
 
 			if (this->nodeExists(ammoNode, "None")) {
@@ -23691,9 +23695,11 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		} else {
 			if (!exists)
 				skill->require.ammo = 0;
-		}
+		}*/
+		if (!exists)
+			skill->require.ammo = 0; // [Start]
 
-		if (this->nodeExists(requireNode, "AmmoAmount")) {
+		/*if (this->nodeExists(requireNode, "AmmoAmount")) {
 			if (skill->require.ammo == 0) {
 				this->invalidWarning(requireNode["AmmoAmount"], "An ammo type is required before specifying ammo amount.\n");
 				return 0;
@@ -23704,7 +23710,9 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		} else {
 			if (!exists)
 				memset(skill->require.ammo_qty, 0, sizeof(skill->require.ammo_qty));
-		}
+		}*/
+		if (!exists)
+			memset(skill->require.ammo_qty, 0, sizeof(skill->require.ammo_qty)); // [Start]
 
 		if (this->nodeExists(requireNode, "State")) {
 			std::string state;
@@ -23759,7 +23767,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				memset(skill->require.spiritball, 0, sizeof(skill->require.spiritball));
 		}
 
-		if (this->nodeExists(requireNode, "ItemCost")) {
+		/*if (this->nodeExists(requireNode, "ItemCost")) {
 			const auto itemNode = requireNode["ItemCost"];
 			int32 count = 0;
 
@@ -23802,9 +23810,9 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				skill->require.amount[count] = amount;
 				count++;
 			}
-		}
+		}*/ // [Start]
 
-		if (this->nodeExists(requireNode, "Equipment")) {
+		/*if (this->nodeExists(requireNode, "Equipment")) {
 			const auto& equipNode = requireNode["Equipment"];
 
 			for (const auto& it : equipNode) {
@@ -23830,7 +23838,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				else if (!active && equip_exists != skill->require.eqItem.end())
 					skill->require.eqItem.erase(equip_exists);
 			}
-		}
+		}*/ // [Start]
 	}
 
 	if (this->nodeExists(node, "GiveAp")) {
@@ -24174,6 +24182,8 @@ uint64 MagicMushroomDatabase::parseBodyNode(const ryml::NodeRef& node) {
  */
 static bool skill_parse_row_nocastdb(char* split[], int columns, int current)
 {
+	return true; // [Start]
+
 	std::shared_ptr<s_skill_db> skill = skill_db.find(atoi(split[0]));
 
 	if (!skill)
