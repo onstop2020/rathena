@@ -12618,6 +12618,8 @@ void pc_delspiritcharm(struct map_session_data *sd, int count, int type)
  * @return Penalty rate
  */
 uint16 pc_level_penalty_mod( struct map_session_data* sd, e_penalty_type type, std::shared_ptr<s_mob_db> mob, mob_data* md ){
+	return 100; // [Start]
+
 	// No player was attached, we don't use any modifier (100 = rates are not touched)
 	if( sd == nullptr ){
 		return 100;

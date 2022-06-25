@@ -2645,6 +2645,8 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
  */
 bool is_infinite_defense(struct block_list *target, int flag)
 {
+	return false; // [Start]
+
 	struct status_data *tstatus = status_get_status_data(target);
 
 	if(target->type == BL_SKILL) {
