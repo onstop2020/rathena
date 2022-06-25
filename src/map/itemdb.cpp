@@ -1517,7 +1517,7 @@ uint64 LaphineUpgradeDatabase::parseBodyNode( const ryml::NodeRef& node ){
 		entry->item_id = item_id;
 	}
 
-	if( this->nodeExists( node, "RandomOptionGroup" ) ){
+	/*if (this->nodeExists(node, "RandomOptionGroup")) {
 		std::string name;
 
 		if( !this->asString( node, "RandomOptionGroup", name ) ){
@@ -1536,7 +1536,10 @@ uint64 LaphineUpgradeDatabase::parseBodyNode( const ryml::NodeRef& node ){
 		if( !exists ){
 			entry->randomOptionGroup = nullptr;
 		}
-	}
+	}*/
+	if (!exists) {
+		entry->randomOptionGroup = nullptr;
+	} // [Start]
 
 	if( this->nodeExists( node, "TargetItems" ) ){
 		for( const ryml::NodeRef& targetNode : node["TargetItems"] ){
@@ -2312,7 +2315,7 @@ uint64 ItemGroupDatabase::parseBodyNode(const ryml::NodeRef& node) {
 						entry->bound = BOUND_NONE;
 				}
 
-				if( this->nodeExists( listit, "RandomOptionGroup" ) ){
+				/*if (this->nodeExists(listit, "RandomOptionGroup")) {
 					std::string name;
 
 					if( !this->asString( listit, "RandomOptionGroup", name ) ){
@@ -2331,7 +2334,10 @@ uint64 ItemGroupDatabase::parseBodyNode(const ryml::NodeRef& node) {
 					if( !entry_exists ){
 						entry->randomOptionGroup = nullptr;
 					}
-				}
+				}*/
+				if (!entry_exists) {
+					entry->randomOptionGroup = nullptr;
+				} // [Start]
 
 				if( this->nodeExists( listit, "RefineMinimum" ) ){
 					uint16 refine;
@@ -2397,6 +2403,8 @@ void ItemGroupDatabase::loadingFinished() {
 * Structure: <nameid>,<mode>
 */
 static bool itemdb_read_noequip(char* str[], int columns, int current) {
+	return true; // [Start]
+
 	t_itemid nameid;
 	int flag;
 	struct item_data *id;
@@ -3322,6 +3330,8 @@ void s_random_opt_group::apply( struct item& item ){
  * @return count of successfully parsed rows
  */
 uint64 RandomOptionGroupDatabase::parseBodyNode(const ryml::NodeRef& node) {
+	return 0; // [Start]
+
 	uint16 id;
 
 	if (!this->asUInt16(node, "Id", id))

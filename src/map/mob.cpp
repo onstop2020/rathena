@@ -4268,7 +4268,7 @@ bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node,
 
 		uint16 group = 0;
 
-		if (this->nodeExists(dropit, "RandomOptionGroup")) {
+		/*if (this->nodeExists(dropit, "RandomOptionGroup")) {
 			std::string group_name;
 
 			if (!this->asString(dropit, "RandomOptionGroup", group_name))
@@ -4276,7 +4276,7 @@ bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node,
 
 			if (!random_option_group.option_get_id(group_name.c_str(), group))
 				this->invalidWarning(dropit["RandomOptionGroup"], "Unknown random option group %s for monster %s, defaulting to no group.\n", group_name.c_str(), nodeName.c_str());
-		}
+		}*/ // [Start]
 
 		drops[index].nameid = item->nameid;
 		drops[index].rate = rate;
