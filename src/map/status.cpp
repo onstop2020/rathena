@@ -14998,6 +14998,8 @@ void status_change_clear_onChangeMap(struct block_list *bl, struct status_change
  */
 static bool status_readdb_status_disabled(char **str, int columns, int current)
 {
+	return true; // [Start]
+
 	int64 type = SC_NONE;
 
 	if (ISDIGIT(str[0][0]))
