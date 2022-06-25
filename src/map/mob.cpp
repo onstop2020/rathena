@@ -4904,19 +4904,15 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 	}
 
-	if (this->nodeExists(node, "MvpDrops")) {
-		return 0; // [Start]
-
+	/*if (this->nodeExists(node, "MvpDrops")) {
 		if (!this->parseDropNode("MvpDrops", node, MAX_MVP_DROP, mob->mvpitem))
 			return 0;
 	}
 
 	if (this->nodeExists(node, "Drops")) {
-		return 0; // [Start]
-
 		if (!this->parseDropNode("Drops", node, MAX_MOB_DROP, mob->dropitem))
 			return 0;
-	}
+	}*/ // [Start]
 
 	if (!exists)
 		this->put(mob_id, mob);
