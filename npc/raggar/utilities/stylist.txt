@@ -1,14 +1,8 @@
 prontera,153,183,4	script	มิสตี้	729,{
-	// Local Functions Setup
-	function CutInNormal;
-	function CutInAction;
-	function Exit;
-	
-	// Start talking with NPC
-	CutInNormal;
+	@currentIndex = 0;
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 	mes .npcName$;
 	mes NpcMessageColor("ว่าไง! ต้องการแต่งตัวรูปแบบไหน เลือกได้เลยนะ");
-	@currentIndex = 0;
 	next;
 	menu "ทรงผม",L_HairStyle,
 	"สีผม",L_HairColor,
@@ -30,7 +24,7 @@ prontera,153,183,4	script	มิสตี้	729,{
 	
 	L_Select:
 	clear;
-	CutInAction;
+	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
 	mes .npcName$;
 	mes NpcMessageColor("โปรดเลือกวิธีการแต่งตัว");
 	menu "สไตล์ถัดไป ("+ ((@currentIndex + 1) > .maxStyles[@currentStyleType] ? 0 : (@currentIndex + 1)) + ")",L_Next,
@@ -72,34 +66,11 @@ prontera,153,183,4	script	มิสตี้	729,{
 
 	L_BodyStyle1:
 	atcommand "@bodystyle 0";
-	Exit;
+	callfunc("Exit");
 	
 	L_BodyStyle2:
 	atcommand "@bodystyle 1";
-	Exit;
-	
-	// Display NPC 'Normal' Illustrations
-	function CutInNormal{
-		.@arraySize = getarraysize(.npcNormalFacials$);
-		if(.@arraySize > 0)
-		callfunc("CutIn",.npcNormalFacials$[rand(0,(.@arraySize - 1))]);
-		return;
-	}
-
-	// Display NPC 'Action' Illustrations
-	function CutInAction{
-		.@arraySize = getarraysize(.npcActionFacials$);
-		if(.@arraySize > 0)
-		callfunc("CutIn",.npcActionFacials$[rand(0,(.@arraySize - 1))]);
-		return;
-	}
-
-	// Exit from NPC conversation
-	function Exit{
-		cutin "",255;
-		close2;
-		end;
-	}
+	callfunc("Exit");
 
 OnInit:
 	// Color Setup
