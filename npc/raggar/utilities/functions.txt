@@ -19,7 +19,13 @@ function	script	CutIn	{
 
 // Exit from NPC conversation
 function	script	Exit	{
+	if(getarg(0,0) > 0)
+	.@closeCutInAfterClose2 = 1;
+	
+	if(!.@closeCutInAfterClose2)
 	cutin "",255;
 	close2;
+	if(.@closeCutInAfterClose2)
+	cutin "",255;
 	end;
 }

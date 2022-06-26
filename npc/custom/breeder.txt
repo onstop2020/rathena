@@ -10,10 +10,16 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-prontera,124,201,1	script	Universal Rental NPC	726,{
+prontera,159,183,4	script	นีน่า	4_LGTSCIENCE,{
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("ต้องการรับ อุปกรณ์ที่ต้องใช้สำหรับ อาชีพนั้น ๆ หรือไม่?");
+	next;
+	menu "ต้องการ",-;
 	if (ismounting()) {
-		message strcharinfo(0),"You must first remove your mount.";
-		end;
+		callfunc("CutIn",.npcAngryFacials$[rand(getarraysize(.npcAngryFacials$))]);
+		mes NpcMessageColor("โปรดลงจากพาหนะเสียก่อน!");
+		callfunc("Exit",1);
 	} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER) && !countitem(6124)) {
 		if (!checkfalcon() && getskilllv("HT_FALCON") && !checkwug()) {
 			if(select(" ~ Falcon: ~ Warg")==1) setfalcon;
@@ -21,19 +27,38 @@ prontera,124,201,1	script	Universal Rental NPC	726,{
 		} else getitem 6124,1; //Wolf's_Flute
 	} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_MECHANIC) && !checkcart() && getskilllv("MC_PUSHCART")) {
 		if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) {
-			if(select(" ~ Cart: ~ Mado")==1) setcart;
-			else setmadogear;
+			.@selectedMenu = select(" ~ Cart: ~ Mado: ~ Mado Suit");
+			if(.@selectedMenu == 1) setcart;
+			else if(.@selectedMenu == 2) setmadogear;
+			else getitem 100158,10;
 		} else setcart;
 	} else if (!checkcart() && getskilllv("MC_PUSHCART")) setcart;
 	else if (!checkfalcon() && getskilllv("HT_FALCON") && !checkwug()) setfalcon;
 	else if (!checkriding() && !checkdragon() && getskilllv("KN_RIDING")) {
 		if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT) setdragon;
 		else setriding;
-	} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) setmadogear;
-	else {
-		message strcharinfo(0),"You do not meet requirements to rent.";
-		end;
+	} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) {
+		if(select(" ~ Mado: ~ Mado Suit") == 1) setmadogear;
+		else getitem 100158,10;
 	}
+	else {
+		callfunc("CutIn",.npcAngryFacials$[rand(getarraysize(.npcAngryFacials$))]);
+		mes NpcMessageColor("ท่านไม่มีอะไรต้องรับแล้ว!");
+		callfunc("Exit",1);
+	}
+	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
+	mes NpcMessageColor("เรียบร้อย!");
 	specialeffect2 EF_TEIHIT3;
+	callfunc("Exit",1);
+
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"3rd_gn_dbris01","3rd_gn_dbris04","3rd_gn_dbris05";
+	setarray .npcActionFacials$,"3rd_gn_dbris03","3rd_gn_dbris06";
+	setarray .npcAngryFacials$,"3rd_gn_dbris02";
+	// Information
+	waitingroom "รับอุปกรณ์ตามอาชีพ",0;
 	end;
 }
