@@ -1,0 +1,29 @@
+-	script	BaseNpc	-1,{
+	// Local Functions Setup
+	function CutInNormal;
+	function CutInAction;
+	function Exit;
+	
+	// Display NPC 'Normal' Illustrations
+	function CutInNormal{
+		.@arraySize = getarraysize(.npcNormalFacials$);
+		if(.@arraySize > 0)
+		callfunc("CutIn",.npcNormalFacials$[rand(0,(.@arraySize - 1))]);
+		return;
+	}
+
+	// Display NPC 'Action' Illustrations
+	function CutInAction{
+		.@arraySize = getarraysize(.npcActionFacials$);
+		if(.@arraySize > 0)
+		callfunc("CutIn",.npcActionFacials$[rand(0,(.@arraySize - 1))]);
+		return;
+	}
+
+	// Exit from NPC conversation
+	function Exit{
+		cutin "",255;
+		close2;
+		end;
+	}
+}

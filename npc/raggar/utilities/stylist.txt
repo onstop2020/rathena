@@ -1,0 +1,115 @@
+prontera,153,183,4	script	มิสตี้	729,{
+	// Local Functions Setup
+	function CutInNormal;
+	function CutInAction;
+	function Exit;
+	
+	// Start talking with NPC
+	CutInNormal;
+	mes .npcName$;
+	mes NpcMessageColor("ว่าไง! ต้องการแต่งตัวรูปแบบไหน เลือกได้เลยนะ");
+	@currentIndex = 0;
+	next;
+	menu "ทรงผม",L_HairStyle,
+	"สีผม",L_HairColor,
+	"สีเสื้อ",L_ClothesColor,
+	"ใส่ชุดที่ 1",L_BodyStyle1,
+	"ใส่ชุดที่ 2",L_BodyStyle2;
+	
+	L_HairStyle:
+	@currentStyleType = 0;
+	goto L_Select;
+	
+	L_HairColor:
+	@currentStyleType = 1;
+	goto L_Select;
+	
+	L_ClothesColor:
+	@currentStyleType = 2;
+	goto L_Select;
+	
+	L_Select:
+	clear;
+	CutInAction;
+	mes .npcName$;
+	mes NpcMessageColor("โปรดเลือกวิธีการแต่งตัว");
+	menu "สไตล์ถัดไป ("+ ((@currentIndex + 1) > .maxStyles[@currentStyleType] ? 0 : (@currentIndex + 1)) + ")",L_Next,
+	"สไตล์ก่อนหน้า (" + ((@currentIndex - 1) >= 0 ? (@currentIndex - 1) : .maxStyles[@currentStyleType]) + ")",L_Previous,
+	"ระบุสไตล์เอง (0~" + .maxStyles[@currentStyleType] + ")",L_Input;
+	end;
+	
+	L_Next:
+	@currentIndex++;
+	if(@currentIndex > .maxStyles[@currentStyleType])
+	@currentIndex = 0;
+	callsub L_UpdateStyle;
+	goto L_Select;
+
+	L_Previous:
+	@currentIndex--;
+	if(@currentIndex <= -1)
+	@currentIndex = .maxStyles[@currentStyleType];
+	callsub L_UpdateStyle;
+	goto L_Select;
+
+	L_Input:
+	input @currentIndex;
+	if(@currentIndex <= 0)
+	@currentIndex = 0;
+	else if(@currentIndex > .maxStyles[@currentStyleType])
+	@currentIndex = @currentIndex = .maxStyles[@currentStyleType];
+	callsub L_UpdateStyle;
+	goto L_Select;
+
+	L_UpdateStyle:
+	if(@currentStyleType == 0)
+	atcommand "@hstyle " + @currentIndex;
+	else if(@currentStyleType == 1)
+	atcommand "@hcolor " + @currentIndex;
+	else if(@currentStyleType == 2)
+	atcommand "@ccolor " + @currentIndex;
+	return;
+
+	L_BodyStyle1:
+	atcommand "@bodystyle 0";
+	Exit;
+	
+	L_BodyStyle2:
+	atcommand "@bodystyle 1";
+	Exit;
+	
+	// Display NPC 'Normal' Illustrations
+	function CutInNormal{
+		.@arraySize = getarraysize(.npcNormalFacials$);
+		if(.@arraySize > 0)
+		callfunc("CutIn",.npcNormalFacials$[rand(0,(.@arraySize - 1))]);
+		return;
+	}
+
+	// Display NPC 'Action' Illustrations
+	function CutInAction{
+		.@arraySize = getarraysize(.npcActionFacials$);
+		if(.@arraySize > 0)
+		callfunc("CutIn",.npcActionFacials$[rand(0,(.@arraySize - 1))]);
+		return;
+	}
+
+	// Exit from NPC conversation
+	function Exit{
+		cutin "",255;
+		close2;
+		end;
+	}
+
+OnInit:
+	// Color Setup
+	setarray .maxStyles,getbattleflag("max_hair_style"),getbattleflag("max_hair_color"),getbattleflag("max_cloth_color");
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"hu_laura01","hu_laura02","hu_laura04";
+	setarray .npcActionFacials$,"hu_laura03";
+	// Information
+	waitingroom "แต่งตัว",0;
+	end;
+}

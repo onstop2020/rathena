@@ -1,0 +1,15 @@
+function	script	NpcNameColor	{
+	return "[^5499C7" + getarg(0,"") + "^000000]";
+}
+
+function	script	NpcMessageColor	{
+	return "^2471A3" + getarg(0,"") + "^000000";
+}
+
+function	script	CutIn	{
+	cutin "",255;
+	.@cutInFileName$ = getarg(0,"");
+	if(.@cutInFileName$ != "")
+	cutin .@cutInFileName$,2;
+	return;
+}
