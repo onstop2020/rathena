@@ -277,8 +277,8 @@ Body:
     Name: Core Orb[Rare]
     Type: Etc
   - Id: 10000022
-    AegisName: Core_Orb[Magic]
-    Name: Core Orb[Magic]
+    AegisName: Core_Orb[Epic]
+    Name: Core Orb[Epic]
     Type: Etc
   - Id: 10000023
     AegisName: Core_Orb[Mystical]
@@ -297,8 +297,8 @@ Body:
     Name: Speciality Orb[Rare]
     Type: Etc
   - Id: 10000027
-    AegisName: Speciality_Orb[Magic]
-    Name: Speciality Orb[Magic]
+    AegisName: Speciality_Orb[Epic]
+    Name: Speciality Orb[Epic]
     Type: Etc
   - Id: 10000028
     AegisName: Speciality_Orb[Mystical]
@@ -317,8 +317,8 @@ Body:
     Name: Gear Orb[Rare]
     Type: Etc
   - Id: 10000032
-    AegisName: Gear_Orb[Magic]
-    Name: Gear Orb[Magic]
+    AegisName: Gear_Orb[Epic]
+    Name: Gear Orb[Epic]
     Type: Etc
   - Id: 10000033
     AegisName: Gear_Orb[Mystical]
@@ -337,8 +337,8 @@ Body:
     Name: Refine Orb[Rare]
     Type: Etc
   - Id: 10000037
-    AegisName: Refine_Orb[Magic]
-    Name: Refine Orb[Magic]
+    AegisName: Refine_Orb[Epic]
+    Name: Refine Orb[Epic]
     Type: Etc
   - Id: 10000038
     AegisName: Refine_Orb[Mystical]

@@ -4217,7 +4217,61 @@ const std::string MobDatabase::getDefaultLocation() {
 	return std::string(db_path) + "/mob_db.yml";
 }
 
-bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node, uint8 max, s_mob_drop *drops) {
+//bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node, uint8 max, s_mob_drop *drops) {
+bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node, uint8 max, s_mob_drop *drops, int lv) {
+	int core_orb_item_id = 0;
+	int speciality_orb_item_id = 0;
+	int gear_orb_item_id = 0;
+	int refine_orb_item_id = 0;
+	if (lv <= 29) {
+		core_orb_item_id = 10000020;
+		speciality_orb_item_id = 10000025;
+		gear_orb_item_id = 10000030;
+		refine_orb_item_id = 10000035;
+	}
+	else if (lv <= 50) {
+		core_orb_item_id = 10000021;
+		speciality_orb_item_id = 10000026;
+		gear_orb_item_id = 10000031;
+		refine_orb_item_id = 10000036;
+	}
+	else if (lv <= 99) {
+		core_orb_item_id = 10000022;
+		speciality_orb_item_id = 10000027;
+		gear_orb_item_id = 10000032;
+		refine_orb_item_id = 10000037;
+	}
+	else if (lv <= 150) {
+		core_orb_item_id = 10000023;
+		speciality_orb_item_id = 10000028;
+		gear_orb_item_id = 10000033;
+		refine_orb_item_id = 10000038;
+	}
+	else {
+		core_orb_item_id = 10000024;
+		speciality_orb_item_id = 10000029;
+		gear_orb_item_id = 10000034;
+		refine_orb_item_id = 10000039;
+	}
+	drops[0].nameid = core_orb_item_id;
+	drops[0].rate = 10000;
+	drops[0].steal_protected = true;
+	drops[0].randomopt_group = 0;
+	drops[1].nameid = speciality_orb_item_id;
+	drops[1].rate = 100;
+	drops[1].steal_protected = true;
+	drops[1].randomopt_group = 0;
+	drops[2].nameid = gear_orb_item_id;
+	drops[2].rate = 500;
+	drops[2].steal_protected = true;
+	drops[2].randomopt_group = 0;
+	drops[3].nameid = refine_orb_item_id;
+	drops[3].rate = 10;
+	drops[3].steal_protected = true;
+	drops[3].randomopt_group = 0;
+
+	return true; // [Start]
+
 	const auto& dropNode = node[c4::to_csubstr(nodeName)];
 	uint16 i;
 
@@ -4909,6 +4963,9 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				mob->status.mode = static_cast<e_mode>(mob->status.mode & ~constant);
 		}
 	}
+
+	// Custom drop [Start]
+	this->parseDropNode("Drops", node, MAX_MOB_DROP, mob->dropitem, mob->lv);
 
 	/*if (this->nodeExists(node, "MvpDrops")) {
 		if (!this->parseDropNode("MvpDrops", node, MAX_MVP_DROP, mob->mvpitem))
