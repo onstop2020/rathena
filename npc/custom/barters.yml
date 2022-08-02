@@ -44,3 +44,176 @@
 Header:
   Type: BARTER_DB
   Version: 1
+  
+Body:
+  - Name: ·≈° Points Orb
+    Map: prontera
+    X: 154
+    Y: 198
+    Direction: South
+    Sprite: 2_VENDING_MACHINE1
+    Items:
+      - Index: 0
+        Item: Points_Orb
+        RequiredItems:
+          - Index: 0
+            Item: Core_Orb[Normal]
+            Amount: 5
+      - Index: 1
+        Item: Points_Orb
+        RequiredItems:
+          - Index: 0
+            Item: Core_Orb[Rare]
+            Amount: 4
+      - Index: 2
+        Item: Points_Orb
+        RequiredItems:
+          - Index: 0
+            Item: Core_Orb[Epic]
+            Amount: 3
+      - Index: 3
+        Item: Points_Orb
+        RequiredItems:
+          - Index: 0
+            Item: Core_Orb[Mystical]
+            Amount: 2
+      - Index: 4
+        Item: Points_Orb
+        RequiredItems:
+          - Index: 0
+            Item: Core_Orb[Legendary]
+            Amount: 1
+  - Name: ·≈° Life Crystal
+    Map: prontera
+    X: 156
+    Y: 198
+    Direction: South
+    Sprite: 2_VENDING_MACHINE1
+    Items:
+      - Index: 0
+        Item: Life_Crystal_Lv._1
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 1
+      - Index: 1
+        Item: Life_Crystal_Lv._2
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 3
+      - Index: 2
+        Item: Life_Crystal_Lv._3
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 5
+      - Index: 3
+        Item: Life_Crystal_Lv._4
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 7
+      - Index: 4
+        Item: Life_Crystal_Lv._5
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 11
+      - Index: 5
+        Item: Life_Crystal_Lv._6
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 15
+      - Index: 6
+        Item: Life_Crystal_Lv._7
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 19
+      - Index: 7
+        Item: Life_Crystal_Lv._8
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 25
+      - Index: 8
+        Item: Life_Crystal_Lv._9
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 35
+      - Index: 9
+        Item: Life_Crystal_Lv._10
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 50
+  - Name: ·≈° Haste Crystal
+    Map: prontera
+    X: 158
+    Y: 198
+    Direction: South
+    Sprite: 2_VENDING_MACHINE1
+    Items:
+      - Index: 0
+        Item: Haste_Crystal_Lv._1
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 1
+      - Index: 1
+        Item: Haste_Crystal_Lv._2
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 2
+      - Index: 2
+        Item: Haste_Crystal_Lv._3
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 3
+      - Index: 3
+        Item: Haste_Crystal_Lv._4
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 4
+      - Index: 4
+        Item: Haste_Crystal_Lv._5
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 5
+      - Index: 5
+        Item: Haste_Crystal_Lv._6
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 10
+      - Index: 6
+        Item: Haste_Crystal_Lv._7
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 15
+      - Index: 7
+        Item: Haste_Crystal_Lv._8
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 20
+      - Index: 8
+        Item: Haste_Crystal_Lv._9
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 25
+      - Index: 9
+        Item: Haste_Crystal_Lv._10
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 35

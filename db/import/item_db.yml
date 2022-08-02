@@ -348,3 +348,7 @@ Body:
     AegisName: Refine_Orb[Legendary]
     Name: Refine Orb[Legendary]
     Type: Etc
+  - Id: 10000040
+    AegisName: Points_Orb
+    Name: Points Orb
+    Type: Etc
