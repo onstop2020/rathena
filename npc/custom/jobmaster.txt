@@ -16,7 +16,7 @@
 //= 2.0 Added 4th class [Lemongrass]
 //============================================================
 
-prontera,153,193,6	script	Job Master	10183,{
+prontera,153,193,6	script	คายะ	10183,{
 function Get_Job_Equip;
 // Checks if the Player has the required level.
 // closes if not, returns if yes
@@ -112,6 +112,7 @@ function	Check_Riding	{
 			((checkriding()) ? "ปีโกปีโก้" : "") +
 			((ismounting()) ? "พาหนะ" : "") +
 			" เสียก่อน";
+		next;
 		callfunc("Exit");
 	}
 	return;
@@ -120,6 +121,7 @@ function	Check_SkillPoints	{
 	if (.SkillPointCheck && SkillPoint) {
 		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
 		mes "โปรดใช้ Skill Point ให้หมดเสียก่อน";
+		next;
 		callfunc("Exit");
 	}
 	return;
@@ -278,6 +280,7 @@ function	Job_Menu	{
 		if( .@opt_cnt <= 0 ) {
 			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 			mes "ไม่มีอาชีพต่อไปแล้ว";
+			next;
 			callfunc("Exit");
 		}
 

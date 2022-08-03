@@ -1,0 +1,104 @@
+prontera,158,193,3	script	ริกะ	10122,{
+	if(gethominfo(0) > 0){
+		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
+		mes .npcName$;
+		mes "เรียบร้อย!";
+		addhomintimacy 100000;
+		atcommand "@homhungry 100";
+		next;
+		callfunc("Exit");
+	}
+	else{
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes "ท่านไม่มี Homunculus";
+		next;
+		callfunc("Exit");
+	}
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"ep16cook_king_2";
+	setarray .npcActionFacials$,"ep16cook_king_2";
+	// Information
+	waitingroom "Homunculus อิ่มและสนิทสนม",0;
+	end;
+}
+
+prontera,160,193,3	script	โจเซฟ 	10189,{
+	if(gethominfo(0) > 0){
+		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
+		mes .npcName$;
+		mes "เรียบร้อย!";
+		homevolution;
+		next;
+		callfunc("Exit");
+	}
+	else{
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes "ท่านไม่มี Homunculus";
+		next;
+		callfunc("Exit");
+	}
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"ep16_eisen01","ep16_eisen02";
+	setarray .npcActionFacials$,"ep16_eisen03";
+	// Information
+	waitingroom "Homunculus Evolution",0;
+	end;
+}
+
+prontera,162,193,3	script	Hom. S 	915,{
+	if(gethominfo(0) > 0){
+		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
+			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
+			case 1:
+				cutin "Mer_Eira_Card",3;
+				.@Homunculus = 6048; //MER_EIRA
+				break;
+			case 2:
+				cutin "Mer_Sera_Card",3;
+				.@Homunculus = 6050; //MER_SERA
+				break;
+			case 3:
+				cutin "Mer_Dieter_Card",3;
+				.@Homunculus = 6051; //MER_DIETER
+				break;
+			case 4:
+				cutin "Mer_Bayeri_Card",3;
+				.@Homunculus = 6049; //MER_BAYERI
+				break;
+			case 5:
+				cutin "Mer_Eleanor_Card",3;
+				.@Homunculus = 6052; //MER_ELEANOR
+				break;
+			}
+			menu "ยืนยัน",-;
+			morphembryo;
+			hommutate .@Homunculus;
+			end;
+		}
+		else{
+			mes "ต้องมี Homunculus ปกติที่ Evolution แล้วและ Level 99 หรือมากกว่า";
+			close;
+		}
+	}
+	end;
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"hu_laura01","hu_laura02","hu_laura04";
+	setarray .npcActionFacials$,"hu_laura03";
+	// Information
+	waitingroom "แต่งตัว",0;
+	end;
+}
