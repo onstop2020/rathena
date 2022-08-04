@@ -25,7 +25,7 @@ function	Require_Level	{
 		.@blvl = getarg(0) - BaseLevel;
 		.@jlvl = getarg(1) - JobLevel;
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
-		mes "เงื่อนไข:";
+		mes NpcMessageColor("เงื่อนไข:");
 		mes ((getarg(0)>1)? 
 			"^bb0000"+getarg(0)+"^000000 (^bb0000Level^000000) / ":"")+"^00bb00"+
 			getarg(1)+"^000000 (^00bb00Job^000000)";
@@ -106,12 +106,12 @@ function	Check_Riding	{
 	// those special cases.
 	if (checkfalcon() || checkcart() || checkriding() || ismounting()) {
 		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
-		mes "โปรดถอด " +
+		mes NpcMessageColor("โปรดถอด " +
 			((checkfalcon()) ? "เหยี่ยว" : "") +
 			((checkcart()) ? "รถเข็น" : "") +
 			((checkriding()) ? "ปีโกปีโก้" : "") +
 			((ismounting()) ? "พาหนะ" : "") +
-			" เสียก่อน";
+			" เสียก่อน");
 		next;
 		callfunc("Exit");
 	}
@@ -120,7 +120,7 @@ function	Check_Riding	{
 function	Check_SkillPoints	{
 	if (.SkillPointCheck && SkillPoint) {
 		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
-		mes "โปรดใช้ Skill Point ให้หมดเสียก่อน";
+		mes NpcMessageColor("โปรดใช้ Skill Point ให้หมดเสียก่อน");
 		next;
 		callfunc("Exit");
 	}
@@ -237,7 +237,7 @@ function	Job_Options	{
 				break;
 			default:
 				callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
-				mes "เกิดข้อผิดพลาด";
+				mes NpcMessageColor("เกิดข้อผิดพลาด");
 				callfunc("Exit");
 		}
 	} else if( Is_First_Cls(.@eac) || 				// First Class
@@ -279,7 +279,7 @@ function	Job_Menu	{
 		.@opt_cnt =  getarraysize(getarg(0));
 		if( .@opt_cnt <= 0 ) {
 			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
-			mes "ไม่มีอาชีพต่อไปแล้ว";
+			mes NpcMessageColor("ไม่มีอาชีพต่อไปแล้ว");
 			next;
 			callfunc("Exit");
 		}
@@ -289,7 +289,7 @@ function	Job_Menu	{
 			// Multiple job classes given. Select one and save it to .@class
 			// After that confirm .@class
 			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
-			mes "โปรดเลือกอาชีพ";
+			mes NpcMessageColor("โปรดเลือกอาชีพ");
 			.@menu$ = "";
 			for (.@i = 0; .@i < .@opt_cnt; .@i++) {
 				if( getelementofarray(getarg(0), .@i) == Job_Novice_High)
@@ -313,8 +313,8 @@ function	Job_Menu	{
 			// changes. That's why the Level Requirement is after and not before
 			// the selection.
 			callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
-			mes "ต้องการ " + .SNovice +
-				" Level เพื่อเปลี่ยนเป็น " + jobname(.@class) + ".";
+			mes NpcMessageColor("ต้องการ " + .SNovice +
+				" Level เพื่อเปลี่ยนเป็น " + jobname(.@class));
 			return;
 		}
 		// Confirm the Class
@@ -333,7 +333,7 @@ function	Job_Change	{
 	next;
 	mes .NPCName$;
 	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
-	mes "ท่านเปลี่ยนเป็น " + jobname(.@to_cls) + " แล้ว!";
+	mes NpcMessageColor("ท่านเปลี่ยนเป็น " + jobname(.@to_cls) + " แล้ว!");
 	if (.@to_cls == Job_Novice_High && .LastJob)
 		lastJob = Class; // Saves the lastJob for rebirth
 	jobchange .@to_cls;
@@ -361,11 +361,11 @@ function	Confirm_Change	{
 	.@back = getarg(1, false);
 	if( .@class < 0 || eaclass(.@class) == -1 ) {
 		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
-		mes "เกิดข้อผิดพลาด: อาชีพไม่ถูกต้อง";
+		mes NpcMessageColor("เกิดข้อผิดพลาด: อาชีพไม่ถูกต้อง");
 		callfunc("Exit");
 	}
 	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
-	mes "ท่านต้องการเปลี่ยนเป็น ^0055FF"+jobname(.@class)+"^000000?";
+	mes NpcMessageColor("ท่านต้องการเปลี่ยนเป็น") + " ^0055FF"+jobname(.@class)+"^000000?";
 	.@job_option$ = " ~ เปลี่ยนเป็น ^0055FF"+jobname(.@class)+"^000000";
 	if( .@class == Job_Novice_High)
 		.@job_option$ = " ~ ^0055FFจุติ^000000";
