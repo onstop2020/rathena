@@ -33,11 +33,21 @@
 	}
 	return;
 	
+OnTimer60000:
+	if(getmapusers(getd("$map" + strnpcinfo(2) + "$")))
+	callsub L_SpawnMonster;
+	initnpctimer;
+	end;
+	
 OnInit:
+	if(strnpcinfo(2) == "")
+	end;
+
 	// Name Setup
 	.npcName$ = NpcNameColor(strnpcinfo(0));
 	// Information
 	waitingroom strnpcinfo(0),0;
+	initnpctimer;
 	end;
 }
 
