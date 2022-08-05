@@ -1,11 +1,11 @@
 -	script	CustomCommands	-1,{
 	end;
 	
-	OnInit:
+OnInit:
 	bindatcmd "job2",strnpcinfo(3) + "::OnJob2",99,99;
 	end;
 	
-	OnJob2:
+OnJob2:
 	atcommand "@job " + .@atcmd_parameters$[0];
 	atcommand "@lvup 999";
 	atcommand "@joblvup 999";

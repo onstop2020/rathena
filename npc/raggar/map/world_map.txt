@@ -1,16 +1,27 @@
 -	script	Map	-1,{
-		mes .npcName$;
-		mes NpcMessageColor("โปรดยืนยันการวาร์ป");
-		next;
-		menu "วาร์ป",-;
-		callsub L_SpawnMonster;
-		warp getd("$map" + strnpcinfo(2) + "$"),0,0;
-		callfunc("Exit");
+	mes .npcName$;
+	mes NpcMessageColor("โปรดยืนยันการวาร์ป");
+	next;
+	menu "วาร์ป",-;
+	callsub L_SpawnMonster;
+	warp getd("$map" + strnpcinfo(2) + "$"),0,0;
+	callfunc("Exit");
+	
+	L_SpawnMonster:
+	.@leftOverMonster = getmapunits(BL_MOB,getd("$map" + strnpcinfo(2) + "$"));
+	.@maxSpawnAmount = getd("$maxMonsterMapTier" + getd("$map" + strnpcinfo(2) + "Tier"));
+	if(.@leftOverMonster < .@maxSpawnAmount){
+		.@spawnAmount = .@maxSpawnAmount - .@leftOverMonster;
+		.@spawnAmount = max(1,(.@spawnAmount / rand(1,4)));
 		
-		L_SpawnMonster:
-		monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",1002,1;
-		return;
-		
+		freeloop(1);
+		for(.@i = 0; .@i < .@spawnAmount; .@i++){
+			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",1002,1;
+		}
+		freeloop(0);
+	}
+	return;
+	
 OnInit:
 	// Name Setup
 	.npcName$ = NpcNameColor(strnpcinfo(0));
