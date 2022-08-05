@@ -8,24 +8,24 @@ OnInit:
 		
 		// Set map for first time
 		freeloop(1);
-		for(.i = 0; .i < 73; .i++){
-			set getd("$map" + .i + "$"),callsub(L_GetMap);
+		for(.@i = 0; .@i < 73; .@i++){
+			set getd("$map" + .@i + "$"),callsub(L_GetMap);
 			
 			// Map tier
-			.temp = .i;
-			while(.temp > 17)
-			.temp -= 17;
+			.@temp = .@i;
+			while(.@temp > 17)
+			.@temp -= 17;
 			
-			if(.temp >= 15)
-			set getd("$map" + .i + "Tier"),5;
-			else if(.temp >= 10)
-			set getd("$map" + .i + "Tier"),4;
-			else if(.temp >= 6)
-			set getd("$map" + .i + "Tier"),3;
-			else if(.temp >= 3)
-			set getd("$map" + .i + "Tier"),2;
+			if(.@temp >= 15)
+			set getd("$map" + .@i + "Tier"),5;
+			else if(.@temp >= 10)
+			set getd("$map" + .@i + "Tier"),4;
+			else if(.@temp >= 6)
+			set getd("$map" + .@i + "Tier"),3;
+			else if(.@temp >= 3)
+			set getd("$map" + .@i + "Tier"),2;
 			else
-			set getd("$map" + .i + "Tier"),1;
+			set getd("$map" + .@i + "Tier"),1;
 		}
 		freeloop(0);
 		
@@ -34,14 +34,14 @@ OnInit:
 	end;
 	
 	L_GetMap:
-	.randomMap$ = $mapDatabases$[rand(0,getarraysize($mapDatabases$)-1)];
+	.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
 	
-	for(.i = 0; .i < 73; .i++){
-		if(.randomMap$ == getd("$map" + .i + "$")){
-			.randomMap$ = $mapDatabases$[rand(0,getarraysize($mapDatabases$)-1)];
-			.i = 0;
+	for(.@i = 0; .@i < 73; .@i++){
+		if(.randomMap$ == getd("$map" + .@i + "$")){
+			.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
+			.@i = 0;
 		}
 	}
 	
-	return .randomMap$;
+	return .@randomMap$;
 }

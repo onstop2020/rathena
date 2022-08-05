@@ -82,28 +82,28 @@ prontera,162,193,3	script	¸ÍÃì¹	10182,{
 			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
 			case 1:
 				cutin "Mer_Eira_Card",3;
-				.@Homunculus = 6048; //MER_EIRA
+				.@homunculus = 6048; //MER_EIRA
 				break;
 			case 2:
 				cutin "Mer_Sera_Card",3;
-				.@Homunculus = 6050; //MER_SERA
+				.@homunculus = 6050; //MER_SERA
 				break;
 			case 3:
 				cutin "Mer_Dieter_Card",3;
-				.@Homunculus = 6051; //MER_DIETER
+				.@homunculus = 6051; //MER_DIETER
 				break;
 			case 4:
 				cutin "Mer_Bayeri_Card",3;
-				.@Homunculus = 6049; //MER_BAYERI
+				.@homunculus = 6049; //MER_BAYERI
 				break;
 			case 5:
 				cutin "Mer_Eleanor_Card",3;
-				.@Homunculus = 6052; //MER_ELEANOR
+				.@homunculus = 6052; //MER_ELEANOR
 				break;
 			}
 			menu "Â×¹ÂÑ¹",-;
 			morphembryo;
-			hommutate .@Homunculus;
+			hommutate .@homunculus;
 			end;
 		}
 		else{
