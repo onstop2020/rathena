@@ -1,0 +1,23 @@
+-	script	Map	-1,{
+		mes .npcName$;
+		mes NpcMessageColor("โปรดยืนยันการวาร์ป");
+		next;
+		menu "วาร์ป",-;
+		callsub L_SpawnMonster;
+		warp getd("$map" + strnpcinfo(2) + "$"),0,0;
+		callfunc("Exit");
+		
+		L_SpawnMonster:
+		monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",1002,1;
+		return;
+		
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Information
+	waitingroom strnpcinfo(0),0;
+	end;
+}
+
+prontera,146,189,3	duplicate(Map)	Map#0	10081
+prontera,148,189,3	duplicate(Map)	Map#1	10081
