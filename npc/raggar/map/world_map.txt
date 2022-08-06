@@ -1,9 +1,13 @@
 -	script	Map	-1,{
+	// Name Setup
+	.@npcName$ = NpcNameColor(strnpcinfo(1));
 	// Is locked?
 	.@mapIndex = strnpcinfo(2);
 	.@realMapIndex = strnpcinfo(2);
-	while(.@mapIndex > 17)
-	.@mapIndex -= 17;
+	while(.@mapIndex > 18)
+	.@mapIndex -= 18;
+	if(.@mapIndex == 18)
+	.@mapIndex = 0;
 	if
 	(
 	((.@mapIndex == 1) && !getd("$map" + (.@realMapIndex - 1) + "Occupied"))
@@ -31,17 +35,17 @@
 	|| ((.@mapIndex == 17) && (!getd("$map" + (.@realMapIndex - 1) + "Occupied") || !getd("$map" + (.@realMapIndex - 2) + "Occupied")))
 	)
 	{
-		mes .npcName$;
+		mes .@npcName$;
 		mes NpcMessageColor("Map ก่อนหน้านี้ ยังถูกครอบครองโดยฝั่ง Monster โปรดกำจัด Boss ภายใน Map ก่อนหน้านี้ทั้งหมดเสียก่อน");
 		callfunc("Exit");
 	}
 	
 	if(.@mapIndex > 0){
-		mes .npcName$;
+		mes .@npcName$;
 		mes NpcMessageColor(getd("$map" + strnpcinfo(2) + "Occupied") ? "Map นี้ถูกยึดครองโดยฝั่ง " + GoodMessageColor("ผู้เล่น") : "Map นี้ถูกยึดครองโดยฝั่ง " + BadMessageColor("Monster"));
 		next;
 	}
-	mes .npcName$;
+	mes .@npcName$;
 	mes NpcMessageColor("โปรดยืนยันการวาร์ป");
 	next;
 	menu "วาร์ป",-;
@@ -132,90 +136,86 @@ OnInit:
 	if(strnpcinfo(2) == "")
 	end;
 
-	// Name Setup
-	.npcName$ = NpcNameColor(strnpcinfo(1));
-	// Information
-	waitingroom strnpcinfo(0),0;
 	initnpctimer;
 	end;
 }
 
 // North
-prontera,155,215,3	duplicate(Map)	Map#0	10081
-prontera,152,221,3	duplicate(Map)	Map#1	10081
-prontera,158,221,3	duplicate(Map)	Map#2	10081
-prontera,149,227,3	duplicate(Map)	Map#3	10081
-prontera,155,227,3	duplicate(Map)	Map#4	10081
-prontera,161,227,3	duplicate(Map)	Map#5	10081
-prontera,146,234,3	duplicate(Map)	Map#6	10081
-prontera,152,234,3	duplicate(Map)	Map#7	10081
-prontera,158,234,3	duplicate(Map)	Map#8	10081
-prontera,164,234,3	duplicate(Map)	Map#9	10081
-prontera,152,241,3	duplicate(Map)	Map#10	10081
-prontera,158,241,3	duplicate(Map)	Map#11	10081
-prontera,149,249,3	duplicate(Map)	Map#12	10081
-prontera,155,249,3	duplicate(Map)	Map#13	10081
-prontera,161,249,3	duplicate(Map)	Map#14	10081
-prontera,152,256,3	duplicate(Map)	Map#15	10081
-prontera,158,256,3	duplicate(Map)	Map#16	10081
-prontera,155,263,3	duplicate(Map)	Map#17	10081
+prontera,155,215,3	duplicate(Map)	Map 0#0	10285
+prontera,152,221,3	duplicate(Map)	Map 1#1	10285
+prontera,158,221,3	duplicate(Map)	Map 2#2	10285
+prontera,149,227,3	duplicate(Map)	Map 3#3	10290
+prontera,155,227,3	duplicate(Map)	Map 4#4	10290
+prontera,161,227,3	duplicate(Map)	Map 5#5	10290
+prontera,146,234,3	duplicate(Map)	Map 6#6	10293
+prontera,152,234,3	duplicate(Map)	Map 7#7	10293
+prontera,158,234,3	duplicate(Map)	Map 8#8	10293
+prontera,164,234,3	duplicate(Map)	Map 9#9	10293
+prontera,152,241,3	duplicate(Map)	Map 10#10	10280
+prontera,158,241,3	duplicate(Map)	Map 11#11	10280
+prontera,149,249,3	duplicate(Map)	Map 12#12	10280
+prontera,155,249,3	duplicate(Map)	Map 13#13	10280
+prontera,161,249,3	duplicate(Map)	Map 14#14	10280
+prontera,152,256,3	duplicate(Map)	Map 15#15	10336
+prontera,158,256,3	duplicate(Map)	Map 16#16	10336
+prontera,155,263,3	duplicate(Map)	Map 17#17	10336
 
 // South
-prontera,155,215,3	duplicate(Map)	Map#18	10081
-prontera,152,221,3	duplicate(Map)	Map#19	10081
-prontera,158,221,3	duplicate(Map)	Map#20	10081
-prontera,149,227,3	duplicate(Map)	Map#21	10081
-prontera,155,227,3	duplicate(Map)	Map#22	10081
-prontera,161,227,3	duplicate(Map)	Map#23	10081
-prontera,146,234,3	duplicate(Map)	Map#24	10081
-prontera,152,234,3	duplicate(Map)	Map#25	10081
-prontera,158,234,3	duplicate(Map)	Map#26	10081
-prontera,164,234,3	duplicate(Map)	Map#27	10081
-prontera,152,241,3	duplicate(Map)	Map#28	10081
-prontera,158,241,3	duplicate(Map)	Map#29	10081
-prontera,149,249,3	duplicate(Map)	Map#30	10081
-prontera,155,249,3	duplicate(Map)	Map#31	10081
-prontera,161,249,3	duplicate(Map)	Map#32	10081
-prontera,152,256,3	duplicate(Map)	Map#33	10081
-prontera,158,256,3	duplicate(Map)	Map#34	10081
-prontera,155,263,3	duplicate(Map)	Map#35	10081
+prontera,155,190,3	duplicate(Map)	Map 18#18	10285
+prontera,152,184,3	duplicate(Map)	Map 19#19	10285
+prontera,158,184,3	duplicate(Map)	Map 20#20	10285
+prontera,149,178,3	duplicate(Map)	Map 21#21	10290
+prontera,155,178,3	duplicate(Map)	Map 22#22	10290
+prontera,161,178,3	duplicate(Map)	Map 23#23	10290
+prontera,146,172,3	duplicate(Map)	Map 24#24	10293
+prontera,152,172,3	duplicate(Map)	Map 25#25	10293
+prontera,158,172,3	duplicate(Map)	Map 26#26	10293
+prontera,164,172,3	duplicate(Map)	Map 27#27	10293
+prontera,152,166,3	duplicate(Map)	Map 28#28	10280
+prontera,158,166,3	duplicate(Map)	Map 29#29	10280
+prontera,149,160,3	duplicate(Map)	Map 30#30	10280
+prontera,155,160,3	duplicate(Map)	Map 31#31	10280
+prontera,161,160,3	duplicate(Map)	Map 32#32	10280
+prontera,152,154,3	duplicate(Map)	Map 33#33	10336
+prontera,158,154,3	duplicate(Map)	Map 34#34	10336
+prontera,155,148,3	duplicate(Map)	Map 35#35	10336
 
 // East
-prontera,155,215,3	duplicate(Map)	Map#36	10081
-prontera,152,221,3	duplicate(Map)	Map#37	10081
-prontera,158,221,3	duplicate(Map)	Map#38	10081
-prontera,149,227,3	duplicate(Map)	Map#39	10081
-prontera,155,227,3	duplicate(Map)	Map#40	10081
-prontera,161,227,3	duplicate(Map)	Map#41	10081
-prontera,146,234,3	duplicate(Map)	Map#42	10081
-prontera,152,234,3	duplicate(Map)	Map#43	10081
-prontera,158,234,3	duplicate(Map)	Map#44	10081
-prontera,164,234,3	duplicate(Map)	Map#45	10081
-prontera,152,241,3	duplicate(Map)	Map#46	10081
-prontera,158,241,3	duplicate(Map)	Map#47	10081
-prontera,149,249,3	duplicate(Map)	Map#48	10081
-prontera,155,249,3	duplicate(Map)	Map#49	10081
-prontera,161,249,3	duplicate(Map)	Map#50	10081
-prontera,152,256,3	duplicate(Map)	Map#51	10081
-prontera,158,256,3	duplicate(Map)	Map#52	10081
-prontera,155,263,3	duplicate(Map)	Map#53	10081
+prontera,166,204,3	duplicate(Map)	Map 36#36	10285
+prontera,172,207,3	duplicate(Map)	Map 37#37	10285
+prontera,172,201,3	duplicate(Map)	Map 38#38	10285
+prontera,178,210,3	duplicate(Map)	Map 39#39	10290
+prontera,178,204,3	duplicate(Map)	Map 40#40	10290
+prontera,178,198,3	duplicate(Map)	Map 41#41	10290
+prontera,184,213,3	duplicate(Map)	Map 42#42	10293
+prontera,184,207,3	duplicate(Map)	Map 43#43	10293
+prontera,184,201,3	duplicate(Map)	Map 44#44	10293
+prontera,184,194,3	duplicate(Map)	Map 45#45	10293
+prontera,193,207,3	duplicate(Map)	Map 46#46	10280
+prontera,193,201,3	duplicate(Map)	Map 47#47	10280
+prontera,199,210,3	duplicate(Map)	Map 48#48	10280
+prontera,199,204,3	duplicate(Map)	Map 49#49	10280
+prontera,199,198,3	duplicate(Map)	Map 50#50	10280
+prontera,205,207,3	duplicate(Map)	Map 51#51	10336
+prontera,205,201,3	duplicate(Map)	Map 52#52	10336
+prontera,211,204,3	duplicate(Map)	Map 53#53	10336
 
 // West
-prontera,155,215,3	duplicate(Map)	Map#54	10081
-prontera,152,221,3	duplicate(Map)	Map#55	10081
-prontera,158,221,3	duplicate(Map)	Map#56	10081
-prontera,149,227,3	duplicate(Map)	Map#57	10081
-prontera,155,227,3	duplicate(Map)	Map#58	10081
-prontera,161,227,3	duplicate(Map)	Map#59	10081
-prontera,146,234,3	duplicate(Map)	Map#60	10081
-prontera,152,234,3	duplicate(Map)	Map#61	10081
-prontera,158,234,3	duplicate(Map)	Map#62	10081
-prontera,164,234,3	duplicate(Map)	Map#63	10081
-prontera,152,241,3	duplicate(Map)	Map#64	10081
-prontera,158,241,3	duplicate(Map)	Map#65	10081
-prontera,149,249,3	duplicate(Map)	Map#66	10081
-prontera,155,249,3	duplicate(Map)	Map#67	10081
-prontera,161,249,3	duplicate(Map)	Map#68	10081
-prontera,152,256,3	duplicate(Map)	Map#69	10081
-prontera,158,256,3	duplicate(Map)	Map#70	10081
-prontera,155,263,3	duplicate(Map)	Map#71	10081
+prontera,144,204,3	duplicate(Map)	Map 54#54	10285
+prontera,138,207,3	duplicate(Map)	Map 55#55	10285
+prontera,138,201,3	duplicate(Map)	Map 56#56	10285
+prontera,132,210,3	duplicate(Map)	Map 57#57	10290
+prontera,132,204,3	duplicate(Map)	Map 58#58	10290
+prontera,132,198,3	duplicate(Map)	Map 59#59	10290
+prontera,126,213,3	duplicate(Map)	Map 60#60	10293
+prontera,126,207,3	duplicate(Map)	Map 61#61	10293
+prontera,126,201,3	duplicate(Map)	Map 62#62	10293
+prontera,126,194,3	duplicate(Map)	Map 63#63	10293
+prontera,117,207,3	duplicate(Map)	Map 64#64	10280
+prontera,117,201,3	duplicate(Map)	Map 65#65	10280
+prontera,111,210,3	duplicate(Map)	Map 66#66	10280
+prontera,111,204,3	duplicate(Map)	Map 67#67	10280
+prontera,111,198,3	duplicate(Map)	Map 68#68	10280
+prontera,105,207,3	duplicate(Map)	Map 69#69	10336
+prontera,105,201,3	duplicate(Map)	Map 70#70	10336
+prontera,99,204,3	duplicate(Map)	Map 71#71	10336

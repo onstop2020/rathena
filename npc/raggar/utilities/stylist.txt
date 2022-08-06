@@ -1,4 +1,4 @@
-prontera,153,183,4	script	มิสตี้	729,{
+prontera,136,232,6	script	มิสตี้	729,{
 	@currentIndex = 0;
 	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 	mes .npcName$;

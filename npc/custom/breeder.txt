@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-prontera,159,183,4	script	นีน่า	4_LGTSCIENCE,{
+prontera,130,226,6	script	นีน่า	4_LGTSCIENCE,{
 	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 	mes .npcName$;
 	mes NpcMessageColor("ต้องการรับ อุปกรณ์ที่ต้องใช้สำหรับ อาชีพนั้น ๆ หรือไม่?");

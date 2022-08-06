@@ -16,7 +16,7 @@
 //= 2.0 Added 4th class [Lemongrass]
 //============================================================
 
-prontera,153,193,6	script	ひ対	10183,{
+prontera,124,220,6	script	ひ対	10183,{
 function Get_Job_Equip;
 // Checks if the Player has the required level.
 // closes if not, returns if yes

@@ -1,4 +1,4 @@
-prontera,158,193,3	script	ÃÔ¡Ð	10122,{
+prontera,118,226,6	script	ÃÔ¡Ð	10122,{
 	if(gethominfo(0) > 0){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
@@ -32,7 +32,7 @@ OnInit:
 	end;
 }
 
-prontera,160,193,3	script	â¨à«¿	10189,{
+prontera,124,232,6	script	â¨à«¿	10189,{
 	if(gethominfo(0) > 0){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
@@ -72,7 +72,7 @@ OnInit:
 	end;
 }
 
-prontera,162,193,3	script	¸ÍÃì¹	10182,{
+prontera,130,238,6	script	¸ÍÃì¹	10182,{
 	if(gethominfo(0) > 0){
 		if ((gethominfo(6) >= 99)
 				&& ((gethominfo(1) >= 6009) && (gethominfo(1) <= 6016))) {

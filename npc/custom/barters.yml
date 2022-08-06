@@ -48,8 +48,8 @@ Header:
 Body:
   - Name: ·≈° Points Orb
     Map: prontera
-    X: 154
-    Y: 198
+    X: 172
+    Y: 232
     Direction: South
     Sprite: 2_VENDING_MACHINE1
     Items:
@@ -85,8 +85,8 @@ Body:
             Amount: 1
   - Name: ·≈° Life Crystal
     Map: prontera
-    X: 156
-    Y: 198
+    X: 175
+    Y: 229
     Direction: South
     Sprite: 2_VENDING_MACHINE1
     Items:
@@ -152,8 +152,8 @@ Body:
             Amount: 50
   - Name: ·≈° Haste Crystal
     Map: prontera
-    X: 158
-    Y: 198
+    X: 178
+    Y: 226
     Direction: South
     Sprite: 2_VENDING_MACHINE1
     Items:
