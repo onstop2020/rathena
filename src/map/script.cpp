@@ -18417,6 +18417,7 @@ BUILDIN_FUNC(getunitdata)
 			getunitdata_sub(UMOB_IGNORE_CELL_STACK_LIMIT, md->ud.state.ignore_cell_stack_limit);
 			getunitdata_sub(UMOB_RES, md->status.res);
 			getunitdata_sub(UMOB_MRES, md->status.mres);
+			getunitdata_sub(UMOB_DAMAGE_TAKEN, md->db->damagetaken); // [Start]
 			break;
 
 		case BL_HOM:
@@ -18824,6 +18825,7 @@ BUILDIN_FUNC(setunitdata)
 			case UMOB_IGNORE_CELL_STACK_LIMIT: md->ud.state.ignore_cell_stack_limit = value > 0; break;
 			case UMOB_RES: md->base_status->res = (short)value; calc_status = true; break;
 			case UMOB_MRES: md->base_status->mres = (short)value; calc_status = true; break;
+			case UMOB_DAMAGE_TAKEN: md->db->damagetaken = value; break; // [Start]
 			default:
 				ShowError("buildin_setunitdata: Unknown data identifier %d for BL_MOB.\n", type);
 				return SCRIPT_CMD_FAILURE;

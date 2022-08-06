@@ -27,11 +27,47 @@
 			.@monsterId = $tier2MonsterIds[rand(0,($tier2MonsterIdSize - 1))];
 			else
 			.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
-			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1;
+			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDead";
 		}
 		freeloop(0);
 	}
 	return;
+	
+OnMapMonsterDead:
+	// Add 0.1% Chance to appear boss
+	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
+	// Check chance is pass
+	if(getd("$map" + strnpcinfo(2) + "BossChance") < rand(0,1000)){
+		// Reset boss appear chance
+		set getd("$map" + strnpcinfo(2) + "BossChance"),0;
+		.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
+		if(.@mapTier == 5)
+			.@bossId = $tier5MonsterIds[rand(0,($tier5MonsterIdSize - 1))];
+		else if(.@mapTier == 4)
+			.@bossId = $tier4MonsterIds[rand(0,($tier4MonsterIdSize - 1))];
+		else if(.@mapTier == 3)
+			.@bossId = $tier3MonsterIds[rand(0,($tier3MonsterIdSize - 1))];
+		else if(.@mapTier == 2)
+			.@bossId = $tier2MonsterIds[rand(0,($tier2MonsterIdSize - 1))];
+		else
+			.@bossId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
+		getfreecell(getd("$map" + strnpcinfo(2) + "$"),.@x,.@y);
+		monster getd("$map" + strnpcinfo(2) + "$"),.@x,.@y,"--ja--",.@bossId,1,strnpcinfo(0) + "::OnMapBossDead",Size_Large;
+		// Boss bonuses
+		.@mapTier++;
+		getunitdata $@mobid[0],.@bossDatas;
+		setunitdata $@mobid[0],UMOB_MAXHP,.@bossDatas[UMOB_MAXHP] * .@mapTier;
+		setunitdata $@mobid[0],UMOB_HP,.@bossDatas[UMOB_MAXHP] * .@mapTier;
+		setunitdata $@mobid[0],UMOB_SPEED,max(50,.@bossDatas[UMOB_SPEED] / .@mapTier);
+		setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
+		setunitdata $@mobid[0],UMOB_DAMAGE_TAKEN,7 - .@mapTier;
+		getunitdata $@mobid[0],.@bossDatas;
+		viewpoint 1,.@x,.@y,0,0xFF0000;
+	}
+	end;
+	
+OnMapBossDead:
+	end;
 	
 OnTimer60000:
 	if(getmapusers(getd("$map" + strnpcinfo(2) + "$")))
