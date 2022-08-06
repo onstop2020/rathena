@@ -29,3 +29,17 @@ function	script	Exit	{
 	cutin "",255;
 	end;
 }
+
+// Get ramdom map
+function	script	GetRandomMap	{
+	.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
+	
+	for(.@i = 0; .@i < 73; .@i++){
+		if(.randomMap$ == getd("$map" + .@i + "$")){
+			.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
+			.@i = 0;
+		}
+	}
+	
+	return .@randomMap$;
+}

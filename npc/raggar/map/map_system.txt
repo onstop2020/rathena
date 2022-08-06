@@ -9,7 +9,7 @@ OnInit:
 		// Set map for first time
 		freeloop(1);
 		for(.@i = 0; .@i < 73; .@i++){
-			set getd("$map" + .@i + "$"),callsub(L_GetMap);
+			set getd("$map" + .@i + "$"),callfunc("GetRandomMap");
 			
 			// Map tier
 			.@temp = .@i;
@@ -32,16 +32,4 @@ OnInit:
 		$isMapDatabaseInitialize = 1;
 	}
 	end;
-	
-	L_GetMap:
-	.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
-	
-	for(.@i = 0; .@i < 73; .@i++){
-		if(.randomMap$ == getd("$map" + .@i + "$")){
-			.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
-			.@i = 0;
-		}
-	}
-	
-	return .@randomMap$;
 }
