@@ -75,9 +75,9 @@
 				.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
 				
 				// Map tier 1 should have higher chance to spawn weak monsters
-				if(rand(0,100) <= 75){
+				if(rand(0,100) <= 50){
 					freeloop(1);
-					while(getmonsterinfo(.@monsterId,MOB_LV) > 150)
+					while(getmonsterinfo(.@monsterId,MOB_MAXHP) > 150)
 					.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
 					freeloop(0);
 				}
@@ -89,10 +89,13 @@
 	return;
 	
 OnMapMonsterDead:
-	// Add 0.1% Chance to appear boss
+	// Add 1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
+	if(rand(0,9) == 0)
+	announce "โอกาสที่ Boss จะปรากฎเมื่อฆ่า Monster " + callfunc("F_InsertComma",(getd("$map" + strnpcinfo(2) + "BossChance"))) + " ใน 100",bc_self,0xF3A51C;
 	// Check chance is pass
-	if(rand(0,1000) < getd("$map" + strnpcinfo(2) + "BossChance")){
+	if(rand(0,100) < getd("$map" + strnpcinfo(2) + "BossChance")){
+		announce "Boss ได้ปรากฎภายใน Map แล้ว!!",bc_map,0x8EF31C;
 		// Reset boss appear chance
 		set getd("$map" + strnpcinfo(2) + "BossChance"),0;
 		.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
@@ -122,6 +125,43 @@ OnMapMonsterDead:
 	end;
 	
 OnMapBossDead:
+	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
+	// Reward
+	if(.@mapTier == 1){
+		.@coreOrbId = 10000020;
+		.@specialityOrbId = 10000025;
+		.@gearOrbId = 10000030;
+		.@refineOrbId = 10000035;
+	}
+	else if(.@mapTier == 2){
+		.@coreOrbId = 10000021;
+		.@specialityOrbId = 10000026;
+		.@gearOrbId = 10000031;
+		.@refineOrbId = 10000036;
+	}
+	else if(.@mapTier == 3){
+		.@coreOrbId = 10000022;
+		.@specialityOrbId = 10000027;
+		.@gearOrbId = 10000032;
+		.@refineOrbId = 10000037;
+	}
+	else if(.@mapTier == 4){
+		.@coreOrbId = 10000023;
+		.@specialityOrbId = 10000028;
+		.@gearOrbId = 10000033;
+		.@refineOrbId = 10000038;
+	}
+	else if(.@mapTier == 5){
+		.@coreOrbId = 10000024;
+		.@specialityOrbId = 10000029;
+		.@gearOrbId = 10000034;
+		.@refineOrbId = 10000039;
+	}
+	getitem .@coreOrbId,rand(5,30);
+	getitem .@specialityOrbId,rand(1,3);
+	getitem .@gearOrbId,rand(1,5);
+	if(rand(0,100) < 10)
+	getitem .@refineOrbId,1;	
 	// Mark as occupied
 	set getd("$map" + strnpcinfo(2) + "Occupied"),1;
 	// Change map to other
@@ -132,7 +172,7 @@ OnMapBossDead:
 	mapwarp strcharinfo(3),"prontera",155,204;
 	.bossKiller$ = strcharinfo(0);
 	sleep 1000;
-	announce .bossKiller$ + " ได้กำจัด Boss Map " + strnpcinfo(2) + "!!",bc_all,0x8EF31C;
+	announce .bossKiller$ + " ได้กำจัด Boss Map " + strnpcinfo(2) + ".. และยึดครอง Map ดังกล่าวเรียบร้อย!!",bc_all,0x8EF31C;
 	end;
 	
 OnTimer60000:

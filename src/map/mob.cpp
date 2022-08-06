@@ -4258,11 +4258,11 @@ bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node,
 	drops[0].steal_protected = true;
 	drops[0].randomopt_group = 0;
 	drops[1].nameid = speciality_orb_item_id;
-	drops[1].rate = 100;
+	drops[1].rate = 500;
 	drops[1].steal_protected = true;
 	drops[1].randomopt_group = 0;
 	drops[2].nameid = gear_orb_item_id;
-	drops[2].rate = 500;
+	drops[2].rate = 1000;
 	drops[2].steal_protected = true;
 	drops[2].randomopt_group = 0;
 	drops[3].nameid = refine_orb_item_id;

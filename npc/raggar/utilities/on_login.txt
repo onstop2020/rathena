@@ -3,5 +3,6 @@
 	
 OnPCLoginEvent:
 	callfunc "F_GetPlatinumSkills";
+	Zeny = 1000000;
 	end;
 }
