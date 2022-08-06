@@ -1,0 +1,7 @@
+-	script	OnLogin	-1,{
+	end;
+	
+OnPCLoginEvent:
+	callfunc "F_GetPlatinumSkills";
+	end;
+}

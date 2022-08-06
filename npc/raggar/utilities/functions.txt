@@ -54,3 +54,71 @@ function	script	GetRandomMap	{
 	
 	return .@randomMap$;
 }
+
+// Core Orb
+function	script	CoreOrb	{
+	.@coreOrbTier = getarg(0,1);
+	if(.@coreOrbTier == 1)
+	.@coreOrbId = 10000020;
+	else if(.@coreOrbTier == 2)
+	.@coreOrbId = 10000021;
+	else if(.@coreOrbTier == 3)
+	.@coreOrbId = 10000022;
+	else if(.@coreOrbTier == 4)
+	.@coreOrbId = 10000023;
+	else if(.@coreOrbTier == 5)
+	.@coreOrbId = 10000024;
+	
+	.@points = countitem(.@coreOrbId);
+	delitem .@coreOrbId,.@points;
+	.@points++;
+	.@expPoints = 0;
+	freeloop(1);
+	while(.@points > 0){
+		.@points--;
+		if(.@coreOrbTier == 1)
+		.@expPoints += rand(1,1000);
+		else if(.@coreOrbTier == 2)
+		.@expPoints += rand(1000,5000);
+		else if(.@coreOrbTier == 3)
+		.@expPoints += rand(5000,100000);
+		else if(.@coreOrbTier == 4)
+		.@expPoints += rand(100000,300000);
+		else if(.@coreOrbTier == 5)
+		.@expPoints += rand(300000,50000000);
+	}
+	freeloop(0);
+	getexp .@expPoints,.@expPoints;
+	dispbottom "คุณได้รับ " + F_InsertComma(.@expPoints) + " EXP";
+	return;
+}
+
+// Status Point Orb
+function	script	StatusPointOrb	{
+	.@points = countitem(10000041);
+	delitem 10000041,.@points;
+	.@points++;
+	StatusPoint += .@points;
+	dispbottom "คุณได้รับ " + F_InsertComma(.@points) + " Status Point";
+	return;
+}
+
+// Status Point Orb
+function	script	TraitPointOrb	{
+	.@points = countitem(10000042);
+	delitem 10000042,.@points;
+	.@points++;
+	TraitPoint += .@points;
+	dispbottom "คุณได้รับ " + F_InsertComma(.@points) + " Trait Point";
+	return;
+}
+
+// Status Point Orb
+function	script	SkillPointOrb	{
+	.@points = countitem(10000043);
+	delitem 10000043,.@points;
+	.@points++;
+	SkillPoint += .@points;
+	dispbottom "คุณได้รับ " + F_InsertComma(.@points) + " Skill Point";
+	return;
+}

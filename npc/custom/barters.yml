@@ -217,3 +217,28 @@ Body:
           - Index: 0
             Item: Points_Orb
             Amount: 35
+  - Name: แลก Orb ตัวละคร
+    Map: prontera
+    X: 181
+    Y: 223
+    Direction: South
+    Sprite: 2_VENDING_MACHINE1
+    Items:
+      - Index: 0
+        Item: Status_Point_Orb
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 15
+      - Index: 1
+        Item: Trait_Point_Orb
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 1500
+      - Index: 2
+        Item: Skill_Point_Orb
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 900

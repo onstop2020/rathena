@@ -1,0 +1,37 @@
+1@ge_sn,109,52,5	script	แอน	105,{
+	if(!isCharacterCreated){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("สวัสดี! และยินดีต้อนรับสู่ อาณาจักร RAGGAR!!");
+		next;
+		menu "สวัสดี!",-;
+		mes .npcName$;
+		mes NpcMessageColor("ข้ามีหน้าที่มอบ Status Point ให้กับเหล่า RAGGAR หน้าใหม่ทุกคน รับไปสิ! ช่วยทวนชื่อให้ข้าหน่อยนะ");
+		next;
+		menu strcharinfo(0),-;
+		mes .npcName$;
+		mes NpcMessageColor("ขอบคุณมาก " + strcharinfo(0) + "! ข้าหวังว่าเจ้า จะได้เพลิดเพลินไปกับ RAGGAR นะ หากต้องการติชมหรือแจ้งบัค โปรดไปที่ <URL>Discord<INFO>https://discord.gg/RBPfeBrUcK</INFO></URL>\n(User: Start#1356)");
+		next;
+		isCharacterCreated = 1;
+		StatusPoint += 52;
+		announce strcharinfo(0) + " ได้เข้าร่วมกองกำลัง RAGGAR แล้ว!",bc_all,0x1CF36A;
+		callsub L_Warp;
+	}
+	else
+		callsub L_Warp;
+	
+	L_Warp:
+	savepoint "prontera",155,204;
+	warp "prontera",155,204;
+	callfunc("Exit");
+	end;
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"prt_soldier";
+	// Information
+	waitingroom "ขานชื่อเข้าร่วมกองกำลัง RAGGAR",0;
+	end;
+}

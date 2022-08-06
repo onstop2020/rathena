@@ -10,6 +10,22 @@ OnPCDieEvent:
 	.killerName$ = getunitname(killerrid);
 
 	if(.killerName$ != ""){
+		announce "คุณถูกลด All Status และ All Trait ลงไป 1 แต้ม เนื่องจากตายโดย Monster",bc_self,0xF31C1C;
+		// Decrease all status
+		statusup2 bStr,-1;
+		statusup2 bAgi,-1;
+		statusup2 bVit,-1;
+		statusup2 bInt,-1;
+		statusup2 bDex,-1;
+		statusup2 bLuk,-1;
+		// Decrease all trait
+		traitstatusup2 bPow,-1;
+		traitstatusup2 bSta,-1;
+		traitstatusup2 bWis,-1;
+		traitstatusup2 bSpl,-1;
+		traitstatusup2 bCon,-1;
+		traitstatusup2 bCrt,-1;
+		
 		freeloop(1);
 		for(.@i = 0; .@i < 72; .@i++){
 			if(.@deadMap$ == getd("$map" + .@i + "$")){
@@ -25,7 +41,7 @@ OnPCDieEvent:
 					mapwarp strcharinfo(3),"prontera",155,204;
 					.deadMan$ = strcharinfo(0);
 					sleep 1000;
-					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Map " + .@i + " กลับไป..",bc_all,0xF31C1C;
+					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Map " + .@i + " กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
 				}
 				break;
 			}

@@ -13,7 +13,8 @@ OnJob2:
 	atcommand "@statsall";
 	atcommand "@traitsall";
 	atcommand "@skillall";
-	atcommand "@stpoint -99999";
+	StatusPoint = 0;
+	TraitPoint = 0;
 	callfunc "F_GetPlatinumSkills";
 	end;
 	
@@ -24,7 +25,8 @@ OnJob3:
 	atcommand "@statsall -99999";
 	atcommand "@traitsall -99999";
 	atcommand "@skillall";
-	atcommand "@stpoint -99999";
+	StatusPoint = 0;
+	TraitPoint = 0;
 	callfunc "F_GetPlatinumSkills";
 	end;
 }

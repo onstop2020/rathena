@@ -59,11 +59,11 @@ OnInit:
 		$tier4MonsterIdSize = getarraysize($tier4MonsterIds);
 		$tier5MonsterIdSize = getarraysize($tier5MonsterIds);
 		
-		$maxMonsterMapTier1 = 50;
-		$maxMonsterMapTier2 = 75;
-		$maxMonsterMapTier3 = 100;
-		$maxMonsterMapTier4 = 125;
-		$maxMonsterMapTier5 = 150;
+		$maxMonsterMapTier1 = 100;
+		$maxMonsterMapTier2 = 125;
+		$maxMonsterMapTier3 = 150;
+		$maxMonsterMapTier4 = 175;
+		$maxMonsterMapTier5 = 200;
 		
 		$globalVariableVersion = 1;
 	}

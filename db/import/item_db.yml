@@ -271,23 +271,33 @@ Body:
   - Id: 10000020
     AegisName: Core_Orb[Normal]
     Name: Core Orb[Normal]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("CoreOrb",1);
   - Id: 10000021
     AegisName: Core_Orb[Rare]
     Name: Core Orb[Rare]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("CoreOrb",2);
   - Id: 10000022
     AegisName: Core_Orb[Epic]
     Name: Core Orb[Epic]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("CoreOrb",3);
   - Id: 10000023
     AegisName: Core_Orb[Mystical]
     Name: Core Orb[Mystical]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("CoreOrb",4);
   - Id: 10000024
     AegisName: Core_Orb[Legendary]
     Name: Core Orb[Legendary]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("CoreOrb",5);
   - Id: 10000025
     AegisName: Speciality_Orb[Normal]
     Name: Speciality Orb[Normal]
@@ -352,3 +362,21 @@ Body:
     AegisName: Points_Orb
     Name: Points Orb
     Type: Etc
+  - Id: 10000041
+    AegisName: Status_Point_Orb
+    Name: Status Point Orb
+    Type: Usable
+    Script: |
+      callfunc("StatusPointOrb");
+  - Id: 10000042
+    AegisName: Trait_Point_Orb
+    Name: Trait Point Orb
+    Type: Usable
+    Script: |
+      callfunc("TraitPointOrb");
+  - Id: 10000043
+    AegisName: Skill_Point_Orb
+    Name: Skill Point Orb
+    Type: Usable
+    Script: |
+      callfunc("SkillPointOrb");

@@ -71,8 +71,17 @@
 			.@monsterId = $tier3MonsterIds[rand(0,($tier3MonsterIdSize - 1))];
 			else if(.@mapTier == 2)
 			.@monsterId = $tier2MonsterIds[rand(0,($tier2MonsterIdSize - 1))];
-			else
-			.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
+			else{
+				.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
+				
+				// Map tier 1 should have higher chance to spawn weak monsters
+				if(rand(0,100) <= 75){
+					freeloop(1);
+					while(getmonsterinfo(.@monsterId,MOB_LV) > 150)
+					.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
+					freeloop(0);
+				}
+			}
 			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDead";
 		}
 		freeloop(0);
