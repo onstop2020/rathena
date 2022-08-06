@@ -9,26 +9,26 @@
 	((.@mapIndex == 1) && !getd("$map" + (.@realMapIndex - 1) + "Occupied"))
 	|| ((.@mapIndex == 2) && !getd("$map" + (.@realMapIndex - 2) + "Occupied"))
 	
-	|| ((.@mapIndex == 3) && !getd("$map" + (.@realMapIndex - 1) + "Occupied") && !getd("$map" + (.@realMapIndex - 2) + "Occupied"))
-	|| ((.@mapIndex == 4) && !getd("$map" + (.@realMapIndex - 2) + "Occupied") && !getd("$map" + (.@realMapIndex - 3) + "Occupied"))
-	|| ((.@mapIndex == 5) && !getd("$map" + (.@realMapIndex - 3) + "Occupied") && !getd("$map" + (.@realMapIndex - 4) + "Occupied"))
+	|| ((.@mapIndex == 3) && (!getd("$map" + (.@realMapIndex - 1) + "Occupied") || !getd("$map" + (.@realMapIndex - 2) + "Occupied")))
+	|| ((.@mapIndex == 4) && (!getd("$map" + (.@realMapIndex - 2) + "Occupied") || !getd("$map" + (.@realMapIndex - 3) + "Occupied")))
+	|| ((.@mapIndex == 5) && (!getd("$map" + (.@realMapIndex - 3) + "Occupied") || !getd("$map" + (.@realMapIndex - 4) + "Occupied")))
 	
-	|| ((.@mapIndex == 6) && !getd("$map" + (.@realMapIndex - 1) + "Occupied") && !getd("$map" + (.@realMapIndex - 2) + "Occupied") && !getd("$map" + (.@realMapIndex - 3) + "Occupied"))
-	|| ((.@mapIndex == 7) && !getd("$map" + (.@realMapIndex - 2) + "Occupied") && !getd("$map" + (.@realMapIndex - 3) + "Occupied") && !getd("$map" + (.@realMapIndex - 4) + "Occupied"))
-	|| ((.@mapIndex == 8) && !getd("$map" + (.@realMapIndex - 3) + "Occupied") && !getd("$map" + (.@realMapIndex - 4) + "Occupied") && !getd("$map" + (.@realMapIndex - 5) + "Occupied"))
-	|| ((.@mapIndex == 9) && !getd("$map" + (.@realMapIndex - 4) + "Occupied") && !getd("$map" + (.@realMapIndex - 5) + "Occupied") && !getd("$map" + (.@realMapIndex - 6) + "Occupied"))
+	|| ((.@mapIndex == 6) && (!getd("$map" + (.@realMapIndex - 1) + "Occupied") || !getd("$map" + (.@realMapIndex - 2) + "Occupied") || !getd("$map" + (.@realMapIndex - 3) + "Occupied")))
+	|| ((.@mapIndex == 7) && (!getd("$map" + (.@realMapIndex - 2) + "Occupied") || !getd("$map" + (.@realMapIndex - 3) + "Occupied") || !getd("$map" + (.@realMapIndex - 4) + "Occupied")))
+	|| ((.@mapIndex == 8) && (!getd("$map" + (.@realMapIndex - 3) + "Occupied") || !getd("$map" + (.@realMapIndex - 4) + "Occupied") || !getd("$map" + (.@realMapIndex - 5) + "Occupied")))
+	|| ((.@mapIndex == 9) && (!getd("$map" + (.@realMapIndex - 4) + "Occupied") || !getd("$map" + (.@realMapIndex - 5) + "Occupied") || !getd("$map" + (.@realMapIndex - 6) + "Occupied")))
 	
-	|| ((.@mapIndex == 10) && !getd("$map" + (.@realMapIndex - 1) + "Occupied") && !getd("$map" + (.@realMapIndex - 2) + "Occupied") && !getd("$map" + (.@realMapIndex - 3) + "Occupied") && !getd("$map" + (.@realMapIndex - 4) + "Occupied"))
-	|| ((.@mapIndex == 11) && !getd("$map" + (.@realMapIndex - 2) + "Occupied") && !getd("$map" + (.@realMapIndex - 3) + "Occupied") && !getd("$map" + (.@realMapIndex - 4) + "Occupied") && !getd("$map" + (.@realMapIndex - 5) + "Occupied"))
+	|| ((.@mapIndex == 10) && (!getd("$map" + (.@realMapIndex - 1) + "Occupied") || !getd("$map" + (.@realMapIndex - 2) + "Occupied") || !getd("$map" + (.@realMapIndex - 3) + "Occupied") || !getd("$map" + (.@realMapIndex - 4) + "Occupied")))
+	|| ((.@mapIndex == 11) && (!getd("$map" + (.@realMapIndex - 2) + "Occupied") || !getd("$map" + (.@realMapIndex - 3) + "Occupied") || !getd("$map" + (.@realMapIndex - 4) + "Occupied") || !getd("$map" + (.@realMapIndex - 5) + "Occupied")))
 
-	|| ((.@mapIndex == 12) && !getd("$map" + (.@realMapIndex - 1) + "Occupied") && !getd("$map" + (.@realMapIndex - 2) + "Occupied"))
-	|| ((.@mapIndex == 13) && !getd("$map" + (.@realMapIndex - 2) + "Occupied") && !getd("$map" + (.@realMapIndex - 3) + "Occupied"))
-	|| ((.@mapIndex == 14) && !getd("$map" + (.@realMapIndex - 3) + "Occupied") && !getd("$map" + (.@realMapIndex - 4) + "Occupied"))
+	|| ((.@mapIndex == 12) && (!getd("$map" + (.@realMapIndex - 1) + "Occupied") || !getd("$map" + (.@realMapIndex - 2) + "Occupied")))
+	|| ((.@mapIndex == 13) && (!getd("$map" + (.@realMapIndex - 2) + "Occupied") || !getd("$map" + (.@realMapIndex - 3) + "Occupied")))
+	|| ((.@mapIndex == 14) && (!getd("$map" + (.@realMapIndex - 3) + "Occupied") || !getd("$map" + (.@realMapIndex - 4) + "Occupied")))
 	
-	|| ((.@mapIndex == 15) && !getd("$map" + (.@realMapIndex - 1) + "Occupied") && !getd("$map" + (.@realMapIndex - 2) + "Occupied") && !getd("$map" + (.@realMapIndex - 3) + "Occupied"))
-	|| ((.@mapIndex == 16) && !getd("$map" + (.@realMapIndex - 2) + "Occupied") && !getd("$map" + (.@realMapIndex - 3) + "Occupied") && !getd("$map" + (.@realMapIndex - 4) + "Occupied"))
+	|| ((.@mapIndex == 15) && (!getd("$map" + (.@realMapIndex - 1) + "Occupied") || !getd("$map" + (.@realMapIndex - 2) + "Occupied") || !getd("$map" + (.@realMapIndex - 3) + "Occupied")))
+	|| ((.@mapIndex == 16) && (!getd("$map" + (.@realMapIndex - 2) + "Occupied") || !getd("$map" + (.@realMapIndex - 3) + "Occupied") || !getd("$map" + (.@realMapIndex - 4) + "Occupied")))
 	
-	|| ((.@mapIndex == 17) && !getd("$map" + (.@realMapIndex - 1) + "Occupied") && !getd("$map" + (.@realMapIndex - 2) + "Occupied"))
+	|| ((.@mapIndex == 17) && (!getd("$map" + (.@realMapIndex - 1) + "Occupied") || !getd("$map" + (.@realMapIndex - 2) + "Occupied")))
 	)
 	{
 		mes .npcName$;
@@ -38,7 +38,7 @@
 	
 	if(.@mapIndex > 0){
 		mes .npcName$;
-		mes NpcMessageColor(getd("$map" + strnpcinfo(2) + "Occupied") ? "Map ¹Õé¶Ù¡ÂÖ´¤ÃÍ§â´Â½Ñè§ ¼ÙéàÅè¹" : "Map ¹Õé¶Ù¡ÂÖ´¤ÃÍ§â´Â½Ñè§ Monster");
+		mes NpcMessageColor(getd("$map" + strnpcinfo(2) + "Occupied") ? "Map ¹Õé¶Ù¡ÂÖ´¤ÃÍ§â´Â½Ñè§ " + GoodMessageColor("¼ÙéàÅè¹") : "Map ¹Õé¶Ù¡ÂÖ´¤ÃÍ§â´Â½Ñè§ " + BadMessageColor("Monster"));
 		next;
 	}
 	mes .npcName$;
@@ -140,6 +140,7 @@ OnInit:
 	end;
 }
 
+// North
 prontera,155,215,3	duplicate(Map)	Map#0	10081
 prontera,152,221,3	duplicate(Map)	Map#1	10081
 prontera,158,221,3	duplicate(Map)	Map#2	10081
@@ -158,3 +159,63 @@ prontera,161,249,3	duplicate(Map)	Map#14	10081
 prontera,152,256,3	duplicate(Map)	Map#15	10081
 prontera,158,256,3	duplicate(Map)	Map#16	10081
 prontera,155,263,3	duplicate(Map)	Map#17	10081
+
+// South
+prontera,155,215,3	duplicate(Map)	Map#18	10081
+prontera,152,221,3	duplicate(Map)	Map#19	10081
+prontera,158,221,3	duplicate(Map)	Map#20	10081
+prontera,149,227,3	duplicate(Map)	Map#21	10081
+prontera,155,227,3	duplicate(Map)	Map#22	10081
+prontera,161,227,3	duplicate(Map)	Map#23	10081
+prontera,146,234,3	duplicate(Map)	Map#24	10081
+prontera,152,234,3	duplicate(Map)	Map#25	10081
+prontera,158,234,3	duplicate(Map)	Map#26	10081
+prontera,164,234,3	duplicate(Map)	Map#27	10081
+prontera,152,241,3	duplicate(Map)	Map#28	10081
+prontera,158,241,3	duplicate(Map)	Map#29	10081
+prontera,149,249,3	duplicate(Map)	Map#30	10081
+prontera,155,249,3	duplicate(Map)	Map#31	10081
+prontera,161,249,3	duplicate(Map)	Map#32	10081
+prontera,152,256,3	duplicate(Map)	Map#33	10081
+prontera,158,256,3	duplicate(Map)	Map#34	10081
+prontera,155,263,3	duplicate(Map)	Map#35	10081
+
+// East
+prontera,155,215,3	duplicate(Map)	Map#36	10081
+prontera,152,221,3	duplicate(Map)	Map#37	10081
+prontera,158,221,3	duplicate(Map)	Map#38	10081
+prontera,149,227,3	duplicate(Map)	Map#39	10081
+prontera,155,227,3	duplicate(Map)	Map#40	10081
+prontera,161,227,3	duplicate(Map)	Map#41	10081
+prontera,146,234,3	duplicate(Map)	Map#42	10081
+prontera,152,234,3	duplicate(Map)	Map#43	10081
+prontera,158,234,3	duplicate(Map)	Map#44	10081
+prontera,164,234,3	duplicate(Map)	Map#45	10081
+prontera,152,241,3	duplicate(Map)	Map#46	10081
+prontera,158,241,3	duplicate(Map)	Map#47	10081
+prontera,149,249,3	duplicate(Map)	Map#48	10081
+prontera,155,249,3	duplicate(Map)	Map#49	10081
+prontera,161,249,3	duplicate(Map)	Map#50	10081
+prontera,152,256,3	duplicate(Map)	Map#51	10081
+prontera,158,256,3	duplicate(Map)	Map#52	10081
+prontera,155,263,3	duplicate(Map)	Map#53	10081
+
+// West
+prontera,155,215,3	duplicate(Map)	Map#54	10081
+prontera,152,221,3	duplicate(Map)	Map#55	10081
+prontera,158,221,3	duplicate(Map)	Map#56	10081
+prontera,149,227,3	duplicate(Map)	Map#57	10081
+prontera,155,227,3	duplicate(Map)	Map#58	10081
+prontera,161,227,3	duplicate(Map)	Map#59	10081
+prontera,146,234,3	duplicate(Map)	Map#60	10081
+prontera,152,234,3	duplicate(Map)	Map#61	10081
+prontera,158,234,3	duplicate(Map)	Map#62	10081
+prontera,164,234,3	duplicate(Map)	Map#63	10081
+prontera,152,241,3	duplicate(Map)	Map#64	10081
+prontera,158,241,3	duplicate(Map)	Map#65	10081
+prontera,149,249,3	duplicate(Map)	Map#66	10081
+prontera,155,249,3	duplicate(Map)	Map#67	10081
+prontera,161,249,3	duplicate(Map)	Map#68	10081
+prontera,152,256,3	duplicate(Map)	Map#69	10081
+prontera,158,256,3	duplicate(Map)	Map#70	10081
+prontera,155,263,3	duplicate(Map)	Map#71	10081

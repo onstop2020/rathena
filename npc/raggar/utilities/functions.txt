@@ -8,6 +8,16 @@ function	script	NpcMessageColor	{
 	return "^2471A3" + getarg(0,"") + "^000000";
 }
 
+// Get good message with color
+function	script	GoodMessageColor	{
+	return "^2C1CF3" + getarg(0,"") + "^000000";
+}
+
+// Get bad message with color
+function	script	BadMessageColor	{
+	return "^F31C1C" + getarg(0,"") + "^000000";
+}
+
 // Display NPC Illustration
 function	script	CutIn	{
 	cutin "",255;
@@ -34,7 +44,7 @@ function	script	Exit	{
 function	script	GetRandomMap	{
 	.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
 	
-	for(.@i = 0; .@i < 73; .@i++){
+	for(.@i = 0; .@i < 72; .@i++){
 		if(.randomMap$ == getd("$map" + .@i + "$")){
 			.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
 			.@i = 0;
