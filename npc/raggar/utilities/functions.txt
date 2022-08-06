@@ -44,10 +44,11 @@ function	script	Exit	{
 function	script	GetRandomMap	{
 	.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
 	
+	L_Redo:
 	for(.@i = 0; .@i < 72; .@i++){
-		if(.randomMap$ == getd("$map" + .@i + "$")){
+		if(.@randomMap$ == getd("$map" + .@i + "$")){
 			.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
-			.@i = 0;
+			goto L_Redo;
 		}
 	}
 	

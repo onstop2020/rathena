@@ -83,7 +83,7 @@ OnMapMonsterDead:
 	// Add 0.1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
 	// Check chance is pass
-	if(rand(0,1) < getd("$map" + strnpcinfo(2) + "BossChance")){
+	if(rand(0,1000) < getd("$map" + strnpcinfo(2) + "BossChance")){
 		// Reset boss appear chance
 		set getd("$map" + strnpcinfo(2) + "BossChance"),0;
 		.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
@@ -120,7 +120,7 @@ OnMapBossDead:
 	// Kill monster in map
 	killmonsterall strcharinfo(3);
 	// Warp everyone out from map
-	mapwarp strcharinfo(3),"prontera",156,191;
+	mapwarp strcharinfo(3),"prontera",155,204;
 	.bossKiller$ = strcharinfo(0);
 	sleep 1000;
 	announce .bossKiller$ + " ได้กำจัด Boss Map " + strnpcinfo(2) + "!!",bc_all,0x8EF31C;
