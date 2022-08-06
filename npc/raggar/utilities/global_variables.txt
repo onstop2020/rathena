@@ -22,6 +22,19 @@ OnInit:
 		for(.@i = 0; .@i < $monsterIdSize; .@i++){
 			.@monsterId = $monsterIds[.@i];
 			
+			if((.@monsterId == 2408)				// Dummy
+					|| (.@monsterId == 2409)	// Dummy
+					|| (.@monsterId == 2410)	// Dummy
+					|| (.@monsterId == 2411)	// Dummy
+					|| (.@monsterId == 2413)	// Dummy
+					|| (.@monsterId == 2337)	// Hidden Mob
+					|| (.@monsterId == 2343)	// Hidden Mob
+					|| (.@monsterId == 2536)	// Hidden Mob
+					|| (.@monsterId == 2537)	// Hidden Mob
+					|| (.@monsterId == 2539)	// Hidden Mob
+					|| (.@monsterId == 3038))	// Hidden Mob
+			continue;
+			
 			.@monsterLevel = getmonsterinfo(.@monsterId,MOB_LV);
 			
 			if(.@monsterLevel < .@tier2Level)
