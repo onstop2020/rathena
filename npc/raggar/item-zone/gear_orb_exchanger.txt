@@ -51,7 +51,7 @@ prontera,187,241,3	script	àºÅ	10079,{
 						break;
 					}
 					delitem .@requiredItem,1;
-					getitem .@reward,1;
+					GearOrbExchange(.@reward,.@select,.@mode);
 				}
 				freeloop(0);
 				callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);

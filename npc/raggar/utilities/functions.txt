@@ -130,3 +130,38 @@ function	script	ReturnOrb	{
 	warp "prontera",155,204;
 	end;
 }
+
+// Gear Orb Exchange
+//Tier					| Offensive				| Defensive
+//Normal				| 1~50					| 2*19=38
+//Rare					| 50~100				| 2~5*19=95
+//Epic					| 100~250				| 5~10*19=190
+//Mystical			| 250~500				| 10~25*19=475
+//Legendary		| 500~1,000			| 25~50*19=950
+function	script	GearOrbExchange	{
+	.@itemId = getarg(0,0);
+	.@tier = getarg(1,1);
+	.@mode = getarg(2,0);
+	if((.@itemId <= 0)
+			|| (.@mode <= 0))
+	return;
+	else{
+		// Weapon
+		if(.@mode == 1){
+			setarray .@OptID[0],1000;
+			setarray .@OptVal[0],(.@tier == 1) ? rand(1,50) : (.@tier == 2) ? rand(50,100) : (.@tier == 3) ? rand(100,250) : (.@tier == 4) ? rand(250,500) : rand(500,1000);
+		}
+		// Equipment, Costume
+		else{
+			setarray .@OptID[0],1000;
+			setarray .@OptVal[0],(.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,5) : (.@tier == 3) ? rand(5,10) : (.@tier == 4) ? rand(10,25) : rand(25,50);
+		}
+		setarray .@OptParam[0],0;
+		getitem3 .@itemId,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+	}
+	return;
+}
+
+function	script	GetRandomOptionId	{
+	return 0;
+}

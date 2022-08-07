@@ -30,3 +30,10 @@
 Header:
   Type: RANDOM_OPTION_DB
   Version: 1
+
+Body:
+  - Id: 1000
+    Option: VAR_WEAPON_ATTACK
+    Script: |
+      bonus bWeaponAtkRate,getrandomoptinfo(ROA_VALUE);
+      bonus bWeaponMatkRate,getrandomoptinfo(ROA_VALUE);

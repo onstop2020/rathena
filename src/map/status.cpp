@@ -3629,6 +3629,48 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 	pc_delautobonus(*sd, sd->autobonus2, true);
 	pc_delautobonus(*sd, sd->autobonus3, true);
 
+	// Move parse random options to top of parse equipment for base bonus [Start]
+	// Parse random options
+	for (i = 0; i < EQI_MAX; i++) {
+		current_equip_item_index = index = sd->equip_index[i];
+		current_equip_combo_pos = 0;
+		current_equip_opt_index = -1;
+
+		if (index < 0)
+			continue;
+		if (i == EQI_AMMO)
+			continue;
+		if (pc_is_same_equip_index((enum equip_index)i, sd->equip_index, index))
+			continue;
+
+		if (sd->inventory_data[index]) {
+			for (uint8 j = 0; j < MAX_ITEM_RDM_OPT; j++) {
+				short opt_id = sd->inventory.u.items_inventory[index].option[j].id;
+
+				if (!opt_id)
+					continue;
+				current_equip_opt_index = j;
+
+				std::shared_ptr<s_random_opt_data> data = random_option_db.find(opt_id);
+
+				if (!data || !data->script)
+					continue;
+				if (!pc_has_permission(sd, PC_PERM_USE_ALL_EQUIPMENT) && itemdb_isNoEquip(sd->inventory_data[index], sd->bl.m))
+					continue;
+				if (i == EQI_HAND_L && sd->inventory.u.items_inventory[index].equip == EQP_HAND_L) { // Left hand status.
+					sd->state.lr_flag = 1;
+					run_script(data->script, 0, sd->bl.id, 0);
+					sd->state.lr_flag = 0;
+				}
+				else
+					run_script(data->script, 0, sd->bl.id, 0);
+				if (!calculating)
+					return 1;
+			}
+		}
+		current_equip_opt_index = -1;
+	}
+
 	// Parse equipment
 	for (i = 0; i < EQI_MAX; i++) {
 		current_equip_item_index = index = sd->equip_index[i]; // We pass INDEX to current_equip_item_index - for EQUIP_SCRIPT (new cards solution) [Lupus]
@@ -3680,7 +3722,8 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 				wd = &sd->right_weapon;
 				wa = &base_status->rhw;
 			}
-			wa->atk += sd->inventory_data[index]->atk;
+			//wa->atk += sd->inventory_data[index]->atk;
+			wa->atk += sd->bonus.weapon_atk_rate; // [Start]
 			if( info != nullptr ){
 				wa->atk2 += info->bonus / 100;
 
@@ -3696,9 +3739,8 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 #endif
 			}
 #ifdef RENEWAL
-			if (sd->bonus.weapon_atk_rate)
-				//wa->atk += wa->atk * sd->bonus.weapon_atk_rate / 100;
-				wa->atk += sd->bonus.weapon_atk_rate; // [Start]
+			//if (sd->bonus.weapon_atk_rate) // [Start]
+				//wa->atk += wa->atk * sd->bonus.weapon_atk_rate / 100; // [Start]
 			wa->matk += sd->inventory_data[index]->matk;
 #ifdef RENEWAL
 			if (sd->bonus.weapon_matk_rate) // [Start]
@@ -3876,47 +3918,6 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 		}
 	}
 	current_equip_card_id = 0; // Clear stored card ID [Secret]
-
-	// Parse random options
-	for (i = 0; i < EQI_MAX; i++) {
-		current_equip_item_index = index = sd->equip_index[i];
-		current_equip_combo_pos = 0;
-		current_equip_opt_index = -1;
-
-		if (index < 0)
-			continue;
-		if (i == EQI_AMMO)
-			continue;
-		if (pc_is_same_equip_index((enum equip_index)i, sd->equip_index, index))
-			continue;
-		
-		if (sd->inventory_data[index]) {
-			for (uint8 j = 0; j < MAX_ITEM_RDM_OPT; j++) {
-				short opt_id = sd->inventory.u.items_inventory[index].option[j].id;
-
-				if (!opt_id)
-					continue;
-				current_equip_opt_index = j;
-
-				std::shared_ptr<s_random_opt_data> data = random_option_db.find(opt_id);
-
-				if (!data || !data->script)
-					continue;
-				if (!pc_has_permission(sd, PC_PERM_USE_ALL_EQUIPMENT) && itemdb_isNoEquip(sd->inventory_data[index], sd->bl.m))
-					continue;
-				if (i == EQI_HAND_L && sd->inventory.u.items_inventory[index].equip == EQP_HAND_L) { // Left hand status.
-					sd->state.lr_flag = 1;
-					run_script(data->script, 0, sd->bl.id, 0);
-					sd->state.lr_flag = 0;
-				}
-				else
-					run_script(data->script, 0, sd->bl.id, 0);
-				if (!calculating)
-					return 1;
-			}
-		}
-		current_equip_opt_index = -1;
-	}
 
 	if (sc->count && sc->data[SC_ITEMSCRIPT]) {
 		std::shared_ptr<item_data> data = item_db.find(sc->data[SC_ITEMSCRIPT]->val1);
