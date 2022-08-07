@@ -5,6 +5,7 @@ OnInit:
 	bindatcmd "job2",strnpcinfo(3) + "::OnJob2",99,99;
 	bindatcmd "job3",strnpcinfo(3) + "::OnJob3",99,99;
 	bindatcmd "load",strnpcinfo(3) + "::OnLoad",0,99;
+	bindatcmd "ad",strnpcinfo(3) + "::OnAd",99,99;
 	end;
 	
 OnJob2:
@@ -31,7 +32,31 @@ OnJob3:
 	callfunc("F_GetPlatinumSkills");
 	end;
 	
-	OnLoad:
+OnLoad:
 	callfunc("ReturnOrb");
+	end;
+	
+OnAd:
+	mes "ระบุช่อง Ad";
+	next;
+	input .@slot;
+	if(.@slot < 0)
+	{
+		mes "Error";
+		close;
+	}
+	mes "ระบุช่องข้อความ";
+	next;
+	input .@message$;
+	if((.@message$ == "")
+			|| (.@message$ == " "))
+	{
+		mes "ต้องการลบหรือไม่?";
+		mes "ข้อความขณะนี้: " + $ads$[.@slot];
+		menu "ลบ",-;
+		deletearray $ads$[.@slot],1;
+		close;
+	}
+	setarray $ads$[.@slot],.@message$;
 	end;
 }

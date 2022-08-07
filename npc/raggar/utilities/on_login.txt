@@ -4,5 +4,22 @@
 OnPCLoginEvent:
 	callfunc("F_GetPlatinumSkills");
 	Zeny = 1000000;
+	if(strcharinfo(3) == "prontera"){
+		if(getarraysize($ads$) > 0){
+			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+			mes .npcName$;
+			mes NpcMessageColor($ads$[rand(0,getarraysize($ads$) - 1)]);
+			next;
+			callfunc("Exit");
+		}
+	}
+	end;
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor("โฆษณา");
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"mal_homnya_n";
+	setarray .npcActionFacials$,"mal_homnya_s";
 	end;
 }

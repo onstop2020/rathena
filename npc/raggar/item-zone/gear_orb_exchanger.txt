@@ -57,6 +57,7 @@ prontera,187,241,3	script	เบล	10079,{
 				callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
 				mes .npcName$;
 				mes NpcMessageColor("เรียบร้อยแล้ว!");
+				specialeffect2 837;
 				next;
 				callfunc("Exit");
 			}

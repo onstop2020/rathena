@@ -1,4 +1,5 @@
 -	script	storage	-1,{
+	specialeffect2 496;
 	if(getcharid(2) > 0)
 	menu "คลังปกติ",-
 	,"คลัง Guild",L_GuildStorage

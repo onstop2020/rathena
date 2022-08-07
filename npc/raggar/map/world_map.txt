@@ -1,4 +1,5 @@
 -	script	Map	-1,{
+	specialeffect2 488;
 	// Name Setup
 	.@npcName$ = NpcNameColor(strnpcinfo(1));
 	// Is locked?
@@ -48,8 +49,17 @@
 	mes .@npcName$;
 	mes NpcMessageColor("โปรดยืนยันการวาร์ป");
 	next;
-	menu "วาร์ป",-;
+	menu "วาร์ป",L_Normal,"วาร์ป (Party)",-;
+	.@party = 1;
+	L_Normal:
 	callsub L_SpawnMonster;
+	.@partyId = getcharid(1);
+	if(.@party
+			&& .@partyId){
+		getfreecell(getd("$map" + strnpcinfo(2) + "$"),.@x,.@y);
+		warpparty getd("$map" + strnpcinfo(2) + "$"),.@x,.@y,.@partyId;
+	}
+	else
 	warp getd("$map" + strnpcinfo(2) + "$"),0,0;
 	callfunc("Exit");
 	

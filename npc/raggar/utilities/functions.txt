@@ -90,6 +90,7 @@ function	script	CoreOrb	{
 	freeloop(0);
 	getexp .@expPoints,.@expPoints;
 	dispbottom "คุณได้รับ " + F_InsertComma(.@expPoints) + " EXP";
+	specialeffect2 66;
 	return;
 }
 
@@ -100,6 +101,7 @@ function	script	StatusPointOrb	{
 	.@points++;
 	StatusPoint += .@points;
 	dispbottom "คุณได้รับ " + F_InsertComma(.@points) + " Status Point";
+	specialeffect2 564;
 	return;
 }
 
@@ -110,6 +112,7 @@ function	script	TraitPointOrb	{
 	.@points++;
 	TraitPoint += .@points;
 	dispbottom "คุณได้รับ " + F_InsertComma(.@points) + " Trait Point";
+	specialeffect2 750;
 	return;
 }
 
@@ -120,11 +123,13 @@ function	script	SkillPointOrb	{
 	.@points++;
 	SkillPoint += .@points;
 	dispbottom "คุณได้รับ " + F_InsertComma(.@points) + " Skill Point";
+	specialeffect2 748;
 	return;
 }
 
 // Return Orb
 function	script	ReturnOrb	{
+	specialeffect2 830;
 	if(strcharinfo(3) != "prontera")
 	progressbar "0xF7FF00",3;
 	warp "prontera",155,204;
