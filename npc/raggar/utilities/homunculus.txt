@@ -14,7 +14,7 @@ prontera,118,226,6	script	ริกะ	10122,{
 		callfunc("Exit");
 	}
 	else{
-		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
 		mes .npcName$;
 		mes NpcMessageColor("ท่านไม่มี Homunculus");
 		next;
@@ -26,7 +26,7 @@ OnInit:
 	.npcName$ = NpcNameColor(strnpcinfo(0));
 	// Cut-in Setup
 	setarray .npcNormalFacials$,"ep16cook_king_2";
-	setarray .npcActionFacials$,"ep16cook_king_2";
+	setarray .npcActionFacials$,"ep16cook_king_1";
 	// Information
 	waitingroom "Homunculus อิ่มและสนิทสนม",0;
 	end;

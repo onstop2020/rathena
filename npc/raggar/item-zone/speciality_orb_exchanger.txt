@@ -1,4 +1,4 @@
-prontera,193,235,3	script	โครม	10079,{
+prontera,193,235,3	script	โคลอี้	665,{
 	// Quick tap
 	.@quickTap = 0;
 	if(lastOptionSlotSelected > 1){
@@ -127,8 +127,8 @@ OnInit:
 	// Name Setup
 	.npcName$ = NpcNameColor(strnpcinfo(0));
 	// Cut-in Setup
-	setarray .npcNormalFacials$,"ep15_2_fru_1","ep15_2_fru_3";
-	setarray .npcActionFacials$,"ep15_2_fru_2";
+	setarray .npcNormalFacials$,"paycana_a";
+	setarray .npcActionFacials$,"paycana_b ";
 	// Information
 	waitingroom "ใช้งาน Speciality Orb",0;
 	end;

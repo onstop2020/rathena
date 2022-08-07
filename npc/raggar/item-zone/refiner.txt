@@ -1,0 +1,26 @@
+prontera,181,247,3	script	อาเธอร์	813,{
+	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("ท่านต้องการเริ่ม กระบวนการตีบวกหรือไม่?");
+	next;
+	menu "ใช่แล้ว",-,"ยกเลิก",L_Cancel;
+	refineui();
+	callfunc("Exit");
+	
+	L_Cancel:
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("ยกเลิกเรียบร้อย!");
+	next;
+	callfunc("Exit");
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"fey_fun","fey_nor";
+	setarray .npcActionFacials$,"fey_oneg";
+	// Information
+	waitingroom "ใช้งาน Refine Orb",0;
+	end;
+}
