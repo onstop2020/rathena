@@ -19,6 +19,7 @@ prontera,193,235,3	script	โครม	10079,{
 		.@menu$ = .@menu$ + ":";
 	}
 	
+	// Equipment checking
 	if (!.@isEquipped){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
@@ -27,9 +28,11 @@ prontera,193,235,3	script	โครม	10079,{
 		callfunc("Exit");
 	}
 	
+	// Equipment selection
 	if(!.@quickTap)
 	optionPartSelected = .@indices[select(.@menu$)];
 
+	// Equipment checking
 	if(!getequipisequiped(optionPartSelected)){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
@@ -41,6 +44,7 @@ prontera,193,235,3	script	โครม	10079,{
 	if(!.@quickTap)
 	optionItemIdSelected = getequipid(optionPartSelected);
 	
+	// Equipment checking
 	if (callfunc("F_IsEquipIDHack",optionPartSelected,optionItemIdSelected)){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
@@ -49,6 +53,7 @@ prontera,193,235,3	script	โครม	10079,{
 		callfunc("Exit");
 	}
 	
+	// Slot selection
 	if(!.@quickTap){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
@@ -65,13 +70,57 @@ prontera,193,235,3	script	โครม	10079,{
 		.@optionSlot = lastOptionSlotSelected;
 		lastOptionSlotSelected = .@optionSlot;
 	}
+	
+	// Speciality Orb selection
+	if(!.@quickTap){
+		.@specialityOrbSelected = select(getitemname(10000025) + ":" + getitemname(10000026) + ":" + getitemname(10000027) + ":" + getitemname(10000028) + ":" + getitemname(10000029) + ":ยกเลิก");
+		if(.@specialityOrbSelected  == 6)
+		callfunc("Exit");
+		if(.@specialityOrbSelected == 1)
+		specialityOrbSelected = 10000025;
+		else if(.@specialityOrbSelected == 2)
+		specialityOrbSelected = 10000026;
+		else if(.@specialityOrbSelected == 3)
+		specialityOrbSelected = 10000027;
+		else if(.@specialityOrbSelected == 4)
+		specialityOrbSelected = 10000028;
+		else
+		specialityOrbSelected = 10000029;
+	}
+	
+	// Speciality Orb checking
+	if(!countitem(specialityOrbSelected)
+			|| (specialityOrbSelected <= 0)){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("ท่านไม่มี " + getitemname(specialityOrbSelected) + " อยู่เลย");
+		next;
+		callfunc("Exit");
+	}
+	
+	delitem specialityOrbSelected,1;
+	
 	// Option index below should not null
 	for(.@o = 0; .@o < lastOptionSlotSelected; .@o++){
 		if(getequiprandomoption(optionPartSelected,.@o,ROA_ID) <= 0)
 		setrandomoption(optionPartSelected,.@o,1,0,0);
 	}
 	// Set new option on selected
-	setrandomoption(optionPartSelected,lastOptionSlotSelected - 1,1,rand(1,15),0);
+
+	if(specialityOrbSelected == 10000029)
+	.@tier = 5;
+	else if(specialityOrbSelected == 10000026)
+	.@tier = 4;
+	else if(specialityOrbSelected == 10000027)
+	.@tier = 3;
+	else if(specialityOrbSelected == 10000028)
+	.@tier = 2;
+	else
+	.@tier = 1;
+	
+	.@optionId = GetRandomOptionId();
+	.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
+	setrandomoption(optionPartSelected,lastOptionSlotSelected - 1,.@optionId,.@optionValue,0);
 	callfunc("Exit");
 	
 OnInit:

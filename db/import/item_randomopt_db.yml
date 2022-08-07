@@ -37,3 +37,39 @@ Body:
     Script: |
       bonus bWeaponAtkRate,getrandomoptinfo(ROA_VALUE);
       bonus bWeaponMatkRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 1001
+    Option: VAR_MAX_AP_PERCENT
+    Script: |
+      bonus bMaxAPrate,getrandomoptinfo(ROA_VALUE);
+  - Id: 1002
+    Option: VAR_MAX_SPEED_PERCENT
+    Script: |
+      bonus bSpeedAddRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 1003
+    Option: VAR_FIXED_CAST
+    Script: |
+      bonus bFixedCast,-(getrandomoptinfo(ROA_VALUE));
+  - Id: 1004
+    Option: VAR_VARIABLE_CAST
+    Script: |
+      bonus bVariableCast,-(getrandomoptinfo(ROA_VALUE));
+  - Id: 1005
+    Option: VAR_PHYSICAL_DAMAGE_PERCENT
+    Script: |
+      bonus2 bAddClass,Class_All,getrandomoptinfo(ROA_VALUE);
+  - Id: 1006
+    Option: VAR_MAGICAL_DAMAGE_PERCENT
+    Script: |
+      bonus2 bMagicAddClass,Class_All,getrandomoptinfo(ROA_VALUE);
+  - Id: 1007
+    Option: VAR_DEFENSE_PERCENT
+    Script: |
+      bonus2 bSubClass,Class_All,getrandomoptinfo(ROA_VALUE);
+  - Id: 1008
+    Option: CLASS_IGNORE_DEF_PERCENT_ALL
+    Script: |
+      bonus2 bIgnoreDefClassRate,Class_All,getrandomoptinfo(ROA_VALUE);
+  - Id: 1009
+    Option: CLASS_IGNORE_MDEF_PERCENT_ALL
+    Script: |
+      bonus2 bIgnoreMdefClassRate,Class_All,getrandomoptinfo(ROA_VALUE);

@@ -148,20 +148,123 @@ function	script	GearOrbExchange	{
 	else{
 		// Weapon
 		if(.@mode == 1){
-			setarray .@OptID[0],1000;
-			setarray .@OptVal[0],(.@tier == 1) ? rand(1,50) : (.@tier == 2) ? rand(50,100) : (.@tier == 3) ? rand(100,250) : (.@tier == 4) ? rand(250,500) : rand(500,1000);
+			setarray .@optionIds[0],1000;
+			setarray .@optionValues[0],(.@tier == 1) ? rand(1,50) : (.@tier == 2) ? rand(50,100) : (.@tier == 3) ? rand(100,250) : (.@tier == 4) ? rand(250,500) : rand(500,1000);
 		}
 		// Equipment, Costume
 		else{
-			setarray .@OptID[0],20;
-			setarray .@OptVal[0],(.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,5) : (.@tier == 3) ? rand(5,10) : (.@tier == 4) ? rand(10,25) : rand(25,50);
+			setarray .@optionIds[0],20;
+			setarray .@optionValues[0],(.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,5) : (.@tier == 3) ? rand(5,10) : (.@tier == 4) ? rand(10,25) : rand(25,50);
 		}
-		setarray .@OptParam[0],0;
-		getitem3 .@itemId,1,1,0,0,0,0,0,0,.@OptID,.@OptVal,.@OptParam;
+		setarray .@optionParameters[0],0;
+		getitem3 .@itemId,1,1,0,0,0,0,0,0,.@optionIds,.@optionValues,.@optionParameters;
 	}
 	return;
 }
 
+//																		| Normal		| Rare					| Epic					| Mystical			| Legendary
+//																
+//3 bonus bStr,n;												| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//4 bonus bAgi,n;												| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//5 bonus bVit,n;												| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//6 bonus bInt,n;												| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//7 bonus bDex,n;												| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//8 bonus bLuk,n;												| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//164 bonus bCritAtkRate,n;								| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//165 bonus bCritDefRate,n;								| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//171 bonus bDelayrate,n;									| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
+//
+//243 bonus bPow,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//245 bonus bSta,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//246 bonus bWis,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//244 bonus bSpl,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//247 bonus bCon,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//248 bonus bCrt,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//1002 bonus bSpeedAddRate,n;						| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//24 bonus bCritical,n;										| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//22 bonus bFlee,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//249 bonus bPAtk,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//250 bonus bSMatk,n;										| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//251 bonus bRes,n;											| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//252 bonus bMRes,n;										| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//253 bonus bHPlus,n;										| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//254 bonus bCRate,n;										| 1~2			| 2~4					| 4~7					| 7~11			| 11~15
+//
+//9 bonus bMaxHPrate,n;									| 1~5			| 5~15				| 15~35				| 35~65			| 65~100
+//10 bonus bMaxSPrate,n;									| 1~5			| 5~15				| 15~35				| 35~65			| 65~100
+//1001 bonus bMaxAPrate,n;								| 1~5			| 5~15				| 15~35				| 35~65			| 65~100
+//172 bonus bUseSPrate,n;								| 1~5			| 5~15				| 15~35				| 35~65			| 65~100
+//168 bonus bHealPower,n;								| 1~5			| 5~15				| 15~35				| 35~65			| 65~100
+//1005 bonus2 bAddClass,c,x;							| 1~5			| 5~15				| 15~35				| 35~65			| 65~100
+//1006 bonus2 bMagicAddClass,c,x;					| 1~5			| 5~15				| 15~35				| 35~65			| 65~100
+//
+//18 bonus bHit,n;												| 20~25		| 25~30				| 30~35				| 35~40			| 40~50
+//
+//15 bonus bAspd,n;											| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
+//1008 bonus2 bIgnoreDefClassRate,c,n;			| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
+//1009 bonus2 bIgnoreMdefClassRate,c,n;		| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
+//218 bonus bReduceDamageReturn,n;				| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
+//
+//1003 bonus bFixedCast,t;								| 1~25		| 25~50				| 50~150			| 150~300		| 300~500
+//1004 bonus bVariableCast,t;							| 1~25		| 25~50				| 50~150			| 150~300		| 300~500
+//
+//1007 bonus2 bSubClass,c,x;							| 1				| 1						| 1						| 1					| 1
 function	script	GetRandomOptionId	{
+	setarray .@allOptionId,3,4,5,6,7,8,164,165,171,243,245,246,244,247,248,1002,24,22,249,250,251,252,253,254,9,10,1001,172,168,1005,1006,18,15,1008,1009,218,1003,1004,1007;
+	return .@allOptionId[rand(0,getarraysize(.@allOptionId) - 1)];
+}
+
+function	script	GetRandomOptionValue	{
+	.@optionId = getarg(0,0);
+	.@tier = getarg(1,0);
+	
+	if((.@optionId <= 0)
+			|| (.@tier <= 0))
 	return 0;
+	else if((.@optionId == 3)
+			|| (.@optionId == 4)
+			|| (.@optionId == 5)
+			|| (.@optionId == 6)
+			|| (.@optionId == 7)
+			|| (.@optionId == 8)
+			|| (.@optionId == 164)
+			|| (.@optionId == 165)
+			|| (.@optionId == 171))
+	return (.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,5) : (.@tier == 3) ? rand(5,9) : (.@tier == 4) ? rand(9,15) : rand(15,30);
+	else if((.@optionId == 243)
+			|| (.@optionId == 245)
+			|| (.@optionId == 246)
+			|| (.@optionId == 244)
+			|| (.@optionId == 247)
+			|| (.@optionId == 248)
+			|| (.@optionId == 1002)
+			|| (.@optionId == 24)
+			|| (.@optionId == 22)
+			|| (.@optionId == 249)
+			|| (.@optionId == 250)
+			|| (.@optionId == 251)
+			|| (.@optionId == 252)
+			|| (.@optionId == 253)
+			|| (.@optionId == 254))
+	return (.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,4) : (.@tier == 3) ? rand(4,7) : (.@tier == 4) ? rand(7,11) : rand(11,15);
+	else if((.@optionId == 9)
+			|| (.@optionId == 10)
+			|| (.@optionId == 1001)
+			|| (.@optionId == 172)
+			|| (.@optionId == 168)
+			|| (.@optionId == 1005)
+			|| (.@optionId == 1006))
+	return (.@tier == 1) ? rand(1,5) : (.@tier == 2) ? rand(5,15) : (.@tier == 3) ? rand(15,35) : (.@tier == 4) ? rand(35,65) : rand(65,100);
+	else if(.@optionId == 18)
+	return (.@tier == 1) ? rand(20,25) : (.@tier == 2) ? rand(25,30) : (.@tier == 3) ? rand(30,35) : (.@tier == 4) ? rand(35,40) : rand(40,50);
+	else if((.@optionId == 15)
+			|| (.@optionId == 1008)
+			|| (.@optionId == 1009)
+			|| (.@optionId == 218))
+	return (.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,3) : (.@tier == 3) ? rand(3,4) : (.@tier == 4) ? rand(4,5) : rand(5,6);
+	else if((.@optionId == 1003)
+			|| (.@optionId == 1004))
+	return (.@tier == 1) ? rand(1,25) : (.@tier == 2) ? rand(25,50) : (.@tier == 3) ? rand(50,150) : (.@tier == 4) ? rand(150,300) : rand(300,500);
+	else
+	return 1;
 }
