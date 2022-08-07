@@ -92,7 +92,7 @@ OnMapMonsterDead:
 	// Add 1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
 	if(rand(0,9) == 0)
-	announce "โอกาสที่ Boss จะปรากฎเมื่อฆ่า Monster " + callfunc("F_InsertComma",(getd("$map" + strnpcinfo(2) + "BossChance"))) + " ใน 100",bc_self,0xF3A51C;
+	announce "โอกาสที่ Boss จะปรากฎเมื่อฆ่า Monster " + callfunc("F_InsertComma",(getd("$map" + strnpcinfo(2) + "BossChance"))) + "%",bc_self,0xF3A51C;
 	// Check chance is pass
 	if(rand(0,100) < getd("$map" + strnpcinfo(2) + "BossChance")){
 		announce "Boss ได้ปรากฎภายใน Map แล้ว!!",bc_map,0x8EF31C;
