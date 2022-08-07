@@ -21,6 +21,7 @@
 	callsub L_Warp;
 	
 	L_Warp:
+	getitem 10000044,1;
 	savepoint "prontera",155,204;
 	warp "prontera",155,204;
 	callfunc("Exit");

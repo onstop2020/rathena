@@ -153,7 +153,7 @@ function	script	GearOrbExchange	{
 		}
 		// Equipment, Costume
 		else{
-			setarray .@OptID[0],1000;
+			setarray .@OptID[0],20;
 			setarray .@OptVal[0],(.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,5) : (.@tier == 3) ? rand(5,10) : (.@tier == 4) ? rand(10,25) : rand(25,50);
 		}
 		setarray .@OptParam[0],0;
