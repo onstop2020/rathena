@@ -1,0 +1,31 @@
+prontera,100,190	monster	Dummy Lv10	2408,1,5000
+
+prontera,110,190	monster	Dummy Lv10	2408,1,5000
+prontera,110,191	monster	Dummy Lv10	2408,1,5000
+prontera,110,189	monster	Dummy Lv10	2408,1,5000
+prontera,111,190	monster	Dummy Lv10	2408,1,5000
+prontera,109,190	monster	Dummy Lv10	2408,1,5000
+
+prontera,100,180	monster	Dummy Lv50	2409,1,5000
+
+prontera,110,180	monster	Dummy Lv50	2409,1,5000
+prontera,110,181	monster	Dummy Lv50	2409,1,5000
+prontera,110,179	monster	Dummy Lv50	2409,1,5000
+prontera,111,180	monster	Dummy Lv50	2409,1,5000
+prontera,109,180	monster	Dummy Lv50	2409,1,5000
+
+prontera,100,170	monster	Dummy Lv100	2410,1,5000
+
+prontera,110,170	monster	Dummy Lv100	2410,1,5000
+prontera,110,171	monster	Dummy Lv100	2410,1,5000
+prontera,110,169	monster	Dummy Lv100	2410,1,5000
+prontera,111,170	monster	Dummy Lv100	2410,1,5000
+prontera,109,170	monster	Dummy Lv100	2410,1,5000
+
+prontera,100,160	monster	Dummy Lv150	2411,1,5000
+
+prontera,110,160	monster	Dummy Lv150	2411,1,5000
+prontera,110,161	monster	Dummy Lv150	2411,1,5000
+prontera,110,159	monster	Dummy Lv150	2411,1,5000
+prontera,111,160	monster	Dummy Lv150	2411,1,5000
+prontera,109,160	monster	Dummy Lv150	2411,1,5000

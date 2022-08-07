@@ -4,6 +4,7 @@
 OnInit:
 	bindatcmd "job2",strnpcinfo(3) + "::OnJob2",99,99;
 	bindatcmd "job3",strnpcinfo(3) + "::OnJob3",99,99;
+	bindatcmd "load",strnpcinfo(3) + "::OnLoad",0,99;
 	end;
 	
 OnJob2:
@@ -15,7 +16,7 @@ OnJob2:
 	atcommand "@skillall";
 	StatusPoint = 0;
 	TraitPoint = 0;
-	callfunc "F_GetPlatinumSkills";
+	callfunc("F_GetPlatinumSkills");
 	end;
 	
 OnJob3:
@@ -27,6 +28,10 @@ OnJob3:
 	atcommand "@skillall";
 	StatusPoint = 0;
 	TraitPoint = 0;
-	callfunc "F_GetPlatinumSkills";
+	callfunc("F_GetPlatinumSkills");
+	end;
+	
+	OnLoad:
+	callfunc("ReturnOrb");
 	end;
 }

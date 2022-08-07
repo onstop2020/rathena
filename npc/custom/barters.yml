@@ -51,7 +51,7 @@ Body:
     X: 172
     Y: 232
     Direction: South
-    Sprite: 2_VENDING_MACHINE1
+    Sprite: 4_STAR_BOX_CRT1
     Items:
       - Index: 0
         Item: Points_Orb
@@ -88,7 +88,7 @@ Body:
     X: 175
     Y: 229
     Direction: South
-    Sprite: 2_VENDING_MACHINE1
+    Sprite: 4_VENDING_MACHINE
     Items:
       - Index: 0
         Item: Life_Crystal_Lv._1
@@ -155,7 +155,7 @@ Body:
     X: 178
     Y: 226
     Direction: South
-    Sprite: 2_VENDING_MACHINE1
+    Sprite: 4_VENDING_MACHINE
     Items:
       - Index: 0
         Item: Haste_Crystal_Lv._1
@@ -222,14 +222,14 @@ Body:
     X: 181
     Y: 223
     Direction: South
-    Sprite: 2_VENDING_MACHINE1
+    Sprite: 4_STAR_BOX_POW1
     Items:
       - Index: 0
         Item: Status_Point_Orb
         RequiredItems:
           - Index: 0
             Item: Points_Orb
-            Amount: 15
+            Amount: 1
       - Index: 1
         Item: Trait_Point_Orb
         RequiredItems:
@@ -242,3 +242,5 @@ Body:
           - Index: 0
             Item: Points_Orb
             Amount: 900
+      - Index: 3
+        Item: Return_Orb

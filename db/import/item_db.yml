@@ -380,3 +380,9 @@ Body:
     Type: Usable
     Script: |
       callfunc("SkillPointOrb");
+  - Id: 10000044
+    AegisName: Return_Orb
+    Name: Return Orb
+    Type: DelayConsume
+    Script: |
+      callfunc("ReturnOrb");

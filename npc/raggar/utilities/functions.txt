@@ -122,3 +122,11 @@ function	script	SkillPointOrb	{
 	dispbottom "คุณได้รับ " + F_InsertComma(.@points) + " Skill Point";
 	return;
 }
+
+// Return Orb
+function	script	ReturnOrb	{
+	if(strcharinfo(3) != "prontera")
+	progressbar "0xF7FF00",3;
+	warp "prontera",155,204;
+	end;
+}
