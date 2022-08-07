@@ -7,8 +7,8 @@ prontera,193,235,3	script	โคลอี้	665,{
 		mes NpcMessageColor("ต้องการทำซ้ำแบบที่เลือกก่อนหน้านี้หรือไม่?");
 		next;
 		menu "เลือกใหม่",L_NormalTap,"ทำซ้ำแบบเดิมที่เลือกไปก่อนหน้านี้",-;
+		.@quickTap = 1;
 	}
-	.@quickTap = 1;
 	L_NormalTap:
 	setarray .@indices[1],EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_COSTUME_GARMENT,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
 	for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
