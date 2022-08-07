@@ -1,0 +1,86 @@
+prontera,193,235,3	script	โครม	10079,{
+	// Quick tap
+	.@quickTap = 0;
+	if(lastOptionSlotSelected > 1){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("ต้องการทำซ้ำแบบที่เลือกก่อนหน้านี้หรือไม่?");
+		next;
+		menu "เลือกใหม่",L_NormalTap,"ทำซ้ำแบบเดิมที่เลือกไปก่อนหน้านี้",-;
+	}
+	.@quickTap = 1;
+	L_NormalTap:
+	setarray .@indices[1],EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_COSTUME_GARMENT,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
+	for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
+		if(getequipisequiped(.@indices[.@i])){
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]);
+			.@isEquipped = 1;
+		}
+		.@menu$ = .@menu$ + ":";
+	}
+	
+	if (!.@isEquipped){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("ข้าไม่เห็นท่านกำลังสวมใส่ อุปกรณ์สวมใส่ ใด ๆ อยู่เลย..");
+		next;
+		callfunc("Exit");
+	}
+	
+	if(!.@quickTap)
+	optionPartSelected = .@indices[select(.@menu$)];
+
+	if(!getequipisequiped(optionPartSelected)){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("ท่านเลือกช่องที่ ไม่ได้สวมใส่อะไร.. อยู่เลยหนิ?");
+		next;
+		callfunc("Exit");
+	}
+	
+	if(!.@quickTap)
+	optionItemIdSelected = getequipid(optionPartSelected);
+	
+	if (callfunc("F_IsEquipIDHack",optionPartSelected,optionItemIdSelected)){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("เอ๋? ท่านสลับอุปกรณ์สวมใส่ ระหว่างการดำเนินการหนิ!?");
+		next;
+		callfunc("Exit");
+	}
+	
+	if(!.@quickTap){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("โปรดระบุช่องที่ต้องการ");
+		next;
+		if(lastOptionSlotSelected > 1)
+		.@optionSlot = select("ช่องล่าสุด (" + lastOptionSlotSelected + "):ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ยกเลิก");
+		else
+		.@optionSlot = select("ช่องล่าสุด (-):ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ยกเลิก");
+		if((.@optionSlot == 6)
+				|| ((.@optionSlot == 1) && (lastOptionSlotSelected <= 1)))
+		callfunc("Exit");
+		else if(.@optionSlot == 1)
+		.@optionSlot = lastOptionSlotSelected;
+		lastOptionSlotSelected = .@optionSlot;
+	}
+	// Option index below should not null
+	for(.@o = 0; .@o < lastOptionSlotSelected; .@o++){
+		if(getequiprandomoption(optionPartSelected,.@o,ROA_ID) <= 0)
+		setrandomoption(optionPartSelected,.@o,1,0,0);
+	}
+	// Set new option on selected
+	setrandomoption(optionPartSelected,lastOptionSlotSelected - 1,1,rand(1,15),0);
+	callfunc("Exit");
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"ep15_2_fru_1","ep15_2_fru_3";
+	setarray .npcActionFacials$,"ep15_2_fru_2";
+	// Information
+	waitingroom "ใช้งาน Speciality Orb",0;
+	end;
+}
