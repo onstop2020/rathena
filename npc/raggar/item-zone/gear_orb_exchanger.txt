@@ -1,0 +1,76 @@
+prontera,187,241,3	script	เบล	10079,{
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("โปรดเลือกระดับ Gear Orb ที่ต้องการแลก");
+	next;
+	.@select = select(getitemname(10000030) + ":" + getitemname(10000031) + ":" + getitemname(10000032) + ":" + getitemname(10000033) + ":" + getitemname(10000034) + ":ยกเลิก");
+	if(.@select == 6)
+	callfunc("Exit");
+	else{
+		if(.@select == 1)
+		.@requiredItem = 10000030;
+		else if(.@select == 2)
+		.@requiredItem = 10000031;
+		else if(.@select == 3)
+		.@requiredItem = 10000032;
+		else if(.@select == 4)
+		.@requiredItem = 10000033;
+		else
+		.@requiredItem = 10000034;
+
+		if(!countitem(.@requiredItem)){
+			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+			mes .npcName$;
+			mes NpcMessageColor("ท่านไม่มี " + getitemname(.@requiredItem) + " อยู่เลย");
+			next;
+			callfunc("Exit");
+		}
+		
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("ท่านเลือกที่จะแลก " + getitemname(.@requiredItem) + " เป็นอุปกรณ์สวมใส่ประเภทใด?");
+		next;
+		.@mode = select("อาวุธ:อุปกรณ์สวมใส่:อุปกรณ์สวมใส่ช่อง Costume:ยกเลิก");
+		if(.@mode == 4)
+		callfunc("Exit");
+		else{
+			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+			mes .npcName$;
+			mes NpcMessageColor("โปรดเลือกจำนวนในการแลก");
+			next;
+			.@amount = select("แลก 1 ครั้ง:แลกทีเดียวทั้งหมด:ยกเลิก");
+			if(.@amount == 3)
+			callfunc("Exit");
+			else{
+				.@tradeAmount = (.@amount == 1) ? 1 : countitem(.@requiredItem);
+				freeloop(1);
+				for(.@i = 0; .@i < .@tradeAmount; .@i++){
+					.@reward = (.@mode == 1) ? $weaponIds[rand(0,($weaponIdSize - 1))] : (.@mode == 2) ? $equipmentIds[rand(0,($equipmentIdSize - 1))] : $costumeIds[rand(0,($costumeIdSize - 1))];
+					if(!checkweight(6825,1)){
+						message strcharinfo(0),"การแลกเปลี่ยนถูกหยุด เนื่องจากคุณมีช่องว่างในกระเป๋าไม่เพียงพอ หรือแบกของหนักเกินไป..";
+						break;
+					}
+					delitem .@requiredItem,1;
+					getitem .@reward,1;
+				}
+				freeloop(0);
+				callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
+				mes .npcName$;
+				mes NpcMessageColor("เรียบร้อยแล้ว!");
+				next;
+				callfunc("Exit");
+			}
+		}
+	}
+	callfunc("Exit");
+
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"ep15_2_fru_1","ep15_2_fru_3";
+	setarray .npcActionFacials$,"ep15_2_fru_2";
+	// Information
+	waitingroom "แลก Gear Orb",0;
+	end;
+}
