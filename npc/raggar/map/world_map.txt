@@ -128,8 +128,8 @@ OnMapMonsterDead:
 		setunitdata $@mobid[0],UMOB_HP,.@bossDatas[UMOB_MAXHP] * .@mapTier;
 		setunitdata $@mobid[0],UMOB_SPEED,max(50,.@bossDatas[UMOB_SPEED] / .@mapTier);
 		setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
-		setunitdata $@mobid[0],UMOB_DAMAGE_TAKEN,7 - .@mapTier;
-		getunitdata $@mobid[0],.@bossDatas;
+		setunitdata $@mobid[0],UMOB_DAMAGE_TAKEN,max(1,(7 - .@mapTier));
+		setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,(1 + .@mapTier));
 		viewpoint 1,.@x,.@y,0,0xFF0000;
 	}
 	end;

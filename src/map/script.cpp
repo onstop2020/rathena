@@ -18419,6 +18419,7 @@ BUILDIN_FUNC(getunitdata)
 			getunitdata_sub(UMOB_RES, md->status.res);
 			getunitdata_sub(UMOB_MRES, md->status.mres);
 			getunitdata_sub(UMOB_DAMAGE_TAKEN, md->db->damagetaken); // [Start]
+			getunitdata_sub(UMOB_HOT_MAP, md->db->hot_map); // [Start]
 			break;
 
 		case BL_HOM:

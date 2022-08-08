@@ -1426,7 +1426,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		return 0;
 
 	mob_data* msd = BL_CAST(BL_MOB, src); // Increases damage done for hot map [Start]
-	if (msd)
+	if (msd && (msd->db->hot_map != 0))
 		damage = i64max(damage * msd->db->hot_map, 1); // End
 
 	if (bl->type == BL_PC) {
@@ -1834,13 +1834,15 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 	}
 
 	if (bl->type == BL_MOB) { // Reduces damage received for Green Aura MVP
-		mob_data *md = BL_CAST(BL_MOB, bl);
+		mob_data* md = BL_CAST(BL_MOB, bl);
 
-		if (md && md->db->damagetaken != 100)
-			damage = i64max(damage * md->db->damagetaken / 100, 1);
+		if (md) {
+			if (md->db->damagetaken != 100)
+				damage = i64max(damage * md->db->damagetaken / 100, 1);
 
-		if (md && md->db->hot_map != 0) // Reduces damage received for hot map [Start]
-			damage = i64max(damage * (100 - md->db->hot_map) / 100, 1);
+			if (md->db->hot_map != 0) // Reduces damage received for hot map [Start]
+				damage = i64max(damage * (100 - md->db->hot_map) / 100, 1);
+		}
 	}
 
 	return damage;

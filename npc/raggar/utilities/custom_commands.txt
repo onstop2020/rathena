@@ -6,6 +6,7 @@ OnInit:
 	bindatcmd "job3",strnpcinfo(3) + "::OnJob3",99,99;
 	bindatcmd "load",strnpcinfo(3) + "::OnLoad",0,99;
 	bindatcmd "ad",strnpcinfo(3) + "::OnAd",99,99;
+	bindatcmd "boss",strnpcinfo(3) + "::OnBoss",99,99;
 	end;
 	
 OnJob2:
@@ -58,5 +59,24 @@ OnAd:
 		close;
 	}
 	setarray $ads$[.@slot],.@message$;
+	end;
+	
+OnBoss:
+	.@monsterId = atoi(.@atcmd_parameters$[0]);
+	.@mapTier = atoi(.@atcmd_parameters$[1]);
+	.@hotMap = atoi(.@atcmd_parameters$[2]);
+	getmapxy(.@mapName$,.@x,.@y);
+	monster .@mapName$,.@x,.@y,"[Boss]",.@monsterId,1,strnpcinfo(0) + "::OnBossDead",Size_Large;
+	// Boss bonuses
+	getunitdata $@mobid[0],.@bossDatas;
+	setunitdata $@mobid[0],UMOB_MAXHP,.@bossDatas[UMOB_MAXHP] * .@mapTier;
+	setunitdata $@mobid[0],UMOB_HP,.@bossDatas[UMOB_MAXHP] * .@mapTier;
+	setunitdata $@mobid[0],UMOB_SPEED,max(50,.@bossDatas[UMOB_SPEED] / .@mapTier);
+	setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
+	setunitdata $@mobid[0],UMOB_DAMAGE_TAKEN,max(1,(7 - .@mapTier));
+	setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,.@hotMap);
+	end;
+	
+OnBossDead:
 	end;
 }
