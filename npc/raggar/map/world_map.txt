@@ -109,59 +109,45 @@ OnMapMonsterDeadHotMap:
 	if(!playerattached())
 	end;
 
-	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
-	// Reward
-	if(.@mapTier == 2){
-		.@coreOrbId = 10000021;
-		.@specialityOrbId = 10000026;
-		.@gearOrbId = 10000031;
-		.@refineOrbId = 10000036;
-	}
-	else if(.@mapTier == 3){
-		.@coreOrbId = 10000022;
-		.@specialityOrbId = 10000027;
-		.@gearOrbId = 10000032;
-		.@refineOrbId = 10000037;
-	}
-	else if(.@mapTier == 4){
-		.@coreOrbId = 10000023;
-		.@specialityOrbId = 10000028;
-		.@gearOrbId = 10000033;
-		.@refineOrbId = 10000038;
-	}
-	else if(.@mapTier == 5){
-		.@coreOrbId = 10000024;
-		.@specialityOrbId = 10000029;
-		.@gearOrbId = 10000034;
-		.@refineOrbId = 10000039;
-	}
-	else{
-		.@coreOrbId = 10000020;
-		.@specialityOrbId = 10000025;
-		.@gearOrbId = 10000030;
-		.@refineOrbId = 10000035;
-	}
-	
 	// Hot map rewards
+	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
 	
-	// (1~Map Tier) Core Orb (50%)
-	if(rand(0,100) < 50)
-	getitem .@coreOrbId,rand(1,.@mapTier);
-	// 1 Speciality Orb (Map Tier)%
-	if(rand(0,100) < .@mapTier)
-	getitem .@specialityOrbId,1;
-	// 1 Gear Orb (1~2 * Map Tier)%
-	if(rand(0,100) < (rand(1,2) * .@mapTier))
-	getitem .@gearOrbId,1;
-	// 1 Refine Orb (1%)
-	if(rand(0,99) <= 0)
-	getitem .@refineOrbId,1;	
-
+	AdditionalDrop(
+	.@mapTier 											// Tier
+	,50														// Core Orb chance
+	,rand(1,.@mapTier)								// Core Orb amount
+	,(rand(1,2) * .@mapTier)						// Gear Orb chance
+	,1															// Gear Orb amount
+	,.@mapTier											// Speciality Orb chance
+	,1															// Speciality Orb amount
+	,0															// Refine Orb chance
+	,1															// Refine Orb amount
+	);
+	
 	// Normal dead
 OnMapMonsterDead:
 	if(!playerattached())
 	end;
 
+	// MvP
+	if((killedrid > 0)
+			&& (getmonsterinfo(killedrid,MOB_MVPEXP) > 0)){
+		// MvP reward
+		.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
+		
+		AdditionalDrop(
+		.@mapTier 											// Tier
+		,100														// Core Orb chance
+		,rand(15,50)											// Core Orb amount
+		,50														// Gear Orb chance
+		,rand(5,15)											// Gear Orb amount
+		,35														// Speciality Orb chance
+		,rand(5,10)											// Speciality Orb amount
+		,20														// Refine Orb chance
+		,1															// Refine Orb amount
+		);
+	}
+	
 	// Add 1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
 	if(rand(0,9) == 0)
@@ -199,43 +185,21 @@ OnMapBossDead:
 	if(!playerattached())
 	end;
 
+	// Boss reward
 	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
-	// Reward
-	if(.@mapTier == 2){
-		.@coreOrbId = 10000021;
-		.@specialityOrbId = 10000026;
-		.@gearOrbId = 10000031;
-		.@refineOrbId = 10000036;
-	}
-	else if(.@mapTier == 3){
-		.@coreOrbId = 10000022;
-		.@specialityOrbId = 10000027;
-		.@gearOrbId = 10000032;
-		.@refineOrbId = 10000037;
-	}
-	else if(.@mapTier == 4){
-		.@coreOrbId = 10000023;
-		.@specialityOrbId = 10000028;
-		.@gearOrbId = 10000033;
-		.@refineOrbId = 10000038;
-	}
-	else if(.@mapTier == 5){
-		.@coreOrbId = 10000024;
-		.@specialityOrbId = 10000029;
-		.@gearOrbId = 10000034;
-		.@refineOrbId = 10000039;
-	}
-	else{
-		.@coreOrbId = 10000020;
-		.@specialityOrbId = 10000025;
-		.@gearOrbId = 10000030;
-		.@refineOrbId = 10000035;
-	}
-	getitem .@coreOrbId,rand(5,30);
-	getitem .@specialityOrbId,rand(1,3);
-	getitem .@gearOrbId,rand(1,5);
-	if(rand(0,100) < 10)
-	getitem .@refineOrbId,1;	
+	
+	AdditionalDrop(
+	.@mapTier 											// Tier
+	,100														// Core Orb chance
+	,rand(5,30)											// Core Orb amount
+	,100														// Gear Orb chance
+	,rand(1,5)												// Gear Orb amount
+	,100														// Speciality Orb chance
+	,rand(1,3)												// Speciality Orb amount
+	,10														// Refine Orb chance
+	,1															// Refine Orb amount
+	);
+	
 	// Mark as occupied
 	set getd("$map" + strnpcinfo(2) + "Occupied"),1;
 	// Change map to other
@@ -256,7 +220,7 @@ OnHotMapCleanUp:
 OnHotMap:
 	killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnMapMonsterDead";
 	callsub L_SpawnMonster;
-	announce "!! Map " + strnpcinfo(2) + " กลายเป็น Hot Map! Monster ใน Map จะเก่งขึ้น.. รวมทั้งรางวัลก็จะมากขึ้นเช่นกัน !!",bc_all,0xF6FA15;
+	announce "!! Map " + strnpcinfo(2) + " กลายเป็น Hot Map! Monster ใน Map จะมีรางวัลมากขึ้น !!",bc_all,0xF6FA15;
 	end;
 	
 OnTimer60000:

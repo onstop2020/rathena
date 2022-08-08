@@ -273,3 +273,67 @@ function	script	GetRandomOptionValue	{
 	else
 	return 1;
 }
+
+// Additional drop
+function	script	AdditionalDrop	{
+	.@mapTier = getarg(0,0);
+	.@coreOrbChance = getarg(1,0);
+	.@coreOrbAmount = getarg(2,0);
+	.@gearOrbChance = getarg(3,0);
+	.@gearOrbAmount = getarg(4,0);
+	.@specialityOrbChance = getarg(5,0);
+	.@specialityOrbAmount = getarg(6,0);
+	.@refineOrbChance = getarg(7,0);
+	.@refineOrbAmount = getarg(8,0);
+	
+	// Reward
+	if(.@mapTier == 2){
+		.@coreOrbId = 10000021;
+		.@specialityOrbId = 10000026;
+		.@gearOrbId = 10000031;
+		.@refineOrbId = 10000036;
+	}
+	else if(.@mapTier == 3){
+		.@coreOrbId = 10000022;
+		.@specialityOrbId = 10000027;
+		.@gearOrbId = 10000032;
+		.@refineOrbId = 10000037;
+	}
+	else if(.@mapTier == 4){
+		.@coreOrbId = 10000023;
+		.@specialityOrbId = 10000028;
+		.@gearOrbId = 10000033;
+		.@refineOrbId = 10000038;
+	}
+	else if(.@mapTier == 5){
+		.@coreOrbId = 10000024;
+		.@specialityOrbId = 10000029;
+		.@gearOrbId = 10000034;
+		.@refineOrbId = 10000039;
+	}
+	else{
+		.@coreOrbId = 10000020;
+		.@specialityOrbId = 10000025;
+		.@gearOrbId = 10000030;
+		.@refineOrbId = 10000035;
+	}
+	
+	// Core Orb
+	if((.@coreOrbAmount > 0)
+			&& (rand(0,100) < .@coreOrbChance))
+	getitem .@coreOrbId,rand(1,.@coreOrbAmount);
+	// Gear Orb
+	if((.@gearOrbAmount > 0)
+			&& (rand(0,100) < .@gearOrbChance))
+	getitem .@gearOrbId,.@gearOrbAmount;
+	// Speciality Orb
+	if((.@specialityOrbAmount > 0)
+			&& (rand(0,100) < .@specialityOrbChance))
+	getitem .@specialityOrbId,.@specialityOrbAmount;
+	// Refine Orb
+	if((.@refineOrbAmount > 0)
+			&& (rand(0,99) <= .@refineOrbChance))
+	getitem .@refineOrbId,.@refineOrbAmount;	
+	return;
+}
+
