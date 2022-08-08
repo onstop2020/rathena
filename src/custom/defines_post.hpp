@@ -9,6 +9,7 @@
  * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
  **/
 
+#undef RENEWAL_LVDMG
 #undef OFFICIAL_WALKPATH
 #undef BOUND_ITEMS
 
