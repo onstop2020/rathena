@@ -90,10 +90,8 @@
 				
 				// Map tier 1 should have higher chance to spawn weak monsters
 				if(rand(0,100) <= 50){
-					freeloop(1);
 					while(getmonsterinfo(.@monsterId,MOB_MAXHP) > 150)
 					.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
-					freeloop(0);
 				}
 			}
 			if(.@hotMap){
