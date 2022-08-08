@@ -491,6 +491,7 @@ enum unitdata_mobtypes {
 	UMOB_RES,
 	UMOB_MRES,
 	UMOB_DAMAGE_TAKEN, // [Start]
+	UMOB_HOT_MAP, // [Start]
 };
 
 enum unitdata_homuntypes {

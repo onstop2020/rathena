@@ -18827,6 +18827,7 @@ BUILDIN_FUNC(setunitdata)
 			case UMOB_RES: md->base_status->res = (short)value; calc_status = true; break;
 			case UMOB_MRES: md->base_status->mres = (short)value; calc_status = true; break;
 			case UMOB_DAMAGE_TAKEN: md->db->damagetaken = value; break; // [Start]
+			case UMOB_HOT_MAP: md->db->hot_map = value; break; // [Start]
 			default:
 				ShowError("buildin_setunitdata: Unknown data identifier %d for BL_MOB.\n", type);
 				return SCRIPT_CMD_FAILURE;
