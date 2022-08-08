@@ -89,8 +89,9 @@
 				.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
 				
 				// Map tier 1 should have higher chance to spawn weak monsters
-				if(rand(0,100) <= 50){
-					while(getmonsterinfo(.@monsterId,MOB_MAXHP) > 150)
+				if(rand(0,100) <= 75){
+					while((getmonsterinfo(.@monsterId,MOB_MAXHP) <= 10)
+					|| (getmonsterinfo(.@monsterId,MOB_MAXHP) >= 100))
 					.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
 				}
 			}
