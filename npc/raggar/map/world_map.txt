@@ -96,7 +96,7 @@
 				}
 			}
 			if(.@hotMap)
-				monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDeadHotMap";
+			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDeadHotMap";
 			else
 			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDead";
 		}
@@ -106,6 +106,9 @@
 	
 	// Hot map dead
 OnMapMonsterDeadHotMap:
+	if(!playerattached())
+	return;
+
 	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
 	// Reward
 	if(.@mapTier == 2){
@@ -156,6 +159,9 @@ OnMapMonsterDeadHotMap:
 
 	// Normal dead
 OnMapMonsterDead:
+	if(!playerattached())
+	return;
+
 	// Add 1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
 	if(rand(0,9) == 0)
@@ -190,6 +196,9 @@ OnMapMonsterDead:
 	end;
 	
 OnMapBossDead:
+	if(!playerattached())
+	return;
+
 	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
 	// Reward
 	if(.@mapTier == 2){

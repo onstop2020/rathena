@@ -103,7 +103,7 @@ prontera,193,235,3	script	โคลอี้	665,{
 	// Option index below should not null
 	for(.@o = 0; .@o < lastOptionSlotSelected; .@o++){
 		if(getequiprandomoption(optionPartSelected,.@o,ROA_ID) <= 0)
-		setrandomoption(optionPartSelected,.@o,1,0,0);
+		setrandomoption(optionPartSelected,.@o,1,1,0);
 	}
 	
 	// Set new option on selected
