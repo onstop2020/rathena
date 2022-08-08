@@ -105,15 +105,15 @@ prontera,193,235,3	script	โคลอี้	665,{
 		if(getequiprandomoption(optionPartSelected,.@o,ROA_ID) <= 0)
 		setrandomoption(optionPartSelected,.@o,1,0,0);
 	}
+	
 	// Set new option on selected
-
 	if(specialityOrbSelected == 10000029)
 	.@tier = 5;
-	else if(specialityOrbSelected == 10000026)
+	else if(specialityOrbSelected == 10000028)
 	.@tier = 4;
 	else if(specialityOrbSelected == 10000027)
 	.@tier = 3;
-	else if(specialityOrbSelected == 10000028)
+	else if(specialityOrbSelected == 10000026)
 	.@tier = 2;
 	else
 	.@tier = 1;
