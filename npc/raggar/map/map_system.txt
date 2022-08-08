@@ -1,7 +1,31 @@
 -	script	MapSystem	-1,{
 	end;
 	
+	// Hot Map every 10 minutes
+OnTimer600000:
+	.@lastHotMap = $hotMap;
+	$hotMap = 0;
+	freeloop(1);
+	for(.@i = 0; .@i < 72; .@i++){
+		if(.@lastHotMap == .@i)
+		donpcevent "Map " + .@i + "#" + .@i + "::OnHotMapCleanUp";
+		
+		// Check map was occupied
+		if(getd("$map" + .@i + "Occupied")){
+			// 5% Chance to mark as hot map
+			if(rand(0,100) <= 5){
+				$hotMap = .@i;
+				donpcevent "Map " + $hotMap + "#" + $hotMap + "::OnHotMap";
+				break;
+			}
+		}
+	}
+	freeloop(0);
+	initnpctimer;
+	end;
+	
 OnInit:
+	initnpctimer;
 	// Store available maps
 	if(!$isMapDatabaseInitialize){
 		deletearray $mapDatabases$,getarraysize($mapDatabases$);
@@ -33,6 +57,12 @@ OnInit:
 		freeloop(0);
 		
 		$isMapDatabaseInitialize = 1;
+	}
+	
+	// Hot map initialize
+	if(!$isHotMapInitialize){
+		$hotMap = -1;
+		$isHotMapInitialize = 1;
 	}
 	end;
 }

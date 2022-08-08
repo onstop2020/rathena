@@ -47,6 +47,8 @@
 		next;
 	}
 	mes .@npcName$;
+	if($hotMap == atoi(strnpcinfo(2)))
+	mes BadMessageColor("!!HOT MAP!!\n• Monster จะเก่งขึ้น\n• Monster จะให้รางวัลมากขึ้น");
 	mes NpcMessageColor("โปรดยืนยันการวาร์ป");
 	next;
 	menu "วาร์ป",L_Normal,"วาร์ป (Party)",-;
@@ -71,6 +73,8 @@
 		.@spawnAmount = .@maxSpawnAmount - .@leftOverMonster;
 		.@spawnAmount = max(1,(.@spawnAmount / rand(1,4)));
 		
+		.@hotMap = ($hotMap == atoi(strnpcinfo(2)));
+		
 		freeloop(1);
 		for(.@i = 0; .@i < .@spawnAmount; .@i++){
 			if(.@mapTier == 5)
@@ -92,12 +96,69 @@
 					freeloop(0);
 				}
 			}
+			if(.@hotMap){
+				monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDeadHotMap";
+				// Hot map formulas = 3 * (Map Tier * 1~5)
+				setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,3 * (.@mapTier * rand(1,5)));
+			}
+			else
 			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDead";
 		}
 		freeloop(0);
 	}
 	return;
 	
+	// Hot map dead
+OnMapMonsterDeadHotMap:
+	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
+	// Reward
+	if(.@mapTier == 2){
+		.@coreOrbId = 10000021;
+		.@specialityOrbId = 10000026;
+		.@gearOrbId = 10000031;
+		.@refineOrbId = 10000036;
+	}
+	else if(.@mapTier == 3){
+		.@coreOrbId = 10000022;
+		.@specialityOrbId = 10000027;
+		.@gearOrbId = 10000032;
+		.@refineOrbId = 10000037;
+	}
+	else if(.@mapTier == 4){
+		.@coreOrbId = 10000023;
+		.@specialityOrbId = 10000028;
+		.@gearOrbId = 10000033;
+		.@refineOrbId = 10000038;
+	}
+	else if(.@mapTier == 5){
+		.@coreOrbId = 10000024;
+		.@specialityOrbId = 10000029;
+		.@gearOrbId = 10000034;
+		.@refineOrbId = 10000039;
+	}
+	else{
+		.@coreOrbId = 10000020;
+		.@specialityOrbId = 10000025;
+		.@gearOrbId = 10000030;
+		.@refineOrbId = 10000035;
+	}
+	
+	// Hot map rewards
+	
+	// (1~Map Tier) Core Orb (50%)
+	if(rand(0,100) < 50)
+	getitem .@coreOrbId,rand(1,.@mapTier);
+	// 1 Speciality Orb (Map Tier)%
+	if(rand(0,100) < .@mapTier)
+	getitem .@specialityOrbId,1;
+	// 1 Gear Orb (1~2 * Map Tier)%
+	if(rand(0,100) < (rand(1,2) * .@mapTier))
+	getitem .@gearOrbId,1;
+	// 1 Refine Orb (1%)
+	if(rand(0,99) <= 0)
+	getitem .@refineOrbId,1;	
+
+	// Normal dead
 OnMapMonsterDead:
 	// Add 1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
@@ -129,7 +190,8 @@ OnMapMonsterDead:
 		setunitdata $@mobid[0],UMOB_SPEED,max(50,.@bossDatas[UMOB_SPEED] / .@mapTier);
 		setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
 		setunitdata $@mobid[0],UMOB_DAMAGE_TAKEN,max(1,(7 - .@mapTier));
-		setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,(1 + .@mapTier));
+		// Boss force hot map formula = 5 * Map Tier
+		setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,(5 * .@mapTier));
 		viewpoint 1,.@x,.@y,0,0xFF0000;
 	}
 	end;
@@ -137,13 +199,7 @@ OnMapMonsterDead:
 OnMapBossDead:
 	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
 	// Reward
-	if(.@mapTier == 1){
-		.@coreOrbId = 10000020;
-		.@specialityOrbId = 10000025;
-		.@gearOrbId = 10000030;
-		.@refineOrbId = 10000035;
-	}
-	else if(.@mapTier == 2){
+	if(.@mapTier == 2){
 		.@coreOrbId = 10000021;
 		.@specialityOrbId = 10000026;
 		.@gearOrbId = 10000031;
@@ -167,6 +223,12 @@ OnMapBossDead:
 		.@gearOrbId = 10000034;
 		.@refineOrbId = 10000039;
 	}
+	else{
+		.@coreOrbId = 10000020;
+		.@specialityOrbId = 10000025;
+		.@gearOrbId = 10000030;
+		.@refineOrbId = 10000035;
+	}
 	getitem .@coreOrbId,rand(5,30);
 	getitem .@specialityOrbId,rand(1,3);
 	getitem .@gearOrbId,rand(1,5);
@@ -183,6 +245,16 @@ OnMapBossDead:
 	.bossKiller$ = strcharinfo(0);
 	sleep 1000;
 	announce .bossKiller$ + " ได้กำจัด Boss Map " + strnpcinfo(2) + ".. และยึดครอง Map ดังกล่าวเรียบร้อย!!",bc_all,0x8EF31C;
+	end;
+	
+OnHotMapCleanUp:
+	killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnMapMonsterDeadHotMap";
+	end;
+	
+OnHotMap:
+	killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnMapMonsterDead";
+	callsub L_SpawnMonster;
+	announce "!! Map " + strnpcinfo(2) + " กลายเป็น Hot Map! Monster ใน Map จะเก่งขึ้น.. รวมทั้งรางวัลก็จะมากขึ้นเช่นกัน !!",bc_all,0xF6FA15;
 	end;
 	
 OnTimer60000:
