@@ -107,7 +107,7 @@
 	// Hot map dead
 OnMapMonsterDeadHotMap:
 	if(!playerattached())
-	return;
+	end;
 
 	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
 	// Reward
@@ -160,7 +160,7 @@ OnMapMonsterDeadHotMap:
 	// Normal dead
 OnMapMonsterDead:
 	if(!playerattached())
-	return;
+	end;
 
 	// Add 1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
@@ -197,7 +197,7 @@ OnMapMonsterDead:
 	
 OnMapBossDead:
 	if(!playerattached())
-	return;
+	end;
 
 	.@mapTier = getd("$map" + strnpcinfo(2) + "Tier");
 	// Reward
