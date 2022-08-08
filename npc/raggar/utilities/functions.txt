@@ -336,4 +336,3 @@ function	script	AdditionalDrop	{
 	getitem .@refineOrbId,.@refineOrbAmount;	
 	return;
 }
-
