@@ -266,7 +266,6 @@ struct s_mob_db {
 	uint32 option;
 	std::vector<std::shared_ptr<s_mob_skill>> skill;
 	uint16 damagetaken;
-	uint16 hot_map;
 
 	e_mob_bosstype get_bosstype();
 };
