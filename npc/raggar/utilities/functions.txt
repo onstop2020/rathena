@@ -321,7 +321,7 @@ function	script	AdditionalDrop	{
 	// Core Orb
 	if((.@coreOrbAmount > 0)
 			&& (rand(0,100) < .@coreOrbChance))
-	getitem .@coreOrbId,rand(1,.@coreOrbAmount);
+	getitem .@coreOrbId,.@coreOrbAmount;
 	// Gear Orb
 	if((.@gearOrbAmount > 0)
 			&& (rand(0,100) < .@gearOrbChance))
