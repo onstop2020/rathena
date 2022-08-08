@@ -104,10 +104,6 @@ OnSpecialityOrb:
 	}
 	
 	.@tier = (.@inputTier > 0) ? .@inputTier : 5;
-	
-	//1003  Fixed Cast
-	//1004  Variable Cast
-	//171  Delay Rate
 	.@optionId = (.@inputOption > 0) ? .@inputOption : GetRandomOptionId();
 	.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
 	setrandomoption(optionPartSelected,(.@slot > 0) ? (.@slot - 1) : (lastOptionSlotSelected - 1),.@optionId,.@optionValue,0);
