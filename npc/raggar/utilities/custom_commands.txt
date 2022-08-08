@@ -7,6 +7,7 @@ OnInit:
 	bindatcmd "load",strnpcinfo(3) + "::OnLoad",0,99;
 	bindatcmd "ad",strnpcinfo(3) + "::OnAd",99,99;
 	bindatcmd "boss",strnpcinfo(3) + "::OnBoss",99,99;
+	bindatcmd "so",strnpcinfo(3) + "::OnSpecialityOrb",99,99;
 	end;
 	
 OnJob2:
@@ -78,5 +79,38 @@ OnBoss:
 	end;
 	
 OnBossDead:
+	end;
+	
+OnSpecialityOrb:
+	.@slot = atoi(.@atcmd_parameters$[0]);
+	.@inputTier = atoi(.@atcmd_parameters$[1]);
+	.@inputOption = atoi(.@atcmd_parameters$[2]);
+
+	if((lastOptionSlotSelected <= 0)
+			|| (optionPartSelected <= 0))
+	end;
+	
+	if(!getequipisequiped(optionPartSelected))
+	end;
+	
+	optionItemIdSelected = getequipid(optionPartSelected);
+
+	if (callfunc("F_IsEquipIDHack",optionPartSelected,optionItemIdSelected))
+	end;
+	
+	for(.@o = 0; .@o < lastOptionSlotSelected; .@o++){
+		if(getequiprandomoption(optionPartSelected,.@o,ROA_ID) <= 0)
+		setrandomoption(optionPartSelected,.@o,1,0,0);
+	}
+	
+	.@tier = (.@inputTier > 0) ? .@inputTier : 5;
+	
+	//1003  Fixed Cast
+	//1004  Variable Cast
+	//171  Delay Rate
+	.@optionId = (.@inputOption > 0) ? .@inputOption : GetRandomOptionId();
+	.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
+	setrandomoption(optionPartSelected,(.@slot > 0) ? (.@slot - 1) : (lastOptionSlotSelected - 1),.@optionId,.@optionValue,0);
+	specialeffect2 454;
 	end;
 }

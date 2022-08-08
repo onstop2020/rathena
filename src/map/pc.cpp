@@ -6658,6 +6658,9 @@ int pc_get_skillcooldown(struct map_session_data *sd, uint16 skill_id, uint16 sk
 		}
 	}
 
+	if ((cooldown > 1000) && (sd->bonus.delayrate != 0)) // Cooldown over 1s able to reduces by delay rate bonus [Start]
+		cooldown = max(1000, (cooldown - (100 * (sd->bonus.delayrate))));
+
 	return max(0, cooldown);
 }
 
