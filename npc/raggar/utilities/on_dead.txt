@@ -41,7 +41,7 @@ OnPCDieEvent:
 					mapwarp strcharinfo(3),"prontera",155,204;
 					.deadMan$ = strcharinfo(0);
 					sleep 1000;
-					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Map " + .@i + " กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
+					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Map " + .@i + " (ระดับ " + getd("$map" + .@i + "Tier") + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
 				}
 				break;
 			}
