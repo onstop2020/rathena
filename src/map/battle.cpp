@@ -1425,10 +1425,6 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 		&& skill_get_casttype(skill_id) == CAST_GROUND )
 		return 0;
 
-	mob_data* msd = BL_CAST(BL_MOB, src); // Increases damage done for hot map [Start]
-	if (msd && (msd->db->hot_map != 0))
-		damage = i64max(damage * msd->db->hot_map, 1); // End
-
 	if (bl->type == BL_PC) {
 		sd=(struct map_session_data *)bl;
 		//Special no damage states
@@ -1840,7 +1836,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			if (md->db->damagetaken != 100)
 				damage = i64max(damage * md->db->damagetaken / 100, 1);
 
-			if (md->db->hot_map != 0) // Reduces damage received for hot map [Start]
+			if (md->db->hot_map > 0) // Reduces damage received for hot map [Start]
 				damage = i64max(damage * (100 - md->db->hot_map) / 100, 1);
 		}
 	}
@@ -2025,6 +2021,23 @@ int64 battle_calc_pk_damage(block_list &src, block_list &bl, int64 damage, uint1
 	}
 
 	return i64max(damage, 1);
+}
+
+/**
+ * Calculates Hot Map related damage adjustments.
+ * @param damage
+ * @param hot_map
+ * @return damage
+ */
+int64 battle_calc_hot_map_damage(int64 damage, uint16 hot_map)
+{
+	if (!damage) //No reductions to make.
+		return 0;
+
+	damage = damage * hot_map;
+
+	damage = i64max(damage, 1);
+	return damage;
 }
 
 /**
@@ -6020,12 +6033,17 @@ static void battle_calc_attack_gvg_bg(struct Damage* wd, struct block_list *src,
 
 		struct map_data *mapdata = map_getmapdata(target->m);
 
+		mob_data* msd = BL_CAST(BL_MOB, src);
+
 		if(!wd->damage2) {
 			wd->damage = battle_calc_damage(src,target,wd,wd->damage,skill_id,skill_lv);
 			if( mapdata_flag_gvg2(mapdata) )
 				wd->damage=battle_calc_gvg_damage(src,target,wd->damage,skill_id,wd->flag);
 			else if( mapdata->flag[MF_BATTLEGROUND] )
 				wd->damage=battle_calc_bg_damage(src,target,wd->damage,skill_id,wd->flag);
+
+			if (msd && (msd->db->hot_map > 0))
+				wd->damage = battle_calc_hot_map_damage(wd->damage, msd->db->hot_map);
 		}
 		else if(!wd->damage) {
 			wd->damage2 = battle_calc_damage(src,target,wd,wd->damage2,skill_id,skill_lv);
@@ -6033,6 +6051,9 @@ static void battle_calc_attack_gvg_bg(struct Damage* wd, struct block_list *src,
 				wd->damage2 = battle_calc_gvg_damage(src,target,wd->damage2,skill_id,wd->flag);
 			else if( mapdata->flag[MF_BATTLEGROUND] )
 				wd->damage2 = battle_calc_bg_damage(src,target,wd->damage2,skill_id,wd->flag);
+
+			if (msd && (msd->db->hot_map > 0))
+				wd->damage2 = battle_calc_hot_map_damage(wd->damage2, msd->db->hot_map);
 		}
 		else {
 			wd->damage = battle_calc_damage(src, target, wd, wd->damage, skill_id, skill_lv);
@@ -6045,6 +6066,12 @@ static void battle_calc_attack_gvg_bg(struct Damage* wd, struct block_list *src,
 				wd->damage = battle_calc_bg_damage(src, target, wd->damage, skill_id, wd->flag);
 				wd->damage2 = battle_calc_bg_damage(src, target, wd->damage2, skill_id, wd->flag);
 			}
+
+			if (msd && (msd->db->hot_map > 0)) {
+				wd->damage = battle_calc_hot_map_damage(wd->damage, msd->db->hot_map);
+				wd->damage2 = battle_calc_hot_map_damage(wd->damage2, msd->db->hot_map);
+			}
+
 			if(wd->damage > 1 && wd->damage2 < 1) wd->damage2 = 1;
 		}
 	}
