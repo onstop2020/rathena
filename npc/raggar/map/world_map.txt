@@ -95,8 +95,11 @@
 					.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
 				}
 			}
-			if(.@hotMap)
-			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDeadHotMap";
+			if(.@hotMap){
+				monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDeadHotMap";
+				// Hot map formulas = 3 * (Map Tier * 1~5)
+				setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,3 * (.@mapTier * rand(1,5)));
+			}
 			else
 			monster getd("$map" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMapMonsterDead";
 		}
@@ -177,6 +180,9 @@ OnMapMonsterDead:
 		setunitdata $@mobid[0],UMOB_HP,.@bossDatas[UMOB_MAXHP] * .@mapTier;
 		setunitdata $@mobid[0],UMOB_SPEED,max(50,.@bossDatas[UMOB_SPEED] / .@mapTier);
 		setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
+		setunitdata $@mobid[0],UMOB_DAMAGE_TAKEN,max(1,(7 - .@mapTier));
+		// Boss force hot map formula = 5 * Map Tier
+		setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,(5 * .@mapTier));
 		viewpoint 1,.@x,.@y,0,0xFF0000;
 	}
 	end;
