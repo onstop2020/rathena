@@ -49,7 +49,7 @@
 	mes .@npcName$;
 	if($hotMap == atoi(strnpcinfo(2)))
 	mes BadMessageColor("!!HOT MAP!!\n• Monster จะเก่งขึ้น\n• Monster จะให้รางวัลมากขึ้น");
-	mes NpcMessageColor("โปรดยืนยันการวาร์ป");
+	mes NpcMessageColor("โปรดยืนยันการวาร์ป (Map ระดับ: " + getd("$map" + strnpcinfo(2) + "Tier") + ")");
 	next;
 	menu "วาร์ป",L_Normal,"วาร์ป (Party)",-;
 	.@party = 1;
