@@ -490,7 +490,6 @@ enum unitdata_mobtypes {
 	UMOB_IGNORE_CELL_STACK_LIMIT,
 	UMOB_RES,
 	UMOB_MRES,
-	UMOB_DAMAGE_TAKEN, // [Start]
 	UMOB_HOT_MAP, // [Start]
 };
 

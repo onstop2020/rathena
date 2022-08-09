@@ -1836,8 +1836,8 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			if (md->db->damagetaken != 100)
 				damage = i64max(damage * md->db->damagetaken / 100, 1);
 
-			if (md->db->hot_map > 0) // Reduces damage received for hot map [Start]
-				damage = i64max(damage * (100 - md->db->hot_map) / 100, 1);
+			if (md->hot_map > 0) // Reduces damage received for hot map [Start]
+				damage = i64max(damage * (100 - md->hot_map) / 100, 1);
 		}
 	}
 
@@ -6042,8 +6042,8 @@ static void battle_calc_attack_gvg_bg(struct Damage* wd, struct block_list *src,
 			else if( mapdata->flag[MF_BATTLEGROUND] )
 				wd->damage=battle_calc_bg_damage(src,target,wd->damage,skill_id,wd->flag);
 
-			if (msd && (msd->db->hot_map > 0))
-				wd->damage = battle_calc_hot_map_damage(wd->damage, msd->db->hot_map);
+			if (msd && (msd->hot_map > 0))
+				wd->damage = battle_calc_hot_map_damage(wd->damage, msd->hot_map);
 		}
 		else if(!wd->damage) {
 			wd->damage2 = battle_calc_damage(src,target,wd,wd->damage2,skill_id,skill_lv);
@@ -6052,8 +6052,8 @@ static void battle_calc_attack_gvg_bg(struct Damage* wd, struct block_list *src,
 			else if( mapdata->flag[MF_BATTLEGROUND] )
 				wd->damage2 = battle_calc_bg_damage(src,target,wd->damage2,skill_id,wd->flag);
 
-			if (msd && (msd->db->hot_map > 0))
-				wd->damage2 = battle_calc_hot_map_damage(wd->damage2, msd->db->hot_map);
+			if (msd && (msd->hot_map > 0))
+				wd->damage2 = battle_calc_hot_map_damage(wd->damage2, msd->hot_map);
 		}
 		else {
 			wd->damage = battle_calc_damage(src, target, wd, wd->damage, skill_id, skill_lv);
@@ -6067,9 +6067,9 @@ static void battle_calc_attack_gvg_bg(struct Damage* wd, struct block_list *src,
 				wd->damage2 = battle_calc_bg_damage(src, target, wd->damage2, skill_id, wd->flag);
 			}
 
-			if (msd && (msd->db->hot_map > 0)) {
-				wd->damage = battle_calc_hot_map_damage(wd->damage, msd->db->hot_map);
-				wd->damage2 = battle_calc_hot_map_damage(wd->damage2, msd->db->hot_map);
+			if (msd && (msd->hot_map > 0)) {
+				wd->damage = battle_calc_hot_map_damage(wd->damage, msd->hot_map);
+				wd->damage2 = battle_calc_hot_map_damage(wd->damage2, msd->hot_map);
 			}
 
 			if(wd->damage > 1 && wd->damage2 < 1) wd->damage2 = 1;
