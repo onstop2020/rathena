@@ -105,7 +105,7 @@ function	script	StatusPointOrb	{
 	return;
 }
 
-// Status Point Orb
+// Trait Point Orb
 function	script	TraitPointOrb	{
 	.@points = countitem(10000042);
 	delitem 10000042,.@points;
@@ -116,7 +116,7 @@ function	script	TraitPointOrb	{
 	return;
 }
 
-// Status Point Orb
+// Skill Point Orb
 function	script	SkillPointOrb	{
 	.@points = countitem(10000043);
 	delitem 10000043,.@points;
