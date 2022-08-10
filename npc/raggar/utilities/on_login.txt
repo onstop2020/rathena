@@ -13,6 +13,8 @@ OnPCLoginEvent:
 			callfunc("Exit");
 		}
 	}
+	if($hotMap)
+	dispbottom "Hot map ขณะนี้ Map: " + $hotMap;
 	end;
 	
 OnInit:
