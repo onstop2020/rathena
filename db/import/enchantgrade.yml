@@ -50,3 +50,163 @@
 Header:
   Type: ENCHANTGRADE_DB
   Version: 1
+
+Body:
+  - Type: Armor
+    Levels:
+      - Level: 1
+        Grades:
+          - Grade: None
+            Refine: 0
+            Chance: 10000
+            Bonus: 10
+            Options:
+          - Grade: D
+            Refine: 0
+            Chance: 10000
+            Bonus: 30
+            Options:
+          - Grade: C
+            Refine: 0
+            Chance: 10000
+            Bonus: 50
+            Options:
+          - Grade: B
+            Refine: 0
+            Chance: 10000
+            Bonus: 100
+            Options:
+      - Level: 2
+        Grades:
+          - Grade: None
+            Refine: 0
+            Chance: 10000
+            Bonus: 10
+            Options:
+          - Grade: D
+            Refine: 0
+            Chance: 10000
+            Bonus: 30
+            Options:
+          - Grade: C
+            Refine: 0
+            Chance: 10000
+            Bonus: 50
+            Options:
+          - Grade: B
+            Refine: 0
+            Chance: 10000
+            Bonus: 100
+            Options:
+  - Type: Weapon
+    Levels:
+      - Level: 1
+        Grades:
+          - Grade: None
+            Refine: 0
+            Chance: 10000
+            Bonus: 10
+            Options:
+          - Grade: D
+            Refine: 0
+            Chance: 10000
+            Bonus: 30
+            Options:
+          - Grade: C
+            Refine: 0
+            Chance: 10000
+            Bonus: 50
+            Options:
+          - Grade: B
+            Refine: 0
+            Chance: 10000
+            Bonus: 100
+            Options:
+      - Level: 2
+        Grades:
+          - Grade: None
+            Refine: 0
+            Chance: 10000
+            Bonus: 10
+            Options:
+          - Grade: D
+            Refine: 0
+            Chance: 10000
+            Bonus: 30
+            Options:
+          - Grade: C
+            Refine: 0
+            Chance: 10000
+            Bonus: 50
+            Options:
+          - Grade: B
+            Refine: 0
+            Chance: 10000
+            Bonus: 100
+            Options:
+      - Level: 3
+        Grades:
+          - Grade: None
+            Refine: 0
+            Chance: 10000
+            Bonus: 10
+            Options:
+          - Grade: D
+            Refine: 0
+            Chance: 10000
+            Bonus: 30
+            Options:
+          - Grade: C
+            Refine: 0
+            Chance: 10000
+            Bonus: 50
+            Options:
+          - Grade: B
+            Refine: 0
+            Chance: 10000
+            Bonus: 100
+            Options:
+      - Level: 4
+        Grades:
+          - Grade: None
+            Refine: 0
+            Chance: 10000
+            Bonus: 10
+            Options:
+          - Grade: D
+            Refine: 0
+            Chance: 10000
+            Bonus: 30
+            Options:
+          - Grade: C
+            Refine: 0
+            Chance: 10000
+            Bonus: 50
+            Options:
+          - Grade: B
+            Refine: 0
+            Chance: 10000
+            Bonus: 100
+            Options:
+      - Level: 5
+        Grades:
+          - Grade: None
+            Refine: 0
+            Chance: 10000
+            Bonus: 10
+            Options:
+          - Grade: D
+            Refine: 0
+            Chance: 10000
+            Bonus: 30
+            Options:
+          - Grade: C
+            Refine: 0
+            Chance: 10000
+            Bonus: 50
+            Options:
+          - Grade: B
+            Refine: 0
+            Chance: 10000
+            Bonus: 100
+            Options:

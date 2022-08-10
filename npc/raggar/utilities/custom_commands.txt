@@ -8,6 +8,7 @@ OnInit:
 	bindatcmd "ad",strnpcinfo(3) + "::OnAd",99,99;
 	bindatcmd "boss",strnpcinfo(3) + "::OnBoss",99,99;
 	bindatcmd "so",strnpcinfo(3) + "::OnSpecialityOrb",99,99;
+	bindatcmd "go",strnpcinfo(3) + "::OnGearOrb",99,99;
 	end;
 	
 OnJob2:
@@ -107,5 +108,21 @@ OnSpecialityOrb:
 	.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
 	setrandomoption(optionPartSelected,(.@slot > 0) ? (.@slot - 1) : (lastOptionSlotSelected - 1),.@optionId,.@optionValue,0);
 	specialeffect2 454;
+	end;
+	
+OnGearOrb:
+	.@itemId = atoi(.@atcmd_parameters$[0]);
+	.@tier = atoi(.@atcmd_parameters$[1]);
+	.@mode = atoi(.@atcmd_parameters$[2]);
+	
+	// Uncomment to check grade bonus
+	/*setarray .@optionIds[0],1000;
+	setarray .@optionValues[0],500;
+	setarray .@optionParameters[0],0;
+	getitem3 .@itemId,1,1,0,0,0,0,0,0,.@optionIds,.@optionValues,.@optionParameters;*/
+	
+	GearOrbExchange(.@itemId,.@tier,.@mode);
+	
+	specialeffect2 837;
 	end;
 }
