@@ -574,9 +574,11 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 
 		//item->flag.no_refine = !refine;
 		item->flag.no_refine = false; // [Start]
-	} else {
+	}
+	else {
 		if (!exists)
-			item->flag.no_refine = true;
+			//item->flag.no_refine = true;
+			item->flag.no_refine = false; // [Start]
 	}
 
 	if (this->nodeExists(node, "View")) {
