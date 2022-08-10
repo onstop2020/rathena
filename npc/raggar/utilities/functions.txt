@@ -336,3 +336,19 @@ function	script	AdditionalDrop	{
 	getitem .@refineOrbId,.@refineOrbAmount;	
 	return;
 }
+
+// Get ramdom dungeon
+function	script	GetRandomDungeon	{
+	.@randomDungeon$ = $dungeonDatabases$[rand(0,(getarraysize($dungeonDatabases$) - 1))];
+	
+	L_Redo:
+	for(.@i = 0; .@i < 5; .@i++){
+		if(.@randomDungeon$ == getd("$dungeon" + .@i + "$")){
+			.@randomDungeon$ = $dungeonDatabases$[rand(0,(getarraysize($dungeonDatabases$) - 1))];
+			goto L_Redo;
+		}
+	}
+	
+	return .@randomDungeon$;
+}
+
