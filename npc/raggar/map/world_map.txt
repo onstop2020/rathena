@@ -9,6 +9,7 @@
 	.@mapIndex -= 18;
 	if(.@mapIndex == 18)
 	.@mapIndex = 0;
+	.@baseHotMap = $mapDifficultlies[.@mapIndex];
 	if
 	(
 	((.@mapIndex == 1) && !getd("$map" + (.@realMapIndex - 1) + "Occupied"))
@@ -49,7 +50,7 @@
 	mes .@npcName$;
 	if($hotMap == atoi(strnpcinfo(2)))
 	mes BadMessageColor("!!HOT MAP!!\n• Monster จะเก่งขึ้น\n• Monster จะให้รางวัลมากขึ้น");
-	mes NpcMessageColor("โปรดยืนยันการวาร์ป (Map ระดับ: " + getd("$map" + strnpcinfo(2) + "Tier") + ")");
+	mes NpcMessageColor("โปรดยืนยันการวาร์ป" + BadMessageColor("\nMap ระดับ: " + getd("$map" + strnpcinfo(2) + "Tier") + "\nความโหดระดับ: " + .@baseHotMap));
 	next;
 	menu "วาร์ป",L_Normal,"วาร์ป (Party)",-;
 	.@party = 1;
