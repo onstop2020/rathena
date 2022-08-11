@@ -84,11 +84,11 @@ OnInit:
 		
 		freeloop(0);
 		
-		$maxMonsterMapTier1 = 200;
-		$maxMonsterMapTier2 = 215;
-		$maxMonsterMapTier3 = 225;
-		$maxMonsterMapTier4 = 235;
-		$maxMonsterMapTier5 = 250;
+		$maxMonsterMapTier1 = 190;
+		$maxMonsterMapTier2 = 195;
+		$maxMonsterMapTier3 = 200;
+		$maxMonsterMapTier4 = 205;
+		$maxMonsterMapTier5 = 210;
 		
 		$maxMonsterDungeonTier1 = 111;
 		$maxMonsterDungeonTier2 = 111;
