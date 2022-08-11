@@ -7,8 +7,8 @@ OnTimer600000:
 	$hotMap = 0;
 	freeloop(1);
 	for(.@i = 0; .@i < 72; .@i++){
-		if(.@lastHotMap == .@i)
-		donpcevent "Map " + .@i + "#" + .@i + "::OnHotMapCleanUp";
+		//if(.@lastHotMap == .@i)
+		//donpcevent "Map " + .@i + "#" + .@i + "::OnHotMapCleanUp";
 		
 		// Check map was occupied
 		if(getd("$map" + .@i + "Occupied")){
