@@ -244,3 +244,9 @@ Body:
             Amount: 900
       - Index: 3
         Item: Return_Orb
+      - Index: 4
+        Item: Teleport_Orb[Dungeon]
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 1

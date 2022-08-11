@@ -8,7 +8,7 @@ OnInit:
 	bindatcmd "ad",strnpcinfo(3) + "::OnAd",99,99;
 	bindatcmd "boss",strnpcinfo(3) + "::OnBoss",99,99;
 	bindatcmd "so",strnpcinfo(3) + "::OnSpecialityOrb",99,99;
-	bindatcmd "go",strnpcinfo(3) + "::OnGearOrb",99,99;
+	bindatcmd "gearorb",strnpcinfo(3) + "::OnGearOrb",99,99;
 	end;
 	
 OnJob2:

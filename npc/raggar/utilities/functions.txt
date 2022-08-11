@@ -352,3 +352,17 @@ function	script	GetRandomDungeon	{
 	return .@randomDungeon$;
 }
 
+// Teleport Orb[Dungeon]
+function	script	TeleportOrbDungeon	{
+	for(.@i = 0; .@i < 5; .@i++){
+		if(strcharinfo(3) == getd("$dungeon" + .@i + "$")){
+			specialeffect2 830;
+			if(strcharinfo(3) != "prontera")
+			progressbar "0xF7FF00",3;
+			delitem 10000045,1;
+			warp "Random",0,0;
+			break;
+		}
+	}
+	end;
+}

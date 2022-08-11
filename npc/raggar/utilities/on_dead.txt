@@ -46,6 +46,26 @@ OnPCDieEvent:
 				break;
 			}
 		}
+		
+		for(.@i = 0; .@i < 5; .@i++){
+			if(.@deadMap$ == getd("$dungeon" + .@i + "$")){
+				// 10% Chance to unoccupied
+				if(rand(0,100) <= 10){
+					// Mark as unoccupied
+					set getd("$dungeon" + .@i + "Occupied"),0;
+					// Change map to other
+					set getd("$dungeon" + .@i + "$"),callfunc("GetRandomDungeon");
+					// Kill monster in map
+					killmonsterall strcharinfo(3);
+					// Warp everyone out from map
+					mapwarp strcharinfo(3),"prontera",155,204;
+					.deadMan$ = strcharinfo(0);
+					sleep 1000;
+					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Dungeon " + .@i + " (ระดับ " + (.@i + 1) + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
+				}
+				break;
+			}
+		}
 		freeloop(0);
 	}
 	end;

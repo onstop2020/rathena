@@ -1,0 +1,245 @@
+-	script	Dungeon	-1,{
+	specialeffect2 488;
+	// Name Setup
+	.@npcName$ = NpcNameColor(strnpcinfo(1));
+	// Is locked?
+	.@mapIndex = strnpcinfo(2);
+	.@baseHotMap = ((.@mapIndex + 1) * 10);
+	// Dungeon will check all previous stage unlike map
+	if(.@mapIndex > 0){
+		for(.@i = 1; .@i < 5; .@i++){
+			if(.@i > .@mapIndex)
+			break;
+			
+			if(!getd("$dungeon" + (.@i - 1) + "Occupied")){
+				mes .@npcName$;
+				mes NpcMessageColor("Dungeon ก่อนหน้านี้ ยังถูกครอบครองโดยฝั่ง Monster โปรดกำจัด Boss ภายใน Dungeon ก่อนหน้านี้ทั้งหมดเสียก่อน");
+				callfunc("Exit");
+				break;
+			}
+		}
+		mes .@npcName$;
+		mes NpcMessageColor(getd("$dungeon" + strnpcinfo(2) + "Occupied") ? "Dungeon นี้ถูกยึดครองโดยฝั่ง " + GoodMessageColor("ผู้เล่น") : "Dungeon นี้ถูกยึดครองโดยฝั่ง " + BadMessageColor("Monster"));
+		next;
+	}
+	mes .@npcName$;
+	mes NpcMessageColor("โปรดยืนยันการวาร์ป" + BadMessageColor("\nDungeon ระดับ: " + (.@mapIndex + 1) + "\nความโหดระดับ: " + .@baseHotMap));
+	next;
+	menu "วาร์ป",L_Normal,"วาร์ป (Party)",-;
+	.@party = 1;
+	L_Normal:
+	callsub L_SpawnMonster;
+	.@partyId = getcharid(1);
+	if(.@party
+			&& .@partyId){
+		getfreecell(getd("$dungeon" + strnpcinfo(2) + "$"),.@x,.@y);
+		warpparty getd("$dungeon" + strnpcinfo(2) + "$"),.@x,.@y,.@partyId;
+	}
+	else
+	warp getd("$dungeon" + strnpcinfo(2) + "$"),0,0;
+	callfunc("Exit");
+	
+	L_SpawnMonster:
+	.@mapIndex = strnpcinfo(2);
+	.@baseHotMap = ((.@mapIndex + 1) * 10);
+
+	.@mapTier = (.@mapIndex + 1);
+	.@leftOverMonster = getmapunits(BL_MOB,getd("$dungeon" + strnpcinfo(2) + "$"));
+	.@maxSpawnAmount = getd("$maxMonsterDungeonTier" + .@mapTier);
+	if(.@leftOverMonster < .@maxSpawnAmount){
+		.@spawnAmount = (.@maxSpawnAmount - .@leftOverMonster);
+		.@spawnAmount = max(1,(.@spawnAmount / rand(1,4)));
+		
+		freeloop(1);
+		for(.@i = 0; .@i < .@spawnAmount; .@i++){
+			if(.@mapTier == 5){
+				.@monsterId = $tier5MonsterIds[rand(0,($tier5MonsterIdSize - 1))];
+				.@lowestMonsterHp = 10000000;
+			}
+			else if(.@mapTier == 4){
+				.@monsterId = $tier4MonsterIds[rand(0,($tier4MonsterIdSize - 1))];
+				.@lowestMonsterHp = 1000000;
+			}
+			else if(.@mapTier == 3){
+				.@monsterId = $tier3MonsterIds[rand(0,($tier3MonsterIdSize - 1))];
+				.@lowestMonsterHp = 100000;
+			}
+			else if(.@mapTier == 2){
+				.@monsterId = $tier2MonsterIds[rand(0,($tier2MonsterIdSize - 1))];
+				
+				.@lowestMonsterHp = 10000;
+			}
+			else{
+				.@monsterId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
+				.@lowestMonsterHp = 1000;
+			}
+			
+			monster getd("$dungeon" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnDungeonMonsterDead";
+			getunitdata $@mobid[0],.@monsterDatas;
+			.@dungeonMonsterHp = .@monsterDatas[UMOB_MAXHP];
+			if(.@dungeonMonsterHp < .@lowestMonsterHp)
+			.@dungeonMonsterHp = (.@lowestMonsterHp * rand(1,.@mapTier));
+			.@monsterStats = min(10,(.@mapTier * rand(1,.@baseHotMap)));
+			setunitdata $@mobid[0],UMOB_MAXHP,.@dungeonMonsterHp * .@monsterStats;
+			setunitdata $@mobid[0],UMOB_HP,.@dungeonMonsterHp * .@monsterStats;
+			setunitdata $@mobid[0],UMOB_SPEED,max(50,(.@monsterDatas[UMOB_SPEED] / .@monsterStats));
+			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
+			setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,.@baseHotMap);
+		}
+		freeloop(0);
+	}
+	return;
+	
+	// Normal dead
+OnDungeonMonsterDead:
+	if(!playerattached())
+	end;
+	
+	.@mapIndex = strnpcinfo(2);
+	.@mapTier = (.@mapIndex + 1);
+
+	// Dungeon MvP
+	if((killedrid > 0)
+			&& (getmonsterinfo(killedrid,MOB_MVPEXP) > 0)){
+		// Dungeon MvP reward
+		AdditionalDrop(
+		.@mapTier 											// Tier
+		,100														// Core Orb chance
+		,rand(15,50)											// Core Orb amount
+		,75														// Gear Orb chance
+		,rand(5,15)											// Gear Orb amount
+		,50														// Speciality Orb chance
+		,rand(5,10)											// Speciality Orb amount
+		,40														// Refine Orb chance
+		,1															// Refine Orb amount
+		);
+	}
+	// Dungeon monster
+	else if((killedrid > 0)
+			&& (getmonsterinfo(killedrid,MOB_MVPEXP) <= 0)){
+		// Dungeon monster reward
+		AdditionalDrop(
+		.@mapTier 											// Tier
+		,100														// Core Orb chance
+		,rand(1,2)												// Core Orb amount
+		,20														// Gear Orb chance
+		,rand(1,2)												// Gear Orb amount
+		,10														// Speciality Orb chance
+		,rand(1,2)												// Speciality Orb amount
+		,(6 - .@mapTier)									// Refine Orb chance ( 5 / 4 / 3 / 2 / 1 )%
+		,1															// Refine Orb amount
+		);
+	}
+	
+	// Add 1% Chance to appear boss
+	set getd("$dungeon" + strnpcinfo(2) + "BossChance"),(getd("$dungeon" + strnpcinfo(2) + "BossChance") + 1);
+	if(rand(0,9) == 0)
+	announce "โอกาสที่ Boss จะปรากฎเมื่อฆ่า Monster " + callfunc("F_InsertComma",(getd("$dungeon" + strnpcinfo(2) + "BossChance"))) + "%",bc_self,0xF3A51C;
+	// Check chance is pass
+	if(rand(0,100) < getd("$dungeon" + strnpcinfo(2) + "BossChance")){
+		announce "Boss ได้ปรากฎภายใน Dungeon แล้ว!!",bc_map,0x8EF31C;
+		// Reset boss appear chance
+		set getd("$dungeon" + strnpcinfo(2) + "BossChance"),0;
+		if(.@mapTier == 5){
+			.@bossId = $tier5MonsterIds[rand(0,($tier5MonsterIdSize - 1))];
+			.@lowestBossHp = 10000000;
+		}
+		else if(.@mapTier == 4){
+			.@bossId = $tier4MonsterIds[rand(0,($tier4MonsterIdSize - 1))];
+			.@lowestBossHp = 5000000;
+		}
+		else if(.@mapTier == 3){
+			.@bossId = $tier3MonsterIds[rand(0,($tier3MonsterIdSize - 1))];
+			.@lowestBossHp = 1000000;
+		}
+		else if(.@mapTier == 2){
+			.@bossId = $tier2MonsterIds[rand(0,($tier2MonsterIdSize - 1))];
+			.@lowestBossHp = 500000;
+		}
+		else{
+			.@bossId = $tier1MonsterIds[rand(0,($tier1MonsterIdSize - 1))];
+			.@lowestBossHp = 100000;
+		}
+		
+		getfreecell(getd("$dungeon" + strnpcinfo(2) + "$"),.@x,.@y);
+		monster getd("$dungeon" + strnpcinfo(2) + "$"),.@x,.@y,"[Boss]",.@bossId,1,strnpcinfo(0) + "::OnDungeonBossDead",Size_Large;
+		// Boss bonuses
+		.@mapTier *= 2;
+		getunitdata $@mobid[0],.@bossDatas;
+		.@dungeonBossHp = .@monsterDatas[UMOB_MAXHP];
+		if(.@dungeonBossHp < .@lowestBossHp)
+		.@dungeonBossHp = (.@lowestBossHp * rand(1,.@mapTier));
+		setunitdata $@mobid[0],UMOB_MAXHP,.@dungeonBossHp * .@mapTier;
+		setunitdata $@mobid[0],UMOB_HP,.@dungeonBossHp * .@mapTier;
+		setunitdata $@mobid[0],UMOB_SPEED,max(50,.@bossDatas[UMOB_SPEED] / .@mapTier);
+		setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
+		
+		// Boss hot map formula: Base hot map + Map Tier
+		
+		// Map difficulty
+		.@baseHotMap = ((.@mapIndex + 1) * 10);
+		
+		setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,(.@baseHotMap + .@mapTier));
+		viewpoint 1,.@x,.@y,0,0xFF0000;
+	}
+	end;
+	
+OnDungeonBossDead:
+	if(!playerattached())
+	end;
+
+	// Boss reward
+	.@mapIndex = strnpcinfo(2);
+	.@mapTier = (.@mapIndex + 1);
+	
+	AdditionalDrop(
+	.@mapTier 											// Tier
+	,100														// Core Orb chance
+	,rand(10,30)											// Core Orb amount
+	,100														// Gear Orb chance
+	,rand(2,6)												// Gear Orb amount
+	,100														// Speciality Orb chance
+	,rand(2,4)												// Speciality Orb amount
+	,50														// Refine Orb chance
+	,1															// Refine Orb amount
+	);
+	
+	// Mark as occupied
+	set getd("$dungeon" + strnpcinfo(2) + "Occupied"),1;
+	// Change map to other
+	set getd("$dungeon" + strnpcinfo(2) + "$"),callfunc("GetRandomDungeon");
+	// Kill monster in map
+	killmonsterall strcharinfo(3);
+	// Warp everyone out from map
+	mapwarp strcharinfo(3),"prontera",155,204;
+	.bossKiller$ = strcharinfo(0);
+	.mapTier = .@mapTier;
+	sleep 1000;
+	announce .bossKiller$ + " ได้กำจัด Boss Dungeon " + strnpcinfo(2) + " (ระดับ " + .mapTier + ")! และยึดครอง Dungeon ดังกล่าวเรียบร้อย!!",bc_all,0x8EF31C;
+	end;
+	
+OnTimer60000:
+	if(getmapusers(getd("$dungeon" + strnpcinfo(2) + "$")))
+	callsub L_SpawnMonster;
+	initnpctimer;
+	end;
+	
+OnInit:
+	if(strnpcinfo(2) == "")
+	end;
+
+	initnpctimer;
+	end;
+}
+
+prontera,155,325,3	duplicate(Dungeon)	Dungeon 0#0	795
+prontera,155,330,3	duplicate(Dungeon)	Dungeon 1#1	796
+prontera,155,335,3	duplicate(Dungeon)	Dungeon 2#2	811
+prontera,155,340,3	duplicate(Dungeon)	Dungeon 3#3	856
+prontera,155,345,3	duplicate(Dungeon)	Dungeon 4#4	10434
+
+prontera,149,209,3	script	Zone - Dungeon	835,{
+	specialeffect2 488;
+	warp "prontera",155,317;
+	end;
+}

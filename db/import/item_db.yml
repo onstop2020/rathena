@@ -386,3 +386,9 @@ Body:
     Type: DelayConsume
     Script: |
       callfunc("ReturnOrb");
+  - Id: 10000045
+    AegisName: Teleport_Orb[Dungeon]
+    Name: Teleport Orb[Dungeon]
+    Type: Delayconsume
+    Script: |
+      callfunc("TeleportOrbDungeon");
