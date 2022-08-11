@@ -39,11 +39,9 @@ OnPCDieEvent:
 					// Change map to other
 					set getd("$map" + .@i + "$"),callfunc("GetRandomMap");
 					// Kill monster in map
-					killmonsterall strcharinfo(3);
+					//killmonsterall strcharinfo(3);
 					.deadMan$ = strcharinfo(0);
 					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Map " + .@i + " (ระดับ " + getd("$map" + .@i + "Tier") + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
-					// Warp everyone out from map
-					mapwarp strcharinfo(3),"prontera",155,204;
 				}
 				break;
 			}
@@ -58,11 +56,9 @@ OnPCDieEvent:
 					// Change map to other
 					set getd("$dungeon" + .@i + "$"),callfunc("GetRandomDungeon");
 					// Kill monster in map
-					killmonsterall strcharinfo(3);
+					//killmonsterall strcharinfo(3);
 					.deadMan$ = strcharinfo(0);
 					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Dungeon " + .@i + " (ระดับ " + (.@i + 1) + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
-					// Warp everyone out from map
-					mapwarp strcharinfo(3),"prontera",155,204;
 				}
 				break;
 			}
