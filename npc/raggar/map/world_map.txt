@@ -257,6 +257,11 @@ OnHotMap:
 OnTimer60000:
 	if(getmapusers(getd("$map" + strnpcinfo(2) + "$")))
 	callsub L_SpawnMonster;
+	else{
+		killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnMapMonsterDeadHotMap";
+		killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnMapMonsterDead";
+		killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnMapBossDead";
+	}
 	initnpctimer;
 	end;
 	
