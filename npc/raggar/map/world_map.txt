@@ -236,11 +236,10 @@ OnMapBossDead:
 	set getd("$map" + strnpcinfo(2) + "$"),callfunc("GetRandomMap");
 	// Kill monster in map
 	killmonsterall strcharinfo(3);
+	// Announce
+	announce strcharinfo(0) + " ได้กำจัด Boss Map " + strnpcinfo(2) + " (ระดับ " + .@mapTier + ")! และยึดครอง Map ดังกล่าวเรียบร้อย!!",bc_all,0x8EF31C;
 	// Warp everyone out from map
 	mapwarp strcharinfo(3),"prontera",155,204;
-	.bossKiller$ = strcharinfo(0);
-	.mapTier = .@mapTier;
-	announce .bossKiller$ + " ได้กำจัด Boss Map " + strnpcinfo(2) + " (ระดับ " + .mapTier + ")! และยึดครอง Map ดังกล่าวเรียบร้อย!!",bc_all,0x8EF31C;
 	end;
 	
 OnHotMapCleanUp:
