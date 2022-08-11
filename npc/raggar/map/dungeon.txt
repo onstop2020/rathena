@@ -131,6 +131,10 @@ OnDungeonMonsterDead:
 		);
 	}
 	
+	// Check map was not same
+	if(getd("$dungeon" + strnpcinfo(2) + "$") != strcharinfo(3))
+	end;
+
 	// Add 1% Chance to appear boss
 	set getd("$dungeon" + strnpcinfo(2) + "BossChance"),(getd("$dungeon" + strnpcinfo(2) + "BossChance") + 1);
 	if(rand(0,9) == 0)
@@ -204,6 +208,10 @@ OnDungeonBossDead:
 	,1															// Refine Orb amount
 	);
 	
+	// Check map was not same
+	if(getd("$dungeon" + strnpcinfo(2) + "$") != strcharinfo(3))
+	end;
+
 	// Mark as occupied
 	set getd("$dungeon" + strnpcinfo(2) + "Occupied"),1;
 	// Change map to other

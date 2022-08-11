@@ -164,6 +164,10 @@ OnMapMonsterDead:
 		);
 	}
 	
+	// Check map was not same
+	if(getd("$map" + strnpcinfo(2) + "$") != strcharinfo(3))
+	end;
+
 	// Add 1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
 	if(rand(0,9) == 0)
@@ -229,6 +233,10 @@ OnMapBossDead:
 	,10														// Refine Orb chance
 	,1															// Refine Orb amount
 	);
+	
+	// Check map was not same
+	if(getd("$map" + strnpcinfo(2) + "$") != strcharinfo(3))
+	end;
 	
 	// Mark as occupied
 	set getd("$map" + strnpcinfo(2) + "Occupied"),1;
