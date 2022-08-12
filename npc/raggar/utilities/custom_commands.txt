@@ -9,6 +9,7 @@ OnInit:
 	bindatcmd "boss",strnpcinfo(3) + "::OnBoss",99,99;
 	bindatcmd "so",strnpcinfo(3) + "::OnSpecialityOrb",99,99;
 	bindatcmd "gearorb",strnpcinfo(3) + "::OnGearOrb",99,99;
+	bindatcmd "checkdungeon",strnpcinfo(3) + "::OnCheckDungeon",99,99;
 	end;
 	
 OnJob2:
@@ -124,5 +125,11 @@ OnGearOrb:
 	GearOrbExchange(.@itemId,.@tier,.@mode);
 	
 	specialeffect2 837;
+	end;
+	
+OnCheckDungeon:
+	debugmes "Index: " + dungeonCheck + " | Map Name: "+ $dungeonDatabases$[dungeonCheck];
+	warp $dungeonDatabases$[dungeonCheck],0,0;
+	dungeonCheck++;
 	end;
 }
