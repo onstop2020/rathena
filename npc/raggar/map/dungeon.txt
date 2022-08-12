@@ -217,7 +217,7 @@ OnDungeonBossDead:
 	// Change map to other
 	set getd("$dungeon" + strnpcinfo(2) + "$"),callfunc("GetRandomDungeon");
 	// Kill monster in map
-	killmonsterall strcharinfo(3);
+	//killmonsterall strcharinfo(3);
 	// Announce
 	announce strcharinfo(0) + " ได้กำจัด Boss Dungeon " + strnpcinfo(2) + " (ระดับ " + .@mapTier + ")! และยึดครอง Dungeon ดังกล่าวเรียบร้อย!!",bc_all,0x8EF31C;
 	// Warp everyone out from map
