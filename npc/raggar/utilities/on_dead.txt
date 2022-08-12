@@ -10,9 +10,9 @@ OnPCDieEvent:
 
 	.@deadMap$ = strcharinfo(3);
 	
-	.killerName$ = getunitname(killerrid);
+	.@killerName$ = getunitname(killerrid);
 
-	if(.killerName$ != ""){
+	if(.@killerName$ != ""){
 		announce "คุณถูกลด All Status และ All Trait ลงไป 1 แต้ม เนื่องจากตายโดย Monster",bc_self,0xF31C1C;
 		// Decrease all status
 		statusup2 bStr,-1;
@@ -38,10 +38,13 @@ OnPCDieEvent:
 					set getd("$map" + .@i + "Occupied"),0;
 					// Change map to other
 					set getd("$map" + .@i + "$"),callfunc("GetRandomMap");
+					sleep2 1;
+					if(!playerattached())
+					end;
 					// Kill monster in map
-					//killmonsterall strcharinfo(3);
-					.deadMan$ = strcharinfo(0);
-					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Map " + .@i + " (ระดับ " + getd("$map" + .@i + "Tier") + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
+					killmonsterall strcharinfo(3);
+					announce strcharinfo(0) + " ถูกฆ่าอย่างเลือดเย็นโดย " + .@killerName$ + ".. และ Monster ได้ยึดครอง Map " + .@i + " (ระดับ " + getd("$map" + .@i + "Tier") + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
+					mapwarp strcharinfo(3),"prontera",155,204;
 				}
 				break;
 			}
@@ -55,10 +58,13 @@ OnPCDieEvent:
 					set getd("$dungeon" + .@i + "Occupied"),0;
 					// Change map to other
 					set getd("$dungeon" + .@i + "$"),callfunc("GetRandomDungeon");
+					sleep2 1;
+					if(!playerattached())
+					end;
 					// Kill monster in map
-					//killmonsterall strcharinfo(3);
-					.deadMan$ = strcharinfo(0);
-					announce .deadMan$ + " ถูกฆ่าอย่างเลือดเย็นโดย " + .killerName$ + ".. และ Monster ได้ยึดครอง Dungeon " + .@i + " (ระดับ " + (.@i + 1) + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
+					killmonsterall strcharinfo(3);
+					announce strcharinfo(0) + " ถูกฆ่าอย่างเลือดเย็นโดย " + .@killerName$ + ".. และ Monster ได้ยึดครอง Dungeon " + .@i + " (ระดับ " + (.@i + 1) + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
+					mapwarp strcharinfo(3),"prontera",155,204;
 				}
 				break;
 			}

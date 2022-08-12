@@ -163,10 +163,6 @@ OnMapMonsterDead:
 		,1															// Refine Orb amount
 		);
 	}
-	
-	// Check map was not same
-	if(getd("$map" + strnpcinfo(2) + "$") != strcharinfo(3))
-	end;
 
 	// Add 1% Chance to appear boss
 	set getd("$map" + strnpcinfo(2) + "BossChance"),getd("$map" + strnpcinfo(2) + "BossChance") + 1;
@@ -234,20 +230,16 @@ OnMapBossDead:
 	,1															// Refine Orb amount
 	);
 	
-	// Check map was not same
-	if(getd("$map" + strnpcinfo(2) + "$") != strcharinfo(3))
-	end;
-	
 	// Mark as occupied
 	set getd("$map" + strnpcinfo(2) + "Occupied"),1;
 	// Change map to other
 	set getd("$map" + strnpcinfo(2) + "$"),callfunc("GetRandomMap");
 	// Kill monster in map
-	//killmonsterall strcharinfo(3);
+	killmonsterall strcharinfo(3);
 	// Announce
 	announce strcharinfo(0) + " ได้กำจัด Boss Map " + strnpcinfo(2) + " (ระดับ " + .@mapTier + ")! และยึดครอง Map ดังกล่าวเรียบร้อย!!",bc_all,0x8EF31C;
 	// Warp everyone out from map
-	//mapwarp strcharinfo(3),"prontera",155,204;
+	mapwarp strcharinfo(3),"prontera",155,204;
 	end;
 	
 OnHotMapCleanUp:
@@ -255,8 +247,8 @@ OnHotMapCleanUp:
 	end;
 	
 OnHotMap:
-	//killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnMapMonsterDead";
-	//callsub L_SpawnMonster;
+	killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnMapMonsterDead";
+	callsub L_SpawnMonster;
 	announce "!! Map " + strnpcinfo(2) + " กลายเป็น Hot Map! Monster ใน Map จะเก่งขึ้นและมีรางวัลมากขึ้น !!",bc_all,0xF6FA15;
 	end;
 	
