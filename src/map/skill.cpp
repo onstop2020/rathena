@@ -18581,7 +18581,7 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 		if (sd->bonus.fixcastrate != 0)
 			fixcast_r -= sd->bonus.fixcastrate; // bonus bFixedCastrate
 		if (sd->bonus.add_varcast != 0)
-			time += sd->bonus.add_varcast; // bonus bVariableCast
+			time = max(0,(time + sd->bonus.add_varcast)); // bonus bVariableCast
 		if (sd->bonus.add_fixcast != 0)
 			fixed += sd->bonus.add_fixcast; // bonus bFixedCast
 		for (const auto &it : sd->skillfixcast) {
