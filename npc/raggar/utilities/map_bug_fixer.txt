@@ -1,0 +1,8 @@
+prontera,161,209,3	script	แก้ตัวบัคใน Map เด้ง	406,{
+	mes "ต้องการให้ทุกตัวละคร กลับมายัง Prontera หรือไม่";
+	next;
+	menu "ใช่",-;
+	query_sql "UPDATE `char` SET `last_map` = 'prontera' WHERE `account_id` = '" + getcharid(3) + "'";
+	mes "เรียบร้อยแล้ว";
+	close;
+}
