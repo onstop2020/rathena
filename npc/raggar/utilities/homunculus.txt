@@ -2,9 +2,9 @@ prontera,118,226,6	script	ริกะ	10122,{
 	if(gethominfo(0) > 0){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
-		mes NpcMessageColor("ต้องการทำให้ Homunculus อิ่มและสนิทสนม หรือไม่?");
+		mes NpcMessageColor("ต้องการทำอะไรให้ Homunculus งั้นหรือ?");
 		next;
-		menu "ต้องการ",-;
+		menu "ให้อาหารและเลี้ยงดู Homunculus",-,"Level Up Homunculus",L_LevelUp;
 		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
 		mes .npcName$;
 		mes NpcMessageColor("เรียบร้อย!");
@@ -21,6 +21,39 @@ prontera,118,226,6	script	ริกะ	10122,{
 		callfunc("Exit");
 	}
 	
+	L_LevelUp:
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("ค่าใช้จ่ายต่อ Level คือ (Level Homunculus) Point Orb");
+	next;
+	menu "+1 Level",L_OneTime,"จนกว่าจะตัน",-;
+	.@allIn = 1;
+	L_OneTime:
+	// Required Item Id
+	.@pointOrbId = 10000040;
+	// Check Homunculus S
+	.@maxLevel = ((gethominfo(1) >= 6009) && (gethominfo(1) <= 6016)) ? 175 : 99;
+	// Get Homunculus Level
+	.@homuculusLevel = gethominfo(6);
+	
+	.@levelGained = 0;
+	freeloop(1);
+	dispbottom ".@homuculusLevel: " + .@homuculusLevel;
+	dispbottom ".@maxLevel: " + .@maxLevel;
+	while((countitem(.@pointOrbId) >= .@homuculusLevel) && (.@homuculusLevel < .@maxLevel)){
+		delitem .@pointOrbId,.@homuculusLevel;
+		.@homuculusLevel++;
+		.@levelGained++;
+		dispbottom ".@homuculusLevel: " + .@homuculusLevel;
+	dispbottom ".@maxLevel: " + .@maxLevel;
+		atcommand "@homlevel 1";
+		if(!.@allIn)
+		break;
+	}
+	freeloop(0);
+	dispbottom "Homunculus ของคุณได้รับ " + F_InsertComma(.@levelGained) + " Level";
+	callfunc("Exit");
+	
 OnInit:
 	// Name Setup
 	.npcName$ = NpcNameColor(strnpcinfo(0));
@@ -28,7 +61,7 @@ OnInit:
 	setarray .npcNormalFacials$,"ep16cook_king_2";
 	setarray .npcActionFacials$,"ep16cook_king_1";
 	// Information
-	waitingroom "Homunculus อิ่มและสนิทสนม",0;
+	waitingroom "Homunculus อิ่ม, สนิท, Lv.",0;
 	end;
 }
 
