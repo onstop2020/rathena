@@ -4,6 +4,7 @@
 	.@npcName$ = NpcNameColor(strnpcinfo(1));
 	// Is locked?
 	.@mapIndex = strnpcinfo(2);
+	.@mapTier = (.@mapIndex + 1);
 	.@baseHotMap = ((.@mapIndex + 1) * 20);
 	// Points information
 	if(.@mapTier == 5)
@@ -148,7 +149,6 @@ OnTimer60000:
 	callsub L_SpawnMonster;
 	else{
 		killmonster getd("$saviour" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnSaviourMonsterDead";
-		killmonster getd("$saviour" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnSaviourBossDead";
 	}
 	initnpctimer;
 	end;
