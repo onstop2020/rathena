@@ -128,7 +128,7 @@ OnSaviourMonsterDead:
 	set getd("$saviour" + strnpcinfo(2) + "BossChance"),(getd("$saviour" + strnpcinfo(2) + "BossChance") + 1);
 	announce "Saviour ÃÐ´ÑºµèÍä»¨Ð»Å´ÅêÍ¤ËÅÑ§¨Ò¡¦èÒ MvP " + callfunc("F_InsertComma",(getd("$saviour" + strnpcinfo(2) + "BossChance"))) + "/100 µÑÇ",bc_map,0xF3A51C;
 	// Check chance is pass
-	if(getd("$dungeon" + strnpcinfo(2) + "BossChance") >= 100){
+	if(getd("$saviour" + strnpcinfo(2) + "BossChance") >= 100){
 		set getd("$saviour" + strnpcinfo(2) + "BossChance"),0;
 		// Mark as occupied
 		set getd("$saviour" + strnpcinfo(2) + "Occupied"),1;
