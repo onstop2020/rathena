@@ -30,9 +30,43 @@ prontera,187,241,3	script	เบล	10079,{
 		mes .npcName$;
 		mes NpcMessageColor("ท่านเลือกที่จะแลก " + getitemname(.@requiredItem) + " เป็นอุปกรณ์สวมใส่ประเภทใด?");
 		next;
-		.@mode = select("อาวุธ:อุปกรณ์สวมใส่:อุปกรณ์สวมใส่ช่อง Costume:ยกเลิก");
-		if(.@mode == 4)
+		.@mode = select("อาวุธ:อุปกรณ์สวมใส่:อุปกรณ์สวมใส่ช่อง Costume:" + BadMessageColor("ต้องการพลังโจมตีขั้นต่ำ " + ((gearOrbAttackMin <= 0) ? "-" : callfunc("F_InsertComma",gearOrbAttackMin))) + ":" + BadMessageColor("ต้องการพลังป้องกันขั้นต่ำ " + ((gearOrbDefenseMin <= 0) ? "-" : callfunc("F_InsertComma",gearOrbDefenseMin))) + ":ยกเลิก");
+		if(.@mode == 6)
 		callfunc("Exit");
+		else if(.@mode == 4)
+		{
+			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+			mes .npcName$;
+			mes NpcMessageColor("โปรดระบุพลังโจมตีขั้นต่ำที่ต้องการ (1~" + callfunc("F_InsertComma",1000) + ")\n" + BadMessageColor("*โปรดระวัง หากสุ่มได้ต่ำกว่าจะเสีย Orb ฟรี"));
+			next;
+			input .@min;
+			if((.@min >= 1)
+					&& (.@min <= 1000)){
+				gearOrbAttackMin = .@min;
+			}
+			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+			mes .npcName$;
+			mes NpcMessageColor("พลังโจมตีขั้นต่ำที่ต้องการ " + callfunc("F_InsertComma",gearOrbAttackMin));
+			next;
+			callfunc("Exit");
+		}
+		else if(.@mode == 5)
+		{
+			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+			mes .npcName$;
+			mes NpcMessageColor("โปรดระบุพลังป้องกันขั้นต่ำที่ต้องการ (1~" + callfunc("F_InsertComma",50) + ")\n" + BadMessageColor("*โปรดระวัง หากสุ่มได้ต่ำกว่าจะเสีย Orb ฟรี"));
+			next;
+			input .@min;
+			if((.@min >= 1)
+					&& (.@min <= 50)){
+				gearOrbDefenseMin = .@min;
+			}
+			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+			mes .npcName$;
+			mes NpcMessageColor("พลังป้องกันขั้นต่ำที่ต้องการ " + callfunc("F_InsertComma",gearOrbDefenseMin));
+			next;
+			callfunc("Exit");
+		}
 		else{
 			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 			mes .npcName$;

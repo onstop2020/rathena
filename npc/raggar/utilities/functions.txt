@@ -155,11 +155,17 @@ function	script	GearOrbExchange	{
 		if(.@mode == 1){
 			setarray .@optionIds[0],1000;
 			setarray .@optionValues[0],(.@tier == 1) ? rand(1,50) : (.@tier == 2) ? rand(50,100) : (.@tier == 3) ? rand(100,250) : (.@tier == 4) ? rand(250,500) : rand(500,1000);
+			if(gearOrbAttackMin
+					&& (.@optionValues[0] < gearOrbAttackMin))
+			return;
 		}
 		// Equipment, Costume
 		else{
 			setarray .@optionIds[0],20;
 			setarray .@optionValues[0],(.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,5) : (.@tier == 3) ? rand(5,10) : (.@tier == 4) ? rand(10,25) : rand(25,50);
+			if(gearOrbDefenseMin
+					&& (.@optionValues[0] < gearOrbDefenseMin))
+			return;
 		}
 		setarray .@optionParameters[0],0;
 		getitem3 .@itemId,1,1,0,0,0,0,0,0,.@optionIds,.@optionValues,.@optionParameters;

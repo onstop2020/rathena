@@ -250,3 +250,9 @@ Body:
           - Index: 0
             Item: Points_Orb
             Amount: 1
+      - Index: 5
+        Item: Inventory_Ex
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 1500
