@@ -220,8 +220,8 @@ OnTimer60000:
 	if(getmapusers(getd("$dungeon" + strnpcinfo(2) + "$")))
 	callsub L_SpawnMonster;
 	else{
-		killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnDungeonMonsterDead";
-		killmonster getd("$map" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnDungeonBossDead";
+		killmonster getd("$dungeon" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnDungeonMonsterDead";
+		killmonster getd("$dungeon" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnDungeonBossDead";
 	}
 	initnpctimer;
 	end;
@@ -234,14 +234,14 @@ OnInit:
 	end;
 }
 
-prontera,155,325,3	duplicate(Dungeon)	Dungeon 0#0	795
-prontera,155,330,3	duplicate(Dungeon)	Dungeon 1#1	796
-prontera,155,335,3	duplicate(Dungeon)	Dungeon 2#2	811
-prontera,155,340,3	duplicate(Dungeon)	Dungeon 3#3	856
-prontera,155,345,3	duplicate(Dungeon)	Dungeon 4#4	10434
+prontera,155,305,3	duplicate(Dungeon)	Dungeon 0#0	795
+prontera,155,310,3	duplicate(Dungeon)	Dungeon 1#1	796
+prontera,155,315,3	duplicate(Dungeon)	Dungeon 2#2	811
+prontera,155,320,3	duplicate(Dungeon)	Dungeon 3#3	856
+prontera,155,325,3	duplicate(Dungeon)	Dungeon 4#4	10434
 
 prontera,149,209,3	script	Zone - Dungeon	835,{
 	specialeffect2 488;
-	warp "prontera",155,317;
+	warp "prontera",155,300;
 	end;
 }

@@ -13,7 +13,6 @@ OnPCDieEvent:
 	.@killerName$ = getunitname(killerrid);
 
 	if(.@killerName$ != ""){
-		announce "คุณถูกลด All Status และ All Trait ลงไป 1 แต้ม เนื่องจากตายโดย Monster",bc_self,0xF31C1C;
 		// Decrease all status
 		statusup2 bStr,-1;
 		statusup2 bAgi,-1;
@@ -63,7 +62,30 @@ OnPCDieEvent:
 				break;
 			}
 		}
+		
+		for(.@i = 0; .@i < 5; .@i++){
+			if(.@deadMap$ == getd("$saviour" + .@i + "$")){
+				.@isSaviourMap = 1;
+				saviourRanking--;
+				// 10% Chance to unoccupied
+				if(rand(0,100) <= 10){
+					set getd("$saviour" + .@i + "BossChance"),0;
+					// Mark as unoccupied
+					set getd("$saviour" + .@i + "Occupied"),0;
+					// Change map to other
+					set getd("$saviour" + .@i + "$"),callfunc("GetRandomDungeon");
+					// Kill monster in map
+					killmonsterall strcharinfo(3);
+					announce strcharinfo(0) + " ถูกฆ่าอย่างเลือดเย็นโดย " + .@killerName$ + ".. และ Monster ได้ยึดครอง Saviour " + .@i + " (ระดับ " + (.@i + 1) + ") กลับไปเป็นของพวกมัน..",bc_all,0xF31C1C;
+					mapwarp strcharinfo(3),"prontera",155,204;
+				}
+				break;
+			}
+		}
+		
 		freeloop(0);
+		
+		announce "คุณถูกลด " + (.@isSaviourMap ? "แต้ม Saviour, " : "") + "All Status และ All Trait ลงไป 1 แต้ม เนื่องจากตายโดย Monster",bc_self,0xF31C1C;
 	}
 	end;
 }

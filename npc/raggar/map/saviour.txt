@@ -1,0 +1,193 @@
+-	script	Saviour	-1,{
+	specialeffect2 488;
+	// Name Setup
+	.@npcName$ = NpcNameColor(strnpcinfo(1));
+	// Is locked?
+	.@mapIndex = strnpcinfo(2);
+	.@baseHotMap = ((.@mapIndex + 1) * 20);
+	// Points information
+	if(.@mapTier == 5)
+	.@saviourRanking = 100;
+	else if(.@mapTier == 4)
+	.@saviourRanking = 35;
+	else if(.@mapTier == 3)
+	.@saviourRanking = 15;
+	else if(.@mapTier == 2)
+	.@saviourRanking = 5;
+	else
+	.@saviourRanking = 1;
+	// Saviour will check all previous stage like dungeon
+	if(.@mapIndex > 0){
+		for(.@i = 1; .@i < 5; .@i++){
+			if(.@i > .@mapIndex)
+			break;
+			
+			if(!getd("$saviour" + (.@i - 1) + "Occupied")){
+				mes .@npcName$;
+				mes NpcMessageColor("Saviour ก่อนหน้านี้ ยังถูกครอบครองโดยฝั่ง Monster โปรดล้างบาง Saviour ก่อนหน้านี้ทั้งหมดเสียก่อน");
+				callfunc("Exit");
+				break;
+			}
+		}
+		mes .@npcName$;
+		mes NpcMessageColor(getd("$saviour" + strnpcinfo(2) + "Occupied") ? "Saviour นี้ถูกยึดครองโดยฝั่ง " + GoodMessageColor("ผู้เล่น") : "Saviour นี้ถูกยึดครองโดยฝั่ง " + BadMessageColor("Monster"));
+		next;
+	}
+	mes .@npcName$;
+	mes NpcMessageColor("โปรดยืนยันการวาร์ป" + BadMessageColor("\nSaviour ระดับ: " + (.@mapIndex + 1) + "\nความโหดระดับ: " + .@baseHotMap + "\nแต้มที่ได้รับต่อการฆ่า: " + callfunc("F_InsertComma",.@saviourRanking)));
+	next;
+	menu "วาร์ป",L_Normal,"วาร์ป (Party)",-;
+	.@party = 1;
+	L_Normal:
+	callsub L_SpawnMonster;
+	.@partyId = getcharid(1);
+	if(.@party
+			&& .@partyId){
+		getfreecell(getd("$saviour" + strnpcinfo(2) + "$"),.@x,.@y);
+		warpparty getd("$saviour" + strnpcinfo(2) + "$"),.@x,.@y,.@partyId;
+	}
+	else
+	warp getd("$saviour" + strnpcinfo(2) + "$"),0,0;
+	callfunc("Exit");
+	
+	L_SpawnMonster:
+	.@mapIndex = strnpcinfo(2);
+	.@baseHotMap = ((.@mapIndex + 1) * 20);
+
+	.@mapTier = (.@mapIndex + 1);
+	.@leftOverMonster = getmapunits(BL_MOB,getd("$saviour" + strnpcinfo(2) + "$"));
+	.@maxSpawnAmount = getd("$maxMonsterDungeonTier" + .@mapTier); // Same amount as dungeon
+	if(.@leftOverMonster < .@maxSpawnAmount){
+		.@spawnAmount = (.@maxSpawnAmount - .@leftOverMonster);
+		.@spawnAmount = max(1,(.@spawnAmount / rand(1,4)));
+		
+		freeloop(1);
+		for(.@i = 0; .@i < .@spawnAmount; .@i++){
+			.@monsterId = $mvpIds[rand(0,($mvpIdSize - 1))];
+			if(.@mapTier == 5)
+			.@lowestMonsterHp = 2000000000;
+			else if(.@mapTier == 4)
+			.@lowestMonsterHp = 1000000000;
+			else if(.@mapTier == 3)
+			.@lowestMonsterHp = 500000000;
+			else if(.@mapTier == 2)
+			.@lowestMonsterHp = 100000000;
+			else
+			.@lowestMonsterHp = 50000000;
+			
+			monster getd("$saviour" + strnpcinfo(2) + "$"),0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnSaviourMonsterDead";
+			getunitdata $@mobid[0],.@monsterDatas;
+			.@saviourMonsterHp = .@monsterDatas[UMOB_MAXHP];
+			if(.@saviourMonsterHp < .@lowestMonsterHp)
+			.@saviourMonsterHp = .@lowestMonsterHp;
+			setunitdata $@mobid[0],UMOB_MAXHP,.@saviourMonsterHp;
+			setunitdata $@mobid[0],UMOB_HP,.@saviourMonsterHp;
+			setunitdata $@mobid[0],UMOB_SPEED,max(50,(.@monsterDatas[UMOB_SPEED] / .@mapTier));
+			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
+			setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,.@baseHotMap);
+		}
+		freeloop(0);
+	}
+	return;
+	
+	// Normal dead
+OnSaviourMonsterDead:
+	if(!playerattached())
+	end;
+	
+	.@mapIndex = strnpcinfo(2);
+	.@mapTier = (.@mapIndex + 1);
+
+	// Dungeon MvP reward
+	AdditionalDrop(
+	.@mapTier 											// Tier
+	,100														// Core Orb chance
+	,rand(15,50)											// Core Orb amount
+	,90														// Gear Orb chance
+	,rand(5,15)											// Gear Orb amount
+	,75														// Speciality Orb chance
+	,rand(5,10)											// Speciality Orb amount
+	,50														// Refine Orb chance
+	,1															// Refine Orb amount
+	);
+	
+	if(.@mapTier == 5)
+	saviourRanking += 100;
+	else if(.@mapTier == 4)
+	saviourRanking += 35;
+	else if(.@mapTier == 3)
+	saviourRanking += 15;
+	else if(.@mapTier == 2)
+	saviourRanking += 5;
+	else
+	saviourRanking += 1;
+
+	dispbottom "Saviour Ranking Points: " + callfunc("F_InsertComma",saviourRanking);
+
+	// Add 1% Chance to appear boss
+	set getd("$saviour" + strnpcinfo(2) + "BossChance"),(getd("$saviour" + strnpcinfo(2) + "BossChance") + 1);
+	announce "Saviour ระดับต่อไปจะปลดล๊อคหลังจากฆ่า MvP " + callfunc("F_InsertComma",(getd("$saviour" + strnpcinfo(2) + "BossChance"))) + "/100 ตัว",bc_map,0xF3A51C;
+	// Check chance is pass
+	if(getd("$dungeon" + strnpcinfo(2) + "BossChance") >= 100){
+		set getd("$saviour" + strnpcinfo(2) + "BossChance"),0;
+		// Mark as occupied
+		set getd("$saviour" + strnpcinfo(2) + "Occupied"),1;
+		// Change map to other
+		set getd("$saviour" + strnpcinfo(2) + "$"),callfunc("GetRandomDungeon");
+		// Kill monster in map
+		killmonsterall strcharinfo(3);
+		// Announce
+		announce "Saviour " + strnpcinfo(2) + " (ระดับ " + .@mapTier + ")! ถูกยึดครองโดยฝั่งผู้เล่นเรียบร้อย!!",bc_all,0x8EF31C;
+		// Warp everyone out from map
+		mapwarp strcharinfo(3),"prontera",155,204;
+	}
+	end;
+	
+OnTimer60000:
+	if(getmapusers(getd("$saviour" + strnpcinfo(2) + "$")))
+	callsub L_SpawnMonster;
+	else{
+		killmonster getd("$saviour" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnSaviourMonsterDead";
+		killmonster getd("$saviour" + strnpcinfo(2) + "$"),strnpcinfo(0) + "::OnSaviourBossDead";
+	}
+	initnpctimer;
+	end;
+	
+OnInit:
+	if(strnpcinfo(2) == "")
+	end;
+
+	initnpctimer;
+	end;
+}
+
+prontera,155,330,3	duplicate(Saviour)	Saviour 0#0	10270
+prontera,155,335,3	duplicate(Saviour)	Saviour 1#1	10277
+prontera,155,340,3	duplicate(Saviour)	Saviour 2#2	20820
+prontera,155,345,3	duplicate(Saviour)	Saviour 3#3	10279
+prontera,155,350,3	duplicate(Saviour)	Saviour 4#4	10275
+
+prontera,175,175,1	script	อันดับ Saviour	973,{
+	specialeffect2 488;
+	query_sql("SELECT `char_id`,`value` FROM `char_reg_num` WHERE `key` = 'saviourRanking' ORDER BY `value` DESC LIMIT 10",.@charId,.@killCount);
+	if(getarraysize(.@charId) <= 0){
+		mes .npcName$;
+		mes NpcMessageColor("ยังไม่มีผู้ใดชนะ Saviour..");
+	}
+	else{
+		mes .npcName$;
+		mes NpcMessageColor("จัดอันดับ Saviour");
+		for(.@i = 0; .@i < getarraysize(.@charId); .@i++){
+			query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@i] + "'",.@rankName$);	
+			mes (.@i + 1) + ".) " + .@rankName$ + " (" + callfunc("F_InsertComma",.@killCount[.@i]) + " แต้ม)";
+		}
+	}
+	close;
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Information
+	waitingroom "อันดับ Saviour",0;
+	end;
+}

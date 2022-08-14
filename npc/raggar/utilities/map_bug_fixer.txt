@@ -1,8 +1,24 @@
-prontera,161,209,3	script	แก้ตัวบัคใน Map เด้ง	406,{
-	mes "ต้องการให้ทุกตัวละคร กลับมายัง Prontera หรือไม่";
+prontera,112,232,5	script	มาร์ตี้	51,{
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("ต้องการให้ทุกตัวละคร กลับมายัง Prontera หรือไม่?");
 	next;
 	menu "ใช่",-;
 	query_sql "UPDATE `char` SET `last_map` = 'prontera' WHERE `account_id` = '" + getcharid(3) + "'";
-	mes "เรียบร้อยแล้ว";
-	close;
+	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("เรียบร้อยแล้ว");
+	next;
+	callfunc("Exit");
+	
+OnInit:
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"3rd_mins_bardsong01","3rd_mins_bardsong02";
+	setarray .npcActionFacials$,"3rd_mins_bardsong04";
+	setarray .npcAngryFacials$,"3rd_mins_bardsong03";
+	// Information
+	waitingroom "แก้ตัวละครบัคใน Map เกมเด้ง",0;
+	end;
 }

@@ -85,6 +85,10 @@ OnInit:
 		for(.@i = 0; .@i < 5; .@i++)
 		set getd("$dungeon" + .@i + "$"),callfunc("GetRandomDungeon");
 		
+		// Set saviour for first time
+		for(.@i = 0; .@i < 5; .@i++)
+		set getd("$saviour" + .@i + "$"),callfunc("GetRandomDungeon");
+		
 		freeloop(0);
 		
 		$maxMonsterMapTier1 = 190;

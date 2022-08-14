@@ -349,6 +349,14 @@ function	script	GetRandomDungeon	{
 		}
 	}
 	
+	L_Redo2:
+	for(.@i = 0; .@i < 5; .@i++){
+		if(.@randomDungeon$ == getd("$saviour" + .@i + "$")){
+			.@randomDungeon$ = $dungeonDatabases$[rand(0,(getarraysize($dungeonDatabases$) - 1))];
+			goto L_Redo2;
+		}
+	}
+	
 	return .@randomDungeon$;
 }
 
