@@ -363,7 +363,8 @@ function	script	GetRandomDungeon	{
 // Teleport Orb[Dungeon]
 function	script	TeleportOrbDungeon	{
 	for(.@i = 0; .@i < 5; .@i++){
-		if(strcharinfo(3) == getd("$dungeon" + .@i + "$")){
+		if((strcharinfo(3) == getd("$dungeon" + .@i + "$"))
+				|| (strcharinfo(3) == getd("$saviour" + .@i + "$"))){
 			specialeffect2 830;
 			if(strcharinfo(3) != "prontera")
 			progressbar "0xF7FF00",3;
