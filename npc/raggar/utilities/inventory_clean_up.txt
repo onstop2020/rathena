@@ -1,7 +1,7 @@
 prontera,199,241,3	script	ลุงลี	923,{
 	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 	mes .npcName$;
-	mes NpcMessageColor("ต้องการ " + BadMessageColor("ลบ Item ทุกชิ้นที่ไม่ได้ Favourite เอาไว้ หรือกำลังสวมใส่อยู่") + " หรือไม่?\n" + GoodMessageColor("*จะไม่ลบ Item ของทาง RAGGAR ออก"));
+	mes NpcMessageColor("ต้องการ " + BadMessageColor("ลบ Item ทุกชิ้นที่ไม่ได้ Favourite เอาไว้ หรือไม่ได้สวมใส่อยู่") + " หรือไม่?\n" + GoodMessageColor("*จะไม่ลบ Item ของทาง RAGGAR ออก"));
 	next;
 	menu "ไม่ใช่",-,"ใช่",L_DoIt;
 	callfunc("Exit");
