@@ -120,6 +120,8 @@ prontera,193,235,3	script	โคลอี้	665,{
 	
 	.@optionId = GetRandomOptionId();
 	.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
+	if(getiteminfo(optionItemIdSelected,ITEMINFO_LOCATIONS) == 34)
+	.@optionValue *= 2;
 	setrandomoption(optionPartSelected,lastOptionSlotSelected - 1,.@optionId,.@optionValue,0);
 	specialeffect2 454;
 	callfunc("Exit");
