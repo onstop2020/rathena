@@ -37,11 +37,11 @@ prontera,187,241,3	script	àºÅ	10079,{
 		{
 			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 			mes .npcName$;
-			mes NpcMessageColor("â»Ã´ÃĞºØ¾ÅÑ§â¨ÁµÕ¢Ñé¹µèÓ·ÕèµéÍ§¡ÒÃ (1~" + callfunc("F_InsertComma",1000) + ")\n" + BadMessageColor("*â»Ã´ÃĞÇÑ§ ËÒ¡ÊØèÁä´éµèÓ¡ÇèÒ¨ĞàÊÕÂ Orb ¿ÃÕ"));
+			mes NpcMessageColor("â»Ã´ÃĞºØ¾ÅÑ§â¨ÁµÕ¢Ñé¹µèÓ·ÕèµéÍ§¡ÒÃ (1~" + callfunc("F_InsertComma",2000) + ")\n" + BadMessageColor("*â»Ã´ÃĞÇÑ§ ËÒ¡ÊØèÁä´éµèÓ¡ÇèÒ¨ĞàÊÕÂ Orb ¿ÃÕ"));
 			next;
 			input .@min;
 			if((.@min >= 1)
-					&& (.@min <= 1000)){
+					&& (.@min <= 2000)){
 				gearOrbAttackMin = .@min;
 			}
 			callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
