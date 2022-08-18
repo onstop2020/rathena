@@ -377,9 +377,8 @@ function	script	TeleportOrbDungeon	{
 		if((strcharinfo(3) == getd("$dungeon" + .@i + "$"))
 				|| (strcharinfo(3) == getd("$saviour" + .@i + "$"))){
 			specialeffect2 830;
-			if(strcharinfo(3) != "prontera")
-			progressbar "0xF7FF00",3;
 			delitem 10000045,1;
+			progressbar "0xF7FF00",3;
 			warp "Random",0,0;
 			break;
 		}
@@ -391,7 +390,6 @@ function	script	TeleportOrbDungeon	{
 function	script	TeleportCrystal	{
 	specialeffect2 830;
 	progressbar "0xF7FF00",rand(getarg(0,10),10);
-	delitem getarg(1,0),1;
 	warp "Random",0,0;
 	end;
 }
