@@ -4250,53 +4250,77 @@ const std::string MobDatabase::getDefaultLocation() {
 //bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node, uint8 max, s_mob_drop *drops) {
 bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node, uint8 max, s_mob_drop *drops, int lv) {
 	int core_orb_item_id = 0;
+	int core_orb_rate = 0;
 	int speciality_orb_item_id = 0;
+	int speciality_orb_rate = 0;
 	int gear_orb_item_id = 0;
+	int gear_orb_rate = 0;
 	int refine_orb_item_id = 0;
-	if (lv <= 29) {
-		core_orb_item_id = 10000020;
-		speciality_orb_item_id = 10000025;
-		gear_orb_item_id = 10000030;
-		refine_orb_item_id = 10000035;
+	int refine_orb_rate = 0;
+	if (lv <= battle_config.tier_1_max_monster_level) {
+		core_orb_item_id = battle_config.core_orb_normal_id;
+		core_orb_rate = battle_config.core_orb_normal_rate;
+		speciality_orb_item_id = battle_config.speciality_orb_normal_id;
+		speciality_orb_rate = battle_config.speciality_orb_normal_rate;
+		gear_orb_item_id = battle_config.gear_orb_normal_id;
+		gear_orb_rate = battle_config.gear_orb_normal_rate;
+		refine_orb_item_id = battle_config.refine_orb_normal_id;
+		refine_orb_rate = battle_config.refine_orb_normal_rate;
 	}
-	else if (lv <= 50) {
-		core_orb_item_id = 10000021;
-		speciality_orb_item_id = 10000026;
-		gear_orb_item_id = 10000031;
-		refine_orb_item_id = 10000036;
+	else if (lv <= battle_config.tier_2_max_monster_level) {
+		core_orb_item_id = battle_config.core_orb_rare_id;
+		core_orb_rate = battle_config.core_orb_rare_rate;
+		speciality_orb_item_id = battle_config.speciality_orb_rare_id;
+		speciality_orb_rate = battle_config.speciality_orb_rare_rate;
+		gear_orb_item_id = battle_config.gear_orb_rare_id;
+		gear_orb_rate = battle_config.gear_orb_rare_rate;
+		refine_orb_item_id = battle_config.refine_orb_rare_id;
+		refine_orb_rate = battle_config.refine_orb_rare_rate;
 	}
-	else if (lv <= 99) {
-		core_orb_item_id = 10000022;
-		speciality_orb_item_id = 10000027;
-		gear_orb_item_id = 10000032;
-		refine_orb_item_id = 10000037;
+	else if (lv <= battle_config.tier_3_max_monster_level) {
+		core_orb_item_id = battle_config.core_orb_epic_id;
+		core_orb_rate = battle_config.core_orb_epic_rate;
+		speciality_orb_item_id = battle_config.speciality_orb_epic_id;
+		speciality_orb_rate = battle_config.speciality_orb_epic_rate;
+		gear_orb_item_id = battle_config.gear_orb_epic_id;
+		gear_orb_rate = battle_config.gear_orb_epic_rate;
+		refine_orb_item_id = battle_config.refine_orb_epic_id;
+		refine_orb_rate = battle_config.refine_orb_epic_rate;
 	}
-	else if (lv <= 150) {
-		core_orb_item_id = 10000023;
-		speciality_orb_item_id = 10000028;
-		gear_orb_item_id = 10000033;
-		refine_orb_item_id = 10000038;
+	else if (lv <= battle_config.tier_4_max_monster_level) {
+		core_orb_item_id = battle_config.core_orb_mystical_id;
+		core_orb_rate = battle_config.core_orb_mystical_rate;
+		speciality_orb_item_id = battle_config.speciality_orb_mystical_id;
+		speciality_orb_rate = battle_config.speciality_orb_mystical_rate;
+		gear_orb_item_id = battle_config.gear_orb_mystical_id;
+		gear_orb_rate = battle_config.gear_orb_mystical_rate;
+		refine_orb_item_id = battle_config.refine_orb_mystical_id;
+		refine_orb_rate = battle_config.refine_orb_mystical_rate;
 	}
 	else {
-		core_orb_item_id = 10000024;
-		speciality_orb_item_id = 10000029;
-		gear_orb_item_id = 10000034;
-		refine_orb_item_id = 10000039;
+		core_orb_item_id = battle_config.core_orb_legendary_id;
+		core_orb_rate = battle_config.core_orb_legendary_rate;
+		speciality_orb_item_id = battle_config.speciality_orb_legendary_id;
+		speciality_orb_rate = battle_config.speciality_orb_legendary_rate;
+		gear_orb_item_id = battle_config.gear_orb_legendary_id;
+		gear_orb_rate = battle_config.gear_orb_legendary_rate;
+		refine_orb_item_id = battle_config.refine_orb_legendary_id;
+		refine_orb_rate = battle_config.refine_orb_legendary_rate;
 	}
 	drops[0].nameid = core_orb_item_id;
-	drops[0].rate = 10000;
+	drops[0].rate = core_orb_rate;
 	drops[0].steal_protected = true;
 	drops[0].randomopt_group = 0;
 	drops[1].nameid = speciality_orb_item_id;
-	drops[1].rate = 500;
+	drops[1].rate = speciality_orb_rate;
 	drops[1].steal_protected = true;
 	drops[1].randomopt_group = 0;
 	drops[2].nameid = gear_orb_item_id;
-	drops[2].rate = 1000;
+	drops[2].rate = gear_orb_rate;
 	drops[2].steal_protected = true;
 	drops[2].randomopt_group = 0;
 	drops[3].nameid = refine_orb_item_id;
-	drops[3].rate = 10;
+	drops[3].rate = refine_orb_rate;
 	drops[3].steal_protected = true;
 	drops[3].randomopt_group = 0;
 

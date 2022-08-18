@@ -150,7 +150,7 @@ Body:
           - Index: 0
             Item: Points_Orb
             Amount: 50
-  - Name: ·≈° Haste Crystal
+  - Name: ·≈° Teleport Crystal
     Map: prontera
     X: 178
     Y: 226
@@ -158,61 +158,61 @@ Body:
     Sprite: 4_VENDING_MACHINE
     Items:
       - Index: 0
-        Item: Haste_Crystal_Lv._1
+        Item: Teleport_Crystal_Lv._1
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 1
       - Index: 1
-        Item: Haste_Crystal_Lv._2
+        Item: Teleport_Crystal_Lv._2
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 2
       - Index: 2
-        Item: Haste_Crystal_Lv._3
+        Item: Teleport_Crystal_Lv._3
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 3
       - Index: 3
-        Item: Haste_Crystal_Lv._4
+        Item: Teleport_Crystal_Lv._4
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 4
       - Index: 4
-        Item: Haste_Crystal_Lv._5
+        Item: Teleport_Crystal_Lv._5
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 5
       - Index: 5
-        Item: Haste_Crystal_Lv._6
+        Item: Teleport_Crystal_Lv._6
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 10
       - Index: 6
-        Item: Haste_Crystal_Lv._7
+        Item: Teleport_Crystal_Lv._7
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 15
       - Index: 7
-        Item: Haste_Crystal_Lv._8
+        Item: Teleport_Crystal_Lv._8
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 20
       - Index: 8
-        Item: Haste_Crystal_Lv._9
+        Item: Teleport_Crystal_Lv._9
         RequiredItems:
           - Index: 0
             Item: Points_Orb
             Amount: 25
       - Index: 9
-        Item: Haste_Crystal_Lv._10
+        Item: Teleport_Crystal_Lv._10
         RequiredItems:
           - Index: 0
             Item: Points_Orb
@@ -235,13 +235,13 @@ Body:
         RequiredItems:
           - Index: 0
             Item: Points_Orb
-            Amount: 1500
+            Amount: 500
       - Index: 2
         Item: Skill_Point_Orb
         RequiredItems:
           - Index: 0
             Item: Points_Orb
-            Amount: 900
+            Amount: 300
       - Index: 3
         Item: Return_Orb
       - Index: 4
@@ -255,4 +255,4 @@ Body:
         RequiredItems:
           - Index: 0
             Item: Points_Orb
-            Amount: 1500
+            Amount: 100

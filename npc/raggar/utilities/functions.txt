@@ -386,3 +386,12 @@ function	script	TeleportOrbDungeon	{
 	}
 	end;
 }
+
+// Teleport Crystal
+function	script	TeleportCrystal	{
+	specialeffect2 830;
+	progressbar "0xF7FF00",rand(getarg(0,10),10);
+	delitem getarg(1,0),1;
+	warp "Random",0,0;
+	end;
+}

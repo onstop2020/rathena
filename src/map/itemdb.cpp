@@ -369,7 +369,9 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "Classes")) {
-		const auto& classNode = node["Classes"];
+		item->class_upper = ITEMJ_ALL; // [Start]
+
+		/*const auto& classNode = node["Classes"];
 
 		if (this->nodeExists(classNode, "All")) {
 			bool active;
@@ -409,7 +411,7 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				item->class_upper |= constant;
 			else
 				item->class_upper &= ~constant;
-		}
+		}*/
 	} else {
 		if (!exists)
 			item->class_upper = ITEMJ_ALL;

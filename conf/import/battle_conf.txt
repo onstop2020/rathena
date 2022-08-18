@@ -1,0 +1,49 @@
+tier_1_max_monster_level: 15
+tier_2_max_monster_level: 50
+tier_3_max_monster_level: 99
+tier_4_max_monster_level: 150
+tier_5_max_monster_level: 10000
+
+core_orb_normal_id: 10000020
+core_orb_normal_rate: 10000
+core_orb_rare_id: 10000021
+core_orb_rare_rate: 8500
+core_orb_epic_id: 10000022
+core_orb_epic_rate: 7500
+core_orb_mystical_id: 10000023
+core_orb_mystical_rate: 5000
+core_orb_legendary_id: 10000024
+core_orb_legendary_rate: 2000
+ 
+speciality_orb_normal_id: 10000025
+speciality_orb_normal_rate: 4800
+speciality_orb_rare_id: 10000026
+speciality_orb_rare_rate: 2400
+speciality_orb_epic_id: 10000027
+speciality_orb_epic_rate: 1200
+speciality_orb_mystical_id: 10000028
+speciality_orb_mystical_rate: 600
+speciality_orb_legendary_id: 10000029
+speciality_orb_legendary_rate: 300
+ 
+gear_orb_normal_id: 10000030
+gear_orb_normal_rate: 5500
+gear_orb_rare_id: 10000031
+gear_orb_rare_rate: 3500
+gear_orb_epic_id: 10000032
+gear_orb_epic_rate: 2000
+gear_orb_mystical_id: 10000033
+gear_orb_mystical_rate: 1000
+gear_orb_legendary_id: 10000034
+gear_orb_legendary_rate: 500
+  
+refine_orb_normal_id: 10000035
+refine_orb_normal_rate: 300
+refine_orb_rare_id: 10000036
+refine_orb_rare_rate: 100
+refine_orb_epic_id: 10000037
+refine_orb_epic_rate: 50
+refine_orb_mystical_id: 10000038
+refine_orb_mystical_rate: 30
+refine_orb_legendary_id: 10000039
+refine_orb_legendary_rate: 10

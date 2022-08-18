@@ -179,95 +179,95 @@ Body:
     Script: |
       percentheal 100,100;
   - Id: 10000010
-    AegisName: Haste_Crystal_Lv._1
-    Name: Haste Crystal Lv. 1
-    Type: Healing
-    Delay:
-      Duration: 10000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,3000,10000;
-  - Id: 10000011
-    AegisName: Haste_Crystal_Lv._2
-    Name: Haste Crystal Lv. 2
-    Type: Healing
-    Delay:
-      Duration: 9000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,3000,10000;
-  - Id: 10000012
-    AegisName: Haste_Crystal_Lv._3
-    Name: Haste Crystal Lv. 3
-    Type: Healing
-    Delay:
-      Duration: 8000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,3000,10000;
-  - Id: 10000013
-    AegisName: Haste_Crystal_Lv._4
-    Name: Haste Crystal Lv. 4
-    Type: Healing
-    Delay:
-      Duration: 7000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,3000,10000;
-  - Id: 10000014
-    AegisName: Haste_Crystal_Lv._5
-    Name: Haste Crystal Lv. 5
-    Type: Healing
-    Delay:
-      Duration: 6000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,3000,10000;
-  - Id: 10000015
-    AegisName: Haste_Crystal_Lv._6
-    Name: Haste Crystal Lv. 6
-    Type: Healing
-    Delay:
-      Duration: 5000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,3000,10000;
-  - Id: 10000016
-    AegisName: Haste_Crystal_Lv._7
-    Name: Haste Crystal Lv. 7
-    Type: Healing
-    Delay:
-      Duration: 4000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,3000,10000;
-  - Id: 10000017
-    AegisName: Haste_Crystal_Lv._8
-    Name: Haste Crystal Lv. 8
-    Type: Healing
-    Delay:
-      Duration: 3000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,3000,10000;
-  - Id: 10000018
-    AegisName: Haste_Crystal_Lv._9
-    Name: Haste Crystal Lv. 9
-    Type: Healing
-    Delay:
-      Duration: 2000
-      Status: Reuse_Limit_G
-    Script: |
-      sc_start SC_SPEEDUP0,6000,10000;
-  - Id: 10000019
-    AegisName: Haste_Crystal_Lv._10
-    Name: Haste Crystal Lv. 10
+    AegisName: Teleport_Crystal_Lv._1
+    Name: Teleport Crystal Lv. 1
     Type: Healing
     Delay:
       Duration: 1000
       Status: Reuse_Limit_G
     Script: |
-      sc_start SC_SPEEDUP0,9000,10000;
+      callfunc("TeleportCrystal",10,10000010);
+  - Id: 10000011
+    AegisName: Teleport_Crystal_Lv._2
+    Name: Teleport Crystal Lv. 2
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",9,10000011);
+  - Id: 10000012
+    AegisName: Teleport_Crystal_Lv._3
+    Name: Teleport Crystal Lv. 3
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",8,10000012);
+  - Id: 10000013
+    AegisName: Teleport_Crystal_Lv._4
+    Name: Teleport Crystal Lv. 4
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",7,10000013);
+  - Id: 10000014
+    AegisName: Teleport_Crystal_Lv._5
+    Name: Teleport Crystal Lv. 5
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",6,10000014);
+  - Id: 10000015
+    AegisName: Teleport_Crystal_Lv._6
+    Name: Teleport Crystal Lv. 6
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",5,10000015);
+  - Id: 10000016
+    AegisName: Teleport_Crystal_Lv._7
+    Name: Teleport Crystal Lv. 7
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",4,10000016);
+  - Id: 10000017
+    AegisName: Teleport_Crystal_Lv._8
+    Name: Teleport Crystal Lv. 8
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",3,10000017);
+  - Id: 10000018
+    AegisName: Teleport_Crystal_Lv._9
+    Name: Teleport Crystal Lv. 9
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",2,10000018);
+  - Id: 10000019
+    AegisName: Teleport_Crystal_Lv._10
+    Name: Teleport Crystal Lv. 10
+    Type: Healing
+    Delay:
+      Duration: 1000
+      Status: Reuse_Limit_G
+    Script: |
+      callfunc("TeleportCrystal",1,10000019);
   - Id: 10000020
     AegisName: Core_Orb[Normal]
     Name: Core Orb[Normal]
