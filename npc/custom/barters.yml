@@ -85,8 +85,8 @@ Body:
             Amount: 1
   - Name: แลก Life Crystal
     Map: prontera
-    X: 175
-    Y: 229
+    X: 178
+    Y: 226
     Direction: South
     Sprite: 4_VENDING_MACHINE
     Items:
@@ -152,8 +152,8 @@ Body:
             Amount: 50
   - Name: แลก Teleport Crystal
     Map: prontera
-    X: 178
-    Y: 226
+    X: 181
+    Y: 223
     Direction: South
     Sprite: 4_VENDING_MACHINE
     Items:
@@ -219,8 +219,8 @@ Body:
             Amount: 35
   - Name: แลก Orb ตัวละคร
     Map: prontera
-    X: 181
-    Y: 223
+    X: 175
+    Y: 229
     Direction: South
     Sprite: 4_STAR_BOX_POW1
     Items:
@@ -256,3 +256,34 @@ Body:
           - Index: 0
             Item: Points_Orb
             Amount: 100
+  - Name: แลก Refine Orb
+    Map: prontera
+    X: 184
+    Y: 220
+    Direction: South
+    Sprite: 4_VENDING_MACHINE
+    Items:
+      - Index: 0
+        Item: Refine_Orb[Normal]
+        RequiredItems:
+          - Index: 0
+            Item: Refine_Orb[Rare]
+            Amount: 3
+      - Index: 1
+        Item: Refine_Orb[Rare]
+        RequiredItems:
+          - Index: 0
+            Item: Refine_Orb[Epic]
+            Amount: 3
+      - Index: 2
+        Item: Refine_Orb[Epic]
+        RequiredItems:
+          - Index: 0
+            Item: Refine_Orb[Mystical]
+            Amount: 3
+      - Index: 3
+        Item: Refine_Orb[Mystical]
+        RequiredItems:
+          - Index: 0
+            Item: Refine_Orb[Legendary]
+            Amount: 3
