@@ -7,13 +7,13 @@ tier_5_max_monster_level: 10000
 core_orb_normal_id: 10000020
 core_orb_normal_rate: 10000
 core_orb_rare_id: 10000021
-core_orb_rare_rate: 8500
+core_orb_rare_rate: 9000
 core_orb_epic_id: 10000022
-core_orb_epic_rate: 7500
+core_orb_epic_rate: 8000
 core_orb_mystical_id: 10000023
-core_orb_mystical_rate: 5000
+core_orb_mystical_rate: 7000
 core_orb_legendary_id: 10000024
-core_orb_legendary_rate: 2000
+core_orb_legendary_rate: 6000
  
 speciality_orb_normal_id: 10000025
 speciality_orb_normal_rate: 4800
