@@ -4,7 +4,9 @@
 	.@npcName$ = NpcNameColor(strnpcinfo(1));
 	// Is locked?
 	.@mapIndex = strnpcinfo(2);
-	.@baseHotMap = ((.@mapIndex + 1) * 10);
+	.@baseHotMap = ((.@mapIndex + 1) * 2);
+	mes .@npcName$;
+	Debuff((.@mapIndex + 1));
 	// Dungeon will check all previous stage unlike map
 	if(.@mapIndex > 0){
 		for(.@i = 1; .@i < 5; .@i++){
@@ -41,7 +43,7 @@
 	
 	L_SpawnMonster:
 	.@mapIndex = strnpcinfo(2);
-	.@baseHotMap = ((.@mapIndex + 1) * 10);
+	.@baseHotMap = ((.@mapIndex + 1) * 2);
 
 	.@mapTier = (.@mapIndex + 1);
 	.@leftOverMonster = getmapunits(BL_MOB,getd("$dungeon" + strnpcinfo(2) + "$"));
@@ -177,7 +179,7 @@ OnDungeonMonsterDead:
 		// Boss hot map formula: Base hot map + Map Tier
 		
 		// Map difficulty
-		.@baseHotMap = ((.@mapIndex + 1) * 10);
+		.@baseHotMap = ((.@mapIndex + 1) * 2);
 		
 		setunitdata $@mobid[0],UMOB_HOT_MAP,min(99,(.@baseHotMap + .@mapTier));
 		viewpoint 1,.@x,.@y,0,0xFF0000;

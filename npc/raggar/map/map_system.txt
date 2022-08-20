@@ -5,8 +5,9 @@
 OnTimer600000:
 	.@lastHotMap = $hotMap;
 	$hotMap = 0;
+	.@startAt = rand(0,71);
 	freeloop(1);
-	for(.@i = 0; .@i < 72; .@i++){
+	for(.@i = .@startAt; .@i < 72; .@i++){
 		if(.@lastHotMap == .@i)
 		donpcevent "Map " + .@i + "#" + .@i + "::OnHotMapCleanUp";
 		

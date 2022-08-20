@@ -393,3 +393,51 @@ function	script	TeleportCrystal	{
 	warp "Random",0,0;
 	end;
 }
+
+// Debuff
+function	script	Debuff	{
+	.@easyValue = getarg(0,0);
+	.@allStatusValue = (5 * (.@easyValue ? .@easyValue : getarg(1,1)));
+	.@allTraitValue = (2 * (.@easyValue ? .@easyValue : getarg(2,1)));
+	.@delayRateValue = (3 * (.@easyValue ? .@easyValue : getarg(3,1)));
+	.@criticalValue = (3 * (.@easyValue ? .@easyValue : getarg(4,1)));
+	.@fleeValue = (3 * (.@easyValue ? .@easyValue : getarg(5,1)));
+	.@damageValue = (30 * (.@easyValue ? .@easyValue : getarg(6,1)));
+	.@hitValue = (10 * (.@easyValue ? .@easyValue : getarg(7,1)));
+	.@aspdValue =  (1 * (.@easyValue ? .@easyValue : getarg(8,1)));
+	.@fixedCastValue = (5 *(.@easyValue ? .@easyValue : getarg(9,1)));
+	.@variableCastValue = (25 *(.@easyValue ? .@easyValue : getarg(10,1)));
+	.@defenseValue = (1 * (.@easyValue ? .@easyValue : getarg(11,1)));
+	bonus_script_clear 1;
+	bonus_script 
+	"bonus2 bSubClass,Class_All,-" + .@defenseValue + ";" +
+	"bonus bVariableCast," + .@variableCastValue + ";" +
+	"bonus bFixedCast," + .@fixedCastValue + ";" +
+	"bonus bAspd,-" + .@aspdValue + ";" +
+	"bonus bHit,-" + .@hitValue + ";" +
+	"bonus2 bMagicAddClass,Class_All,-" + .@damageValue + ";" +
+	"bonus2 bAddClass,Class_All,-" + .@damageValue + ";" +
+	"bonus bFlee,-" + .@fleeValue + ";" +
+	"bonus bCritical,-" + .@criticalValue + ";" +
+	"bonus bDelayrate," + .@delayRateValue + ";" +
+	"bonus bAllTraitStats,-" + .@allTraitValue + ";" +
+	"bonus bAllStats,-" + .@allStatusValue + ";",
+	86400000,
+	512,
+	2;
+	mes NpcMessageColor("คุณโดนโทษ");
+	mes BadMessageColor("• All Status -" + F_InsertComma(.@allStatusValue));
+	mes BadMessageColor("• All Trait -" + F_InsertComma(.@allTraitValue));
+	mes BadMessageColor("• หน่วงหลังร่าย นานขึ้น " + F_InsertComma(.@delayRateValue) + "%");
+	mes BadMessageColor("• Critical -" + F_InsertComma(.@criticalValue));
+	mes BadMessageColor("• Flee -" + F_InsertComma(.@fleeValue));
+	mes BadMessageColor("• พลังโจมตีกายภาพ -" + F_InsertComma(.@damageValue) + "%");
+	mes BadMessageColor("• พลังโจมตีเวทย์ -" + F_InsertComma(.@damageValue) + "%");
+	mes BadMessageColor("• Hit -" + F_InsertComma(.@hitValue));
+	mes BadMessageColor("• Aspd -" + F_InsertComma(.@aspdValue));
+	mes BadMessageColor("• ร่าย Fixed Cast นานขึ้น " + F_InsertComma(.@fixedCastValue) + " มิลลิวินาที");
+	mes BadMessageColor("• ร่าย Variable Cast นานขึ้น " + F_InsertComma(.@variableCastValue) + " มิลลิวินาที");
+	mes BadMessageColor("• พลังป้องกันทุกชนิด -" + F_InsertComma(.@defenseValue) + "%");
+	next;
+	return;
+}
