@@ -124,22 +124,20 @@ prontera,193,235,3	script	โคลอี้	665,{
 	else
 	.@tier = 1;
 	
-	.@isDoubleValue = (getiteminfo(optionItemIdSelected,ITEMINFO_LOCATIONS) == 34);
+	.@valueMultiplier = GetLocationsPowerMultiplier(getiteminfo(optionItemIdSelected,ITEMINFO_LOCATIONS));
 	
 	if(lastOptionSlotSelected == -1){
 		for(.@o = 1; .@o < 5; .@o++){
 			.@optionId = GetRandomOptionId();
 			.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
-			if(.@isDoubleValue)
-			.@optionValue *= 2;
+			.@optionValue *= .@valueMultiplier;
 			setrandomoption(optionPartSelected,.@o,.@optionId,.@optionValue,0);
 		}
 	}
 	else{
 		.@optionId = GetRandomOptionId();
 		.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
-		if(.@isDoubleValue)
-		.@optionValue *= 2;
+		.@optionValue *= .@valueMultiplier;
 		setrandomoption(optionPartSelected,lastOptionSlotSelected - 1,.@optionId,.@optionValue,0);
 	}
 	

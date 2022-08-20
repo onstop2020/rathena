@@ -40,6 +40,20 @@ function	script	Exit	{
 	end;
 }
 
+// Get power multiplier from equipment location
+function	script	GetLocationsPowerMultiplier	{
+	.@locations = getarg(0,0);
+	if((.@locations == 769)
+			|| (.@locations == 7168))
+	return 3;
+	else if((.@locations == 34)
+			|| (.@locations == 768)
+			|| (.@locations == 3072))
+	return 2;
+	else
+	return 1;
+}
+
 // Get ramdom map
 function	script	GetRandomMap	{
 	.@randomMap$ = $mapDatabases$[rand(0,(getarraysize($mapDatabases$) - 1))];
@@ -147,7 +161,7 @@ function	script	GearOrbExchange	{
 	.@itemId = getarg(0,0);
 	.@tier = getarg(1,1);
 	.@mode = getarg(2,0);
-	.@isTwoHanded = (getiteminfo(.@itemId,ITEMINFO_LOCATIONS) == 34);
+	.@valueMultiplier = GetLocationsPowerMultiplier(getiteminfo(.@itemId,ITEMINFO_LOCATIONS));
 	if((.@itemId <= 0)
 			|| (.@mode <= 0))
 	return;
@@ -156,8 +170,7 @@ function	script	GearOrbExchange	{
 		if(.@mode == 1){
 			setarray .@optionIds[0],1000;
 			setarray .@optionValues[0],(.@tier == 1) ? rand(1,50) : (.@tier == 2) ? rand(50,100) : (.@tier == 3) ? rand(100,250) : (.@tier == 4) ? rand(250,500) : rand(500,1000);
-			if(.@isTwoHanded)
-			setarray .@optionValues[0],.@optionValues[0] * 2;
+			setarray .@optionValues[0],.@optionValues[0] * .@valueMultiplier;
 			if(gearOrbAttackMin
 					&& (.@optionValues[0] < gearOrbAttackMin))
 			return;
@@ -166,8 +179,7 @@ function	script	GearOrbExchange	{
 		else{
 			setarray .@optionIds[0],20;
 			setarray .@optionValues[0],(.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,5) : (.@tier == 3) ? rand(5,10) : (.@tier == 4) ? rand(10,25) : rand(25,50);
-			if(.@isTwoHanded)
-			setarray .@optionValues[0],.@optionValues[0] * 2;
+			setarray .@optionValues[0],.@optionValues[0] * .@valueMultiplier;
 			if(gearOrbDefenseMin
 					&& (.@optionValues[0] < gearOrbDefenseMin))
 			return;

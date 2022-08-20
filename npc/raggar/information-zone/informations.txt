@@ -9,18 +9,22 @@ prontera,180,180,1	script	เจนนี่	862,{
 	"การหา Boss",L_6,
 	"การตีบวก",L_3,
 	"การเพิ่มค่าประสบการณ์",L_4,
+	"Skill ไหน Critical ได้บ้าง?",L_8,
+	"Level และ Grade ของอุปกรณ์สวมใส่?",L_9,
 	"คำสั่งที่ใช้ได้",L_5,
 	"มีการเติมเงินหรือไม่?",L_7,
 	"ยกเลิก",-;
 	callfunc("Exit");
 
 	L_1: callsub L_Talk,"การตายจะโดนลด All Status และ All Trait ลง 1 ดังนั้นจงระมัดระวังให้ดี! นอกจากนั้นยังมีโอกาส 10% ที่จะโดนเหล่า Monster ยึดครอง Map นั้น ๆ คืน ทำให้ไม่สามารถไป Map ที่สูงกว่าได้ 1 ระดับ";
-	L_2: callsub L_Talk,"• Core Orb\n• Gear Orb\n• Speciality Orb\n• Refine Orb\nพิมพ์ @mi 1002\n*Boss จะ Drop Orb เยอะกว่าหลายเท่าตัว\n*Dungeon จะ Drop Orb เยอะกว่าหลายเท่าตัว\n*Saviour จะ Drop Orb เยอะกว่าหลายเท่าตัว";
+	L_2: callsub L_Talk,"• Core Orb\n• Gear Orb\n• Speciality Orb\n• Refine Orb\n*Boss จะ Drop Orb เยอะกว่าหลายเท่าตัว\n*Dungeon จะ Drop Orb เยอะกว่าหลายเท่าตัว\n*Saviour จะ Drop Orb เยอะกว่าหลายเท่าตัว";
 	L_3: callsub L_Talk,"ใช้เพียง Refine Orb โดยหากตีบวกแตก จำนวนตีบวก ของอุปกรณ์สวมใส่นั้น ๆ จะลดลง 1";
 	L_4: callsub L_Talk,"ใช้ Core Orb เพื่อรับค่าประสบการณ์ หากไม่ต้องการใช้จนหมด แนะนำให้เก็บใส่คลังเก็บของเสียก่อน";
 	L_5: callsub L_Talk,"• @who\n• @who2\n• @who3\n• @mi\n• @load\n";
 	L_6: callsub L_Talk,"ทำการฆ่าเหล่า Monster ไปเรื่อย ๆ เมื่อ Boss ปรากฎจะมีประกาศ จากนั้นให้ดูที่ Minimap แล้วไปตามจุดดังกล่าว โดยมันจะตัวใหญ่ขึ้น, มี MaxHP ที่มากขึ้น, เคลื่อนที่เร็วขึ้น, โดน Damage น้อยลงและทำ Damage มากขึ้น";
 	L_7: callsub L_Talk,"ไม่มี แต่ยังสามารถซื้อขายกันเองได้ตามปกติ หากต้องการสนับสนุน RAGGAR ให้ติดต่อลงโฆษณาแทน สามารถติดต่อได้ที่ <URL>Discord<INFO>https://discord.gg/RBPfeBrUcK</INFO></URL>\n(User: Start#1356)\nPackage โฆษณา\n• แสดงข้อความตอนเข้าสู่เกม (7 วัน) - 88 THB\n• แสดงข้อความตอนเข้าสู่เกม (15 วัน) - 151 THB\n• แสดงข้อความตอนเข้าสู่เกม (30 วัน) - 212 THB";
+	L_8: callsub L_Talk,"ทุก Skill สามารถ Critical ได้ โดยจะอิงอัตราการติดตามการโจมตีปกติ";
+	L_9: callsub L_Talk,"ยิ่ง Level อุปกรณ์สวมใส่สูงและ Grade อุปกรณ์สวมใส่สูง จะส่งผลที่ดีขึ้น ให้กับค่าพลังที่เพิ่มขึ้นจากการตีบวก";
 	
 	L_Talk:
 	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
