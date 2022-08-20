@@ -1,7 +1,8 @@
 prontera,193,235,3	script	โคลอี้	665,{
 	// Quick tap
 	.@quickTap = 0;
-	if(lastOptionSlotSelected > 1){
+	if((lastOptionSlotSelected > 1)
+			|| (lastOptionSlotSelected == -1)){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
 		mes NpcMessageColor("ต้องการทำซ้ำแบบที่เลือกก่อนหน้านี้หรือไม่?");
@@ -60,12 +61,14 @@ prontera,193,235,3	script	โคลอี้	665,{
 		mes NpcMessageColor("โปรดระบุช่องที่ต้องการ");
 		next;
 		if(lastOptionSlotSelected > 1)
-		.@optionSlot = select("ช่องล่าสุด (" + lastOptionSlotSelected + "):ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ยกเลิก");
+		.@optionSlot = select("ช่องล่าสุด (" + lastOptionSlotSelected + "):ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ทุกช่อง (ใช้ 4 Orb):ยกเลิก");
 		else
-		.@optionSlot = select("ช่องล่าสุด (-):ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ยกเลิก");
-		if((.@optionSlot == 6)
+		.@optionSlot = select("ช่องล่าสุด (-):ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ทุกช่อง (ใช้ 4 Orb):ยกเลิก");
+		if((.@optionSlot == 7)
 				|| ((.@optionSlot == 1) && (lastOptionSlotSelected <= 1)))
 		callfunc("Exit");
+		else if(.@optionSlot == 6)
+		.@optionSlot = -1;
 		else if(.@optionSlot == 1)
 		.@optionSlot = lastOptionSlotSelected;
 		lastOptionSlotSelected = .@optionSlot;
@@ -88,20 +91,23 @@ prontera,193,235,3	script	โคลอี้	665,{
 		specialityOrbSelected = 10000029;
 	}
 	
+	.@orbRequiredAmount = ((lastOptionSlotSelected == -1) ? 4 : 1);
+	
 	// Speciality Orb checking
-	if(!countitem(specialityOrbSelected)
+	if((countitem(specialityOrbSelected) < .@orbRequiredAmount)
 			|| (specialityOrbSelected <= 0)){
 		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
 		mes .npcName$;
-		mes NpcMessageColor("ท่านไม่มี " + getitemname(specialityOrbSelected) + " อยู่เลย");
+		mes NpcMessageColor("ต้องการ " + F_InsertComma(.@orbRequiredAmount) + " " + getitemname(specialityOrbSelected));
 		next;
 		callfunc("Exit");
 	}
 	
-	delitem specialityOrbSelected,1;
+	delitem specialityOrbSelected,.@orbRequiredAmount;
 	
+	.@loopAmount = ((lastOptionSlotSelected == -1) ? 5 : lastOptionSlotSelected);
 	// Option index below should not null
-	for(.@o = 0; .@o < lastOptionSlotSelected; .@o++){
+	for(.@o = 0; .@o < .@loopAmount; .@o++){
 		if(getequiprandomoption(optionPartSelected,.@o,ROA_ID) <= 0)
 		setrandomoption(optionPartSelected,.@o,1,1,0);
 	}
@@ -118,12 +124,30 @@ prontera,193,235,3	script	โคลอี้	665,{
 	else
 	.@tier = 1;
 	
-	.@optionId = GetRandomOptionId();
-	.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
-	if(getiteminfo(optionItemIdSelected,ITEMINFO_LOCATIONS) == 34)
-	.@optionValue *= 2;
-	setrandomoption(optionPartSelected,lastOptionSlotSelected - 1,.@optionId,.@optionValue,0);
+	.@isDoubleValue = (getiteminfo(optionItemIdSelected,ITEMINFO_LOCATIONS) == 34);
+	
+	if(lastOptionSlotSelected == -1){
+		for(.@o = 1; .@o < 5; .@o++){
+			.@optionId = GetRandomOptionId();
+			.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
+			if(.@isDoubleValue)
+			.@optionValue *= 2;
+			setrandomoption(optionPartSelected,.@o,.@optionId,.@optionValue,0);
+		}
+	}
+	else{
+		.@optionId = GetRandomOptionId();
+		.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
+		if(.@isDoubleValue)
+		.@optionValue *= 2;
+		setrandomoption(optionPartSelected,lastOptionSlotSelected - 1,.@optionId,.@optionValue,0);
+	}
+	
 	specialeffect2 454;
+	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
+	mes .npcName$;
+	for(.@o = 0; .@o < 5; .@o++)
+	mes NpcMessageColor("[" + (.@o + 1) + "] " + GetRandomOptionName(getequiprandomoption(optionPartSelected,.@o,ROA_ID),getequiprandomoption(optionPartSelected,.@o,ROA_VALUE)));
 	callfunc("Exit");
 	
 OnInit:

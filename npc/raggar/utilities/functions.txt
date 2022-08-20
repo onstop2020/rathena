@@ -178,6 +178,92 @@ function	script	GearOrbExchange	{
 	return;
 }
 
+// Get Random Option Name
+function	script	GetRandomOptionName	{
+	.@randomOptionId = getarg(0,0);
+	.@randomOptionValue = getarg(1,0);
+	if(.@randomOptionId == 3)
+	return "STR +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 4)
+	return "AGI +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 5)
+	return "VIT +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 6)
+	return "INT +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 7)
+	return "DEX +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 8)
+	return "LUK +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 164)
+	return "Critical แรงขึ้น +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 165)
+	return "โดน Critical เบาลง +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 171)
+	return "ลดอาการหน่วงหลังร่าย +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 243)
+	return "POW +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 245)
+	return "STA +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 246)
+	return "WIS +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 244)
+	return "SPL +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 247)
+	return "CON +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 248)
+	return "CRT +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 1002)
+	return "ความเร็วในการเคลื่อนที่ +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 24)
+	return "Critical +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 22)
+	return "Flee +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 249)
+	return "P.ATK +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 250)
+	return "S.MATK +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 251)
+	return "RES +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 252)
+	return "MRES +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 253)
+	return "H.PLUS +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 254)
+	return "C.RATE +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 9)
+	return "Max HP +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 10)
+	return "Max SP +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 1001)
+	return "Max AP +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 172)
+	return "ใช้ SP น้อยลง +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 168)
+	return "Heal แรงขึ้น +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 1005)
+	return "พลังโจมตีกายภาพ +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 1006)
+	return "พลังโจมตีเวทย์ +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 18)
+	return "HIT +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 15)
+	return "ASPD +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 1008)
+	return "เจาะ DEF +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 1009)
+	return "เจาะ MDEF +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 218)
+	return "โดนสะท้อนเบาลง +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 1003)
+	return "ร่าย Fixed เร็วขึ้น +" + F_InsertComma(.@randomOptionValue) + " มิลลิวินาที";
+	else 	if(.@randomOptionId == 1004)
+	return "ร่าย Variable เร็วขึ้น +" + F_InsertComma(.@randomOptionValue) + " มิลลิวินาที";
+	else 	if(.@randomOptionId == 1007)
+	return "พลังป้องกันทุกชนิด +" + F_InsertComma(.@randomOptionValue) + "%";
+	else
+	return "ไม่พบชื่อ Random Option";
+}
+
 //																		| Normal		| Rare					| Epic					| Mystical			| Legendary
 //																
 //3 bonus bStr,n;												| 1~2			| 2~5					| 5~9					| 9~15			| 15~30
