@@ -1,0 +1,10 @@
+prontera,160,305,3	script	ล้างโทษ	801,{
+	specialeffect2 387;
+	bonus_script_clear 1;
+	message strcharinfo(0),"ล้างโทษจาก Map พิเศษ เรียบร้อยแล้ว!";
+	end;
+	
+OnInit:
+	waitingroom strnpcinfo(0),0;
+	end;
+}
