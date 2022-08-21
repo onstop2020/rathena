@@ -4,6 +4,7 @@ prontera,180,180,1	script	เจนนี่	862,{
 	mes NpcMessageColor("ว่าไง!? ท่านอยากรู้อะไรในหัวข้อตามนี้หรือเปล่า?");
 	next;
 	menu 
+	"สรุปข้อควรรู้",L_10,
 	"การตาย",L_1,
 	"Monster Drop อะไรบ้าง",L_2,
 	"การหา Boss",L_6,
@@ -25,6 +26,33 @@ prontera,180,180,1	script	เจนนี่	862,{
 	L_7: callsub L_Talk,"ไม่มี แต่ยังสามารถซื้อขายกันเองได้ตามปกติ หากต้องการสนับสนุน RAGGAR ให้ติดต่อลงโฆษณาแทน สามารถติดต่อได้ที่ <URL>Discord<INFO>https://discord.gg/RBPfeBrUcK</INFO></URL>\n(User: Start#1356)\nPackage โฆษณา\n• แสดงข้อความตอนเข้าสู่เกม (7 วัน) - 88 THB\n• แสดงข้อความตอนเข้าสู่เกม (15 วัน) - 151 THB\n• แสดงข้อความตอนเข้าสู่เกม (30 วัน) - 212 THB";
 	L_8: callsub L_Talk,"ทุก Skill สามารถ Critical ได้";
 	L_9: callsub L_Talk,"ยิ่ง Level อุปกรณ์สวมใส่สูงและ Grade อุปกรณ์สวมใส่สูง จะส่งผลที่ดีขึ้น ให้กับค่าพลังที่เพิ่มขึ้นจากการตีบวก";
+	L_10: callsub L_Talk,
+	"=== Gear Orb ===\n" +
+	"• พลังโจมตีอาวุธ ที่สุ่มโดย Gear Orb มากสุด " + F_InsertComma($maxGearAttack) + "\n" +
+	"• พลังป้องกันอุปกรณ์สวมใส่ ที่สุ่มโดย Gear Orb มากสุด " + F_InsertComma($maxGearDefense) + "\n" +
+	"\n" +
+	"=== ชนิด Monster ===\n" +
+	"• Monster ระดับ 1 มี " + F_InsertComma($tier1MonsterIdSize) + " ชนิด\n" +
+	"• Monster ระดับ 2 มี " + F_InsertComma($tier2MonsterIdSize) + " ชนิด\n" +
+	"• Monster ระดับ 3 มี " + F_InsertComma($tier3MonsterIdSize) + " ชนิด\n" +
+	"• Monster ระดับ 4 มี " + F_InsertComma($tier4MonsterIdSize) + " ชนิด\n" +
+	"• Monster ระดับ 5 มี " + F_InsertComma($tier5MonsterIdSize) + " ชนิด\n" +
+	"• MvP มี " + F_InsertComma($mvpIdSize) + " ชนิด\n" +
+	"\n" +
+	"=== Dungeon ===\n" +
+	"• Monster มีโอกาส " + $dungeonCoreOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonCoreOrbMin) + "~" + F_InsertComma($dungeonCoreOrbMax) + "  Core Orb\n" +
+	"• Monster มีโอกาส " + $dungeonGearOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonGearOrbMin) + "~" + F_InsertComma($dungeonGearOrbMax) + "  Gear Orb\n" +
+	"• Monster มีโอกาส " + $dungeonSpecialityOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonSpecialityOrbMin) + "~" + F_InsertComma($dungeonSpecialityOrbMax) + "  Speciality Orb\n" +
+	"• Monster มีโอกาส (" + $dungeonRefineOrbChance + " - ระดับ)% ที่จะ Drop " + F_InsertComma($dungeonRefineOrbMin) + "~" + F_InsertComma($dungeonRefineOrbMax) + "  Refine Orb\n" +
+	"• MvP มีโอกาส " + $dungeonMvpCoreOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonMvpCoreOrbMin) + "~" + F_InsertComma($dungeonMvpCoreOrbMax) + "  Core Orb\n" +
+	"• MvP มีโอกาส " + $dungeonMvpGearOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonMvpGearOrbMin) + "~" + F_InsertComma($dungeonMvpGearOrbMax) + "  Gear Orb\n" +
+	"• MvP มีโอกาส " + $dungeonMvpSpecialityOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonMvpSpecialityOrbMin) + "~" + F_InsertComma($dungeonMvpSpecialityOrbMax) + "  Speciality Orb\n" +
+	"• MvP มีโอกาส " + $dungeonMvpRefineOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonMvpRefineOrbMin) + "~" + F_InsertComma($dungeonMvpRefineOrbMax) + "  Refine Orb\n" +
+	"• Boss มีโอกาส " + $dungeonBossCoreOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonBossCoreOrbMin) + "~" + F_InsertComma($dungeonBossCoreOrbMax) + "  Core Orb\n" +
+	"• Boss มีโอกาส " + $dungeonBossGearOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonBossGearOrbMin) + "~" + F_InsertComma($dungeonBossGearOrbMax) + "  Gear Orb\n" +
+	"• Boss มีโอกาส " + $dungeonBossSpecialityOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonBossSpecialityOrbMin) + "~" + F_InsertComma($dungeonBossSpecialityOrbMax) + "  Speciality Orb\n" +
+	"• Boss มีโอกาส " + $dungeonBossRefineOrbChance + "% ที่จะ Drop " + F_InsertComma($dungeonBossRefineOrbMin) + "~" + F_InsertComma($dungeonBossRefineOrbMax) + "  Refine Orb\n" +
+	"";
 	
 	L_Talk:
 	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);

@@ -2,6 +2,71 @@
 	end;
 	
 OnInit:
+	// Dynamic Variables
+	
+	// Gear Related
+	$maxGearAttack = 2000;
+	$maxGearDefense = 150;
+	
+	// Dungeon Related
+	$dungeonHotMapMultiplier = 2;
+	$dungeonDebuffMultiplier = 1;
+	$dungeonStatsMaxMultiplier = 10;
+	
+	$dungeonTier1LowestHp = 1000;
+	$dungeonTier2LowestHp = 10000;
+	$dungeonTier3LowestHp = 100000;
+	$dungeonTier4LowestHp = 1000000;
+	$dungeonTier5LowestHp = 10000000;
+	
+	$dungeonTier1LowestBossHp = 100000;
+	$dungeonTier2LowestBossHp = 500000;
+	$dungeonTier3LowestBossHp = 1000000;
+	$dungeonTier4LowestBossHp = 5000000;
+	$dungeonTier5LowestBossHp = 10000000;
+	
+	$dungeonBossMapTierMultiplier = 2;
+	
+	$dungeonMvpCoreOrbChance = 100;
+	$dungeonMvpCoreOrbMin = 15;
+	$dungeonMvpCoreOrbMax = 50;
+	$dungeonMvpGearOrbChance = 75;
+	$dungeonMvpGearOrbMin = 5;
+	$dungeonMvpGearOrbMax = 15;
+	$dungeonMvpSpecialityOrbChance = 50;
+	$dungeonMvpSpecialityOrbMin = 5;
+	$dungeonMvpSpecialityOrbMax = 10;
+	$dungeonMvpRefineOrbChance = 40;
+	$dungeonMvpRefineOrbMin = 1;
+	$dungeonMvpRefineOrbMax = 1;
+
+	$dungeonCoreOrbChance = 100;
+	$dungeonCoreOrbMin = 1;
+	$dungeonCoreOrbMax = 2;
+	$dungeonGearOrbChance = 20;
+	$dungeonGearOrbMin = 1;
+	$dungeonGearOrbMax = 2;
+	$dungeonSpecialityOrbChance = 10;
+	$dungeonSpecialityOrbMin = 1;
+	$dungeonSpecialityOrbMax = 2;
+	$dungeonRefineOrbChance = 6;
+	$dungeonRefineOrbMin = 1;
+	$dungeonRefineOrbMax = 1;
+
+	$dungeonBossCoreOrbChance = 100;
+	$dungeonBossCoreOrbMin = 10;
+	$dungeonBossCoreOrbMax = 30;
+	$dungeonBossGearOrbChance = 100;
+	$dungeonBossGearOrbMin = 2;
+	$dungeonBossGearOrbMax = 6;
+	$dungeonBossSpecialityOrbChance = 100;
+	$dungeonBossSpecialityOrbMin = 2;
+	$dungeonBossSpecialityOrbMax = 4;
+	$dungeonBossRefineOrbChance = 50;
+	$dungeonBossRefineOrbMin = 1;
+	$dungeonBossRefineOrbMax = 1;
+	
+	// Static Variables
 	if($globalVariableVersion != 5){
 		deletearray $weaponIds[0],getarraysize($weaponIds);
 		deletearray $equipmentIds[0],getarraysize($equipmentIds);

@@ -256,6 +256,12 @@ Body:
           - Index: 0
             Item: Points_Orb
             Amount: 100
+      - Index: 6
+        Item: Boarding_Halter
+        RequiredItems:
+          - Index: 0
+            Item: Points_Orb
+            Amount: 9999
   - Name: ·≈° Refine Orb
     Map: prontera
     X: 184

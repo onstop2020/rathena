@@ -1,4 +1,7 @@
 -	script	Map	-1,{
+	// Always clean up debuffs
+	bonus_script_clear 1;
+	
 	specialeffect2 488;
 	// Name Setup
 	.@npcName$ = NpcNameColor(strnpcinfo(1));

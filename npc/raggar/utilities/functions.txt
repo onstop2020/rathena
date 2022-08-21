@@ -272,6 +272,10 @@ function	script	GetRandomOptionName	{
 	return "ร่าย Variable เร็วขึ้น +" + F_InsertComma(.@randomOptionValue) + " มิลลิวินาที";
 	else 	if(.@randomOptionId == 1007)
 	return "พลังป้องกันทุกชนิด +" + F_InsertComma(.@randomOptionValue) + "%";
+	else 	if(.@randomOptionId == 1000)
+	return "Attack และ Magical Attack อาวุธ +" + F_InsertComma(.@randomOptionValue);
+	else 	if(.@randomOptionId == 20)
+	return "DEF อุปกรณ์สวมใส่ +" + F_InsertComma(.@randomOptionValue);
 	else
 	return "ไม่พบชื่อ Random Option";
 }
