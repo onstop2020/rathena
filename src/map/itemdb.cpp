@@ -323,44 +323,53 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "Jobs")) {
-		const ryml::NodeRef& jobNode = node["Jobs"];
+		if (item->type != IT_WEAPON) // [Start]
+		{
+			item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
 
-		item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
-
-		if (this->nodeExists(jobNode, "All")) {
-			bool active;
-
-			if (!this->asBool(jobNode, "All", active))
-				return 0;
-
-			itemdb_jobid2mapid(item->class_base, MAPID_ALL, active);
+			itemdb_jobid2mapid(item->class_base, MAPID_ALL, true);
 		}
+		else {
+			const ryml::NodeRef& jobNode = node["Jobs"];
 
-		for (const auto& jobit : jobNode) {
-			std::string jobName;
-			c4::from_chars(jobit.key(), &jobName);
+			item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
 
-			// Skipped because processed above the loop
-			if (jobName.compare("All") == 0)
-				continue;
+			if (this->nodeExists(jobNode, "All")) {
+				bool active;
 
-			std::string jobName_constant = "EAJ_" + jobName;
-			int64 constant;
+				if (!this->asBool(jobNode, "All", active))
+					return 0;
 
-			if (!script_get_constant(jobName_constant.c_str(), &constant)) {
-				this->invalidWarning(jobNode[jobit.key()], "Invalid item job %s, defaulting to All.\n", jobName.c_str());
-				itemdb_jobid2mapid(item->class_base, MAPID_ALL, true);
-				break;
+				itemdb_jobid2mapid(item->class_base, MAPID_ALL, active);
 			}
 
-			bool active;
+			for (const auto& jobit : jobNode) {
+				std::string jobName;
+				c4::from_chars(jobit.key(), &jobName);
 
-			if (!this->asBool(jobNode, jobName, active))
-				return 0;
+				// Skipped because processed above the loop
+				if (jobName.compare("All") == 0)
+					continue;
 
-			itemdb_jobid2mapid(item->class_base, static_cast<e_mapid>(constant), active);
+				std::string jobName_constant = "EAJ_" + jobName;
+				int64 constant;
+
+				if (!script_get_constant(jobName_constant.c_str(), &constant)) {
+					this->invalidWarning(jobNode[jobit.key()], "Invalid item job %s, defaulting to All.\n", jobName.c_str());
+					itemdb_jobid2mapid(item->class_base, MAPID_ALL, true);
+					break;
+				}
+
+				bool active;
+
+				if (!this->asBool(jobNode, jobName, active))
+					return 0;
+
+				itemdb_jobid2mapid(item->class_base, static_cast<e_mapid>(constant), active);
+			}
 		}
-	} else {
+	}
+	else {
 		if (!exists) {
 			item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
 
