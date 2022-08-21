@@ -46,9 +46,11 @@ function	script	GetLocationsPowerMultiplier	{
 	if((.@locations == 769)
 			|| (.@locations == 7168))
 	return 3;
-	else if((.@locations == 34)
-			|| (.@locations == 768)
-			|| (.@locations == 3072))
+	else if((.@locations == 34)			// Two-Handed
+			|| (.@locations == 513)		// Middle + Lower
+			|| (.@locations == 768)		// Top + Middle
+			|| (.@locations == 3072)		// Top + Middle (Costume)
+			|| (.@locations == 6144))		// Middle + Lower (Costume)
 	return 2;
 	else
 	return 1;
