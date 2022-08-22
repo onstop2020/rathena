@@ -28,7 +28,7 @@ OnTimer600000:
 OnInit:
 	initnpctimer;
 	// Store available maps
-	if(!$isMapDatabaseInitialize != 7){
+	if(!$isMapDatabaseInitialize != 8){
 		deletearray $mapDatabases$,getarraysize($mapDatabases$);
 		setarray $mapDifficultlies,
 		0	// 0 (Tier 1)
@@ -104,7 +104,7 @@ OnInit:
 		$maxMonsterDungeonTier4 = 111;
 		$maxMonsterDungeonTier5 = 111;
 		
-		$isMapDatabaseInitialize = 7;
+		$isMapDatabaseInitialize = 8;
 	}
 	
 	// Hot map initialize
