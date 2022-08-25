@@ -7757,7 +7757,6 @@ BUILDIN_FUNC(getitem2)
 		item_tmp.card[2] = c3;
 		item_tmp.card[3] = c4;
 		item_tmp.bound = bound;
-		item_tmp.enchantgrade = min(rnd_value(0,4), MAX_ENCHANTGRADE); // [Start]
 
 		if (offset != 0) {
 			bool res = script_getitem_randomoption(st, sd, &item_tmp, command, offset);
