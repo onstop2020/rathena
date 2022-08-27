@@ -198,86 +198,92 @@ function	script	GetRandomOptionName	{
 	.@randomOptionValue = getarg(1,0);
 	if(.@randomOptionId == 3)
 	return "STR +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 4)
+	else if(.@randomOptionId == 4)
 	return "AGI +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 5)
+	else if(.@randomOptionId == 5)
 	return "VIT +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 6)
+	else if(.@randomOptionId == 6)
 	return "INT +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 7)
+	else if(.@randomOptionId == 7)
 	return "DEX +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 8)
+	else if(.@randomOptionId == 8)
 	return "LUK +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 164)
+	else if(.@randomOptionId == 164)
 	return "Critical แรงขึ้น +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 165)
+	else if(.@randomOptionId == 165)
 	return "โดน Critical เบาลง +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 171)
+	else if(.@randomOptionId == 171)
 	return "ลดอาการหน่วงหลังร่าย +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 243)
+	else if(.@randomOptionId == 243)
 	return "POW +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 245)
+	else if(.@randomOptionId == 245)
 	return "STA +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 246)
+	else if(.@randomOptionId == 246)
 	return "WIS +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 244)
+	else if(.@randomOptionId == 244)
 	return "SPL +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 247)
+	else if(.@randomOptionId == 247)
 	return "CON +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 248)
+	else if(.@randomOptionId == 248)
 	return "CRT +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 1002)
+	else if(.@randomOptionId == 1002)
 	return "ความเร็วในการเคลื่อนที่ +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 24)
+	else if(.@randomOptionId == 24)
 	return "Critical +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 22)
+	else if(.@randomOptionId == 22)
 	return "Flee +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 249)
+	else if(.@randomOptionId == 249)
 	return "P.ATK +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 250)
+	else if(.@randomOptionId == 250)
 	return "S.MATK +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 251)
+	else if(.@randomOptionId == 251)
 	return "RES +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 252)
+	else if(.@randomOptionId == 252)
 	return "MRES +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 253)
+	else if(.@randomOptionId == 253)
 	return "H.PLUS +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 254)
+	else if(.@randomOptionId == 254)
 	return "C.RATE +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 9)
+	else if(.@randomOptionId == 9)
 	return "Max HP +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 10)
+	else if(.@randomOptionId == 10)
 	return "Max SP +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 1001)
+	else if(.@randomOptionId == 1001)
 	return "Max AP +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 172)
+	else if(.@randomOptionId == 172)
 	return "ใช้ SP น้อยลง +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 168)
+	else if(.@randomOptionId == 168)
 	return "Heal แรงขึ้น +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 1005)
+	else if(.@randomOptionId == 1005)
 	return "พลังโจมตีกายภาพ +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 1006)
+	else if(.@randomOptionId == 1006)
 	return "พลังโจมตีเวทย์ +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 18)
+	else if(.@randomOptionId == 18)
 	return "HIT +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 15)
+	else if(.@randomOptionId == 15)
 	return "ASPD +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 1008)
+	else if(.@randomOptionId == 1008)
 	return "เจาะ DEF +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 1009)
+	else if(.@randomOptionId == 1009)
 	return "เจาะ MDEF +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 218)
+	else if(.@randomOptionId == 218)
 	return "โดนสะท้อนเบาลง +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 1003)
+	else if(.@randomOptionId == 1003)
 	return "ร่าย Fixed เร็วขึ้น +" + F_InsertComma(.@randomOptionValue) + " มิลลิวินาที";
-	else 	if(.@randomOptionId == 1004)
+	else if(.@randomOptionId == 1004)
 	return "ร่าย Variable เร็วขึ้น +" + F_InsertComma(.@randomOptionValue) + " มิลลิวินาที";
-	else 	if(.@randomOptionId == 1007)
+	else if(.@randomOptionId == 1007)
 	return "พลังป้องกันทุกชนิด +" + F_InsertComma(.@randomOptionValue) + "%";
-	else 	if(.@randomOptionId == 1000)
+	else if(.@randomOptionId == 1000)
 	return "Attack และ Magical Attack อาวุธ +" + F_InsertComma(.@randomOptionValue);
-	else 	if(.@randomOptionId == 20)
+	else if(.@randomOptionId == 20)
 	return "DEF อุปกรณ์สวมใส่ +" + F_InsertComma(.@randomOptionValue);
+	else if(.@randomOptionId == 1010)
+	return "มีโอกาสโจมตีสองครั้ง +" + F_InsertComma(.@randomOptionValue) + "%";
+	else if(.@randomOptionId == 1011)
+	return "มีโอกาส 1% รับ HP จาก Damage +" + F_InsertComma(.@randomOptionValue) + "%";
+	else if(.@randomOptionId == 1012)
+	return "มีโอกาส 1% รับ SP จาก Damage +" + F_InsertComma(.@randomOptionValue) + "%";
 	else
 	return "ไม่พบชื่อ Random Option";
 }
@@ -324,13 +330,16 @@ function	script	GetRandomOptionName	{
 //1008 bonus2 bIgnoreDefClassRate,c,n;			| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
 //1009 bonus2 bIgnoreMdefClassRate,c,n;		| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
 //218 bonus bReduceDamageReturn,n;				| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
+//1010 bonus bDoubleAddRate,n;				| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
+//1011 bonus2 bHPDrainRate,x,n;				| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
+//1012 bonus2 bSPDrainRate,x,n;				| 1~2			| 2~3					| 3~4					| 4~5				| 5~6
 //
 //1003 bonus bFixedCast,t;								| 1~25		| 25~50				| 50~150			| 150~300		| 300~500
 //1004 bonus bVariableCast,t;							| 1~25		| 25~50				| 50~150			| 150~300		| 300~500
 //
 //1007 bonus2 bSubClass,c,x;							| 1				| 1						| 1						| 1					| 1
 function	script	GetRandomOptionId	{
-	setarray .@allOptionId,3,4,5,6,7,8,164,165,171,243,245,246,244,247,248,1002,24,22,249,250,251,252,253,254,9,10,1001,172,168,1005,1006,18,15,1008,1009,218,1003,1004,1007;
+	setarray .@allOptionId,3,4,5,6,7,8,164,165,171,243,245,246,244,247,248,1002,24,22,249,250,251,252,253,254,9,10,1001,172,168,1005,1006,18,15,1008,1009,218,1010,1011,1012,1003,1004,1007;
 	return .@allOptionId[rand(0,getarraysize(.@allOptionId) - 1)];
 }
 
@@ -380,7 +389,10 @@ function	script	GetRandomOptionValue	{
 	else if((.@optionId == 15)
 			|| (.@optionId == 1008)
 			|| (.@optionId == 1009)
-			|| (.@optionId == 218))
+			|| (.@optionId == 218)
+			|| (.@optionId == 1010)
+			|| (.@optionId == 1011)
+			|| (.@optionId == 1012))
 	return (.@tier == 1) ? rand(1,2) : (.@tier == 2) ? rand(2,3) : (.@tier == 3) ? rand(3,4) : (.@tier == 4) ? rand(4,5) : rand(5,6);
 	else if((.@optionId == 1003)
 			|| (.@optionId == 1004))
@@ -545,7 +557,6 @@ function	script	Debuff	{
 	next;
 	return;
 }
-
 
 // Get grade name
 function	script	GetGradeName	{

@@ -73,3 +73,15 @@ Body:
     Option: CLASS_IGNORE_MDEF_PERCENT_ALL
     Script: |
       bonus2 bIgnoreMdefClassRate,Class_All,getrandomoptinfo(ROA_VALUE);
+  - Id: 1010
+    Option: DOUBLE_ATTACK_PERCENT
+    Script: |
+      bonus bDoubleAddRate,getrandomoptinfo(ROA_VALUE);
+  - Id: 1011
+    Option: HP_FROM_DAMAGE
+    Script: |
+      bonus2 bHPDrainRate,1000,getrandomoptinfo(ROA_VALUE);
+  - Id: 1012
+    Option: SP_FROM_DAMAGE
+    Script: |
+      bonus2 bSPDrainRate,1000,getrandomoptinfo(ROA_VALUE);
