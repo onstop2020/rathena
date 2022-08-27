@@ -30,8 +30,13 @@ prontera,193,235,3	script	โคลอี้	665,{
 	}
 	
 	// Equipment selection
-	if(!.@quickTap)
-	optionPartSelected = .@indices[select(.@menu$)];
+	if(!.@quickTap){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("โปรดเลือกอุปกรณ์สวมใส่");
+		next;
+		optionPartSelected = .@indices[select(.@menu$)];
+	}
 
 	// Equipment checking
 	if(!getequipisequiped(optionPartSelected)){
