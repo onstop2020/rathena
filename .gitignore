@@ -140,3 +140,6 @@ Thumbs.db
 
 # CMakeFiles
 /CMakeFiles/
+
+# generated files
+generated
