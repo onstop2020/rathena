@@ -1,0 +1,63 @@
+prontera,176,253,3	script	ฟิกซ์	10301,{
+	setarray .@indices[1],EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_COSTUME_GARMENT,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
+	for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
+		if(getequipisequiped(.@indices[.@i])
+				&& getequiprefinerycnt(.@indices[.@i]) < 20){
+			.@isEquipped = 1;
+			break;
+		}
+	}
+	
+	// Equipment checking
+	if (!.@isEquipped){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("ดูเหมือนว่า ท่านไม่มีอุปกรณ์สวมใส่ใด ๆ ที่สามารถตีบวกเพิ่มได้..");
+		next;
+		callfunc("Exit");
+	}
+	
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("ต้องการใช้ " + F_InsertComma(.saviourPointsAmount) + " แต้ม Saviour เพื่อตีบวกทั้งตัวเพิ่มขึ้นทีละ 1 หรือไม่?");
+	mes NpcMessageColor("คุณมี " + F_InsertComma(saviourRanking) + " แต้ม Saviour");
+	next;
+	menu "ใช่แล้ว",-,"ยกเลิก",L_Cancel;
+	if(saviourRanking >= .saviourPointsAmount){
+		saviourRanking -= .saviourPointsAmount;
+		atcommand "@refine 0 1";
+		specialeffect2 496;
+		callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("เรียบร้อยแล้ว!");
+		next;
+		callfunc("Exit");
+	}
+	else{
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("ท่านต้องมีแต้ม Saviour อีก " + F_InsertComma(.saviourPointsAmount - saviourRanking) + " แต้ม");
+		next;
+		callfunc("Exit");
+	}
+	
+	L_Cancel:
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("ยกเลิกเรียบร้อย!");
+	next;
+	callfunc("Exit");
+	
+OnInit:
+	// Cost
+	.saviourPointsAmount = 250;
+
+	// Name Setup
+	.npcName$ = NpcNameColor(strnpcinfo(0));
+	// Cut-in Setup
+	setarray .npcNormalFacials$,"ep171_elyumina01","ep171_elyumina04";
+	setarray .npcActionFacials$,"ep171_elyumina02","ep171_elyumina03";
+	// Information
+	waitingroom "ตีบวกทั้งตัว",0;
+	end;
+}
