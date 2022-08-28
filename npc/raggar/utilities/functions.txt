@@ -281,9 +281,9 @@ function	script	GetRandomOptionName	{
 	else if(.@randomOptionId == 1010)
 	return "มีโอกาสโจมตีสองครั้ง +" + F_InsertComma(.@randomOptionValue) + "%";
 	else if(.@randomOptionId == 1011)
-	return "มีโอกาส 1% รับ HP จาก Damage +" + F_InsertComma(.@randomOptionValue) + "%";
+	return "มีโอกาส 0.1% รับ HP จาก Damage +" + F_InsertComma(.@randomOptionValue) + "%";
 	else if(.@randomOptionId == 1012)
-	return "มีโอกาส 1% รับ SP จาก Damage +" + F_InsertComma(.@randomOptionValue) + "%";
+	return "มีโอกาส 0.1% รับ SP จาก Damage +" + F_InsertComma(.@randomOptionValue) + "%";
 	else
 	return "ไม่พบชื่อ Random Option";
 }
