@@ -301,23 +301,33 @@ Body:
   - Id: 10000025
     AegisName: Speciality_Orb[Normal]
     Name: Speciality Orb[Normal]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("SpecialityOrb",1);
   - Id: 10000026
     AegisName: Speciality_Orb[Rare]
     Name: Speciality Orb[Rare]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("SpecialityOrb",2);
   - Id: 10000027
     AegisName: Speciality_Orb[Epic]
     Name: Speciality Orb[Epic]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("SpecialityOrb",3);
   - Id: 10000028
     AegisName: Speciality_Orb[Mystical]
     Name: Speciality Orb[Mystical]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("SpecialityOrb",4);
   - Id: 10000029
     AegisName: Speciality_Orb[Legendary]
     Name: Speciality Orb[Legendary]
-    Type: Etc
+    Type: Usable
+    Script: |
+      callfunc("SpecialityOrb",5);
   - Id: 10000030
     AegisName: Gear_Orb[Normal]
     Name: Gear Orb[Normal]

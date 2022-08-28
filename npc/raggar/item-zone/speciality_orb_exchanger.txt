@@ -1,16 +1,4 @@
 prontera,193,235,3	script	โคลอี้	665,{
-	// Quick tap
-	.@quickTap = 0;
-	if((lastOptionSlotSelected > 1)
-			|| (lastOptionSlotSelected == -1)){
-		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
-		mes .npcName$;
-		mes NpcMessageColor("ต้องการทำซ้ำแบบที่เลือกก่อนหน้านี้หรือไม่?");
-		next;
-		menu "เลือกใหม่",L_NormalTap,"ทำซ้ำแบบเดิมที่เลือกไปก่อนหน้านี้",-;
-		.@quickTap = 1;
-	}
-	L_NormalTap:
 	setarray .@indices[1],EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_COSTUME_GARMENT,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
 	for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
 		if(getequipisequiped(.@indices[.@i])){
@@ -30,13 +18,11 @@ prontera,193,235,3	script	โคลอี้	665,{
 	}
 	
 	// Equipment selection
-	if(!.@quickTap){
-		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
-		mes .npcName$;
-		mes NpcMessageColor("โปรดเลือกอุปกรณ์สวมใส่");
-		next;
-		optionPartSelected = .@indices[select(.@menu$)];
-	}
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("โปรดเลือกอุปกรณ์สวมใส่");
+	next;
+	optionPartSelected = .@indices[select(.@menu$)];
 
 	// Equipment checking
 	if(!getequipisequiped(optionPartSelected)){
@@ -47,7 +33,6 @@ prontera,193,235,3	script	โคลอี้	665,{
 		callfunc("Exit");
 	}
 	
-	if(!.@quickTap)
 	optionItemIdSelected = getequipid(optionPartSelected);
 	
 	// Equipment checking
@@ -60,91 +45,47 @@ prontera,193,235,3	script	โคลอี้	665,{
 	}
 	
 	// Slot selection
-	if(!.@quickTap){
-		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
-		mes .npcName$;
-		mes NpcMessageColor("โปรดระบุช่องที่ต้องการ");
-		next;
-		if(lastOptionSlotSelected > 1)
-		.@optionSlot = select("ช่องล่าสุด (" + lastOptionSlotSelected + "):ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ทุกช่อง (ใช้ 4 Orb):ยกเลิก");
-		else
-		.@optionSlot = select("ช่องล่าสุด (-):ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ทุกช่อง (ใช้ 4 Orb):ยกเลิก");
-		if((.@optionSlot == 7)
-				|| ((.@optionSlot == 1) && (lastOptionSlotSelected <= 1)))
-		callfunc("Exit");
-		else if(.@optionSlot == 6)
-		.@optionSlot = -1;
-		else if(.@optionSlot == 1)
-		.@optionSlot = lastOptionSlotSelected;
-		lastOptionSlotSelected = .@optionSlot;
-	}
+	callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+	mes .npcName$;
+	mes NpcMessageColor("โปรดระบุช่องที่ต้องการ");
+	next;
+	.@optionSlot = select("ช่องที่ 2:ช่องที่ 3:ช่องที่ 4:ช่องที่ 5:ยกเลิก");
+	if(.@optionSlot == 6)
+	callfunc("Exit");
+	else
+	.@optionSlot++;
 	
-	// Speciality Orb selection
-	if(!.@quickTap){
-		.@specialityOrbSelected = select(getitemname(10000025) + ":" + getitemname(10000026) + ":" + getitemname(10000027) + ":" + getitemname(10000028) + ":" + getitemname(10000029) + ":ยกเลิก");
-		if(.@specialityOrbSelected  == 6)
-		callfunc("Exit");
-		if(.@specialityOrbSelected == 1)
-		specialityOrbSelected = 10000025;
-		else if(.@specialityOrbSelected == 2)
-		specialityOrbSelected = 10000026;
-		else if(.@specialityOrbSelected == 3)
-		specialityOrbSelected = 10000027;
-		else if(.@specialityOrbSelected == 4)
-		specialityOrbSelected = 10000028;
-		else
-		specialityOrbSelected = 10000029;
-	}
-	
-	.@orbRequiredAmount = ((lastOptionSlotSelected == -1) ? 4 : 1);
-	
-	// Speciality Orb checking
-	if((countitem(specialityOrbSelected) < .@orbRequiredAmount)
-			|| (specialityOrbSelected <= 0)){
-		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
-		mes .npcName$;
-		mes NpcMessageColor("ต้องการ " + F_InsertComma(.@orbRequiredAmount) + " " + getitemname(specialityOrbSelected));
-		next;
-		callfunc("Exit");
-	}
-	
-	delitem specialityOrbSelected,.@orbRequiredAmount;
-	
-	.@loopAmount = ((lastOptionSlotSelected == -1) ? 5 : lastOptionSlotSelected);
+	.@loopAmount = ((.@optionSlot == -1) ? 5 : .@optionSlot);
 	// Option index below should not null
 	for(.@o = 0; .@o < .@loopAmount; .@o++){
 		if(getequiprandomoption(optionPartSelected,.@o,ROA_ID) <= 0)
 		setrandomoption(optionPartSelected,.@o,1,1,0);
 	}
 	
-	// Set new option on selected
-	if(specialityOrbSelected == 10000029)
-	.@tier = 5;
-	else if(specialityOrbSelected == 10000028)
-	.@tier = 4;
-	else if(specialityOrbSelected == 10000027)
-	.@tier = 3;
-	else if(specialityOrbSelected == 10000026)
-	.@tier = 2;
-	else
-	.@tier = 1;
+	// Option Selection
+	.@menu$ = "";
+	setarray .@allOptionId,3,4,5,6,7,8,164,165,171,243,245,246,244,247,248,1002,24,22,249,250,251,252,253,254,9,10,1001,172,168,1005,1006,18,15,1008,1009,218,1010,1011,1012,1003,1004,1007;
+	for(.@i = 0; .@i < getarraysize(.@allOptionId); .@i++){
+		.@menu$ = .@menu$ + GetRandomOptionName(.@allOptionId[.@i],optionValue[.@i]);
+		.@menu$ = .@menu$ + ":";
+	}
+	
+	.@indexSelected = select(.@menu$) - 1;
 	
 	.@valueMultiplier = GetLocationsPowerMultiplier(getiteminfo(optionItemIdSelected,ITEMINFO_LOCATIONS));
 	
-	if(lastOptionSlotSelected == -1){
-		for(.@o = 1; .@o < 5; .@o++){
-			.@optionId = GetRandomOptionId();
-			.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
-			.@optionValue *= .@valueMultiplier;
-			setrandomoption(optionPartSelected,.@o,.@optionId,.@optionValue,0);
-		}
+	.@optionId = .@allOptionId[.@indexSelected];
+	.@optionValue = optionValue[.@indexSelected];
+	if(.@optionValue <= 0){
+		callfunc("CutIn",.npcNormalFacials$[rand(getarraysize(.npcNormalFacials$))]);
+		mes .npcName$;
+		mes NpcMessageColor("Option ที่เลือกยังไม่มีค่า โปรดสุ่มมันจากการกด Speciality Orb เสียก่อน");
+		next;
+		callfunc("Exit");
 	}
-	else{
-		.@optionId = GetRandomOptionId();
-		.@optionValue = GetRandomOptionValue(.@optionId,.@tier);
-		.@optionValue *= .@valueMultiplier;
-		setrandomoption(optionPartSelected,lastOptionSlotSelected - 1,.@optionId,.@optionValue,0);
-	}
+	setarray optionValue[.@indexSelected],0;
+	.@optionValue *= .@valueMultiplier;
+	setrandomoption(optionPartSelected,.@optionSlot - 1,.@optionId,.@optionValue,0);
 	
 	specialeffect2 454;
 	callfunc("CutIn",.npcActionFacials$[rand(getarraysize(.npcActionFacials$))]);
@@ -160,6 +101,6 @@ OnInit:
 	setarray .npcNormalFacials$,"paycana_a";
 	setarray .npcActionFacials$,"paycana_b ";
 	// Information
-	waitingroom "ใช้งาน Speciality Orb",0;
+	waitingroom "เพิ่ม Option ให้อุปกรณ์สวมใส่",0;
 	end;
 }

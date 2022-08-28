@@ -192,6 +192,50 @@ function	script	GearOrbExchange	{
 	return;
 }
 
+// Speciality Orb
+// Use it -> Grant Random Option (Random Value) -> If new value lower than before will do nothing
+function	script	SpecialityOrb	{
+	.@specialityOrbTier = getarg(0,1);
+	if(.@specialityOrbTier == 1)
+	.@specialityOrbId = 10000025;
+	else if(.@specialityOrbTier == 2)
+	.@specialityOrbId = 10000026;
+	else if(.@specialityOrbTier == 3)
+	.@specialityOrbId = 10000027;
+	else if(.@specialityOrbTier == 4)
+	.@specialityOrbId = 10000028;
+	else if(.@specialityOrbTier == 5)
+	.@specialityOrbId = 10000029;
+	
+	.@points = countitem(.@specialityOrbId);
+	delitem .@specialityOrbId,.@points;
+	.@points++;
+	.@usedPoints = .@points;
+	
+	// Cache Array
+	setarray .@allOptionId,3,4,5,6,7,8,164,165,171,243,245,246,244,247,248,1002,24,22,249,250,251,252,253,254,9,10,1001,172,168,1005,1006,18,15,1008,1009,218,1010,1011,1012,1003,1004,1007;
+	.@maxRandomOptionId = getarraysize(.@allOptionId) - 1;
+	
+	freeloop(1);
+	while(.@points > 0){
+		.@points--;
+		
+		.@randomOptionIndex = rand(0,.@maxRandomOptionId);
+		
+		.@optionId = .@allOptionId[.@randomOptionIndex];
+		.@optionValue = callfunc("GetRandomOptionValue",.@optionId,.@specialityOrbTier);
+		if(optionValue[.@randomOptionIndex] < .@optionValue)
+		setarray optionValue[.@randomOptionIndex],.@optionValue;
+		else
+		.@failedAmount++;
+	}
+	freeloop(0);
+	
+	dispbottom "จำนวน Speciality Orb ที่สุ่มไปแล้วได้ค่ามากกว่าเดิม " + F_InsertComma(.@usedPoints - .@failedAmount) + " ชิ้น (ล้มเหลว " + F_InsertComma(.@failedAmount) + " ชิ้น)";
+	specialeffect2 66;
+	return;
+}
+
 // Get Random Option Name
 function	script	GetRandomOptionName	{
 	.@randomOptionId = getarg(0,0);
@@ -281,9 +325,9 @@ function	script	GetRandomOptionName	{
 	else if(.@randomOptionId == 1010)
 	return "มีโอกาสโจมตีสองครั้ง +" + F_InsertComma(.@randomOptionValue) + "%";
 	else if(.@randomOptionId == 1011)
-	return "มีโอกาส 0.1% รับ HP จาก Damage +" + F_InsertComma(.@randomOptionValue) + "%";
+	return "มีโอกาส 0.1% รับ HP จากพลังโจมตีกายภาพ +" + F_InsertComma(.@randomOptionValue) + "%";
 	else if(.@randomOptionId == 1012)
-	return "มีโอกาส 0.1% รับ SP จาก Damage +" + F_InsertComma(.@randomOptionValue) + "%";
+	return "มีโอกาส 0.1% รับ SP จากพลังโจมตีกายภาพ +" + F_InsertComma(.@randomOptionValue) + "%";
 	else
 	return "ไม่พบชื่อ Random Option";
 }
