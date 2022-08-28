@@ -114,19 +114,6 @@ OnSaviourMonsterDead:
 	,1															// Refine Orb amount
 	);
 	
-	if(.@mapTier == 5)
-	saviourRanking += 100;
-	else if(.@mapTier == 4)
-	saviourRanking += 35;
-	else if(.@mapTier == 3)
-	saviourRanking += 15;
-	else if(.@mapTier == 2)
-	saviourRanking += 5;
-	else
-	saviourRanking += 1;
-
-	dispbottom "Saviour Ranking Points: " + callfunc("F_InsertComma",saviourRanking);
-
 	// Add 1% Chance to appear boss
 	set getd("$saviour" + strnpcinfo(2) + "BossChance"),(getd("$saviour" + strnpcinfo(2) + "BossChance") + 1);
 	announce "Saviour ระดับต่อไปจะปลดล๊อคหลังจากฆ่า MvP " + callfunc("F_InsertComma",(getd("$saviour" + strnpcinfo(2) + "BossChance"))) + "/100 ตัว",bc_map,0xF3A51C;
@@ -144,6 +131,36 @@ OnSaviourMonsterDead:
 		// Warp everyone out from map
 		mapwarp strcharinfo(3),"prontera",155,204;
 	}
+	
+	// Point Setup
+	if(.@mapTier == 5)
+	.rewardPoints = 100;
+	else if(.@mapTier == 4)
+	.rewardPoints = 35;
+	else if(.@mapTier == 3)
+	.rewardPoints = 15;
+	else if(.@mapTier == 2)
+	.rewardPoints = 5;
+	else
+	.rewardPoints = 1;
+
+	// Party
+	.@partyId = getcharid(1);
+	.mapName$ = strcharinfo(3);
+	if(.@partyId){
+		getpartymember .@partyId,0;
+		.count = $@partymembercount;
+		addrid(2,1,.@partyId);
+		if(.mapName$ != strcharinfo(3))
+		end;
+	}
+	else
+	.count = 1;
+
+	saviourRanking += max(1,.rewardPoints / .count);
+
+	dispbottom "Saviour Ranking Points: " + callfunc("F_InsertComma",saviourRanking);
+
 	end;
 	
 OnTimer60000:
