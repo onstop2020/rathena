@@ -62,17 +62,17 @@ prontera,193,235,3	script	โคลอี้	665,{
 		setrandomoption(optionPartSelected,.@o,1,1,0);
 	}
 	
+	.@valueMultiplier = GetLocationsPowerMultiplier(getiteminfo(optionItemIdSelected,ITEMINFO_LOCATIONS));
+	
 	// Option Selection
 	.@menu$ = "";
 	setarray .@allOptionId,3,4,5,6,7,8,164,165,171,243,245,246,244,247,248,1002,24,22,249,250,251,252,253,254,9,10,1001,172,168,1005,1006,18,15,1008,1009,218,1010,1011,1012,1003,1004,1007;
 	for(.@i = 0; .@i < getarraysize(.@allOptionId); .@i++){
-		.@menu$ = .@menu$ + GetRandomOptionName(.@allOptionId[.@i],optionValue[.@i]);
+		.@menu$ = .@menu$ + GetRandomOptionName(.@allOptionId[.@i],(optionValue[.@i] * .@valueMultiplier));
 		.@menu$ = .@menu$ + ":";
 	}
 	
 	.@indexSelected = select(.@menu$) - 1;
-	
-	.@valueMultiplier = GetLocationsPowerMultiplier(getiteminfo(optionItemIdSelected,ITEMINFO_LOCATIONS));
 	
 	.@optionId = .@allOptionId[.@indexSelected];
 	.@optionValue = optionValue[.@indexSelected];
