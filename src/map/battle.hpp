@@ -217,6 +217,7 @@ struct Battle_Config
 	int guild_exp_limit;
 	int guild_max_castles;
 	int guild_skill_relog_delay;
+	int guild_skill_relog_type;
 	int emergency_call;
 	int guild_aura;
 	int pc_invincible_time;
@@ -711,6 +712,8 @@ struct Battle_Config
 	int feature_barter;
 	int feature_barter_extended;
 	int break_mob_equip;
+	int macro_detection_retry;
+	int macro_detection_timeout;
 
 #include "../custom/battle_config_struct.inc"
 };
