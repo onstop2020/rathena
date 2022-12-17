@@ -64,8 +64,8 @@ prt_prison,57,144,4	script	เจ้าแห่งความตาย	10387,{
 	L_ChangeJob:
 	sc_end SC_SUMMER;
 	atcommand "@job " + getarg(0,4252);
-	warp "nif_dun01",145,145;
-	savepoint "nif_dun01",145,145;
+	warp "nif_dun01",145,140;
+	savepoint "nif_dun01",145,140;
 	announce strcharinfo(0) + " ถูกส่งตัวไปยัง 'หลุมแห่งความตาย'...",BC_ALL;
 	end;
 }

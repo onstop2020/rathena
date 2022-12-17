@@ -91,8 +91,15 @@ Body:
       breakguild: true
       channel: true
       langtype: true
+      # DEADPIT commands
+      who: true
     Permissions:
       attendance: false
+      # DEADPIT permissions
+      all_equipment: true
+      skill_unconditional: true
+      item_unconditional: true
+      view_equipment: true
   - Id: 2
     Name: Support
     Inherit:
