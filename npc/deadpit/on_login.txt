@@ -1,0 +1,14 @@
+-	script	LoginEvent	-1,{
+OnPCLoginEvent:
+	if(!isInitialize){
+		isInitialize = 1;
+		nude;
+		atcommand "@clearinventory";
+		StatusPoint = 0;
+	}
+	
+	if(Class == 0)
+	sc_start SC_SUMMER,-1,0;
+
+	end;
+}

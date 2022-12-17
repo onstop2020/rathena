@@ -1,0 +1,71 @@
+/// Prison Wall
+-	script	PrisonWall	-1,{
+	end;
+OnTouch:
+	warp strcharinfo(3),62,141;
+	end;
+}
+
+prt_prison,65,141,4	duplicate(PrisonWall)	กำแพง#1	406,2,2
+prt_prison,65,140,4	duplicate(PrisonWall)	กำแพง#2	406,2,2
+prt_prison,65,139,4	duplicate(PrisonWall)	กำแพง#3	406,2,2
+
+/// Job Selector
+prt_prison,57,144,4	script	เจ้าแห่งความตาย	10387,{
+	mes "...";
+	next;
+	menu "ข้า..",-;
+	mes "หุบปาก! เลือกชุดที่ต้องการใส่เดี๋ยวนี้!";
+	next;
+	menu
+	"Dragon Knight",L_DragonKnight,
+	"Meister",L_Meister,
+	"Shadow Cross",L_ShadowCross,
+	"Arch Mage",L_ArchMage,
+	"Cardinal",L_Cardinal,
+	"Windhawk",L_Windhawk,
+	"Imperial Guard",L_ImperialGuard,
+	"Biolo",L_Biolo,
+	"Abyss Chaser",L_AbyssChaser,
+	"Elemental Master",L_ElementalMaster,
+	"Inquisitor",L_Inquisitor,
+	"Troubadour",L_Troubadour,
+	"Trouvere",L_Trouvere,
+	"Sky Emperor",L_SkyEmperor,
+	"Soul Ascetic",L_SoulAscetic,
+	"Shinkiro",L_Shinkiro,
+	"Shiranui",L_Shiranui,
+	"Night Watch",L_NightWatch,
+	"Hyper Novice",L_HyperNovice,
+	"Spirit Handler",L_SpiritHandler
+	;
+	
+	L_DragonKnight: callsub L_ChangeJob,4252;
+	L_Meister: callsub L_ChangeJob,4253;
+	L_ShadowCross: callsub L_ChangeJob,4254;
+	L_ArchMage: callsub L_ChangeJob,4255;
+	L_Cardinal: callsub L_ChangeJob,4256;
+	L_Windhawk: callsub L_ChangeJob,4257;
+	L_ImperialGuard: callsub L_ChangeJob,4258;
+	L_Biolo: callsub L_ChangeJob,4259;
+	L_AbyssChaser: callsub L_ChangeJob,4260;
+	L_ElementalMaster: callsub L_ChangeJob,4261;
+	L_Inquisitor: callsub L_ChangeJob,4263;
+	L_Troubadour: callsub L_ChangeJob,4263;
+	L_Trouvere: callsub L_ChangeJob,4264;
+	L_SkyEmperor: callsub L_ChangeJob,4302;
+	L_SoulAscetic: callsub L_ChangeJob,4303;
+	L_Shinkiro: callsub L_ChangeJob,4304;
+	L_Shiranui: callsub L_ChangeJob,4305;
+	L_NightWatch: callsub L_ChangeJob,4306;
+	L_HyperNovice: callsub L_ChangeJob,4307;
+	L_SpiritHandler: callsub L_ChangeJob,4308;
+	
+	L_ChangeJob:
+	sc_end SC_SUMMER;
+	atcommand "@job " + getarg(0,4252);
+	warp "nif_dun01",145,145;
+	savepoint "nif_dun01",145,145;
+	announce strcharinfo(0) + " ถูกส่งตัวไปยัง 'หลุมแห่งความตาย'...",BC_ALL;
+	end;
+}
