@@ -5171,9 +5171,9 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case ABR_BATTLE_BUSTER:
 	case ABR_DUAL_CANNON_FIRE:
 	case ABR_INFINITY_BUSTER:
+		goto L_CustomSplashAttackSkill;
 		skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 		break;
-
 	case IG_SHIELD_SHOOTING:
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
@@ -5486,6 +5486,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			skill_get_type(skill_id), src, src, skill_id, skill_lv, tick, flag, BCT_ENEMY);
 		break;
 
+	L_CustomSplashAttackSkill:
 	//Splash attack skills.
 	case AS_GRIMTOOTH:
 	case MC_CARTREVOLUTION:
@@ -23336,6 +23337,14 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			else
 				skill->nk.reset(static_cast<uint8>(constant));
 		}
+		std::string nk_constant = "NK_SPLASHSPLIT";
+		std::string nk_constant2 = "NK_CRITICAL";
+		int64 constant;
+		int64 constant2;
+		script_get_constant(nk_constant.c_str(), &constant);
+		script_get_constant(nk_constant2.c_str(), &constant2);
+		skill->nk.set(static_cast<uint8>(constant));
+		skill->nk.set(static_cast<uint8>(constant2));
 	}
 
 	if (this->nodeExists(node, "Flags")) {
@@ -23458,13 +23467,21 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			memset(skill->element, ELE_NEUTRAL, sizeof(skill->element));
 	}
 
-	if (this->nodeExists(node, "SplashArea")) {
-		if (!this->parseNode("SplashArea", "Area", node, skill->splash))
-			return 0;
-	} else {
-		if (!exists)
-			memset(skill->splash, 0, sizeof(skill->splash));
-	}
+	skill->splash[0] = 1;
+	skill->splash[2] = 2;
+	skill->splash[2] = 3;
+	skill->splash[9] = 4;
+	skill->splash[14] = 5;
+	skill->splash[19] = 6;
+	skill->splash[24] = 7;
+	skill->splash[29] = 8;
+	skill->splash[39] = 9;
+	skill->splash[49] = 10;
+	skill->splash[59] = 11;
+	skill->splash[69] = 12;
+	skill->splash[79] = 13;
+	skill->splash[89] = 14;
+	skill->splash[99] = 15;
 
 	if (this->nodeExists(node, "ActiveInstance")) {
 		if (!this->parseNode("ActiveInstance", "Max", node, skill->maxcount))
