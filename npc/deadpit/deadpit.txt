@@ -4,11 +4,11 @@
 /// Clean up old map then random new map on player on map <= 0
 ///
 /// Monster spawn condition:
-/// Spawn x amount of monster every 5s nearby challengers
+/// Spawn x amount of monster every x seconds nearby challengers
 ///
 /// Every stage had 2 types of stage
 /// 1.) PvE
-/// 2.) PvE + GvG no party (x2 Reward)
+/// 2.) PvE + GvG no party
 ///
 /// Rewards
 /// DEADPIT Points

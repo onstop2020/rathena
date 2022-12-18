@@ -5172,12 +5172,11 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case ABR_DUAL_CANNON_FIRE:
 	case ABR_INFINITY_BUSTER:
 		goto L_CustomSplashAttackSkill;
-		skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 		break;
 	case IG_SHIELD_SHOOTING:
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
 		sc_start(src, src, SC_SHIELD_POWER, 100, skill_lv, skill_get_time(skill_id, skill_lv));
+		goto L_CustomSplashAttackSkill;
 		break;
 	case DK_DRAGONIC_AURA:
 	case DK_STORMSLASH:
@@ -5189,11 +5188,11 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case TR_ROSEBLOSSOM:
 	case TR_RHYTHMSHOOTING:
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
 		if (skill_id == DK_DRAGONIC_AURA)
 			sc_start(src, src, SC_DRAGONIC_AURA, 100, skill_lv, skill_get_time(skill_id,skill_lv));
 		else if (skill_id == IG_GRAND_JUDGEMENT)
 			sc_start(src, src, SC_SPEAR_SCAR, 100, skill_lv, skill_get_time(skill_id, skill_lv));
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case SHC_ETERNAL_SLASH:
@@ -5202,7 +5201,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		else
 			sc_start(src, src, SC_E_SLASH_COUNT, 100, 1, skill_get_time(skill_id, skill_lv));
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case SHC_SHADOW_STAB:
@@ -5213,16 +5212,16 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		status_change_end(src, SC_CLOAKINGEXCEED);
 
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case WH_CRESCIVE_BOLT:
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
 		if( sc && sc->getSCE(SC_CRESCIVEBOLT) )
 			sc_start(src, src, SC_CRESCIVEBOLT, 100, min( 3, 1 + sc->getSCE(SC_CRESCIVEBOLT)->val1 ), skill_get_time(skill_id, skill_lv));
 		else
 			sc_start(src, src, SC_CRESCIVEBOLT, 100, 1, skill_get_time(skill_id, skill_lv));
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case ABC_UNLUCKY_RUSH:
@@ -5231,11 +5230,11 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			skill_blown(src, src, 1, (map_calc_dir(bl, src->x, src->y) + 4) % 8, BLOWN_NONE);
 
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case MO_TRIPLEATTACK:
-		skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag|SD_ANIMATION);
+		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag | SD_ANIMATION);
 		break;
 
 	case LK_HEADCRUSH:
@@ -5244,7 +5243,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 				clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
 			break;
 		}
-		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case LK_JOINTBEAT:
@@ -5256,22 +5255,13 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		break;
 
 	case MO_COMBOFINISH:
-		if (!(flag&1) && sc && sc->getSCE(SC_SPIRIT) && sc->getSCE(SC_SPIRIT)->val2 == SL_MONK)
-		{	//Becomes a splash attack when Soul Linked.
-			map_foreachinshootrange(skill_area_sub, bl,
-				skill_get_splash(skill_id, skill_lv),BL_CHAR|BL_SKILL,
-				src,skill_id,skill_lv,tick, flag|BCT_ENEMY|1,
-				skill_castend_damage_id);
-		} else
-			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case TK_STORMKICK: // Taekwon kicks [Dralnu]
 		clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 		skill_area_temp[1] = 0;
-		map_foreachinshootrange(skill_attack_area, src,
-			skill_get_splash(skill_id, skill_lv), BL_CHAR|BL_SKILL,
-			BF_WEAPON, src, src, skill_id, skill_lv, tick, flag, BCT_ENEMY);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case KN_CHARGEATK:
@@ -5290,16 +5280,17 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 
 		// cause damage and knockback if the path to target was a straight one
 		if (path) {
-			if(skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, dist)) {
+			//if(skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, dist)) {
 #ifdef RENEWAL
 				if (map_getmapdata(src->m)->flag[MF_PVP])
 					dist += 2; // Knockback is 4 on PvP maps
 #endif
 				skill_blown(src, bl, dist, dir, BLOWN_NONE);
-			}
+			//}
 			//HACK: since knockback officially defaults to the left, the client also turns to the left... therefore,
 			// make the caster look in the direction of the target
 			unit_setdir(src, (dir+4)%8);
+			goto L_CustomSplashAttackSkill;
 		}
 
 		}
@@ -5307,16 +5298,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 
 	case NC_FLAMELAUNCHER:
 		skill_area_temp[1] = bl->id;
-		if (battle_config.skill_eightpath_algorithm) {
-			//Use official AoE algorithm
-			map_foreachindir(skill_attack_area, src->m, src->x, src->y, bl->x, bl->y,
-				skill_get_splash(skill_id, skill_lv), skill_get_maxcount(skill_id, skill_lv), 0, splash_target(src),
-				skill_get_type(skill_id), src, src, skill_id, skill_lv, tick, flag, BCT_ENEMY);
-		} else {
-			map_foreachinpath(skill_attack_area, src->m, src->x, src->y, bl->x, bl->y,
-				skill_get_splash(skill_id, skill_lv), skill_get_maxcount(skill_id, skill_lv), splash_target(src),
-				skill_get_type(skill_id), src, src, skill_id, skill_lv, tick, flag, BCT_ENEMY);
-		}
+		goto L_CustomSplashAttackSkill;
 		break;
 
 #ifndef RENEWAL
@@ -5359,8 +5341,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		break;
 
 	case MO_INVESTIGATE:
-		skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 		status_change_end(src, SC_BLADESTOP);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case RG_BACKSTAP:
@@ -5396,7 +5378,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 #ifdef RENEWAL
 					clif_blown(src);
 #endif
-					skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
+					goto L_CustomSplashAttackSkill;
 				}
 				else if (sd)
 					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
@@ -5405,17 +5387,17 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		break;
 
 	case MO_FINGEROFFENSIVE:
-		skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 		if (battle_config.finger_offensive_type && sd) {
 			for (int i = 1; i < sd->spiritball_old; i++)
 				skill_addtimerskill(src, tick + i * 200, bl->id, 0, 0, skill_id, skill_lv, BF_WEAPON, flag);
 		}
 		status_change_end(src, SC_BLADESTOP);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case MO_CHAINCOMBO:
-		skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 		status_change_end(src, SC_BLADESTOP);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 #ifndef RENEWAL
@@ -23337,7 +23319,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			else
 				skill->nk.reset(static_cast<uint8>(constant));
 		}
-		std::string nk_constant = "NK_SPLASHSPLIT";
+		std::string nk_constant = "NK_SPLASH";
 		std::string nk_constant2 = "NK_CRITICAL";
 		int64 constant;
 		int64 constant2;
