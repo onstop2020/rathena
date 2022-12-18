@@ -1,5 +1,6 @@
 -	script	LoginEvent	-1,{
 OnPCLoginEvent:
+	// Initialize
 	if(!isInitialize){
 		isInitialize = 1;
 		nude;
@@ -7,8 +8,18 @@ OnPCLoginEvent:
 		StatusPoint = 0;
 	}
 	
+	// Newbie characters will wear summer costume
 	if(Class == 0)
 	sc_start SC_SUMMER,-1,0;
+	// Always return to lobby
+	else{
+		warp "nif_dun01",145,140;
+		addtimer 100,strnpcinfo(0) + "::OnRefresh";
+	}
 
+	end;
+	
+OnRefresh:
+	atcommand "@refresh";
 	end;
 }

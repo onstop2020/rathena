@@ -1,0 +1,10 @@
+-	script	DieEvent	-1,{
+OnPCDieEvent:
+	// Always return to lobby
+	addtimer 100,strnpcinfo(0) + "::OnDead";
+	end;
+	
+OnDead:
+	warp "nif_dun01",145,140;
+	end;
+}

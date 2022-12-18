@@ -8,7 +8,7 @@
 ///
 /// Every stage had 2 types of stage
 /// 1.) PvE
-/// 2.) Pve + GvG no party (x2 Reward)
+/// 2.) PvE + GvG no party (x2 Reward)
 ///
 /// Rewards
 /// DEADPIT Points
@@ -28,52 +28,70 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	
 	// Check map not null && had users
 	if(.@isGvG
-			? (($playingMapGvG$[.@mapArrayIndex] != "")
-				&& ($playingMapGvG$[.@mapArrayIndex] != " ")
-				&& (getmapusers($playingMapGvG$[.@mapArrayIndex]) > 0))
-			: (($playingMapPvE$[.@mapArrayIndex] != "")
-				&& ($playingMapPvE$[.@mapArrayIndex] != " ")
-				&& (getmapusers($playingMapPvE$[.@mapArrayIndex]) > 0))
-			){
-		.@isRestart = 0;
-	}
+			&& ($playingMapGvG$[.@mapArrayIndex] != "")
+			&& (getmapusers($playingMapGvG$[.@mapArrayIndex]) > 0))
+	.@isRestart = 0;
+	else if(!.@isGvG
+			&& ($playingMapPvE$[.@mapArrayIndex] != "")
+			&& (getmapusers($playingMapPvE$[.@mapArrayIndex]) > 0))
+	.@isRestart = 0;
+	
 	if(.@isRestart){
 		.@randomMap$ = $map$[rand(0,($mapSize - 1))];
 		
 		for(.@i = 0; .@i < 10; .@i++){
-			if(.@mapArrayIndex == .@i)
-			continue;
-			
-			while(.@isGvG
-			? (.@randomMap$ == $playingMapGvG$[.@i])
-			: (.@randomMap$ == $playingMapPvE$[.@i]))
-			.@randomMap$ = $map$[rand(0,($mapSize - 1))];
+			while((.@randomMap$ == $playingMapGvG$[.@i])
+			|| (.@randomMap$ == $playingMapPvE$[.@i])){
+				.@i = 0;
+				.@randomMap$ = $map$[rand(0,($mapSize - 1))];
+			}
 		}
 		
-		if(.@isGvG){
+		.@cleanUpMap$ = (.@isGvG ? $playingMapGvG$[.@mapArrayIndex] : $playingMapPvE$[.@mapArrayIndex]);
+		if(.@cleanUpMap$ != ""){
 			// Clean monster on old map
-			killmonsterall $playingMapGvG$[.@mapArrayIndex];
+			killmonsterall .@cleanUpMap$;
 			// Clean mapflag on old map
-			removemapflag $playingMapGvG$[.@mapArrayIndex],mf_gvg_noparty;
-			
-			// Set new map
+			removemapflag .@cleanUpMap$,mf_gvg;
+			removemapflag .@cleanUpMap$,mf_gvg_noparty;
+		}
+		
+		// Set new map
+		if(.@isGvG){
 			$playingMapGvG$[.@mapArrayIndex] = .@randomMap$;
 			// Set mapflag
-			setmapflag $playingMapGvG$[.@mapArrayIndex],mf_gvg_noparty;
+			setmapflag .@randomMap$,mf_gvg;
+			setmapflag .@randomMap$,mf_gvg_noparty;
 		}
-		else{
-			// Clean monster on old map
-			killmonsterall $playingMapPvE$[.@mapArrayIndex];
-			// Clean mapflag on old map
-			removemapflag $playingMapPvE$[.@mapArrayIndex],mf_gvg_noparty;
-			// Set new map
-			$playingMapPvE$[.@mapArrayIndex] = .@randomMap$;
-		}
+		else
+		$playingMapPvE$[.@mapArrayIndex] = .@randomMap$;
 	}
 	
+	// Warp
+	warp (.@isGvG ? $playingMapGvG$[.@mapArrayIndex] : $playingMapPvE$[.@mapArrayIndex]),0,0;
+	// Block
+	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
+	addtimer 2000,strnpcinfo(3) + "::OnWarp";
+	addtimer 5000,strnpcinfo(3) + "::OnKeepSpawnMonster";
 	end;
 	
 	L_Cancel:
+	end;
+	
+	// Unblock all
+OnWarp:
+	setpcblock PCBLOCK_ALL,false;
+	end;
+	
+	// Keep spawning monster
+OnKeepSpawnMonster:
+	// Check is player still alive
+	if(isdead())
+	end;
+	
+	// Run timer again
+	addtimer 5000,strnpcinfo(3) + "::OnKeepSpawnMonster";
 	end;
 	
 OnInit:
