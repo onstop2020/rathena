@@ -1,10 +1,29 @@
 -	script	DieEvent	-1,{
 OnPCDieEvent:
+	// Destroy spawn monster timer
+	deltimer "หลุมแห่งความตาย::OnKeepSpawnMonster";
 	// Always return to lobby
-	addtimer 100,strnpcinfo(0) + "::OnDead";
+	addtimer 1000,strnpcinfo(3) + "::OnDead";
 	end;
 	
 OnDead:
 	warp "nif_dun01",145,140;
+	addtimer 1000,strnpcinfo(3) + "::OnDeadHint";
+	end;
+	
+OnDeadHint:
+	message strcharinfo(0),.hints$[rand(0,(.hintsSize - 1))];
+	end;
+	
+OnInit:
+	setarray .hints$[0],"เจ้าแห่งความตาย: เจ้าสะดุดก้อนหินตายเหรอ?",
+	"เจ้าแห่งความตาย: เฮ้ออออ ไม่เอาไหนเลยนะ..",
+	"เจ้าแห่งความตาย: ยังอยากสู้ต่อไหม?",
+	"เจ้าแห่งความตาย: พอเถอะน่า..",
+	"เจ้าแห่งความตาย: ตายแล้ว.. ตายอีก ตายแล้ว ตายอีก..",
+	"เจ้าแห่งความตาย: ต้องฝึกฝนอีกกี่ชาติกันนะ.. เจ้าถึงจะได้กลับมาแบบปกติ ๆ?!",
+	"เจ้าแห่งความตาย: ฮ่า ฮ่า ฮ่า! สภาพเจ้าดูไม่ได้เลย!!"
+	;
+	.hintsSize = getarraysize(.hints$);
 	end;
 }

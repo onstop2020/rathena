@@ -12,14 +12,12 @@ OnPCLoginEvent:
 	if(Class == 0)
 	sc_start SC_SUMMER,-1,0;
 	// Always return to lobby
-	else{
-		warp "nif_dun01",145,140;
-		addtimer 100,strnpcinfo(0) + "::OnRefresh";
-	}
+	else
+	addtimer 100,strnpcinfo(0) + "::OnReturnToLobby";
 
 	end;
 	
-OnRefresh:
-	atcommand "@refresh";
+OnReturnToLobby:
+	warp "nif_dun01",145,140;
 	end;
 }

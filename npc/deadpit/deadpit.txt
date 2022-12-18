@@ -24,16 +24,17 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	) == 2);
 	
 	.@mapArrayIndex = (.@selectedMap - 1);
+	playingMapIndex = .@mapArrayIndex;
 	.@isRestart = 1;
 	
 	// Check map not null && had users
 	if(.@isGvG
-			&& ($playingMapGvG$[.@mapArrayIndex] != "")
-			&& (getmapusers($playingMapGvG$[.@mapArrayIndex]) > 0))
+			&& ($playingMapGvG$[playingMapIndex] != "")
+			&& (getmapusers($playingMapGvG$[playingMapIndex]) > 0))
 	.@isRestart = 0;
 	else if(!.@isGvG
-			&& ($playingMapPvE$[.@mapArrayIndex] != "")
-			&& (getmapusers($playingMapPvE$[.@mapArrayIndex]) > 0))
+			&& ($playingMapPvE$[playingMapIndex] != "")
+			&& (getmapusers($playingMapPvE$[playingMapIndex]) > 0))
 	.@isRestart = 0;
 	
 	if(.@isRestart){
@@ -47,51 +48,111 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 			}
 		}
 		
-		.@cleanUpMap$ = (.@isGvG ? $playingMapGvG$[.@mapArrayIndex] : $playingMapPvE$[.@mapArrayIndex]);
+		.@cleanUpMap$ = (.@isGvG ? $playingMapGvG$[playingMapIndex] : $playingMapPvE$[playingMapIndex]);
 		if(.@cleanUpMap$ != ""){
 			// Clean monster on old map
 			killmonsterall .@cleanUpMap$;
 			// Clean mapflag on old map
 			removemapflag .@cleanUpMap$,mf_gvg;
 			removemapflag .@cleanUpMap$,mf_gvg_noparty;
+			removemapflag .@cleanUpMap$,mf_nightenabled;
 		}
 		
 		// Set new map
 		if(.@isGvG){
-			$playingMapGvG$[.@mapArrayIndex] = .@randomMap$;
+			$playingMapGvG$[playingMapIndex] = .@randomMap$;
 			// Set mapflag
 			setmapflag .@randomMap$,mf_gvg;
 			setmapflag .@randomMap$,mf_gvg_noparty;
+			setmapflag .@randomMap$,mf_nightenabled;
 		}
 		else
-		$playingMapPvE$[.@mapArrayIndex] = .@randomMap$;
+		$playingMapPvE$[playingMapIndex] = .@randomMap$;
 	}
 	
-	// Warp
-	warp (.@isGvG ? $playingMapGvG$[.@mapArrayIndex] : $playingMapPvE$[.@mapArrayIndex]),0,0;
-	// Block
+	// Remember playing map
+	playingMap$ = (.@isGvG ? $playingMapGvG$[playingMapIndex] : $playingMapPvE$[playingMapIndex]);
+	// Block all except moving
 	setpcblock PCBLOCK_ALL,true;
 	setpcblock PCBLOCK_MOVE,false;
 	addtimer 2000,strnpcinfo(3) + "::OnWarp";
+	// Start timer to spawn monster
 	addtimer 5000,strnpcinfo(3) + "::OnKeepSpawnMonster";
-	end;
-	
-	L_Cancel:
+	// Warp
+	warp playingMap$,0,0;
 	end;
 	
 	// Unblock all
 OnWarp:
 	setpcblock PCBLOCK_ALL,false;
+	message strcharinfo(0),"เตรียมตัวต่อสู้!!";
 	end;
 	
 	// Keep spawning monster
 OnKeepSpawnMonster:
-	// Check is player still alive
+	// Check is player dead
 	if(isdead())
 	end;
 	
+	// Spawn now
+	getmapxy(.@mapName$,.@x,.@y,BL_PC);
+	.@spawnType = rand(.minimumMonsterType[playingMapIndex],.maximumMonsterType[playingMapIndex]);
+	for(.@i = 0; .@i < .@spawnType; .@i++){
+		// Random monster
+		.@monsterId = callsub(L_GetMonsterId);
+		// Check MvP
+		.@isMvP = (getmonsterinfo(.@monsterId,MOB_MVPEXP) > 0);
+		if(.@isMvP){
+			// Chance to spawn MvP
+			if(rand(0,100) > .mvpChance){
+				.@maxRetry = .maxRetrySkipMvP;
+				while(.@isMvP 
+				&& (.@maxRetry > 0)){
+					.@maxRetry--;
+					.@monsterId = callsub(L_GetMonsterId);
+					.@isMvP = (getmonsterinfo(.@monsterId,MOB_MVPEXP) > 0);
+				}
+			}
+		}
+		// MvP will spawn only 1 amount per loop
+		.@spawnAmount = .@isMvP ? 1 : rand(.minimumRandomSpawnAmount[playingMapIndex],.maximumRandomSpawnAmount[playingMapIndex]);
+		// Loop to spawn
+		for(.@j = 0; .@j < .@spawnAmount; .@j++){
+			// Get free cell around users
+			getfreecell(.@mapName$,.@freeX,.@freeY,.@x,.@y,rand(.minimumSpawnRange,.maximumSpawnRange),rand(.minimumSpawnRange,.maximumSpawnRange));
+			monster .@mapName$,.@freeX,.@freeY,"--ja--",.@monsterId,1,strnpcinfo(3) + (.@isMvP ? "::OnBossDead" : "::OnMonsterDead");
+		}
+	}
 	// Run timer again
 	addtimer 5000,strnpcinfo(3) + "::OnKeepSpawnMonster";
+	end;
+
+	L_GetMonsterId:
+	if(playingMapIndex == 0)
+	return $monsterTier1Ids[rand(0,($monsterTier1IdsSize - 1))];
+	else if(playingMapIndex == 1)
+	return $monsterTier2Ids[rand(0,($monsterTier2IdsSize - 1))];
+	else if(playingMapIndex == 2)
+	return $monsterTier3Ids[rand(0,($monsterTier3IdsSize - 1))];
+	else if(playingMapIndex == 3)
+	return $monsterTier4Ids[rand(0,($monsterTier4IdsSize - 1))];
+	else if(playingMapIndex == 4)
+	return $monsterTier5Ids[rand(0,($monsterTier5IdsSize - 1))];
+	else if(playingMapIndex == 5)
+	return $monsterTier6Ids[rand(0,($monsterTier6IdsSize - 1))];
+	else if(playingMapIndex == 6)
+	return $monsterTier7Ids[rand(0,($monsterTier7IdsSize - 1))];
+	else if(playingMapIndex == 7)
+	return $monsterTier8Ids[rand(0,($monsterTier8IdsSize - 1))];
+	else if(playingMapIndex == 8)
+	return $monsterTier9Ids[rand(0,($monsterTier9IdsSize - 1))];
+	else
+	return $monsterTier10Ids[rand(0,($monsterTier10IdsSize - 1))];
+
+OnMonsterDead:
+	end;
+	
+OnBossDead:
 	end;
 	
 OnInit:
@@ -124,5 +185,30 @@ OnInit:
 		$monsterTier9IdsSize = getarraysize($monsterTier9Ids);
 		$monsterTier10IdsSize = getarraysize($monsterTier10Ids);
 	}
+	
+	setarray .minimumMonsterType[0],		1,	1,	1,	1,	2,	2,	2,	3,	3,	4;
+	setarray .maximumMonsterType[0],		1,	2,	2,	3,	3,	4,	4,	4,	5,	5;
+	setarray .minimumRandomSpawnAmount[0],	2,	2,	2,	3,	3,	4,	4,	5,	5,	5;
+	setarray .maximumRandomSpawnAmount[0],	4,	6,	8,	8,	10,	10,	12,	13,	14,	15;
+	.mvpChance = 5;
+	.maxRetrySkipMvP = 9;
+	.minimumSpawnRange = 5;
+	.maximumSpawnRange = 15;
+	
+	// Clean up
+	addrid(0);
+	deltimer strnpcinfo(3) + "::OnKeepSpawnMonster";
+	// Always return to lobby
+	if(strcharinfo(3) != strnpcinfo(4))
+	addtimer 1000,strnpcinfo(0) + "::OnReturnToLobby";
+	end;
+	
+OnReturnToLobby:
+	warp "nif_dun01",145,140;
+	addtimer 1000,strnpcinfo(0) + "::OnSorry";
+	end;
+	
+OnSorry:
+	message strcharinfo(0),"เจ้าแห่งความตาย: ข้าขอเช็ดเลือดในห้องต่าง ๆ หน่อย.. เจ้าถึงได้กลับมายังห้องโถงแห่งนี้..";
 	end;
 }
