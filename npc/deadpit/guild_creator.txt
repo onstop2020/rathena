@@ -1,0 +1,20 @@
+/// Guild Creator
+nif_dun01,140,155,5	script	สร้าง Guild	857,{
+	mes "ระบุชื่อ Guild";
+	next;
+	input .@s$;
+	atcommand "@guild " + .@s$;
+	mes "สร้าง Guild " + .@s$ + " เรียบร้อยแล้ว!";
+	close2;
+	atcommand "@guildlvup 99";
+	end;
+	
+OnInit:
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_MAIL;
+	initnpctimer;
+	end;
+}

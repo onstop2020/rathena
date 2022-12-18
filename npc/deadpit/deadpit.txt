@@ -13,6 +13,9 @@
 /// Rewards
 /// DEADPIT Points
 nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
+	// Clean up
+	deltimer strnpcinfo(3) + "::OnKeepSpawnMonster";
+	
 	.@selectedMap = select(
 	"หลุมเทพตกสวรรค์" +
 	":หลุมความโศกเศร้า"
@@ -25,6 +28,7 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	
 	.@mapArrayIndex = (.@selectedMap - 1);
 	playingMapIndex = .@mapArrayIndex;
+	isGvG = .@isGvG;
 	.@isRestart = 1;
 	
 	// Check map not null && had users
@@ -90,8 +94,9 @@ OnWarp:
 	
 	// Keep spawning monster
 OnKeepSpawnMonster:
-	// Check is player dead
-	if(isdead())
+	if(!playerattached()							// Player no longer connected
+			|| isdead()								// Already dead
+			|| (strcharinfo(3) == strnpcinfo(4)))	// Back to lobby
 	end;
 	
 	// Spawn now
@@ -150,9 +155,15 @@ OnKeepSpawnMonster:
 	return $monsterTier10Ids[rand(0,($monsterTier10IdsSize - 1))];
 
 OnMonsterDead:
+	.@reward = (.deadPitPointsRewards[playingMapIndex] * (isGvG ? .gvgMultiplier : 1));
+	deadPitPoints = cap_value(deadPitPoints + .@reward,0,INT_MAX);
+	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward);
 	end;
 	
 OnBossDead:
+	.@reward = (.deadPitPointsRewards[playingMapIndex] * ((isGvG ? .gvgMultiplier : 1) + .mvpMultiplier));
+	deadPitPoints = cap_value(deadPitPoints + .@reward,0,INT_MAX);
+	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward);
 	end;
 	
 OnInit:
@@ -190,6 +201,9 @@ OnInit:
 	setarray .maximumMonsterType[0],		1,	2,	2,	3,	3,	4,	4,	4,	5,	5;
 	setarray .minimumRandomSpawnAmount[0],	2,	2,	2,	3,	3,	4,	4,	5,	5,	5;
 	setarray .maximumRandomSpawnAmount[0],	4,	6,	8,	8,	10,	10,	12,	13,	14,	15;
+	setarray .deadPitPointsRewards[0],		1,	2,	4,	7,	11,	16,	22,	29,	37,	46;
+	.gvgMultiplier = 2;
+	.mvpMultiplier = 5;
 	.mvpChance = 5;
 	.maxRetrySkipMvP = 9;
 	.minimumSpawnRange = 5;
@@ -199,7 +213,9 @@ OnInit:
 	addrid(0);
 	deltimer strnpcinfo(3) + "::OnKeepSpawnMonster";
 	// Always return to lobby
-	if(strcharinfo(3) != strnpcinfo(4))
+	.@currentMap$ = strcharinfo(3);
+	if((.@currentMap$ != strnpcinfo(4))
+			&& (.@currentMap$ != "prt_prison"))
 	addtimer 1000,strnpcinfo(0) + "::OnReturnToLobby";
 	end;
 	

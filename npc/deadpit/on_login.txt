@@ -3,9 +3,6 @@ OnPCLoginEvent:
 	// Initialize
 	if(!isInitialize){
 		isInitialize = 1;
-		nude;
-		atcommand "@clearinventory";
-		StatusPoint = 0;
 	}
 	
 	// Newbie characters will wear summer costume

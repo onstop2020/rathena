@@ -1,6 +1,7 @@
 /// Prison Wall
 -	script	PrisonWall	-1,{
 	end;
+	
 OnTouch:
 	warp strcharinfo(3),62,141;
 	end;
@@ -66,6 +67,19 @@ prt_prison,57,144,4	script	เจ้าแห่งความตาย	10387,{
 	atcommand "@job " + getarg(0,4252);
 	warp "nif_dun01",145,140;
 	savepoint "nif_dun01",145,140;
+	addtimer 1000,strnpcinfo(3) + "::OnAnnounce";
+	end;
+	
+OnAnnounce:
 	announce strcharinfo(0) + " ได้เข้าสู่ 'หลุมแห่งความตาย'...",BC_ALL;
+	end;
+	
+OnInit:
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_BLABLA;
+	initnpctimer;
 	end;
 }
