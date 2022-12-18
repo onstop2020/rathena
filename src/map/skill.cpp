@@ -5413,7 +5413,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			if (skill_id == MO_EXTREMITYFIST && sd && sd->spiritball_old > 5)
 				flag |= 1; // Give +100% damage increase
 #endif
-			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 			if (skill_id == MO_EXTREMITYFIST) {
 				status_set_sp(src, 0, 0);
 				status_change_end(src, SC_EXPLOSIONSPIRITS);
@@ -5448,24 +5447,22 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 				clif_blown(src);
 				clif_spiritball(src);
 			}
+			goto L_CustomSplashAttackSkill;
 		}
 		break;
 
 	case HT_POWER:
 		if( tstatus->race == RC_BRUTE || tstatus->race == RC_PLAYER_DORAM || tstatus->race == RC_INSECT )
-			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
+			goto L_CustomSplashAttackSkill;
 		break;
 
 	case SU_PICKYPECK:
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
 	case SU_BITE:
-		skill_attack(BF_WEAPON, src, src, bl, skill_id, skill_lv, tick, flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 	case SU_SVG_SPIRIT:
-		skill_area_temp[1] = bl->id;
-		map_foreachinpath(skill_attack_area, src->m, src->x, src->y, bl->x, bl->y,
-			skill_get_splash(skill_id, skill_lv), skill_get_maxcount(skill_id, skill_lv), splash_target(src),
-			skill_get_type(skill_id), src, src, skill_id, skill_lv, tick, flag, BCT_ENEMY);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	L_CustomSplashAttackSkill:
@@ -5924,26 +5921,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 		break;
 
 	case KN_SPEARSTAB:
-		if(flag&1) {
-			if (bl->id==skill_area_temp[1])
-				break;
-			if (skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,SD_ANIMATION))
-				skill_blown(src,bl,skill_area_temp[2],-1,BLOWN_NONE);
-		} else {
-			int x=bl->x,y=bl->y,i,dir;
-			dir = map_calc_dir(bl,src->x,src->y);
-			skill_area_temp[1] = bl->id;
-			skill_area_temp[2] = skill_get_blewcount(skill_id,skill_lv);
-			// all the enemies between the caster and the target are hit, as well as the target
-			if (skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,0))
-				skill_blown(src,bl,skill_area_temp[2],-1,BLOWN_NONE);
-			for (i=0;i<4;i++) {
-				map_foreachincell(skill_area_sub,bl->m,x,y,BL_CHAR,
-					src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
-				x += dirx[dir];
-				y += diry[dir];
-			}
-		}
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case TK_TURNKICK:
@@ -5967,7 +5945,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case ALL_RESURRECTION:
 		if (!battle_check_undead(tstatus->race, tstatus->def_ele))
 			break;
-		skill_attack(BF_MAGIC,src,src,bl,skill_id,skill_lv,tick,flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case AL_HOLYLIGHT:
@@ -6000,23 +5978,23 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 	case AG_ASTRAL_STRIKE_ATK:
 	case AG_DESTRUCTIVE_HURRICANE_CLIMAX:
 	case CD_ARBITRIUM:
-		skill_attack(BF_MAGIC,src,src,bl,skill_id,skill_lv,tick,flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case IG_JUDGEMENT_CROSS:
 	case TR_SOUNDBLEND:
 		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
-		skill_attack(BF_MAGIC, src, src, bl, skill_id, skill_lv, tick, flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case AG_DEADLY_PROJECTION:
 		sc_start(src, bl, SC_DEADLY_DEFEASANCE, 100, skill_lv, skill_get_time(skill_id, skill_lv));
-		skill_attack(BF_MAGIC, src, src, bl, skill_id, skill_lv, tick, flag);
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case NPC_MAGICALATTACK:
-		skill_attack(BF_MAGIC,src,src,bl,skill_id,skill_lv,tick,flag);
 		sc_start(src,src,SC_MAGICALATTACK,100,skill_lv,skill_get_time(skill_id,skill_lv));
+		goto L_CustomSplashAttackSkill;
 		break;
 
 	case HVAN_CAPRICE: //[blackhole89]
@@ -6030,7 +6008,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			case 2: sid=MG_LIGHTNINGBOLT; break;
 			case 3: sid=WZ_EARTHSPIKE; break;
 			}
-			skill_attack(BF_MAGIC,src,src,bl,sid,skill_lv,tick,flag|SD_LEVEL);
+			goto L_CustomSplashAttackSkill;
 		}
 		break;
 
@@ -23646,13 +23624,8 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			memset(skill->upkeep_time2, 0, sizeof(skill->upkeep_time2));
 	}
 
-	if (this->nodeExists(node, "Cooldown")) {
-		if (!this->parseNode("Cooldown", "Time", node, skill->cooldown))
-			return 0;
-	} else {
-		if (!exists)
-			memset(skill->cooldown, 0, sizeof(skill->cooldown));
-	}
+	skill->cooldown[0] = 3000;
+	skill->cooldown[99] = 3000;
 
 #ifdef RENEWAL_CAST
 	if (this->nodeExists(node, "FixedCastTime")) {

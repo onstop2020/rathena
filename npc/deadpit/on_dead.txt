@@ -3,12 +3,12 @@ OnPCDieEvent:
 	// Destroy spawn monster timer
 	deltimer "หลุมแห่งความตาย::OnKeepSpawnMonster";
 	// Always return to lobby
+	if(strcharinfo(3) != "nif_dun01")
 	addtimer 1000,strnpcinfo(3) + "::OnDead";
 	end;
 	
 OnDead:
 	warp "nif_dun01",145,140;
-	if(strcharinfo(3) != "nif_dun01")
 	addtimer 1000,strnpcinfo(3) + "::OnDeadHint";
 	end;
 	
