@@ -1,0 +1,4 @@
+function	script	CurrentPoints	{
+	announce "คุณมี " + F_InsertComma(deadPitPoints) + " DEADPIT Points",bc_self,0xD41212;
+	return;
+}

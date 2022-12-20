@@ -13,6 +13,13 @@
 /// Rewards
 /// DEADPIT Points
 nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
+	if(!isFirstSkillBought){
+		message strcharinfo(0),"โปรดเลือก Skill เริ่มต้นก่อน";
+		end;
+	}
+	
+	CurrentPoints();
+	
 	// Clean up
 	deltimer strnpcinfo(3) + "::OnKeepSpawnMonster";
 	
@@ -157,14 +164,23 @@ OnKeepSpawnMonster:
 OnMonsterDead:
 	.@reward = (.deadPitPointsRewards[playingMapIndex] * (isGvG ? .gvgMultiplier : 1));
 	deadPitPoints = cap_value(deadPitPoints + .@reward,0,INT_MAX);
-	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward);
+	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward) + " (" + F_InsertComma(deadPitPoints) + ")";
+	callsub(L_TryToRerollSkillShop);
 	end;
 	
 OnBossDead:
 	.@reward = (.deadPitPointsRewards[playingMapIndex] * ((isGvG ? .gvgMultiplier : 1) + .mvpMultiplier));
 	deadPitPoints = cap_value(deadPitPoints + .@reward,0,INT_MAX);
-	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward);
+	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward) + " (" + F_InsertComma(deadPitPoints) + ")";
+	callsub(L_TryToRerollSkillShop);
 	end;
+	
+	L_TryToRerollSkillShop:
+	if(rand(0,100) < .rerollSkillChance){
+		rerollSkillRandomizer = 1;
+		dispbottom "รายการ Skill ที่สามารถซื้อได้ ถูกสุ่มใหม่เรียบร้อยแล้ว";
+	}
+	return;
 	
 OnInit:
 	if($mapVersion != 1){
@@ -208,6 +224,7 @@ OnInit:
 	.maxRetrySkipMvP = 9;
 	.minimumSpawnRange = 5;
 	.maximumSpawnRange = 15;
+	.rerollSkillChance = 1;
 	
 	// Clean up
 	addrid(0);

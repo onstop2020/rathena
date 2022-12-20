@@ -16,5 +16,8 @@ OnPCLoginEvent:
 	
 OnReturnToLobby:
 	warp "nif_dun01",145,140;
+	
+	CurrentPoints();
+	
 	end;
 }
