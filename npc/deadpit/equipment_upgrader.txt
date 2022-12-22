@@ -1,0 +1,61 @@
+/// Refiner
+nif_dun01,154,160,4	script	เสริมแกร่งอุปกรณ์สวมใส่	506,{
+	CurrentPoints();
+	
+	.@selectType = select("ยกเลิก:ตีบวกทั้งตัว ^148A0B+1^000000 (^E82CF7" + F_InsertComma(.refinePrice) + "^000000):Grade ทั้งตัว ^148A0B+1^000000 (^E82CF7" + F_InsertComma(.gradePrice) + "^000000)");
+	
+	if(.@selectType == 1)
+	end;
+	else if(.@selectType == 2){
+		.@price = .refinePrice;
+		
+		if(deadpitPoints >= .@price){
+			deadpitPoints = cap_value(deadpitPoints - .@price,0,INT_MAX);
+			atcommand "@refine 0 1";
+		}
+		else{
+			mes "ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points";
+			
+			CurrentPoints();
+			
+			close;
+		}
+		
+		dispbottom "DEADPIT Points -" + F_InsertComma(.@price) + " (" + F_InsertComma(deadPitPoints) + ")";
+		
+		end;
+	}
+	else if(.@selectType == 3){
+		.@price = .gradePrice;
+		
+		if(deadpitPoints >= .@price){
+			deadpitPoints = cap_value(deadpitPoints - .@price,0,INT_MAX);
+			atcommand "@grade 0 1";
+		}
+		else{
+			mes "ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points";
+			
+			CurrentPoints();
+			
+			close;
+		}
+		
+		dispbottom "DEADPIT Points -" + F_InsertComma(.@price) + " (" + F_InsertComma(deadPitPoints) + ")";
+		
+		end;
+	}
+	
+	end;
+	
+OnInit:
+	.refinePrice = 50;
+	.gradePrice = 250;
+	
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_MONEY;
+	initnpctimer;
+	end;
+}
