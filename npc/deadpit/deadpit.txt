@@ -13,6 +13,9 @@
 /// Rewards
 /// DEADPIT Points
 nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
+	if(countitem(30000001) < 1)
+	getitem 30000001,1;
+
 	if(!isFirstSkillBought){
 		message strcharinfo(0),"โปรดเลือก Skill เริ่มต้นก่อน";
 		end;

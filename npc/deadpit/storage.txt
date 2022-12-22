@@ -1,0 +1,21 @@
+/// Storage
+nif_dun01,137,155,4	script	คลังเก็บของ	10005,{
+	if(getcharid(2) > 0)
+	menu "คลังปกติ",-
+	,"คลัง Guild",L_GuildStorage;
+	openstorage;
+	end;
+
+	L_GuildStorage:
+	guildopenstorage();
+	end;
+
+OnInit:
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_MAIL;
+	initnpctimer;
+	end;
+}

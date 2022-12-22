@@ -1,0 +1,107 @@
+/// Potion Upgrader
+nif_dun01,154,155,5	script	เสริมแกร่ง Potion	506,{
+	if(countitem(30000000) < 1)
+	getitem 30000000,1;
+	
+	CurrentPoints();
+	
+	mes "Potion ของคุณ";
+	mes "[^3CA740พลังฟื้นฟู^000000] " + F_InsertComma(callfunc("MyPotionPower"));
+	mes "[^8F55DACooldown^000000] " + F_InsertComma(callfunc("MyPotionCooldown")) + " วินาที";
+	mes "• เสริมแกร่งต่อตัวละคร";
+	next;
+	menu "พลังฟื้นฟู ^148A0B+" + F_InsertComma(callsub(L_GetPower)) + "^000000 (^E82CF7" + ((myPotionPower < .maximumPower) ? F_InsertComma(callsub(L_GetPowerPrice)) : "^FF0000MAX^000000") + "^000000)",L_Power,
+	"Cooldown ^148A0B-1 วินาที^000000 (^E82CF7" + ((myPotionCooldown < 9) ? F_InsertComma(callsub(L_GetCooldownPrice)) : "^FF0000MAX^000000") + "^000000)",L_Cooldown;
+	
+	L_Power:
+	.@price = callsub(L_GetPowerPrice);
+	if(deadpitPoints >= .@price){
+		if(myPotionPower >= .maximumPower)
+		{
+			mes "Potion ของคุณ";
+			mes "เสริมแกร่งพลังฟื้นฟู Level สูงสุดแล้ว";
+			close;
+		}
+		if(myPotionPower <= 0)
+		myPotionPower = 50;
+		myPotionPower = cap_value(myPotionPower + callsub(L_GetPower),0,.maximumPower);
+		deadpitPoints = cap_value(deadpitPoints - .@price,0,INT_MAX);
+		myPotionPowerLv++;
+		mes "Potion ของคุณ";
+		mes "[^3CA740พลังฟื้นฟู^000000] " + F_InsertComma(callfunc("MyPotionPower"));
+		
+		dispbottom "DEADPIT Points -" + F_InsertComma(.@price) + " (" + F_InsertComma(deadPitPoints) + ")";
+		
+		close;
+	}
+	else{
+		mes "ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points";
+		
+		CurrentPoints();
+		
+		close;
+	}
+	close;
+	
+	L_Cooldown:
+	.@price = callsub(L_GetCooldownPrice);
+	if(deadpitPoints >= .@price){
+		if(myPotionCooldown >= .maximumCooldown)
+		{
+			mes "Potion ของคุณ";
+			mes "เสริมแกร่ง Cooldown Level สูงสุดแล้ว";
+			close;
+		}
+		myPotionCooldown = cap_value(myPotionCooldown + 1,0,.maximumCooldown);
+		deadpitPoints = cap_value(deadpitPoints - .@price,0,INT_MAX);
+		mes "Potion ของคุณ";
+		mes "[^8F55DACooldown^000000] " + F_InsertComma(callfunc("MyPotionCooldown")) + " วินาที";
+		
+		dispbottom "DEADPIT Points -" + F_InsertComma(.@price) + " (" + F_InsertComma(deadPitPoints) + ")";
+		
+		close;
+	}
+	else{
+		mes "ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points";
+		
+		CurrentPoints();
+		
+		close;
+	}
+	close;
+	
+	L_GetPowerPrice:
+	for(.@i = 0; .@i < .powerPricingTierLvSize; .@i++){
+		if(.powerPricingTierLv[.@i] > myPotionPowerLv)
+		return .powerPricing[.@i];
+	}
+	return .powerPricing[.powerPricingTierLvSize - 1];
+	
+	L_GetPower:
+	for(.@i = .powerPricingTierLvSize - 1; .@i >= 0; .@i--){
+		if(myPotionPowerLv >= .powerPricingTierLv[.@i])
+		return .powerPricingPower[.@i];
+	}
+	return .powerPricingPower[0];
+	
+	L_GetCooldownPrice:
+	return .cooldownPricing[myPotionCooldown];
+	
+OnInit:
+	setarray .powerPricingTierLv[0],			5,		15,		25,			35,			50,			65,			80,			90;
+	.powerPricingTierLvSize = getarraysize(.powerPricingTierLv);
+	setarray .powerPricing[0],					15,		35,		99,			215,		750,		1490,		2100,		3900;
+	setarray .powerPricingPower[0],				50,		100,	500,		1000,		5000,		10000,		25000,		50000;
+	setarray .cooldownPricing[0],				20,		90,		225,		750,		2500,		7900,		24900,		42500,		79000;
+	
+	.maximumPower = 1000000;
+	.maximumCooldown = 9;
+	
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_MONEY;
+	initnpctimer;
+	end;
+}

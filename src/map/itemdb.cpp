@@ -214,23 +214,7 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Sell")) {
-		uint32 sell;
-
-		if (!this->asUInt32(node, "Sell", sell))
-			return 0;
-
-		if( sell > MAX_ZENY ){
-			this->invalidWarning( node["Sell"], "Sell price exceeds MAX_ZENY. Capping...\n" );
-			sell = MAX_ZENY;
-		}
-
-		item->value_sell = sell;
-	} else {
-		if (!exists) {
-			item->value_sell = 0;
-		}
-	}
+	item->value_sell = 0;
 
 	if (this->nodeExists(node, "Weight")) {
 		uint32 weight;
@@ -304,115 +288,13 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->range = 0;
 	}
 
-	if (this->nodeExists(node, "Slots")) {
-		uint16 slots;
+	item->slots = 0;
 
-		if (!this->asUInt16(node, "Slots", slots))
-			return 0;
+	item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
 
-		if (slots > MAX_SLOTS) {
-			this->invalidWarning(node["Slots"], "Item slots %d exceeds MAX_SLOTS (%d), capping to MAX_SLOTS.\n", slots, MAX_SLOTS);
-			slots = MAX_SLOTS;
-		}
+	itemdb_jobid2mapid(item->class_base, MAPID_ALL, true);
 
-		item->slots = slots;
-	} else {
-		if (!exists)
-			item->slots = 0;
-	}
-
-	if (this->nodeExists(node, "Jobs")) {
-		const ryml::NodeRef& jobNode = node["Jobs"];
-
-		item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
-
-		if (this->nodeExists(jobNode, "All")) {
-			bool active;
-
-			if (!this->asBool(jobNode, "All", active))
-				return 0;
-
-			itemdb_jobid2mapid(item->class_base, MAPID_ALL, active);
-		}
-
-		for (const auto& jobit : jobNode) {
-			std::string jobName;
-			c4::from_chars(jobit.key(), &jobName);
-
-			// Skipped because processed above the loop
-			if (jobName.compare("All") == 0)
-				continue;
-
-			std::string jobName_constant = "EAJ_" + jobName;
-			int64 constant;
-
-			if (!script_get_constant(jobName_constant.c_str(), &constant)) {
-				this->invalidWarning(jobNode[jobit.key()], "Invalid item job %s, defaulting to All.\n", jobName.c_str());
-				itemdb_jobid2mapid(item->class_base, MAPID_ALL, true);
-				break;
-			}
-
-			bool active;
-
-			if (!this->asBool(jobNode, jobName, active))
-				return 0;
-
-			itemdb_jobid2mapid(item->class_base, static_cast<e_mapid>(constant), active);
-		}
-	} else {
-		if (!exists) {
-			item->class_base[0] = item->class_base[1] = item->class_base[2] = 0;
-
-			itemdb_jobid2mapid(item->class_base, MAPID_ALL, true);
-		}
-	}
-
-	if (this->nodeExists(node, "Classes")) {
-		const auto& classNode = node["Classes"];
-
-		if (this->nodeExists(classNode, "All")) {
-			bool active;
-
-			if (!this->asBool(classNode, "All", active))
-				return 0;
-
-			if (active)
-				item->class_upper |= ITEMJ_ALL;
-			else
-				item->class_upper &= ~ITEMJ_ALL;
-		}
-
-		for (const auto& classit : classNode) {
-			std::string className;
-			c4::from_chars(classit.key(), &className);
-
-			// Skipped because processed above the loop
-			if (className.compare("All") == 0)
-				continue;
-
-			std::string className_constant = "ITEMJ_" + className;
-			int64 constant;
-
-			if (!script_get_constant(className_constant.c_str(), &constant)) {
-				this->invalidWarning(classNode[classit.key()], "Invalid class upper %s, defaulting to All.\n", className.c_str());
-				item->class_upper |= ITEMJ_ALL;
-				break;
-			}
-
-			bool active;
-
-			if (!this->asBool(classNode, className, active))
-				return 0;
-
-			if (active)
-				item->class_upper |= constant;
-			else
-				item->class_upper &= ~constant;
-		}
-	} else {
-		if (!exists)
-			item->class_upper = ITEMJ_ALL;
-	}
+	item->class_upper = ITEMJ_ALL;
 
 	if (this->nodeExists(node, "Gender")) {
 		std::string gender;
@@ -524,68 +406,13 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 	}
 
-	if (this->nodeExists(node, "EquipLevelMin")) {
-		uint16 lv;
+	item->elv = 0;
 
-		if (!this->asUInt16(node, "EquipLevelMin", lv))
-			return 0;
+	item->elvmax = MAX_LEVEL;
 
-		if (lv > MAX_LEVEL) {
-			this->invalidWarning(node["EquipLevelMin"], "Minimum equip level %d exceeds MAX_LEVEL (%d), capping to MAX_LEVEL.\n", lv, MAX_LEVEL);
-			lv = MAX_LEVEL;
-		}
+	item->flag.no_refine = false;
 
-		item->elv = lv;
-	} else {
-		if (!exists)
-			item->elv = 0;
-	}
-
-	if (this->nodeExists(node, "EquipLevelMax")) {
-		uint16 lv;
-
-		if (!this->asUInt16(node, "EquipLevelMax", lv))
-			return 0;
-
-		if (lv < item->elv) {
-			this->invalidWarning(node["EquipLevelMax"], "Maximum equip level %d is less than minimum equip level %d, capping to minimum equip level.\n", lv, item->elv);
-			lv = item->elv;
-		}
-
-		if (lv > MAX_LEVEL) {
-			this->invalidWarning(node["EquipLevelMax"], "Maximum equip level %d exceeds MAX_LEVEL (%d), capping to MAX_LEVEL.\n", lv, MAX_LEVEL);
-			lv = MAX_LEVEL;
-		}
-
-		item->elvmax = lv;
-	} else {
-		if (!exists)
-			item->elvmax = MAX_LEVEL;
-	}
-
-	if (this->nodeExists(node, "Refineable")) {
-		bool refine;
-
-		if (!this->asBool(node, "Refineable", refine))
-			return 0;
-
-		item->flag.no_refine = !refine;
-	} else {
-		if (!exists)
-			item->flag.no_refine = true;
-	}
-
-	if (this->nodeExists(node, "Gradable")) {
-		bool gradable;
-
-		if (!this->asBool(node, "Gradable", gradable))
-			return 0;
-
-		item->flag.gradable = gradable;
-	} else {
-		if (!exists)
-			item->flag.gradable = false;
-	}
+	item->flag.gradable = true;
 
 	if (this->nodeExists(node, "View")) {
 		uint32 look;
@@ -618,140 +445,15 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->view_id = 0;
 	}
 
-	if (this->nodeExists(node, "Flags")) {
-		const auto& flagNode = node["Flags"];
-
-		if (this->nodeExists(flagNode, "BuyingStore")) {
-			bool active;
-
-			if (!this->asBool(flagNode, "BuyingStore", active))
-				return 0;
-
-			if (!itemdb_isstackable2(item.get()) && active) {
-				this->invalidWarning(flagNode["BuyingStore"], "Non-stackable item cannot be enabled for buying store.\n");
-				active = false;
-			}
-
-			item->flag.buyingstore = active;
-		} else {
-			if (!exists)
-				item->flag.buyingstore = false;
-		}
-
-		if (this->nodeExists(flagNode, "DeadBranch")) {
-			bool active;
-
-			if (!this->asBool(flagNode, "DeadBranch", active))
-				return 0;
-
-			item->flag.dead_branch = active;
-		} else {
-			if (!exists)
-				item->flag.dead_branch = false;
-		}
-
-		if (this->nodeExists(flagNode, "Container")) {
-			bool active;
-
-			if (!this->asBool(flagNode, "Container", active))
-				return 0;
-
-			item->flag.group = active;
-		} else {
-			if (!exists)
-				item->flag.group = false;
-		}
-
-		if (this->nodeExists(flagNode, "UniqueId")) {
-			bool active;
-
-			if (!this->asBool(flagNode, "UniqueId", active))
-				return 0;
-
-			if (!itemdb_isstackable2(item.get()) && active) {
-				this->invalidWarning(flagNode["UniqueId"], "Non-stackable item cannot be enabled for UniqueId.\n");
-				active = false;
-			}
-
-			item->flag.guid = active;
-		} else {
-			if (!exists)
-				item->flag.guid = false;
-		}
-
-		if (this->nodeExists(flagNode, "BindOnEquip")) {
-			bool active;
-
-			if (!this->asBool(flagNode, "BindOnEquip", active))
-				return 0;
-
-			item->flag.bindOnEquip = active;
-		} else {
-			if (!exists)
-				item->flag.bindOnEquip = false;
-		}
-
-		if (this->nodeExists(flagNode, "DropAnnounce")) {
-			bool active;
-
-			if (!this->asBool(flagNode, "DropAnnounce", active))
-				return 0;
-
-			item->flag.broadcast = active;
-		} else {
-			if (!exists)
-				item->flag.broadcast = false;
-		}
-
-		if (this->nodeExists(flagNode, "NoConsume")) {
-			bool active;
-
-			if (!this->asBool(flagNode, "NoConsume", active))
-				return 0;
-
-			if (active)
-				item->flag.delay_consume |= DELAYCONSUME_NOCONSUME;
-			else
-				item->flag.delay_consume &= ~DELAYCONSUME_NOCONSUME;
-		} else {
-			if (!exists) {
-				if (!(item->flag.delay_consume & DELAYCONSUME_TEMP))
-					item->flag.delay_consume = DELAYCONSUME_NONE;
-			}
-		}
-
-		if (this->nodeExists(flagNode, "DropEffect")) {
-			std::string effect;
-
-			if (!this->asString(flagNode, "DropEffect", effect))
-				return 0;
-
-			std::string effect_constant = "DROPEFFECT_" + effect;
-			int64 constant;
-
-			if (!script_get_constant(effect_constant.c_str(), &constant) || constant < DROPEFFECT_NONE || constant > DROPEFFECT_MAX) {
-				this->invalidWarning(flagNode["DropEffect"], "Invalid item drop effect %s, defaulting to DROPEFFECT_NONE.\n", effect.c_str());
-				constant = DROPEFFECT_NONE;
-			}
-
-			item->flag.dropEffect = static_cast<e_item_drop_effect>(constant);
-		} else {
-			if (!exists)
-				item->flag.dropEffect = DROPEFFECT_NONE;
-		}
-	} else {
-		if (!exists) {
-			item->flag.buyingstore = false;
-			item->flag.dead_branch = false;
-			item->flag.group = false;
-			item->flag.guid = false;
-			item->flag.bindOnEquip = false;
-			item->flag.broadcast = false;
-			if (!(item->flag.delay_consume & DELAYCONSUME_TEMP))
-				item->flag.delay_consume = DELAYCONSUME_NONE;
-			item->flag.dropEffect = DROPEFFECT_NONE;
-		}
-	}
+	item->flag.buyingstore = false;
+	item->flag.dead_branch = false;
+	item->flag.group = false;
+	item->flag.guid = false;
+	item->flag.bindOnEquip = false;
+	item->flag.broadcast = false;
+	if (!(item->flag.delay_consume & DELAYCONSUME_TEMP))
+		item->flag.delay_consume = DELAYCONSUME_NONE;
+	item->flag.dropEffect = DROPEFFECT_NONE;
 
 	if (this->nodeExists(node, "Delay")) {
 		const auto& delayNode = node["Delay"];
@@ -794,313 +496,52 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Stack")) {
-		const auto& stackNode = node["Stack"];
-
-		if (this->nodeExists(stackNode, "Amount")) {
-			uint16 amount;
-
-			if (!this->asUInt16(stackNode, "Amount", amount))
-				return 0;
-
-			if (!itemdb_isstackable2(item.get())) {
-				this->invalidWarning(stackNode["Amount"], "Non-stackable item cannot be enabled for stacking.\n");
-				amount = 0;
-			}
-
-			item->stack.amount = amount;
-		} else {
-			if (!exists)
-				item->stack.amount = 0;
-		}
-
-		if (this->nodeExists(stackNode, "Inventory")) {
-			bool active;
-
-			if (!this->asBool(stackNode, "Inventory", active))
-				return 0;
-
-			item->stack.inventory = active;
-		} else {
-			if (!exists)
-				item->stack.inventory = false;
-		}
-
-		if (this->nodeExists(stackNode, "Cart")) {
-			bool active;
-
-			if (!this->asBool(stackNode, "Cart", active))
-				return 0;
-
-			item->stack.cart = active;
-		} else {
-			if (!exists)
-				item->stack.cart = false;
-		}
-
-		if (this->nodeExists(stackNode, "Storage")) {
-			bool active;
-
-			if (!this->asBool(stackNode, "Storage", active))
-				return 0;
-
-			item->stack.storage = active;
-		} else {
-			if (!exists)
-				item->stack.storage = false;
-		}
-
-		if (this->nodeExists(stackNode, "GuildStorage")) {
-			bool active;
-
-			if (!this->asBool(stackNode, "GuildStorage", active))
-				return 0;
-
-			item->stack.guild_storage = active;
-		} else {
-			if (!exists)
-				item->stack.guild_storage = false;
-		}
-	} else {
-		if (!exists) {
-			item->stack.amount = 0;
-			item->stack.inventory = false;
-			item->stack.cart = false;
-			item->stack.storage = false;
-			item->stack.guild_storage = false;
-		}
-	}
+	item->stack.amount = 0;
+	item->stack.inventory = false;
+	item->stack.cart = false;
+	item->stack.storage = false;
+	item->stack.guild_storage = false;
 	
-	if (this->nodeExists(node, "NoUse")) {
-		const auto& nouseNode = node["NoUse"];
+	item->item_usage.override = 100;
+	item->item_usage.sitting = false;
 
-		if (this->nodeExists(nouseNode, "Override")) {
-			uint16 override;
-
-			if (!this->asUInt16(nouseNode, "Override", override))
-				return 0;
-
-			if (override > 100) {
-				this->invalidWarning(nouseNode["Override"], "Item no use override level %d exceeds 100, capping to 100.\n", override);
-				override = 100;
-			}
-
-			item->item_usage.override = override;
-		} else {
-			if (!exists)
-				item->item_usage.override = 100;
-		}
-
-		if (this->nodeExists(nouseNode, "Sitting")) {
-			bool active;
-
-			if (!this->asBool(nouseNode, "Sitting", active))
-				return 0;
-
-			item->item_usage.sitting = active;
-		} else {
-			if (!exists)
-				item->item_usage.sitting = false;
-		}
-	} else {
-		if (!exists) {
-			item->item_usage.override = 100;
-			item->item_usage.sitting = false;
-		}
-	}
-
-	if (this->nodeExists(node, "Trade")) {
-		const auto& tradeNode = node["Trade"];
-
-		if (this->nodeExists(tradeNode, "Override")) {
-			uint16 override;
-
-			if (!this->asUInt16(tradeNode, "Override", override))
-				return 0;
-
-			if (override > 100) {
-				this->invalidWarning(tradeNode["Override"], "Item trade override level %d exceeds 100, capping to 100.\n", override);
-				override = 100;
-			}
-
-			item->gm_lv_trade_override = override;
-		} else {
-			if (!exists)
-				item->gm_lv_trade_override = 100;
-		}
-
-		if (this->nodeExists(tradeNode, "NoDrop")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "NoDrop", active))
-				return 0;
-
-			item->flag.trade_restriction.drop = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.drop = false;
-		}
-
-		if (this->nodeExists(tradeNode, "NoTrade")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "NoTrade", active))
-				return 0;
-
-			item->flag.trade_restriction.trade = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.trade = false;
-		}
-
-		if (this->nodeExists(tradeNode, "TradePartner")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "TradePartner", active))
-				return 0;
-
-			item->flag.trade_restriction.trade_partner = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.trade_partner = false;
-		}
-
-		if (this->nodeExists(tradeNode, "NoSell")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "NoSell", active))
-				return 0;
-
-			item->flag.trade_restriction.sell = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.sell = false;
-		}
-
-		if (this->nodeExists(tradeNode, "NoCart")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "NoCart", active))
-				return 0;
-
-			item->flag.trade_restriction.cart = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.cart = false;
-		}
-
-		if (this->nodeExists(tradeNode, "NoStorage")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "NoStorage", active))
-				return 0;
-
-			item->flag.trade_restriction.storage = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.storage = false;
-		}
-
-		if (this->nodeExists(tradeNode, "NoGuildStorage")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "NoGuildStorage", active))
-				return 0;
-
-			item->flag.trade_restriction.guild_storage = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.guild_storage = false;
-		}
-
-		if (this->nodeExists(tradeNode, "NoMail")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "NoMail", active))
-				return 0;
-
-			item->flag.trade_restriction.mail = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.mail = false;
-		}
-
-		if (this->nodeExists(tradeNode, "NoAuction")) {
-			bool active;
-
-			if (!this->asBool(tradeNode, "NoAuction", active))
-				return 0;
-
-			item->flag.trade_restriction.auction = active;
-		} else {
-			if (!exists)
-				item->flag.trade_restriction.auction = false;
-		}
-	} else {
-		if (!exists) {
-			item->gm_lv_trade_override = 100;
-			item->flag.trade_restriction.drop = false;
-			item->flag.trade_restriction.trade = false;
-			item->flag.trade_restriction.trade_partner = false;
-			item->flag.trade_restriction.sell = false;
-			item->flag.trade_restriction.cart = false;
-			item->flag.trade_restriction.storage = false;
-			item->flag.trade_restriction.guild_storage = false;
-			item->flag.trade_restriction.mail = false;
-			item->flag.trade_restriction.auction = false;
-		}
-	}
+	item->gm_lv_trade_override = 100;
+	item->flag.trade_restriction.drop = false;
+	item->flag.trade_restriction.trade = false;
+	item->flag.trade_restriction.trade_partner = false;
+	item->flag.trade_restriction.sell = false;
+	item->flag.trade_restriction.cart = false;
+	item->flag.trade_restriction.storage = false;
+	item->flag.trade_restriction.guild_storage = false;
+	item->flag.trade_restriction.mail = false;
+	item->flag.trade_restriction.auction = false;
 
 	if (this->nodeExists(node, "Script")) {
-		std::string script;
+		if ((item->type != IT_ARMOR)
+			&& (item->type != IT_WEAPON)
+			&& (item->type != IT_CARD)
+			&& (item->type != IT_AMMO)
+			&& (item->type != IT_SHADOWGEAR)) {
+			std::string script;
 
-		if (!this->asString(node, "Script", script))
-			return 0;
+			if (!this->asString(node, "Script", script))
+				return 0;
 
-		if (exists && item->script) {
-			script_free_code(item->script);
-			item->script = nullptr;
+			if (exists && item->script) {
+				script_free_code(item->script);
+				item->script = nullptr;
+			}
+
+			item->script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["Script"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
 		}
-
-		item->script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["Script"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
 	} else {
 		if (!exists) 
 			item->script = nullptr;
 	}
 
-	if (this->nodeExists(node, "EquipScript")) {
-		std::string script;
+	item->equip_script = nullptr;
 
-		if (!this->asString(node, "EquipScript", script))
-			return 0;
-
-		if (exists && item->equip_script) {
-			script_free_code(item->equip_script);
-			item->equip_script = nullptr;
-		}
-
-		item->equip_script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["EquipScript"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
-	} else {
-		if (!exists)
-			item->equip_script = nullptr;
-	}
-
-	if (this->nodeExists(node, "UnEquipScript")) {
-		std::string script;
-
-		if (!this->asString(node, "UnEquipScript", script))
-			return 0;
-
-		if (exists && item->unequip_script) {
-			script_free_code(item->unequip_script);
-			item->unequip_script = nullptr;
-		}
-
-		item->unequip_script = parse_script(script.c_str(), this->getCurrentFile().c_str(), this->getLineNumber(node["UnEquipScript"]), SCRIPT_IGNORE_EXTERNAL_BRACKETS);
-	} else {
-		if (!exists)
-			item->unequip_script = nullptr;
-	}
+	item->unequip_script = nullptr;
 
 	if (!exists)
 		this->put(nameid, item);

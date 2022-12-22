@@ -1,0 +1,11 @@
+-	script	CustomCommands	-1,{
+OnInit:
+	bindatcmd "load",strnpcinfo(3) + "::OnReturnToLobby";
+	end;
+
+OnReturnToLobby:
+	specialeffect2 572;
+	progressbar "0xFBFF00",3;
+	warp "nif_dun01",145,140;
+	end;
+}

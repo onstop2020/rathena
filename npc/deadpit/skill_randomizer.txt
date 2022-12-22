@@ -17,7 +17,7 @@
 /// Lv < 75: 500 x Lv
 /// Lv > 90: 1,000 x Lv
 
-nif_dun01,151,155,4	script	ซื้อ Skill	506 ,{
+nif_dun01,151,155,4	script	ซื้อ Skill	506,{
 	if(!isFirstSkillBought){
 		mes "เลือก Skill เริ่มต้นได้เลย";
 		next;
