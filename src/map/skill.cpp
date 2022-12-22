@@ -23634,8 +23634,8 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			memset(skill->upkeep_time2, 0, sizeof(skill->upkeep_time2));
 	}
 
-	skill->cooldown[0] = 3000;
-	skill->cooldown[99] = 3000;
+	for (int i = 0; i < sizeof(skill->cooldown); i++)
+		skill->cooldown[i] = 3000;
 
 #ifdef RENEWAL_CAST
 	if (this->nodeExists(node, "FixedCastTime")) {
