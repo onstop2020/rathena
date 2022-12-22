@@ -23437,21 +23437,22 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			memset(skill->element, ELE_NEUTRAL, sizeof(skill->element));
 	}
 
-	skill->splash[0] = 1;
-	skill->splash[2] = 2;
-	skill->splash[2] = 3;
-	skill->splash[9] = 4;
-	skill->splash[14] = 5;
-	skill->splash[19] = 6;
-	skill->splash[24] = 7;
-	skill->splash[29] = 8;
-	skill->splash[39] = 9;
-	skill->splash[49] = 10;
-	skill->splash[59] = 11;
-	skill->splash[69] = 12;
-	skill->splash[79] = 13;
-	skill->splash[89] = 14;
-	skill->splash[99] = 15;
+	for (int i = 0; i < sizeof(skill->splash); i++)
+		skill->splash[i] = 1;
+	skill->splash[1] = 2;
+	skill->splash[3] = 3;
+	skill->splash[6] = 4;
+	skill->splash[10] = 5;
+	skill->splash[13] = 6;
+	skill->splash[19] = 7;
+	skill->splash[25] = 8;
+	skill->splash[35] = 9;
+	skill->splash[45] = 10;
+	skill->splash[55] = 11;
+	skill->splash[65] = 12;
+	skill->splash[75] = 13;
+	skill->splash[85] = 14;
+	skill->splash[95] = 15;
 
 	if (this->nodeExists(node, "ActiveInstance")) {
 		if (!this->parseNode("ActiveInstance", "Max", node, skill->maxcount))
