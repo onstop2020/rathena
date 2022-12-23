@@ -1,0 +1,67 @@
+/// DEADPIT Points Exchanger
+nif_dun01,137,160,4	script	แลก DEADPIT Points	506,{
+	CurrentPoints();
+	
+	menu "นำ " + getitemname(.itemId) + " เข้าตัว",L_TurnToPoints,"นำ " + getitemname(.itemId) + " ออกจากตัว",L_TurnToItem;
+	
+	L_TurnToPoints:
+	.@holdAmount = countitem(.itemId);
+	.@maximumInput = .maximumHold - .@holdAmount;
+	mes "โปรดระบุ 0~" + .@holdAmount;
+	next;
+	input .@i;
+	
+	.@i = cap_value(.@i,0,.@holdAmount);
+	
+	if(.@i <= 0){
+		mes "ยกเลิกเรียบร้อยแล้ว";
+		close;
+	}
+	
+	delitem .itemId,.@i;
+	
+	deadpitPoints = cap_value(deadpitPoints + .@i,0,INT_MAX);
+	
+	mes "เรียบร้อยแล้ว!";
+	
+	dispbottom "DEADPIT Points +" + F_InsertComma(.@i) + " (" + F_InsertComma(deadPitPoints) + ")";
+	
+	close;
+	
+	L_TurnToItem:
+	.@holdAmount = countitem(.itemId);
+	.@maximumInput = .maximumHold - .@holdAmount;
+	.@maximumInput = ((deadpitPoints > .@maximumInput) ? .@maximumInput : deadpitPoints);
+	mes "โปรดระบุ 0~" + .@maximumInput;
+	next;
+	input .@i;
+	
+	.@i = cap_value(.@i,0,.@maximumInput);
+	
+	if(.@i <= 0){
+		mes "ยกเลิกเรียบร้อยแล้ว";
+		close;
+	}
+	
+	getitem .itemId,.@i;
+	
+	deadpitPoints = cap_value(deadpitPoints - .@i,0,INT_MAX);
+	
+	mes "เรียบร้อยแล้ว!";
+	
+	dispbottom "DEADPIT Points -" + F_InsertComma(.@i) + " (" + F_InsertComma(deadPitPoints) + ")";
+	
+	close;
+	
+OnInit:
+	.itemId = 30000002;
+	.maximumHold = 30000;
+	
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_MONEY;
+	initnpctimer;
+	end;
+}

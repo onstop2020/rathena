@@ -26,6 +26,12 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	// Clean up
 	deltimer strnpcinfo(3) + "::OnKeepSpawnMonster";
 	
+	if(is_party_leader())
+	.@warpParty = select(
+	"ไปคนเดียว" +
+	":ไปทั้ง Party"
+	);
+	
 	.@selectedMap = select(
 	"หลุมเทพตกสวรรค์" +
 	":หลุมความโศกเศร้า"
@@ -86,20 +92,13 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	
 	// Remember playing map
 	playingMap$ = (.@isGvG ? $playingMapGvG$[playingMapIndex] : $playingMapPvE$[playingMapIndex]);
-	// Block all except moving
-	setpcblock PCBLOCK_ALL,true;
-	setpcblock PCBLOCK_MOVE,false;
-	addtimer 2000,strnpcinfo(3) + "::OnWarp";
 	// Start timer to spawn monster
 	addtimer 5000,strnpcinfo(3) + "::OnKeepSpawnMonster";
 	// Warp
+	if(.@warpParty == 2)
+	warpparty playingMap$,0,0,getcharid(1),strcharinfo(3),3,3;
+	else
 	warp playingMap$,0,0;
-	end;
-	
-	// Unblock all
-OnWarp:
-	setpcblock PCBLOCK_ALL,false;
-	message strcharinfo(0),"เตรียมตัวต่อสู้!!";
 	end;
 	
 	// Keep spawning monster

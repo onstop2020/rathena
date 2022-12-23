@@ -1,0 +1,5 @@
+/// Training Ground
+nif_dun01,137,165,4	script	ทดสอบ Damage	723,{
+	warp "tra_fild",0,0;
+	end;
+}

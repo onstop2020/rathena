@@ -3,8 +3,25 @@ OnPCDieEvent:
 	// Destroy spawn monster timer
 	deltimer "หลุมแห่งความตาย::OnKeepSpawnMonster";
 	// Always return to lobby
-	if(strcharinfo(3) != "nif_dun01")
-	addtimer 1000,strnpcinfo(3) + "::OnDead";
+	if(strcharinfo(3) != "nif_dun01"){
+		rerollSkillRandomizer = 1;
+		dispbottom "รายการ Skill ที่สามารถซื้อได้ ถูกสุ่มใหม่เรียบร้อยแล้ว";
+		
+		if(rand(0,100) < .lockSkillPenaltyChance){
+			lockSkillPrice = cap_value(lockSkillPrice + rand(1,.lockSkillPenaltyMaximum * BaseLevel),0,.lockSkillPenaltyMaximum * BaseLevel);
+			dispbottom "เสียใจด้วย การตายครั้งนี้ ส่งผลให้ ติดคำสาปไม่สามารถซื้อ Skill ได้ ค่าปลดคำสาปขณะนี้ " + F_InsertComma(lockSkillPrice);
+		}
+		if(rand(0,100) < .refinePenaltyChance){
+			atcommand "@refine 0 -" + .refinePenalty;
+			dispbottom "เสียใจด้วย การตายครั้งนี้ ส่งผลให้อุปกรณ์สวมใส่ทุกชิ้นที่สวมใส่อยู่ ค่าตีบวก -1";
+		}
+		if(rand(0,100) < .gradePenaltyChance){
+			atcommand "@grade 0 -" + .gradePenalty;
+			dispbottom "เสียใจด้วย การตายครั้งนี้ ส่งผลให้อุปกรณ์สวมใส่ทุกชิ้นที่สวมใส่อยู่ ค่า Grade -1";
+		}
+		addtimer 1000,strnpcinfo(3) + "::OnDead";
+	}
+	
 	end;
 	
 OnDead:
@@ -26,5 +43,13 @@ OnInit:
 	"เจ้าแห่งความตาย: ฮ่า ฮ่า ฮ่า! สภาพเจ้าดูไม่ได้เลย!!"
 	;
 	.hintsSize = getarraysize(.hints$);
+	
+	.lockSkillPenaltyChance = 75;
+	.lockSkillPenaltyMaximum = 5;
+	.refinePenaltyChance = 50;
+	.refinePenalty = 1;
+	.gradePenaltyChance = 50;
+	.gradePenalty = 1;
+	
 	end;
 }

@@ -5,6 +5,10 @@ OnInit:
 
 OnReturnToLobby:
 	specialeffect2 572;
+	if((strcharinfo(3) == "nif_dun01")
+			|| (strcharinfo(3) == "tra_fild"))
+	.@instantWarp = 1;
+	if(!.@instantWarp)
 	progressbar "0xFBFF00",3;
 	warp "nif_dun01",145,140;
 	end;

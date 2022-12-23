@@ -1,23 +1,33 @@
 /// Skill Randomizer
-/// Initial skill
-/// 1.) SM_BASH
-/// 2.) MG_NAPALMBEAT
-/// 3.) AL_HEAL
-/// 4.) MC_MAMMONITE
-/// 5.) AC_DOUBLE
-/// 6.) TF_POISON
-///
-/// Pricing
-/// Lv < 3: 10 x Lv
-/// Lv < 6: 30 x Lv
-/// Lv < 9: 50 x Lv
-/// Lv < 15: 90 x Lv
-/// Lv < 30: 150 x Lv
-/// Lv < 50: 300 x Lv
-/// Lv < 75: 500 x Lv
-/// Lv > 90: 1,000 x Lv
-
 nif_dun01,151,155,4	script	ซื้อ Skill	506,{
+	if(lockSkillPrice){
+		mes "ค่าปลดคำสาปขณะนี้ " + F_InsertComma(lockSkillPrice);
+		next;
+		menu "ยกเลิก",-,"จ่าย",L_PurifyCurse;
+		close;
+		
+		L_PurifyCurse:
+		.@price = lockSkillPrice;
+		if(deadpitPoints >= .@price){
+			deadpitPoints = cap_value(deadpitPoints - .@price,0,INT_MAX);
+			
+			lockSkillPrice = 0;
+			
+			mes "คำสาปถูกปลดแล้ว!";
+			
+			dispbottom "DEADPIT Points -" + F_InsertComma(.@price) + " (" + F_InsertComma(deadPitPoints) + ")";
+			
+			close;
+		}
+		else{
+			mes "ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points";
+			
+			CurrentPoints();
+			
+			close;
+		}
+		close;
+	}
 	if(!isFirstSkillBought){
 		mes "เลือก Skill เริ่มต้นได้เลย";
 		next;

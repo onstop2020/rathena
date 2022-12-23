@@ -7007,6 +7007,8 @@ int pc_get_skillcooldown(map_session_data *sd, uint16 skill_id, uint16 skill_lv)
 		}
 	}
 
+	cooldown -= (sd->bonus.delayrate * 10);
+
 	return max(0, cooldown);
 }
 

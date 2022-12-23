@@ -23437,22 +23437,35 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			memset(skill->element, ELE_NEUTRAL, sizeof(skill->element));
 	}
 
-	for (int i = 0; i < sizeof(skill->splash); i++)
-		skill->splash[i] = 1;
-	skill->splash[1] = 2;
-	skill->splash[3] = 3;
-	skill->splash[6] = 4;
-	skill->splash[10] = 5;
-	skill->splash[13] = 6;
-	skill->splash[19] = 7;
-	skill->splash[25] = 8;
-	skill->splash[35] = 9;
-	skill->splash[45] = 10;
-	skill->splash[55] = 11;
-	skill->splash[65] = 12;
-	skill->splash[75] = 13;
-	skill->splash[85] = 14;
-	skill->splash[95] = 15;
+	skill->splash[0] = 1;
+	for (int i = 1; i < 2; i++)
+		skill->splash[i] = 2;
+	for (int i = 3; i < 5; i++)
+		skill->splash[i] = 3;
+	for (int i = 6; i < 9; i++)
+		skill->splash[i] = 4;
+	for (int i = 10; i < 12; i++)
+		skill->splash[i] = 5;
+	for (int i = 13; i < 18; i++)
+		skill->splash[i] = 6;
+	for (int i = 19; i < 24; i++)
+		skill->splash[i] = 7;
+	for (int i = 25; i < 34; i++)
+		skill->splash[i] = 8;
+	for (int i = 35; i < 44; i++)
+		skill->splash[i] = 9;
+	for (int i = 45; i < 54; i++)
+		skill->splash[i] = 10;
+	for (int i = 55; i < 64; i++)
+		skill->splash[i] = 11;
+	for (int i = 65; i < 74; i++)
+		skill->splash[i] = 12;
+	for (int i = 75; i < 84; i++)
+		skill->splash[i] = 13;
+	for (int i = 85; i < 94; i++)
+		skill->splash[i] = 14;
+	for (int i = 95; i < sizeof(skill->element); i++)
+		skill->splash[i] = 15;
 
 	if (this->nodeExists(node, "ActiveInstance")) {
 		if (!this->parseNode("ActiveInstance", "Max", node, skill->maxcount))

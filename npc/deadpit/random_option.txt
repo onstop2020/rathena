@@ -1,0 +1,111 @@
+/// Random Option Adder
+nif_dun01,154,165,5	script	สุ่มเสริมแกร่งอุปกรณ์	506,{
+	CurrentPoints();
+	
+	mes "•^148A0B รับ Random Option 5 แถว^000000";
+	mes "•^148A0B สุ่มรับ Status, Trait หรือลด Cooldown ทุก Skill^000000";
+	next;
+	
+	// List equipments
+	setarray .@indices[1],EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_COSTUME_GARMENT,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
+	for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
+		if(getequipisequiped(.@indices[.@i])){
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]);
+			.@equipped = 1;
+		}
+		.@menu$ = .@menu$ + ":";
+	}
+	// Equipment check
+	if(!.@equipped){
+		mes "ไม่พบอุปกรณ์ที่ถูกสวมใส่อยู่";
+		close;
+	}
+	// Equipment selection
+	.@part = .@indices[select(.@menu$)];
+	// Check again
+	if(!getequipisequiped(.@part)){
+		mes "คุณเลือกช่องที่ ไม่ได้สวมใส่อุปกรณ์ใด ๆ";
+		close;
+	}
+	// Get selected item id
+	.@selectedItemId = getequipid(.@part);
+	// Tier list
+	for(.@i = 0; .@i < .randomOptionPriceSize; .@i++)
+	.@tierMenu$ += "^148A0Bระดับ " + (.@i + 1) + "^000000 (^E82CF7" + F_InsertComma(.randomOptionPrice[.@i]) + "^000000):";
+	// Tier selection
+	.@tierSelect = (select(.@tierMenu$) - 1);
+	// Price setup
+	.@price = .randomOptionPrice[.@tierSelect];
+	// Trade
+	if(deadpitPoints < .@price){
+		mes "ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points";
+		
+		CurrentPoints();
+		
+		close;
+	}
+	// Hack checking
+	if (callfunc("F_IsEquipIDHack",.@part,.@selectedItemId)){
+		mes "ตรวจพบการโกง!";
+		close;
+	}
+	
+	deadpitPoints = cap_value(deadpitPoints - .@price,0,INT_MAX);
+	
+	.@randomOptionIndex0 = .randomOptionIds[rand(0,(.randomOptionIdsSize - 1))];
+	.@randomOptionIndex1 = .randomOptionIds[rand(0,(.randomOptionIdsSize - 1))];
+	.@randomOptionIndex2 = .randomOptionIds[rand(0,(.randomOptionIdsSize - 1))];
+	.@randomOptionIndex3 = .randomOptionIds[rand(0,(.randomOptionIdsSize - 1))];
+	.@randomOptionIndex4 = .randomOptionIds[rand(0,(.randomOptionIdsSize - 1))];
+	setrandomoption(.@part,0,.@randomOptionIndex0,callsub(L_GetPower,.@randomOptionIndex0,.@tierSelect),0);
+	setrandomoption(.@part,1,.@randomOptionIndex1,callsub(L_GetPower,.@randomOptionIndex1,.@tierSelect),0);
+	setrandomoption(.@part,2,.@randomOptionIndex2,callsub(L_GetPower,.@randomOptionIndex2,.@tierSelect),0);
+	setrandomoption(.@part,3,.@randomOptionIndex3,callsub(L_GetPower,.@randomOptionIndex3,.@tierSelect),0);
+	setrandomoption(.@part,4,.@randomOptionIndex4,callsub(L_GetPower,.@randomOptionIndex4,.@tierSelect),0);
+	
+	mes "เรียบร้อยแล้ว!";
+	
+	dispbottom "DEADPIT Points -" + F_InsertComma(.@price) + " (" + F_InsertComma(deadPitPoints) + ")";
+	
+	close;
+	
+	L_GetPower:
+	.randomOptionId = getarg(0,0);
+	.randomOptionTier = getarg(1,0);
+	// Status
+	if((.randomOptionId == 3)
+			|| (.randomOptionId == 4)
+			|| (.randomOptionId == 5)
+			|| (.randomOptionId == 6)
+			|| (.randomOptionId == 7)
+			|| (.randomOptionId == 8))
+	return rand(1,.statusPower[.randomOptionTier]);
+	// Trait
+	else if((.randomOptionId == 243)
+			|| (.randomOptionId == 244)
+			|| (.randomOptionId == 245)
+			|| (.randomOptionId == 246)
+			|| (.randomOptionId == 247)
+			|| (.randomOptionId == 248))
+	return rand(1,.traitPower[.randomOptionTier]);
+	// Cooldown
+	else
+	return rand(1,.cooldownPower[.randomOptionTier]);
+
+OnInit:
+	setarray .randomOptionIds[0],3,4,5,6,7,8,243,244,245,246,247,248,171;
+	.randomOptionIdsSize = getarraysize(.randomOptionIds);
+	setarray .statusPower[0],5,15,30,50,75,100,150,250,275,300;
+	setarray .traitPower[0],1,2,3,4,5,6,7,8,9,10;
+	setarray .cooldownPower[0],1,2,3,4,5,6,7,8,9,10;
+	setarray .randomOptionPrice[0],35,90,150,290,570,999,1290,2100,3499,4999;
+	.randomOptionPriceSize = getarraysize(.randomOptionPrice);
+	
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_MONEY;
+	initnpctimer;
+	end;
+}

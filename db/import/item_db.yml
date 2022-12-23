@@ -101,3 +101,7 @@ Body:
     Type: DelayConsume
     Script: |
       callfunc("Exiter");
+  - Id: 30000002
+    AegisName: DEADPIT_Points
+    Name: DEADPIT Points
+    Type: Etc
