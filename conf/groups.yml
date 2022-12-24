@@ -48,11 +48,25 @@ Body:
     Commands:
       changedress: true
       resurrect: true
+      # DEADPIT commands
+      mobinfo: true
+      iteminfo: true
+      time: true
+      jailtime: true
+      hominfo: true
+      homstats: true
+      autotrade: true
+      who: true
     Permissions:
       # without this basic permissions regular players could not trade or party
       can_trade: true
       can_party: true
-      attendance: true
+      attendance: false
+      # DEADPIT permissions
+      all_equipment: true
+      skill_unconditional: true
+      item_unconditional: true
+      view_equipment: true
   - Id: 1
     Name: Super Player
     # Can do everything Players can and more
@@ -91,15 +105,8 @@ Body:
       breakguild: true
       channel: true
       langtype: true
-      # DEADPIT commands
-      who: true
     Permissions:
       attendance: false
-      # DEADPIT permissions
-      all_equipment: true
-      skill_unconditional: true
-      item_unconditional: true
-      view_equipment: true
   - Id: 2
     Name: Support
     Inherit:
