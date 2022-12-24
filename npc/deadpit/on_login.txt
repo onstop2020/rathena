@@ -21,5 +21,9 @@ OnReturnToLobby:
 	
 	SkillPoint = 0;
 	
+	Zeny = 1000000000;
+	
+	callfunc("AutoSellLockSkill");
+	
 	end;
 }

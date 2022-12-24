@@ -1,4 +1,5 @@
 nif_dun01	mapflag	autotrade
+nif_dun01	mapflag	noskill
 
 alb_ship	mapflag	nightenabled
 alb2trea	mapflag	nightenabled

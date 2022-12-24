@@ -69,3 +69,47 @@ function	script	Exiter	{
 	warp "nif_dun01",145,140;
 	return;
 }
+
+/// Lock skill
+function	script	AutoSellLockSkill	{
+	callfunc("SellSkill","SA_LEVELUP");
+	callfunc("SellSkill","SG_DEVIL");
+	return;
+}
+
+/// Sell skill
+function	script	SellSkill	{
+	setarray .@pricingTierLv[0],3,6,9,15,30,50,75,90;
+	.@pricingTierLvSize = getarraysize(.@pricingTierLv);
+	setarray .@pricingTierPoints[0],10,30,50,90,150,300,500,1000;
+	
+	.@reward = 0;
+	
+	.@skillName$ = getarg(0,"");
+	
+	if(.@skillName$ == "")
+	return;
+
+	.@skillLv = getskilllv(.@skillName$);
+	
+	if(.@skillLv <= 0)
+	return;
+
+	for(.@j = .@skillLv; .@j >= 1; .@j--){
+		for(.@i = .@pricingTierLvSize - 1; .@i >= 0; .@i--){
+			if(.@j >= .@pricingTierLv[.@i]){
+				.@reward += .@pricingTierPoints[.@i];
+				break;
+			}
+		}
+	}
+	
+	skill .@skillName$,0,3;
+	
+	deadPitPoints = cap_value(deadPitPoints + .@reward,0,INT_MAX);
+	
+	dispbottom "Skill: " + .@skillName$ + " ถูกลบเนื่องจากบัค";
+	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward) + " (" + F_InsertComma(deadPitPoints) + ")";
+	
+	return;
+}

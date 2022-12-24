@@ -1,6 +1,12 @@
 -	script	CustomCommands	-1,{
 OnInit:
 	bindatcmd "load",strnpcinfo(3) + "::OnReturnToLobby";
+	bindatcmd "sf",strnpcinfo(3) + "::OnSkillFix",99,99;
+	end;
+
+OnSkillFix:
+	addrid(0);
+	callfunc("AutoSellLockSkill");
 	end;
 
 OnReturnToLobby:

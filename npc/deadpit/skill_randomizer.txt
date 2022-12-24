@@ -65,7 +65,10 @@ nif_dun01,151,155,4	script	ซื้อ Skill	506,{
 		for(.@i = 0; .@i < .maximumSkillShop; .@i++){
 			setarray skillShop[.@i],rand(0,($allSkillsSize - 1));
 			for(.@j = 0; .@j < getarraysize(.@skillShop); .@j++){
-				if(skillShop[.@i] == .@skillShop[.@j]){
+				if((skillShop[.@i] == .@skillShop[.@j])
+						|| ($skillDesc$[skillShop[.@i]] == "SA_LEVELUP")
+						|| ($skillDesc$[skillShop[.@i]] == "SG_DEVIL")
+						){
 					.@j = 0;
 					setarray skillShop[.@i],rand(0,($allSkillsSize - 1));
 				}
