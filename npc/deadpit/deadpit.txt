@@ -103,10 +103,15 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	// Start timer to spawn monster
 	addtimer 5000,strnpcinfo(3) + "::OnKeepSpawnMonster";
 	// Warp
-	if(.@warpParty == 2)
-	warpparty playingMap$,0,0,getcharid(1),strcharinfo(3),3,3;
-	else
-	warp playingMap$,0,0;
+	if(.@warpParty == 2){
+		warpparty playingMap$,0,0,getcharid(1),strcharinfo(3),3,3;
+		addrid(2,getcharid(1));
+		setpcblock PCBLOCK_SKILL,false;
+	}
+	else{
+		warp playingMap$,0,0;
+		setpcblock PCBLOCK_SKILL,false;
+	}
 	end;
 	
 	// Keep spawning monster

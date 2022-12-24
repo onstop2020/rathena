@@ -1,0 +1,8 @@
+/// No skill cast on lobby
+nif_dun01,1,1,4	script	No Skill	723,500,500,{
+	end;
+	
+OnTouch:
+	setpcblock PCBLOCK_SKILL,true;
+	end;
+}

@@ -1,5 +1,6 @@
 /// Training Ground
 nif_dun01,137,165,4	script	∑¥ Õ∫ Damage	723,{
+	setpcblock PCBLOCK_SKILL,false;
 	warp "tra_fild",0,0;
 	end;
 }

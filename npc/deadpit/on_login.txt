@@ -25,5 +25,7 @@ OnReturnToLobby:
 	
 	callfunc("AutoSellLockSkill");
 	
+	setpcblock PCBLOCK_SKILL,true;
+	
 	end;
 }
