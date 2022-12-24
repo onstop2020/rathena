@@ -135,6 +135,10 @@ OnKeepSpawnMonster:
 			// Get free cell around users
 			getfreecell(.@mapName$,.@freeX,.@freeY,.@x,.@y,rand(.minimumSpawnRange,.maximumSpawnRange),rand(.minimumSpawnRange,.maximumSpawnRange));
 			monster .@mapName$,.@freeX,.@freeY,"--ja--",.@monsterId,1,strnpcinfo(3) + (.@isMvP ? "::OnBossDead" : "::OnMonsterDead");
+			if(.@isMvP)
+			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
+			else
+			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY);
 		}
 	}
 	// Run timer again
