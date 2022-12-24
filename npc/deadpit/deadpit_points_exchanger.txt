@@ -2,7 +2,7 @@
 nif_dun01,137,160,4	script	แลก DEADPIT Points	506,{
 	CurrentPoints();
 	
-	menu "นำ " + getitemname(.itemId) + " เข้าตัว",L_TurnToPoints,"นำ " + getitemname(.itemId) + " ออกจากตัว",L_TurnToItem;
+	menu "นำ ^E82CF7" + getitemname(.itemId) + "^000000 เข้าตัว",L_TurnToPoints,"นำ ^E82CF7" + getitemname(.itemId) + "^000000 ออกจากตัว",L_TurnToItem;
 	
 	L_TurnToPoints:
 	.@holdAmount = countitem(.itemId);

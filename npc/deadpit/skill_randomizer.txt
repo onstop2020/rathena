@@ -1,7 +1,7 @@
 /// Skill Randomizer
 nif_dun01,151,155,4	script	ซื้อ Skill	506,{
 	if(lockSkillPrice){
-		mes "ค่าปลดคำสาปขณะนี้ " + F_InsertComma(lockSkillPrice);
+		mes "ค่าปลดคำสาปขณะนี้ ^E82CF7" + F_InsertComma(lockSkillPrice) + " DEADPIT Points^000000";
 		next;
 		menu "ยกเลิก",-,"จ่าย",L_PurifyCurse;
 		close;

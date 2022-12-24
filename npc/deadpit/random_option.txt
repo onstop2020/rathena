@@ -98,7 +98,7 @@ OnInit:
 	setarray .statusPower[0],5,15,30,50,75,100,150,250,275,300;
 	setarray .traitPower[0],1,2,3,4,5,6,7,8,9,10;
 	setarray .cooldownPower[0],1,2,3,4,5,6,7,8,9,10;
-	setarray .randomOptionPrice[0],35,90,150,290,570,999,1290,2100,3499,4999;
+	setarray .randomOptionPrice[0],35,85,175,320,650,970,1290,2080,3499,4999;
 	.randomOptionPriceSize = getarraysize(.randomOptionPrice);
 	
 	initnpctimer;

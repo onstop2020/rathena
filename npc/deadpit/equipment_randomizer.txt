@@ -2,6 +2,8 @@
 nif_dun01,151,160,4	script	ซื้ออุปกรณ์สวมใส่	506,{
 	CurrentPoints();
 	
+	mes "ทุกชนิดใช้ ^E82CF7" + .price + " DEADPIT Points^000000 ต่อรอบ";
+	next;
 	.@selectType = select("ยกเลิก:อาวุธ:อุปกรณ์สวมใส่:อุปกรณ์สวมใส่ Costume");
 	
 	if(.@selectType == 1)

@@ -33,29 +33,37 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	);
 	
 	.@selectedMap = select(
-	"หลุมเทพตกสวรรค์" +
-	":หลุมความโศกเศร้า"
+	"[ระดับ 1] หลุมแห่งเทพตกสวรรค์" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[0] + "^000000 แต้ม)" +
+	":[ระดับ 2] หลุมแห่งความโศกเศร้า" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[1] + "^000000 แต้ม)" +
+	":[ระดับ 3] หลุมแห่งความทรมาน" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[2] + "^000000 แต้ม)" +
+	":[ระดับ 4] หลุมเหวนรก" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[3] + "^000000 แต้ม)" +
+	":[ระดับ 5] หลุมไร้จิต" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[4] + "^000000 แต้ม)" +
+	":[ระดับ 6] หลุมไร้ความหวัง" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[5] + "^000000 แต้ม)" +
+	":[ระดับ 7] หลุมปีศาจ" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[6] + "^000000 แต้ม)" +
+	":[ระดับ 8] หลุมเลือดนอง" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[7] + "^000000 แต้ม)" +
+	":[ระดับ 9] หลุมแห่งความตาย" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[8] + "^000000 แต้ม)" +
+	":[ระดับ 10] หลุมอเวจีมหานรก" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[9] + "^000000 แต้ม)"
 	);
 	
 	.@isGvG = (select(
 	"ปกติ" +
-	":^FF0000GvG^000000 (^8F00FFรางวัลสองเท่า^000000)"
+	":^FF0000GvG^000000 (^8F00FFแต้มรางวัลสองเท่า^000000)"
 	) == 2);
 	
 	.@mapArrayIndex = (.@selectedMap - 1);
 	playingMapIndex = .@mapArrayIndex;
 	isGvG = .@isGvG;
-	.@isRestart = 1;
 	
 	// Check map not null && had users
+	.@users = 0;
+	
 	if(.@isGvG
-			&& ($playingMapGvG$[playingMapIndex] != "")
-			&& (getmapusers($playingMapGvG$[playingMapIndex]) > 0))
-	.@isRestart = 0;
-	else if(!.@isGvG
-			&& ($playingMapPvE$[playingMapIndex] != "")
-			&& (getmapusers($playingMapPvE$[playingMapIndex]) > 0))
-	.@isRestart = 0;
+			&& ($playingMapGvG$[playingMapIndex] != ""))
+	.@users = getmapusers($playingMapGvG$[playingMapIndex]);
+	else if($playingMapPvE$[playingMapIndex] != "")
+	.@users = getmapusers($playingMapPvE$[playingMapIndex]);
+
+	.@isRestart = (.@users <= 0);
 	
 	if(.@isRestart){
 		.@randomMap$ = $map$[rand(0,($mapSize - 1))];
@@ -79,12 +87,12 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 		}
 		
 		// Set new map
+		setmapflag .@randomMap$,mf_nightenabled;
 		if(.@isGvG){
 			$playingMapGvG$[playingMapIndex] = .@randomMap$;
 			// Set mapflag
 			setmapflag .@randomMap$,mf_gvg;
 			setmapflag .@randomMap$,mf_gvg_noparty;
-			setmapflag .@randomMap$,mf_nightenabled;
 		}
 		else
 		$playingMapPvE$[playingMapIndex] = .@randomMap$;

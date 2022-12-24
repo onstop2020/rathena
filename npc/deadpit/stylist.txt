@@ -1,0 +1,83 @@
+/// Stylist
+nif_dun01,130,155,4	script	แต่งตัว	10403,{
+	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด Class 3",L_Class3Suit,"เปลี่ยน Password",L_ChangePassword;
+	setarray .@Styles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
+	setarray .@Look[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
+	.@s = select(" ~ สีเสื้อ: ~ ทรงผม: ~ สีผม");
+	.@Revert = getlook(.@Look[.@s]);
+	if(.@s==2)
+	.@Style = 1;
+	else
+	.@Style = 0;
+	while(1) {
+		setlook .@Look[.@s], .@Style;
+		message strcharinfo(0),"สไตล์ที่ #"+.@Style+"";
+		.@menu$ = " ~ ต่อไป: ~ ก่อนหน้า : ~ ข้ามไปที่...: ~ กลับสู่แบบเดิม";
+		switch(select(.@menu$)) {
+		case 1:
+			.@Style = ((.@Style != .@Styles[.@s]) ? .@Style+1 : 0);
+			if(.@s==2&&.@Style <= 0)
+			.@Style = 1;
+			break;
+		case 2:
+			.@Style = (((.@s==2&&.@Style != 1) || (.@s!=2&&.@Style != 0)) ? .@Style-1 : .@Styles[.@s]);
+			break;
+		case 3:
+			message strcharinfo(0),"เลือกสไตล์ระหว่าง 0 - "+.@Styles[.@s]+"";
+			input .@Style,0,.@Styles[.@s];
+			if (!.@Style)
+			.@Style = rand(0,.@Styles[.@s]);
+			break;
+		case 4:
+			.@Style = .@Revert;
+			setlook .@Look[.@s], .@Revert;
+			break;
+		}
+	}
+	
+	L_Class3Suit:
+	if((Class == 4190)
+			|| (Class == 4191)
+			|| (Class == 4239)
+			|| (Class == 4240)
+			|| (eaclass()&EAJL_FOURTH)){
+		message strcharinfo(0),"ไม่สามารถใช้งานได้ใน Class นี้";
+		end;
+	}
+
+	menu "แบบที่ 1",-,"แบบที่ 2",L_1;
+	atcommand "@bodystyle 0";
+	end;
+	
+	L_1:
+	atcommand "@bodystyle 1";
+	end;
+
+	L_ChangePassword:
+	mes "โปรดระบุ ID ที่ต้องการเปลี่ยน Password";
+	input .@id$;
+	next;
+	mes "โปรดระบุ Password ปัจจุบันของ ID\n^FF2929" + .@id$ + "^000000";
+	input .@password$;
+	next;
+	query_sql ("SELECT `account_id` FROM `login` WHERE `userid`='" + .@id$ + "' AND `user_pass`='" + .@password$ + "'",.@sum);
+	if(.@sum <= 0){
+		mes "ID หรือ Password ไม่ถูกต้อง";
+		close;
+	}
+	mes "โปรดระบุ Password ใหม่";
+	input .@new_password$;
+	next;
+	query_sql "UPDATE `login` SET `user_pass` = '" + .@new_password$ + "' WHERE `userid` = '" + .@id$ + "'";	
+	mes "เรียบร้อยแล้ว โปรดลองเข้า ID ดังกล่าวใหม่อีกที";
+	close;
+	
+OnInit:
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_MAIL;
+	initnpctimer;
+	end;
+}

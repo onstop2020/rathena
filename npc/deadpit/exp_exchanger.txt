@@ -1,10 +1,12 @@
 /// EXP Exchanger
-/// NextBaseExp
-/// NextJobExp
 nif_dun01,140,160,4	script	แลก EXP	506,{
 	CurrentPoints();
 	
-	menu "แลก 1 ครั้ง",L_OneTime,"แลกจนกว่าจะแลกไม่ได้",-;
+	for(.@i = 0; .@i < .pricingTierLvSize; .@i++)
+	mes "• Lv. ต่ำกว่า " + .pricingTierLv[.@i] + " ใช้ประมาณ ^E82CF7" + F_InsertComma(.expDividers[.@i]) + "^000000 แต้ม";
+	mes "• Job Lv. จะใช้มากกว่าเท่าตัวจาก Lv.";
+	next;
+	menu "ยกเลิก",L_Cancel,"แลก ^E82CF71 DEADPIT Points^000000 1 ครั้ง",L_OneTime,"แลก ^E82CF71 DEADPIT Points^000000 จนกว่าจะแลกไม่ได้",-;
 	.@isAllIn = 1;
 	L_OneTime:
 	
@@ -17,14 +19,21 @@ nif_dun01,140,160,4	script	แลก EXP	506,{
 	
 	while(deadpitPoints > 0){
 		deadpitPoints--;
+		
 		.@spend++;
+		
 		.@expDivider = callsub(L_GetExpDivider);
-		getexp (NextBaseExp / .@expDivider),(NextJobExp / .@expDivider);
+		.@expDivider += rand(0,(.@expDivider/2));
+		.@jobExpDivider = .@expDivider + rand(.@expDivider,(.@expDivider * 2));
+		getexp max(1,(NextBaseExp / .@expDivider)),max(1,(NextJobExp / .@jobExpDivider));
+		
 		if(!.@isAllIn)
 		break;
 	}
 	
 	freeloop(0);
+	
+	SkillPoint = 0;
 	
 	mes "เรียบร้อยแล้ว!";
 	
@@ -39,10 +48,13 @@ nif_dun01,140,160,4	script	แลก EXP	506,{
 	}
 	return .expDividers[0];
 	
+	L_Cancel:
+	close;
+	
 OnInit:
 	setarray .pricingTierLv[0],		10,		30,		60,		80,		99,		130,		175,		200,		230,		250;
 	.pricingTierLvSize = getarraysize(.pricingTierLv);
-	setarray .expDividers[0],		10,		25,		55,		350,	900,	2000,		4500,		7500,		10000,		15000;
+	setarray .expDividers[0],		5,		25,		75,		350,	900,	2000,		4500,		7500,		10000,		15000;
 	.expDividersSize = getarraysize(.expDividers);
 	
 	initnpctimer;

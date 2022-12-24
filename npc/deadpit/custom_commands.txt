@@ -4,6 +4,11 @@ OnInit:
 	end;
 
 OnReturnToLobby:
+	if(strcharinfo(3) == "prt_prison"){
+		message strcharinfo(0),"ไม่สามารถใช้ได้ในสถานที่นี้";
+		end;
+	}
+	
 	specialeffect2 572;
 	if((strcharinfo(3) == "nif_dun01")
 			|| (strcharinfo(3) == "tra_fild"))

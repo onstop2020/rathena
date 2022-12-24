@@ -19,5 +19,7 @@ OnReturnToLobby:
 	
 	CurrentPoints();
 	
+	SkillPoint = 0;
+	
 	end;
 }

@@ -1,5 +1,10 @@
 /// Guild Creator
 nif_dun01,140,155,5	script	สร้าง Guild	857,{
+	if(getcharid(2) > 0){
+		message strcharinfo(0),"มี Guild อยู่แล้ว";
+		end;
+	}
+	
 	mes "ระบุชื่อ Guild";
 	next;
 	input .@s$;

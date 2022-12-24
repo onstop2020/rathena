@@ -1,0 +1,56 @@
+// Clean up inventory
+nif_dun01,124,155,4	script	ลบของในกระเป๋า	10392,{
+	mes "• ไม่ลบ อุปกรณ์สวมใส่ ที่สวมใส่อยู่";
+	mes "• ไม่ลบ Item ที่ Favourite ไว้อยู่";
+	for(.@i = 0; .@i < .noDeleteItemIdsSize; .@i++){
+		mes "• ไม่ลบ " + getitemname(.noDeleteItemIds[.@i]);
+	}
+	next;
+	menu "ยกเลิก",-,"ลบ",L_FastSell;
+	close;
+
+	L_FastSell:
+
+	getinventorylist;
+
+	freeloop(1);
+	
+	for(.@i = @inventorylist_count - 1; .@i >= 0; .@i--){
+		// Skip
+		if(@inventorylist_equip[.@i]
+				|| @inventorylist_favorite[.@i])
+		continue;
+		
+		.@isSkip = 0;
+		
+		for(.@j = 0; .@j < .noDeleteItemIdsSize; .@j++){
+			if(@inventorylist_id[.@i] == .noDeleteItemIds[.@j]){
+				.@isSkip = 1;
+				break;
+			}
+		}
+		
+		if(.@isSkip)
+		continue;
+		
+		delitemidx @inventorylist_idx[.@i],@inventorylist_amount[.@i];
+	}
+	
+	freeloop(0);
+
+	message strcharinfo(0),"ลบเรียบร้อยแล้ว";
+
+	close;
+
+OnInit:
+	setarray .noDeleteItemIds[0],30000000,30000001,30000002;
+	.noDeleteItemIdsSize = getarraysize(.noDeleteItemIds);
+	
+	initnpctimer;
+	end;
+	
+OnTimer4000:
+	emotion ET_MAIL;
+	initnpctimer;
+	end;
+}
