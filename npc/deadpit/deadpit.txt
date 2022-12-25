@@ -117,8 +117,9 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	addtimer 5000,strnpcinfo(3) + "::OnKeepSpawnMonster";
 	// Warp
 	if(.@warpParty == 2){
-		warpparty playingMap$,0,0,getcharid(1),strcharinfo(3),3,3;
-		addrid(2,getcharid(1));
+		getfreecell(playingMap$,.@freeX,.@freeY);
+		warpparty playingMap$,.@freeX,.@freeY,getcharid(1),strcharinfo(3),2,2;
+		addrid(2,1,getcharid(1));
 		setpcblock PCBLOCK_SKILL,false;
 	}
 	else{
