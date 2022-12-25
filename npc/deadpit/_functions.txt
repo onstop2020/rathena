@@ -72,8 +72,8 @@ function	script	Exiter	{
 
 /// Lock skill
 function	script	AutoSellLockSkill	{
-	callfunc("SellSkill","SA_LEVELUP");
-	callfunc("SellSkill","SG_DEVIL");
+	for(.@i = 0; .@i < $lockSkillSize; .@i++)
+	callfunc("SellSkill",$lockSkill$[.@i]);
 	return;
 }
 
@@ -112,4 +112,25 @@ function	script	SellSkill	{
 	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward) + " (" + F_InsertComma(deadPitPoints) + ")";
 	
 	return;
+}
+
+function	script	F_IsDummyMonster	{
+	.@monsterId = getarg(0,0);
+	if((.@monsterId == 2408)										// Dummy
+			|| (.@monsterId == 2409)								// Dummy
+			|| (.@monsterId == 2410)								// Dummy
+			|| (.@monsterId == 2411)								// Dummy
+			|| (.@monsterId == 2413)								// Dummy
+			|| ((.@monsterId >= 21064) && (.@monsterId <= 21086))	// Dummy
+			|| (.@monsterId == 1288)								// Emperium
+			|| (.@monsterId == 2337)								// Hidden Mob
+			|| (.@monsterId == 2343)								// Hidden Mob
+			|| (.@monsterId == 2536)								// Hidden Mob
+			|| (.@monsterId == 2537)								// Hidden Mob
+			|| (.@monsterId == 2539)								// Hidden Mob
+			|| (.@monsterId == 3038)								// Hidden Mob
+			)
+	return true;
+	else
+	return false;
 }

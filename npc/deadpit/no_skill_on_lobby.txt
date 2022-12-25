@@ -5,4 +5,9 @@ nif_dun01,1,1,4	script	No Skill	723,500,500,{
 OnTouch:
 	setpcblock PCBLOCK_SKILL,true;
 	end;
+	
+OnInit:
+	addrid(1);
+	setpcblock PCBLOCK_SKILL,true;
+	end;
 }

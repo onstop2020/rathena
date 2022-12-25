@@ -1,14 +1,35 @@
-/// EXP Exchanger
-nif_dun01,140,160,4	script	แลก EXP	506,{
+/// Level Exchanger
+nif_dun01,140,160,4	script	แลก Level	506,{
+	if((NextBaseExp == 99999999)
+			&& (NextJobExp == 999999999)){
+		message strcharinfo(0),"Level และ Job Level สูงสุดแล้ว";
+		end;
+	}
+	
 	CurrentPoints();
 	
-	for(.@i = 0; .@i < .pricingTierLvSize; .@i++)
-	mes "• Lv. ต่ำกว่า " + .pricingTierLv[.@i] + " ใช้ประมาณ ^E82CF7" + F_InsertComma(.expDividers[.@i]) + "^000000 แต้ม";
-	mes "• Job Lv. จะใช้มากกว่าเท่าตัวจาก Lv.";
+	if(NextBaseExp != 99999999)
+	mes "• Lv. " + (BaseLevel + 1) + " ใช้ ^E82CF7" + F_InsertComma(callsub(L_GetLevelPrice)) + "^000000 แต้ม";
+	if(NextJobExp != 999999999)
+	mes "• Job Lv. " + (JobLevel + 1) + " ใช้ ^E82CF7" + F_InsertComma(callsub(L_GetJobLevelPrice)) + "^000000 แต้ม";
 	next;
-	menu "ยกเลิก",L_Cancel,"แลก ^E82CF71 DEADPIT Points^000000 1 ครั้ง",L_OneTime,"แลก ^E82CF71 DEADPIT Points^000000 จนกว่าจะแลกไม่ได้",-;
+	menu "ยกเลิก",L_Cancel,
+	"แลก ^148A0BLevel^000000 1 ครั้ง",L_OneTimeLevel,
+	"แลก ^148A0BLevel^000000 จนกว่าจะแลกไม่ได้",L_AllInLevel,
+	"แลก ^148A0BJob Level^000000 1 ครั้ง",L_OneTimeJobLevel,
+	"แลก ^148A0BJob Level^000000 จนกว่าจะแลกไม่ได้",L_AllInJobLevel
+	;
+	
+	L_AllInLevel:
 	.@isAllIn = 1;
-	L_OneTime:
+	
+	L_OneTimeLevel:
+	
+	if(NextBaseExp <= 0)
+	{
+		mes "Level สูงสุดแล้ว";
+		close;
+	}
 	
 	freeloop(1);
 	
@@ -18,14 +39,21 @@ nif_dun01,140,160,4	script	แลก EXP	506,{
 	}
 	
 	while(deadpitPoints > 0){
-		deadpitPoints--;
+		.@price = callsub(L_GetLevelPrice);
 		
-		.@spend++;
-		
-		.@expDivider = callsub(L_GetExpDivider);
-		.@expDivider += rand(0,(.@expDivider/2));
-		.@jobExpDivider = .@expDivider + rand(.@expDivider,(.@expDivider * 2));
-		getexp max(1,(NextBaseExp / .@expDivider)),max(1,(NextJobExp / .@jobExpDivider));
+		if(deadpitPoints >= .@price){
+			deadpitPoints = cap_value(deadPitPoints - .@price,0,INT_MAX);
+			
+			.@spend += .@price;
+			
+			BaseLevel++;
+			
+			dispbottom "Level กลายเป็น " + BaseLevel;
+		}
+		else{
+			message strcharinfo(0),"ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points เพื่อเพิ่ม Level";
+			break;
+		}
 		
 		if(!.@isAllIn)
 		break;
@@ -37,25 +65,79 @@ nif_dun01,140,160,4	script	แลก EXP	506,{
 	
 	mes "เรียบร้อยแล้ว!";
 	
+	if(.@spend > 0)
 	dispbottom "DEADPIT Points -" + F_InsertComma(.@spend) + " (" + F_InsertComma(deadPitPoints) + ")";
 	
 	close;
 	
-	L_GetExpDivider:
+	L_GetLevelPrice:
 	for(.@i = .pricingTierLvSize - 1; .@i >= 0; .@i--){
 		if(BaseLevel >= .pricingTierLv[.@i])
-		return .expDividers[.@i];
+		return BaseLevel * .levelPrices[.@i];
 	}
-	return .expDividers[0];
+	return BaseLevel * .levelPrices[0];
+	
+	L_AllInJobLevel:
+	.@isAllIn = 1;
+	
+	L_OneTimeJobLevel:
+	
+	if(NextJobExp <= 0)
+	{
+		mes "Job Level สูงสุดแล้ว";
+		close;
+	}
+	
+	freeloop(1);
+	
+	if(deadpitPoints <= 0){
+		mes "ไม่มี DEADPIT Points เหลืออยู่เลย";
+		close;
+	}
+	
+	while(deadpitPoints > 0){
+		.@price = callsub(L_GetJobLevelPrice);
+		
+		if(deadpitPoints >= .@price){
+			deadpitPoints = cap_value(deadPitPoints - .@price,0,INT_MAX);
+			
+			.@spend += .@price;
+			
+			JobLevel++;
+			
+			dispbottom "Job Level กลายเป็น " + JobLevel;
+		}
+		else{
+			message strcharinfo(0),"ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points เพื่อเพิ่ม Job Level";
+			break;
+		}
+		
+		if(!.@isAllIn)
+		break;
+	}
+	
+	freeloop(0);
+	
+	SkillPoint = 0;
+	
+	mes "เรียบร้อยแล้ว!";
+	
+	if(.@spend > 0)
+	dispbottom "DEADPIT Points -" + F_InsertComma(.@spend) + " (" + F_InsertComma(deadPitPoints) + ")";
+	
+	close;
+	
+	L_GetJobLevelPrice:
+	return JobLevel * .jobLevelPrice;
 	
 	L_Cancel:
 	close;
 	
 OnInit:
-	setarray .pricingTierLv[0],		10,		30,		60,		80,		99,		130,		175,		200,		230,		250;
+	setarray .pricingTierLv[0],		10,		30,		60,		80,		99,		130,		175,		200,		230,		240;
 	.pricingTierLvSize = getarraysize(.pricingTierLv);
-	setarray .expDividers[0],		5,		25,		75,		350,	900,	2000,		4500,		7500,		10000,		15000;
-	.expDividersSize = getarraysize(.expDividers);
+	setarray .levelPrices[0],		5,		25,		70,		135,	215,	275,		375,		420,		490,		590;
+	.jobLevelPrice = 150;
 	
 	initnpctimer;
 	end;

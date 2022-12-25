@@ -127,6 +127,8 @@ OnKeepSpawnMonster:
 	for(.@i = 0; .@i < .@spawnType; .@i++){
 		// Random monster
 		.@monsterId = callsub(L_GetMonsterId);
+		while(F_IsDummyMonster(.@monsterId))
+		.@monsterId = callsub(L_GetMonsterId);
 		// Check MvP
 		.@isMvP = (getmonsterinfo(.@monsterId,MOB_MVPEXP) > 0);
 		if(.@isMvP){

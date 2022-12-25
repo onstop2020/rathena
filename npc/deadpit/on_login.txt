@@ -23,8 +23,6 @@ OnReturnToLobby:
 	
 	Zeny = 1000000000;
 	
-	callfunc("AutoSellLockSkill");
-	
 	setpcblock PCBLOCK_SKILL,true;
 	
 	end;
