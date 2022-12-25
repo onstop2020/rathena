@@ -7040,7 +7040,7 @@ uint8 pc_checkskill(map_session_data *sd, uint16 skill_id)
 			return guild_checkskill(g,skill_id);
 		return 0;
 	}
-	return 1;
+
 	return (sd->status.skill[idx].id == skill_id) ? sd->status.skill[idx].lv : 0;
 }
 
