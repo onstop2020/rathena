@@ -52,9 +52,16 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	.@mapArrayIndex = (.@selectedMap - 1);
 	playingMapIndex = .@mapArrayIndex;
 	
+	.@pveUsers = 0;
+	.@gvgUsers = 0;
+	if($playingMapPvE$[playingMapIndex] != "")
+	.@pveUsers = getmapusers($playingMapPvE$[playingMapIndex]);
+	if($playingMapGvG$[playingMapIndex] != "")
+	.@gvgUsers = getmapusers($playingMapGvG$[playingMapIndex]);
+	
 	.@isGvG = (select(
-	"ปกติ (" + getmapusers($playingMapPvE$[playingMapIndex]) + " คน)" +
-	":^FF0000GvG^000000 (^8F00FFแต้มรางวัลสองเท่า^000000) (" + getmapusers($playingMapGvG$[playingMapIndex]) + " คน)"
+	"ปกติ (" + .@pveUsers + " คน)" +
+	":^FF0000GvG^000000 (^8F00FFแต้มรางวัลสองเท่า^000000) (" + .@gvgUsers + " คน)"
 	) == 2);
 	
 	
