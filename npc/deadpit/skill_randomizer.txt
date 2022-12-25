@@ -109,6 +109,11 @@ nif_dun01,151,155,4	script	ซื้อ Skill	506,{
 		close;
 	}
 	
+	cutin $allSkills$[.@skillIndex],3;
+	mes "คุณต้องการซื้อ "+$skillDesc$[.@skillIndex] + " Level " + (.@oldSkillLv + 1);
+	next;
+	menu "ซื้อ",-;
+	
 	if(deadpitPoints >= .@price){
 		.@newSkillLv = cap_value(.@oldSkillLv + 1,0,.maximumSkillLv);
 		skill $allSkills$[.@skillIndex],.@newSkillLv,3;
@@ -119,16 +124,16 @@ nif_dun01,151,155,4	script	ซื้อ Skill	506,{
 		
 		dispbottom "DEADPIT Points -" + F_InsertComma(.@price) + " (" + F_InsertComma(deadPitPoints) + ")";
 		
-		close;
+		close3;
 	}
 	else{
 		mes "ต้องการ " + F_InsertComma(.@price) + " DEADPIT Points";
 		
 		CurrentPoints();
 		
-		close;
+		close3;
 	}
-	close;
+	close3;
 	
 	L_GetSkillPrice:
 	.@skillIndex = getarg(0,0);
