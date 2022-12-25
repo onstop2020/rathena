@@ -141,11 +141,13 @@ OnKeepSpawnMonster:
 	
 	freeloop(1);
 	
+	.@monsterInMapAmount = getmapunits(BL_MOB,.@mapName$);
 	.@currentSpawnAmount = 0;
 	.@maximumSpawnAmount = cap_value(.maximumSpawnPerLoop[playingMapIndex],1,13);
 	
 	for(.@i = 0; .@i < .@spawnType; .@i++){
-		if(.@currentSpawnAmount >= .@maximumSpawnAmount)
+		if((.@currentSpawnAmount >= .@maximumSpawnAmount)
+				|| (.@monsterInMapAmount >= .maximumMonsterPerMap))
 		break;
 		
 		// Random monster
@@ -174,13 +176,15 @@ OnKeepSpawnMonster:
 			getfreecell(.@mapName$,.@freeX,.@freeY,.@x,.@y,rand(.minimumSpawnRange,.maximumSpawnRange),rand(.minimumSpawnRange,.maximumSpawnRange));
 			monster .@mapName$,.@freeX,.@freeY,"--ja--",.@monsterId,1,strnpcinfo(3) + (.@isMvP ? "::OnBossDead" : "::OnMonsterDead");
 			if(.@isMvP)
-			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
+			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
 			else
-			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY);
+			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK);
 			
 			.@currentSpawnAmount++;
+			.@monsterInMapAmount++;
 			
-			if(.@currentSpawnAmount >= .@maximumSpawnAmount)
+			if((.@currentSpawnAmount >= .@maximumSpawnAmount)
+					|| (.@monsterInMapAmount >= .maximumMonsterPerMap))
 			break;
 		}
 	}
@@ -288,6 +292,8 @@ OnInit:
 	.minimumSpawnRange = 5;
 	.maximumSpawnRange = 15;
 	.rerollSkillChance = 1;
+	
+	.maximumMonsterPerMap = 300;
 	
 	// Clean up
 	addrid(0);
