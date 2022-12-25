@@ -6,7 +6,8 @@ OnPCLoginEvent:
 	}
 	
 	// Newbie characters will wear summer costume
-	if(Class == 0)
+	if((Class == 0)
+			|| (Class == 4218))
 	sc_start SC_SUMMER,-1,0;
 	// Always return to lobby
 	else
