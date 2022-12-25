@@ -2648,6 +2648,8 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
  */
 bool is_infinite_defense(struct block_list *target, int flag)
 {
+	return false;
+
 	struct status_data *tstatus = status_get_status_data(target);
 
 	if(target->type == BL_SKILL) {
@@ -2656,8 +2658,6 @@ bool is_infinite_defense(struct block_list *target, int flag)
 		if (su && su->group && (su->group->skill_id == NPC_REVERBERATION || su->group->skill_id == WM_POEMOFNETHERWORLD))
 			return true;
 	}
-
-	return false;
 
 	if(status_has_mode(tstatus,MD_IGNOREMELEE) && (flag&(BF_WEAPON|BF_SHORT)) == (BF_WEAPON|BF_SHORT) )
 		return true;

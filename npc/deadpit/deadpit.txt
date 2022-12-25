@@ -23,6 +23,10 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	
 	CurrentPoints();
 	
+	// Heal and repair
+	percentheal 100,100;
+	repairall;
+	
 	// Clean up
 	deltimer strnpcinfo(3) + "::OnKeepSpawnMonster";
 	
