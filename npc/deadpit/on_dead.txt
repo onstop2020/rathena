@@ -3,7 +3,8 @@ OnPCDieEvent:
 	// Destroy spawn monster timer
 	deltimer "หลุมแห่งความตาย::OnKeepSpawnMonster";
 	// Always return to lobby
-	if(strcharinfo(3) != "nif_dun01"){
+	if((strcharinfo(3) != "nif_dun01")
+			&& (strcharinfo(3) != "tra_fild")){
 		callfunc("CleanUpMap");
 		
 		rerollSkillRandomizer = 1;
