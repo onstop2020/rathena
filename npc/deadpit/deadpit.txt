@@ -49,13 +49,15 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 	":[ระดับ 10] หลุมอเวจีมหานรก" + " (รางวัล ^E82CF7" + .deadPitPointsRewards[9] + "^000000 แต้ม)"
 	);
 	
-	.@isGvG = (select(
-	"ปกติ" +
-	":^FF0000GvG^000000 (^8F00FFแต้มรางวัลสองเท่า^000000)"
-	) == 2);
-	
 	.@mapArrayIndex = (.@selectedMap - 1);
 	playingMapIndex = .@mapArrayIndex;
+	
+	.@isGvG = (select(
+	"ปกติ (" + getmapusers($playingMapPvE$[playingMapIndex]) + " คน)" +
+	":^FF0000GvG^000000 (^8F00FFแต้มรางวัลสองเท่า^000000) (" + getmapusers($playingMapGvG$[playingMapIndex]) + " คน)"
+	) == 2);
+	
+	
 	isGvG = .@isGvG;
 	
 	// Check map not null && had users
