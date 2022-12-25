@@ -1,4 +1,13 @@
 /// Show current DEADPIT Points
+function	script	CleanUpMap	{
+	// Clean up map if users <= 1
+	.@currentMapUsers = getmapusers(strcharinfo(3));
+	if(.@currentMapUsers <= 1)
+	killmonsterall strcharinfo(3);
+	return;
+}
+
+/// Show current DEADPIT Points
 function	script	CurrentPoints	{
 	announce "คุณมี " + F_InsertComma(deadPitPoints) + " DEADPIT Points",bc_self,0xD41212;
 	return;
@@ -66,6 +75,7 @@ function	script	Exiter	{
 	.@instantWarp = 1;
 	if(!.@instantWarp)
 	progressbar "0xFBFF00",3;
+	callfunc("CleanUpMap");
 	warp "nif_dun01",145,140;
 	return;
 }

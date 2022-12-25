@@ -4,6 +4,8 @@ OnPCDieEvent:
 	deltimer "หลุมแห่งความตาย::OnKeepSpawnMonster";
 	// Always return to lobby
 	if(strcharinfo(3) != "nif_dun01"){
+		callfunc("CleanUpMap");
+		
 		rerollSkillRandomizer = 1;
 		
 		@deadMessage$ = "";

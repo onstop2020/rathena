@@ -128,7 +128,16 @@ OnKeepSpawnMonster:
 	// Spawn now
 	getmapxy(.@mapName$,.@x,.@y,BL_PC);
 	.@spawnType = rand(.minimumMonsterType[playingMapIndex],.maximumMonsterType[playingMapIndex]);
+	
+	freeloop(1);
+	
+	.@currentSpawnAmount = 0;
+	.@maximumSpawnAmount = cap_value(.maximumSpawnPerLoop[playingMapIndex],1,13);
+	
 	for(.@i = 0; .@i < .@spawnType; .@i++){
+		if(.@currentSpawnAmount >= .@maximumSpawnAmount)
+		break;
+		
 		// Random monster
 		.@monsterId = callsub(L_GetMonsterId);
 		while(F_IsDummyMonster(.@monsterId))
@@ -158,8 +167,16 @@ OnKeepSpawnMonster:
 			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY | MD_MVP | MD_KNOCKBACKIMMUNE | MD_DETECTOR | MD_STATUSIMMUNE);
 			else
 			setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK | MD_ANGRY);
+			
+			.@currentSpawnAmount++;
+			
+			if(.@currentSpawnAmount >= .@maximumSpawnAmount)
+			break;
 		}
 	}
+	
+	freeloop(0);
+	
 	// Run timer again
 	addtimer 5000,strnpcinfo(3) + "::OnKeepSpawnMonster";
 	end;
@@ -184,7 +201,7 @@ OnKeepSpawnMonster:
 	else if(playingMapIndex == 8)
 	return $monsterTier9Ids[rand(0,($monsterTier9IdsSize - 1))];
 	else
-	return $monsterTier10Ids[rand(0,($monsterTier10IdsSize - 1))];
+	return (rand(0,2) == 0) ? $monsterTier10Ids[rand(0,($monsterTier10IdsSize - 1))] : $monsterTier9Ids[rand(0,($monsterTier9IdsSize - 1))];
 
 OnMonsterDead:
 	.@reward = (.deadPitPointsRewards[playingMapIndex] * (isGvG ? .gvgMultiplier : 1));
@@ -237,6 +254,8 @@ OnInit:
 		$monsterTier9IdsSize = getarraysize($monsterTier9Ids);
 		$monsterTier10IdsSize = getarraysize($monsterTier10Ids);
 	}
+	
+	setarray .maximumSpawnPerLoop[0],		4,	5,	6,	7,	8,	9,	10,	11,	12,	13;
 	
 	setarray .minimumMonsterType[0],		1,	1,	1,	1,	2,	2,	2,	3,	3,	4;
 	setarray .maximumMonsterType[0],		1,	2,	2,	3,	3,	4,	4,	4,	5,	5;

@@ -21,6 +21,7 @@ OnReturnToLobby:
 	.@instantWarp = 1;
 	if(!.@instantWarp)
 	progressbar "0xFBFF00",3;
+	callfunc("CleanUpMap");
 	warp "nif_dun01",145,140;
 	end;
 }
