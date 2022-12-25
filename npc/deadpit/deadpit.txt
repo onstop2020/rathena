@@ -206,6 +206,9 @@ OnKeepSpawnMonster:
 	return (rand(0,2) == 0) ? $monsterTier10Ids[rand(0,($monsterTier10IdsSize - 1))] : $monsterTier9Ids[rand(0,($monsterTier9IdsSize - 1))];
 
 OnMonsterDead:
+	if(!playerattached())
+	end;
+
 	.@reward = (.deadPitPointsRewards[playingMapIndex] * (isGvG ? .gvgMultiplier : 1));
 	deadPitPoints = cap_value(deadPitPoints + .@reward,0,INT_MAX);
 	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward) + " (" + F_InsertComma(deadPitPoints) + ")";
@@ -213,6 +216,9 @@ OnMonsterDead:
 	end;
 	
 OnBossDead:
+	if(!playerattached())
+	end;
+
 	.@reward = (.deadPitPointsRewards[playingMapIndex] * ((isGvG ? .gvgMultiplier : 1) + .mvpMultiplier));
 	deadPitPoints = cap_value(deadPitPoints + .@reward,0,INT_MAX);
 	dispbottom "DEADPIT Points +" + F_InsertComma(.@reward) + " (" + F_InsertComma(deadPitPoints) + ")";
@@ -220,6 +226,9 @@ OnBossDead:
 	end;
 	
 	L_TryToRerollSkillShop:
+	if(!playerattached())
+	end;
+
 	if(rand(0,100) < .rerollSkillChance){
 		rerollSkillRandomizer = 1;
 		dispbottom "รายการ Skill ที่สามารถซื้อได้ ถูกสุ่มใหม่เรียบร้อยแล้ว";
@@ -283,11 +292,17 @@ OnInit:
 	end;
 	
 OnReturnToLobby:
+	if(!playerattached())
+	end;
+
 	warp "nif_dun01",145,140;
 	addtimer 1000,strnpcinfo(0) + "::OnSorry";
 	end;
 	
 OnSorry:
+	if(!playerattached())
+	end;
+
 	message strcharinfo(0),"เจ้าแห่งความตาย: ข้าขอเช็ดเลือดในห้องต่าง ๆ หน่อย.. เจ้าถึงได้กลับมายังห้องโถงแห่งนี้..";
 	end;
 }

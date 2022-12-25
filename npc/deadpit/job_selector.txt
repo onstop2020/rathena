@@ -71,6 +71,9 @@ prt_prison,57,144,4	script	เจ้าแห่งความตาย	10387,{
 	end;
 	
 OnAnnounce:
+	if(!playerattached())
+	end;
+
 	announce strcharinfo(0) + " ได้เข้าสู่ 'หลุมแห่งความตาย'...",BC_ALL;
 	end;
 	

@@ -15,6 +15,9 @@ OnPCLoginEvent:
 	end;
 	
 OnReturnToLobby:
+	if(!playerattached())
+	end;
+
 	warp "nif_dun01",145,140;
 	
 	CurrentPoints();
