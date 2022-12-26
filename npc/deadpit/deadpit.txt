@@ -132,7 +132,9 @@ nif_dun01,145,157,4	script	หลุมแห่งความตาย	723,{
 OnKeepSpawnMonster:
 	if(!playerattached()							// Player no longer connected
 			|| isdead()								// Already dead
-			|| (strcharinfo(3) == strnpcinfo(4)))	// Back to lobby
+			|| (strcharinfo(3) == strnpcinfo(4))	// Back to lobby
+			|| (strcharinfo(3) == "tra_fild")		// Training Ground
+			)
 	end;
 	
 	// Spawn now
@@ -301,7 +303,9 @@ OnInit:
 	// Always return to lobby
 	.@currentMap$ = strcharinfo(3);
 	if((.@currentMap$ != strnpcinfo(4))
-			&& (.@currentMap$ != "prt_prison"))
+			&& (.@currentMap$ != "prt_prison")
+			&& (.@currentMap$ != "tra_fild")
+			)
 	addtimer 1000,strnpcinfo(0) + "::OnReturnToLobby";
 	end;
 	
