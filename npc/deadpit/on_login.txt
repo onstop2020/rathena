@@ -14,15 +14,19 @@ OnReturnToLobby:
 	if(!playerattached())
 	end;
 
-	warp "nif_dun01",145,140;
+	if((strcharinfo(3) != "nif_dun01")
+			&& (strcharinfo(3) != "tra_fild")
+			){
+				warp "nif_dun01",145,140;
+				setpcblock PCBLOCK_SKILL,true;
+			}
+	
 	
 	CurrentPoints();
 	
 	SkillPoint = 0;
 	
 	Zeny = 1000000000;
-	
-	setpcblock PCBLOCK_SKILL,true;
 	
 	end;
 }

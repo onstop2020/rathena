@@ -1375,7 +1375,7 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, WH_HAWKRUSH)) > 0) {
 						rate = sstatus->con * 10 / 3 + 1;
 
-						rate += rate * (20 * pc_checkskill(sd, WH_NATUREFRIENDLY)) / 100;
+						rate += rate * (20 * cap_value(pc_checkskill(sd, WH_NATUREFRIENDLY), 1, MAX_SKILL_LEVEL)) / 100;
 
 						if (rnd() % 1000 <= rate)
 							skill_castend_damage_id(src, bl, WH_HAWKRUSH, skill, tick, 0);
@@ -1806,7 +1806,7 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 		sc_start(src,bl,SC_FREEZE,200,skill_lv,skill_get_time(skill_id,skill_lv));
 		break;
 	case RA_WUGBITE: {
-			int wug_rate = (50 + 10 * skill_lv) + 2 * ((sd) ? pc_checkskill(sd,RA_TOOTHOFWUG)*2 : skill_get_max(RA_TOOTHOFWUG)) - (status_get_agi(bl) / 4);
+			int wug_rate = (50 + 10 * skill_lv) + 2 * ((sd) ? cap_value(pc_checkskill(sd, RA_TOOTHOFWUG), 1, MAX_SKILL_LEVEL)*2 : skill_get_max(RA_TOOTHOFWUG)) - (status_get_agi(bl) / 4);
 			if (wug_rate < 50)
 				wug_rate = 50;
 			sc_start(src,bl, SC_BITE, wug_rate, skill_lv, (skill_get_time(skill_id,skill_lv) + ((sd) ? pc_checkskill(sd,RA_TOOTHOFWUG)*500 : skill_get_max(RA_TOOTHOFWUG))) );
@@ -1854,7 +1854,7 @@ int skill_additional_effect(struct block_list* src, struct block_list *bl, uint1
 		skill_castend_nodamage_id(src,bl,skill_id,skill_lv,tick,BCT_ENEMY);
 		break;
 	case LG_PINPOINTATTACK:
-		rate = 30 + 5 * ((sd) ? pc_checkskill(sd,LG_PINPOINTATTACK) : skill_lv) + (status_get_agi(src) + status_get_lv(src)) / 10;
+		rate = 30 + 5 * ((sd) ? cap_value(pc_checkskill(sd, LG_PINPOINTATTACK), 1, MAX_SKILL_LEVEL) : skill_lv) + (status_get_agi(src) + status_get_lv(src)) / 10;
 		switch( skill_lv ) {
 			case 1:
 				sc_start2(src,bl,SC_BLEEDING,rate,skill_lv,src->id,skill_get_time(skill_id,skill_lv));
@@ -9137,23 +9137,23 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 					bonus += sd->status.base_level;
 				if( potion_per_hp > 0 || potion_per_sp > 0 ) {
 					hp = tstatus->max_hp * potion_per_hp / 100;
-					hp = hp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
+					hp = hp * (100 + cap_value(pc_checkskill(sd, AM_POTIONPITCHER), 1, MAX_SKILL_LEVEL)*10 + cap_value(pc_checkskill(sd, AM_LEARNINGPOTION), 1, MAX_SKILL_LEVEL)*5)*bonus/10000;
 					if( dstsd ) {
 						sp = dstsd->status.max_sp * potion_per_sp / 100;
-						sp = sp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
+						sp = sp * (100 + cap_value(pc_checkskill(sd, AM_POTIONPITCHER), 1, MAX_SKILL_LEVEL)*10 + cap_value(pc_checkskill(sd, AM_LEARNINGPOTION), 1, MAX_SKILL_LEVEL)*5)*bonus/10000;
 					}
 				} else {
 					if( potion_hp > 0 ) {
-						hp = potion_hp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
+						hp = potion_hp * (100 + cap_value(pc_checkskill(sd, AM_POTIONPITCHER), 1, MAX_SKILL_LEVEL)*10 + cap_value(pc_checkskill(sd, AM_LEARNINGPOTION), 1, MAX_SKILL_LEVEL)*5)*bonus/10000;
 						hp = hp * (100 + (tstatus->vit<<1)) / 100;
 						if( dstsd )
-							hp = hp * (100 + pc_checkskill(dstsd,SM_RECOVERY)*10) / 100;
+							hp = hp * (100 + cap_value(pc_checkskill(dstsd, SM_RECOVERY), 1, MAX_SKILL_LEVEL)*10) / 100;
 					}
 					if( potion_sp > 0 ) {
-						sp = potion_sp * (100 + pc_checkskill(sd,AM_POTIONPITCHER)*10 + pc_checkskill(sd,AM_LEARNINGPOTION)*5)*bonus/10000;
+						sp = potion_sp * (100 + cap_value(pc_checkskill(sd, AM_POTIONPITCHER), 1, MAX_SKILL_LEVEL)*10 + cap_value(pc_checkskill(sd, AM_LEARNINGPOTION), 1, MAX_SKILL_LEVEL)*5)*bonus/10000;
 						sp = sp * (100 + (tstatus->int_<<1)) / 100;
 						if( dstsd )
-							sp = sp * (100 + pc_checkskill(dstsd,MG_SRECOVERY)*10) / 100;
+							sp = sp * (100 + cap_value(pc_checkskill(dstsd, MG_SRECOVERY), 1, MAX_SKILL_LEVEL)*10) / 100;
 					}
 				}
 
@@ -9180,7 +9180,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				hp = (hp + rnd()%(skill_lv*20+1)) * (150 + skill_lv*10) / 100;
 				hp = hp * (100 + (tstatus->vit<<1)) / 100;
 				if( dstsd )
-					hp = hp * (100 + pc_checkskill(dstsd,SM_RECOVERY)*10) / 100;
+					hp = hp * (100 + cap_value(pc_checkskill(dstsd, SM_RECOVERY), 1, MAX_SKILL_LEVEL)*10) / 100;
 			}
 			if( dstsd && (j = pc_skillheal2_bonus(dstsd, skill_id)) ) {
 				hp += hp * j / 100;
@@ -9983,9 +9983,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			sp = sp * (100 + (tstatus->int_<<1))/100;
 			if (dstsd) {
 				if (hp)
-					hp = hp * (100 + pc_checkskill(dstsd,SM_RECOVERY)*10 + pc_skillheal2_bonus(dstsd, skill_id))/100;
+					hp = hp * (100 + cap_value(pc_checkskill(dstsd, SM_RECOVERY), 1, MAX_SKILL_LEVEL)*10 + pc_skillheal2_bonus(dstsd, skill_id))/100;
 				if (sp)
-					sp = sp * (100 + pc_checkskill(dstsd,MG_SRECOVERY)*10 + pc_skillheal2_bonus(dstsd, skill_id))/100;
+					sp = sp * (100 + cap_value(pc_checkskill(dstsd, MG_SRECOVERY), 1, MAX_SKILL_LEVEL)*10 + pc_skillheal2_bonus(dstsd, skill_id))/100;
 			}
 			if (tsc && tsc->count) {
 				uint8 penalty = 0;
@@ -10643,8 +10643,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 	case AB_CLEMENTIA:
 	case AB_CANTO:
 		{
-			int bless_lv = ((sd) ? pc_checkskill(sd,AL_BLESSING) : skill_get_max(AL_BLESSING)) + (((sd) ? sd->status.job_level : 50) / 10);
-			int agi_lv = ((sd) ? pc_checkskill(sd,AL_INCAGI) : skill_get_max(AL_INCAGI)) + (((sd) ? sd->status.job_level : 50) / 10);
+			int bless_lv = ((sd) ? cap_value(pc_checkskill(sd, AL_BLESSING), 1, MAX_SKILL_LEVEL) : skill_get_max(AL_BLESSING)) + (((sd) ? sd->status.job_level : 50) / 10);
+			int agi_lv = ((sd) ? cap_value(pc_checkskill(sd, AL_INCAGI), 1, MAX_SKILL_LEVEL) : skill_get_max(AL_INCAGI)) + (((sd) ? sd->status.job_level : 50) / 10);
 			if( sd == NULL || sd->status.party_id == 0 || flag&1 )
 				clif_skill_nodamage(bl, bl, skill_id, skill_lv, sc_start(src,bl,type,100,
 					(skill_id == AB_CLEMENTIA)? bless_lv : (skill_id == AB_CANTO)? agi_lv : skill_lv, skill_get_time(skill_id,skill_lv)));
@@ -11367,7 +11367,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 			sc_start2(src,bl,type,skill_area_temp[5],skill_lv,src->id,skill_area_temp[6]);
 		else {
 			// Success chance: (Skill Level x 6) + (Voice Lesson Skill Level x 2) + (Caster's Job Level / 2) %
-			skill_area_temp[5] = skill_lv * 6 + ((sd) ? pc_checkskill(sd, WM_LESSON) : 1) * 2 + (sd ? sd->status.job_level : 50) / 2;
+			skill_area_temp[5] = skill_lv * 6 + ((sd) ? cap_value(pc_checkskill(sd, WM_LESSON), 1, MAX_SKILL_LEVEL) : 1) * 2 + (sd ? sd->status.job_level : 50) / 2;
 			skill_area_temp[6] = skill_get_time(skill_id,skill_lv);
 			map_foreachinallrange(skill_area_sub, src, skill_get_splash(skill_id,skill_lv), BL_CHAR|BL_SKILL, src, skill_id, skill_lv, tick, flag|BCT_ALL|BCT_WOS|1, skill_castend_nodamage_id);
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
@@ -11390,7 +11390,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		if( flag&1 ) {
 			sc_start(src,bl,type,100,skill_lv,skill_get_time(skill_id,skill_lv));
 		} else if (sd) {
-			if( rnd()%100 < sstatus->int_ / 6 + sd->status.job_level / 5 + skill_lv * 4 + pc_checkskill(sd, WM_LESSON) ) { // !TODO: What's the Lesson bonus?
+			if( rnd()%100 < sstatus->int_ / 6 + sd->status.job_level / 5 + skill_lv * 4 + cap_value(pc_checkskill(sd, WM_LESSON), 1, MAX_SKILL_LEVEL) ) { // !TODO: What's the Lesson bonus?
 				map_foreachinallrange(skill_area_sub, src, skill_get_splash(skill_id,skill_lv),BL_PC, src, skill_id, skill_lv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 				clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 			}
@@ -11566,7 +11566,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 
 	case WM_LULLABY_DEEPSLEEP:
 		if (flag&1) {
-			int rate = 4 * skill_lv + (sd ? pc_checkskill(sd, WM_LESSON) * 2 : 0) + status_get_lv(src) / 15 + (sd ? sd->status.job_level / 5 : 0);
+			int rate = 4 * skill_lv + (sd ? cap_value(pc_checkskill(sd, WM_LESSON), 1, MAX_SKILL_LEVEL) * 2 : 0) + status_get_lv(src) / 15 + (sd ? sd->status.job_level / 5 : 0);
 			int duration = skill_get_time(skill_id, skill_lv) - (status_get_base_status(bl)->int_ * 50 + status_get_lv(bl) * 50); // Duration reduction for Deep Sleep Lullaby is doubled
 
 			sc_start(src, bl, type, rate, skill_lv, duration);
@@ -12888,7 +12888,7 @@ TIMER_FUNC(skill_castend_id){
 						case TR_RHYTHMSHOOTING:
 						case TR_METALIC_FURY: // Don't know the official increase. For now lets do up to 50% increase.
 						case TR_SOUNDBLEND: // Retrospection does the same for song skills. [Rytech]
-							add_ap += add_ap * (10 * pc_checkskill(sd, TR_STAGE_MANNER)) / 100;
+							add_ap += add_ap * (10 * cap_value(pc_checkskill(sd, TR_STAGE_MANNER), 1, MAX_SKILL_LEVEL)) / 100;
 							break;
 						case TR_GEF_NOCTURN:
 						case TR_ROKI_CAPRICCIO:
@@ -14550,8 +14550,8 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 		val1 = skill_lv + status->agi / 10; // Flee increase
 		val2 = (skill_lv + 1) / 2 + status->luk / 30; // Perfect dodge increase
 		if (sd) {
-			val1 += pc_checkskill(sd, BA_MUSICALLESSON) / 2;
-			val2 += pc_checkskill(sd, BA_MUSICALLESSON) / 5;
+			val1 += cap_value(pc_checkskill(sd, BA_MUSICALLESSON), 1, MAX_SKILL_LEVEL) / 2;
+			val2 += cap_value(pc_checkskill(sd, BA_MUSICALLESSON), 1, MAX_SKILL_LEVEL) / 5;
 		}
 		break;
 	case DC_HUMMING:
@@ -14579,7 +14579,7 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 		if (sd) {
 			val1 += pc_checkskill(sd, DC_DANCINGLESSON);
 #ifdef RENEWAL
-			val2 += pc_checkskill(sd, DC_DANCINGLESSON) / 2;
+			val2 += cap_value(pc_checkskill(sd, DC_DANCINGLESSON), 1, MAX_SKILL_LEVEL) / 2;
 #else
 			val2 += pc_checkskill(sd, DC_DANCINGLESSON);
 #endif
@@ -14590,13 +14590,13 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 		val1 = 15 + skill_lv + (status->int_ / 10); // MaxSP percent increase
 		val2 = 20 + 3 * skill_lv + (status->int_ / 10); // SP cost reduction
 		if (sd) {
-			val1 += pc_checkskill(sd, DC_DANCINGLESSON) / 2;
-			val2 += pc_checkskill(sd, DC_DANCINGLESSON) / 2;
+			val1 += cap_value(pc_checkskill(sd, DC_DANCINGLESSON), 1, MAX_SKILL_LEVEL) / 2;
+			val2 += cap_value(pc_checkskill(sd, DC_DANCINGLESSON), 1, MAX_SKILL_LEVEL) / 2;
 		}
 		break;
 	case BA_ASSASSINCROSS:
 		if (sd)
-			val1 = pc_checkskill(sd, BA_MUSICALLESSON) / 2;
+			val1 = cap_value(pc_checkskill(sd, BA_MUSICALLESSON), 1, MAX_SKILL_LEVEL) / 2;
 		val1 += 5 + skill_lv + (status->agi / 20);
 		val1 *= 10; // ASPD works with 1000 as 100%
 		break;
@@ -22112,7 +22112,7 @@ void skill_spellbook(map_session_data &sd, t_itemid nameid) {
 	uint16 points = spell->points;
 
 	if (sc && sc->getSCE(SC_FREEZE_SP)) {
-		if ((sc->getSCE(SC_FREEZE_SP)->val2 + points) > 8 * pc_checkskill(&sd, WL_FREEZE_SP) + status_get_int(&sd.bl) / 10 + sd.status.base_level / 10) {
+		if ((sc->getSCE(SC_FREEZE_SP)->val2 + points) > 8 * cap_value(pc_checkskill(&sd, WL_FREEZE_SP), 1, MAX_SKILL_LEVEL) + status_get_int(&sd.bl) / 10 + sd.status.base_level / 10) {
 			clif_skill_fail(&sd, WL_READING_SB, USESKILL_FAIL_SPELLBOOK_PRESERVATION_POINT, 0);
 			return;
 		}

@@ -3662,7 +3662,7 @@ static void battle_calc_skill_base_damage(struct Damage* wd, struct block_list *
 				if(status_get_lv(src) > 100)
 					damagevalue = damagevalue * status_get_lv(src) / 100;
 				if(sd)
-					damagevalue = damagevalue * (90 + 10 * pc_checkskill(sd, RK_DRAGONTRAINING)) / 100;
+					damagevalue = damagevalue * (90 + 10 * cap_value(pc_checkskill(sd, RK_DRAGONTRAINING), 1, MAX_SKILL_LEVEL)) / 100;
 				if (sc && sc->getSCE(SC_DRAGONIC_AURA))// Need official damage increase. [Rytech]
 					damagevalue += damagevalue * 50 / 100;
 				ATK_ADD(wd->damage, wd->damage2, damagevalue);
@@ -4524,7 +4524,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 				skillratio += -100 + 500 * skill_lv;
 			break;
 		case RK_STORMBLAST:
-			skillratio += -100 + (((sd) ? pc_checkskill(sd,RK_RUNEMASTERY) : 0) + sstatus->str / 6) * 100; // ATK = [{Rune Mastery Skill Level + (Caster's STR / 6)} x 100] %
+			skillratio += -100 + (((sd) ? cap_value(pc_checkskill(sd, RK_RUNEMASTERY), 1, MAX_SKILL_LEVEL) : 0) + sstatus->str / 6) * 100; // ATK = [{Rune Mastery Skill Level + (Caster's STR / 6)} x 100] %
 			RE_LVL_DMOD(100);
 			break;
 		case RK_PHANTOMTHRUST: // ATK = [{(Skill Level x 50) + (Spear Master Level x 10)} x Caster's Base Level / 150] %
@@ -4844,14 +4844,13 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 		case GN_CART_TORNADO: { // ATK [( Skill Level x 200 ) + ( Cart Weight / ( 150 - Caster Base STR ))] + ( Cart Remodeling Skill Level x 50 )] %
 				skillratio += -100 + 200 * skill_lv;
 				if(sd && sd->cart_weight)
-					skillratio += sd->cart_weight / 10 / (150 - min(sd->status.str,120)) + pc_checkskill(sd,GN_REMODELING_CART) * 50;
+					skillratio += sd->cart_weight / 10 / (150 - min(sd->status.str,120)) + cap_value(pc_checkskill(sd, GN_REMODELING_CART), 1, MAX_SKILL_LEVEL) * 50;
 				if (sc && sc->getSCE(SC_BIONIC_WOODENWARRIOR))
 					skillratio *= 2;
 			}
 			break;
 		case GN_CARTCANNON:
-			//skillratio += -100 + (250 + 20 * pc_checkskill(sd, GN_REMODELING_CART)) * skill_lv + 2 * sstatus->int_ / (6 - pc_checkskill(sd, GN_REMODELING_CART));
-			skillratio += -100 + (250 + 20 * pc_checkskill(sd, GN_REMODELING_CART)) * skill_lv + 2 * sstatus->int_ / (6 - 1);
+			skillratio += -100 + (250 + 20 * pc_checkskill(sd, GN_REMODELING_CART)) * skill_lv + 2 * sstatus->int_ / cap_value((6 - pc_checkskill(sd, GN_REMODELING_CART)),1,MAX_SKILL_LEVEL);
 			RE_LVL_DMOD(100);
 			break;
 		case GN_SPORE_EXPLOSION:
@@ -4953,7 +4952,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			}
 			break;
 		case KO_BAKURETSU:
-			skillratio += -100 + (sd ? pc_checkskill(sd,NJ_TOBIDOUGU) : 1) * (50 + sstatus->dex / 4) * skill_lv * 4 / 10;
+			skillratio += -100 + (sd ? cap_value(pc_checkskill(sd, NJ_TOBIDOUGU), 1, MAX_SKILL_LEVEL) : 1) * (50 + sstatus->dex / 4) * skill_lv * 4 / 10;
 			RE_LVL_DMOD(120);
 			skillratio += 10 * (sd ? sd->status.job_level : 1);
 			if (sc && sc->getSCE(SC_KAGEMUSYA))
@@ -5319,7 +5318,7 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 		case WH_FLAMETRAP:
 			skillratio += -100 + 250 * skill_lv + 5 * sstatus->con;
 			RE_LVL_DMOD(100);
-			skillratio += skillratio * (20 * (sd ? pc_checkskill(sd, WH_ADVANCED_TRAP) : 5)) / 100;
+			skillratio += skillratio * (20 * (sd ? cap_value(pc_checkskill(sd, WH_ADVANCED_TRAP), 1, MAX_SKILL_LEVEL) : 5)) / 100;
 			break;
 		case BO_ACIDIFIED_ZONE_WATER:
 		case BO_ACIDIFIED_ZONE_GROUND:
@@ -7395,7 +7394,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += -100 + 50 * skill_lv;
 						break;
 					case SO_VARETYR_SPEAR:
-						skillratio += -100 + (2 * sstatus->int_ + 150 * (pc_checkskill(sd, SO_STRIKING) + pc_checkskill(sd, SA_LIGHTNINGLOADER)) + sstatus->int_ * skill_lv / 2) / 3;
+						skillratio += -100 + (2 * sstatus->int_ + 150 * (cap_value(pc_checkskill(sd, SO_STRIKING), 1, MAX_SKILL_LEVEL) + cap_value(pc_checkskill(sd, SA_LIGHTNINGLOADER), 1, MAX_SKILL_LEVEL)) + sstatus->int_ * skill_lv / 2) / 3;
 						RE_LVL_DMOD(100);
 						if (sc && sc->getSCE(SC_BLAST_OPTION))
 							skillratio += (sd ? sd->status.job_level * 5 : 0);
