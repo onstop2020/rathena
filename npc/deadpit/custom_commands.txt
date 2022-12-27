@@ -2,6 +2,18 @@
 OnInit:
 	bindatcmd "load",strnpcinfo(3) + "::OnReturnToLobby";
 	bindatcmd "sf",strnpcinfo(3) + "::OnSkillFix",99,99;
+	bindatcmd "tm",strnpcinfo(3) + "::OnTestMonster",99,99;
+	bindatcmd "sk",strnpcinfo(3) + "::OnSkill",99,99;
+	end;
+
+OnSkill:
+	skill .@atcmd_parameters$[0],100,3;
+	end;
+
+OnTestMonster:
+	monster "nif_dun01",145,140,"--ja--",$monsterTier4Ids[tm],1;
+	setunitdata $@mobid[0],UMOB_MODE,(MD_CANMOVE | MD_AGGRESSIVE | MD_CANATTACK);
+	tm++;
 	end;
 
 OnSkillFix:
