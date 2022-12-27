@@ -23307,14 +23307,6 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			else
 				skill->nk.reset(static_cast<uint8>(constant));
 		}
-		std::string nk_constant = "NK_SPLASH";
-		std::string nk_constant2 = "NK_CRITICAL";
-		int64 constant;
-		int64 constant2;
-		script_get_constant(nk_constant.c_str(), &constant);
-		script_get_constant(nk_constant2.c_str(), &constant2);
-		skill->nk.set(static_cast<uint8>(constant));
-		skill->nk.set(static_cast<uint8>(constant2));
 	}
 
 	if (this->nodeExists(node, "Flags")) {
@@ -23437,35 +23429,14 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			memset(skill->element, ELE_NEUTRAL, sizeof(skill->element));
 	}
 
-	skill->splash[0] = 1;
-	for (int i = 1; i < 2; i++)
-		skill->splash[i] = 2;
-	for (int i = 3; i < 5; i++)
-		skill->splash[i] = 3;
-	for (int i = 6; i < 9; i++)
-		skill->splash[i] = 4;
-	for (int i = 10; i < 12; i++)
-		skill->splash[i] = 5;
-	for (int i = 13; i < 18; i++)
-		skill->splash[i] = 6;
-	for (int i = 19; i < 24; i++)
-		skill->splash[i] = 7;
-	for (int i = 25; i < 34; i++)
-		skill->splash[i] = 8;
-	for (int i = 35; i < 44; i++)
-		skill->splash[i] = 9;
-	for (int i = 45; i < 54; i++)
-		skill->splash[i] = 10;
-	for (int i = 55; i < 64; i++)
-		skill->splash[i] = 11;
-	for (int i = 65; i < 74; i++)
-		skill->splash[i] = 12;
-	for (int i = 75; i < 84; i++)
-		skill->splash[i] = 13;
-	for (int i = 85; i < 94; i++)
-		skill->splash[i] = 14;
-	for (int i = 95; i < sizeof(skill->element); i++)
-		skill->splash[i] = 15;
+	if (this->nodeExists(node, "SplashArea")) {
+		if (!this->parseNode("SplashArea", "Area", node, skill->splash))
+			return 0;
+	}
+	else {
+		if (!exists)
+			memset(skill->splash, 0, sizeof(skill->splash));
+	}
 
 	if (this->nodeExists(node, "ActiveInstance")) {
 		if (!this->parseNode("ActiveInstance", "Max", node, skill->maxcount))
@@ -24141,6 +24112,46 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				skill->unit_target |= BL_CHAR;
 			}
 		}
+	}
+	else {
+		std::string nk_constant = "NK_SPLASH";
+		std::string nk_constant2 = "NK_CRITICAL";
+		int64 constant;
+		int64 constant2;
+		script_get_constant(nk_constant.c_str(), &constant);
+		script_get_constant(nk_constant2.c_str(), &constant2);
+		skill->nk.set(static_cast<uint8>(constant));
+		skill->nk.set(static_cast<uint8>(constant2));
+
+		skill->splash[0] = 1;
+		for (int i = 1; i < 2; i++)
+			skill->splash[i] = 2;
+		for (int i = 3; i < 5; i++)
+			skill->splash[i] = 3;
+		for (int i = 6; i < 9; i++)
+			skill->splash[i] = 4;
+		for (int i = 10; i < 12; i++)
+			skill->splash[i] = 5;
+		for (int i = 13; i < 18; i++)
+			skill->splash[i] = 6;
+		for (int i = 19; i < 24; i++)
+			skill->splash[i] = 7;
+		for (int i = 25; i < 34; i++)
+			skill->splash[i] = 8;
+		for (int i = 35; i < 44; i++)
+			skill->splash[i] = 9;
+		for (int i = 45; i < 54; i++)
+			skill->splash[i] = 10;
+		for (int i = 55; i < 64; i++)
+			skill->splash[i] = 11;
+		for (int i = 65; i < 74; i++)
+			skill->splash[i] = 12;
+		for (int i = 75; i < 84; i++)
+			skill->splash[i] = 13;
+		for (int i = 85; i < 94; i++)
+			skill->splash[i] = 14;
+		for (int i = 95; i < sizeof(skill->element); i++)
+			skill->splash[i] = 15;
 	}
 
 	if (this->nodeExists(node, "Status")) {
