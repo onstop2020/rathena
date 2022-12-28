@@ -51,7 +51,7 @@ prt_prison,57,144,4	script	เจ้าแห่งความตาย	10387,{
 	L_Biolo: callsub L_ChangeJob,4259;
 	L_AbyssChaser: callsub L_ChangeJob,4260;
 	L_ElementalMaster: callsub L_ChangeJob,4261;
-	L_Inquisitor: callsub L_ChangeJob,4263;
+	L_Inquisitor: callsub L_ChangeJob,4262;
 	L_Troubadour: callsub L_ChangeJob,4263;
 	L_Trouvere: callsub L_ChangeJob,4264;
 	L_SkyEmperor: callsub L_ChangeJob,4302;

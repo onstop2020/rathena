@@ -7,7 +7,7 @@ OnInit:
 	end;
 
 OnSkill:
-	skill .@atcmd_parameters$[0],100,3;
+	skill .@atcmd_parameters$[0],.@atcmd_parameters$[1],3;
 	end;
 
 OnTestMonster:
