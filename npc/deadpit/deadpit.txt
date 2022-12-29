@@ -205,7 +205,7 @@ OnKeepSpawnMonster:
 	else if(playingMapIndex == 2)
 	return $monsterTier3Ids[rand(0,($monsterTier3IdsSize - 1))];
 	else if(playingMapIndex == 3)
-	return $monsterTier4Ids[rand(0,($monsterTier4IdsSize - 1))];
+	return $monsterTier5Ids[rand(0,($monsterTier5IdsSize - 1))];
 	else if(playingMapIndex == 4)
 	return $monsterTier5Ids[rand(0,($monsterTier5IdsSize - 1))];
 	else if(playingMapIndex == 5)
