@@ -7813,12 +7813,17 @@ ACMD_FUNC(mobinfo)
 			else
 				clif_displaymessage(fd, atcmd_output);
 		}
+
+		std::shared_ptr<item_data> tbkr = item_db.find(40017);
+
 		int the_box_key_rate = mob_getdroprate(&sd->bl, mob, battle_config.item_rate_the_box_key * mob->lv, drop_modifier);
-		sprintf(atcmd_output, " - %s  0 ~ %02.02f%%", item_db.create_item_link(40017).c_str(), (float)the_box_key_rate / 100);
+		sprintf(atcmd_output, " - %s  0 ~ %02.02f%%", item_db.create_item_link(tbkr).c_str(), (float)the_box_key_rate / 100);
 		clif_displaymessage(fd, atcmd_output);
 		if (mob->get_bosstype() == BOSSTYPE_MVP) {
+			std::shared_ptr<item_data> mvprr = item_db.find(40016);
+
 			int mvp_refine_rate = mob_getdroprate(&sd->bl, mob, battle_config.item_rate_mvp_refine * (mob->lv / 9), drop_modifier);
-			sprintf(atcmd_output, " - %s  0 ~ %02.02f%%", item_db.create_item_link(40016).c_str(), (float)mvp_refine_rate / 100);
+			sprintf(atcmd_output, " - %s  0 ~ %02.02f%%", item_db.create_item_link(mvprr).c_str(), (float)mvp_refine_rate / 100);
 			clif_displaymessage(fd, atcmd_output);
 		}
 	}
