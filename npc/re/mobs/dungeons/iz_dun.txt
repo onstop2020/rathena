@@ -12,6 +12,7 @@
 //= 1.3 Added Izlude Dungeon F6 spawns [Chilly]
 //= 1.4 Official F6 spawns.
 //= 1.5 Correct Spawn by Navigation's mob data. [attackjom]
+//= 1.6 Added Illusion of Underwater. [Capuche]
 //============================================================
 
 //==================================================
@@ -118,4 +119,22 @@ iz_dun05,0,0	monster	Sropho	2201,50,5000
 iz_dun05,0,0	monster	Sedora	2204,60,5000
 iz_dun05,0,0	monster	Pot Dofle	2203,30,5000
 iz_dun05,0,0	monster	King Dramoh	2198,25,5000
-iz_dun05,0,0,0,0	boss_monster	Kraken	2202,1,180000,180000
+iz_dun05,0,0,0,0	boss_monster	Kraken	2202,1,180000,180000,0
+
+//==================================================
+// Illusion of Underwater
+//==================================================
+iz_d04_i	monster	Deep Sea Sropho	20801,45,5000
+iz_d04_i	monster	Deep Sea Obeaune	20802,45,5000
+iz_d04_i	monster	Deep Sea Merman	20805,45,5000
+iz_d04_i	monster	Deep Sea Marse	20804,45,5000
+iz_d04_i	monster	Deep Sea Deviace	20803,45,5000
+iz_d04_i	boss_monster	Kraken	20811,1,180000,180000
+
+iz_d05_i	monster	Deep Sea Strouf	20808,45,5000
+iz_d05_i	monster	Deep Sea Swordfish	20807,45,5000
+iz_d05_i	monster	Deep Sea Phen	20809,45,5000
+iz_d05_i	monster	Deep Sea Sedora	20806,45,5000
+iz_d05_i	monster	Deep Sea King Dramoh	20810,45,5000
+iz_d05_i	boss_monster	Abysmal Witch	20843,1,180000,180000
+
