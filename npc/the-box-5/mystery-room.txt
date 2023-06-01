@@ -1,4 +1,3 @@
-herosria	mapflag	tb2
 herosria	mapflag	novending
 herosria	mapflag	nochat
 herosria	mapflag	noteleport

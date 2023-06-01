@@ -17,3 +17,26 @@
 //	clif_specialeffect(&sd->bl, EF_HEARTCASTING, AREA);
 //	return 0;
 //}
+
+ACMD_FUNC(debuff)
+{
+	short debuff;
+
+	nullpo_retr(-1, sd);
+
+	memset(atcmd_output, '\0', sizeof(atcmd_output));
+
+	if (!message || !*message || sscanf(message, "%6hd", &debuff) < 1) {
+		sprintf(atcmd_output, "Please enter a debuff value (usage: @debuff <0-100>)");
+		clif_displaymessage(fd, atcmd_output);
+		return -1;
+	}
+
+	sd->all_debuff = cap_value(debuff, 0, 100);
+
+	status_calc_pc(sd, SCO_FORCE);
+
+	clif_displaymessage(fd, "Debuff changed.");
+
+	return 0;
+}

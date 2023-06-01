@@ -75,8 +75,8 @@ static unsigned short status_calc_watk(struct block_list *,status_change *,int);
 static unsigned short status_calc_matk(struct block_list *,status_change *,int);
 static signed short status_calc_hit(struct block_list *,status_change *,int);
 static signed short status_calc_critical(struct block_list *,status_change *,int);
-static signed short status_calc_flee(struct block_list *,status_change *,int);
-static signed short status_calc_flee2(struct block_list *,status_change *,int);
+static signed short status_calc_flee(struct block_list *,status_change *,int,int);
+static signed short status_calc_flee2(struct block_list *,status_change *,int,int);
 static defType status_calc_def(struct block_list *bl, status_change *sc, int);
 static signed short status_calc_def2(struct block_list *,status_change *,int);
 static defType status_calc_mdef(struct block_list *bl, status_change *sc, int);
@@ -5525,6 +5525,7 @@ void status_calc_bl_main(struct block_list *bl, std::bitset<SCB_MAX> flag)
 	status_change *sc = status_get_sc(bl);
 	TBL_PC *sd = BL_CAST(BL_PC,bl);
 	int temp;
+	int debuff = (sd) ? sd->all_debuff : 0;
 
 	if (!b_status || !status)
 		return;
@@ -5706,13 +5707,13 @@ void status_calc_bl_main(struct block_list *bl, std::bitset<SCB_MAX> flag)
 			&& status->luk == b_status->luk && status->con == b_status->con
 #endif
 			)
-			status->flee = status_calc_flee(bl, sc, b_status->flee);
+			status->flee = status_calc_flee(bl, sc, b_status->flee, debuff);
 		else
 			status->flee = status_calc_flee(bl, sc, b_status->flee +(status->agi - b_status->agi)
 #ifdef RENEWAL
 			+ (status->luk/5 - b_status->luk/5) + 2 * (status->con - b_status->con)
 #endif
-			);
+			, debuff);
 	}
 
 	if(flag[SCB_DEF]) {
@@ -5794,9 +5795,9 @@ void status_calc_bl_main(struct block_list *bl, std::bitset<SCB_MAX> flag)
 
 	if(flag[SCB_FLEE2] && b_status->flee2) {
 		if (status->luk == b_status->luk)
-			status->flee2 = status_calc_flee2(bl, sc, b_status->flee2);
+			status->flee2 = status_calc_flee2(bl, sc, b_status->flee2, debuff);
 		else
-			status->flee2 = status_calc_flee2(bl, sc, b_status->flee2 +(status->luk - b_status->luk));
+			status->flee2 = status_calc_flee2(bl, sc, b_status->flee2 +(status->luk - b_status->luk), debuff);
 	}
 
 	if(flag[SCB_ATK_ELE]) {
@@ -7445,23 +7446,17 @@ static signed short status_calc_hit(struct block_list *bl, status_change *sc, in
  * @param flee: Initial flee
  * @return modified flee with cap_value(flee,1,USHRT_MAX)
  */
-static signed short status_calc_flee(struct block_list *bl, status_change *sc, int flee)
+static signed short status_calc_flee(struct block_list *bl, status_change *sc, int flee, int debuff)
 {
 	if( bl->type == BL_PC ) {
 		struct map_data *mapdata = map_getmapdata(bl->m);
+
+		flee -= flee * debuff / 100; // [Start]
 
 		if( mapdata_flag_gvg(mapdata) )
 			flee -= flee * battle_config.gvg_flee_penalty/100;
 		else if( mapdata->flag[MF_BATTLEGROUND] )
 			flee -= flee * battle_config.bg_flee_penalty/100;
-		else if (mapdata->flag[MF_TB])
-			flee -= flee * battle_config.tb_flee_penalty / 100;
-		else if (mapdata->flag[MF_TB2])
-			flee -= flee * battle_config.tb2_flee_penalty / 100;
-		else if (mapdata->flag[MF_TB3])
-			flee -= flee * battle_config.tb3_flee_penalty / 100;
-		else if (mapdata->flag[MF_TB4])
-			flee -= flee * battle_config.tb4_flee_penalty / 100;
 	}
 
 	if(!sc || !sc->count)
@@ -7571,8 +7566,10 @@ static signed short status_calc_flee(struct block_list *bl, status_change *sc, i
  * @param flee2: Initial flee2
  * @return modified flee2 with cap_value(flee2,10,USHRT_MAX)
  */
-static signed short status_calc_flee2(struct block_list *bl, status_change *sc, int flee2)
+static signed short status_calc_flee2(struct block_list *bl, status_change *sc, int flee2, int debuff)
 {
+	flee2 -= flee2 * debuff / 100; // [Start]
+
 	if(!sc || !sc->count)
 		return cap_value(flee2,10,SHRT_MAX);
 
@@ -7586,19 +7583,6 @@ static signed short status_calc_flee2(struct block_list *bl, status_change *sc, 
 		flee2 += sc->getSCE(SC_HISS)->val2*10;
 	if (sc->getSCE(SC_DORAM_FLEE2))
 		flee2 += sc->getSCE(SC_DORAM_FLEE2)->val1;
-
-	if (bl->type == BL_PC) {
-		struct map_data* mapdata = map_getmapdata(bl->m);
-
-		if (mapdata->flag[MF_TB])
-			flee2 -= flee2 * battle_config.tb_flee_penalty / 100;
-		else if (mapdata->flag[MF_TB2])
-			flee2 -= flee2 * battle_config.tb2_flee_penalty / 100;
-		else if (mapdata->flag[MF_TB3])
-			flee2 -= flee2 * battle_config.tb3_flee_penalty / 100;
-		else if (mapdata->flag[MF_TB4])
-			flee2 -= flee2 * battle_config.tb4_flee_penalty / 100;
-	}
 
 	return (short)cap_value(flee2,10,SHRT_MAX);
 }

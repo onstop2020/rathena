@@ -471,6 +471,7 @@ public:
 	uint32 login_id1, login_id2;
 	uint64 class_;	//This is the internal job ID used by the map server to simplify comparisons/queries/etc. [Skotlex]
 	int group_id;
+	int all_debuff;
 	std::shared_ptr<s_player_group> group;
 	std::bitset<PC_PERM_MAX> permissions; // group permissions have to be copied, because they might be adjusted by atcommand addperm
 	int count_rewarp; //count how many time we being rewarped

@@ -1,4 +1,3 @@
-vis_h01	mapflag	tb
 vis_h01	mapflag	pvp
 vis_h01	mapflag	novending
 vis_h01	mapflag	nochat
@@ -9,7 +8,6 @@ vis_h01	mapflag	nosave
 vis_h01	mapflag	nobranch
 vis_h01	mapflag	notomb
 
-vis_h02	mapflag	tb2
 vis_h02	mapflag	pvp
 vis_h02	mapflag	novending
 vis_h02	mapflag	nochat
@@ -20,7 +18,6 @@ vis_h02	mapflag	nosave
 vis_h02	mapflag	nobranch
 vis_h02	mapflag	notomb
 
-vis_h03	mapflag	tb3
 vis_h03	mapflag	pvp
 vis_h03	mapflag	novending
 vis_h03	mapflag	nochat
@@ -31,7 +28,6 @@ vis_h03	mapflag	nosave
 vis_h03	mapflag	nobranch
 vis_h03	mapflag	notomb
 
-vis_h04	mapflag	tb4
 vis_h04	mapflag	pvp
 vis_h04	mapflag	novending
 vis_h04	mapflag	nochat

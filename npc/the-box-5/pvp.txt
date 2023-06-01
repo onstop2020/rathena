@@ -1,8 +1,3 @@
-pvp_y_1-1	mapflag	tb
-//pvp_y_1-1	mapflag	tb2
-//pvp_y_1-1	mapflag	battleground
-//pvp_y_1-1	mapflag	gvg
-//pvp_y_1-1	mapflag	pvp
 pvp_y_1-1	mapflag	pvp_noparty
 pvp_y_1-1	mapflag	pvp_noguild
 pvp_y_1-1	mapflag	novending
@@ -17,10 +12,6 @@ pvp_y_1-1	mapflag	notomb
 pvp_y_1-1	mapflag	nopenalty
 pvp_y_1-1	mapflag	nocommand	99
 
-pvp_y_1-4	mapflag	tb
-//pvp_y_1-4	mapflag	tb2
-//pvp_y_1-4	mapflag	battleground
-//pvp_y_1-4	mapflag	gvg
 pvp_y_1-4	mapflag	pvp
 pvp_y_1-4	mapflag	novending
 pvp_y_1-4	mapflag	nochat

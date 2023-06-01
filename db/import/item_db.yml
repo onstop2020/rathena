@@ -88,24 +88,6 @@ Header:
   Version: 3
 
 Body:
-  - Id: 40016
-    AegisName: MvP_Refine
-    Name: MvP Refine
-    Type: Etc
-    Flags:
-      BuyingStore: true
-    TradeNoUse:
-      Override: 100
-      NoSell: true
-  - Id: 40017
-    AegisName: THE_BOX_KEY
-    Name: THE BOX KEY
-    Type: Etc
-    Flags:
-      BuyingStore: true
-    TradeNoUse:
-      Override: 100
-      NoSell: true
   - Id: 1599
     AegisName: Angra_Manyu
     Name: Angra Manyu
@@ -122,7 +104,7 @@ Body:
     EquipLevelMin: 1
     Refineable: true
     Script: |
-      sc_end SC_POISON;
+      bonus bMaxHP,1;
   - Id: 2199
     AegisName: Ahura_Mazda
     Name: Ahura Mazdah
@@ -135,7 +117,67 @@ Body:
     Refineable: true
     View: 1
     Script: |
-      sc_end SC_POISON;
-  - Id: 31089
-    Script: |
-      hateffect(HAT_EF_BAKURETSU_HADOU,false);
+      bonus bMaxHP,1;
+  - Id: 10000000
+    AegisName: Special_Phracon
+    Name: Special Phracon
+    Type: Etc
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+  - Id: 10000001
+    AegisName: Special_Emveretarcon
+    Name: Special Emveretarcon
+    Type: Etc
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+  - Id: 10000002
+    AegisName: Special_Oridecon
+    Name: Special Oridecon
+    Type: Etc
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+  - Id: 10000003
+    AegisName: Special_Bradium
+    Name: Special Bradium
+    Type: Etc
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+  - Id: 10000004
+    AegisName: Special_Elunium
+    Name: Special Elunium
+    Type: Etc
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+  - Id: 10000005
+    AegisName: Special_Carnium
+    Name: Special Carnium
+    Type: Etc
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+  - Id: 10000006
+    AegisName: Special_Refine_Box
+    Name: Special Refine Box
+    Type: Etc
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true

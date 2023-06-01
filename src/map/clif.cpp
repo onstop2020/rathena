@@ -7140,7 +7140,7 @@ void clif_use_card(map_session_data *sd,int idx)
 		return; //Avoid parsing invalid item indexes (no card/no item)
 
 	ep=sd->inventory_data[idx]->equip;
-	bool is_enchantment = sd->inventory_data[idx]->equip == 0;
+	bool is_enchantment = sd->inventory_data[idx]->equip == 0; // [Start]
 	WFIFOHEAD(fd,MAX_INVENTORY * 2 + 4);
 	WFIFOW(fd,0)=0x17b;
 
@@ -7149,9 +7149,9 @@ void clif_use_card(map_session_data *sd,int idx)
 
 		if(sd->inventory_data[i] == NULL)
 			continue;
-		if(!is_enchantment && sd->inventory_data[i]->type!=IT_WEAPON && sd->inventory_data[i]->type!=IT_ARMOR)
+		if (!is_enchantment && sd->inventory_data[i]->type != IT_WEAPON && sd->inventory_data[i]->type != IT_ARMOR)
 			continue;
-		if(is_enchantment && sd->inventory_data[i]->type!=IT_WEAPON && sd->inventory_data[i]->type!=IT_ARMOR && sd->inventory_data[i]->type!=IT_SHADOWGEAR)
+		if (is_enchantment && sd->inventory_data[i]->type != IT_WEAPON && sd->inventory_data[i]->type != IT_ARMOR && sd->inventory_data[i]->type != IT_SHADOWGEAR)
 			continue;
 		if(itemdb_isspecial(sd->inventory.u.items_inventory[i].card[0])) //Can't slot it
 			continue;
@@ -7159,7 +7159,7 @@ void clif_use_card(map_session_data *sd,int idx)
 		if(sd->inventory.u.items_inventory[i].identify==0 )	//Not identified
 			continue;
 
-		if(!is_enchantment && (sd->inventory_data[i]->equip&ep)==0)	//Not equippable on this part.
+		if (!is_enchantment && (sd->inventory_data[i]->equip & ep) == 0) //Not equippable on this part.
 			continue;
 
 		if(sd->inventory_data[i]->type==IT_WEAPON && ep==EQP_SHIELD) //Shield card won't go on left weapon.
@@ -11150,10 +11150,10 @@ void clif_parse_LoadEndAck(int fd,map_session_data *sd)
 			guild_notice = false; // Do not display it twice
 		}
 
-		if (battle_config.bg_flee_penalty != 100 || battle_config.gvg_flee_penalty != 100 || battle_config.tb_flee_penalty != 100 || battle_config.tb2_flee_penalty != 100 || battle_config.tb3_flee_penalty != 100 || battle_config.tb4_flee_penalty != 100) {
+		if (battle_config.bg_flee_penalty != 100 || battle_config.gvg_flee_penalty != 100) {
 			struct map_data *pmap = map_getmapdata(sd->state.pmap);
 
-			if ((pmap != nullptr && (mapdata_flag_gvg(pmap) || pmap->flag[MF_BATTLEGROUND])) || (mapdata != nullptr && (mapdata_flag_gvg(mapdata) || mapdata->flag[MF_BATTLEGROUND] || mapdata->flag[MF_TB] || mapdata->flag[MF_TB2] || mapdata->flag[MF_TB3] || mapdata->flag[MF_TB4])))
+			if ((pmap != nullptr && (mapdata_flag_gvg(pmap) || pmap->flag[MF_BATTLEGROUND])) || (mapdata != nullptr && (mapdata_flag_gvg(mapdata) || mapdata->flag[MF_BATTLEGROUND])))
 				status_calc_bl(&sd->bl, { SCB_FLEE }); //Refresh flee penalty
 		}
 

@@ -1166,6 +1166,7 @@ int mob_spawn (struct mob_data *md)
 	md->dmgtick = tick - 5000;
 	md->last_pcneartime = 0;
 	md->dynamic = (int)(1 + (rnd() % battle_config.max_monster_dynamic));
+
 	t_tick c = tick - MOB_MAX_DELAY;
 
 	for (i = 0; i < MAX_MOBSKILL; i++)
@@ -2883,22 +2884,13 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				}
 			}
 
-			// THE BOX KEY [Start]
-			drop_rate = mob_getdroprate(src, md->db, cap_value(battle_config.item_rate_the_box_key * (rnd() % md->level), 0, 10000), drop_modifier);
-			if (rnd() % 10000 < drop_rate)
-			{
-				struct s_mob_drop mobdrop = {};
-				mobdrop.nameid = 40017;
-
-				mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
-			}
-			// MvP Refine [Start]
+			// Special Refine Box [Start]
 			if (md->db->mexp > 0) {
-				drop_rate = mob_getdroprate(src, md->db, cap_value(battle_config.item_rate_mvp_refine * (rnd() % (md->level / 9)), 0, 10000), drop_modifier);
+				drop_rate = mob_getdroprate(src, md->db, cap_value(battle_config.item_rate_special_refine_box * (rnd() % (md->level / 9)), 0, 10000), drop_modifier);
 				if (rnd() % 10000 < drop_rate)
 				{
 					struct s_mob_drop mobdrop = {};
-					mobdrop.nameid = 40016;
+					mobdrop.nameid = 10000006;
 
 					mob_item_drop(md, dlist, mob_setdropitem(&mobdrop, 1, md->mob_id), 0, drop_rate, homkillonly || merckillonly);
 				}
@@ -4315,7 +4307,7 @@ bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node,
 
 	// Find first empty spot
 	for( i = 0; i < max; i++ ){
-		if (drops[i].nameid == 0) {
+		if( drops[i].nameid == 0 ){
 			break;
 		}
 	}
@@ -4503,7 +4495,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		mob->base_exp = static_cast<t_exp>(cap_value((double)exp * (double)battle_config.base_exp_rate / 100., 0, MAX_EXP));
 	} else {
 		if (!exists)
-			mob->base_exp = static_cast<t_exp>(cap_value((double)(mob->status.max_hp / 5) * (double)battle_config.base_exp_rate / 100., 0, MAX_EXP));
+			mob->base_exp = static_cast<t_exp>(cap_value((double)(mob->status.max_hp / 5) * (double)battle_config.base_exp_rate / 100., 0, MAX_EXP)); // [Start]
 	}
 	
 	if (this->nodeExists(node, "JobExp")) {
@@ -4515,7 +4507,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		mob->job_exp = static_cast<t_exp>(cap_value((double)exp * (double)battle_config.job_exp_rate / 100., 0, MAX_EXP));
 	} else {
 		if (!exists)
-			mob->job_exp = static_cast<t_exp>(cap_value((double)(mob->status.max_hp / 5) * (double)battle_config.job_exp_rate / 100., 0, MAX_EXP));
+			mob->job_exp = static_cast<t_exp>(cap_value((double)(mob->status.max_hp / 10) * (double)battle_config.job_exp_rate / 100., 0, MAX_EXP)); // [Start]
 	}
 	
 	if (this->nodeExists(node, "MvpExp")) {

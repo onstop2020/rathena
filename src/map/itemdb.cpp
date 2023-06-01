@@ -182,7 +182,6 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			/*std::string type_constant = "CARD_" + type;
 			int64 constant;
 
-			
 			if (!script_get_constant(type_constant.c_str(), &constant) || constant < CARD_NORMAL || constant >= MAX_CARD_TYPE) {
 				this->invalidWarning(node["SubType"], "Invalid card type %s, defaulting to CARD_NORMAL.\n", type.c_str());
 				item->subtype = CARD_NORMAL;
@@ -872,7 +871,7 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 			item->stack.guild_storage = false;
 		}
 	}
-
+	
 	if (this->nodeExists(node, "NoUse")) {
 		const auto& nouseNode = node["NoUse"];
 

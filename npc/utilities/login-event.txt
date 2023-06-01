@@ -1,0 +1,8 @@
+-	script	LoginEvent	-1,{
+	end;
+	
+OnPCLoginEvent:
+	setpcblock PCBLOCK_ALL,false;
+	atcommand "@alootid +10000006";
+	end;
+}

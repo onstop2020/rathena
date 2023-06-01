@@ -4227,8 +4227,8 @@ ACMD_FUNC(reload) {
 		battle_config_read(BATTLE_CONF_FILENAME);
 
 		if( prev_config.item_rate_mvp          != battle_config.item_rate_mvp
-		||  prev_config.item_rate_mvp_refine   != battle_config.item_rate_mvp_refine
-		||  prev_config.item_rate_the_box_key  != battle_config.item_rate_the_box_key
+		||  prev_config.max_monster_dynamic    != battle_config.max_monster_dynamic
+		||  prev_config.item_rate_special_refine_box   != battle_config.item_rate_special_refine_box
 		||  prev_config.item_rate_common       != battle_config.item_rate_common
 		||  prev_config.item_rate_common_boss  != battle_config.item_rate_common_boss
 		||  prev_config.item_rate_common_mvp   != battle_config.item_rate_common_mvp
@@ -7752,6 +7752,7 @@ ACMD_FUNC(mobinfo)
 			drop_modifier = pc_level_penalty_mod( sd, PENALTY_DROP, mob );
 		}
 #endif
+
 		for (i = 0; i < MAX_MOB_DROP_TOTAL; i++) {
 
 			if (mob->dropitem[i].nameid == 0 || mob->dropitem[i].rate < 1)
@@ -7816,16 +7817,12 @@ ACMD_FUNC(mobinfo)
 				clif_displaymessage(fd, atcmd_output);
 		}
 
-		std::shared_ptr<item_data> tbkr = item_db.find(40017);
-
-		int the_box_key_rate = mob_getdroprate(&sd->bl, mob, battle_config.item_rate_the_box_key * mob->lv, drop_modifier);
-		sprintf(atcmd_output, " - %s  0 ~ %02.02f%%", item_db.create_item_link(tbkr).c_str(), (float)the_box_key_rate / 100);
-		clif_displaymessage(fd, atcmd_output);
+		// [Start]
 		if (mob->get_bosstype() == BOSSTYPE_MVP) {
-			std::shared_ptr<item_data> mvprr = item_db.find(40016);
+			std::shared_ptr<item_data> mvprr = item_db.find(10000006);
 
-			int mvp_refine_rate = mob_getdroprate(&sd->bl, mob, battle_config.item_rate_mvp_refine * (mob->lv / 9), drop_modifier);
-			sprintf(atcmd_output, " - %s  0 ~ %02.02f%%", item_db.create_item_link(mvprr).c_str(), (float)mvp_refine_rate / 100);
+			int special_refine_box_rate = mob_getdroprate(&sd->bl, mob, battle_config.item_rate_special_refine_box * (mob->lv / 9), drop_modifier);
+			sprintf(atcmd_output, " - %s  0 ~ %02.02f%%", item_db.create_item_link(mvprr).c_str(), (float)special_refine_box_rate / 100);
 			clif_displaymessage(fd, atcmd_output);
 		}
 	}
