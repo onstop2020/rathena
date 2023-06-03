@@ -1,0 +1,187 @@
+prontera,138,184,5	script	THE BOX	10249,{
+	.@price = callsub(L_Price);
+	
+	menu "สุ่ม (^BA17F8" + F_InsertComma(.@price) + "z^000000)",-
+	,"ดูของในกล่อง (^F81717เหลือ " + getarraysize($market) + " ชิ้น^000000)",L_View
+	,"อีก ^F81717" + (10 - (gettime(DT_MINUTE) % 10)) + " นาที^000000 ของในกล่องจะเปลี่ยนใหม่หมด",L_End;
+	
+	// Trading
+	if(getarraysize($market) <= 0){
+		message strcharinfo(0),"ของหมดแล้ว";
+		end;
+	}
+	.@price = callsub(L_Price);
+	if(Zeny < .@price)
+	message strcharinfo(0),"ต้องการ " + F_InsertComma(.@price) + "z";
+	else{
+		// Check weight
+		if(!checkweight(6825,1)){
+			message strcharinfo(0),"น้ำหนักเต็ม (ต้องว่างอย่างน้อย 1,000 น้ำหนัก)";
+			end;
+		}
+		
+		// Random reward
+		.@index = rand(getarraysize($market));
+		.@rewardItemId = $market[.@index];
+		
+		// Trade
+		Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+		getitem .@rewardItemId,1;
+		
+		// Remove item from list
+		deletearray $market[.@index],1;
+		// Remove item from shop
+		npcshopdelitem .shopName$,.@rewardItemId;
+		
+		delwaitingroom;
+
+		callsub(L_WaitingRoom);
+	}
+	end;
+	
+	L_End:
+	end;
+	
+	// Buying item from viewing (Not able to do)
+OnBuyItem:
+	end;
+	
+	// Viewing item list
+	L_View:
+	callshop .shopName$,1;
+	npcshopattach .shopName$;
+	end;
+	
+	// Cleaning item list
+	L_CleanShop:
+	npcshopdelitem .shopName$,501;
+	for(.@i = 0; .@i < getarraysize($market); .@i++)
+	npcshopdelitem .shopName$,$market[.@i];
+	return;
+
+	// Adding item to shop list
+	L_Initial:
+	// Same hours from last time generate
+	if($marketHours == gettime(DT_HOUR)){
+		// Adding old item list
+		for(.@i = 0; .@i < getarraysize($market); .@i++)
+		npcshopadditem .shopName$,$market[.@i],1;
+		
+		freeloop(0);
+		
+		delwaitingroom;
+		
+		callsub(L_WaitingRoom);
+
+		return;
+	}
+	
+	// Hour was not same with last time
+OnMinute00:
+OnMinute16:
+OnMinute20:
+OnMinute30:
+OnMinute40:
+OnMinute50:
+	// Set to current hours
+	$marketHours = gettime(DT_HOUR);
+	
+	freeloop(1);
+	
+	callsub L_CleanShop;
+	
+	deletearray $market[0],getarraysize($market);
+	
+	// Generate item list
+	for(.@i = 0; .@i < .amount; .@i++){
+		.@rand = rand(5);
+		
+		if(.@rand == 1)
+		.@itemId = $weaponIds[rand(getarraysize($weaponIds))];
+		else if(.@rand == 2)
+		.@itemId = $equipmentIds[rand(getarraysize($equipmentIds))];
+		else if(.@rand == 3)
+		.@itemId = $costumeIds[rand(getarraysize($costumeIds))];
+		else if(.@rand == 4)
+		.@itemId = $cardIds[rand(getarraysize($cardIds))];
+		else
+		.@itemId = $enchantIds[rand(getarraysize($enchantIds))];
+		
+		setarray $market[getarraysize($market)],.@itemId;
+	}
+	
+	callsub L_Initial;
+	
+	freeloop(0);
+	
+	end;
+
+	// Get price
+	L_Price:
+	.@price = .basePrice;
+	.@amount = .amount - getarraysize($market);
+	
+	while(.@amount >= .tierAmount){
+		.@amount -= .tierAmount;
+		.@price *= .priceTierMultiplier;
+	}
+
+	return cap_value(.@price * ((.@amount > 0) ? (.@amount) : 1),.basePrice,.maximumPrice);
+
+	// Get price wording
+	L_PriceString:
+	.@price = getarg(0,0);
+	
+	if(.@price >= 1000000)
+	return (.@price/1000000) + "m";
+	else if(.@price > 1000)
+	return (.@price/1000) + "k";
+	else
+	return .@price;
+
+	// Create waiting room
+	L_WaitingRoom:
+	if(getarraysize($market) > 0)
+	waitingroom callsub(L_PriceString,callsub(L_Price)) + " อีก " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที",0;
+	else
+	waitingroom "โปรดรอ " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที",0;
+	return;
+
+	// Every ten minutes, generate new shop
+OnTimer60000:
+	initnpctimer;
+
+	delwaitingroom;
+	
+	freeloop(1);
+	
+	callsub L_Initial;
+	
+	end;
+
+OnInit:
+	// Parameters
+	.shopName$ = "THE_BOX";
+
+	.amount = 50;
+	.tierAmount = 10;
+	.basePrice = 100000;
+	.maximumPrice = 100000000;
+	.priceTierMultiplier = 10;
+	
+	initnpctimer;
+	
+	// Shop initialize
+	freeloop(1);
+	
+	callsub L_CleanShop;
+
+	callsub L_Initial;
+	
+	freeloop(0);
+	
+	end;
+}
+
+// Shop
+-	shop	THE_BOX	-1,no,501:-1

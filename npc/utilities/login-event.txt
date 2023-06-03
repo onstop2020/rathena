@@ -2,7 +2,17 @@
 	end;
 	
 OnPCLoginEvent:
+	// New character
+	if((BaseLevel == 1)
+			&& (JobLevel == 1)
+			&& (Class == 0))
+	percentheal 100,100;
+	
+	// Unexpected error
 	setpcblock PCBLOCK_ALL,false;
+	
+	// Important loots
 	atcommand "@alootid +10000006";
+	
 	end;
 }

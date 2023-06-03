@@ -2124,16 +2124,22 @@ static TIMER_FUNC(mob_ai_hard){
  * @param item: Item data
  * @param mobdrop: Drop data
  * @author [Cydh]
+ *
+ * Edited by [Start]
+ * All of equipment are random with 5 random option (Randomize)
  **/
-void mob_setdropitem_option(item *item, s_mob_drop *mobdrop) {
+void mob_setdropitem_option(item* item, s_mob_drop* mobdrop) {
 	if (!item || !mobdrop)
 		return;
 
-	std::shared_ptr<s_random_opt_group> group = random_option_group.find(mobdrop->randomopt_group);
+	std::shared_ptr<s_random_opt_group> group = random_option_group.find(1);
 
-	if (group != nullptr) {
-		group->apply( *item );
-	}
+	std::shared_ptr<item_data> id = item_db.find(item->nameid);
+
+	if (id
+		&& ((id->type == IT_ARMOR) || (id->type == IT_WEAPON) || (id->type == IT_SHADOWGEAR))
+		&& (group != nullptr))
+		group->apply(*item);
 }
 
 /*==========================================
@@ -2477,6 +2483,10 @@ int mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int b
 			drop_rate *= 2;
 	}
 
+	if (md
+		&& (md->dynamic > 1))
+		drop_rate *= ((md->dynamic - 1) * 2); // [Start]
+
 	if (src) {
 		if (battle_config.drops_by_luk) // Drops affected by luk as a fixed increase [Valaris]
 			drop_rate += status_get_luk(src) * battle_config.drops_by_luk / 100;
@@ -2712,6 +2722,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				base_exp = 0;
 			else {
 				double exp = apply_rate2(md->db->base_exp, per, 1);
+				if (md->dynamic > 1)
+					exp = apply_rate(exp, (100 * ((md->dynamic - 1) * 10))); // [Start]
 				exp = apply_rate(exp, bonus);
 				exp = apply_rate(exp, map_getmapflag(m, MF_BEXP));
 				base_exp = (t_exp)cap_value(exp, 1, MAX_EXP);
@@ -2725,6 +2737,8 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				job_exp = 0;
 			else {
 				double exp = apply_rate2(md->db->job_exp, per, 1);
+				if (md->dynamic > 1)
+					exp = apply_rate(exp, (100 * ((md->dynamic - 1) * 10))); // [Start]
 				exp = apply_rate(exp, bonus);
 				exp = apply_rate(exp, map_getmapflag(m, MF_JEXP));
 				job_exp = (t_exp)cap_value(exp, 1, MAX_EXP);
@@ -2970,7 +2984,10 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 		//mapflag: noexp check [Lorky]
 		if( md->db->mexp > 0 && !( map_getmapflag( m, MF_NOBASEEXP ) || type&2 ) ){
-			log_mvp_exp = md->db->mexp;
+			if (md->dynamic > 1)
+				log_mvp_exp = md->db->mexp * ((md->dynamic - 1) * 10); // [Start]
+			else
+				log_mvp_exp = md->db->mexp;
 
 #if defined(RENEWAL_EXP)
 			int penalty = pc_level_penalty_mod( mvp_sd, PENALTY_MVP_EXP, nullptr, md );
@@ -4358,14 +4375,14 @@ bool MobDatabase::parseDropNode(std::string nodeName, const ryml::NodeRef& node,
 
 		uint16 group = 0;
 
-		if (this->nodeExists(dropit, "RandomOptionGroup")) {
+		if (this->nodeExists(dropit, "RandomOptionGroupNoUse")) {
 			std::string group_name;
 
-			if (!this->asString(dropit, "RandomOptionGroup", group_name))
+			if (!this->asString(dropit, "RandomOptionGroupNoUse", group_name))
 				return false;
 
 			if (!random_option_group.option_get_id(group_name.c_str(), group))
-				this->invalidWarning(dropit["RandomOptionGroup"], "Unknown random option group %s for monster %s, defaulting to no group.\n", group_name.c_str(), nodeName.c_str());
+				this->invalidWarning(dropit["RandomOptionGroupNoUse"], "Unknown random option group %s for monster %s, defaulting to no group.\n", group_name.c_str(), nodeName.c_str());
 		}
 
 		drops[index].nameid = item->nameid;
@@ -5232,7 +5249,7 @@ static bool mob_read_sqldb_sub(std::vector<std::string> str) {
 			if (!str[++index].empty())
 				entry["Rate"] << str[index];
 			if (!str[++index].empty() && strcmp(str[index].c_str(), "None") != 0)
-				entry["RandomOptionGroup"] << str[index];
+				entry["RandomOptionGroupNoUse"] << str[index];
 			if (!str[++index].empty() && std::stoi(str[index]) >= 0)
 				entry["Index"] << str[index];
 		} else
@@ -5253,7 +5270,7 @@ static bool mob_read_sqldb_sub(std::vector<std::string> str) {
 			if (!str[++index].empty())
 				entry["StealProtected"] << (std::stoi(str[index]) ? "true" : "false");
 			if (!str[++index].empty() && strcmp(str[index].c_str(), "None") != 0)
-				entry["RandomOptionGroup"] << str[index];
+				entry["RandomOptionGroupNoUse"] << str[index];
 			if (!str[++index].empty() && std::stoi(str[index]) >= 0)
 				entry["Index"] << str[index];
 		} else
@@ -6549,15 +6566,15 @@ bool MapDropDatabase::parseDrop( const ryml::NodeRef& node, std::unordered_map<u
 		drop->rate = rate;
 	}
 
-	if( this->nodeExists( node, "RandomOptionGroup" ) ){
+	if( this->nodeExists( node, "RandomOptionGroupNoUse" ) ){
 		std::string name;
 
-		if( !this->asString( node, "RandomOptionGroup", name ) ){
+		if( !this->asString( node, "RandomOptionGroupNoUse", name ) ){
 			return false;
 		}
 
 		if( !random_option_group.option_get_id( name, drop->randomopt_group ) ){
-			this->invalidWarning( node["RandomOptionGroup"], "Unknown random option group \"%s\".\n", name.c_str() );
+			this->invalidWarning( node["RandomOptionGroupNoUse"], "Unknown random option group \"%s\".\n", name.c_str() );
 			return false;
 		}
 	}else{

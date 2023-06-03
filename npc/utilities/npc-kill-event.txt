@@ -1,0 +1,59 @@
+-	script	NPCKillEvent	-1,{
+	end;
+	
+OnNPCKillEvent:
+	if(!IsTownMap()
+			&& playerattached()){
+		getunitdata(killedgid,.@deadMonster);
+		
+		if(.@deadMonster[UMOB_MASTERAID] > 0)
+		end;
+		
+		// Map Limitation
+		.@lastFoundMapAmount = getarraysize(lastFoundTheBoxMap$);
+		.@currentMapLimitation = 0;
+		if(.@lastFoundMapAmount > 0){
+			for(.@i = 0; .@i < .@lastFoundMapAmount; .@i++){
+				if(lastFoundTheBoxMap$[.@i] == strcharinfo(3)){
+					.@isFoundSameMap = 1;
+					
+					.@currentMapLimitation = mapLimitation[.@i];
+					
+					break;
+				}
+			}
+		}
+		
+		if(!.@isFoundSameMap){
+			// Remove first map if amount > Maximum
+			if(.@lastFoundMapAmount >= .sameMapAmount){
+				deletearray lastFoundTheBoxMap$[0],1;
+				deletearray mapLimitation[0],1;
+			}
+		}
+		
+		// Chance
+		.@monsterLevelBonus = cap_value(.@deadMonster[UMOB_LEVEL] / .monsterLevelDivider,1,INT_MAX);
+		.@mapLimitation = cap_value(.@currentMapLimitation * .staminaDecrease,0,.baseChance);
+		.@chance = (.baseChance - .@mapLimitation) * .@monsterLevelBonus;
+		
+		if(.@chance <= 0)
+		end;
+		
+		if(rand(10000) < .@chance){
+			isReadyToClaimed = 1;
+			// Show now
+			duplicate_dynamic("THE BOX#SELF");
+		}
+	}
+
+	end;
+	
+OnInit:
+	.baseChance = 100;			// 10000 = 100%
+	.staminaDecrease = 20;		// 10000 = 100%
+	.monsterLevelDivider = 10;	// Use to increase chance to found THE BOX (Monster Level / n)
+	.sameMapAmount = 3;
+	$maximumMapLimitation = 5;
+	end;
+}

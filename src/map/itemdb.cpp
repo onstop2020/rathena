@@ -1674,17 +1674,17 @@ uint64 LaphineUpgradeDatabase::parseBodyNode( const ryml::NodeRef& node ){
 		entry->item_id = item_id;
 	}
 
-	if( this->nodeExists( node, "RandomOptionGroup" ) ){
+	if( this->nodeExists( node, "RandomOptionGroupNoUse" ) ){
 		std::string name;
 
-		if( !this->asString( node, "RandomOptionGroup", name ) ){
+		if( !this->asString( node, "RandomOptionGroupNoUse", name ) ){
 			return 0;
 		}
 
 		uint16 id;
 
 		if( !random_option_group.option_get_id( name, id ) ){
-			this->invalidWarning( node["RandomOptionGroup"], "Unknown random option group \"%s\".\n", name.c_str() );
+			this->invalidWarning( node["RandomOptionGroupNoUse"], "Unknown random option group \"%s\".\n", name.c_str() );
 			return 0;
 		}
 
@@ -2074,17 +2074,17 @@ uint64 ItemReformDatabase::parseBodyNode( const ryml::NodeRef& node ){
 				}
 			}
 
-			if( this->nodeExists( baseNode, "RandomOptionGroup" ) ){
+			if( this->nodeExists( baseNode, "RandomOptionGroupNoUse" ) ){
 				std::string name;
 
-				if( !this->asString( baseNode, "RandomOptionGroup", name ) ){
+				if( !this->asString( baseNode, "RandomOptionGroupNoUse", name ) ){
 					return 0;
 				}
 
 				uint16 id;
 
 				if( !random_option_group.option_get_id( name, id ) ){
-					this->invalidWarning( baseNode["RandomOptionGroup"], "Unknown random option group \"%s\".\n", name.c_str() );
+					this->invalidWarning( baseNode["RandomOptionGroupNoUse"], "Unknown random option group \"%s\".\n", name.c_str() );
 					return 0;
 				}
 
@@ -2794,17 +2794,17 @@ uint64 ItemPackageDatabase::parseBodyNode( const ryml::NodeRef& node ){
 					}
 				}
 
-				if( this->nodeExists( itemNode, "RandomOptionGroup" ) ){
+				if( this->nodeExists( itemNode, "RandomOptionGroupNoUse" ) ){
 					std::string name;
 
-					if( !this->asString( itemNode, "RandomOptionGroup", name ) ){
+					if( !this->asString( itemNode, "RandomOptionGroupNoUse", name ) ){
 						return 0;
 					}
 
 					uint16 option_group_id;
 
 					if( !random_option_group.option_get_id( name, option_group_id ) ){
-						this->invalidWarning( itemNode["RandomOptionGroup"], "Unknown random option group \"%s\".\n", name.c_str() );
+						this->invalidWarning( itemNode["RandomOptionGroupNoUse"], "Unknown random option group \"%s\".\n", name.c_str() );
 						return 0;
 					}
 
@@ -3448,17 +3448,17 @@ uint64 ItemGroupDatabase::parseBodyNode(const ryml::NodeRef& node) {
 						entry->bound = BOUND_NONE;
 				}
 
-				if( this->nodeExists( listit, "RandomOptionGroup" ) ){
+				if( this->nodeExists( listit, "RandomOptionGroupNoUse" ) ){
 					std::string name;
 
-					if( !this->asString( listit, "RandomOptionGroup", name ) ){
+					if( !this->asString( listit, "RandomOptionGroupNoUse", name ) ){
 						return 0;
 					}
 
 					uint16 id;
 
 					if( !random_option_group.option_get_id( name, id ) ){
-						this->invalidWarning( listit["RandomOptionGroup"], "Unknown random option group \"%s\".\n", name.c_str() );
+						this->invalidWarning( listit["RandomOptionGroupNoUse"], "Unknown random option group \"%s\".\n", name.c_str() );
 						return 0;
 					}
 

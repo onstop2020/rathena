@@ -47,7 +47,6 @@ prontera,115,250,5	duplicate(backToCenter)	Warper#Upg	10081
 prontera,101,168,5	duplicate(backToCenter)	Warper#Itm	10081
 prontera,237,62,5	duplicate(backToCenter)	Warper#Tst	10081
 prontera,200,240,5	duplicate(backToCenter)	Warper#Pet	10081
-prontera,53,67,5	duplicate(backToCenter)	Warper#Box	10081
 force_1-1,100,98,5	duplicate(backToCenter)	Warper#tb1	10081
 force_1-2,173,156,5	duplicate(backToCenter)	Warper#tb2	10081
 force_1-3,100,167,5	duplicate(backToCenter)	Warper#tb3	10081
@@ -122,14 +121,5 @@ prontera,166,193,5	script	Warper#8	10081,{
 	
 OnInit:
 	waitingroom "Zone - Pet & Hom.",0;
-	end;
-}
-
-prontera,131,193,5	script	Warper#9	10081,{
-	warp "prontera",48,64;
-	end;
-	
-OnInit:
-	waitingroom "Zone - สุ่มของ",0;
 	end;
 }

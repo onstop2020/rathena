@@ -1,154 +1,80 @@
-prontera,159,193,4	script	ตู้น้ำวิเศษ	564,{
-	if($FATHER_DAY){
-		mes "ตู้น้ำวิเศษ THE BOX 4 ขอมอบความสะดวกสบายให้กับผู้เล่นในวันพ่อวันนี้";
-		next;
-		L_FullBuff:
-		mes "• คุณได้รับพรหลายชนิด";
-		mes "• ฟื้นฟู HP และ SP เต็ม";
-		mes "• ซ่อม Item ทุกชนิด";
-		sc_end SC_POISON;
-		sc_end SC_SILENCE;
-		sc_end SC_BLIND;
-		sc_end SC_CONFUSION;
-		sc_end SC_CURSE;
-		sc_end SC_Hallucination;
-		sc_end SC_BLEEDING;
-		sc_end SC_ORCISH;
-		sc_end SC_CHANGEUNDEAD;
-		sc_end SC_HANDICAPSTATE_DEEPBLIND;
-		sc_end SC_HANDICAPSTATE_DEEPSILENCE;
-		sc_end SC_HANDICAPSTATE_LASSITUDE;
-		sc_end SC_HANDICAPSTATE_CONFLAGRATION;
-		sc_end SC_HANDICAPSTATE_MISFORTUNE;
-		sc_end SC_HANDICAPSTATE_DEADLYPOISON;
-		sc_end SC_HANDICAPSTATE_DEPRESSION;
-		sc_end SC_HANDICAPSTATE_HOLYFLAME;
-		sc_start SC_ASPDPOTION0,1800000,4;
-		sc_start SC_ASPDPOTION1,1800000,6;
-		sc_start SC_ASPDPOTION2,1800000,9;
-		sc_start2 SC_PROMOTE_HEALTH_RESERCH,1800000,1,3;
-		sc_start2 SC_ENERGY_DRINK_RESERCH,1800000,1,3;
-		sc_start SC_EXTRACT_WHITE_POTION_Z,1800000,20;
-		sc_start SC_SAVAGE_STEAK,1800000,20;
-		sc_start SC_COCKTAIL_WARG_BLOOD,1800000,20;
-		sc_start SC_MINOR_BBQ,1800000,20;
-		sc_start SC_SIROMA_ICE_TEA,1800000,20;
-		sc_start SC_DROCERA_HERB_STEAMED,1800000,20;
-		sc_start SC_PUTTI_TAILS_NOODLES,1800000,20;
-		sc_start2 SC_VITATA_500,1800000,20,5;
-		sc_start SC_EXTRACT_SALAMINE_JUICE,1800000,10;
-		sc_start SC_ADD_ATK_DAMAGE,1800000,15;
-		sc_start SC_ADD_MATK_DAMAGE,1800000,15;
-		sc_start SC_SPEEDUP1,1800000,50;
-		repairall;
-		percentheal 100,100;
-		close;	
+prontera,159,193,4	script	แพทย์	10458,{
+	menu "ซ่อมอุปกรณ์สวมใส่ (" + callfunc("F_InsertComa",.repairAllPrice) + "z)",L_RepairAll
+	,"รับการรักษาพิเศษ (" + callfunc("F_InsertComa",.foodBuffsPrice) + "z)",L_FoodBuffs
+	,"รักษาอาการโคม่าจากการหมดสติ",L_HealComa;
+	
+	L_RepairAll:
+	menu "ยืนยัน",-;
+	
+	if(Zeny < .repairAllPrice)
+	{
+		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComa",.repairAllPrice) + "z";
+		end;
 	}
 	
-	.@buffPriceMultiplier = $THANK_YOU ? 1 : .fullBuffPriceMultiplier;
+	Zeny = cap_value(Zeny - .repairAllPrice,0,INT_MAX);
 	
-	mes "ตู้ที่ติดป้ายไว้ว่า ''ภายในตู้นี้มี 'ของกดใช้' หลากหลายชนิดอยู่'' แต่คุณพยายามดูผ่านกระจกแล้ว มองไม่ออกว่ายี่ห้อสินค้าคืออะไร..";
+	repairall;
+	
+	end;
+	
+	L_FoodBuffs:
+	menu "ยืนยัน",-;
+	
+	if(Zeny < .foodBuffsPrice)
+	{
+		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComa",.foodBuffsPrice) + "z";
+		end;
+	}
+	
+	Zeny = cap_value(Zeny - .foodBuffsPrice,0,INT_MAX);
+	
+	sc_end SC_POISON;
+	sc_end SC_SILENCE;
+	sc_end SC_BLIND;
+	sc_end SC_CONFUSION;
+	sc_end SC_CURSE;
+	sc_end SC_Hallucination;
+	sc_end SC_BLEEDING;
+	sc_end SC_ORCISH;
+	sc_end SC_CHANGEUNDEAD;
+	sc_end SC_HANDICAPSTATE_DEEPBLIND;
+	sc_end SC_HANDICAPSTATE_DEEPSILENCE;
+	sc_end SC_HANDICAPSTATE_LASSITUDE;
+	sc_end SC_HANDICAPSTATE_CONFLAGRATION;
+	sc_end SC_HANDICAPSTATE_MISFORTUNE;
+	sc_end SC_HANDICAPSTATE_DEADLYPOISON;
+	sc_end SC_HANDICAPSTATE_DEPRESSION;
+	sc_end SC_HANDICAPSTATE_HOLYFLAME;
+	
+	sc_start2 SC_PROMOTE_HEALTH_RESERCH,1800000,1,3;
+	sc_start2 SC_ENERGY_DRINK_RESERCH,1800000,1,3;
+	sc_start SC_EXTRACT_WHITE_POTION_Z,1800000,20;
+	sc_start SC_SAVAGE_STEAK,1800000,20;
+	sc_start SC_COCKTAIL_WARG_BLOOD,1800000,20;
+	sc_start SC_MINOR_BBQ,1800000,20;
+	sc_start SC_SIROMA_ICE_TEA,1800000,20;
+	sc_start SC_DROCERA_HERB_STEAMED,1800000,20;
+	sc_start SC_PUTTI_TAILS_NOODLES,1800000,20;
+	sc_start2 SC_VITATA_500,1800000,20,5;
+	sc_start SC_EXTRACT_SALAMINE_JUICE,1800000,10;
+	sc_start SC_ADD_ATK_DAMAGE,1800000,15;
+	sc_start SC_ADD_MATK_DAMAGE,1800000,15;
+	sc_start SC_SPEEDUP1,1800000,50;
+	
+	percentheal 100,100;
+	
+	end;
+	
+	L_HealComa:
+	mes "อาการโคม่าจากการหมดสติ สามารถหายได้เอง โดยท่านต้องรอ วินาที";
 	next;
-	menu "หยอด " + F_InsertComma(.zenyPrice) + "z",L_Zeny
-	,"หยอด " + F_InsertComma(.zenyPrice) + "z ไปเรื่อย ๆ",L_ZenyAllIn
-	,"ใช้ " + .itemPrice + " " + getitemname(.itemPriceId) + " ไข",L_Item
-	,"ใช้ " + .itemPrice + " " + getitemname(.itemPriceId) + " ไข ไปเรื่อย ๆ",L_ItemAllIn
-	,"หยอด " + F_InsertComma(.zenyPrice * .@buffPriceMultiplier) + "z รับ Full Buff",L_FullBuffTradeZeny
-	,"ใช้ " + (.itemPrice * .@buffPriceMultiplier) + " " + getitemname(.itemPriceId) + " รับ Full Buff",L_FullBuffTradeItem
-	,"ถอดชุด Hanbok, Summer, Oktober Fest",L_NoCosplay;
-	
-	L_FullBuffTradeZeny:
-	.@price = (.zenyPrice * .@buffPriceMultiplier);
-	if(Zeny < .@price){
-		mes "...";
-		close;
-	}
-	Zeny -= .@price;
-	goto L_FullBuff;
-	
-	L_FullBuffTradeItem:
-	.@price = (.itemPrice * .@buffPriceMultiplier);
-	if(countitem(.itemPriceId) <= .@price){
-		mes "...";
-		close;
-	}
-	delitem .itemPriceId,.@price;
-	goto L_FullBuff;
-	
-	L_NoCosplay:
-	sc_end SC_SUMMER;
-	sc_end SC_HANBOK;
-	sc_end SC_OKTOBERFEST;
-	close;
-	
-	L_ZenyAllIn:
-	.@zenyAllIn = 1;
-	L_Zeny:
-	.@loopAmount = (.@zenyAllIn == 1) ? 30000 : 1;
-	freeloop(1);
-	while(.@loopAmount > 0){
-		.@loopAmount--;
-		if(Zeny >= .zenyPrice){
-			// Random reward
-			.@rewardItemId = $usableIds[rand(0,(getarraysize($usableIds) - 1))];
-			// Check weight
-			if(!checkweight(6825,1)){
-				message strcharinfo(0),"น้ำหนักเต็ม (ต้องว่างอย่างน้อย 1000 น้ำหนัก)";
-				freeloop(0);
-				end;
-			}
-			// Trade
-			Zeny -= .zenyPrice;
-			getitem .@rewardItemId,1;
-			.@successTrade = 1;
-		}
-		else
-		break;
-	}
-	goto L_EndTrade;
-	
-	L_ItemAllIn:
-	.@itemAllIn = 1;
-	L_Item:
-	.@loopAmount = (.@itemAllIn == 1) ? 30000 : 1;
-	freeloop(1);
-	while(.@loopAmount > 0){
-		.@loopAmount--;
-		if(countitem(.itemPriceId) > 0){
-			// Random reward
-			.@rewardItemId = $usableIds[rand(0,(getarraysize($usableIds) - 1))];
-			// Check weight
-			if(!checkweight(6825,1)){
-				message strcharinfo(0),"น้ำหนักเต็ม (ต้องว่างอย่างน้อย 1000 น้ำหนัก)";
-				freeloop(0);
-				end;
-			}
-			// Trade
-			delitem .itemPriceId,.itemPrice;
-			getitem .@rewardItemId,1;
-			.@successTrade = 1;
-		}
-		else
-		break;
-	}
-	goto L_EndTrade;
-	
-	L_EndTrade:
-	if(.@successTrade){
-		mes "หลังจากได้รับ Item.. . ก็มีน้ำหอมลอยฟุ้งออกมา เพียงแค่คุณดม.. HP และ SP ของคุณก็เต็ม รวมทั้ง Item ทุกชิ้นถูกซ่อมแซมให้ใช้งานได้ตามปกติ..";
-		repairall;
-		percentheal 100,100;
-	}
-	else{
-		mes "..";
-	}
-	freeloop(0);
+	menu "ข้าไม่อยากรอ ข้าจะจ่าย z",-;
 	close;
 	
 OnInit:
-	.zenyPrice = 100000;
-	.itemPriceId = 40017;
-	.itemPrice = 1;
-	.fullBuffPriceMultiplier = 10;
-	end;
+	.foodBuffsPrice = 1000000;
+	.repairAllPrice = 100000;
+	setarray .comaPrices[0],1000000,10000;
+	setarray .comaRates[0],90,10000;
 }

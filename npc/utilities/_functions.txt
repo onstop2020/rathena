@@ -1,0 +1,123 @@
+function	script	F_PercentBase10000	{
+	.@v = getarg(0,0);
+	if(.@v < 10)
+	return "0.0" + .@v + "%";
+	else if(.@v < 100)
+	return "0." + .@v + "%";
+	else{
+		.@percent = (.@v / 100);
+		.@decimal = (.@v % 100) / 10;
+		return .@percent + "." + .@decimal + "%";
+	}
+	
+	return;
+}
+
+function	script	F_IsDummyMonster	{
+	.@v = getarg(0,0);
+	.@isSkipSpawnCheck = getarg(1,0);
+	if((.@v == 2408)									// Dummy
+			|| (.@v == 2409)							// Dummy
+			|| (.@v == 2410)							// Dummy
+			|| (.@v == 2411)							// Dummy
+			|| (.@v == 2413)							// Dummy
+			|| ((.@v >= 21064) && (.@v <= 21086))		// Dummy
+			|| (.@v == 1288)							// Emperium
+			|| (.@v == 2401)							// Poring on initial land maps
+			|| (.@v == 2337)							// Hidden Mob
+			|| (.@v == 2343)							// Hidden Mob
+			|| (.@v == 2536)							// Hidden Mob
+			|| (.@v == 2537)							// Hidden Mob
+			|| (.@v == 2539)							// Hidden Mob
+			|| (.@v == 3038)							// Hidden Mob
+			//|| (getmonsterinfo(.@v,MOB_MAXHP) < 60)		// HP below Poring is not allowed
+			|| (!isspawn(.@v) && !.@isSkipSpawnCheck))							// It's not spawn in official servers
+	return true;
+	else
+	return false;
+}
+
+function	script	F_IsItemIdAvailable	{
+	.@input = getarg(0,0);
+	
+	.@is_found = 0;
+	
+	freeloop(1);
+	
+	// Check all item id had this item id
+	for(.@i = 0; .@i < getarraysize($weaponIds); .@i++){
+		if($weaponIds[.@i] == .@input){
+			.@is_found = 1;
+			break;
+		}
+	}
+	
+	if(!.@is_found){
+		for(.@i = 0; .@i < getarraysize($equipmentIds); .@i++){
+			if($equipmentIds[.@i] == .@input){
+				.@is_found = 1;
+				break;
+			}
+		}
+	}
+	
+	if(!.@is_found){
+		for(.@i = 0; .@i < getarraysize($costumeIds); .@i++){
+			if($costumeIds[.@i] == .@input){
+				.@is_found = 1;
+				break;
+			}
+		}
+	}
+	
+	if(!.@is_found){
+		for(.@i = 0; .@i < getarraysize($cardIds); .@i++){
+			if($cardIds[.@i] == .@input){
+				.@is_found = 1;
+				break;
+			}
+		}
+	}
+	
+	if(!.@is_found){
+		for(.@i = 0; .@i < getarraysize($enchantIds); .@i++){
+			if($enchantIds[.@i] == .@input){
+				.@is_found = 1;
+				break;
+			}
+		}
+	}
+	
+	freeloop(0);
+	
+	if(!.@is_found){
+		mes "Item ID: " + .@input + " ไม่สามารถกำหนดได้";
+		close;
+	}
+	
+	return .@input;
+}
+
+// Get grade name
+function	script	GetGradeName	{
+	.@grade = getarg(0,0);
+	return (.@grade == 4) ? "A" : (.@grade == 3) ? "B" : (.@grade == 2) ? "C" : (.@grade == 1) ? "D" : "-";
+}
+
+// Is town map
+function	script	IsTownMap	{
+	.@mapName$ = strcharinfo(3);
+	
+	.@isMapError = (
+	(.@mapName$ == "prontera")
+	|| (.@mapName$ == "force_1-1")
+	|| (.@mapName$ == "force_1-2")
+	|| (.@mapName$ == "force_1-3")
+	|| (.@mapName$ == "force_2-3")
+	|| (.@mapName$ == "tra_fild")
+	|| (.@mapName$ == "pvp_y_1-1")
+	|| (.@mapName$ == "pvp_y_1-4")
+	)
+	;
+	return .@isMapError;
+}

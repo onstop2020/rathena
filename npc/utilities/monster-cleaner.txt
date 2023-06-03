@@ -59,6 +59,5 @@ OnMinute30:
 	donpcevent "ห้อง Boss ที่ 2::OnCleanUp";
 	donpcevent "ห้อง Boss ที่ 3::OnCleanUp";
 	donpcevent "ห้อง Boss ที่ 4::OnCleanUp";
-	donpcevent "ห้อง Monster สุ่ม::OnCleanUp";
 	end;
 }
