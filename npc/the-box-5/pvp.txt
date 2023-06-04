@@ -28,21 +28,22 @@ pvp_y_1-4	mapflag	nocommand	99
 prontera,164,174,3	script	PvP	831,{
 	mes "โทษภายในห้อง";
 	mes "• ^FF2929เป็นห้อง PvP^000000";
-	mes "• ^FF2929Damage จะเหลือ 1%^000000";
-	mes "• ^FF2929Flee -25%^000000";
-	mes "• ^FF2929Perfect Dodge -25%^000000";
+	mes "• ^F81717Debuff " + .debuff + "%^000000";
 	mes "---";
 	mes "• ^3629FFไม่มีโทษการตายใด ๆ ตายรัว ๆ ได้เลย^000000";
 	next;
 	menu "PvP",-,"PvP Party",L_Party;
+	atcommand "@debuff " + (debuff + .debuff);
 	warp "pvp_y_1-1",rand(145,166),rand(112,124);
 	end;
 
 	L_Party:
+	atcommand "@debuff " + (debuff + .debuff);
 	warp "pvp_y_1-4",0,0;
 	end;
 	
 OnInit:
+	.debuff = 50;
 	waitingroom "PvP",0;
 	end;
 }

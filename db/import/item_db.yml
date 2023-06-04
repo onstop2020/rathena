@@ -175,9 +175,11 @@ Body:
   - Id: 10000006
     AegisName: Special_Refine_Box
     Name: Special Refine Box
-    Type: Etc
+    Type: Usable
     Flags:
       BuyingStore: true
     TradeNoUse:
       Override: 100
       NoSell: true
+    Script: |
+      callfunc("SpecialRefineBox");

@@ -5,7 +5,7 @@ prontera	mapflag	loadevent
 	
 OnPCLoadMapEvent:
 	if(strcharinfo(3) == "prontera")
-	bonus_script_clear 1;
+	atcommand "@debuff " + debuff;
 
 	end;
 }

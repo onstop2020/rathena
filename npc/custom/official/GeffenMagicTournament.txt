@@ -21,14 +21,3 @@
 1@gef,0,0	monster	--ja--	2568,30,180000,180000
 1@gef,0,0	monster	--ja--	2567,30,180000,180000
 1@gef,0,0	monster	--ja--	2914,30,180000,180000
-
-prontera,263,197,1	script	Geffen Magic Tour. Memo.	2564,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1:ชั้น 2";
-	setarray .mapName$[0],"1@ge_st","1@gef";
-	end;
-}

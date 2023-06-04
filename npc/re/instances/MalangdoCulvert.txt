@@ -1,32 +1,21 @@
-1@pump,0,0	monster	--ja--	2191,10,30000,30000
-1@pump,0,0	monster	--ja--	2176,10,30000,30000
-1@pump,0,0	monster	--ja--	2175,10,30000,30000
-1@pump,0,0	monster	--ja--	2174,10,30000,30000
-1@pump,0,0	monster	--ja--	2178,10,30000,30000
-1@pump,0,0	monster	--ja--	2179,10,30000,30000
-1@pump,0,0	monster	--ja--	2177,10,30000,30000
+1@pump,0,0	monster	--ja--	2191,5,30000,30000
+1@pump,0,0	monster	--ja--	2176,5,30000,30000
+1@pump,0,0	monster	--ja--	2175,5,30000,30000
+1@pump,0,0	monster	--ja--	2174,5,30000,30000
+1@pump,0,0	monster	--ja--	2178,5,30000,30000
+1@pump,0,0	monster	--ja--	2179,5,30000,30000
+1@pump,0,0	monster	--ja--	2177,5,30000,30000
 
-2@pump,0,0	monster	--ja--	1068,10,30000,30000
-2@pump,0,0	monster	--ja--	2191,10,30000,30000
-2@pump,0,0	monster	--ja--	2182,10,30000,30000
-2@pump,0,0	monster	--ja--	2181,10,30000,30000
-2@pump,0,0	monster	--ja--	2180,10,30000,30000
-2@pump,0,0	monster	--ja--	2183,10,30000,30000
-2@pump,0,0	monster	--ja--	2184,10,30000,30000
-2@pump,0,0	monster	--ja--	2185,10,30000,30000
+2@pump,0,0	monster	--ja--	1068,5,30000,30000
+2@pump,0,0	monster	--ja--	2191,5,30000,30000
+2@pump,0,0	monster	--ja--	2182,5,30000,30000
+2@pump,0,0	monster	--ja--	2181,5,30000,30000
+2@pump,0,0	monster	--ja--	2180,5,30000,30000
+2@pump,0,0	monster	--ja--	2183,5,30000,30000
+2@pump,0,0	monster	--ja--	2184,5,30000,30000
+2@pump,0,0	monster	--ja--	2185,5,30000,30000
 
 2@pump,0,0	boss_monster	--ja--	2187,1,180000,180000
 2@pump,0,0	boss_monster	--ja--	2188,1,180000,180000
 2@pump,0,0	boss_monster	--ja--	2189,1,180000,180000
 2@pump,0,0	boss_monster	--ja--	2190,1,180000,180000
-
-prontera,245,210,3	script	Malangdo Culvert	2190,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1:ชั้น 2";
-	setarray .mapName$[0],"1@pump","2@pump";
-	end;
-}

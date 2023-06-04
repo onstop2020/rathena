@@ -1,22 +1,11 @@
-1@air1,0,0	monster	--ja--	3177,40,30000,30000
-1@air1,0,0	monster	--ja--	3175,40,30000,30000
-1@air1,0,0	monster	--ja--	3176,40,30000,30000
-1@air1,0,0	monster	--ja--	3179,40,30000,30000
+1@air1,0,0	monster	--ja--	3177,20,30000,30000
+1@air1,0,0	monster	--ja--	3175,20,30000,30000
+1@air1,0,0	monster	--ja--	3176,20,30000,30000
+1@air1,0,0	monster	--ja--	3179,20,30000,30000
 
 1@air2,0,0	boss_monster	--ja--	3180,1,180000,180000
 1@air2,0,0	boss_monster	--ja--	3181,1,180000,180000
 
-1@air2,0,0	monster	--ja--	3178,50,30000,30000
-1@air2,0,0	monster	--ja--	3175,50,30000,30000
-1@air2,0,0	monster	--ja--	3177,50,30000,30000
-
-prontera,162,267,3	script	Airship Assault	3181,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1:ชั้น 2";
-	setarray .mapName$[0],"1@air1","1@air2";
-	end;
-}
+1@air2,0,0	monster	--ja--	3178,25,30000,30000
+1@air2,0,0	monster	--ja--	3175,25,30000,30000
+1@air2,0,0	monster	--ja--	3177,25,30000,30000

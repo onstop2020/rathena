@@ -38,11 +38,11 @@ prontera,126,263,3	script	Grade	10078,{
 	}
 	
 	// Upgrade mode selection
-	.@maxGrade = getarraysize(.gradeCostItemIds);
+	.@maxGrade = getarraysize(.prices);
 	for(.@i = 0; .@i < .@maxGrade; .@i++)
-	mes "Grade " + GetGradeName(.@i + 1) + " ต้องการ " + F_InsertComma(.gradeCostItemAmount[.@i] / ($THANK_YOU ? 2 : .gradeDivider)) + " " + getitemname(.gradeCostItemIds[.@i]);
+	mes "Grade " + GetGradeName(.@i + 1) + " ^BA17F8" + F_InsertComma(.prices[.@i]) + "z^000000";
 	next;
-	.@upgradeMode = select("ทีละขั้น:ทีเดียวเกรด A:ยกเลิก");
+	.@upgradeMode = select("ทีละขั้น:เพิ่มระดับเรื่อย ๆ จนถึงเกรด A:ยกเลิก");
 	if(.@upgradeMode == 3)
 	close;
 	
@@ -53,29 +53,33 @@ prontera,126,263,3	script	Grade	10078,{
 	
 	// Loop
 	for(.@i = 0; .@i < .@loopAmount; .@i++){
-		.@price = .gradeCostItemAmount[.@currentGrade] / ($THANK_YOU ? 2 : .gradeDivider);
-	
+		.@price = .prices[.@currentGrade];
+		
 		// Item checking
-		if(countitem(.gradeCostItemIds[.@currentGrade]) < .@price){
-			mes "ต้องการ " + F_InsertComma(.@price) + " " + getitemname(.gradeCostItemIds[.@currentGrade]);
+		if(Zeny < .@price){
+			mes "ต้องการ ^BA17F8" + F_InsertComma(.@price) + "z^000000";
 			close;
 		}
 		
-		delitem .gradeCostItemIds[.@currentGrade],.@price;
+		Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+		
 		atcommand "@grade " + gradeEquipLocationSelected + " +1";
+		
 		.@currentGrade++;
+		
+		specialeffect2 454;
 	}
 	
-	specialeffect2 454;
 	mes getitemname(getequipid(gradePartSelected)) + " Grade " + GetGradeName(.@currentGrade);
+	
 	close;
 	
 OnInit:
 	// Grade D, C, B, A
-	setarray .gradeCostItemIds,40017,40017,40017,40017;
-	setarray .gradeCostItemAmount,30,300,3000,9000;
-	.gradeDivider = 2;
+	setarray .prices,30000,300000,3000000,30000000;
+	
 	// Information
 	waitingroom "เสริมแกร่งด้วย Grade",0;
+	
 	end;
 }

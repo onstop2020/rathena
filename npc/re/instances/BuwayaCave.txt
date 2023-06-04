@@ -1,18 +1,7 @@
-1@ma_c,0,0	monster	--ja--	2333,40,30000,30000
-1@ma_c,0,0	monster	--ja--	2332,40,30000,30000
-1@ma_c,0,0	monster	--ja--	2331,40,30000,30000
-1@ma_c,0,0	monster	--ja--	2329,40,30000,30000
-1@ma_c,0,0	monster	--ja--	2330,40,30000,30000
+1@ma_c,0,0	monster	--ja--	2333,10,30000,30000
+1@ma_c,0,0	monster	--ja--	2332,10,30000,30000
+1@ma_c,0,0	monster	--ja--	2331,10,30000,30000
+1@ma_c,0,0	monster	--ja--	2329,10,30000,30000
+1@ma_c,0,0	monster	--ja--	2330,10,30000,30000
 
 1@ma_c,0,0	boss_monster	--ja--	2319,1,180000,180000
-
-prontera,163,283,5	script	Buwaya Cave	2319,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@ma_c";
-	end;
-}

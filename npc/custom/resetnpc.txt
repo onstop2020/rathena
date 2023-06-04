@@ -11,26 +11,36 @@
 //=	Changed set -> setarray, Improved text with F_InsertPlural
 //= 1.5 Added sc_end_class to reset related status changes [sader1992]
 //============================================================
+
 prontera,169,180,2	script	Reset	10010,{
-	//	 		Skills,	Stats,	Both,	Limit
-	setarray .@Reset,	500000,	500000,	900000,	0;
-	mes "Reset Stats: "+ callfunc("F_InsertComma",.@Reset[1]) +"z";
-	mes "Reset Skills: "+ callfunc("F_InsertComma",.@Reset[0]) +"z";
-	mes "Reset ทั้งคู่: "+ callfunc("F_InsertComma",.@Reset[2]) +"z";
+	// Skills,Stats,Both,Limit
+	setarray .@prices,5000000,5000000,7000000;
+	mes "Reset Skills: ^BA17F8" + callfunc("F_InsertComma",.@prices[0]) + "z^000000";
+	mes "Reset Stats: ^BA17F8" + callfunc("F_InsertComma",.@prices[1]) + "z^000000";
+	mes "Reset ทั้งคู่: ^BA17F8" + callfunc("F_InsertComma",.@prices[2]) + "z^000000";
 	next;
-	set .@i,(select("^FF3355Reset Skills:Reset Stats:Reset ทั้งคู่^000000:ยกเลิก"));
-	if(.@i > 3) close;
-	if (Zeny < .@Reset[.@i-1]) {
+	.@i = select("^FF3355Reset Skills:Reset Stats:Reset ทั้งคู่^000000:ยกเลิก");
+	
+	if(.@i > 3)
+	close;
+	
+	if (Zeny < .@prices[.@i - 1]) {
 		mes "Zeny ไม่เพียงพอ";
 		close;
 	}
-	Zeny -= .@Reset[.@i-1];
-	if(.@i&1){
+	
+	Zeny -= .@prices[.@i - 1];
+	
+	if(.@i & 1){
 		sc_end_class;
 		ResetSkill;
 	}
-	if(.@i&2) ResetStatus;
+	
+	if(.@i & 2)
+	ResetStatus;
+	
 	mes "เรียบร้อยแล้ว!";
+	
 	close;
 	
 OnInit:

@@ -1,3 +1,4 @@
+// Get 100% based wording from 10000 amount
 function	script	F_PercentBase10000	{
 	.@v = getarg(0,0);
 	if(.@v < 10)
@@ -13,6 +14,7 @@ function	script	F_PercentBase10000	{
 	return;
 }
 
+// Is dummy monster?
 function	script	F_IsDummyMonster	{
 	.@v = getarg(0,0);
 	.@isSkipSpawnCheck = getarg(1,0);
@@ -37,6 +39,7 @@ function	script	F_IsDummyMonster	{
 	return false;
 }
 
+// Is item id contain in any THE BOX list?
 function	script	F_IsItemIdAvailable	{
 	.@input = getarg(0,0);
 	
@@ -98,13 +101,13 @@ function	script	F_IsItemIdAvailable	{
 	return .@input;
 }
 
-// Get grade name
+// Get grade naming
 function	script	GetGradeName	{
 	.@grade = getarg(0,0);
 	return (.@grade == 4) ? "A" : (.@grade == 3) ? "B" : (.@grade == 2) ? "C" : (.@grade == 1) ? "D" : "-";
 }
 
-// Is town map
+// Is town map?
 function	script	IsTownMap	{
 	.@mapName$ = strcharinfo(3);
 	
@@ -120,4 +123,116 @@ function	script	IsTownMap	{
 	)
 	;
 	return .@isMapError;
+}
+
+// Get THE BOX rewards
+function	script	GetTheBoxItem	{
+	.@overrideItemId = getarg(0,0);
+	
+	if(.@overrideItemId <= 0){
+		// Random reward
+		.@rand = rand(10000);
+		
+		// 40%
+		if(.@rand >= 6000)
+		.@itemId = $weaponIds[rand(getarraysize($weaponIds))];
+		// 45%
+		else if(.@rand >= 1500)
+		.@itemId = $equipmentIds[rand(getarraysize($equipmentIds))];
+		// 10%
+		else if(.@rand >= 500)
+		.@itemId = $costumeIds[rand(getarraysize($costumeIds))];
+		// 2.5%
+		else if(.@rand >= 250)
+		.@itemId = $cardIds[rand(getarraysize($cardIds))];
+		// 2.5%
+		else
+		.@itemId = $enchantIds[rand(getarraysize($enchantIds))];
+	}
+	else
+	.@itemId = .@overrideItemId;
+
+	
+	
+	.@type = getiteminfo(.@itemId,ITEMINFO_TYPE);
+	
+	if((.@type == 4)
+			|| (.@type == 5)
+			|| (.@type == 12)){
+		.@optionIdIndex0 = callfunc("GetRandomOptionId");
+		.@optionIdIndex1 = callfunc("GetRandomOptionId");
+		.@optionIdIndex2 = callfunc("GetRandomOptionId");
+		.@optionIdIndex3 = callfunc("GetRandomOptionId");
+		.@optionIdIndex4 = callfunc("GetRandomOptionId");
+		
+		setarray .@optionIds[0],.@optionIdIndex0,.@optionIdIndex1,.@optionIdIndex2,.@optionIdIndex3,.@optionIdIndex4;
+		setarray .@optionValues[0],rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5);
+		setarray .@optionParams[0],0,0,0,0,0;
+		
+		getitem3 .@itemId,1,1,0,0,0,0,0,0,.@optionIds,.@optionValues,.@optionParams;
+	}
+	else
+	getitem .@itemId,1;
+
+	return;
+}
+
+// Get time remaining wording from seconds
+function	script	GetTimerWording	{
+	.@s = getarg(0,0);
+	
+	if(.@s >= 3600)
+	{
+		.@minutes = .@s % 60;
+		return (.@s / 3600) + " ชั่วโมง" + ((.@minutes > 0) ? " " + .@minutes + " นาที" : "");
+	}
+	else if(.@s >= 60){
+		.@seconds = .@s % 60;
+		return (.@s / 60) + " นาที" + ((.@seconds > 0) ? " " + .@seconds + " วินาที" : "");
+	}
+	else
+	return .@s + " วินาที";
+	
+	return;
+}
+
+// Hinting delay to players
+function	script	DelayHint	{
+	.@delay = getarg(0,0);
+	.@isContinueScript = getarg(1,1);
+	.@isSelfMessage = getarg(2,0);
+	
+	if (.@delay > gettimetick(2)){
+		if(.@isSelfMessage){
+			message strcharinfo(0),"โปรดรอ " + GetTimerWording(.@delay - gettimetick(2));
+			if(!.@isContinueScript)
+			end;
+		}
+		else{
+			mes "โปรดรอ " + GetTimerWording(.@delay - gettimetick(2));
+			if(!.@isContinueScript)
+			close;
+		}
+	}
+	
+	return;
+}
+
+// Get random item from Special Refine Box
+function	script	SpecialRefineBox	{
+	.@rand = rand(6);
+	if(.@rand == 1)
+	getitem 10000000,1;
+	else if(.@rand == 2)
+	getitem 10000001,1;
+	else if(.@rand == 3)
+	getitem 10000002,1;
+	else if(.@rand == 4)
+	getitem 10000003,1;
+	else if(.@rand == 5)
+	getitem 10000004,1;
+	else
+	getitem 10000005,1;
+	
+	return;
 }

@@ -1,20 +1,9 @@
-1@cor,0,0	monster	--ja--	20341,30,30000,30000
-1@cor,0,0	monster	--ja--	20342,30,30000,30000
-1@cor,0,0	monster	--ja--	20343,30,30000,30000
-1@cor,0,0	monster	--ja--	20344,30,30000,30000
-1@cor,0,0	monster	--ja--	20345,30,30000,30000
-1@cor,0,0	monster	--ja--	20355,30,30000,30000
-1@cor,0,0	monster	--ja--	20356,30,30000,30000
+1@cor,0,0	monster	--ja--	20341,25,30000,30000
+1@cor,0,0	monster	--ja--	20342,25,30000,30000
+1@cor,0,0	monster	--ja--	20343,25,30000,30000
+1@cor,0,0	monster	--ja--	20344,25,30000,30000
+1@cor,0,0	monster	--ja--	20345,25,30000,30000
+1@cor,0,0	monster	--ja--	20355,25,30000,30000
+1@cor,0,0	monster	--ja--	20356,25,30000,30000
 
 1@cor,0,0	boss_monster	--ja--	20340,1,180000,180000
-
-prontera,161,324,3	script	Cor Operation	20340,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@cor";
-	end;
-}

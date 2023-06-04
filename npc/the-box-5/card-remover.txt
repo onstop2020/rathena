@@ -179,10 +179,10 @@ prontera,95,254,5	script	¶Í´ Card + Enchant.	643,{
 	close;
 
 OnInit:
-	.mode1Chance = 25;
-	.mode2Chance = 50;
-	.mode3Chance = 75;
-	.mode4Chance = 99;
+	.mode1Chance = 5;
+	.mode2Chance = 15;
+	.mode3Chance = 30;
+	.mode4Chance = 50;
 	.mode1Price = 100000;
 	.mode2Price = 1000000;
 	.mode3Price = 5000000;

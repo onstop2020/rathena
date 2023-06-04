@@ -27,16 +27,18 @@ ACMD_FUNC(debuff)
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 
 	if (!message || !*message || sscanf(message, "%6hd", &debuff) < 1) {
-		sprintf(atcmd_output, "Please enter a debuff value (usage: @debuff <0-100>)");
+		sprintf(atcmd_output, msg_txt(sd,1549), sd->all_debuff);
 		clif_displaymessage(fd, atcmd_output);
-		return -1;
+
+		return 0;
 	}
 
 	sd->all_debuff = cap_value(debuff, 0, 100);
 
 	status_calc_pc(sd, SCO_FORCE);
 
-	clif_displaymessage(fd, "Debuff changed.");
+	sprintf(atcmd_output, msg_txt(sd,1549), sd->all_debuff);
+	clif_displaymessage(fd, atcmd_output);
 
 	return 0;
 }

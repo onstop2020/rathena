@@ -3,14 +3,3 @@
 1@ma_h,0,0	monster	--ja--	2340,25,30000,30000
 
 1@ma_h,0,0	boss_monster	--ja--	2317,1,180000,180000
-
-prontera,148,283,3	script	Bangungot Hospital 2F	2317,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@ma_h";
-	end;
-}

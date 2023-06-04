@@ -1,27 +1,16 @@
-1@orcs,0,0	monster	--ja--	1023,25,30000,30000
-1@orcs,0,0	monster	--ja--	1213,25,30000,30000
-1@orcs,0,0	monster	--ja--	1278,25,30000,30000
-1@orcs,0,0	monster	--ja--	1106,25,30000,30000
-1@orcs,0,0	monster	--ja--	1189,25,30000,30000
-1@orcs,0,0	monster	--ja--	1627,25,30000,30000
+1@orcs,0,0	monster	--ja--	1023,20,30000,30000
+1@orcs,0,0	monster	--ja--	1213,20,30000,30000
+1@orcs,0,0	monster	--ja--	1278,20,30000,30000
+1@orcs,0,0	monster	--ja--	1106,20,30000,30000
+1@orcs,0,0	monster	--ja--	1189,20,30000,30000
+1@orcs,0,0	monster	--ja--	1627,20,30000,30000
 
 2@orcs,0,0	boss_monster	--ja--	1087,1,180000,180000
 
-2@orcs,0,0	monster	--ja--	1152,25,30000,30000
-2@orcs,0,0	monster	--ja--	1475,25,30000,30000
-2@orcs,0,0	monster	--ja--	1153,25,30000,30000
-2@orcs,0,0	monster	--ja--	1981,25,30000,30000
-2@orcs,0,0	monster	--ja--	1982,25,30000,30000
-2@orcs,0,0	monster	--ja--	1983,25,30000,30000
-2@orcs,0,0	monster	--ja--	1984,25,30000,30000
-
-prontera,184,210,3	script	Orc's Memory	1087,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1:ชั้น 2";
-	setarray .mapName$[0],"1@orcs","2@orcs";
-	end;
-}
+2@orcs,0,0	monster	--ja--	1152,20,30000,30000
+2@orcs,0,0	monster	--ja--	1475,20,30000,30000
+2@orcs,0,0	monster	--ja--	1153,20,30000,30000
+2@orcs,0,0	monster	--ja--	1981,20,30000,30000
+2@orcs,0,0	monster	--ja--	1982,20,30000,30000
+2@orcs,0,0	monster	--ja--	1983,20,30000,30000
+2@orcs,0,0	monster	--ja--	1984,20,30000,30000

@@ -1,13 +1,2 @@
-1@ecl,0,0	monster	--ja--	2376,50,30000,30000
-1@ecl,0,0	monster	--ja--	2375,50,30000,30000
-
-prontera,208,208,3	script	Eclage Interior	2375,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@ecl";
-	end;
-}
+1@ecl,0,0	monster	--ja--	2376,25,30000,30000
+1@ecl,0,0	monster	--ja--	2375,25,30000,30000

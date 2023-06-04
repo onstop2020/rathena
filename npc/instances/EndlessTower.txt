@@ -277,144 +277,66 @@
 4@tower,0,0	boss_monster	--ja--	1190,1,180000,180000
 4@tower,0,0	monster	--ja--	1686,4,30000,30000
 
-5@tower,0,0	monster	--ja--	1370,1,30000,30000
-5@tower,0,0	monster	--ja--	1379,1,30000,30000
-5@tower,0,0	monster	--ja--	1374,1,30000,30000
-5@tower,0,0	monster	--ja--	1061,1,30000,30000
-5@tower,0,0	monster	--ja--	1637,1,30000,30000
-5@tower,0,0	monster	--ja--	1314,1,30000,30000
-5@tower,0,0	monster	--ja--	1655,1,30000,30000
-5@tower,0,0	monster	--ja--	1410,1,30000,30000
-5@tower,0,0	monster	--ja--	1505,1,30000,30000
-5@tower,0,0	monster	--ja--	1737,1,30000,30000
-5@tower,0,0	monster	--ja--	1200,1,30000,30000
-5@tower,0,0	monster	--ja--	1275,1,30000,30000
-5@tower,0,0	monster	--ja--	1519,1,30000,30000
-5@tower,0,0	monster	--ja--	1671,1,30000,30000
-5@tower,0,0	monster	--ja--	1673,1,30000,30000
-5@tower,0,0	monster	--ja--	1672,1,30000,30000
-5@tower,0,0	monster	--ja--	1677,1,30000,30000
-5@tower,0,0	monster	--ja--	1670,1,30000,30000
-5@tower,0,0	monster	--ja--	1668,1,30000,30000
-5@tower,0,0	monster	--ja--	1678,1,30000,30000
-5@tower,0,0	monster	--ja--	1679,1,30000,30000
-5@tower,0,0	monster	--ja--	1676,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1039,1,180000,180000
-5@tower,0,0	boss_monster	--ja--	1272,1,180000,180000
-5@tower,0,0	monster	--ja--	1101,1,30000,30000
-5@tower,0,0	monster	--ja--	1302,1,30000,30000
-5@tower,0,0	monster	--ja--	1219,1,30000,30000
-5@tower,0,0	monster	--ja--	1867,1,30000,30000
-5@tower,0,0	monster	--ja--	1291,1,30000,30000
-5@tower,0,0	monster	--ja--	1117,1,30000,30000
-5@tower,0,0	monster	--ja--	1192,1,30000,30000
-5@tower,0,0	monster	--ja--	1263,1,30000,30000
-5@tower,0,0	monster	--ja--	1829,1,30000,30000
-5@tower,0,0	monster	--ja--	1268,1,30000,30000
-5@tower,0,0	monster	--ja--	1504,1,30000,30000
-5@tower,0,0	monster	--ja--	1163,1,30000,30000
-5@tower,0,0	monster	--ja--	1720,1,30000,30000
-5@tower,0,0	monster	--ja--	1714,1,30000,30000
-5@tower,0,0	monster	--ja--	1717,1,30000,30000
-5@tower,0,0	monster	--ja--	1385,1,30000,30000
-5@tower,0,0	monster	--ja--	1155,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1871,1,180000,180000
-5@tower,0,0	monster	--ja--	1870,1,30000,30000
-5@tower,0,0	monster	--ja--	1203,1,30000,30000
-5@tower,0,0	monster	--ja--	1204,1,30000,30000
-5@tower,0,0	monster	--ja--	1205,1,30000,30000
-5@tower,0,0	monster	--ja--	1769,1,30000,30000
-5@tower,0,0	monster	--ja--	1507,1,30000,30000
-5@tower,0,0	monster	--ja--	1752,1,30000,30000
-5@tower,0,0	monster	--ja--	1257,1,30000,30000
-5@tower,0,0	monster	--ja--	1754,1,30000,30000
-5@tower,0,0	monster	--ja--	1259,1,30000,30000
-5@tower,0,0	monster	--ja--	1283,1,30000,30000
-5@tower,0,0	monster	--ja--	1320,1,30000,30000
-5@tower,0,0	monster	--ja--	1295,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1832,1,180000,180000
-5@tower,0,0	monster	--ja--	1310,1,30000,30000
-5@tower,0,0	monster	--ja--	1831,1,30000,30000
-5@tower,0,0	monster	--ja--	1833,1,30000,30000
-5@tower,0,0	monster	--ja--	1366,1,30000,30000
-5@tower,0,0	monster	--ja--	1309,1,30000,30000
-5@tower,0,0	monster	--ja--	1098,1,30000,30000
-5@tower,0,0	monster	--ja--	1297,1,30000,30000
-5@tower,0,0	monster	--ja--	1132,1,30000,30000
-5@tower,0,0	monster	--ja--	1704,1,30000,30000
-5@tower,0,0	monster	--ja--	1705,1,30000,30000
-5@tower,0,0	monster	--ja--	1706,1,30000,30000
-5@tower,0,0	monster	--ja--	1707,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1751,1,180000,180000
-5@tower,0,0	monster	--ja--	1702,1,30000,30000
-5@tower,0,0	monster	--ja--	1703,1,30000,30000
-5@tower,0,0	monster	--ja--	1371,1,30000,30000
-5@tower,0,0	monster	--ja--	1638,1,30000,30000
-5@tower,0,0	monster	--ja--	1830,1,30000,30000
-5@tower,0,0	monster	--ja--	1656,1,30000,30000
-5@tower,0,0	monster	--ja--	1639,1,30000,30000
-5@tower,0,0	monster	--ja--	1377,1,30000,30000
-5@tower,0,0	monster	--ja--	1657,1,30000,30000
-5@tower,0,0	monster	--ja--	1140,1,30000,30000
-5@tower,0,0	monster	--ja--	1634,1,30000,30000
-5@tower,0,0	monster	--ja--	1208,1,30000,30000
-5@tower,0,0	boss_monster	--ja--	1873,1,180000,180000
-5@tower,0,0	monster	--ja--	1035,1,30000,30000
-5@tower,0,0	monster	--ja--	1042,1,30000,30000
-5@tower,0,0	monster	--ja--	1091,1,30000,30000
-5@tower,0,0	monster	--ja--	1011,1,30000,30000
-5@tower,0,0	monster	--ja--	1765,1,30000,30000
-5@tower,0,0	monster	--ja--	1755,1,30000,30000
-5@tower,0,0	monster	--ja--	1918,1,30000,30000
-5@tower,0,0	monster	--ja--	1919,1,30000,30000
-5@tower,0,0	monster	--ja--	1920,1,30000,30000
-5@tower,0,0	monster	--ja--	1921,1,30000,30000
-5@tower,0,0	monster	--ja--	1635,1,30000,30000
-5@tower,0,0	monster	--ja--	1636,1,30000,30000
-
-6@tower,0,0	monster	--ja--	1639,4,30000,30000
-6@tower,0,0	monster	--ja--	1634,4,30000,30000
-6@tower,0,0	monster	--ja--	1637,4,30000,30000
-6@tower,0,0	monster	--ja--	1635,4,30000,30000
-6@tower,0,0	monster	--ja--	1636,4,30000,30000
-6@tower,0,0	monster	--ja--	1638,4,30000,30000
-6@tower,0,0	monster	--ja--	1918,4,30000,30000
-6@tower,0,0	monster	--ja--	1919,4,30000,30000
-6@tower,0,0	monster	--ja--	1920,4,30000,30000
-6@tower,0,0	monster	--ja--	1921,4,30000,30000
-6@tower,0,0	monster	--ja--	1765,4,30000,30000
-6@tower,0,0	monster	--ja--	1755,4,30000,30000
-6@tower,0,0	monster	--ja--	1754,4,30000,30000
-6@tower,0,0	monster	--ja--	1268,4,30000,30000
-6@tower,0,0	monster	--ja--	1219,4,30000,30000
-6@tower,0,0	monster	--ja--	1208,4,30000,30000
-6@tower,0,0	monster	--ja--	1829,4,30000,30000
-6@tower,0,0	monster	--ja--	1830,4,30000,30000
-6@tower,0,0	monster	--ja--	1377,4,30000,30000
-6@tower,0,0	monster	--ja--	1657,4,30000,30000
-6@tower,0,0	monster	--ja--	1263,4,30000,30000
-6@tower,0,0	monster	--ja--	1140,4,30000,30000
-6@tower,0,0	monster	--ja--	1656,4,30000,30000
-6@tower,0,0	monster	--ja--	1702,4,30000,30000
-6@tower,0,0	monster	--ja--	1703,4,30000,30000
-6@tower,0,0	monster	--ja--	1371,4,30000,30000
-6@tower,0,0	monster	--ja--	1958,4,30000,30000
-6@tower,0,0	monster	--ja--	1960,4,30000,30000
-6@tower,0,0	monster	--ja--	1961,4,30000,30000
-6@tower,0,0	monster	--ja--	1959,4,30000,30000
-6@tower,0,0	monster	--ja--	1627,4,30000,30000
-6@tower,0,0	monster	--ja--	1152,4,30000,30000
-6@tower,0,0	monster	--ja--	1132,4,30000,30000
+6@tower,0,0	monster	--ja--	1639,1,30000,30000
+6@tower,0,0	monster	--ja--	1634,1,30000,30000
+6@tower,0,0	monster	--ja--	1637,1,30000,30000
+6@tower,0,0	monster	--ja--	1635,1,30000,30000
+6@tower,0,0	monster	--ja--	1636,1,30000,30000
+6@tower,0,0	monster	--ja--	1638,1,30000,30000
+6@tower,0,0	monster	--ja--	1918,1,30000,30000
+6@tower,0,0	monster	--ja--	1919,1,30000,30000
+6@tower,0,0	monster	--ja--	1920,1,30000,30000
+6@tower,0,0	monster	--ja--	1921,1,30000,30000
+6@tower,0,0	monster	--ja--	1765,1,30000,30000
+6@tower,0,0	monster	--ja--	1755,1,30000,30000
+6@tower,0,0	monster	--ja--	1754,1,30000,30000
+6@tower,0,0	monster	--ja--	1268,1,30000,30000
+6@tower,0,0	monster	--ja--	1219,1,30000,30000
+6@tower,0,0	monster	--ja--	1208,1,30000,30000
+6@tower,0,0	monster	--ja--	1829,1,30000,30000
+6@tower,0,0	monster	--ja--	1830,1,30000,30000
+6@tower,0,0	monster	--ja--	1377,1,30000,30000
+6@tower,0,0	monster	--ja--	1657,1,30000,30000
+6@tower,0,0	monster	--ja--	1263,1,30000,30000
+6@tower,0,0	monster	--ja--	1140,1,30000,30000
+6@tower,0,0	monster	--ja--	1656,1,30000,30000
+6@tower,0,0	monster	--ja--	1702,1,30000,30000
+6@tower,0,0	monster	--ja--	1703,1,30000,30000
+6@tower,0,0	monster	--ja--	1371,1,30000,30000
+6@tower,0,0	monster	--ja--	1958,1,30000,30000
+6@tower,0,0	monster	--ja--	1960,1,30000,30000
+6@tower,0,0	monster	--ja--	1961,1,30000,30000
+6@tower,0,0	monster	--ja--	1959,1,30000,30000
+6@tower,0,0	monster	--ja--	1627,1,30000,30000
+6@tower,0,0	monster	--ja--	1152,1,30000,30000
+6@tower,0,0	monster	--ja--	1132,1,30000,30000
 
 6@tower,0,0	boss_monster	--ja--	1956,1,180000,180000
 
-prontera,146,236,5	script	Endless Tower	1956,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
+-	script	EndlessTowerFloor5	-1,{
+OnMonsterDead:
+	if(!playerattached())
 	end;
 	
+	monster .mapName$,0,0,"--ja--",.mobIds[rand(.mobIdSize)],1,strnpcinfo(0) + "::OnMonsterDead";
+	
+	end;
+	
+	L_Spawn:
+	for(.@i = 0; .@i < .spawn_amount; .@i++)
+	monster .mapName$,0,0,"--ja--",.mobIds[rand(.mobIdSize)],1,strnpcinfo(0) + "::OnMonsterDead";
+	
+	return;
+	
 OnInit:
-	.m$ = "股暽 1:股暽 2:股暽 3:股暽 4:股暽 5:股暽 6";
-	setarray .mapName$[0],"1@tower","2@tower","3@tower","4@tower","5@tower","6@tower";
+	setarray .mobIds,1370,1379,1374,1061,1637,1314,1655,1410,1505,1737,1200,1275,1519,1671,1673,1672,1677,1670,1668,1678,1679,1676,1039,1272,1101,1302,1219,1867,1291,1117,1192,1263,1829,1268,1504,1163,1720,1714,1717,1385,1155,1871,1870,1203,1204,1205,1769,1507,1752,1257,1754,1259,1283,1320,1295,1832,1310,1831,1833,1366,1309,1098,1297,1132,1704,1705,1706,1707,1751,1702,1703,1371,1638,1830,1656,1639,1377,1657,1140,1634,1208,1873,1035,1042,1091,1011,1765,1755,1918,1919,1920,1921,1635,1636;
+	.mobIdSize = getarraysize(.mobIds);
+	
+	.spawn_amount = 5;
+	
+	.mapName$ = "5@tower";
+	
+	callsub L_Spawn;
+	
 	end;
 }

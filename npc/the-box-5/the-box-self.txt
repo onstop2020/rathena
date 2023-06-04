@@ -1,4 +1,4 @@
-prontera,300,300,0	script	THE BOX#SELF	10249,{
+prontera,300,300,0	script	THE BOX#SELF	566,{
 	// Prevent cheating
 	if(!isReadyToClaimed){
 		message strcharinfo(0),"รับไปแล้ว";
@@ -24,37 +24,10 @@ prontera,300,300,0	script	THE BOX#SELF	10249,{
 	
 	setarray lastFoundTheBoxMap$[.@index],strcharinfo(3);
 	setarray mapLimitation[.@index],mapLimitation[.@index] + 1;
-	dispbottom "โอกาสพบ THE BOX ภายใน Map นี้ " + mapLimitation[.@index] + "/" + $maximumMapLimitation;
-	// Random reward
-	.@rand = rand(10000);
 	
-	// 40%
-	if(.@rand >= 6000)
-	.@itemId = $weaponIds[rand(getarraysize($weaponIds))];
-	// 45%
-	else if(.@rand >= 1500)
-	.@itemId = $equipmentIds[rand(getarraysize($equipmentIds))];
-	// 10%
-	else if(.@rand >= 500)
-	.@itemId = $costumeIds[rand(getarraysize($costumeIds))];
-	// 2.5%
-	else if(.@rand >= 250)
-	.@itemId = $cardIds[rand(getarraysize($cardIds))];
-	// 2.5%
-	else
-	.@itemId = $enchantIds[rand(getarraysize($enchantIds))];
-
-	.@optionIdIndex0 = callfunc("GetRandomOptionId");
-	.@optionIdIndex1 = callfunc("GetRandomOptionId");
-	.@optionIdIndex2 = callfunc("GetRandomOptionId");
-	.@optionIdIndex3 = callfunc("GetRandomOptionId");
-	.@optionIdIndex4 = callfunc("GetRandomOptionId");
+	message strcharinfo(0),"โอกาสพบ THE BOX ภายใน Map นี้ " + mapLimitation[.@index] + "/" + $maximumMapLimitation;
 	
-	setarray .@optionIds[0],.@optionIdIndex0,.@optionIdIndex1,.@optionIdIndex2,.@optionIdIndex3,.@optionIdIndex4;
-	setarray .@optionValues[0],rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5);
-	setarray .@optionParams[0],0,0,0,0,0;
-	
-	getitem3 .@itemId,1,1,0,0,0,0,0,0,.@optionIds,.@optionValues,.@optionParams;
+	GetTheBoxItem();
 	
 	cloakonnpcself;
 

@@ -1,25 +1,14 @@
-1@sthd,0,0	monster	--ja--	3476,5,30000,30000
-1@sthd,0,0	monster	--ja--	3478,5,30000,30000
-1@sthd,0,0	monster	--ja--	3481,5,30000,30000
-1@sthd,0,0	monster	--ja--	3482,5,30000,30000
-1@sthd,0,0	monster	--ja--	3483,5,30000,30000
-1@sthd,0,0	monster	--ja--	3477,5,30000,30000
-1@sthd,0,0	monster	--ja--	3479,5,30000,30000
-1@sthd,0,0	monster	--ja--	3480,5,30000,30000
-1@sthd,0,0	monster	--ja--	3485,5,30000,30000
+1@sthd,0,0	monster	--ja--	3476,2,30000,30000
+1@sthd,0,0	monster	--ja--	3478,2,30000,30000
+1@sthd,0,0	monster	--ja--	3481,2,30000,30000
+1@sthd,0,0	monster	--ja--	3482,2,30000,30000
+1@sthd,0,0	monster	--ja--	3483,2,30000,30000
+1@sthd,0,0	monster	--ja--	3477,2,30000,30000
+1@sthd,0,0	monster	--ja--	3479,2,30000,30000
+1@sthd,0,0	monster	--ja--	3480,2,30000,30000
+1@sthd,0,0	monster	--ja--	3485,2,30000,30000
 
 1@sthd,0,0	boss_monster	--ja--	3484,1,180000,180000
 1@sthd,0,0	boss_monster	--ja--	3474,1,180000,180000
 1@sthd,0,0	boss_monster	--ja--	3475,1,180000,180000
 1@sthd,0,0	boss_monster	--ja--	3473,1,180000,180000
-
-prontera,264,210,3	script	Sky Fortress Invasion	3484,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@sthd";
-	end;
-}

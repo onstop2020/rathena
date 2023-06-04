@@ -1,24 +1,13 @@
-1@dth1,0,0	monster	--ja--	3010,50,30000,30000
-1@dth1,0,0	monster	--ja--	3011,50,30000,30000
-1@dth1,0,0	monster	--ja--	3012,50,30000,30000
+1@dth1,0,0	monster	--ja--	3010,40,30000,30000
+1@dth1,0,0	monster	--ja--	3011,40,30000,30000
+1@dth1,0,0	monster	--ja--	3012,40,30000,30000
 
-1@dth2,0,0	monster	--ja--	3013,50,30000,30000
-1@dth2,0,0	monster	--ja--	3014,50,30000,30000
-1@dth2,0,0	monster	--ja--	3015,50,30000,30000
+1@dth2,0,0	monster	--ja--	3013,40,30000,30000
+1@dth2,0,0	monster	--ja--	3014,40,30000,30000
+1@dth2,0,0	monster	--ja--	3015,40,30000,30000
 
-1@dth3,0,0	monster	--ja--	3016,20,30000,30000
-1@dth3,0,0	monster	--ja--	3017,20,30000,30000
-1@dth3,0,0	monster	--ja--	3018,20,30000,30000
+1@dth3,0,0	monster	--ja--	3016,10,30000,30000
+1@dth3,0,0	monster	--ja--	3017,10,30000,30000
+1@dth3,0,0	monster	--ja--	3018,10,30000,30000
 
 1@dth3,0,0	boss_monster	--ja--	3029,1,180000,180000
-
-prontera,84,208,5	script	Isle Of Bios	3029,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1:ชั้น 2:ชั้น 3";
-	setarray .mapName$[0],"1@dth1","1@dth2","1@dth3";
-	end;
-}

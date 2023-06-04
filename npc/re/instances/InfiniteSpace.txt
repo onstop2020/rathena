@@ -56,14 +56,3 @@
 1@infi,0,0	boss_monster	--ja--	3423,1,180000,180000
 1@infi,0,0	boss_monster	--ja--	3424,1,180000,180000
 1@infi,0,0	boss_monster	--ja--	3425,1,180000,180000
-
-prontera,149,51,3	script	Infinite Space	3425,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@infi";
-	end;
-}

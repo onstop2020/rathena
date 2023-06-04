@@ -6,20 +6,28 @@ OnPCDieEvent:
 	dispbottom "คุณตายใน Map ที่ไม่มีโทษใด ๆ";
 	else{
 		// Auto warp
-		.@dead_map_name$ = strcharinfo(3);
+		.@mapName$ = strcharinfo(3);
 		
-		if((.@dead_map_name$ == "bossnia_01")
-				|| (.@dead_map_name$ == "bossnia_02")
-				|| (.@dead_map_name$ == "bossnia_03")
-				|| (.@dead_map_name$ == "bossnia_04"))
+		if((.@mapName$ == "vis_h01")
+				|| (.@mapName$ == "vis_h02")
+				|| (.@mapName$ == "vis_h03")
+				|| (.@mapName$ == "vis_h04"))
 		addtimer 1000,strnpcinfo(3) + "::OnWarp";
 		
 		// Debuff here
+		debuff = cap_value(debuff + rand(BaseLevel / 10),1,100);
+		atcommand "@debuff " + debuff;
+		
+		selfCareDebuff = gettimetick(2) + (debuff * .baseDebuffTimer);
 	}
 	
 	end;
-
+	
 OnWarp:
 	warp "prontera",156,191;
+	end;
+	
+OnInit:
+	.baseDebuffTimer = 30;
 	end;
 }

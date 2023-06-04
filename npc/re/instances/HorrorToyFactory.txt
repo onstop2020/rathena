@@ -11,14 +11,3 @@
 
 1@xm_d,0,0	boss_monster	--ja--	2996,1,180000,180000
 1@xm_d,0,0	boss_monster	--ja--	2997,1,180000,180000
-
-prontera,227,208,3	script	Horror Toy Factory	2996,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@xm_d";
-	end;
-}

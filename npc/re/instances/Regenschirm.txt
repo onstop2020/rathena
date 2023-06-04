@@ -1,16 +1,5 @@
-1@rgsr,0,0	monster	--ja--	3622,75,30000,30000
-1@rgsr,0,0	monster	--ja--	3627,75,30000,30000
-1@rgsr,0,0	monster	--ja--	20352,75,30000,30000
+1@rgsr,0,0	monster	--ja--	3622,25,30000,30000
+1@rgsr,0,0	monster	--ja--	3627,25,30000,30000
+1@rgsr,0,0	monster	--ja--	20352,25,30000,30000
 
 1@rgsr,0,0	boss_monster	--ja--	20353,1,180000,180000
-
-prontera,124,319,5	script	Regenschirm	20353,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@rgsr";
-	end;
-}

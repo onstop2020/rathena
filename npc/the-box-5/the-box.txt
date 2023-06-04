@@ -1,4 +1,4 @@
-prontera,138,184,5	script	THE BOX	10249,{
+prontera,138,184,5	script	THE BOX	566,{
 	.@price = callsub(L_Price);
 	
 	menu "สุ่ม (^BA17F8" + F_InsertComma(.@price) + "z^000000)",-
@@ -26,7 +26,7 @@ prontera,138,184,5	script	THE BOX	10249,{
 		
 		// Trade
 		Zeny = cap_value(Zeny - .@price,0,INT_MAX);
-		getitem .@rewardItemId,1;
+		GetTheBoxItem(.@rewardItemId);
 		
 		// Remove item from list
 		deletearray $market[.@index],1;
@@ -40,6 +40,7 @@ prontera,138,184,5	script	THE BOX	10249,{
 	end;
 	
 	L_End:
+	message strcharinfo(0),"อีก " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที ของในกล่องจะเปลี่ยนใหม่หมด";
 	end;
 	
 	// Buying item from viewing (Not able to do)
@@ -94,15 +95,15 @@ OnMinute50:
 	
 	// Generate item list
 	for(.@i = 0; .@i < .amount; .@i++){
-		.@rand = rand(5);
+		.@rand = rand(10000);
 		
-		if(.@rand == 1)
+		if(.@rand >= 6000)
 		.@itemId = $weaponIds[rand(getarraysize($weaponIds))];
-		else if(.@rand == 2)
+		else if(.@rand >= 1500)
 		.@itemId = $equipmentIds[rand(getarraysize($equipmentIds))];
-		else if(.@rand == 3)
+		else if(.@rand >= 500)
 		.@itemId = $costumeIds[rand(getarraysize($costumeIds))];
-		else if(.@rand == 4)
+		else if(.@rand >= 250)
 		.@itemId = $cardIds[rand(getarraysize($cardIds))];
 		else
 		.@itemId = $enchantIds[rand(getarraysize($enchantIds))];

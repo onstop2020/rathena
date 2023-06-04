@@ -14,5 +14,8 @@ OnPCLoginEvent:
 	// Important loots
 	atcommand "@alootid +10000006";
 	
+	if(debuff)
+	atcommand "@debuff " + debuff;
+	
 	end;
 }

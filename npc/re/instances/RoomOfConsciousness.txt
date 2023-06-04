@@ -1,17 +1,6 @@
-1@mir,0,0	monster	--ja--	3446,20,30000,30000
-1@mir,0,0	monster	--ja--	3447,20,30000,30000
-1@mir,0,0	monster	--ja--	3445,20,30000,30000
-1@mir,0,0	monster	--ja--	3448,20,30000,30000
+1@mir,0,0	monster	--ja--	3446,5,30000,30000
+1@mir,0,0	monster	--ja--	3447,5,30000,30000
+1@mir,0,0	monster	--ja--	3445,5,30000,30000
+1@mir,0,0	monster	--ja--	3448,5,30000,30000
 
 1@mir,0,0	boss_monster	--ja--	3450,1,180000,180000
-
-prontera,103,199,7	script	Room of Consciousness	3450,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@mir";
-	end;
-}

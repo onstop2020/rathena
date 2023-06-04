@@ -1,12 +1,1 @@
-2@mir,0,0	monster	--ja--	3454,60,30000,30000
-
-prontera,208,199,1	script	Ritual of Blessing	3454,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"2@mir";
-	end;
-}
+2@mir,0,0	monster	--ja--	3454,30,30000,30000

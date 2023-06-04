@@ -1,16 +1,5 @@
-1@os_b,0,0	monster	--ja--	20361,50,30000,30000
-1@os_b,0,0	monster	--ja--	20365,50,30000,30000
-1@os_b,0,0	monster	--ja--	20363,50,30000,30000
-1@os_b,0,0	monster	--ja--	20355,50,30000,30000
-1@os_b,0,0	monster	--ja--	20357,50,30000,30000
-
-prontera,187,319,3	script	Sealed OS	20353,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@os_b";
-	end;
-}
+1@os_b,0,0	monster	--ja--	20361,20,30000,30000
+1@os_b,0,0	monster	--ja--	20365,20,30000,30000
+1@os_b,0,0	monster	--ja--	20363,20,30000,30000
+1@os_b,0,0	monster	--ja--	20355,20,30000,30000
+1@os_b,0,0	monster	--ja--	20357,20,30000,30000

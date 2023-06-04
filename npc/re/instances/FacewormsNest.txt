@@ -1,28 +1,17 @@
-1@face,0,0	monster	--ja--	2540,20,30000,30000
-1@face,0,0	monster	--ja--	2539,20,30000,30000
-1@face,0,0	monster	--ja--	2531,20,30000,30000
-1@face,0,0	monster	--ja--	2536,20,30000,30000
-1@face,0,0	monster	--ja--	2537,20,30000,30000
-1@face,0,0	monster	--ja--	2541,20,30000,30000
-1@face,0,0	monster	--ja--	1277,20,30000,30000
-1@face,0,0	monster	--ja--	1494,20,30000,30000
-1@face,0,0	monster	--ja--	1166,20,30000,30000
-1@face,0,0	monster	--ja--	2528,20,30000,30000
-1@face,0,0	monster	--ja--	2530,20,30000,30000
+1@face,0,0	monster	--ja--	2540,15,30000,30000
+1@face,0,0	monster	--ja--	2539,15,30000,30000
+1@face,0,0	monster	--ja--	2531,15,30000,30000
+1@face,0,0	monster	--ja--	2536,15,30000,30000
+1@face,0,0	monster	--ja--	2537,15,30000,30000
+1@face,0,0	monster	--ja--	2541,15,30000,30000
+1@face,0,0	monster	--ja--	1277,15,30000,30000
+1@face,0,0	monster	--ja--	1494,15,30000,30000
+1@face,0,0	monster	--ja--	1166,15,30000,30000
+1@face,0,0	monster	--ja--	2528,15,30000,30000
+1@face,0,0	monster	--ja--	2530,15,30000,30000
 
 1@face,0,0	boss_monster	--ja--	2532,1,180000,180000
 1@face,0,0	boss_monster	--ja--	2529,1,180000,180000
 1@face,0,0	boss_monster	--ja--	2535,1,180000,180000
 1@face,0,0	boss_monster	--ja--	2533,1,180000,180000
 1@face,0,0	boss_monster	--ja--	2534,1,180000,180000
-
-prontera,150,125,7	script	Faceworm's Nest	2529,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@face";
-	end;
-}

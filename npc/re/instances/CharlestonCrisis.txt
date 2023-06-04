@@ -1,18 +1,7 @@
-1@mcd,0,0	monster	--ja--	3127,70,30000,30000
-1@mcd,0,0	monster	--ja--	3126,70,30000,30000
-1@mcd,0,0	monster	--ja--	3128,70,30000,30000
-1@mcd,0,0	monster	--ja--	3161,70,30000,30000
-1@mcd,0,0	monster	--ja--	3125,70,30000,30000
+1@mcd,0,0	monster	--ja--	3127,50,30000,30000
+1@mcd,0,0	monster	--ja--	3126,50,30000,30000
+1@mcd,0,0	monster	--ja--	3128,50,30000,30000
+1@mcd,0,0	monster	--ja--	3161,50,30000,30000
+1@mcd,0,0	monster	--ja--	3125,50,30000,30000
 
 1@mcd,0,0	boss_monster	--ja--	3124,1,180000,180000
-
-prontera,150,305,5	script	Charleston in Distress	3124,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@mcd";
-	end;
-}

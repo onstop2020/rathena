@@ -80,38 +80,42 @@ OnInit:
 }
 
 prontera,234,69,5	script	Warper#4	10081,{
+	atcommand "@debuff " + (debuff + 25);
 	warp "force_1-1",100,100;
 	end;
 	
 OnInit:
-	waitingroom "Zone ∑¥ Õ∫ Damage 1%",0;
+	waitingroom "Zone ∑¥ Õ∫ Debuff 25%",0;
 	end;
 }
 
 prontera,240,69,5	script	Warper#5	10081,{
+	atcommand "@debuff " + (debuff + 50);
 	warp "force_1-2",173,158;
 	end;
 	
 OnInit:
-	waitingroom "Zone ∑¥ Õ∫ Damage 0.1%",0;
+	waitingroom "Zone ∑¥ Õ∫ Debuff 50%",0;
 	end;
 }
 
 prontera,234,75,5	script	Warper#6	10081,{
+	atcommand "@debuff " + (debuff + 75);
 	warp "force_1-3",100,185;
 	end;
 	
 OnInit:
-	waitingroom "Zone ∑¥ Õ∫ Damage 0.01%",0;
+	waitingroom "Zone ∑¥ Õ∫ Debuff 75%",0;
 	end;
 }
 
 prontera,240,75,5	script	Warper#7	10081,{
+	atcommand "@debuff " + (debuff + 90);
 	warp "force_2-3",100,185;
 	end;
 	
 OnInit:
-	waitingroom "Zone ∑¥ Õ∫ Damage 0.001%",0;
+	waitingroom "Zone ∑¥ Õ∫ Debuff 90%",0;
 	end;
 }
 

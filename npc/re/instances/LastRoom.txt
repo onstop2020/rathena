@@ -3,14 +3,3 @@
 1@uns,0,0	monster	--ja--	3252,50,30000,30000
 
 1@uns,0,0	boss_monster	--ja--	3254,1,180000,180000
-
-prontera,67,210,5	script	The Last Room	3254,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@uns";
-	end;
-}

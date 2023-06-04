@@ -5,14 +5,3 @@
 1@cash,0,0	monster	--ja--	2175,25,30000,30000
 
 1@cash,0,0	boss_monster	--ja--	2194,1,180000,180000
-
-prontera,127,197,7	script	Octopus Cave	2194,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@cash";
-	end;
-}

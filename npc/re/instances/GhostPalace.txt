@@ -1,25 +1,14 @@
-1@spa,0,0	monster	--ja--	2948,15,30000,30000
-1@spa,0,0	monster	--ja--	2949,15,30000,30000
-1@spa,0,0	monster	--ja--	2950,15,30000,30000
-1@spa,0,0	monster	--ja--	2951,15,30000,30000
-1@spa,0,0	monster	--ja--	2952,15,30000,30000
-1@spa,0,0	monster	--ja--	2953,15,30000,30000
-1@spa,0,0	monster	--ja--	2955,15,30000,30000
-1@spa,0,0	monster	--ja--	2954,15,30000,30000
-1@spa,0,0	monster	--ja--	2956,15,30000,30000
-1@spa,0,0	monster	--ja--	2957,15,30000,30000
-1@spa,0,0	monster	--ja--	2958,15,30000,30000
+1@spa,0,0	monster	--ja--	2948,10,30000,30000
+1@spa,0,0	monster	--ja--	2949,10,30000,30000
+1@spa,0,0	monster	--ja--	2950,10,30000,30000
+1@spa,0,0	monster	--ja--	2951,10,30000,30000
+1@spa,0,0	monster	--ja--	2952,10,30000,30000
+1@spa,0,0	monster	--ja--	2953,10,30000,30000
+1@spa,0,0	monster	--ja--	2955,10,30000,30000
+1@spa,0,0	monster	--ja--	2954,10,30000,30000
+1@spa,0,0	monster	--ja--	2956,10,30000,30000
+1@spa,0,0	monster	--ja--	2957,10,30000,30000
+1@spa,0,0	monster	--ja--	2958,10,30000,30000
 
 1@spa,0,0	boss_monster	--ja--	2959,1,180000,180000
 1@spa,0,0	boss_monster	--ja--	2961,1,180000,180000
-
-prontera,161,125,1	script	Ghost Palace	2961,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@spa";
-	end;
-}

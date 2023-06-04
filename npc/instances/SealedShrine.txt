@@ -7,25 +7,14 @@
 
 2@cata,0,0	boss_monster	--ja--	1929,1,180000,180000
 
-2@cata,0,0	monster	--ja--	1298,15,30000,30000
-2@cata,0,0	monster	--ja--	1291,15,30000,30000
-2@cata,0,0	monster	--ja--	1699,15,30000,30000
-2@cata,0,0	monster	--ja--	1869,15,30000,30000
-2@cata,0,0	monster	--ja--	1290,15,30000,30000
-2@cata,0,0	monster	--ja--	1132,15,30000,30000
-2@cata,0,0	monster	--ja--	1263,15,30000,30000
-2@cata,0,0	monster	--ja--	1509,15,30000,30000
-2@cata,0,0	monster	--ja--	1117,15,30000,30000
-2@cata,0,0	monster	--ja--	1867,15,30000,30000
-2@cata,0,0	monster	--ja--	1302,15,30000,30000
-
-prontera,127,210,5	script	Sealed Shrine	1929,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1:ชั้น 2";
-	setarray .mapName$[0],"1@cata","2@cata";
-	end;
-}
+2@cata,0,0	monster	--ja--	1298,5,30000,30000
+2@cata,0,0	monster	--ja--	1291,5,30000,30000
+2@cata,0,0	monster	--ja--	1699,5,30000,30000
+2@cata,0,0	monster	--ja--	1869,5,30000,30000
+2@cata,0,0	monster	--ja--	1290,5,30000,30000
+2@cata,0,0	monster	--ja--	1132,5,30000,30000
+2@cata,0,0	monster	--ja--	1263,5,30000,30000
+2@cata,0,0	monster	--ja--	1509,5,30000,30000
+2@cata,0,0	monster	--ja--	1117,5,30000,30000
+2@cata,0,0	monster	--ja--	1867,5,30000,30000
+2@cata,0,0	monster	--ja--	1302,5,30000,30000

@@ -1,12 +1,12 @@
 prontera,125,250,3	script	ขายของเร็ว	10389,{
-	mes "• ^FF2929จะขาย Item ทุกชิ้นในกระเป๋า^000000";
+	mes "• ^F81717จะขาย Item ทุกชิ้นในกระเป๋า^000000";
 	mes "• ^3629FFจะไม่ขาย Item ที่สวมใส่อยู่^000000";
 	mes "• ^3629FFจะไม่ขาย Item ที่ Favourite อยู่^000000";
-	mes "• ^3629FFจะไม่ขาย " + getitemname(.no_sell_item_id_1) + "^000000";
-	mes "• ^3629FFจะไม่ขาย " + getitemname(.no_sell_item_id_2) + "^000000";
+	for(.@i = 0; .@i < .noSellSize; .@i++)
+	mes "• ^3629FFจะไม่ขาย " + getitemname(.noSells[.@i]) + "^000000";
 	mes "• ^3629FFSkill 'Overcharge' จะเพิ่มราคาขายได้ตามปกติ^000000";
 	next;
-	menu "ไม่ทำอะไร",-,"ขายของเร็ว",L_FastSell;
+	menu "ไม่ทำอะไร",-,"^F81717ขายของเร็ว^000000",L_FastSell;
 	close;
 	
 	L_FastSell:
@@ -27,9 +27,21 @@ prontera,125,250,3	script	ขายของเร็ว	10389,{
 	for(.@i = @inventorylist_count - 1; .@i >= 0; .@i--){
 		// Equipped or Favourite will skip
 		if(@inventorylist_equip[.@i]
-				|| @inventorylist_favorite[.@i]
-				|| @inventorylist_id[.@i] == .no_sell_item_id_1
-				|| @inventorylist_id[.@i] == .no_sell_item_id_2)
+				|| @inventorylist_favorite[.@i])
+		continue;
+		
+		.@isFoundNoSell = 0;
+		
+		for(.@j = 0; .@j < .noSellSize; .@j++)
+		{
+			if(@inventorylist_id[.@i] == .noSells[.@j])
+			{
+				.@isFoundNoSell = 1;
+				break;
+			}	
+		}
+		
+		if(.@isFoundNoSell)
 		continue;
 		
 		// Get sell price
@@ -53,8 +65,8 @@ prontera,125,250,3	script	ขายของเร็ว	10389,{
 	
 OnInit:
 	.max_zeny = 2000000000;
-	.no_sell_item_id_1 = 40016;
-	.no_sell_item_id_2 = 40017;
+	setarray .noSells,10000000,10000001,10000002,10000003,10000004,10000005,10000006;
+	.noSellSize = getarraysize(.noSells);
 	waitingroom "ขายของเร็ว",0;
 	end;
 }

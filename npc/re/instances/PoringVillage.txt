@@ -7,14 +7,3 @@
 1@begi,0,0	boss_monster	--ja--	3811,1,180000,180000
 1@begi,0,0	boss_monster	--ja--	3812,1,180000,180000
 1@begi,0,0	boss_monster	--ja--	3810,1,180000,180000
-
-prontera,161,305,3	script	Poring Village	3810,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@begi";
-	end;
-}

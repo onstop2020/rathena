@@ -1,13 +1,13 @@
 1@eom,0,0	monster	--ja--	3101,5,30000,30000
 1@eom,0,0	monster	--ja--	3102,5,30000,30000
 1@eom,0,0	monster	--ja--	3103,5,30000,30000
-1@eom,0,0	monster	--ja--	3088,15,30000,30000
-1@eom,0,0	monster	--ja--	1918,15,30000,30000
-1@eom,0,0	monster	--ja--	1921,15,30000,30000
-1@eom,0,0	monster	--ja--	2943,15,30000,30000
-1@eom,0,0	monster	--ja--	2960,15,30000,30000
-1@eom,0,0	monster	--ja--	3089,15,30000,30000
-1@eom,0,0	monster	--ja--	3090,15,30000,30000
+1@eom,0,0	monster	--ja--	3088,10,30000,30000
+1@eom,0,0	monster	--ja--	1918,10,30000,30000
+1@eom,0,0	monster	--ja--	1921,10,30000,30000
+1@eom,0,0	monster	--ja--	2943,10,30000,30000
+1@eom,0,0	monster	--ja--	2960,10,30000,30000
+1@eom,0,0	monster	--ja--	3089,10,30000,30000
+1@eom,0,0	monster	--ja--	3090,10,30000,30000
 
 1@eom,0,0	boss_monster	--ja--	3105,1,180000,180000
 1@eom,0,0	boss_monster	--ja--	3106,1,180000,180000
@@ -17,14 +17,3 @@
 1@eom,0,0	boss_monster	--ja--	3098,1,180000,180000
 1@eom,0,0	boss_monster	--ja--	3099,1,180000,180000
 1@eom,0,0	boss_monster	--ja--	3097,1,180000,180000
-
-prontera,162,77,3	script	Temple of Demon God	3097,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@eom";
-	end;
-}

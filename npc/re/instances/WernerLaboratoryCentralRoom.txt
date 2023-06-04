@@ -1,14 +1,3 @@
-1@slw,0,0	monster	--ja--	3622,100,30000,30000
+1@slw,0,0	monster	--ja--	3622,75,30000,30000
 
 1@slw,0,0	boss_monster	--ja--	3621,1,180000,180000
-
-prontera,49,210,5	script	Werner Lab. Central R.	3621,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@slw";
-	end;
-}

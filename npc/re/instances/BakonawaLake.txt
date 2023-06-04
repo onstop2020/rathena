@@ -1,18 +1,7 @@
-1@ma_b,0,0	monster	--ja--	2343,25,30000,30000
-1@ma_b,0,0	monster	--ja--	2328,25,30000,30000
-1@ma_b,0,0	monster	--ja--	2334,50,30000,30000
+1@ma_b,0,0	monster	--ja--	2343,15,30000,30000
+1@ma_b,0,0	monster	--ja--	2328,15,30000,30000
+1@ma_b,0,0	monster	--ja--	2334,20,30000,30000
 
 1@ma_b,0,0	boss_monster	--ja--	2320,1,180000,180000
 1@ma_b,0,0	boss_monster	--ja--	2321,1,180000,180000
 1@ma_b,0,0	boss_monster	--ja--	2322,1,180000,180000
-
-prontera,151,265,5	script	Bakonawa Lake	2320,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@ma_b";
-	end;
-}

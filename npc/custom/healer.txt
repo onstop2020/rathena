@@ -1,14 +1,14 @@
 prontera,159,193,4	script	แพทย์	10458,{
-	menu "ซ่อมอุปกรณ์สวมใส่ (" + callfunc("F_InsertComa",.repairAllPrice) + "z)",L_RepairAll
-	,"รับการรักษาพิเศษ (" + callfunc("F_InsertComa",.foodBuffsPrice) + "z)",L_FoodBuffs
-	,"รักษาอาการโคม่าจากการหมดสติ",L_HealComa;
+	menu "ซ่อมอุปกรณ์สวมใส่ (^BA17F8" + callfunc("F_InsertComma",.repairAllPrice) + "z^000000)",L_RepairAll
+	,"รับการรักษาพิเศษ (^BA17F8" + callfunc("F_InsertComma",.foodBuffsPrice) + "z^000000)",L_FoodBuffs
+	,"รักษา Debuff จากการหมดสติ (^BA17F8" + ((selfCareDebuff > gettimetick(2)) ? (callfunc("F_InsertComma",.clearDebuffPrice * debuff) + "z^000000)") : "ฟรี^000000)"),L_ClearDebuff;
 	
 	L_RepairAll:
-	menu "ยืนยัน",-;
+	menu "ยืนยัน 'ซ่อมอุปกรณ์สวมใส่'",-;
 	
 	if(Zeny < .repairAllPrice)
 	{
-		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComa",.repairAllPrice) + "z";
+		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.repairAllPrice) + "z";
 		end;
 	}
 	
@@ -16,14 +16,16 @@ prontera,159,193,4	script	แพทย์	10458,{
 	
 	repairall;
 	
+	message strcharinfo(0),"ซ่อมอุปกรณ์สวมใส่ ทั้งหมดในตัว เรียบร้อยแล้ว";
+	
 	end;
 	
 	L_FoodBuffs:
-	menu "ยืนยัน",-;
+	menu "ยืนยัน 'รับการรักษาพิเศษ'",-;
 	
 	if(Zeny < .foodBuffsPrice)
 	{
-		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComa",.foodBuffsPrice) + "z";
+		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.foodBuffsPrice) + "z";
 		end;
 	}
 	
@@ -64,17 +66,51 @@ prontera,159,193,4	script	แพทย์	10458,{
 	
 	percentheal 100,100;
 	
+	message strcharinfo(0),"ได้รับการรักษาพิเศษ!!";
+	
 	end;
 	
-	L_HealComa:
-	mes "อาการโคม่าจากการหมดสติ สามารถหายได้เอง โดยท่านต้องรอ วินาที";
-	next;
-	menu "ข้าไม่อยากรอ ข้าจะจ่าย z",-;
+	L_ClearDebuff:
+	.@price = .clearDebuffPrice * debuff;
+	if (selfCareDebuff > gettimetick(2))
+	mes "^11B120ข้าสามารถรักษาอาการ Debuff จากการหมดสติ ให้ท่านได้ฟรี^000000 แต่ท่านต้องรอ ^F81717" + GetTimerWording(selfCareDebuff - gettimetick(2)) + "^000000";
+	else if(!debuff){
+		message strcharinfo(0),"ท่านไม่มีอาการ Debuff";
+		end;
+	}
+	else 
+	.@free = 1;
+	
+	if(!.@free){
+		next;
+		menu "ข้าไม่อยากรอ ข้าจะจ่าย ^BA17F8" + callfunc("F_InsertComma",.@price) + "z^000000",-;
+		
+	}
+	
+	if(Zeny < .@price)
+	{
+		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
+		end;
+	}
+	
+	if(!.@free)
+	Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+	
+	debuff = 0;
+	selfCareDebuff = 0;
+	
+	atcommand "@debuff " + debuff;
+	
+	message strcharinfo(0),"ได้รับการรักษา Debuff จากการหมดสติ";
+	
+	if(!.@free)
 	close;
+	else
+	end;
 	
 OnInit:
 	.foodBuffsPrice = 1000000;
 	.repairAllPrice = 100000;
-	setarray .comaPrices[0],1000000,10000;
-	setarray .comaRates[0],90,10000;
+	.clearDebuffPrice = 10000;
+	end;
 }

@@ -1,20 +1,9 @@
-1@rev,0,0	monster	--ja--	3001,20,30000,30000
-1@rev,0,0	monster	--ja--	3003,20,30000,30000
-1@rev,0,0	monster	--ja--	3004,20,30000,30000
-1@rev,0,0	monster	--ja--	3005,20,30000,30000
-1@rev,0,0	monster	--ja--	3007,20,30000,30000
+1@rev,0,0	monster	--ja--	3001,10,30000,30000
+1@rev,0,0	monster	--ja--	3003,10,30000,30000
+1@rev,0,0	monster	--ja--	3004,10,30000,30000
+1@rev,0,0	monster	--ja--	3005,10,30000,30000
+1@rev,0,0	monster	--ja--	3007,10,30000,30000
 
 1@rev,0,0	boss_monster	--ja--	2998,1,180000,180000
 1@rev,0,0	boss_monster	--ja--	2999,1,180000,180000
 1@rev,0,0	boss_monster	--ja--	3000,1,180000,180000
-
-prontera,67,197,7	script	Morse Cave	3000,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1";
-	setarray .mapName$[0],"1@rev";
-	end;
-}

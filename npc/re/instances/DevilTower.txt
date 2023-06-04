@@ -1,9 +1,9 @@
-1@tnm1,0,0	monster	--ja--	2939,70,30000,30000
-1@tnm1,0,0	monster	--ja--	2940,70,30000,30000
+1@tnm1,0,0	monster	--ja--	2939,35,30000,30000
+1@tnm1,0,0	monster	--ja--	2940,35,30000,30000
 
-1@tnm2,0,0	monster	--ja--	2941,70,30000,30000
-1@tnm2,0,0	monster	--ja--	2960,70,30000,30000
-1@tnm2,0,0	monster	--ja--	2938,70,30000,30000
+1@tnm2,0,0	monster	--ja--	2941,25,30000,30000
+1@tnm2,0,0	monster	--ja--	2960,25,30000,30000
+1@tnm2,0,0	monster	--ja--	2938,25,30000,30000
 
 1@tnm3,0,0	monster	--ja--	2939,15,30000,30000
 1@tnm3,0,0	monster	--ja--	2940,15,30000,30000
@@ -13,14 +13,3 @@
 1@tnm3,0,0	monster	--ja--	2943,15,30000,30000
 
 1@tnm3,0,0	boss_monster	--ja--	2942,1,180000,180000
-
-prontera,103,208,5	script	Devil Tower	2942,{
-	.@index = select(.m$);
-	warp .mapName$[.@index - 1],0,0;
-	end;
-	
-OnInit:
-	.m$ = "ชั้น 1:ชั้น 2:ชั้น 3";
-	setarray .mapName$[0],"1@tnm1","1@tnm2","1@tnm3";
-	end;
-}
