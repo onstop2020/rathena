@@ -2,7 +2,7 @@
 	end;
 	
 OnInit:
-	bindatcmd "tb",strnpcinfo(3) + "::OnTheBox",0,99;
+	bindatcmd "tb",strnpcinfo(3) + "::OnTheBox";
 	end;
 	
 OnTheBox:
