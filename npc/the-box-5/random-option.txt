@@ -1,4 +1,4 @@
-prontera,120,263,3	script	Random Option	10127,{
+prontera,95,254,5	script	Random Option	10127,{
 	L_Menu:
 	if(locking_option)
 	mes "^FF2929คุณกำลังจะเสียเงินมหาศาล\nเพื่อหา Option ID: " + locking_option + "^000000";
