@@ -5858,8 +5858,10 @@ struct npc_data* npc_duplicate_npc_for_player( struct npc_data& nd, map_session_
 
 		// Check if the source NPC id of currently active duplicates already exists.
 		if( src_nd != nullptr && src_nd->src_id == src_id ){
-			clif_dynamicnpc_result( sd, DYNAMICNPC_RESULT_DUPLICATE );
-			return nullptr;
+			npc_unload(src_nd, true); // [Start]
+
+			//clif_dynamicnpc_result( sd, DYNAMICNPC_RESULT_DUPLICATE );
+			//return nullptr;
 		}
 	}
 
