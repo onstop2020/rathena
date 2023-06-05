@@ -151,8 +151,6 @@ function	script	GetTheBoxItem	{
 	}
 	else
 	.@itemId = .@overrideItemId;
-
-	
 	
 	.@type = getiteminfo(.@itemId,ITEMINFO_TYPE);
 	

@@ -79,7 +79,7 @@ OnBuyItem:
 	
 	// Hour was not same with last time
 OnMinute00:
-OnMinute16:
+OnMinute10:
 OnMinute20:
 OnMinute30:
 OnMinute40:
@@ -148,15 +148,13 @@ OnMinute50:
 	waitingroom "โปรดรอ " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที",0;
 	return;
 
-	// Every ten minutes, generate new shop
+	// Every 1 minutes, create new waiting room
 OnTimer60000:
 	initnpctimer;
 
 	delwaitingroom;
 	
-	freeloop(1);
-	
-	callsub L_Initial;
+	callsub(L_WaitingRoom);
 	
 	end;
 
