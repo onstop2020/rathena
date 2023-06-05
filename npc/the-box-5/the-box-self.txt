@@ -25,7 +25,7 @@ prontera,300,300,0	script	THE BOX#SELF	566,{
 	setarray lastFoundTheBoxMap$[.@index],strcharinfo(3);
 	setarray mapLimitation[.@index],mapLimitation[.@index] + 1;
 	
-	message strcharinfo(0),"โอกาสพบ THE BOX ภายใน Map นี้ " + mapLimitation[.@index] + "/" + $maximumMapLimitation;
+	message strcharinfo(0),"จำนวน THE BOX คงเหลือภายใน Map นี้ (สำหรับคุณ) " + mapLimitation[.@index] + "/" + $maximumMapLimitation;
 	
 	GetTheBoxItem();
 	

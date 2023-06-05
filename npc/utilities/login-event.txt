@@ -17,5 +17,7 @@ OnPCLoginEvent:
 	if(debuff)
 	atcommand "@debuff " + debuff;
 	
+	announce "ใช้คำสั่ง @tb เพื่อเช็คค่าต่าง ๆ ที่สำคัญ",bc_self,0x11B120;
+	
 	end;
 }

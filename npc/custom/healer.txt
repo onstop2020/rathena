@@ -87,7 +87,8 @@ prontera,159,193,4	script	แพทย์	10458,{
 		
 	}
 	
-	if(Zeny < .@price)
+	if(!.@free
+			&& (Zeny < .@price))
 	{
 		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
 		end;

@@ -1,0 +1,43 @@
+-	script	TheBoxCommands	-1,{
+	end;
+	
+OnInit:
+	bindatcmd "tb",strnpcinfo(3) + "::OnTheBox",0,99;
+	end;
+	
+OnTheBox:
+	atcommand "@debuff";
+	menu "เช็คว่า THE BOX ใน Map ดังกล่าวยังมีโอกาสปรากฎอยู่หรือไม่",L_CheckTheBoxRates
+	,"เปิด / ปิด ข้อมูลการสุ่ม THE BOX เมื่อกำจัดศัตรู",L_ShowTheBoxRate
+	;
+	end;
+	
+	L_CheckTheBoxRates:
+	.@lastFoundMapAmount = getarraysize(lastFoundTheBoxMap$);
+	
+	.@index = .@lastFoundMapAmount;
+	
+	if(.@lastFoundMapAmount > 0){
+		for(.@i = 0; .@i < .@lastFoundMapAmount; .@i++){
+			mes "• "
+			+ lastFoundTheBoxMap$[.@i]
+			+ ": "
+			+ mapLimitation[.@i]
+			+ "/"
+			+ $maximumMapLimitation
+			+ ((mapLimitation[.@i] >= $maximumMapLimitation)
+			? " (^F81717ไม่มีโอกาส^000000)"
+			: " (^11B120มีโอกาส^000000)")
+			+ (lastFoundTheBoxMap$[.@i] == strcharinfo(3) ? "(คุณอยู่ที่นี่)" : "");
+		}
+		mes "หากต้องการล้างค่า Map ให้กำจัด Monster ที่ Map อื่น ๆ นอกเหนือจาก Map ดังกล่าว (ล้างได้ต่อเมื่อมี 3 Map)";
+		close;
+	}
+	
+	end;
+	
+	L_ShowTheBoxRate:
+	#isShowTheBoxRate = !#isShowTheBoxRate;
+	mes (#isShowTheBoxRate ? "เปิด" : "ปิด") + "ใช้งานเรียบร้อยแล้ว";
+	close;
+}

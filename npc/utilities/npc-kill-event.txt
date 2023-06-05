@@ -24,26 +24,57 @@ OnNPCKillEvent:
 			}
 		}
 		
-		if(!.@isFoundSameMap){
-			// Remove first map if amount > Maximum
-			if(.@lastFoundMapAmount >= .sameMapAmount){
-				deletearray lastFoundTheBoxMap$[0],1;
-				deletearray mapLimitation[0],1;
-			}
-		}
-		
 		// Chance
-		.@monsterLevelBonus = cap_value(.@deadMonster[UMOB_LEVEL] / .monsterLevelDivider,1,INT_MAX);
-		.@mapLimitation = cap_value(.@currentMapLimitation * .staminaDecrease,0,.baseChance);
-		.@chance = (.baseChance - .@mapLimitation) * .@monsterLevelBonus;
+		.@monsterLevelBonus = cap_value(
+		(.@deadMonster[UMOB_LEVEL] / .monsterLevelDivider) * 100
+		,1
+		,INT_MAX);
+		
+		.@mapLimitation = cap_value(
+		.@currentMapLimitation * .staminaDecrease
+		,0
+		,.baseChance);
+		
+		.@baseCalculated = (.baseChance * .@deadMonster[UMOB_DYNAMIC]);
+		
+		.@calculated = (.@baseCalculated - .@mapLimitation);
+		
+		.@chance = ((.baseChance - .@mapLimitation) > 0)
+		? (.@calculated + .@monsterLevelBonus)
+		: 0;
+		
+		/*dispbottom "Base: "
+		+ .@baseCalculated
+		+ " | Penalty: "
+		+ (.@currentMapLimitation * .staminaDecrease)
+		+ " | Calculated: "
+		+ .@calculated
+		+ " | Monster Bonus: "
+		+ .@monsterLevelBonus
+		+ " | Finalize: " + .@chance;*/
 		
 		if(.@chance <= 0)
 		end;
 		
-		if(rand(10000) < .@chance){
+		.@rand = rand(10000);
+		
+		if(#isShowTheBoxRate)
+		dispbottom "ต้องสุ่มได้น้อยกว่าหรือเท่ากับ " + .@chance + " คุณสุ่มได้ " + .@rand;
+		
+		if(.@rand <= .@chance){
+			if(!.@isFoundSameMap){
+				// Remove first map if amount > Maximum
+				if(.@lastFoundMapAmount >= .sameMapAmount){
+					deletearray lastFoundTheBoxMap$[0],1;
+					deletearray mapLimitation[0],1;
+				}
+			}
+			
 			isReadyToClaimed = 1;
 			// Show now
 			duplicate_dynamic("THE BOX#SELF");
+			
+			specialeffect2 747;
 		}
 	}
 
