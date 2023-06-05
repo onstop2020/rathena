@@ -32,39 +32,14 @@
 	//" ~ ปราสาท Guild",Castles,
 	" ~ ดันเจี้ยน Guild",Guild_Dungeons,
 	//" ~ ดันเจี้ยนเพิ่มเติม",Instances
-	" ~ ดันเจี้ยนเพิ่มเติม",TheBoxInstances,
+	" ~ ดันเจี้ยนเพิ่มเติม",TheBoxInstances
 	//" ~ Special Areas",Special
-	" ~ Monster ที่ไม่เกิดตาม Map Lv. < 30",SpecialMonsterTier1,
-	" ~ Monster ที่ไม่เกิดตาม Map Lv. < 80",SpecialMonsterTier2,
-	" ~ Monster ที่ไม่เกิดตาม Map Lv. < 130",SpecialMonsterTier3,
-	" ~ Monster ที่ไม่เกิดตาม Map Lv. < 160",SpecialMonsterTier4,
-	" ~ Monster ที่ไม่เกิดตาม Map Lv. >= 160",SpecialMonsterTier5
 	;
 
 	if (lastwarp$ == "")
 	message strcharinfo(0),"คุณยังไม่เคยวาร์ปไปที่ไหนมาก่อน";
 	else
 	warp lastwarp$,0,0;
-	end;
-
-SpecialMonsterTier1:
-	warp "aru_gld",0,0;
-	end;
-
-SpecialMonsterTier2:
-	warp "bat_a01",0,0;
-	end;
-
-SpecialMonsterTier3:
-	warp "bat_a02",0,0;
-	end;
-
-SpecialMonsterTier4:
-	warp "bat_b01",0,0;
-	end;
-
-SpecialMonsterTier5:
-	warp "bat_b02",0,0;
 	end;
 
 TheBoxInstances:
