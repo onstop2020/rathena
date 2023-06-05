@@ -83,26 +83,43 @@ prontera,159,193,4	script	แพทย์	10458,{
 	
 	if(!.@free){
 		next;
+		if(Zeny >= .@price)
 		menu "ข้าไม่อยากรอ ข้าจะจ่าย ^BA17F8" + callfunc("F_InsertComma",.@price) + "z^000000",-;
+		else
+		menu "ข้าไม่อยากรอ ข้าจะจ่าย ^BA17F8ด้วย Zeny เท่าที่ข้ามี^000000",-;
 		
-	}
-	
-	if(!.@free
-			&& (Zeny < .@price))
-	{
-		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
-		end;
+		if(Zeny < .@price)
+		{
+			// Try at least 1
+			if(Zeny >= .clearDebuffPrice){
+				.@smallClearAmount = Zeny / .clearDebuffPrice;
+				.@price = .clearDebuffPrice * .@smallClearAmount;
+			}
+			else{
+				message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
+				
+				end;
+			}
+		}
 	}
 	
 	if(!.@free)
 	Zeny = cap_value(Zeny - .@price,0,INT_MAX);
 	
-	debuff = 0;
-	selfCareDebuff = 0;
+	if(!.@smallClearAmount){
+		debuff = 0;
+		selfCareDebuff = 0;
+	}
+	else{
+		debuff = cap_value(debuff - .@smallClearAmount,0,INT_MAX);
+	}
 	
 	atcommand "@debuff " + debuff;
 	
+	if(!.@smallClearAmount)
 	message strcharinfo(0),"ได้รับการรักษา Debuff จากการหมดสติ";
+	else
+	message strcharinfo(0),"ได้รับการรักษา Debuff จากการหมดสติบางส่วน";
 	
 	if(!.@free)
 	close;
