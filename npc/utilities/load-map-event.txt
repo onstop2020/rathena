@@ -4,8 +4,16 @@ prontera	mapflag	loadevent
 	end;
 	
 OnPCLoadMapEvent:
-	if(strcharinfo(3) == "prontera")
-	atcommand "@debuff " + debuff;
+	if(strcharinfo(3) == "prontera"){
+		atcommand "@debuff " + debuff;
+		
+		// Bug equipment auto unequip
+		if((getiteminfo(getequipid(EQI_HAND_R),ITEMINFO_SUBTYPE) == 11)
+				&& (getequipid(EQI_HAND_L) > 0)){
+			unequip EQI_HAND_R;
+			unequip EQI_HAND_L;
+		}
+	}
 
 	end;
 }
