@@ -16,9 +16,14 @@ OnPCDieEvent:
 		
 		// Debuff here
 		debuff = cap_value(debuff + rand(BaseLevel / 10),1,100);
-		atcommand "@debuff " + debuff;
+		RefreshDebuff();
 		
 		selfCareDebuff = gettimetick(2) + (debuff * .baseDebuffTimer);
+		
+		// Combo ended
+		combo = 0;
+		sc_end SC_EXPBOOST;
+		sc_end SC_ITEMBOOST;
 	}
 	
 	end;

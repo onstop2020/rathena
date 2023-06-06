@@ -80,7 +80,7 @@ OnInit:
 }
 
 prontera,234,69,5	script	Warper#4	10081,{
-	atcommand "@debuff " + (debuff + 25);
+	RefreshDebuff(25);
 	warp "force_1-1",100,100;
 	end;
 	
@@ -90,7 +90,7 @@ OnInit:
 }
 
 prontera,240,69,5	script	Warper#5	10081,{
-	atcommand "@debuff " + (debuff + 50);
+	RefreshDebuff(50);
 	warp "force_1-2",173,158;
 	end;
 	
@@ -100,7 +100,7 @@ OnInit:
 }
 
 prontera,234,75,5	script	Warper#6	10081,{
-	atcommand "@debuff " + (debuff + 75);
+	RefreshDebuff(75);
 	warp "force_1-3",100,185;
 	end;
 	
@@ -110,7 +110,7 @@ OnInit:
 }
 
 prontera,240,75,5	script	Warper#7	10081,{
-	atcommand "@debuff " + (debuff + 90);
+	RefreshDebuff(90);
 	warp "force_2-3",100,185;
 	end;
 	

@@ -234,3 +234,11 @@ function	script	SpecialRefineBox	{
 	
 	return;
 }
+
+// Refresh debuff
+function	script	RefreshDebuff	{
+	.@additionalDebuff = getarg(0,0);
+	atcommand "@debuff " + (debuff + tired + .@additionalDebuff);
+	
+	return;
+}

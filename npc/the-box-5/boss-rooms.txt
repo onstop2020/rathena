@@ -58,7 +58,7 @@ function	script	BossRoomEnter	{
 	.@mapName$ = getarg(2,"");
 	.@debuff = getarg(3,0);
 	
-	atcommand "@debuff " + (debuff + .@debuff);
+	RefreshDebuff(.@debuff);
 	
 	setpcblock PCBLOCK_ALL,true;
 	setpcblock PCBLOCK_MOVE,false;

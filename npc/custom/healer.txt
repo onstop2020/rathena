@@ -75,6 +75,9 @@ prontera,159,193,4	script	แพทย์	10458,{
 	if (selfCareDebuff > gettimetick(2))
 	mes "^11B120ข้าสามารถรักษาอาการ Debuff จากการหมดสติ ให้ท่านได้ฟรี^000000 แต่ท่านต้องรอ ^F81717" + GetTimerWording(selfCareDebuff - gettimetick(2)) + "^000000";
 	else if(!debuff){
+		if(tired)
+		message strcharinfo(0),"ท่านไม่มีอาการ Debuff แต่ท่านเหนื่อย ลองไปที่โรงแรม หรือหาอะไรกินตามเมืองดู!";
+		else
 		message strcharinfo(0),"ท่านไม่มีอาการ Debuff";
 		end;
 	}
@@ -114,7 +117,7 @@ prontera,159,193,4	script	แพทย์	10458,{
 		debuff = cap_value(debuff - .@smallClearAmount,0,INT_MAX);
 	}
 	
-	atcommand "@debuff " + debuff;
+	RefreshDebuff();
 	
 	if(!.@smallClearAmount)
 	message strcharinfo(0),"ได้รับการรักษา Debuff จากการหมดสติ";

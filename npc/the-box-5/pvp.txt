@@ -33,12 +33,12 @@ prontera,164,174,3	script	PvP	831,{
 	mes "• ^11B120ไม่มีโทษการตายใด ๆ ตายรัว ๆ ได้เลย^000000";
 	next;
 	menu "PvP",-,"PvP Party",L_Party;
-	atcommand "@debuff " + (debuff + .debuff);
+	RefreshDebuff(.debuff);
 	warp "pvp_y_1-1",rand(145,166),rand(112,124);
 	end;
 
 	L_Party:
-	atcommand "@debuff " + (debuff + .debuff);
+	RefreshDebuff(.debuff);
 	warp "pvp_y_1-4",0,0;
 	end;
 	

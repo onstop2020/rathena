@@ -9,6 +9,14 @@ OnNPCKillEvent:
 		if(.@deadMonster[UMOB_MASTERAID] > 0)
 		end;
 		
+		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
+		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
+		
+		if(.@monsterLevel > BaseLevel)
+		latestCombo = .@monsterRank;
+		else
+		latestCombo = 0;
+		
 		// Map Limitation
 		.@lastFoundMapAmount = getarraysize(lastFoundTheBoxMap$);
 		.@currentMapLimitation = 0;
@@ -26,7 +34,7 @@ OnNPCKillEvent:
 		
 		// Chance
 		.@monsterLevelBonus = cap_value(
-		(.@deadMonster[UMOB_LEVEL] / .monsterLevelDivider) * 100
+		(.@monsterLevel / .monsterLevelDivider) * 100
 		,1
 		,INT_MAX);
 		
@@ -35,7 +43,7 @@ OnNPCKillEvent:
 		,0
 		,.baseChance);
 		
-		.@baseCalculated = (.baseChance * .@deadMonster[UMOB_DYNAMIC]);
+		.@baseCalculated = (.baseChance * .@monsterRank);
 		
 		.@calculated = (.@baseCalculated - .@mapLimitation);
 		
@@ -71,6 +79,7 @@ OnNPCKillEvent:
 			}
 			
 			isReadyToClaimed = 1;
+			
 			// Show now
 			duplicate_dynamic("THE BOX#SELF");
 			
