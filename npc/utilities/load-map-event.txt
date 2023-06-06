@@ -9,7 +9,8 @@ OnPCLoadMapEvent:
 		
 		// Bug equipment auto unequip
 		if((getiteminfo(getequipid(EQI_HAND_R),ITEMINFO_SUBTYPE) == 11)
-				&& (getequipid(EQI_HAND_L) > 0)){
+				&& (getequipid(EQI_HAND_L) > 0)
+				&& (getiteminfo(getequipid(EQI_HAND_L),ITEMINFO_SUBTYPE) != 11)){
 			if(getequipid(EQI_HAND_R) > 0)
 			unequip EQI_HAND_R;
 			
