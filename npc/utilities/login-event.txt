@@ -14,7 +14,6 @@ OnPCLoginEvent:
 	// Important loots
 	atcommand "@alootid +10000006";
 	
-	if(debuff)
 	RefreshDebuff();
 	
 	announce "ใช้คำสั่ง @tb เพื่อเช็คค่าต่าง ๆ ที่สำคัญ",bc_self,0x11B120;

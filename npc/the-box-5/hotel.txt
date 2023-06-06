@@ -1,0 +1,166 @@
+-	script	HotelHint	-1,{
+	message strcharinfo(0),"สถานที่สำหรับรักษาอาการเหนื่อยล้า";
+	end;
+
+OnInit:
+	waitingroom "โรงแรม",0;
+	end;
+}
+
+-	script	HotelStaff	-1,{
+	mes "ท่านสามารถขึ้นชั้นบน ไปนอนหลับพักผ่อนได้เลย";
+	end;
+	
+OnInit:
+	waitingroom "พนักงานโรงแรม",0;
+	end;
+}
+
+-	script	Bed	-1,{
+	menu "นอนหลับ (รักษาอาการเหนื่อยล้า)",-;
+	deltimer strnpcinfo(3) + "::OnSleep";
+	addtimer 3000, strnpcinfo(3) + "::OnSleep";
+	end;
+	
+OnSleep:
+	specialeffect2 549;
+	tired = cap_value(tired - 1,0,100);
+	RefreshDebuff();
+	if((strcharinfo(3) == strnpcinfo(4))
+			&& (tired > 0))
+	addtimer 3000, strnpcinfo(3) + "::OnSleep";
+	else
+	message strcharinfo(0),"คุณได้หยุดนอนแล้ว";
+	end;
+
+OnInit:
+	waitingroom "นอนหลับ",0;
+	end;
+}
+
+-	script	Chef	-1,{
+	if(tired <= 0){
+		message strcharinfo(0),"คุณอิ่มแล้ว (ไม่ได้เหนื่อย)";
+		end;
+	}
+	
+	if(foodAmount > 0)
+	menu "กินข้าวที่เหลืออยู่",L_Eating;
+	else
+	mes "กินข้าวไหม?";
+
+	.@price = strnpcinfo(2);
+	
+	.@tier = (.@price >= 300000) ? 5
+	: (.@price >= 100000) ? 4
+	: (.@price >= 50000) ? 3
+	: (.@price >= 10000) ? 2
+	: 1;
+
+	next;
+	menu "กิน " + callfunc("F_InsertComma",.@price) + "z",-;
+	
+	if(Zeny < .@price){
+		mes "ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
+		close;
+	}
+	
+	Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+	
+	tiredHealAmount = (.@tier == 5) ? 25
+	: (.@tier == 4) ? 18
+	: (.@tier == 3) ? 12
+	: (.@tier == 2) ? 7
+	: 3;
+	
+	foodAmount = 3;
+	
+	L_Eating:
+	mes "โปรดเลือก O เพื่อกินข้าว";
+	.@perfectEating = gettimetick(2) + 2;
+	.@goodEating = gettimetick(2) + 3;
+	.@rand = rand(1,4);
+	if(.@rand == 1)
+	menu "O",L_Correct,"o",L_Wrong,"0",L_Wrong,"๐",L_Wrong;
+	else if(.@rand == 2)
+	menu "o",L_Wrong,"O",L_Correct,"0",L_Wrong,"๐",L_Wrong;
+	else if(.@rand == 3)
+	menu "o",L_Wrong,"0",L_Wrong,"O",L_Correct,"๐",L_Wrong;
+	else if(.@rand == 4)
+	menu "o",L_Wrong,"0",L_Wrong,"๐",L_Wrong,"O",L_Correct;
+	
+	L_Correct:
+	specialeffect2 255;
+	foodAmount--;
+	if((.@perfectEating - gettimetick(2)) > 0){
+		.@eatRank = 1;
+		
+		.@healAmount = tiredHealAmount / .@eatRank;
+	}
+	else if((.@goodEating - gettimetick(2)) > 0)
+	{
+		.@eatRank = 2;
+		
+		.@healAmount = tiredHealAmount / .@eatRank;
+	}
+	else{
+		.@eatRank = 3;
+		
+		.@healAmount = tiredHealAmount / .@eatRank;
+	}
+	
+	tired = cap_value(tired - .@healAmount,0,100);
+	RefreshDebuff();
+	mes "คุณกินข้าวได้" + ((.@eatRank == 1) ? "เยี่ยม" : (.@eatRank == 2) ? "ดี" : "แย่");
+	mes "เหลือ " + foodAmount + " คำ";
+	next;
+	if(tired <= 0)
+	{
+		mes "คุณอิ่มแล้ว";
+		close;
+	}
+	if(foodAmount > 0)
+	goto L_Eating;
+	else
+	mes "ข้าวหมดแล้ว";
+	close;
+	
+	L_Wrong:
+	specialeffect2 79;
+	foodAmount--;
+	mes "คุณตักข้าวแล้วหล่นพื้น";
+	mes "เหลือ " + foodAmount + " คำ";
+	next;
+	if(foodAmount > 0)
+	goto L_Eating;
+	else
+	mes "ข้าวหมดแล้ว";
+	close;
+	
+	end;
+
+OnInit:
+	waitingroom "คนขายอาหาร",0;
+	end;
+}
+
+prontera,200,191,3	duplicate(HotelHint)	ป้าย#HotelHint1	837
+prontera,110,216,1	duplicate(HotelHint)	ป้าย#HotelHint2	837
+
+prt_in,61,141,5	duplicate(HotelStaff)	พนักงานโรงแรม#HotelStaff1	10130
+prt_in,244,136,3	duplicate(HotelStaff)	พนักงานโรงแรม#HotelStaff2	10130
+
+prt_in,71,174,5	duplicate(Bed)	เตียง#Bed1	10043
+prt_in,61,174,5	duplicate(Bed)	เตียง#Bed2	10043
+prt_in,51,174,5	duplicate(Bed)	เตียง#Bed3	10043
+prt_in,258,100,5	duplicate(Bed)	เตียง#Bed4	10043
+prt_in,248,100,5	duplicate(Bed)	เตียง#Bed5	10043
+prt_in,238,100,5	duplicate(Bed)	เตียง#Bed6	10043
+
+prt_in,58,143,5	duplicate(Chef)	คนขายอาหารทั่วไป#5000	10003
+prt_in,257,135,3	duplicate(Chef)	คนขายอาหารทั่วไป#3500	879
+prontera,254,165,5	duplicate(Chef)	คนขายพิซซ่า#30000	830
+prontera,115,109,6	duplicate(Chef)	คนขายพิซซ่า#30000::2	829
+prt_in,42,36,3	duplicate(Chef)	คนขายอาหารดีเยี่ยม#25000	878
+prt_in,88,105,3	duplicate(Chef)	คนขายอาหารนักรบหรู#100000	654
+prt_in,233,20,3	duplicate(Chef)	คนขายอาหารชั้นเลิศ#300000	665
