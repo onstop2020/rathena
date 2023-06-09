@@ -9,8 +9,14 @@ OnTheBox:
 	atcommand "@debuff";
 	menu "เช็คว่า THE BOX ใน Map ดังกล่าวยังมีโอกาสปรากฎอยู่หรือไม่",L_CheckTheBoxRates
 	,"เปิด / ปิด ข้อมูลการสุ่ม THE BOX เมื่อกำจัดศัตรู",L_ShowTheBoxRate
+	,"เปิด / ปิด ฝืนฟาร์ม THE BOX Map เดิม",L_RepeatTheBox
 	;
 	end;
+	
+	L_RepeatTheBox:
+	#isChooseToRepeatTheBox = !#isChooseToRepeatTheBox;
+	mes (#isChooseToRepeatTheBox ? "ปิด" : "เปิด") + "ใช้งานเรียบร้อยแล้ว";
+	close;
 	
 	L_CheckTheBoxRates:
 	.@lastFoundMapAmount = getarraysize(lastFoundTheBoxMap$);

@@ -44,6 +44,8 @@ prontera,300,300,0	script	THE BOX#SELF	566,{
 			
 			end;
 		}
+		if(!#isChooseToRepeatTheBox)
+		goto L_Repeat;
 		mes "จำนวน THE BOX คงเหลือภายใน Map นี้ (สำหรับคุณ) ไม่เหลือแล้ว คุณต้องการ Reset หรือไม่?";
 		next;
 		menu "ไม่ต้องการ",-,"ต้องการ (ตัวละครจะเหนื่อย)",L_Repeat;
