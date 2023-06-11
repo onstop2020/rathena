@@ -65,7 +65,7 @@ prontera,125,250,3	script	ขายของเร็ว	10389,{
 	
 OnInit:
 	.max_zeny = 2000000000;
-	setarray .noSells,10000000,10000001,10000002,10000003,10000004,10000005,10000006;
+	setarray .noSells,10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007;
 	.noSellSize = getarraysize(.noSells);
 	waitingroom "ขายของเร็ว",0;
 	end;

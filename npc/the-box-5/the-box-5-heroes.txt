@@ -1,0 +1,202 @@
+06guild_01	mapflag	noexp
+06guild_01	mapflag	noloot
+06guild_01	mapflag	novending
+06guild_01	mapflag	nochat
+06guild_01	mapflag	noteleport
+06guild_01	mapflag	nowarp
+06guild_01	mapflag	nowarpto
+06guild_01	mapflag	nosave
+06guild_01	mapflag	nobranch
+06guild_01	mapflag	notomb
+
+prontera,145,207,1	script	THE BOX 5 HEROES	801,{
+	if($highestTheBox5HeroesRank)
+	mes "• ^F331EDRank สูงสุดที่เคยไปถึง^000000: " + $highestTheBox5HeroesRank;
+	if($theBox5HeroesLastShot$ != ""){
+		mes "• ^F331EDLast shot โดย^000000 " + $theBox5HeroesLastShot$;
+		mes " ";
+	}
+	
+	mes "รางวัล";
+	mes "• " + mesitemlink(.rewardItemId) + " (" + F_PercentBase10000(max($theBox5HeroesRank,1)) + ")";
+	mes " ";
+	mes "โทษภายในห้อง";
+	mes "• ^F81717Monster จะเก่งขึ้นเรื่อย ๆ หากผู้เล่นชนะ"
+	+ ($theBox5HeroesRank
+	? (" (ขณะนี้ระดับ " + $theBox5HeroesRank + ")")
+	: "")
+	+ "^000000";
+	mes "• ^F81717Monster จะไม่ให้ EXP^000000";
+	mes "• ^F81717Monster จะไม่ให้ Item^000000";
+	mes "• ^F81717THE BOX จะไม่เกิด^000000";
+	next;
+	menu "เข้า",-
+	,"เพิ่มระดับด้วย " + getitemname(.skipLevelItemId),L_SkipLevel;
+
+	callsub L_Spawn;
+	
+	callsub L_WaitingRoom,1;
+
+	callsub L_Warp;
+	
+	end;
+	
+	L_Warp:
+	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
+	
+	addtimer 2000,strnpcinfo(0) + "::OnWarp";
+	
+	announce strcharinfo(0) + " เข้าห้อง THE BOX 5 HEROES",bc_all;
+	
+	warp .mapName$,0,0;
+	
+	end;
+	
+	L_SkipLevel:
+	// Check highest level
+	if($theBox5HeroesRank < $highestTheBox5HeroesRank){
+		.@highestInput = ($highestTheBox5HeroesRank - $theBox5HeroesRank);
+		mes "ระบุระดับที่ต้องการเพิ่ม 0~" + .@highestInput;
+		next;
+		input .@i;
+		if(.@i <= 0){
+			mes "ยกเลิกเรียบร้อยแล้ว";
+			close;
+		}
+		// Recheck amount
+		.@highestInput = ($highestTheBox5HeroesRank - $theBox5HeroesRank);
+		
+		if(.@i > .@highestInput)
+		.@i = .@highestInput;
+		
+		if(.@i <= 0){
+			mes "ยกเลิกเรียบร้อยแล้ว";
+			close;
+		}
+		
+		.@playerItemAmount = countitem(.skipLevelItemId);
+		if(.@playerItemAmount >= .@i){
+			delitem .skipLevelItemId,.@i;
+			
+			$theBox5HeroesRank += .@i;
+			$theBox5HeroesDeadCount = 0;
+			
+			killmonsterall .mapName$;
+			
+			callsub L_Respawn;
+			
+			callsub L_WaitingRoom,1;
+			
+			callsub L_Warp;
+			
+			close2;
+			end;
+		}
+		else{
+			mes "คุณมี " + getitemname(.skipLevelItemId) + " ไม่เพียงพอ";
+			close;
+		}
+	}
+	else
+	mes "ไม่สามารถเพิ่มระดับให้สูงกว่านี้ได้ โปรดเข้าไปเล่นให้ผ่านด่านเสียก่อน";
+
+	close;
+	
+OnWarp:
+	setpcblock PCBLOCK_ALL,false;
+	end;
+	
+OnCleanUp:
+	$theBox5HeroesDeadCount++;
+	
+	if($theBox5HeroesDeadCount >= .maxDeadAmount){
+		$theBox5HeroesDeadCount = 0;
+		$theBox5HeroesRank = 0;
+		killmonsterall .mapName$;
+		callsub L_WaitingRoom,1;
+	}
+	
+	end;
+	
+OnTimer15000:
+	callsub L_Respawn;
+	end;
+	
+OnBossDead:
+	if(!playerattached())
+	end;
+
+	// Reward
+	.@rand = rand(10000);
+	if(.@rand <= $theBox5HeroesRank)
+	getitem .rewardItemId,1;
+	else
+	dispbottom "ต้องสุ่มได้น้อยกว่าหรือเท่ากับ " + $theBox5HeroesRank + " คุณสุ่มได้ " + .@rand;
+	
+	// Monster amount update
+	.mvpAmount = cap_value(.mvpAmount - 1,0,.spawnAmount);
+	
+	// Round end checking
+	if(.mvpAmount <= 0){
+		$theBox5HeroesRank++;
+		
+		if($theBox5HeroesRank > $highestTheBox5HeroesRank){
+			$highestTheBox5HeroesRank = $theBox5HeroesRank;
+			$theBox5HeroesLastShot$ = strcharinfo(0);
+		}
+		
+		announce "MvP ทุกตัวถูกกำจัด!! ระดับ " + $theBox5HeroesRank + " จะมาภายใน 15 วินาที",bc_map;
+		
+		callsub L_WaitingRoom,1;
+		
+		initnpctimer;
+	}
+	else
+	announce "MvP เหลือ " + .mvpAmount + " ตัว!",bc_map;
+	
+	end;
+
+	L_Spawn:
+	if(!$theBox5HeroesRank)
+	$theBox5HeroesRank = 1;
+	else
+	return;
+	L_Respawn:
+	.mvpAmount = .spawnAmount;
+	for(.@i = 0; .@i < .spawnAmount; .@i++){
+		monster .mapName$,0,0,"--ja--",$all_boss_ids[rand(0,($all_boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
+		setunitdata $@mobid[0],UMOB_DYNAMIC,$theBox5HeroesRank;
+	}
+	
+	return;
+	
+	L_WaitingRoom:
+	if(getarg(0,0) == 1)
+	delwaitingroom;
+
+	waitingroom "THE BOX 5 HEROES"
+	+ ($theBox5HeroesRank
+	? (" (ระดับ " + $theBox5HeroesRank + ")")
+	: "")
+	,0;
+	
+	return;
+	
+OnInit:
+	.skipLevelItemId = 10000006;
+	.rewardItemId = 10000007;
+	
+	.spawnAmount = 5;
+	.maxDeadAmount = 5;
+
+	.mapName$ = "06guild_01";
+	
+	callsub L_WaitingRoom;
+	
+	// Respawn
+	if($theBox5HeroesRank)
+	callsub L_Respawn;
+	
+	end;
+}
