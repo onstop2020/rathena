@@ -5,6 +5,9 @@ OnPCDieEvent:
 	if(IsTownMap())
 	dispbottom "คุณตายใน Map ที่ไม่มีโทษใด ๆ";
 	else{
+		deltimer "NPCKillEvent::OnMacro";
+		@isMacroDetecting = 0;
+		
 		// Auto warp
 		.@mapName$ = strcharinfo(3);
 		

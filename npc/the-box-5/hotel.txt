@@ -9,10 +9,16 @@ OnInit:
 
 -	script	HotelStaff	-1,{
 	mes "ท่านสามารถขึ้นชั้นบน ไปนอนหลับพักผ่อนได้เลย";
-	end;
+	next;
+	menu "เปลี่ยน Save Point เป็นที่นี่",L_SavePoint;
+	close;
+	
+	L_SavePoint:
+	atcommand "@save";
+	close;
 	
 OnInit:
-	waitingroom "พนักงานโรงแรม",0;
+	waitingroom "เปลี่ยน Save Point",0;
 	end;
 }
 

@@ -43,6 +43,8 @@ OnInit:
 	end;
 }
 
+prt_in,72,133,3	duplicate(backToCenter)	Warper#Hotel1	10081
+prt_in,233,129,3	duplicate(backToCenter)	Warper#Hotel2	10081
 prontera,115,250,5	duplicate(backToCenter)	Warper#Upg	10081
 prontera,101,168,5	duplicate(backToCenter)	Warper#Itm	10081
 prontera,237,62,5	duplicate(backToCenter)	Warper#Tst	10081

@@ -88,3 +88,5 @@ OnInit:
 
 prontera,147,174,5	duplicate(storage)	คลังเก็บของ	10005
 prontera,113,262,5	duplicate(storage)	คลังเก็บของ#2	10005
+prt_in,65,141,3	duplicate(storage)	คลังเก็บของ#3	10005
+prt_in,250,129,3	duplicate(storage)	คลังเก็บของ#4	10005
