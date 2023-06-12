@@ -3,6 +3,7 @@
 	
 OnNPCKillEvent:
 	if(!IsTownMap()
+			&& (strcharinfo(3) != "06guild_01")
 			&& playerattached()){
 		getunitdata(killedgid,.@deadMonster);
 		
