@@ -249,3 +249,10 @@ function	script	GainTraitPoints	{
 	
 	return;
 }
+
+// Clear macro variables
+function	script	ClearMacro	{
+	@stackMacroDetecting = 0;
+	@isMacroDetecting = 0;
+	return;
+}

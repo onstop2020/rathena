@@ -10,6 +10,24 @@ OnNPCKillEvent:
 		if(.@deadMonster[UMOB_MASTERAID] > 0)
 		end;
 		
+		// Macro Detector
+		.@killCountToMacro = (100 * (@stackMacroDetecting + 1));
+		
+		#macroDetector = cap_value(#macroDetector + 1,0,.@killCountToMacro);
+		
+		if((#macroDetector >= .@killCountToMacro)
+				&& !@isMacroDetecting){
+			duplicate_dynamic("ตรวจ MACRO#SELF");
+			
+			specialeffect2 644;
+			
+			addtimer 30000,strnpcinfo(3) + "::OnMacro";
+			
+			announce "โปรดกด NPC ตรวจ Macro ภายใน 30 วินาที ไม่งั้นคุณจะเหนื่อย",bc_self;
+			
+			@isMacroDetecting = 1;
+		}
+		
 		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
 		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
 		
@@ -90,11 +108,25 @@ OnNPCKillEvent:
 
 	end;
 	
+OnMacro:
+	announce "คุณไม่ได้กด NPC ตรวจ Macro..",bc_self;
+	@isMacroDetecting = 0;
+	@stackMacroDetecting = 0;
+	tired = cap_value(tired + 100,0,100);
+	RefreshDebuff();
+	end;
+	
 OnInit:
 	.baseChance = 100;			// 10000 = 100%
 	.staminaDecrease = 20;		// 10000 = 100%
 	.monsterLevelDivider = 10;	// Use to increase chance to found THE BOX (Monster Level / n)
 	.sameMapAmount = 3;
 	$maximumMapLimitation = 5;
+	
+	addrid(0);
+	if(@isMacroDetecting){
+		deltimer "NPCKillEvent::OnMacro";
+		@isMacroDetecting = 0;
+	}
 	end;
 }

@@ -29,8 +29,10 @@ OnSleep:
 	if((strcharinfo(3) == strnpcinfo(4))
 			&& (tired > 0))
 	addtimer 3000, strnpcinfo(3) + "::OnSleep";
-	else
-	message strcharinfo(0),"คุณได้หยุดนอนแล้ว";
+	else{
+		ClearMacro();
+		message strcharinfo(0),"คุณได้หยุดนอนแล้ว";
+	}
 	end;
 
 OnInit:
@@ -40,6 +42,7 @@ OnInit:
 
 -	script	Chef	-1,{
 	if(tired <= 0){
+		ClearMacro();
 		message strcharinfo(0),"คุณอิ่มแล้ว (ไม่ได้เหนื่อย)";
 		end;
 	}
@@ -116,6 +119,7 @@ OnInit:
 	next;
 	if(tired <= 0)
 	{
+		ClearMacro();
 		mes "คุณอิ่มแล้ว";
 		close;
 	}

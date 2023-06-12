@@ -1,0 +1,13 @@
+prontera,300,300,0	script	ตรวจ MACRO#SELF	566,{
+	cloakonnpcself;
+	deltimer "NPCKillEvent::OnMacro";
+	message strcharinfo(0),"ขอบคุณมากนะ!";
+	@isMacroDetecting = 0;
+	@stackMacroDetecting++;
+	#macroDetector = 0;
+	end;
+	
+OnInit:
+	showscript "ตรวจ Macro";
+	end;
+}
