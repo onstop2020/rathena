@@ -19,13 +19,12 @@
 -	script	Warper	-1,{
 	function Go; function Disp; function Pick; function Restrict;
 	
-	savepoint "prontera",156,191,10,10; // Randomize Save Point
-	
 	// --------------------------------------------------
 	//	Main Menu:
 	// --------------------------------------------------
 	
 	menu	"วาร์ปล่าสุด ^777777["+lastwarp$+"]^000000",-,
+	" ~ เปลี่ยน Save Point",SetSavePoint,
 	" ~ เมือง",Towns,
 	" ~ พื้นที่",Fields,
 	" ~ ดันเจี้ยน",Dungeons,
@@ -40,6 +39,10 @@
 	message strcharinfo(0),"คุณยังไม่เคยวาร์ปไปที่ไหนมาก่อน";
 	else
 	warp lastwarp$,0,0;
+	end;
+	
+SetSavePoint:
+	savepoint "prontera",156,191,10,10; // Randomize Save Point
 	end;
 
 TheBoxInstances:
