@@ -247,6 +247,7 @@ function	script	RefreshDebuff	{
 // Gaining trait points
 function	script	GainTraitPoints	{
 	atcommand "@trpoint +1";
+	trpoint++;
 	
 	return;
 }

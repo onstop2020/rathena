@@ -36,8 +36,13 @@ prontera,169,180,2	script	Reset	10010,{
 		ResetSkill;
 	}
 	
-	if(.@i & 2)
-	ResetStatus;
+	if(.@i & 2){
+		ResetStatus;
+		
+		if(trpoint > 0)
+		atcommand "@trpoint +" + trpoint;
+	}
+	
 	
 	mes "เรียบร้อยแล้ว!";
 	
