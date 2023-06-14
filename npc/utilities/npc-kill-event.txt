@@ -1,6 +1,10 @@
 -	script	NPCKillEvent	-1,{
 	end;
 	
+OnSRBMobKilled:
+	getitem .srbItemId,1;
+	end;
+	
 OnNPCKillEvent:
 	if(!IsTownMap()
 			&& (strcharinfo(3) != "06guild_01")
@@ -9,6 +13,13 @@ OnNPCKillEvent:
 		
 		if(.@deadMonster[UMOB_MASTERAID] > 0)
 		end;
+		
+		// Special Refine Box Monsters
+		if(rand(10000) <= .srbBaseChance){
+			getmapxy(.@tempMap$,.@tempX,.@tempY);
+			monster .@tempMap$,.@tempX + rand(-5,5),.@tempY + rand(-5,5),"--ja--",killedrid,1,strnpcinfo(0) + "::OnSRBMobKilled";
+			setunitdata $@mobid[0],UMOB_DYNAMIC,50;
+		}
 		
 		// Macro Detector
 		.@killCountToMacro = (100 * (@stackMacroDetecting + 1));
@@ -117,6 +128,9 @@ OnMacro:
 	end;
 	
 OnInit:
+	.srbItemId = 10000006;
+	.srbBaseChance = 1;			// 10000 = 100%
+	
 	.baseChance = 100;			// 10000 = 100%
 	.staminaDecrease = 20;		// 10000 = 100%
 	.monsterLevelDivider = 10;	// Use to increase chance to found THE BOX (Monster Level / n)
