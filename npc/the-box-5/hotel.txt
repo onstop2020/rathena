@@ -31,6 +31,7 @@ OnInit:
 OnSleep:
 	specialeffect2 549;
 	tired = cap_value(tired - 1,0,100);
+	percentheal 1,1;
 	RefreshDebuff();
 	if((strcharinfo(3) == strnpcinfo(4))
 			&& (tired > 0))
@@ -82,7 +83,7 @@ OnInit:
 	: (.@tier == 2) ? 7
 	: 3;
 	
-	foodAmount = 3;
+	foodAmount = 4;
 	
 	L_Eating:
 	mes "โปรดเลือก O เพื่อกินข้าว";
@@ -119,6 +120,7 @@ OnInit:
 	}
 	
 	tired = cap_value(tired - .@healAmount,0,100);
+	percentheal .@healAmount,.@healAmount;
 	RefreshDebuff();
 	mes "คุณกินข้าวได้" + ((.@eatRank == 1) ? "เยี่ยม" : (.@eatRank == 2) ? "ดี" : "แย่");
 	mes "เหลือ " + foodAmount + " คำ";
