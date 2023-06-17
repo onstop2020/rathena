@@ -1,0 +1,99 @@
+prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
+	// Setup
+	@itemId = getd("$@traderItemId" + strcharinfo(3));
+	@itemAmount = getd("$@traderItemBaseAmount" + strcharinfo(3));
+	@tradeAmount = getd("$@traderTradeAmount" + strcharinfo(3));
+	@isReadyToTrade = getd("$@trader" + strcharinfo(3));
+	
+	// Prevent cheating
+	if((@itemId <= 0)
+			|| (@itemAmount <= 0)
+			|| (@tradeAmount >= .maxTradeAmount)
+			|| !@isReadyToTrade)
+	{
+		mes "รางวัลหมดแล้ว (โปรดกำจัด Monster ไปเรื่อย ๆ จะมีโอกาส Reset รางวัล)";
+		close;
+	}
+	
+	mes "หากต้องการแลก จะต้องมี " + mesitemlink(@itemId);
+	callsub L_Calculate;
+	next;
+	menu "อาวุธ (^BA17F8ใช้ " + callfunc("F_InsertComma",@weaponTradeAmount) + " ชิ้น^000000)",L_Weapon
+	,"อุปกรณ์สวมใส่ (^BA17F8ใช้ " + callfunc("F_InsertComma",@equipmentTradeAmount) + " ชิ้น^000000)",L_Equipment
+	,"Costume (^BA17F8ใช้ " + callfunc("F_InsertComma",@costumeTradeAmount) + " ชิ้น^000000)",L_Costume
+	,"การ์ด (^BA17F8ใช้ " + callfunc("F_InsertComma",@cardTradeAmount) + " ชิ้น^000000)",L_Card
+	,"Enchantment (^BA17F8ใช้ " + callfunc("F_InsertComma",@enchantmentTradeAmount) + " ชิ้น^000000)",L_Enchantment;
+	end;
+	
+	L_Calculate:
+	@tradeAmount = getd("$@traderTradeAmount" + strcharinfo(3));
+	
+	@weaponTradeAmount = (@itemAmount * .weaponMultiplier);
+	@equipmentTradeAmount = (@itemAmount * .equipmentMultiplier);
+	@costumeTradeAmount = (@itemAmount * .costumeMultiplier);
+	@cardTradeAmount = (@itemAmount * .cardMultiplier);
+	@enchantmentTradeAmount = (@itemAmount * .enchantmentMultiplier);
+	/*.@multiplier = @tradeAmount + 1;
+	@weaponTradeAmount = (@itemAmount * .weaponMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
+	@equipmentTradeAmount = (@itemAmount * .equipmentMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
+	@costumeTradeAmount = (@itemAmount * .costumeMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
+	@cardTradeAmount = (@itemAmount * .cardMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
+	@enchantmentTradeAmount = (@itemAmount * .enchantmentMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);*/
+	return;
+	
+	L_Weapon:
+	callsub L_Calculate;
+	callsub L_Trade,@weaponTradeAmount,1;
+	L_Equipment:
+	callsub L_Calculate;
+	callsub L_Trade,@equipmentTradeAmount,2;
+	L_Costume:
+	callsub L_Calculate;
+	callsub L_Trade,@costumeTradeAmount,3;
+	L_Card:
+	callsub L_Calculate;
+	callsub L_Trade,@cardTradeAmount,4;
+	L_Enchantment:
+	callsub L_Calculate;
+	callsub L_Trade,@enchantmentTradeAmount,5;
+	
+	L_Trade:
+	// Prevent cheating
+	if(@tradeAmount >= .maxTradeAmount)
+	{
+		mes "มีคนแลกตัดหน้าคุณไปแล้ว";
+		close;
+	}
+
+	.@amount = getarg(0,30000);
+	
+	if(countitem(@itemId) >= .@amount){
+		mes "เรียบร้อยแล้ว";
+		delitem @itemId,.@amount;
+		GetTheBoxItem(0,getarg(1,0));
+		set getd("$@traderTradeAmount" + strcharinfo(3)),@tradeAmount + 1;
+		if(getd("$@traderTradeAmount" + strcharinfo(3)) >= .maxTradeAmount)
+		set getd("$@traderFull" + strcharinfo(3)),1;
+	}
+	else{
+		mes "ต้องการ " + callfunc("F_InsertComma",.@amount) + " " + mesitemlink(@itemId);
+	}
+	close;
+	
+OnTouch:
+	if(strcharinfo(3) != "prontera")
+	viewpoint 1,getd("$@traderX" + strcharinfo(3)),getd("$@traderY" + strcharinfo(3)),1,0xEEF11E;
+	end;
+	
+OnInit:
+	.maxTradeAmount = 5;
+	.weaponMultiplier = 5;
+	.equipmentMultiplier = 3;
+	.costumeMultiplier = 1;
+	.cardMultiplier = 25;
+	.enchantmentMultiplier = 50;
+	
+	waitingroom "พ่อค้าหน้าเลือด",0;
+	
+	end;
+}

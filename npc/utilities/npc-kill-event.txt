@@ -10,6 +10,69 @@ OnNPCKillEvent:
 		if(.@deadMonster[UMOB_MASTERAID] > 0)
 		end;
 		
+		// Trader
+		// Random chance to spawn (If not spawn yet)
+		.@isTraderHad = getd("$@trader" + strcharinfo(3));
+		.@isTraderFull = getd("$@traderFull" + strcharinfo(3));
+		if((!.@isTraderHad || .@isTraderFull)
+				&& (rand(10000) <= .traderSpawnChance)){
+			// Get monster drops
+			getmobdrops(killedrid);
+			
+			// Store random drop item
+			.@monsterDropItemAmount = $@MobDrop_count;
+			copyarray .@monsterDropItems[0],$@MobDrop_item[0],.@monsterDropItemAmount;
+			copyarray .@monsterDropitemRates[0],$@MobDrop_rate[0],.@monsterDropItemAmount;
+			
+			// Random index
+			.@randomDropIndex = rand(.@monsterDropItemAmount);
+			
+			// Getting item id
+			.@monsterDropItemId = .@monsterDropItems[.@randomDropIndex];
+			// Getting item type
+			.@type = getiteminfo(.@monsterDropItemId,ITEMINFO_TYPE);
+			
+			// Do not use equipment as requirement item id
+			.@retry = .@monsterDropItemAmount;
+			while((.@retry > 0)
+			&& ((.@type == 4) || (.@type == 5) || (.@type == 12))){
+				.@retry--;
+				
+				// Random index
+				.@randomDropIndex = rand(.@monsterDropItemAmount);
+				// Getting item id
+				.@monsterDropItemId = .@monsterDropItems[.@randomDropIndex];
+				// Getting item type
+				.@type = getiteminfo(.@monsterDropItemId,ITEMINFO_TYPE);
+			}
+			
+			.@monsterDropItemRate = cap_value(.@monsterDropitemRates[.@randomDropIndex] / 2,1,50);
+			
+			if(!IsSellInShop(.@monsterDropItemId)){
+				set getd("$@traderItemId" + strcharinfo(3)),.@monsterDropItemId;
+				set getd("$@traderItemBaseAmount" + strcharinfo(3)),.@monsterDropItemRate;
+				set getd("$@traderTradeAmount" + strcharinfo(3)),0;
+				// Restart trading
+				if(getd("$@traderFull" + strcharinfo(3))){
+					set getd("$@traderFull" + strcharinfo(3)),0;
+					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ Reset รางวัลแล้ว!",bc_map;
+				}
+				else{
+					// Set as spawned (Disappear when reload scripts)
+					set getd("$@trader" + strcharinfo(3)),1;
+					// Random position in current map
+					getfreecell strcharinfo(3),.@x,.@y;
+					set getd("$@traderX" + strcharinfo(3)),.@x;
+					set getd("$@traderY" + strcharinfo(3)),.@y;
+					// Spawn now
+					duplicate "พ่อค้าหน้าเลือด#THE_BOX",strcharinfo(3),.@x,.@y;
+					// Mark on minimap
+					viewpointmap strcharinfo(3),1,.@x,.@y,1,0xEEF11E;
+					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ปรากฎใน Map แล้ว!",bc_map;
+				}
+			}
+		}
+		
 		// Macro Detector
 		.@killCountToMacro = (100 * (@stackMacroDetecting + 1));
 		
@@ -117,6 +180,7 @@ OnMacro:
 	end;
 	
 OnInit:
+	.traderSpawnChance = 100;	// 10000 = 100%
 	.baseChance = 100;			// 10000 = 100%
 	.staminaDecrease = 20;		// 10000 = 100%
 	.monsterLevelDivider = 10;	// Use to increase chance to found THE BOX (Monster Level / n)

@@ -129,25 +129,33 @@ function	script	IsTownMap	{
 // Get THE BOX rewards
 function	script	GetTheBoxItem	{
 	.@overrideItemId = getarg(0,0);
+	.@itemType = getarg(1,0);
+	
+	.@itemId = 501;
 	
 	if(.@overrideItemId <= 0){
 		// Random reward
-		.@rand = rand(10000);
+		.@rand = (.@itemType > 0) ? -1: rand(10000);
 		
 		// 40%
-		if(.@rand >= 6000)
+		if((.@rand >= 6000)
+				|| (.@itemType == 1))
 		.@itemId = $weaponIds[rand(getarraysize($weaponIds))];
 		// 45%
-		else if(.@rand >= 1500)
+		else if((.@rand >= 1500)
+				|| (.@itemType == 2))
 		.@itemId = $equipmentIds[rand(getarraysize($equipmentIds))];
 		// 10%
-		else if(.@rand >= 500)
+		else if((.@rand >= 500)
+				|| (.@itemType == 3))
 		.@itemId = $costumeIds[rand(getarraysize($costumeIds))];
 		// 2.5%
-		else if(.@rand >= 250)
+		else if((.@rand >= 250)
+				|| (.@itemType == 4))
 		.@itemId = $cardIds[rand(getarraysize($cardIds))];
 		// 2.5%
-		else
+		else if((.@itemType == 0)
+				|| (.@itemType == 5))
 		.@itemId = $enchantIds[rand(getarraysize($enchantIds))];
 	}
 	else
@@ -257,4 +265,27 @@ function	script	ClearMacro	{
 	@stackMacroDetecting = 0;
 	@isMacroDetecting = 0;
 	return;
+}
+
+// Is sell in shop?
+function	script	IsSellInShop	{
+	.@itemId = getarg(0,0);
+	
+	if(.@itemId <= 0)
+	return true;
+
+	freeloop(1);
+	
+	for(.@i = 0; .@i < $shopItemIdSize; .@i++){
+		if($shopItemIds[.@i] == .@itemId){
+			freeloop(0);
+			
+			return true;
+		}
+		
+	}
+	
+	freeloop(0);
+	
+	return false;
 }
