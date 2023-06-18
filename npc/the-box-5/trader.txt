@@ -20,7 +20,7 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	if((.@lastInteract > 0)
 			&& ((gettimetick(2) - .@lastInteract) >= .noInteractSeconds)){
 		set getd("$@traderFull" + strcharinfo(3)),1;
-		mes "รางวัลหมดแล้ว (โปรดกำจัด Monster ไปเรื่อย ๆ จะมีโอกาส Reset รางวัล)";
+		mes "เนื่องจาก ไม่มีคนคุยด้วยกับข้า นานเกินไป โปรดกำจัด Monster ไปเรื่อย ๆ เสียก่อน";
 		close;
 	}
 	set getd("$@traderLastTalk" + strcharinfo(3)),gettimetick(2);

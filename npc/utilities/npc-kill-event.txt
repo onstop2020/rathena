@@ -55,6 +55,7 @@ OnNPCKillEvent:
 				// Restart trading
 				if(getd("$@traderFull" + strcharinfo(3))){
 					set getd("$@traderFull" + strcharinfo(3)),0;
+					set getd("$@traderLastTalk" + strcharinfo(3)),0;
 					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ Reset รางวัลแล้ว!",bc_map;
 				}
 				else{
