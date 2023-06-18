@@ -1,9 +1,11 @@
 prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	// Setup
+	@monsterLevel = getd("$@traderMonsterLevel" + strcharinfo(3));
 	@itemId = getd("$@traderItemId" + strcharinfo(3));
 	@itemAmount = getd("$@traderItemBaseAmount" + strcharinfo(3));
 	@tradeAmount = getd("$@traderTradeAmount" + strcharinfo(3));
 	@isReadyToTrade = getd("$@trader" + strcharinfo(3));
+	@tiredAmount = cap_value((BaseLevel > @monsterLevel) ? (BaseLevel - @monsterLevel) : (@monsterLevel - BaseLevel),1,100);
 	
 	// Prevent cheating
 	if((@itemId <= 0)
@@ -25,24 +27,43 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	}
 	set getd("$@traderLastTalk" + strcharinfo(3)),gettimetick(2);
 	
-	mes "หากต้องการแลก จะต้องมี " + mesitemlink(@itemId);
 	callsub L_Calculate;
+	
+	mes "พ่อค้าหน้าเลือด Lv." + @monsterLevel;
+	mes "หากต้องการแลก จะต้องมี " + mesitemlink(@itemId);
+	mes "โอกาส Drop ^11B120" + callfunc("F_PercentBase10000",@itemAmount) + "^000000";
+	mes "Drop จาก ^11B120" + getmonsterinfo(getd("$@traderMonsterId" + strcharinfo(3)),MOB_NAME) + "^000000";
+	mes "คุณจะเหนื่อยเพิ่ม ^FF2929" + @tiredAmount + "^000000 แต้ม";
+	
 	next;
-	menu "อาวุธ (^BA17F8ใช้ " + callfunc("F_InsertComma",@weaponTradeAmount) + " ชิ้น^000000)",L_Weapon
-	,"อุปกรณ์สวมใส่ (^BA17F8ใช้ " + callfunc("F_InsertComma",@equipmentTradeAmount) + " ชิ้น^000000)",L_Equipment
+	menu
+	"ตั้งค่าเก็บ Item ดังกล่าวอัตโนมัติ",L_Autoloot
 	,"Costume (^BA17F8ใช้ " + callfunc("F_InsertComma",@costumeTradeAmount) + " ชิ้น^000000)",L_Costume
+	,"อุปกรณ์สวมใส่ (^BA17F8ใช้ " + callfunc("F_InsertComma",@equipmentTradeAmount) + " ชิ้น^000000)",L_Equipment
+	,"อาวุธ (^BA17F8ใช้ " + callfunc("F_InsertComma",@weaponTradeAmount) + " ชิ้น^000000)",L_Weapon
 	,"การ์ด (^BA17F8ใช้ " + callfunc("F_InsertComma",@cardTradeAmount) + " ชิ้น^000000)",L_Card
-	,"Enchantment (^BA17F8ใช้ " + callfunc("F_InsertComma",@enchantmentTradeAmount) + " ชิ้น^000000)",L_Enchantment;
+	,"Enchantment (^BA17F8ใช้ " + callfunc("F_InsertComma",@enchantmentTradeAmount) + " ชิ้น^000000)",L_Enchantment
+	;
 	end;
+	
+	L_Autoloot:
+	atcommand "@alootid reset";
+	atcommand "@alootid +" + @itemId;
+	close;
 	
 	L_Calculate:
 	@tradeAmount = getd("$@traderTradeAmount" + strcharinfo(3));
 	
-	@weaponTradeAmount = (@itemAmount * .weaponMultiplier);
-	@equipmentTradeAmount = (@itemAmount * .equipmentMultiplier);
-	@costumeTradeAmount = (@itemAmount * .costumeMultiplier);
-	@cardTradeAmount = (@itemAmount * .cardMultiplier);
-	@enchantmentTradeAmount = (@itemAmount * .enchantmentMultiplier);
+	if(@itemAmount == 1)
+	.@sumAmount = 1;
+	else
+	.@sumAmount = (cap_value(.baseAmount - @monsterLevel,1,.baseAmount)) + (@itemAmount / .baseDivider);
+	
+	@weaponTradeAmount = (.@sumAmount * .weaponMultiplier);
+	@equipmentTradeAmount = (.@sumAmount * .equipmentMultiplier);
+	@costumeTradeAmount = (.@sumAmount * .costumeMultiplier);
+	@cardTradeAmount = (.@sumAmount * .cardMultiplier);
+	@enchantmentTradeAmount = (.@sumAmount * .enchantmentMultiplier);
 	/*.@multiplier = @tradeAmount + 1;
 	@weaponTradeAmount = (@itemAmount * .weaponMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
 	@equipmentTradeAmount = (@itemAmount * .equipmentMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
@@ -84,6 +105,8 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 		set getd("$@traderTradeAmount" + strcharinfo(3)),@tradeAmount + 1;
 		if(getd("$@traderTradeAmount" + strcharinfo(3)) >= .maxTradeAmount)
 		set getd("$@traderFull" + strcharinfo(3)),1;
+		tired = cap_value(tired + @tiredAmount,0,100);
+		RefreshDebuff();
 	}
 	else{
 		mes "ต้องการ " + callfunc("F_InsertComma",.@amount) + " " + mesitemlink(@itemId);
@@ -92,17 +115,22 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	
 OnTouch:
 	if(strcharinfo(3) != "prontera")
-	viewpoint 1,getd("$@traderX" + strcharinfo(3)),getd("$@traderY" + strcharinfo(3)),1,0xEEF11E;
+	viewpoint 1,getd("$@traderX" + strcharinfo(3)),getd("$@traderY" + strcharinfo(3)),1,0xFF6D6D;
 	end;
 	
 OnInit:
 	.noInteractSeconds = 3600;
+	
 	.maxTradeAmount = 5;
-	.weaponMultiplier = 5;
-	.equipmentMultiplier = 3;
+	
+	.baseAmount = 50;
+	.baseDivider = 100;
+	
 	.costumeMultiplier = 1;
-	.cardMultiplier = 25;
-	.enchantmentMultiplier = 50;
+	.equipmentMultiplier = 2;
+	.weaponMultiplier = 3;
+	.cardMultiplier = 5;
+	.enchantmentMultiplier = 15;
 	
 	waitingroom "พ่อค้าหน้าเลือด",0;
 	

@@ -49,17 +49,19 @@ OnNPCKillEvent:
 				.@type = getiteminfo(.@monsterDropItemId,ITEMINFO_TYPE);
 			}
 			
-			.@monsterDropItemRate = cap_value(.@monsterDropitemRates[.@randomDropIndex] / 2,1,50);
+			.@monsterDropItemRate = cap_value(.@monsterDropitemRates[.@randomDropIndex],1,10000);
 			
 			if(!IsSellInShop(.@monsterDropItemId)){
 				set getd("$@traderItemId" + strcharinfo(3)),.@monsterDropItemId;
 				set getd("$@traderItemBaseAmount" + strcharinfo(3)),.@monsterDropItemRate;
 				set getd("$@traderTradeAmount" + strcharinfo(3)),0;
+				set getd("$@traderMonsterLevel" + strcharinfo(3)),.@monsterLevel;
+				set getd("$@traderMonsterId" + strcharinfo(3)),killedrid;
 				// Restart trading
 				if(getd("$@traderFull" + strcharinfo(3))){
 					set getd("$@traderFull" + strcharinfo(3)),0;
 					set getd("$@traderLastTalk" + strcharinfo(3)),0;
-					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ Reset รางวัลแล้ว!",bc_map;
+					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ Reset รางวัลแล้ว!",bc_map,0xFF6D6D;
 				}
 				else{
 					// Set as spawned (Disappear when reload scripts)
@@ -71,8 +73,8 @@ OnNPCKillEvent:
 					// Spawn now
 					duplicate "พ่อค้าหน้าเลือด#THE_BOX",strcharinfo(3),.@x,.@y;
 					// Mark on minimap
-					viewpointmap strcharinfo(3),1,.@x,.@y,1,0xEEF11E;
-					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ปรากฎใน Map แล้ว!",bc_map;
+					viewpointmap strcharinfo(3),1,.@x,.@y,1,0xFF6D6D;
+					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ปรากฎใน Map แล้ว!",bc_map,0xFF6D6D;
 				}
 			}
 		}
