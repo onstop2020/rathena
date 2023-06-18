@@ -10,6 +10,9 @@ OnNPCKillEvent:
 		if(.@deadMonster[UMOB_MASTERAID] > 0)
 		end;
 		
+		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
+		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
+		
 		// Trader
 		// Random chance to spawn (If not spawn yet)
 		.@isTraderHad = getd("$@trader" + strcharinfo(3));
@@ -92,10 +95,7 @@ OnNPCKillEvent:
 			@isMacroDetecting = 1;
 		}
 		
-		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
-		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
-		
-		if(.@monsterLevel > BaseLevel)
+		if(.@monsterLevel >= BaseLevel)
 		latestCombo = .@monsterRank;
 		else
 		latestCombo = 0;
