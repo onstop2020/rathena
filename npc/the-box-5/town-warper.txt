@@ -54,30 +54,46 @@ force_1-2,173,156,5	duplicate(backToCenter)	Warper#tb2	10081
 force_1-3,100,167,5	duplicate(backToCenter)	Warper#tb3	10081
 force_2-3,100,167,5	duplicate(backToCenter)	Warper#tb4	10081
 
-prontera,145,193,5	script	Warper#1	10081,{
+prontera,153,200,5	script	Warper#Main	10081,{
+	menu
+	"โรงแรม (รักษาอาการเหนื่อยล้า)",L_Hotel
+	,"ไปพัฒนาตัวละคร",L_Character
+	,"ซื้อของ",L_Mall
+	,"ทดสอบ Damage",L_TrainingGround
+	,"ฟักไข่ Pet และ Homunculus",L_PetHomunculus
+	,"โบสถ์ (รับพร)",L_Church
+	;
+	
+	L_Hotel:
+	.@randHotel = rand(0,1);
+	if(.@randHotel == 0)
+	warp "prontera",107,218;
+	else
+	warp "prontera",204,188;
+	end;
+	
+	L_Character:
 	warp "prontera",115,257;
 	end;
 	
-OnInit:
-	waitingroom "Zone - พัฒนาตัวละคร",0;
-	end;
-}
-
-prontera,138,193,5	script	Warper#2	10081,{
+	L_Mall:
 	warp "prontera",102,175;
 	end;
 	
-OnInit:
-	waitingroom "Zone - ของจำเป็น",0;
-	end;
-}
-
-prontera,173,193,5	script	Warper#3	10081,{
+	L_TrainingGround:
 	warp "prontera",237,66;
 	end;
 	
+	L_PetHomunculus:
+	warp "prontera",198,246;
+	end;
+	
+	L_Church:
+	warp "prontera",234,314;
+	end;
+	
 OnInit:
-	waitingroom "Zone - ทดสอบ",0;
+	waitingroom "ไปที่ต่าง ๆ ภายในเมือง",0;
 	end;
 }
 
@@ -118,14 +134,5 @@ prontera,240,75,5	script	Warper#7	10081,{
 	
 OnInit:
 	waitingroom "Zone ทดสอบ Debuff 90%",0;
-	end;
-}
-
-prontera,166,193,5	script	Warper#8	10081,{
-	warp "prontera",198,246;
-	end;
-	
-OnInit:
-	waitingroom "Zone - Pet & Hom.",0;
 	end;
 }
