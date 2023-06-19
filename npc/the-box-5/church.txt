@@ -1,0 +1,48 @@
+prt_church,100,124,5	script	ผู้ให้พร	10369,{
+	// GM interaction
+	if(getgmlevel())
+	menu "ใช้งาน NPC",-,"เปิดการให้พร",L_Active,"ปิดการให้พร",L_Deactive;
+	// Normal interaction
+	mes "สวัสดี.. ข้ามีพรจะมอบให้ท่าน แต่ข้าไม่ได้ให้ฟรี ๆ หรอกนะ...";
+	next;
+	mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า "
+	+ callfunc("F_InsertComma",.pointRequired);
+	mes "• ^11B120ท่านจะได้รับ Increase AGI เป็นเวลา 1 วัน^000000";
+	mes "• ^11B120ท่านจะได้รับ Blessing เป็นเวลา 1 วัน^000000";
+	mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
+	next;
+	if($isAB){
+		mes "ท่านได้รับพร จากผู้ให้พร..";
+		sc_start SC_INCREASEAGI,86400000,10;
+		sc_start SC_BLESSING,86400000,10;
+	}
+	else{
+		mes "โปรดเพิ่ม <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> ให้มากกว่า " + callfunc("F_InsertComma",.pointRequired);
+	}
+	close;
+	
+	L_Active:
+	$isAB = 1;
+	end;
+	
+	L_Deactive:
+	$isAB = 0;
+	end;
+	
+OnInit:
+	.pointRequired = 5000;
+	waitingroom "ผู้ให้พร",0;
+	end;
+}
+
+-	script	ChurchHint	-1,{
+	message strcharinfo(0),"สถานที่สำหรับรับพร";
+	end;
+
+OnInit:
+	waitingroom "โบสถ์",0;
+	end;
+}
+
+prontera,233,318,3	duplicate(ChurchHint)	ป้าย#ChurchHint1	837
+prontera,238,313,3	duplicate(ChurchHint)	ป้าย#ChurchHint2	837
