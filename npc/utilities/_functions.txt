@@ -121,6 +121,7 @@ function	script	IsTownMap	{
 	|| (.@mapName$ == "tra_fild")
 	|| (.@mapName$ == "pvp_y_1-1")
 	|| (.@mapName$ == "pvp_y_1-4")
+	|| (.@mapName$ == "prt_church")
 	)
 	;
 	return .@isMapError;
