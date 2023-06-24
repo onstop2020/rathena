@@ -83,6 +83,8 @@ OnInit:
 	: (.@tier == 2) ? 7
 	: 3;
 	
+	tiredBuffType = strnpcinfo(3);
+	
 	foodAmount = 4;
 	
 	L_Eating:
@@ -118,6 +120,21 @@ OnInit:
 		
 		.@healAmount = tiredHealAmount / .@eatRank;
 	}
+	
+	if(tiredBuffType == 1)
+	sc_start SC_PACKING_ENVELOPE10,86400000,5; // Hit +5
+	else if(tiredBuffType == 2)
+	sc_start SC_PACKING_ENVELOPE9,86400000,5; // Critical Rate +5
+	else if(tiredBuffType == 3)
+	sc_start SC_PACKING_ENVELOPE7,86400000,5; // Def +5
+	else if(tiredBuffType == 4)
+	sc_start SC_PACKING_ENVELOPE8,86400000,5; // MDef +5
+	else if(tiredBuffType == 5)
+	sc_start SC_PACKING_ENVELOPE5,86400000,5; // Flee +5
+	else if(tiredBuffType == 6)
+	sc_start SC_EP16_2_BUFF_SS,86400000,1; // ASPD + 10
+	else if(tiredBuffType == 7)
+	sc_start SC_EP16_2_BUFF_AC,86400000,1; // V.Cast faster by 80%
 	
 	tired = cap_value(tired - .@healAmount,0,100);
 	percentheal .@healAmount,.@healAmount;
@@ -169,10 +186,10 @@ prt_in,258,100,5	duplicate(Bed)	เตียง#Bed4	10043
 prt_in,248,100,5	duplicate(Bed)	เตียง#Bed5	10043
 prt_in,238,100,5	duplicate(Bed)	เตียง#Bed6	10043
 
-prt_in,58,143,5	duplicate(Chef)	คนขายอาหารทั่วไป#5000	10003
-prt_in,257,135,3	duplicate(Chef)	คนขายอาหารทั่วไป#3500	879
-prontera,254,165,5	duplicate(Chef)	คนขายพิซซ่า#30000	830
-prontera,115,109,6	duplicate(Chef)	คนขายพิซซ่า#30000::2	829
-prt_in,42,36,3	duplicate(Chef)	คนขายอาหารดีเยี่ยม#25000	878
-prt_in,88,105,3	duplicate(Chef)	คนขายอาหารนักรบหรู#100000	654
-prt_in,233,20,3	duplicate(Chef)	คนขายอาหารชั้นเลิศ#300000	665
+prt_in,58,143,5	duplicate(Chef)	คนขายอาหารทั่วไป#5000::1	10003
+prt_in,257,135,3	duplicate(Chef)	คนขายอาหารทั่วไป#3500::2	879
+prontera,254,165,5	duplicate(Chef)	คนขายพิซซ่า#30000::3	830
+prontera,115,109,6	duplicate(Chef)	คนขายพิซซ่า#20000::4	829
+prt_in,42,36,3	duplicate(Chef)	คนขายอาหารดีเยี่ยม#25000::5	878
+prt_in,88,105,3	duplicate(Chef)	คนขายอาหารนักรบหรู#100000::6	654
+prt_in,233,20,3	duplicate(Chef)	คนขายอาหารชั้นเลิศ#300000::7	665
