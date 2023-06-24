@@ -6678,7 +6678,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      callfunc "F_CashStore";
+      callfunc "TheBoxStorage";
   - Id: 12212
     AegisName: Giant_Fly_Wing
     Name: Giant Fly Wing
