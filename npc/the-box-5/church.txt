@@ -11,7 +11,7 @@ prt_church,100,124,5	script	ผู้ให้พร	10369,{
 	mes "• ^11B120ท่านจะได้รับ Blessing เป็นเวลา 1 วัน^000000";
 	mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
 	next;
-	if($isAB){
+	if($isAB >= 2){
 		mes "ท่านได้รับพร จากผู้ให้พร..";
 		sc_start SC_INCREASEAGI,86400000,10;
 		sc_start SC_BLESSING,86400000,10;
@@ -22,7 +22,9 @@ prt_church,100,124,5	script	ผู้ให้พร	10369,{
 	close;
 	
 	L_Active:
-	$isAB = 1;
+	input .@i;
+	.@i = cap_value(.@i,0,.maxChurch);
+	$isAB = .@i;
 	end;
 	
 	L_Deactive:
@@ -30,6 +32,7 @@ prt_church,100,124,5	script	ผู้ให้พร	10369,{
 	end;
 	
 OnInit:
+	.maxChurch = 2;
 	.pointRequired = 5000;
 	waitingroom "ผู้ให้พร",0;
 	end;
@@ -46,3 +49,44 @@ OnInit:
 
 prontera,233,318,3	duplicate(ChurchHint)	ป้าย#ChurchHint1	837
 prontera,238,313,3	duplicate(ChurchHint)	ป้าย#ChurchHint2	837
+
+-	script	Pray	-1,{
+	mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า "
+	+ callfunc("F_InsertComma",.pointRequired);
+	mes "• ^11B120ท่านจะสามารถ ภาวนา ได้ (เพิ่ม Combo)^000000";
+	mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
+	next;
+	if($isAB >= 1)
+	menu "ภาวนา (เพิ่ม Combo)",-;
+	else{
+		mes "โปรดเพิ่ม <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> ให้มากกว่า " + callfunc("F_InsertComma",.pointRequired);
+		close;
+	}
+	deltimer strnpcinfo(3) + "::OnPray";
+	addtimer 3000, strnpcinfo(3) + "::OnPray";
+	end;
+	
+OnPray:
+	specialeffect2 325;
+	percentheal 1,1;
+	combo = cap_value(combo + 1,0,100);
+	sc_end SC_EXPBOOST;
+	sc_start SC_EXPBOOST,1800000,combo;
+	sc_end SC_ITEMBOOST;
+	sc_start SC_ITEMBOOST,1800000,combo;
+	
+	if((strcharinfo(3) == strnpcinfo(4))
+			&& (combo < 100))
+	addtimer 3000, strnpcinfo(3) + "::OnPray";
+	else
+	message strcharinfo(0),"คุณได้หยุดภาวนาแล้ว";
+	end;
+
+OnInit:
+	.pointRequired = 1500;
+	waitingroom "ภาวนา",0;
+	end;
+}
+
+prt_church,108,122,5	duplicate(Pray)	ภาวนา#Pray1	10043
+prt_church,90,122,5	duplicate(Pray)	ภาวนา#Pray2	10043
