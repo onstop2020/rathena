@@ -132,16 +132,6 @@ OnMinute50:
 	else
 	return .@price;
 
-	// Every 1 minutes, create new waiting room
-OnTimer60000:
-	initnpctimer;
-
-	delwaitingroom;
-	
-	callsub(L_WaitingRoom);
-	
-	end;
-
 OnInit:
 	// Parameters
 	.shopName$ = "THE_BOX";
@@ -151,8 +141,6 @@ OnInit:
 	.basePrice = 100000;
 	.maximumPrice = 100000000;
 	.priceTierMultiplier = 10;
-	
-	initnpctimer;
 	
 	// Shop initialize
 	freeloop(1);
