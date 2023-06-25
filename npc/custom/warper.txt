@@ -31,14 +31,26 @@
 	//" ~ ปราสาท Guild",Castles,
 	" ~ ดันเจี้ยน Guild",Guild_Dungeons,
 	//" ~ ดันเจี้ยนเพิ่มเติม",Instances
-	" ~ ดันเจี้ยนเพิ่มเติม",TheBoxInstances
+	" ~ ดันเจี้ยนเพิ่มเติม",TheBoxInstances,
 	//" ~ Special Areas",Special
+	" ~ PvP (Solo)",PvpSolo,
+	" ~ PvP (Party)",PvpParty
 	;
 
 	if (lastwarp$ == "")
 	message strcharinfo(0),"คุณยังไม่เคยวาร์ปไปที่ไหนมาก่อน";
 	else
 	warp lastwarp$,0,0;
+	end;
+	
+PvpSolo:
+	RefreshDebuff(50);
+	warp "pvp_y_1-1",rand(145,166),rand(112,124);
+	end;
+	
+PvpParty:
+	RefreshDebuff(50);
+	warp "pvp_y_1-4",0,0;
 	end;
 	
 SetSavePoint:

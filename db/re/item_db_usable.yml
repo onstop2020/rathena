@@ -54600,7 +54600,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      callfunc "F_CashStore";
+      callfunc "TheBoxStorage";
   - Id: 23178
     AegisName: Kafra_Box
     Name: Kafra Box

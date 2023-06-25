@@ -24,26 +24,3 @@ pvp_y_1-4	mapflag	nobranch
 pvp_y_1-4	mapflag	notomb
 pvp_y_1-4	mapflag	nopenalty
 pvp_y_1-4	mapflag	nocommand	99
-
-prontera,164,174,3	script	PvP	831,{
-	mes "โทษภายในห้อง";
-	mes "• ^FF2929เป็นห้อง PvP^000000";
-	mes "• ^F81717Debuff " + .debuff + "%^000000";
-	mes "---";
-	mes "• ^11B120ไม่มีโทษการตายใด ๆ ตายรัว ๆ ได้เลย^000000";
-	next;
-	menu "PvP",-,"PvP Party",L_Party;
-	RefreshDebuff(.debuff);
-	warp "pvp_y_1-1",rand(145,166),rand(112,124);
-	end;
-
-	L_Party:
-	RefreshDebuff(.debuff);
-	warp "pvp_y_1-4",0,0;
-	end;
-	
-OnInit:
-	.debuff = 50;
-	waitingroom "PvP",0;
-	end;
-}
