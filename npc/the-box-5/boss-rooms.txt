@@ -152,7 +152,7 @@ OnBossDead9:
 			|| isSkipRespawn)
 	end;
 	
-	monster strcharinfo(4),0,0,"--ja--",$all_boss_ids[rand($all_boss_id_size)],1,strnpcinfo(0) + "::OnBossDead" + .@rank;
+	monster strcharinfo(3),0,0,"--ja--",$all_boss_ids[rand($all_boss_id_size)],1,strnpcinfo(0) + "::OnBossDead" + .@rank;
 	setunitdata $@mobid[0],UMOB_DYNAMIC,.@rank;
 	
 	end;
