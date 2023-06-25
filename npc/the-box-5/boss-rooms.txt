@@ -72,7 +72,7 @@ function	script	BossRoomEnter	{
 	return;
 }
 
-prontera,145,200,1	script	ห้อง Boss	801,{
+prontera,145,200,3	script	ห้อง Boss	801,{
 	menu "ห้องที่ 1 (Rank 3)",L_1
 	,"ห้องที่ 2 (Rank 5)",L_2
 	,"ห้องที่ 3 (Rank 7)",L_3
@@ -116,9 +116,14 @@ OnWarp:
 OnCleanUp:
 	.isSkipRespawn = 1;
 	.@tier = strnpcinfo(2);
-	.@mapName$ = "vis_h0" + .@tier;
-	killmonsterall .@mapName$;
-	callsub L_Spawn;
+	killmonsterall "vis_h01";
+	killmonsterall "vis_h02";
+	killmonsterall "vis_h03";
+	killmonsterall "vis_h04";
+	callsub L_Spawn,1;
+	callsub L_Spawn,2;
+	callsub L_Spawn,3;
+	callsub L_Spawn,4;
 	.isSkipRespawn = 0;
 	end;
 	

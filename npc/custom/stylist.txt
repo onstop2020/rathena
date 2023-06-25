@@ -1,4 +1,4 @@
-prontera,142,180,7	script	แต่งตัว	894,{
+s_atelier,28,124,5	script	สไมล์	10365,{
 	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด Class 3",L_Class3Suit,"เปลี่ยน Password",L_ChangePassword;
 	//openstylist;
 	//end;

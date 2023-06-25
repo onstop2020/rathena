@@ -24,7 +24,7 @@
 	// --------------------------------------------------
 	
 	menu	"วาร์ปล่าสุด ^777777["+lastwarp$+"]^000000",-,
-	" ~ เปลี่ยน Save Point",SetSavePoint,
+	" ~ ^0277B6เปลี่ยน Save Point^000000",SetSavePoint,
 	" ~ เมือง",Towns,
 	" ~ พื้นที่",Fields,
 	" ~ ดันเจี้ยน",Dungeons,
@@ -33,8 +33,8 @@
 	//" ~ ดันเจี้ยนเพิ่มเติม",Instances
 	" ~ ดันเจี้ยนเพิ่มเติม",TheBoxInstances,
 	//" ~ Special Areas",Special
-	" ~ PvP (Solo)",PvpSolo,
-	" ~ PvP (Party)",PvpParty
+	" ~ ^B60202PvP (Solo)^000000",PvpSolo,
+	" ~ ^B60202PvP (Party)^000000",PvpParty
 	;
 
 	if (lastwarp$ == "")

@@ -1,4 +1,4 @@
-prontera,196,249,5	script	ฟักไข่	918,{
+prt_in,285,170,3	script	ฟิโอซ่า	918,{
 	bpet;
 	end;
 	
@@ -7,7 +7,7 @@ OnInit:
 	end;
 }
 
-prontera,202,249,3	script	Pet & Hom. อิ่มสนิท	919,{
+prt_in,285,165,3	script	เกวลิน	919,{
 	if(getpetinfo(PETINFO_ID) > 0){
 		atcommand "@petfriendly 1000";
 		atcommand "@pethungry 100";
@@ -23,7 +23,7 @@ OnInit:
 	end;
 }
 
-prontera,206,244,3	script	Hom. Evo. 	920,{
+prt_in,211,173,5	script	เวจ 	920,{
 	if(gethominfo(0) > 0)
 	homevolution;
 	end;
@@ -33,7 +33,7 @@ OnInit:
 	end;
 }
 
-prontera,206,239,3	script	Hom. S 	915,{
+prt_in,212,169,3	script	แมรี่ 	915,{
 	if(gethominfo(0) > 0){
 		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
 			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
@@ -74,3 +74,15 @@ OnInit:
 	waitingroom "Hom. S",0;
 	end;
 }
+
+-	script	PetShopHint	-1,{
+	message strcharinfo(0),"สถานที่สำหรับ Pet & Homunculus";
+	end;
+
+OnInit:
+	waitingroom "ศูนย์รับเลี้ยง",0;
+	end;
+}
+
+prontera,72,94,7	duplicate(PetShopHint)	ป้าย#PetShopHint1	837
+prontera,78,88,7	duplicate(PetShopHint)	ป้าย#PetShopHint2	837

@@ -55,9 +55,6 @@ OnMinute30:
 	killmonsterall "new_zone01";
 	killmonsterall "1@infi";
 	// Special Rooms
-	donpcevent "ห้อง Boss ที่ 1#1::OnCleanUp";
-	donpcevent "ห้อง Boss ที่ 2#2::OnCleanUp";
-	donpcevent "ห้อง Boss ที่ 3#3::OnCleanUp";
-	donpcevent "ห้อง Boss ที่ 4#4::OnCleanUp";
+	donpcevent "ห้อง Boss::OnCleanUp";
 	end;
 }

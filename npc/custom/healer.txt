@@ -1,4 +1,4 @@
-prontera,159,193,4	script	แพทย์	10458,{
+prontera,159,193,5	script	แพทย์	10458,{
 	menu "ซ่อมอุปกรณ์สวมใส่ (^BA17F8" + callfunc("F_InsertComma",.repairAllPrice) + "z^000000)",L_RepairAll
 	,"รับการรักษาพิเศษ (^BA17F8" + callfunc("F_InsertComma",.foodBuffsPrice) + "z^000000)",L_FoodBuffs
 	,"รักษา Debuff จากการหมดสติ (^BA17F8" + ((selfCareDebuff > gettimetick(2)) ? (callfunc("F_InsertComma",.clearDebuffPrice * debuff) + "z^000000)") : "ฟรี^000000)"),L_ClearDebuff;

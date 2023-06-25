@@ -1,12 +1,10 @@
-prontera,106,269,5	script	ลบ Item ในกระเป๋า	828,{
+prontera,166,207,5	script	อีเลสเซอร์	828,{
+	mes "ลบ Item ทุกอย่างในกระเป๋า?";
+	next;
 	menu "ไม่ลบ",-,"^FF2929ลบ Item ทุกอย่างในกระเป๋า (ไม่ลบที่สวมใส่อยู่)^000000",L_Clear;
-	end;
+	close;
 	
 	L_Clear:
 	atcommand "@clearinventory";
-	end;
-	
-OnInit:
-	waitingroom strnpcinfo(0),0;
-	end;
+	close;
 }

@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-prontera,149,193,5	script	รับอุปกรณ์, Skill เสริม	900,{
+s_atelier,31,115,3	script	โจชัว	10385,{
 	callfunc "F_GetPlatinumSkills";
 	if (ismounting()) {
 		message strcharinfo(0),"คุณต้องถอดอุปกรณ์เก่าออกก่อน";
@@ -35,5 +35,9 @@ prontera,149,193,5	script	รับอุปกรณ์, Skill เสริม	900,{
 		message strcharinfo(0),"คุณไม่จำเป็นต้องมีอุปกรณ์อะไร";
 		end;
 	}
+	end;
+	
+OnInit:
+	waitingroom "รับอุปกรณ์ & Skill เสริม",0;
 	end;
 }

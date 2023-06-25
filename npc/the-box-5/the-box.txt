@@ -1,4 +1,4 @@
-prontera,138,184,5	script	THE BOX	566,{
+prontera,164,174,3	script	THE BOX	566,{
 	.@price = callsub(L_Price);
 	
 	menu "สุ่ม (^BA17F8" + F_InsertComma(.@price) + "z^000000)",-
@@ -32,10 +32,6 @@ prontera,138,184,5	script	THE BOX	566,{
 		deletearray $market[.@index],1;
 		// Remove item from shop
 		npcshopdelitem .shopName$,.@rewardItemId;
-		
-		delwaitingroom;
-
-		callsub(L_WaitingRoom);
 	}
 	end;
 	
@@ -70,10 +66,6 @@ OnBuyItem:
 		
 		freeloop(0);
 		
-		delwaitingroom;
-		
-		callsub(L_WaitingRoom);
-
 		return;
 	}
 	
@@ -140,14 +132,6 @@ OnMinute50:
 	else
 	return .@price;
 
-	// Create waiting room
-	L_WaitingRoom:
-	if(getarraysize($market) > 0)
-	waitingroom callsub(L_PriceString,callsub(L_Price)) + " อีก " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที",0;
-	else
-	waitingroom "โปรดรอ " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที",0;
-	return;
-
 	// Every 1 minutes, create new waiting room
 OnTimer60000:
 	initnpctimer;
@@ -172,8 +156,6 @@ OnInit:
 	
 	// Shop initialize
 	freeloop(1);
-	
-	callsub L_CleanShop;
 
 	callsub L_Initial;
 	

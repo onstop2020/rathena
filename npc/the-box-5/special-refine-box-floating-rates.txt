@@ -1,4 +1,4 @@
-prontera,153,207,5	script	เช็ค Special Refine Box	111,{
+prontera,156,207,4	script	เช็ค Special Refine Box	111,{
 	message strcharinfo(0),getitemname(10000006) + " จาก Boss จะ x" + .rates + " เท่า เป็นเวลา " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที";
 	end;
 

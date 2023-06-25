@@ -16,7 +16,7 @@
 //= 2.0 Added 4th class [Lemongrass]
 //============================================================
 
-prontera,153,193,6	script	เปลี่ยนอาชีพ	10435,{
+s_atelier,30,118,3	script	แคลร์	10377,{
 	function Get_Job_Equip;
 	// Checks if the Player has the required level.
 	// closes if not, returns if yes

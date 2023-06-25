@@ -45,23 +45,24 @@ OnInit:
 
 prt_in,72,133,3	duplicate(backToCenter)	Warper#Hotel1	10081
 prt_in,233,129,3	duplicate(backToCenter)	Warper#Hotel2	10081
-prontera,115,250,5	duplicate(backToCenter)	Warper#Upg	10081
-prontera,101,168,5	duplicate(backToCenter)	Warper#Itm	10081
+prt_church,103,58,3	duplicate(backToCenter)	Warper#Church	10081
+s_atelier,12,110,3	duplicate(backToCenter)	Warper#Upg	10081
+prt_in,81,108,3	duplicate(backToCenter)	Warper#Itm	10081
 prontera,237,62,5	duplicate(backToCenter)	Warper#Tst	10081
-prontera,200,240,5	duplicate(backToCenter)	Warper#Pet	10081
+prt_in,244,168,5	duplicate(backToCenter)	Warper#Pet	10081
 force_1-1,100,98,5	duplicate(backToCenter)	Warper#tb1	10081
 force_1-2,173,156,5	duplicate(backToCenter)	Warper#tb2	10081
 force_1-3,100,167,5	duplicate(backToCenter)	Warper#tb3	10081
 force_2-3,100,167,5	duplicate(backToCenter)	Warper#tb4	10081
 
-prontera,153,200,5	script	Warper#Main	10081,{
+prontera,152,193,5	script	Warper#Main	10081,{
 	menu
-	"โรงแรม (รักษาอาการเหนื่อยล้า)",L_Hotel
-	,"ไปพัฒนาตัวละคร",L_Character
-	,"ซื้อของ",L_Mall
+	"โรงแรม (^109247รักษาอาการเหนื่อยล้า^000000)",L_Hotel
+	,"ไปพัฒนาตัวละคร (^DB2D5Fเปลี่ยนอาชีพ, ทำของ^000000)",L_Character
+	,"ซื้อของใช้จำเป็น (^402DDBของใช้ Skill, ของเริ่มต้น^000000)",L_Mall
 	,"ทดสอบ Damage",L_TrainingGround
 	,"ฟักไข่ Pet และ Homunculus",L_PetHomunculus
-	,"โบสถ์ (รับพร)",L_Church
+	,"โบสถ์ (^10928Eรับพร^000000)",L_Church
 	;
 	
 	L_Hotel:
@@ -73,11 +74,11 @@ prontera,153,200,5	script	Warper#Main	10081,{
 	end;
 	
 	L_Character:
-	warp "prontera",115,257;
+	warp "s_atelier",13,119;
 	end;
 	
 	L_Mall:
-	warp "prontera",102,175;
+	warp "prt_in",80,110;
 	end;
 	
 	L_TrainingGround:
@@ -85,15 +86,15 @@ prontera,153,200,5	script	Warper#Main	10081,{
 	end;
 	
 	L_PetHomunculus:
-	warp "prontera",198,246;
+	warp "prt_in",248,170;
 	end;
 	
 	L_Church:
-	warp "prontera",234,314;
+	warp "prt_church",100,60;
 	end;
 	
 OnInit:
-	waitingroom "ไปที่ต่าง ๆ ภายในเมือง",0;
+	waitingroom "ไปที่ต่าง ๆ ในเมือง",0;
 	end;
 }
 
@@ -136,3 +137,15 @@ OnInit:
 	waitingroom "Zone ทดสอบ Debuff 90%",0;
 	end;
 }
+
+-	script	HeadQuarterHint	-1,{
+	message strcharinfo(0),"สถานที่สำหรับพัฒนาตัวละคร";
+	end;
+
+OnInit:
+	waitingroom "ศูนย์บัญชาการ",0;
+	end;
+}
+
+prontera,270,112,3	duplicate(HeadQuarterHint)	ป้าย#HeadQuarterHint1	837
+prontera,270,103,3	duplicate(HeadQuarterHint)	ป้าย#HeadQuarterHint2	837

@@ -47,10 +47,10 @@ Header:
 
 Body:
   - Name: ร้านค้า-ตีบวก
-    Map: prontera
-    X: 94
-    Y: 246
-    Direction: SouthEast
+    Map: s_atelier
+    X: 76
+    Y: 115
+    Direction: SouthWest
     Sprite: 4_TREASURE_BOX
     Items:
       - Index: 0
