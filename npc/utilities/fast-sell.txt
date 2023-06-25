@@ -7,7 +7,11 @@ prontera,166,200,5	script	ซารุย	10389,{
 	mes "• ^3629FFจะไม่ขาย " + getitemname(.noSells[.@i]) + "^000000";
 	mes "• ^3629FFSkill 'Overcharge' จะเพิ่มราคาขายได้ตามปกติ^000000";
 	next;
-	menu "ไม่ทำอะไร",-,"^F81717ขายของเร็ว^000000",L_FastSell;
+	menu "ไม่ทำอะไร",-
+	,"ไม่ทำอะไร",-
+	,"ไม่ทำอะไร",-
+	,"^F81717ขายของเร็ว^000000",L_FastSell
+	;
 	close;
 	
 	L_FastSell:
