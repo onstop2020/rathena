@@ -75,5 +75,5 @@ OnInit:
 	end;
 }
 
-prt_in,56,133,1	duplicate(ซารุย)	ขายของเร็ว#2	10389
-prt_in,233,136,5	duplicate(ซารุย)	ขายของเร็ว#3	10389
+prt_in,56,133,1	duplicate(ซารุย)	ซารุย#2	10389
+prt_in,233,136,5	duplicate(ซารุย)	ซารุย#3	10389

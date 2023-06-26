@@ -57,6 +57,9 @@ prontera,233,318,3	duplicate(ChurchHint)	ป้าย#ChurchHint1	837
 prontera,238,313,3	duplicate(ChurchHint)	ป้าย#ChurchHint2	837
 
 -	script	Pray	-1,{
+	if(@isPraying)
+	end;
+	
 	mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า "
 	+ callfunc("F_InsertComma",.pointRequired);
 	mes "• ^11B120ท่านจะสามารถ ภาวนา ได้ (เพิ่ม Combo)^000000";
@@ -68,6 +71,7 @@ prontera,238,313,3	duplicate(ChurchHint)	ป้าย#ChurchHint2	837
 		mes "โปรดเพิ่ม <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> ให้มากกว่า " + callfunc("F_InsertComma",.pointRequired);
 		close;
 	}
+	@isPraying = 1;
 	deltimer strnpcinfo(3) + "::OnPray";
 	addtimer 3000, strnpcinfo(3) + "::OnPray";
 	end;
@@ -84,8 +88,11 @@ OnPray:
 	if((strcharinfo(3) == strnpcinfo(4))
 			&& (combo < 100))
 	addtimer 3000, strnpcinfo(3) + "::OnPray";
-	else
-	message strcharinfo(0),"คุณได้หยุดภาวนาแล้ว";
+	else{
+		@isPraying = 0;
+		message strcharinfo(0),"คุณได้หยุดภาวนาแล้ว";
+	}
+	
 	end;
 
 OnInit:
