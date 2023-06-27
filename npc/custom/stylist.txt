@@ -1,8 +1,5 @@
 s_atelier,28,124,5	script	สไมล์	10365,{
-	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด Class 3",L_Class3Suit,"เปลี่ยน Password",L_ChangePassword;
-	//openstylist;
-	//end;
-	
+	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด Class 3",L_Class3Suit,"เปลี่ยน Password",L_ChangePassword,"แก้ตัวละครเด้ง",L_FixClientErrors;
 	setarray .@Styles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
 	setarray .@Look[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
 	.@s = select(" ~ สีเสื้อ: ~ ทรงผม: ~ สีผม");
@@ -70,6 +67,21 @@ s_atelier,28,124,5	script	สไมล์	10365,{
 	query_sql "UPDATE `login` SET `user_pass` = '" + .@new_password$ + "' WHERE `userid` = '" + .@id$ + "'";	
 	mes "เรียบร้อยแล้ว โปรดลองเข้า ID ดังกล่าวใหม่อีกที";
 	close;
+	
+	L_FixClientErrors:
+	mes "โปรดระบุ ID ที่ต้องการแก้ตัวละครเด้ง";
+	input .@id$;
+	next;
+	mes "โปรดระบุ Password";
+	input .@password$;
+	next;
+	query_sql ("SELECT `account_id` FROM `login` WHERE `userid`='" + .@id$ + "' AND `user_pass`='" + .@password$ + "'",.@sum);
+	if(.@sum <= 0){
+		mes "ID หรือ Password ไม่ถูกต้อง";
+		close;
+	}
+	query_sql "UPDATE `char` SET `hair_color` = '0', `clothes_color` = '0' WHERE `account_id` = '" + .@sum + "'";	
+	end;
 	
 OnInit:
 	waitingroom "แต่งตัว",0;
