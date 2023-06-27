@@ -1,3 +1,4 @@
+// Open storage
 function	script	TheBoxStorage	{
 	if(getcharid(2) > 0)
 	menu "คลังปกติ",-
@@ -82,6 +83,7 @@ function	script	TheBoxStorage	{
 	
 	return;
 }
+
 // Get 100% based wording from 10000 amount
 function	script	F_PercentBase10000	{
 	.@v = getarg(0,0);
@@ -312,4 +314,46 @@ function	script	IsSellInShop	{
 	freeloop(0);
 	
 	return false;
+}
+
+// For surprised map
+function	script	SurprisedPlayer	{
+	.@rand = rand(10000);
+	
+	if(.@rand <= $surprisedTiredChance){
+		tired = cap_value(tired + $surprisedTiredValue,0,100);
+		RefreshDebuff();
+	}
+	
+	.@rand = rand(10000);
+	
+	if(.@rand <= $surprisedDebuffsChance){
+		sc_start SC_CURSE,600000,10;
+		sc_start SC_SILENCE,600000,10;
+		sc_start SC_CONFUSION,600000,10;
+		sc_start SC_BLIND,600000,10;
+		sc_start SC_DECREASEAGI,600000,10;
+		sc_start SC_HALLUCINATION,600000,10;
+	}
+	
+	.@rand = rand(10000);
+	if(.@rand <= $surprisedDebuffChance)
+	sc_start SC_FREEZE,5000,10;
+	
+	.@rand = rand(10000);
+	if(.@rand <= $surprisedDebuffChance)
+	sc_start SC_STUN,5000,10;
+	
+	.@rand = rand(10000);
+	if(.@rand <= $surprisedDebuffChance)
+	sc_start SC_SLEEP,5000,10;
+	
+	.@rand = rand(10000);
+	
+	if(.@rand <= $surprisedKillableChance){
+		atcommand "@killable";
+		atcommand "@size 2";
+	}
+	
+	return;
 }

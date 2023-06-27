@@ -1,6 +1,28 @@
 -	script	NPCKillEvent	-1,{
 	end;
 	
+OnSurprisedMonsterKilled:
+	if((surprisedRewardCount >= $surprisedRewardPerMap)
+			&& (surprisedMap$ == strcharinfo(3))){
+		dispbottom "รางวัลสำหรับคุณหมดแล้วใน Map นี้โปรดรอ Map ถัดไป";
+		end;
+	}
+	
+	if(surprisedMap$ != strcharinfo(3))
+	surprisedRewardCount = 0;
+
+	.@surprisedRand = rand(10000);
+	
+	dispbottom "คุณฆ่า Monster วุ่นวาย! ต้องสุ่มได้ <= " + $surprisedRewardChance + " คุณสุ่มได้ " + .@surprisedRand;
+	
+	if(.@surprisedRand <= $surprisedRewardChance){
+		GetTheBoxItem(0,(surprisedMapType + 1));
+		surprisedRewardCount++;
+		surprisedMap$ = strcharinfo(3);
+		dispbottom "รางวัลใน Map นี้สำหรับคุณเหลือ " + ($surprisedRewardPerMap - surprisedRewardCount) + " รางวัล";
+	}
+	end;
+	
 OnNPCKillEvent:
 	if(!IsTownMap()
 			&& (strcharinfo(3) != "06guild_01")
@@ -9,6 +31,51 @@ OnNPCKillEvent:
 		
 		if(.@deadMonster[UMOB_MASTERAID] > 0)
 		end;
+		
+		// Macro Detector
+		.@killCountToMacro = (100 * (@stackMacroDetecting + 1));
+		
+		#macroDetector = cap_value(#macroDetector + 1,0,.@killCountToMacro);
+		
+		if((#macroDetector >= .@killCountToMacro)
+				&& !@isMacroDetecting){
+			duplicate_dynamic("ตรวจ MACRO#SELF");
+			
+			specialeffect2 644;
+			
+			addtimer 30000,strnpcinfo(3) + "::OnMacro";
+			
+			announce "โปรดกด NPC ตรวจ Macro ภายใน 30 วินาที ไม่งั้นคุณจะเหนื่อย",bc_self;
+			
+			@isMacroDetecting = 1;
+		}
+		
+		// Surprised Map
+		if(strcharinfo(3) == $surprisedMap$){
+			SurprisedPlayer();
+			
+			if(rand(10000) <= $surprisedChance){
+				getmapxy(.@tempMap$,.@tempX,.@tempY);
+				monster .@tempMap$,.@tempX + rand(-5,5),.@tempY + rand(-5,5),"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled";
+				
+				setunitdata $@mobid[0],UMOB_DYNAMIC,rand(1,5000);
+				setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
+				
+				if(rand(10000) <= $surprisedMonsterSpeedChance)
+				setunitdata $@mobid[0],UMOB_SPEED,10;
+				
+				if(rand(10000) <= $surprised500Chance){
+					setunitdata $@mobid[0],UMOB_MAXHP,500000000;
+					setunitdata $@mobid[0],UMOB_HP,500000000;
+				}
+				else if(rand(10000) <= $surprised50Chance){
+					setunitdata $@mobid[0],UMOB_MAXHP,50000000;
+					setunitdata $@mobid[0],UMOB_HP,50000000;
+				}
+			}
+			
+			end;
+		}
 		
 		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
 		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
@@ -77,24 +144,6 @@ OnNPCKillEvent:
 					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ปรากฎใน Map แล้ว!",bc_map,0xFF6D6D;
 				}
 			}
-		}
-		
-		// Macro Detector
-		.@killCountToMacro = (100 * (@stackMacroDetecting + 1));
-		
-		#macroDetector = cap_value(#macroDetector + 1,0,.@killCountToMacro);
-		
-		if((#macroDetector >= .@killCountToMacro)
-				&& !@isMacroDetecting){
-			duplicate_dynamic("ตรวจ MACRO#SELF");
-			
-			specialeffect2 644;
-			
-			addtimer 30000,strnpcinfo(3) + "::OnMacro";
-			
-			announce "โปรดกด NPC ตรวจ Macro ภายใน 30 วินาที ไม่งั้นคุณจะเหนื่อย",bc_self;
-			
-			@isMacroDetecting = 1;
 		}
 		
 		if(.@monsterLevel >= BaseLevel)
