@@ -56,7 +56,7 @@ OnNPCKillEvent:
 			
 			if(rand(10000) <= $surprisedChance){
 				getmapxy(.@tempMap$,.@tempX,.@tempY);
-				monster .@tempMap$,.@tempX + rand(-5,5),.@tempY + rand(-5,5),"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled";
+				monster .@tempMap$,.@tempX + rand(-5,5),.@tempY + rand(-5,5),"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled",2;
 				
 				setunitdata $@mobid[0],UMOB_DYNAMIC,rand(1,5000);
 				setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;

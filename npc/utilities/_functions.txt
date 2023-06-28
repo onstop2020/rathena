@@ -333,7 +333,7 @@ function	script	SurprisedPlayer	{
 		sc_start SC_CONFUSION,600000,10;
 		sc_start SC_BLIND,600000,10;
 		sc_start SC_DECREASEAGI,600000,10;
-		sc_start SC_HALLUCINATION,600000,10;
+		sc_start SC_STOMACHACHE,600000,10;
 	}
 	
 	.@rand = rand(10000);
