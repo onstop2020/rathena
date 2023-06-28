@@ -1636,55 +1636,55 @@ OnInit:
 // --------------------------------------------------
 //	Duplicates:
 // --------------------------------------------------
-prt_in,72,135,3	duplicate(Warper)	วาร์ป#hotel1	10007
-prt_in,237,129,1	duplicate(Warper)	วาร์ป#hotel2	10007
-prt_church,113,110,3	duplicate(Warper)	วาร์ป#church	10007
-alb2trea,57,70,6	duplicate(Warper)	วาร์ป#tre	10007
-alberta,28,240,4	duplicate(Warper)	วาร์ป#alb	10007
-aldebaran,145,118,4	duplicate(Warper)	วาร์ป#alde	10007
-amatsu,203,87,4	duplicate(Warper)	วาร์ป#ama	10007
-ayothaya,209,169,6	duplicate(Warper)	วาร์ป#ayo	10007
-comodo,194,158,4	duplicate(Warper)	วาร์ป#com	10007
-einbech,59,38,6	duplicate(Warper)	วาร์ป#einbe	10007
-einbroch,69,202,4	duplicate(Warper)	วาร์ป#einbr	10007
-gef_fild10,71,339,4	duplicate(Warper)	วาร์ป#orc	10007
-geffen,124,72,4	duplicate(Warper)	วาร์ป#gef	10007
-glast_01,372,308,4	duplicate(Warper)	วาร์ป#glh	10007
-gonryun,162,122,4	duplicate(Warper)	วาร์ป#gon	10007
-hugel,101,151,4	duplicate(Warper)	วาร์ป#hug	10007
-izlu2dun,110,92,4	duplicate(Warper)	วาร์ป#izd	10007
-izlude,134,150,4	duplicate(Warper)	วาร์ป#izl	10007	//Pre-RE: (132,120)
-jawaii,253,138,4	duplicate(Warper)	วาร์ป#jaw	10007
-lighthalzen,162,102,4	duplicate(Warper)	วาร์ป#lhz	10007
-louyang,208,103,6	duplicate(Warper)	วาร์ป#lou	10007
-manuk,274,146,6	duplicate(Warper)	วาร์ป#man	10007
-mid_camp,216,288,4	duplicate(Warper)	วาร์ป#mid	10007
-mjolnir_02,85,364,4	duplicate(Warper)	วาร์ป#mjo	10007
-moc_ruins,64,164,4	duplicate(Warper)	วาร์ป#moc	10007
-morocc,159,97,4	duplicate(Warper)	วาร์ป#mor	10007
-moscovia,229,191,4	duplicate(Warper)	วาร์ป#mos	10007
-nameless_n,259,213,4	duplicate(Warper)	วาร์ป#nam	10007
-niflheim,205,179,4	duplicate(Warper)	วาร์ป#nif	10007
-pay_arche,42,134,4	duplicate(Warper)	วาร์ป#arc	10007
-payon,182,108,4	duplicate(Warper)	วาร์ป#pay	10007
-prontera,163,200,4	duplicate(Warper)	วาร์ป#prt	10007
-prt_fild05,279,223,6	duplicate(Warper)	วาร์ป#cul	10007
-rachel,135,116,4	duplicate(Warper)	วาร์ป#rac	10007
-splendide,205,153,4	duplicate(Warper)	วาร์ป#spl	10007
-thor_camp,249,76,4	duplicate(Warper)	วาร์ป#thor	10007
-umbala,106,150,3	duplicate(Warper)	วาร์ป#umb	10007
-veins,214,123,4	duplicate(Warper)	วาร์ป#ve	10007
-xmas,150,136,6	duplicate(Warper)	วาร์ป#xmas	10007
-yuno,162,47,4	duplicate(Warper)	วาร์ป#yuno	10007
+prt_in,72,135,3	duplicate(Warper)	วาร์ป#hotel1	696
+prt_in,237,129,1	duplicate(Warper)	วาร์ป#hotel2	696
+prt_church,113,110,3	duplicate(Warper)	วาร์ป#church	696
+alb2trea,57,70,6	duplicate(Warper)	วาร์ป#tre	696
+alberta,28,240,4	duplicate(Warper)	วาร์ป#alb	696
+aldebaran,145,118,4	duplicate(Warper)	วาร์ป#alde	696
+amatsu,203,87,4	duplicate(Warper)	วาร์ป#ama	696
+ayothaya,209,169,6	duplicate(Warper)	วาร์ป#ayo	696
+comodo,194,158,4	duplicate(Warper)	วาร์ป#com	696
+einbech,59,38,6	duplicate(Warper)	วาร์ป#einbe	696
+einbroch,69,202,4	duplicate(Warper)	วาร์ป#einbr	696
+gef_fild10,71,339,4	duplicate(Warper)	วาร์ป#orc	696
+geffen,124,72,4	duplicate(Warper)	วาร์ป#gef	696
+glast_01,372,308,4	duplicate(Warper)	วาร์ป#glh	696
+gonryun,162,122,4	duplicate(Warper)	วาร์ป#gon	696
+hugel,101,151,4	duplicate(Warper)	วาร์ป#hug	696
+izlu2dun,110,92,4	duplicate(Warper)	วาร์ป#izd	696
+izlude,134,150,4	duplicate(Warper)	วาร์ป#izl	696	//Pre-RE: (132,120)
+jawaii,253,138,4	duplicate(Warper)	วาร์ป#jaw	696
+lighthalzen,162,102,4	duplicate(Warper)	วาร์ป#lhz	696
+louyang,208,103,6	duplicate(Warper)	วาร์ป#lou	696
+manuk,274,146,6	duplicate(Warper)	วาร์ป#man	696
+mid_camp,216,288,4	duplicate(Warper)	วาร์ป#mid	696
+mjolnir_02,85,364,4	duplicate(Warper)	วาร์ป#mjo	696
+moc_ruins,64,164,4	duplicate(Warper)	วาร์ป#moc	696
+morocc,159,97,4	duplicate(Warper)	วาร์ป#mor	696
+moscovia,229,191,4	duplicate(Warper)	วาร์ป#mos	696
+nameless_n,259,213,4	duplicate(Warper)	วาร์ป#nam	696
+niflheim,205,179,4	duplicate(Warper)	วาร์ป#nif	696
+pay_arche,42,134,4	duplicate(Warper)	วาร์ป#arc	696
+payon,182,108,4	duplicate(Warper)	วาร์ป#pay	696
+prontera,157,198,4	duplicate(Warper)	วาร์ป#prt	696
+prt_fild05,279,223,6	duplicate(Warper)	วาร์ป#cul	696
+rachel,135,116,4	duplicate(Warper)	วาร์ป#rac	696
+splendide,205,153,4	duplicate(Warper)	วาร์ป#spl	696
+thor_camp,249,76,4	duplicate(Warper)	วาร์ป#thor	696
+umbala,106,150,3	duplicate(Warper)	วาร์ป#umb	696
+veins,214,123,4	duplicate(Warper)	วาร์ป#ve	696
+xmas,150,136,6	duplicate(Warper)	วาร์ป#xmas	696
+yuno,162,47,4	duplicate(Warper)	วาร์ป#yuno	696
 
 // --------------------------------------------------
 //	Duplicates (Renewal):
 // --------------------------------------------------
-brasilis,201,222,4	duplicate(Warper)	วาร์ป#bra	10007
-dewata,204,186,6	duplicate(Warper)	วาร์ป#dew	10007
-dicastes01,194,194,6	duplicate(Warper)	วาร์ป#dic	10007
-ecl_in01,51,60,4	duplicate(Warper)	วาร์ป#ecl	10007
-lasagna,196,187,4	duplicate(Warper)	วาร์ป#las	10007
-malangdo,134,117,6	duplicate(Warper)	วาร์ป#mal	10007
-malaya,231,204,4	duplicate(Warper)	วาร์ป#ma	10007
-mora,57,152,4	duplicate(Warper)	วาร์ป#mora	10007
+brasilis,201,222,4	duplicate(Warper)	วาร์ป#bra	696
+dewata,204,186,6	duplicate(Warper)	วาร์ป#dew	696
+dicastes01,194,194,6	duplicate(Warper)	วาร์ป#dic	696
+ecl_in01,51,60,4	duplicate(Warper)	วาร์ป#ecl	696
+lasagna,196,187,4	duplicate(Warper)	วาร์ป#las	696
+malangdo,134,117,6	duplicate(Warper)	วาร์ป#mal	696
+malaya,231,204,4	duplicate(Warper)	วาร์ป#ma	696
+mora,57,152,4	duplicate(Warper)	วาร์ป#mora	696
