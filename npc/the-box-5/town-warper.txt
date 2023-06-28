@@ -61,9 +61,9 @@ prontera,152,193,5	script	Town Warper	10081,{
 	L_Hotel:
 	.@randHotel = rand(0,1);
 	if(.@randHotel == 0)
-	warp "prontera",107,218;
+	warp "prt_in",240,139;
 	else
-	warp "prontera",204,188;
+	warp "prt_in",68,134;
 	end;
 	
 	L_Character:
