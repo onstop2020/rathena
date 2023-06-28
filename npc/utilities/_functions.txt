@@ -353,6 +353,7 @@ function	script	SurprisedPlayer	{
 	if(.@rand <= $surprisedKillableChance){
 		atcommand "@killable";
 		atcommand "@size 2";
+		@isKillable = 1;
 	}
 	
 	return;

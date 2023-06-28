@@ -2,6 +2,12 @@
 	end;
 	
 OnPCDieEvent:
+	if(@isKillable){
+		atcommand "@killable";
+		atcommand "@size 0";
+		@isKillable = 0;
+	}
+
 	if(IsTownMap())
 	dispbottom "คุณตายใน Map ที่ไม่มีโทษใด ๆ";
 	else{
