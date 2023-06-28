@@ -101,5 +101,5 @@ OnInit:
 	end;
 }
 
-prt_church,108,122,5	duplicate(Pray)	ภาวนา#Pray1	10043
-prt_church,90,122,5	duplicate(Pray)	ภาวนา#Pray2	10043
+prt_church,108,122,5	duplicate(Pray)	ภาวนา#Pray1	2035
+prt_church,90,122,5	duplicate(Pray)	ภาวนา#Pray2	2035

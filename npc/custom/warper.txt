@@ -54,7 +54,7 @@ PvpParty:
 	end;
 	
 SetSavePoint:
-	savepoint "prontera",156,191,10,10; // Randomize Save Point
+	atcommand "@save";
 	end;
 
 TheBoxInstances:
@@ -1636,6 +1636,9 @@ OnInit:
 // --------------------------------------------------
 //	Duplicates:
 // --------------------------------------------------
+prt_in,72,135,3	duplicate(Warper)	วาร์ป#hotel1	10007
+prt_in,237,129,1	duplicate(Warper)	วาร์ป#hotel2	10007
+prt_church,113,110,3	duplicate(Warper)	วาร์ป#church	10007
 alb2trea,57,70,6	duplicate(Warper)	วาร์ป#tre	10007
 alberta,28,240,4	duplicate(Warper)	วาร์ป#alb	10007
 aldebaran,145,118,4	duplicate(Warper)	วาร์ป#alde	10007
