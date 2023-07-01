@@ -10,15 +10,79 @@ OnInit:
 -	script	HotelStaff	-1,{
 	mes "ท่านสามารถขึ้นชั้นบน ไปนอนหลับพักผ่อนได้เลย";
 	next;
-	menu "เปลี่ยน Save Point เป็นที่นี่",L_SavePoint;
+	menu "เปลี่ยน Save Point เป็นที่นี่",L_SavePoint
+	,"ซื้อหมอน หายเหนื่อยไวขึ้น +" + $pillowComfort + " (" + callfunc("F_InsertComma",.pillowPrice)+ "z)",L_Pillow
+	,"ซื้อผ้าห่ม หายเหนื่อยไวขึ้น +" + $blanketComfort + " (" + callfunc("F_InsertComma",.blanketPrice)+ "z)",L_Blanket
+	,"ซื้อแอร์พกพา หายเหนื่อยไวขึ้น +" + $portableACComfort + " (" + callfunc("F_InsertComma",.portableACPrice)+ "z)",L_PortableAc
+	;
 	close;
 	
 	L_SavePoint:
 	atcommand "@save";
 	close;
 	
+	L_Pillow:
+	if(pillowAmount > 0){
+		mes "หมอนคุณยังดูใช้งานได้อยู่นะ";
+		close;
+	}
+	if(Zeny >= .pillowPrice){
+		mes "ขอบคุณมาก! ขอให้มีความสุขในการนอนนะ";
+		Zeny = cap_value(Zeny - .pillowPrice,0,INT_MAX);
+		pillowAmount = .amountPerBought;
+		close;
+	}
+	else{
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	
+	L_Blanket:
+	if(blanketAmount > 0){
+		mes "ผ้าห่มคุณยังดูใช้งานได้อยู่นะ";
+		close;
+	}
+	if(Zeny >= .blanketPrice){
+		mes "ขอบคุณมาก! ขอให้มีความสุขในการนอนนะ";
+		Zeny = cap_value(Zeny - .blanketPrice,0,INT_MAX);
+		blanketAmount = .amountPerBought;
+		close;
+	}
+	else{
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	
+	L_PortableAc:
+	if(portableACAmount > 0){
+		mes "แอร์พกพาคุณยังดูใช้งานได้อยู่นะ";
+		close;
+	}
+	if(Zeny >= .portableACPrice){
+		mes "ขอบคุณมาก! ขอให้มีความสุขในการนอนนะ";
+		Zeny = cap_value(Zeny - .portableACPrice,0,INT_MAX);
+		portableACAmount = .amountPerBought;
+		close;
+	}
+	else{
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	
 OnInit:
-	waitingroom "เปลี่ยน Save Point",0;
+	waitingroom "ซื้อเครื่องนอน",0;
+	
+	.pillowPrice = 10000;
+	$pillowComfort = 1;
+	
+	.blanketPrice = 50000;
+	$blanketComfort = 3;
+	
+	.portableACPrice = 100000;
+	$portableACComfort = 5;
+	
+	.amountPerBought = 50;
+	
 	end;
 }
 
@@ -36,6 +100,25 @@ OnSleep:
 	specialeffect2 549;
 	tired = cap_value(tired - 1,0,100);
 	percentheal 1,1;
+	if(pillowAmount > 0){
+		pillowAmount--;
+		tired = cap_value(tired - $pillowComfort,0,100);
+		percentheal $pillowComfort,$pillowComfort;
+		specialeffect2 21; // Pillow
+	}
+	if(blanketAmount > 0){
+		blanketAmount--;
+		tired = cap_value(tired - $blanketComfort,0,100);
+		percentheal $blanketComfort,$blanketComfort;
+		specialeffect2 28; // AC
+	}
+	if(portableACAmount > 0){
+		portableACAmount--;
+		tired = cap_value(tired - $portableACComfort,0,100);
+		percentheal $portableACComfort,$portableACComfort;
+		specialeffect2 796; // Blanket
+	}
+	
 	RefreshDebuff();
 	if((strcharinfo(3) == strnpcinfo(4))
 			&& (tired > 0))

@@ -1,7 +1,7 @@
 prontera,148,195,3	script	ฮุริ	10460,{
 	mes "Map วุ่นวายขณะนี้คือ: " + $surprisedMap$;
 	mes "[วิธีเล่น]";
-	mes "• ^F81717เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedChance) + " ที่ Monster ตัวใหญ่จะเกิด";
+	mes "• เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedChance) + " ที่ Monster ตัวใหญ่จะเกิด";
 	mes "[รางวัล]";
 	mes "• ^3F28FFItem ประเภทที่อยากได้ (โอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + ")^000000 ^11B120(รับได้มากสุด " + $surprisedRewardPerMap + " ครั้ง ต่อ Map)^000000";
 	mes "[โทษภายในห้อง]";
