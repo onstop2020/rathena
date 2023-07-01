@@ -24,6 +24,7 @@ OnInit:
 	L_Pillow:
 	if(pillowAmount > 0){
 		mes "หมอนคุณยังดูใช้งานได้อยู่นะ";
+		mes "• หมอน ยังใช้ได้อีก " + pillowAmount + " รอบ";
 		close;
 	}
 	if(Zeny >= .pillowPrice){
@@ -40,6 +41,7 @@ OnInit:
 	L_Blanket:
 	if(blanketAmount > 0){
 		mes "ผ้าห่มคุณยังดูใช้งานได้อยู่นะ";
+		mes "• ผ้าห่ม ยังใช้ได้อีก " + blanketAmount + " รอบ";
 		close;
 	}
 	if(Zeny >= .blanketPrice){
@@ -56,6 +58,7 @@ OnInit:
 	L_PortableAc:
 	if(portableACAmount > 0){
 		mes "แอร์พกพาคุณยังดูใช้งานได้อยู่นะ";
+		mes "• แอร์พกพา ยังใช้ได้อีก " + portableACAmount + " รอบ";
 		close;
 	}
 	if(Zeny >= .portableACPrice){
