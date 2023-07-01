@@ -103,3 +103,25 @@ OnInit:
 
 prt_church,108,122,5	duplicate(Pray)	ภาวนา#Pray1	2035
 prt_church,90,122,5	duplicate(Pray)	ภาวนา#Pray2	2035
+
+prt_church,0,0,0	script	ChurchEvil	-1,{
+	end;
+	
+OnInit:
+	areamonster strnpcinfo(4),86,127,113,100,"--ja--",1076,5,strnpcinfo(3) + "::OnEvilDead";
+	end;
+
+OnEvilDead:
+	if(tired > 0){
+		specialeffect2 549;
+		tired = cap_value(tired - 3,0,100);
+	}
+	else{
+		announce strcharinfo(0) + " ทำบาปด้วยการแย่งคนอื่นลดค่าเหนื่อย! ส่งผลให้เขาเหนื่อย 100 ทันที!",bc_map;
+		specialeffect2 923;
+		tired = 100;
+	}
+	RefreshDebuff();
+	areamonster strnpcinfo(4),86,127,113,100,"--ja--",1076,1,strnpcinfo(3) + "::OnEvilDead";
+	end;
+}
