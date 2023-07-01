@@ -1,5 +1,18 @@
 prontera,148,195,3	script	ฮุริ	10460,{
 	mes "Map วุ่นวายขณะนี้คือ: " + $surprisedMap$;
+	mes "[วิธีเล่น]";
+	mes "• ^F81717เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedChance) + " ที่ Monster ตัวใหญ่จะเกิด";
+	mes "[รางวัล]";
+	mes "• ^3F28FFItem ประเภทที่อยากได้ (โอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + ")^000000 ^11B120(รับได้มากสุด " + $surprisedRewardPerMap + " ครั้ง ต่อ Map)^000000";
+	mes "[โทษภายในห้อง]";
+	mes "• ^F81717เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedTiredChance) + " เหนื่อย +" + $surprisedTiredValue;
+	mes "• ^F81717เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedDebuffsChance) + " ติด Debuff";
+	mes "• ^F81717เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedMonsterSpeedChance) + " ที่ Monster ตัวใหญ่จะเคลื่อนที่เร็ว";
+	mes "• ^F81717เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprised50Chance) + " ที่ Monster ตัวใหญ่จะ HP 50m";
+	mes "• ^F81717เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprised500Chance) + " ที่ Monster ตัวใหญ่จะ HP 500m";
+	mes "• ^F81717เมื่อกำจัด Monster จะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedKillableChance) + " ที่คุณจะตัวใหญ่และโดนผู้เล่นอื่นโจมตีได้";
+	
+	
 	next;
 	menu "ตั้งค่าประเภทของที่อยากได้" + (surprisedMapType ? (" ^AF25ACคุณอยากได้ (" + .surprisedTypeName$[surprisedMapType] + ")^000000") : ""),L_Setup
 	,"เข้า",L_Enter
@@ -9,14 +22,18 @@ prontera,148,195,3	script	ฮุริ	10460,{
 	L_Setup:
 	mes "เมื่อกำจัด Monster คุณจะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + " ที่จะได้รับ Item ประเภทที่ต้องการ";
 	next;
-	for(.@i = 0; .@i < getarraysize(.surprisedTypeName$); .@i++){
-		.@menu$ += .surprisedTypeName$[.@i]+ ":";
-	}
+	
+	for(.@i = 0; .@i < getarraysize(.surprisedTypeName$); .@i++)
+	.@menu$ += .surprisedTypeName$[.@i]+ ":";
+
 	surprisedMapType = select(.@menu$) - 1;
 	mes "คุณอยากได้ " + .surprisedTypeName$[surprisedMapType];
 	close;
 	
 	L_Enter:
+	if(!surprisedMapType)
+	goto L_Setup;
+
 	SurprisedPlayer();
 	warp $surprisedMap$,0,0;
 	end;
