@@ -75,10 +75,10 @@ OnInit:
 	.pillowPrice = 10000;
 	$pillowComfort = 1;
 	
-	.blanketPrice = 50000;
+	.blanketPrice = 150000;
 	$blanketComfort = 3;
 	
-	.portableACPrice = 100000;
+	.portableACPrice = 500000;
 	$portableACComfort = 5;
 	
 	.amountPerBought = 50;
