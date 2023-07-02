@@ -101,30 +101,32 @@ OnInit:
 	
 OnSleep:
 	specialeffect2 549;
+	.@isTired = tired;
 	tired = cap_value(tired - 1,0,100);
 	percentheal 1,1;
-	if(pillowAmount > 0){
+	if((pillowAmount > 0) && ((tired > 0) || (Hp < MaxHp))){
 		pillowAmount--;
 		tired = cap_value(tired - $pillowComfort,0,100);
 		percentheal $pillowComfort,$pillowComfort;
 		specialeffect2 21; // Pillow
 	}
-	if(blanketAmount > 0){
+	if((blanketAmount > 0) && ((tired > 0) || (Hp < MaxHp))){
 		blanketAmount--;
 		tired = cap_value(tired - $blanketComfort,0,100);
 		percentheal $blanketComfort,$blanketComfort;
 		specialeffect2 28; // AC
 	}
-	if(portableACAmount > 0){
+	if((portableACAmount > 0) && ((tired > 0) || (Hp < MaxHp))){
 		portableACAmount--;
 		tired = cap_value(tired - $portableACComfort,0,100);
 		percentheal $portableACComfort,$portableACComfort;
 		specialeffect2 796; // Blanket
 	}
 	
+	if(.@isTired)
 	RefreshDebuff();
 	if((strcharinfo(3) == strnpcinfo(4))
-			&& (tired > 0))
+			&& ((tired > 0) || (Hp < MaxHp)))
 	addtimer 3000, strnpcinfo(3) + "::OnSleep";
 	else{
 		@isSleeping = 0;
