@@ -1,9 +1,9 @@
 prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	// Setup
-	@monsterLevel = getd("$@traderMonsterLevel" + strcharinfo(3));
+	@monsterLevel = getd("$@traderMLv" + strcharinfo(3));
 	@itemId = getd("$@traderItemId" + strcharinfo(3));
-	@itemAmount = getd("$@traderItemBaseAmount" + strcharinfo(3));
-	@tradeAmount = getd("$@traderTradeAmount" + strcharinfo(3));
+	@itemAmount = getd("$@traderReq" + strcharinfo(3));
+	@tradeAmount = getd("$@traderTraded" + strcharinfo(3));
 	@isReadyToTrade = getd("$@trader" + strcharinfo(3));
 	@tiredAmount = cap_value((BaseLevel > @monsterLevel) ? (BaseLevel - @monsterLevel) : (@monsterLevel - BaseLevel),1,100);
 	
@@ -52,7 +52,7 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	close;
 	
 	L_Calculate:
-	@tradeAmount = getd("$@traderTradeAmount" + strcharinfo(3));
+	@tradeAmount = getd("$@traderTraded" + strcharinfo(3));
 	
 	if(@itemAmount == 1)
 	.@sumAmount = 1;
@@ -102,8 +102,8 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 		mes "เรียบร้อยแล้ว";
 		delitem @itemId,.@amount;
 		GetTheBoxItem(0,getarg(1,0));
-		set getd("$@traderTradeAmount" + strcharinfo(3)),@tradeAmount + 1;
-		if(getd("$@traderTradeAmount" + strcharinfo(3)) >= .maxTradeAmount)
+		set getd("$@traderTraded" + strcharinfo(3)),@tradeAmount + 1;
+		if(getd("$@traderTraded" + strcharinfo(3)) >= .maxTradeAmount)
 		set getd("$@traderFull" + strcharinfo(3)),1;
 		tired = cap_value(tired + @tiredAmount,0,100);
 		RefreshDebuff();

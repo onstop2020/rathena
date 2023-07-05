@@ -120,9 +120,9 @@ OnNPCKillEvent:
 			
 			if(!IsSellInShop(.@monsterDropItemId)){
 				set getd("$@traderItemId" + strcharinfo(3)),.@monsterDropItemId;
-				set getd("$@traderItemBaseAmount" + strcharinfo(3)),.@monsterDropItemRate;
-				set getd("$@traderTradeAmount" + strcharinfo(3)),0;
-				set getd("$@traderMonsterLevel" + strcharinfo(3)),.@monsterLevel;
+				set getd("$@traderReq" + strcharinfo(3)),.@monsterDropItemRate;
+				set getd("$@traderTraded" + strcharinfo(3)),0;
+				set getd("$@traderMLv" + strcharinfo(3)),.@monsterLevel;
 				set getd("$@traderMonsterId" + strcharinfo(3)),killedrid;
 				// Restart trading
 				if(getd("$@traderFull" + strcharinfo(3))){
