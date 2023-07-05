@@ -84,8 +84,7 @@ OnNPCKillEvent:
 		// Random chance to spawn (If not spawn yet)
 		.@isTraderHad = getd("$@trader" + strcharinfo(3));
 		.@isTraderFull = getd("$@traderFull" + strcharinfo(3));
-		.@itemAmount = getd("$@traderItemBaseAmount" + strcharinfo(3));
-		if((!.@isTraderHad || .@isTraderFull || !.@itemAmount)
+		if((!.@isTraderHad || .@isTraderFull)
 				&& (rand(10000) <= .traderSpawnChance)){
 			// Get monster drops
 			getmobdrops(killedrid);
