@@ -70,7 +70,7 @@ OnInit:
 	$surprised500Chance = 500;				// Monster 500m HP chance
 	$surprised50Chance = 1500;				// Monster 50m HP chance
 	
-	$surprisedRewardChance = 500;			// Chance to get reward
+	$surprisedRewardChance = 1500;			// Chance to get reward
 	$surprisedRewardPerMap = 5;				// Reward per map
 	
 	callsub L_RandomMap;
