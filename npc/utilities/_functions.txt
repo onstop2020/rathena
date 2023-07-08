@@ -350,7 +350,8 @@ function	script	SurprisedPlayer	{
 	
 	.@rand = rand(10000);
 	
-	if(.@rand <= $surprisedKillableChance){
+	if(.@rand <= $surprisedKillableChance
+			&& !@isKillable){
 		atcommand "@killable";
 		atcommand "@size 2";
 		@isKillable = 1;
