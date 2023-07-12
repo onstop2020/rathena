@@ -23,6 +23,20 @@ OnInit:
 	end;
 }
 
+prt_in,287,169,3	script	ÅØ§µÙé	87,{
+	menu "¦èÒ",-;
+	if(getpetinfo(PETINFO_ID) > 0){
+		atcommand "@petfriendly 0";
+		atcommand "@pethungry 0";
+	}
+	
+	end;
+	
+OnInit:
+	waitingroom "¦èÒ Pet",0;
+	end;
+}
+
 prt_in,211,173,5	script	àÇ¨ 	920,{
 	if(gethominfo(0) > 0)
 	homevolution;
