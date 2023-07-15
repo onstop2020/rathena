@@ -124,10 +124,10 @@ OnNPCKillEvent:
 				set getd("$@tta" + strcharinfo(3)),0;
 				set getd("$@tml" + strcharinfo(3)),.@monsterLevel;
 				set getd("$@tmi" + strcharinfo(3)),killedrid;
+				set getd("$@tli" + strcharinfo(3)),gettimetick(2);
 				// Restart trading
 				if(getd("$@ttf" + strcharinfo(3))){
 					set getd("$@ttf" + strcharinfo(3)),0;
-					set getd("$@tli" + strcharinfo(3)),0;
 					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ Reset รางวัลแล้ว!",bc_map,0xFF6D6D;
 				}
 				else{

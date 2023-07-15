@@ -35,6 +35,7 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	
 	callsub L_Calculate;
 	
+	mes "เวลาคงเหลือ " + callfunc("GetTimerWording",(.noInteractSeconds - (gettimetick(2) - .@lastInteract)));
 	mes "พ่อค้าหน้าเลือด Lv." + @monsterLv;
 	mes "หากต้องการแลก จะต้องมี " + mesitemlink(@itemId);
 	mes "โอกาส Drop ^11B120" + callfunc("F_PercentBase10000",@itemAmount) + "^000000";
