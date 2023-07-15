@@ -2,14 +2,14 @@
 	end;
 	
 OnSurprisedMonsterKilled:
-	if((surprisedRewardCount >= $surprisedRewardPerMap)
-			&& (surprisedMap$ == strcharinfo(3))){
-		dispbottom "รางวัลสำหรับคุณหมดแล้วใน Map นี้โปรดรอ Map ถัดไป";
-		end;
+	if(surprisedRewardCount >= $surprisedRewardPerMap){
+		if((surprisedCooldown - gettimetick(2)) >= 0){
+			dispbottom "รางวัลสำหรับคุณหมดแล้ว โปรดรอ " + callfunc("GetTimerWording",(surprisedCooldown - gettimetick(2)));
+			end;
+		}
+		else
+		surprisedRewardCount = 0;
 	}
-	
-	if(surprisedMap$ != strcharinfo(3))
-	surprisedRewardCount = 0;
 
 	.@surprisedRand = rand(10000);
 	
@@ -18,7 +18,7 @@ OnSurprisedMonsterKilled:
 	if(.@surprisedRand <= $surprisedRewardChance){
 		GetTheBoxItem(0,(surprisedMapType + 1));
 		surprisedRewardCount++;
-		surprisedMap$ = strcharinfo(3);
+		surprisedCooldown = gettimetick(2) + $surprisedCooldown;
 		dispbottom "รางวัลใน Map นี้สำหรับคุณเหลือ " + ($surprisedRewardPerMap - surprisedRewardCount) + " รางวัล";
 	}
 	end;
