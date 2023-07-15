@@ -82,8 +82,8 @@ OnNPCKillEvent:
 		
 		// Trader
 		// Random chance to spawn (If not spawn yet)
-		.@isTraderHad = getd("$@trader" + strcharinfo(3));
-		.@isTraderFull = getd("$@traderFull" + strcharinfo(3));
+		.@isTraderHad = getd("$@tit" + strcharinfo(3));
+		.@isTraderFull = getd("$@ttf" + strcharinfo(3));
 		if((!.@isTraderHad || .@isTraderFull)
 				&& (rand(10000) <= .traderSpawnChance)){
 			// Get monster drops
@@ -119,24 +119,24 @@ OnNPCKillEvent:
 			.@monsterDropItemRate = cap_value(.@monsterDropitemRates[.@randomDropIndex],1,10000);
 			
 			if(!IsSellInShop(.@monsterDropItemId)){
-				set getd("$@traderItemId" + strcharinfo(3)),.@monsterDropItemId;
-				set getd("$@traderReq" + strcharinfo(3)),.@monsterDropItemRate;
-				set getd("$@traderTraded" + strcharinfo(3)),0;
-				set getd("$@traderMLv" + strcharinfo(3)),.@monsterLevel;
-				set getd("$@traderMonsterId" + strcharinfo(3)),killedrid;
+				set getd("$@tii" + strcharinfo(3)),.@monsterDropItemId;
+				set getd("$@tia" + strcharinfo(3)),.@monsterDropItemRate;
+				set getd("$@tta" + strcharinfo(3)),0;
+				set getd("$@tml" + strcharinfo(3)),.@monsterLevel;
+				set getd("$@tmi" + strcharinfo(3)),killedrid;
 				// Restart trading
-				if(getd("$@traderFull" + strcharinfo(3))){
-					set getd("$@traderFull" + strcharinfo(3)),0;
-					set getd("$@traderLastTalk" + strcharinfo(3)),0;
+				if(getd("$@ttf" + strcharinfo(3))){
+					set getd("$@ttf" + strcharinfo(3)),0;
+					set getd("$@tli" + strcharinfo(3)),0;
 					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ Reset รางวัลแล้ว!",bc_map,0xFF6D6D;
 				}
 				else{
 					// Set as spawned (Disappear when reload scripts)
-					set getd("$@trader" + strcharinfo(3)),1;
+					set getd("$@tit" + strcharinfo(3)),1;
 					// Random position in current map
 					getfreecell strcharinfo(3),.@x,.@y;
-					set getd("$@traderX" + strcharinfo(3)),.@x;
-					set getd("$@traderY" + strcharinfo(3)),.@y;
+					set getd("$@tX" + strcharinfo(3)),.@x;
+					set getd("$@tY" + strcharinfo(3)),.@y;
 					// Spawn now
 					duplicate "พ่อค้าหน้าเลือด#THE_BOX",strcharinfo(3),.@x,.@y;
 					// Mark on minimap

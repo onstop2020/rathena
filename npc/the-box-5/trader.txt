@@ -1,10 +1,10 @@
 prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	// Setup
-	@monsterLv = getd("$@traderMLv" + strcharinfo(3));
-	@itemId = getd("$@traderItemId" + strcharinfo(3));
-	@itemAmount = getd("$@traderReq" + strcharinfo(3));
-	@tradeAmount = getd("$@traderTraded" + strcharinfo(3));
-	@isTradable = getd("$@trader" + strcharinfo(3));
+	@monsterLv = getd("$@tml" + strcharinfo(3));
+	@itemId = getd("$@tii" + strcharinfo(3));
+	@itemAmount = getd("$@tia" + strcharinfo(3));
+	@tradeAmount = getd("$@tta" + strcharinfo(3));
+	@isTradable = getd("$@tit" + strcharinfo(3));
 	@tiredAmount = cap_value((BaseLevel > @monsterLv) ? (BaseLevel - @monsterLv) : (@monsterLv - BaseLevel),1,100);
 	
 	// Prevent cheating
@@ -25,10 +25,10 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	}
 	
 	// Last trade
-	.@lastInteract = getd("$@traderLastTalk" + strcharinfo(3));
+	.@lastInteract = getd("$@tli" + strcharinfo(3));
 	if((.@lastInteract > 0)
 			&& ((gettimetick(2) - .@lastInteract) >= .noInteractSeconds)){
-		set getd("$@traderFull" + strcharinfo(3)),1;
+		set getd("$@ttf" + strcharinfo(3)),1;
 		mes "ไม่มีคนแลกรางวัลนานเกิน โปรดกำจัด Monster ไปเรื่อย ๆ เพื่อ Reset รางวัล";
 		close;
 	}
@@ -38,7 +38,7 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	mes "พ่อค้าหน้าเลือด Lv." + @monsterLv;
 	mes "หากต้องการแลก จะต้องมี " + mesitemlink(@itemId);
 	mes "โอกาส Drop ^11B120" + callfunc("F_PercentBase10000",@itemAmount) + "^000000";
-	mes "Drop จาก ^11B120" + getmonsterinfo(getd("$@traderMonsterId" + strcharinfo(3)),MOB_NAME) + "^000000";
+	mes "Drop จาก ^11B120" + getmonsterinfo(getd("$@tmi" + strcharinfo(3)),MOB_NAME) + "^000000";
 	mes "คุณจะเหนื่อยเพิ่ม ^FF2929" + @tiredAmount + "^000000 แต้ม";
 	
 	next;
@@ -58,7 +58,7 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	close;
 	
 	L_Calculate:
-	@tradeAmount = getd("$@traderTraded" + strcharinfo(3));
+	@tradeAmount = getd("$@tta" + strcharinfo(3));
 	
 	if(@itemAmount == 1)
 	.@sumAmount = 1;
@@ -102,10 +102,10 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 		mes "เรียบร้อยแล้ว";
 		delitem @itemId,.@amount;
 		GetTheBoxItem(0,getarg(1,0));
-		set getd("$@traderLastTalk" + strcharinfo(3)),gettimetick(2);
-		set getd("$@traderTraded" + strcharinfo(3)),@tradeAmount + 1;
-		if(getd("$@traderTraded" + strcharinfo(3)) >= .maxTradeAmount)
-		set getd("$@traderFull" + strcharinfo(3)),1;
+		set getd("$@tli" + strcharinfo(3)),gettimetick(2);
+		set getd("$@tta" + strcharinfo(3)),@tradeAmount + 1;
+		if(getd("$@tta" + strcharinfo(3)) >= .maxTradeAmount)
+		set getd("$@ttf" + strcharinfo(3)),1;
 		tired = cap_value(tired + @tiredAmount,0,100);
 		RefreshDebuff();
 	}
@@ -116,7 +116,7 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	
 OnTouch:
 	if(strcharinfo(3) != "prontera")
-	viewpoint 1,getd("$@traderX" + strcharinfo(3)),getd("$@traderY" + strcharinfo(3)),1,0xFF6D6D;
+	viewpoint 1,getd("$@tX" + strcharinfo(3)),getd("$@tY" + strcharinfo(3)),1,0xFF6D6D;
 	end;
 	
 OnInit:
