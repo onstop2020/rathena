@@ -1,19 +1,26 @@
 prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	// Setup
-	@monsterLevel = getd("$@traderMLv" + strcharinfo(3));
+	@monsterLv = getd("$@traderMLv" + strcharinfo(3));
 	@itemId = getd("$@traderItemId" + strcharinfo(3));
 	@itemAmount = getd("$@traderReq" + strcharinfo(3));
 	@tradeAmount = getd("$@traderTraded" + strcharinfo(3));
-	@isReadyToTrade = getd("$@trader" + strcharinfo(3));
-	@tiredAmount = cap_value((BaseLevel > @monsterLevel) ? (BaseLevel - @monsterLevel) : (@monsterLevel - BaseLevel),1,100);
+	@isTradable = getd("$@trader" + strcharinfo(3));
+	@tiredAmount = cap_value((BaseLevel > @monsterLv) ? (BaseLevel - @monsterLv) : (@monsterLv - BaseLevel),1,100);
 	
 	// Prevent cheating
-	if((@itemId <= 0)
-			|| (@itemAmount <= 0)
+	if(!@itemId
+			|| !@itemAmount
 			|| (@tradeAmount >= .maxTradeAmount)
-			|| !@isReadyToTrade)
+			|| !@isTradable)
 	{
-		mes "รางวัลหมดแล้ว (โปรดกำจัด Monster ไปเรื่อย ๆ จะมีโอกาส Reset รางวัล)";
+		if(!@itemId)
+		mes "ไม่พบ Item ID";
+		else if(!@itemAmount)
+		mes "ไม่พบจำนวน Item";
+		else if(!@isTradable)
+		mes "ไม่สามารถแลกได้ในตอนนี้";
+		else if(@tradeAmount >= .maxTradeAmount)
+		mes "แลกครบแล้วโปรดกำจัด Monster ไปเรื่อย ๆ เพื่อ Reset รางวัล";
 		close;
 	}
 	
@@ -22,13 +29,13 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	if((.@lastInteract > 0)
 			&& ((gettimetick(2) - .@lastInteract) >= .noInteractSeconds)){
 		set getd("$@traderFull" + strcharinfo(3)),1;
-		mes "เนื่องจาก ไม่มีคนแลกรางวัลกับข้า นานเกินไป โปรดกำจัด Monster ไปเรื่อย ๆ เสียก่อน";
+		mes "ไม่มีคนแลกรางวัลนานเกิน โปรดกำจัด Monster ไปเรื่อย ๆ เพื่อ Reset รางวัล";
 		close;
 	}
 	
 	callsub L_Calculate;
 	
-	mes "พ่อค้าหน้าเลือด Lv." + @monsterLevel;
+	mes "พ่อค้าหน้าเลือด Lv." + @monsterLv;
 	mes "หากต้องการแลก จะต้องมี " + mesitemlink(@itemId);
 	mes "โอกาส Drop ^11B120" + callfunc("F_PercentBase10000",@itemAmount) + "^000000";
 	mes "Drop จาก ^11B120" + getmonsterinfo(getd("$@traderMonsterId" + strcharinfo(3)),MOB_NAME) + "^000000";
@@ -56,19 +63,13 @@ prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
 	if(@itemAmount == 1)
 	.@sumAmount = 1;
 	else
-	.@sumAmount = (cap_value(.baseAmount - @monsterLevel,1,.baseAmount)) + (@itemAmount / .baseDivider);
+	.@sumAmount = (cap_value(.baseAmount - @monsterLv,1,.baseAmount)) + (@itemAmount / .baseDivider);
 	
 	@weaponTradeAmount = (.@sumAmount * .weaponMultiplier);
 	@equipmentTradeAmount = (.@sumAmount * .equipmentMultiplier);
 	@costumeTradeAmount = (.@sumAmount * .costumeMultiplier);
 	@cardTradeAmount = (.@sumAmount * .cardMultiplier);
 	@enchantmentTradeAmount = (.@sumAmount * .enchantmentMultiplier);
-	/*.@multiplier = @tradeAmount + 1;
-	@weaponTradeAmount = (@itemAmount * .weaponMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
-	@equipmentTradeAmount = (@itemAmount * .equipmentMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
-	@costumeTradeAmount = (@itemAmount * .costumeMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
-	@cardTradeAmount = (@itemAmount * .cardMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);
-	@enchantmentTradeAmount = (@itemAmount * .enchantmentMultiplier) * cap_value(.@multiplier,1,.maxTradeAmount);*/
 	return;
 	
 	L_Weapon:
