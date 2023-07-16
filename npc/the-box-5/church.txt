@@ -2,17 +2,7 @@ prt_church,100,124,5	script	ผู้ให้พร	10369,{
 	// GM interaction
 	if(getgmlevel())
 	menu "ใช้งาน NPC",-,"เปิดการให้พร",L_Active,"ปิดการให้พร",L_Deactive;
-	// Normal interaction
-	mes "สวัสดี.. ข้ามีพรจะมอบให้ท่าน แต่ข้าไม่ได้ให้ฟรี ๆ หรอกนะ...";
-	next;
-	mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า "
-	+ callfunc("F_InsertComma",.pointRequired);
-	mes "• ^11B120ท่านจะได้รับ Increase AGI เป็นเวลา 1 วัน^000000";
-	mes "• ^11B120ท่านจะได้รับ Blessing เป็นเวลา 1 วัน^000000";
-	mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
-	next;
 	if($isAB >= 2){
-		mes "ท่านได้รับพร จากผู้ให้พร..";
 		sc_start SC_INCREASEAGI,86400000,10;
 		sc_start SC_BLESSING,86400000,10;
 		sc_start SC_ANGELUS,86400000,10;
@@ -21,11 +11,16 @@ prt_church,100,124,5	script	ผู้ให้พร	10369,{
 		sc_start SC_SUFFRAGIUM,86400000,3;
 		sc_start SC_MAGNIFICAT,86400000,5;
 		sc_start SC_GLORIA,86400000,5;
+		end;
 	}
 	else{
-		mes "โปรดเพิ่ม <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> ให้มากกว่า " + callfunc("F_InsertComma",.pointRequired);
+		mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า " + callfunc("F_InsertComma",.pointRequired);
+		mes "• ^11B120ท่านจะได้รับ Increase AGI เป็นเวลา 1 วัน^000000";
+		mes "• ^11B120ท่านจะได้รับ Blessing เป็นเวลา 1 วัน^000000";
+		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
+		close;
 	}
-	close;
+	end;
 	
 	L_Active:
 	input .@i;
@@ -59,18 +54,14 @@ prontera,238,313,3	duplicate(ChurchHint)	ป้าย#ChurchHint2	837
 -	script	Pray	-1,{
 	if(@isPraying)
 	end;
-	
-	mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า "
-	+ callfunc("F_InsertComma",.pointRequired);
-	mes "• ^11B120ท่านจะสามารถ ภาวนา ได้ (เพิ่ม Combo)^000000";
-	mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
-	next;
-	if($isAB >= 1)
-	menu "ภาวนา (เพิ่ม Combo)",-;
-	else{
-		mes "โปรดเพิ่ม <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> ให้มากกว่า " + callfunc("F_InsertComma",.pointRequired);
+
+	if($isAB < 1){
+		mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า " + callfunc("F_InsertComma",.pointRequired);
+		mes "• ^11B120ท่านจะสามารถ ภาวนา ได้ (เพิ่ม Combo)^000000";
+		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
 		close;
 	}
+	
 	@isPraying = 1;
 	deltimer strnpcinfo(3) + "::OnPray";
 	addtimer 3000, strnpcinfo(3) + "::OnPray";
@@ -103,25 +94,3 @@ OnInit:
 
 prt_church,108,122,5	duplicate(Pray)	ภาวนา#Pray1	2035
 prt_church,90,122,5	duplicate(Pray)	ภาวนา#Pray2	2035
-
-prt_church,0,0,0	script	ChurchEvil	-1,{
-	end;
-	
-OnInit:
-	areamonster strnpcinfo(4),86,127,113,100,"--ja--",1076,5,strnpcinfo(3) + "::OnEvilDead";
-	end;
-
-OnEvilDead:
-	if(tired > 0){
-		specialeffect2 549;
-		tired = cap_value(tired - 3,0,100);
-	}
-	else{
-		announce strcharinfo(0) + " ทำบาปด้วยการแย่งคนอื่นลดค่าเหนื่อย! ส่งผลให้เขาเหนื่อย 100 ทันที!",bc_map;
-		specialeffect2 923;
-		tired = 100;
-	}
-	RefreshDebuff();
-	areamonster strnpcinfo(4),86,127,113,100,"--ja--",1076,1,strnpcinfo(3) + "::OnEvilDead";
-	end;
-}

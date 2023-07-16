@@ -135,3 +135,7 @@ OnInit:
 	.clearDebuffPrice = 10000;
 	end;
 }
+
+prt_in,60,143,5	duplicate(แพทย์)	แพทย์#HotelDoctor1	10458
+prt_in,237,136,5	duplicate(แพทย์)	แพทย์#HotelDoctor2	10458
+prt_church,113,106,3	duplicate(แพทย์)	แพทย์#HotelChurch	10458

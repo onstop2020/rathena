@@ -92,8 +92,7 @@ OnInit:
 -	script	Bed	-1,{
 	if(@isSleeping)
 	end;
-	
-	menu "นอนหลับ (รักษาอาการเหนื่อยล้า)",-;
+
 	@isSleeping = 1;
 	deltimer strnpcinfo(3) + "::OnSleep";
 	addtimer 3000, strnpcinfo(3) + "::OnSleep";
