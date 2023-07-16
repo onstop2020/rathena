@@ -1,35 +1,103 @@
 s_atelier,28,124,5	script	สไมล์	10365,{
-	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-,"เปลี่ยนชุด Class 3",L_Class3Suit,"เปลี่ยน Password",L_ChangePassword,"แก้ตัวละครเด้ง",L_FixClientErrors;
-	setarray .@Styles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
-	setarray .@Look[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
-	.@s = select(" ~ สีเสื้อ: ~ ทรงผม: ~ สีผม");
-	.@Revert = getlook(.@Look[.@s]);
-	if(.@s==2)
-	.@Style = 1;
+	if(getgmlevel())
+	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-
+	,"เปลี่ยนชุด Class 3",L_Class3Suit
+	,"เปลี่ยน Password",L_ChangePassword
+	,"แก้ตัวละครเด้ง",L_FixClientErrors
+	,"ทดสอบตัวเกม",L_ClientTest;
 	else
-	.@Style = 0;
+	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-
+	,"เปลี่ยนชุด Class 3",L_Class3Suit
+	,"เปลี่ยน Password",L_ChangePassword
+	,"แก้ตัวละครเด้ง",L_FixClientErrors;
+
+	setarray .@maxStyles[1],getbattleflag("max_cloth_color")
+	,getbattleflag("max_hair_style")
+	,getbattleflag("max_hair_color");
+	
+	// Official cloth color for expanded class was 0~3 ?
+	if((Class == 4239)
+			|| (Class == 4240)
+			|| (Class == 4064)
+			)
+	.@maxStyles[1] = .@maxStyles[1] - 1;
+	
+	setarray .@lookNamings$[0],"สีเสื้อ"
+	,"ทรงผม"
+	,"สีผม";
+	
+	setarray .@looks[1],LOOK_CLOTHES_COLOR
+	,LOOK_HAIR
+	,LOOK_HAIR_COLOR;
+	
+	.@selectedLook = select(" ~ สีเสื้อ: ~ ทรงผม: ~ สีผม");
+	.@selectedLook$ = .@lookNamings$[.@selectedLook - 1];
+	.@revertStyle = getlook(.@looks[.@selectedLook]);
+	
+	// Hairstyle cannot be 0 (With official data)
+	if(.@selectedLook == 2)
+	.@style = 1;
+	else
+	.@style = 0;
+
+	// Test
+	if(clientTest){
+		setarray .@jobs[0],0,1,2,3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,19,20,23,24,25,4001,4002,4003,4004,4005,4006,4007,4008,4009,4010,4011,4012,4013,4015,4016,4017,4018,4019,4020,4021,4023,4024,4025,4026,4027,4028,4029,4030,4031,4032,4033,4034,4035,4036,4037,4038,4039,4040,4041,4042,4043,4044,4045,4046,4047,4048,4049,4054,4055,4056,4057,4058,4059,4060,4061,4062,4063,4064,4065,4066,4067,4068,4069,4070,4071,4072,4073,4074,4075,4076,4077,4078,4079,4096,4097,4098,4099,4100,4101,4102,4103,4104,4105,4106,4107,4108,4190,4191,22,27,4211,4212,4239,4240,4241,4242,4243,4244,4252,4253,4254,4255,4256,4257,4258,4259,4260,4261,4262,4263,4264,4278,4279,4280,4281,4302,4303,4304,4305,4306,4307,4308,4316;
+		
+		freeloop(1);
+		
+		.@maxLoop = .@maxStyles[.@selectedLook] + 1;
+		.@maxJob = getarraysize(.@jobs);
+		
+		for(.@job = 0; .@job < .@maxJob; .@job++){
+			atcommand "@job " + .@jobs[.@job];
+			
+			for(.@i = .@style; .@i < .@maxLoop; .@i++){
+				message strcharinfo(0),.@selectedLook$ + "#" + .@i;
+				
+				setlook .@looks[.@selectedLook],.@i;
+			}
+		}
+		
+		freeloop(0);
+		
+		end;
+	}
+	
+	// Normal
 	while(1) {
-		setlook .@Look[.@s], .@Style;
-		message strcharinfo(0),"สไตล์ที่ #"+.@Style+"";
+		setlook .@looks[.@selectedLook],.@style;
+		
+		message strcharinfo(0),.@selectedLook$ + "#" + .@style;
+		
 		.@menu$ = " ~ ต่อไป: ~ ก่อนหน้า : ~ ข้ามไปที่...: ~ กลับสู่แบบเดิม";
-		switch(select(.@menu$)) {
+		switch(select(.@menu$)){
 		case 1:
-			.@Style = ((.@Style != .@Styles[.@s]) ? .@Style+1 : 0);
-			if(.@s==2&&.@Style <= 0)
-			.@Style = 1;
+			.@style = (.@style != .@maxStyles[.@selectedLook])
+			? (.@style + 1)
+			: (((.@selectedLook == 2) && (.@style <= 0)) ? 1 : 0);
 			break;
 		case 2:
-			.@Style = (((.@s==2&&.@Style != 1) || (.@s!=2&&.@Style != 0)) ? .@Style-1 : .@Styles[.@s]);
+			.@style = ((.@selectedLook == 2) && (.@style > 1))
+			? (.@style - 1)
+			: .@maxStyles[.@selectedLook];
 			break;
 		case 3:
-			message strcharinfo(0),"เลือกสไตล์ระหว่าง 0 - "+.@Styles[.@s]+"";
-			input .@Style,0,.@Styles[.@s];
-			if (!.@Style)
-			.@Style = rand(0,.@Styles[.@s]);
+			message strcharinfo(0),"เลือกสไตล์ระหว่าง 0 - " + .@maxStyles[.@selectedLook];
+			
+			input .@style,0,.@maxStyles[.@selectedLook];
+			
+			if((.@selectedLook == 2)
+					&& (.@style <= 0))
+			.@style = 1;
+			
+			if (!.@style)
+			.@style = rand(0,.@maxStyles[.@selectedLook]);
+			
 			break;
 		case 4:
-			.@Style = .@Revert;
-			setlook .@Look[.@s], .@Revert;
+			.@style = .@revertStyle;
+			setlook .@looks[.@selectedLook],.@revertStyle;
 			break;
 		}
 	}
@@ -39,7 +107,7 @@ s_atelier,28,124,5	script	สไมล์	10365,{
 			|| (Class == 4191)
 			|| (Class == 4239)
 			|| (Class == 4240)
-			|| (eaclass()&EAJL_FOURTH))
+			|| (eaclass() & EAJL_FOURTH))
 	end;
 	menu "แบบที่ 1",-,"แบบที่ 2",L_1;
 	atcommand "@bodystyle 0";
@@ -81,6 +149,11 @@ s_atelier,28,124,5	script	สไมล์	10365,{
 		close;
 	}
 	query_sql "UPDATE `char` SET `hair_color` = '0', `clothes_color` = '0' WHERE `account_id` = '" + .@sum + "'";	
+	end;
+	
+	L_ClientTest:
+	clientTest = !clientTest;
+	message strcharinfo(0),"ทดสอบตัวเกม: " + (clientTest ? "เปิด" : "ปิด");
 	end;
 	
 OnInit:
