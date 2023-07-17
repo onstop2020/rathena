@@ -75,7 +75,7 @@ s_atelier,28,124,5	script	 ‰¡≈Ï	10365,{
 		case 1:
 			.@style = (.@style != .@maxStyles[.@selectedLook])
 			? (.@style + 1)
-			: (((.@selectedLook == 2) && (.@style <= 0)) ? 1 : 0);
+			: (((.@selectedLook == 2) && ((.@style <= 0) || (.@style >= .@maxStyles[.@selectedLook]))) ? 1 : 0);
 			break;
 		case 2:
 			.@style = ((.@selectedLook == 2) && (.@style > 1))
