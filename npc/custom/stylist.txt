@@ -148,7 +148,7 @@ s_atelier,28,124,5	script	สไมล์	10365,{
 		mes "ID หรือ Password ไม่ถูกต้อง";
 		close;
 	}
-	query_sql "UPDATE `char` SET `hair_color` = '0', `clothes_color` = '0' WHERE `account_id` = '" + .@sum + "'";	
+	query_sql "UPDATE `char` SET `hair` = '1', `hair_color` = '0' , `clothes_color` = '0' WHERE `account_id` = '" + .@sum + "'";	
 	end;
 	
 	L_ClientTest:
