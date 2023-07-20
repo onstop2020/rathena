@@ -119,7 +119,7 @@ OnCleanUp:
 	
 	end;
 	
-OnTimer15000:
+OnTimer3000:
 	callsub L_Respawn;
 	end;
 	
@@ -146,7 +146,7 @@ OnBossDead:
 			$theBox5HeroesLastShot$ = strcharinfo(0);
 		}
 		
-		announce "MvP ทุกตัวถูกกำจัด!! ระดับ " + $theBox5HeroesRank + " จะมาภายใน 15 วินาที",bc_map;
+		announce "MvP ทุกตัวถูกกำจัด!! ระดับ " + $theBox5HeroesRank + " จะมาภายใน 3 วินาที",bc_map;
 		
 		callsub L_WaitingRoom,1;
 		
