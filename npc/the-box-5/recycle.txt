@@ -1,0 +1,194 @@
+prontera,152,198,3	script	ลากูน	586,{
+	mes "คุณมี ^BA17F8" + F_InsertComma(dmPoints) + " แต้ม^000000";
+	mes "ต้องการบดของที่ไม่ได้ใช้แล้วหรือไม่?";
+	mes "• ^F81717จะบด Item ทุกชิ้นในกระเป๋าตามประเภทที่เลือก^000000";
+	mes "• ^3629FFจะไม่บด Item ที่สวมใส่อยู่^000000";
+	mes "• ^3629FFจะไม่บด Item ที่ Favourite อยู่^000000";
+	for(.@i = 0; .@i < .noSellSize; .@i++)
+	mes "• ^3629FFจะไม่บด " + getitemname(.noSells[.@i]) + "^000000";
+	next;
+	menu "ไม่ทำอะไร",-
+	,"---",-
+	,"บด อาวุธ (ที่มี Random Option) รับ ^BA17F8" + callfunc("F_InsertComma",.weapon) + " แต้ม^000000",L_DismantleWeapon
+	,"บด อุปกรณ์สวมใส่ (ที่มี Random Option) รับ ^BA17F8" + callfunc("F_InsertComma",.equipment) + " แต้ม^000000",L_DismantleEquipment
+	,"บด Shadow Gear (ที่มี Random Option) รับ ^BA17F8" + callfunc("F_InsertComma",.shadowGear) + " แต้ม^000000",L_DismantleCostume
+	,"บด Card รับ ^BA17F8" + callfunc("F_InsertComma",.card) + " แต้ม^000000",L_DismantleCard
+	,"บด Enchantment รับ ^BA17F8" + callfunc("F_InsertComma",.enchantment) + " แต้ม^000000",L_DismantleEnchantment
+	,"บด ทุกประเภท ทีเดียวไปเลย",L_DismantleAll
+	,"---",-
+	,"แลกอาวุธ ใช้ ^BA17F8" + callfunc("F_InsertComma",.weaponPrice) + " แต้ม^000000",L_TradeForWeapon
+	,"แลกอุปกรณ์สวมใส่ ใช้ ^BA17F8" + callfunc("F_InsertComma",.equipmentPrice) + " แต้ม^000000",L_TradeForEquipment
+	,"แลก Costume ใช้ ^BA17F8" + callfunc("F_InsertComma",.costumePrice) + " แต้ม^000000",L_TradeForCostume
+	,"แลก Card ใช้ ^BA17F8" + callfunc("F_InsertComma",.cardPrice) + " แต้ม^000000",L_TradeForCard
+	,"แลก Enchantment ใช้ ^BA17F8" + callfunc("F_InsertComma",.enchantmentPrice) + " แต้ม^000000",L_TradeForEnchantment
+	;
+	close;
+
+	L_DismantleWeapon:
+	.@dismantleType = 1;
+	goto L_Dismantle;
+	L_DismantleEquipment:
+	.@dismantleType = 2;
+	goto L_Dismantle;
+	L_DismantleCostume:
+	.@dismantleType = 3;
+	goto L_Dismantle;
+	L_DismantleCard:
+	.@dismantleType = 4;
+	goto L_Dismantle;
+	L_DismantleEnchantment:
+	.@dismantleType = 5;
+	goto L_Dismantle;
+	L_DismantleAll:
+	.@dismantleType = 0;
+	goto L_Dismantle;
+	
+	L_Dismantle:
+	getinventorylist;
+	
+	freeloop(1);
+	for(.@i = @inventorylist_count - 1; .@i >= 0; .@i--){
+		// Skip equipped or favourite
+		if(@inventorylist_equip[.@i]
+				|| @inventorylist_favorite[.@i])
+		continue;
+		
+		// Skip important items
+		.@isFoundNoSell = 0;
+		for(.@j = 0; .@j < .noSellSize; .@j++)
+		{
+			if(@inventorylist_id[.@i] == .noSells[.@j])
+			{
+				.@isFoundNoSell = 1;
+				break;
+			}	
+		}
+		if(.@isFoundNoSell)
+		continue;
+		
+		.@itemType = getiteminfo(@inventorylist_id[.@i],ITEMINFO_TYPE);
+
+		.@isDel = 0;
+		
+		if(.@itemType){
+			if((.@itemType == IT_WEAPON)
+					&& (@inventorylist_option_id1[.@i] > 0)
+					&& ((.@dismantleType == 0) || (.@dismantleType == 1))){
+				.@isDel = 1;
+				
+				.@sumWeapon += .weapon * @inventorylist_amount[.@i];
+			}
+			else if((.@itemType == IT_ARMOR)
+					&& (@inventorylist_option_id1[.@i] > 0)
+					&& ((.@dismantleType == 0) || (.@dismantleType == 2))){
+				.@isDel = 1;
+				
+				.@sumEquipment += .equipment * @inventorylist_amount[.@i];
+			}
+			else if((.@itemType == IT_SHADOWGEAR)
+					&& (@inventorylist_option_id1[.@i] > 0)
+					&& ((.@dismantleType == 0) || (.@dismantleType == 3))){
+				.@isDel = 1;
+				
+				.@sumShadowGear += .shadowGear * @inventorylist_amount[.@i];
+			}
+			else if(.@itemType == IT_CARD ){
+				.@itemAegisName$ = getiteminfo(@inventorylist_id[.@i],ITEMINFO_AEGISNAME);
+				
+				if(compare(.@itemAegisName$,"_CARD")
+						&& ((.@dismantleType == 0) || (.@dismantleType == 4)))
+				{
+					.@isDel = 1;
+					
+					.@sumCard += .card * @inventorylist_amount[.@i];
+				}
+				else if((.@dismantleType == 0) || (.@dismantleType == 5))
+				{
+					.@isDel = 1;
+					
+					.@sumEnchantment += .enchantment * @inventorylist_amount[.@i];
+				}
+			}
+		}
+		
+		if(.@isDel)
+		delitemidx @inventorylist_idx[.@i],@inventorylist_amount[.@i];
+	}
+	freeloop(0);
+	
+	dmPoints = cap_value(dmPoints + .@sumWeapon + .@sumEquipment + .@sumShadowGear + .@sumCard + .@sumEnchantment,0,INT_MAX);
+
+	if((.@dismantleType == 0) || (.@dismantleType == 1))
+	dispbottom "บด อาวุธ ได้  " + F_InsertComma(.@sumWeapon) + " แต้ม";
+	if((.@dismantleType == 0) || (.@dismantleType == 2))
+	dispbottom "บด อุปกรณ์สวมใส่ ได้ " + F_InsertComma(.@sumEquipment) + " แต้ม";
+	if((.@dismantleType == 0) || (.@dismantleType == 3))
+	dispbottom "บด Shadow Gear ได้ " + F_InsertComma(.@sumShadowGear) + " แต้ม";
+	if((.@dismantleType == 0) || (.@dismantleType == 4))
+	dispbottom "บด Card ได้ " + F_InsertComma(.@sumCard) + " แต้ม";
+	if((.@dismantleType == 0) || (.@dismantleType == 5))
+	dispbottom "บด Enchantment ได้ " + F_InsertComma(.@sumEnchantment) + " แต้ม";
+
+	dispbottom "แต้มของคุณขณะนี้ " + F_InsertComma(dmPoints) + " แต้ม";
+	
+	end;
+	
+	L_TradeForWeapon:
+	if(dmPoints >= .weaponPrice){
+		dmPoints = cap_value(dmPoints - .weaponPrice,0,INT_MAX);
+		GetTheBoxItem(0,1);
+		dispbottom "แต้มของคุณขณะนี้ " + F_InsertComma(dmPoints) + " แต้ม";
+	}
+	close;
+	L_TradeForEquipment:
+	if(dmPoints >= .equipmentPrice){
+		dmPoints = cap_value(dmPoints - .equipmentPrice,0,INT_MAX);
+		GetTheBoxItem(0,2);
+		dispbottom "แต้มของคุณขณะนี้ " + F_InsertComma(dmPoints) + " แต้ม";
+	}
+	close;
+	L_TradeForCostume:
+	if(dmPoints >= .costumePrice){
+		dmPoints = cap_value(dmPoints - .costumePrice,0,INT_MAX);
+		GetTheBoxItem(0,3);
+		dispbottom "แต้มของคุณขณะนี้ " + F_InsertComma(dmPoints) + " แต้ม";
+	}
+	close;
+	L_TradeForCard:
+	if(dmPoints >= .cardPrice){
+		dmPoints = cap_value(dmPoints - .cardPrice,0,INT_MAX);
+		GetTheBoxItem(0,4);
+		dispbottom "แต้มของคุณขณะนี้ " + F_InsertComma(dmPoints) + " แต้ม";
+	}
+	close;
+	L_TradeForEnchantment:
+	if(dmPoints >= .enchantmentPrice){
+		dmPoints = cap_value(dmPoints - .enchantmentPrice,0,INT_MAX);
+		GetTheBoxItem(0,5);
+		dispbottom "แต้มของคุณขณะนี้ " + F_InsertComma(dmPoints) + " แต้ม";
+	}
+	close;
+	
+OnInit:
+	// Important items
+	setarray .noSells,10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007;
+	.noSellSize = getarraysize(.noSells);
+	
+	// Points per dismantle
+	.weapon = 1;
+	.equipment = 1;
+	.shadowGear = 1;
+	.card = 3;
+	.enchantment = 5;
+	
+	// Price per trade
+	.weaponPrice = 95;
+	.equipmentPrice = 50;
+	.costumePrice = 25;
+	.cardPrice = 135;
+	.enchantmentPrice = 250;
+	
+	waitingroom "ย่อยของ",0;
+	
+	end;
+}

@@ -1667,7 +1667,7 @@ nameless_n,259,213,4	duplicate(Warper)	วาร์ป#nam	696
 niflheim,205,179,4	duplicate(Warper)	วาร์ป#nif	696
 pay_arche,42,134,4	duplicate(Warper)	วาร์ป#arc	696
 payon,182,108,4	duplicate(Warper)	วาร์ป#pay	696
-prontera,157,198,4	duplicate(Warper)	วาร์ป#prt	696
+prontera,159,198,5	duplicate(Warper)	วาร์ป#prt	696
 prt_fild05,279,223,6	duplicate(Warper)	วาร์ป#cul	696
 rachel,135,116,4	duplicate(Warper)	วาร์ป#rac	696
 splendide,205,153,4	duplicate(Warper)	วาร์ป#spl	696
