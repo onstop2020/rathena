@@ -63,8 +63,13 @@ prontera,238,313,3	duplicate(ChurchHint)	ป้าย#ChurchHint2	837
 
 -	script	Pray	-1,{
 	if(@isPraying
-			|| (combo >= 100))
-	end;
+			|| (combo >= 100)){
+		sc_end SC_EXPBOOST;
+		sc_start SC_EXPBOOST,86400000,combo;
+		sc_end SC_ITEMBOOST;
+		sc_start SC_ITEMBOOST,86400000,combo;
+		end;
+	}
 
 	if($isAB < 1){
 		mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า " + callfunc("F_InsertComma",.pointRequired);
