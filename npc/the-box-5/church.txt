@@ -3,14 +3,7 @@ prt_church,100,124,5	script	ผู้ให้พร	10369,{
 	if(getgmlevel())
 	menu "ใช้งาน NPC",-,"เปิดการให้พร",L_Active,"ปิดการให้พร",L_Deactive;
 	if($isAB >= 2){
-		sc_start SC_INCREASEAGI,86400000,10;
-		sc_start SC_BLESSING,86400000,10;
-		sc_start SC_ANGELUS,86400000,10;
-		sc_start SC_SLOWPOISON,86400000,4;
-		sc_start SC_IMPOSITIO,86400000,5;
-		sc_start SC_SUFFRAGIUM,86400000,3;
-		sc_start SC_MAGNIFICAT,86400000,5;
-		sc_start SC_GLORIA,86400000,5;
+		callsub L_Buff;
 		end;
 	}
 	else{
@@ -18,10 +11,26 @@ prt_church,100,124,5	script	ผู้ให้พร	10369,{
 		mes "• ^11B120ท่านจะได้รับ Increase AGI เป็นเวลา 1 วัน^000000";
 		mes "• ^11B120ท่านจะได้รับ Blessing เป็นเวลา 1 วัน^000000";
 		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
+		.@price = .basePrice * BaseLevel;
+		menu "ขอจ่ายด้วย " + callfunc("F_InsertComma",.@price) + "z แทน",-;
+		if(Zeny >= .@price){
+			Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+			callsub L_Buff;
+		}
 		close;
 	}
 	end;
 	
+	L_Buff:
+	sc_start SC_INCREASEAGI,86400000,10;
+	sc_start SC_BLESSING,86400000,10;
+	sc_start SC_ANGELUS,86400000,10;
+	sc_start SC_SLOWPOISON,86400000,4;
+	sc_start SC_IMPOSITIO,86400000,5;
+	sc_start SC_SUFFRAGIUM,86400000,3;
+	sc_start SC_MAGNIFICAT,86400000,5;
+	sc_start SC_GLORIA,86400000,5;
+	return;
 	L_Active:
 	input .@i;
 	.@i = cap_value(.@i,0,.maxChurch);
@@ -35,6 +44,7 @@ prt_church,100,124,5	script	ผู้ให้พร	10369,{
 OnInit:
 	.maxChurch = 2;
 	.pointRequired = 5000;
+	.basePrice = 10000;
 	waitingroom "ผู้ให้พร",0;
 	end;
 }
@@ -52,13 +62,20 @@ prontera,233,318,3	duplicate(ChurchHint)	ป้าย#ChurchHint1	837
 prontera,238,313,3	duplicate(ChurchHint)	ป้าย#ChurchHint2	837
 
 -	script	Pray	-1,{
-	if(@isPraying)
+	if(@isPraying
+			|| (combo >= 100))
 	end;
 
 	if($isAB < 1){
 		mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า " + callfunc("F_InsertComma",.pointRequired);
 		mes "• ^11B120ท่านจะสามารถ ภาวนา ได้ (เพิ่ม Combo)^000000";
 		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
+		.@price = .basePrice * BaseLevel;
+		menu "ขอจ่ายด้วย " + callfunc("F_InsertComma",.@price) + "z แทน",-;
+		if(Zeny >= .@price){
+			Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+		}
+		else
 		close;
 	}
 	
@@ -88,6 +105,7 @@ OnPray:
 
 OnInit:
 	.pointRequired = 1500;
+	.basePrice = 1000;
 	waitingroom "ภาวนา",0;
 	end;
 }
