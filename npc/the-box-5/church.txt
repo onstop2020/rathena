@@ -89,9 +89,9 @@ OnPray:
 	percentheal 1,1;
 	combo = cap_value(combo + 1,0,100);
 	sc_end SC_EXPBOOST;
-	sc_start SC_EXPBOOST,1800000,combo;
+	sc_start SC_EXPBOOST,86400000,combo;
 	sc_end SC_ITEMBOOST;
-	sc_start SC_ITEMBOOST,1800000,combo;
+	sc_start SC_ITEMBOOST,86400000,combo;
 	
 	if((strcharinfo(3) == strnpcinfo(4))
 			&& (combo < 100))
