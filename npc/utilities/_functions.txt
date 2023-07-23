@@ -286,6 +286,19 @@ function	script	GainTraitPoints	{
 	return;
 }
 
+// Gaining dismantle points
+function	script	GainDismantlePoints	{
+	.@itemId = 10000008;
+	.@amount = countitem(.@itemId);
+	dmPoints = cap_value(dmPoints + .@amount + 1,0,INT_MAX);
+	delitem .@itemId,.@amount;
+	
+	dispbottom "รับ " + F_InsertComma(.@amount + 1) + " Dismantle Points";
+	dispbottom "ขณะนี้คุณมี " + F_InsertComma(dmPoints) + " Dismantle Points";
+	
+	return;
+}
+
 // Clear macro variables
 function	script	ClearMacro	{
 	@stackMacroDetecting = 0;
