@@ -12,3 +12,4 @@
 
 ACMD_DEF(debuff),
 ACMD_DEF(bd),
+ACMD_DEF(debugbonus),

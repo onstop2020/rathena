@@ -67,3 +67,15 @@ ACMD_FUNC(bd)
 
 	return 0;
 }
+
+ACMD_FUNC(debugbonus)
+{
+	nullpo_retr(-1, sd);
+
+	memset(atcmd_output, '\0', sizeof(atcmd_output));
+
+	sprintf(atcmd_output, "ATK %d%", sd->bonus.atk_rate);
+	clif_displaymessage(fd, atcmd_output);
+
+	return 0;
+}
