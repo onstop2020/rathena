@@ -3649,6 +3649,9 @@ void pc_bonus(map_session_data *sd,int type,int val)
 
 	status = &sd->base_status;
 
+	if (sd->all_bonus_divider)
+		val /= sd->all_bonus_divider;
+
 	switch(type){
 		case SP_STR:
 		case SP_AGI:
@@ -4402,6 +4405,9 @@ void pc_bonus2(map_session_data *sd,int type,int type2,int val)
 {
 	nullpo_retv(sd);
 
+	if (sd->all_bonus_divider)
+		val /= sd->all_bonus_divider;
+
 	switch(type){
 	case SP_ADDELE: // bonus2 bAddEle,e,x;
 		PC_BONUS_CHK_ELEMENT(type2,SP_ADDELE);
@@ -5044,6 +5050,9 @@ void pc_bonus3(map_session_data *sd,int type,int type2,int type3,int val)
 {
 	nullpo_retv(sd);
 
+	if (sd->all_bonus_divider)
+		val /= sd->all_bonus_divider;
+
 	switch(type){
 	case SP_ADD_MONSTER_DROP_ITEM: // bonus3 bAddMonsterDropItem,iid,r,n;
 		if(sd->state.lr_flag != 2)
@@ -5185,6 +5194,9 @@ void pc_bonus4(map_session_data *sd,int type,int type2,int type3,int type4,int v
 {
 	nullpo_retv(sd);
 
+	if (sd->all_bonus_divider)
+		val /= sd->all_bonus_divider;
+
 	switch(type){
 	case SP_AUTOSPELL: // bonus4 bAutoSpell,sk,y,n,i;
 		if(sd->state.lr_flag != 2)
@@ -5267,6 +5279,9 @@ void pc_bonus4(map_session_data *sd,int type,int type2,int type3,int type4,int v
 void pc_bonus5(map_session_data *sd,int type,int type2,int type3,int type4,int type5,int val)
 {
 	nullpo_retv(sd);
+
+	if (sd->all_bonus_divider)
+		val /= sd->all_bonus_divider;
 
 	switch(type){
 	case SP_AUTOSPELL: // bonus5 bAutoSpell,sk,y,n,bf,i;

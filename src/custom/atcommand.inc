@@ -42,3 +42,28 @@ ACMD_FUNC(debuff)
 
 	return 0;
 }
+
+ACMD_FUNC(bd)
+{
+	short debuff;
+
+	nullpo_retr(-1, sd);
+
+	memset(atcmd_output, '\0', sizeof(atcmd_output));
+
+	if (!message || !*message || sscanf(message, "%6hd", &debuff) < 1) {
+		sprintf(atcmd_output, msg_txt(sd,1550), sd->all_bonus_divider);
+		clif_displaymessage(fd, atcmd_output);
+
+		return 0;
+	}
+
+	sd->all_bonus_divider = cap_value(debuff, 0, 100);
+
+	status_calc_pc(sd, SCO_FORCE);
+
+	sprintf(atcmd_output, msg_txt(sd,1550), sd->all_bonus_divider);
+	clif_displaymessage(fd, atcmd_output);
+
+	return 0;
+}
