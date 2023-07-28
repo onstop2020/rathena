@@ -1638,7 +1638,6 @@ OnInit:
 // --------------------------------------------------
 prt_in,72,136,3	duplicate(Warper)	วาร์ป#hotel1	696
 prt_in,237,129,1	duplicate(Warper)	วาร์ป#hotel2	696
-prt_church,113,110,3	duplicate(Warper)	วาร์ป#church	696
 alb2trea,57,70,6	duplicate(Warper)	วาร์ป#tre	696
 alberta,28,240,4	duplicate(Warper)	วาร์ป#alb	696
 aldebaran,145,118,4	duplicate(Warper)	วาร์ป#alde	696

@@ -1,7 +1,10 @@
 prontera,159,193,5	script	แพทย์	10458,{
-	menu "ซ่อมอุปกรณ์สวมใส่ (^BA17F8" + callfunc("F_InsertComma",.repairAllPrice) + "z^000000)",L_RepairAll
-	,"รับการรักษาพิเศษ (^BA17F8" + callfunc("F_InsertComma",.foodBuffsPrice) + "z^000000)",L_FoodBuffs
-	,"รักษา Debuff จากการหมดสติ (^BA17F8" + ((selfCareDebuff > gettimetick(2)) ? (callfunc("F_InsertComma",.clearDebuffPrice * debuff) + "z^000000)") : "ฟรี^000000)"),L_ClearDebuff;
+	menu "รับ Buff ทั่วไป",L_ChurchBuff
+	,"รับ Buff x EXP และ x Drop",L_ChurchBuffExp
+	,"รับ Buff อาหาร (^BA17F8" + callfunc("F_InsertComma",.foodBuffsPrice) + "z^000000)",L_FoodBuffs
+	,"รักษา Debuff จากการหมดสติ (^BA17F8" + ((selfCareDebuff > gettimetick(2)) ? (callfunc("F_InsertComma",.clearDebuffPrice * debuff) + "z^000000)") : "ฟรี^000000)"),L_ClearDebuff
+	,"ซ่อมอุปกรณ์สวมใส่ (^BA17F8" + callfunc("F_InsertComma",.repairAllPrice) + "z^000000)",L_RepairAll
+	;
 	
 	L_RepairAll:
 	menu "ยืนยัน 'ซ่อมอุปกรณ์สวมใส่'",-;
@@ -128,14 +131,122 @@ prontera,159,193,5	script	แพทย์	10458,{
 	close;
 	else
 	end;
+
+	L_ChurchBuff:
+	// GM interaction
+	if(getgmlevel())
+	menu "ใช้งาน NPC",-,"เปิดการให้พร",L_Active,"ปิดการให้พร",L_Deactive;
+	if($isAB >= 2){
+		callsub L_Buff;
+		end;
+	}
+	else{
+		mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า " + callfunc("F_InsertComma",.pointRequired);
+		mes "• ^11B120ท่านจะได้รับ Increase AGI เป็นเวลา 1 วัน^000000";
+		mes "• ^11B120ท่านจะได้รับ Blessing เป็นเวลา 1 วัน^000000";
+		mes "• ^11B120ท่านจะได้รับ Angelus เป็นเวลา 1 วัน^000000";
+		mes "• ^11B120ท่านจะได้รับ Slow Poison เป็นเวลา 1 วัน^000000";
+		mes "• ^11B120ท่านจะได้รับ Impositio เป็นเวลา 1 วัน^000000";
+		mes "• ^11B120ท่านจะได้รับ Suffragium เป็นเวลา 1 วัน^000000";
+		mes "• ^11B120ท่านจะได้รับ Magnificat เป็นเวลา 1 วัน^000000";
+		mes "• ^11B120ท่านจะได้รับ Gloria เป็นเวลา 1 วัน^000000";
+		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
+		.@price = .basePrice * BaseLevel;
+		menu "ขอจ่ายด้วย " + callfunc("F_InsertComma",.@price) + "z แทน",-;
+		if(Zeny >= .@price){
+			Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+			callsub L_Buff;
+		}
+		else
+		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
+		close;
+	}
+	end;
 	
+	L_Buff:
+	sc_start SC_INCREASEAGI,86400000,10;
+	sc_start SC_BLESSING,86400000,10;
+	sc_start SC_ANGELUS,86400000,10;
+	sc_start SC_SLOWPOISON,86400000,4;
+	sc_start SC_IMPOSITIO,86400000,5;
+	sc_start SC_SUFFRAGIUM,86400000,3;
+	sc_start SC_MAGNIFICAT,86400000,5;
+	sc_start SC_GLORIA,86400000,5;
+	return;
+	
+	L_Active:
+	input .@i;
+	.@i = cap_value(.@i,0,.maxChurch);
+	$isAB = .@i;
+	end;
+	
+	L_Deactive:
+	$isAB = 0;
+	end;
+
+	L_ChurchBuffExp:
+	if(@isPraying
+			|| (combo >= 100)){
+		sc_end SC_EXPBOOST;
+		sc_start SC_EXPBOOST,86400000,combo;
+		sc_end SC_ITEMBOOST;
+		sc_start SC_ITEMBOOST,86400000,combo;
+		end;
+	}
+
+	if($isAB < 1){
+		mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า " + callfunc("F_InsertComma",.pointComboRequired);
+		mes "• ^11B120ท่านจะสามารถ ภาวนา ได้ (เพิ่ม x EXP และ x Drop)^000000";
+		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
+		.@price = .baseComboPrice * BaseLevel;
+		menu "ขอจ่ายด้วย " + callfunc("F_InsertComma",.@price) + "z แทน",-;
+		if(Zeny >= .@price)
+		Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+		else{
+			message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
+			
+			close;
+		}
+	}
+	
+	@isPraying = 1;
+	deltimer strnpcinfo(3) + "::OnPray";
+	addtimer 3000, strnpcinfo(3) + "::OnPray";
+	end;
+	
+OnPray:
+	specialeffect2 325;
+	percentheal 1,1;
+	combo = cap_value(combo + 1,0,100);
+	sc_end SC_EXPBOOST;
+	sc_start SC_EXPBOOST,86400000,combo;
+	sc_end SC_ITEMBOOST;
+	sc_start SC_ITEMBOOST,86400000,combo;
+	
+	if((strcharinfo(3) == strnpcinfo(4))
+			&& (combo < 100))
+	addtimer 3000, strnpcinfo(3) + "::OnPray";
+	else{
+		@isPraying = 0;
+		message strcharinfo(0),"คุณได้หยุดภาวนาแล้ว";
+	}
+	
+	end;
+
 OnInit:
 	.foodBuffsPrice = 1000000;
 	.repairAllPrice = 100000;
 	.clearDebuffPrice = 10000;
+	
+	.maxChurch = 2;
+	.pointRequired = 5000;
+	.basePrice = 10000;
+	
+	.pointComboRequired = 1500;
+	.baseComboPrice = 1000;
+	
 	end;
 }
 
 prt_in,60,143,5	duplicate(แพทย์)	แพทย์#HotelDoctor1	10458
 prt_in,237,136,5	duplicate(แพทย์)	แพทย์#HotelDoctor2	10458
-prt_church,113,106,3	duplicate(แพทย์)	แพทย์#HotelChurch	10458

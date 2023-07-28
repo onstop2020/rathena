@@ -44,7 +44,6 @@ prontera,152,193,5	script	Town Warper	10081,{
 	,"ซื้อของใช้จำเป็น (^402DDBของใช้ Skill, ของเริ่มต้น^000000)",L_Mall
 	,"ทดสอบ Damage",L_TrainingGround
 	,"ฟักไข่ Pet และ Homunculus",L_PetHomunculus
-	,"โบสถ์ (^10928Eรับพร^000000)",L_Church
 	;
 	else
 	menu
@@ -54,7 +53,6 @@ prontera,152,193,5	script	Town Warper	10081,{
 	,"ซื้อของใช้จำเป็น (^402DDBของใช้ Skill, ของเริ่มต้น^000000)",L_Mall
 	,"ทดสอบ Damage",L_TrainingGround
 	,"ฟักไข่ Pet และ Homunculus",L_PetHomunculus
-	,"โบสถ์ (^10928Eรับพร^000000)",L_Church
 	;
 	L_BackToCenter:
 	warp "prontera",156,191;
@@ -88,10 +86,6 @@ prontera,152,193,5	script	Town Warper	10081,{
 	warp "prt_in",248,170;
 	end;
 	
-	L_Church:
-	warp "prt_church",100,120;
-	end;
-	
 OnInit:
 	waitingroom "ไปที่ต่าง ๆ ในเมือง",0;
 	end;
@@ -99,7 +93,6 @@ OnInit:
 
 prt_in,72,133,3	duplicate(Town Warper)	Town Warper#1	10081
 prt_in,233,129,3	duplicate(Town Warper)	Town Warper#2	10081
-prt_church,113,114,3	duplicate(Town Warper)	Town Warper#3	10081
 s_atelier,12,110,3	duplicate(Town Warper)	Town Warper#4	10081
 prt_in,81,108,3	duplicate(Town Warper)	Town Warper#5	10081
 prontera,237,62,5	duplicate(Town Warper)	Town Warper#6	10081
