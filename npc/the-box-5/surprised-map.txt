@@ -1,9 +1,21 @@
-prontera,148,195,3	script	ฮุริ	10460,{
-	mes "[วิธีเล่น]";
+force_3-3	mapflag	noloot
+force_3-3	mapflag	noexp
+force_3-3	mapflag	novending
+force_3-3	mapflag	nochat
+force_3-3	mapflag	nowarp
+force_3-3	mapflag	nowarpto
+force_3-3	mapflag	nosave
+force_3-3	mapflag	nobranch
+force_3-3	mapflag	notomb
+
+prontera,153,283,3	script	ฮุริ	10460,{
+	mes "^0B9552--- [วิธีเล่น] ---^000000";
 	mes "• เมื่อกำจัด Monster สุ่ม " + callfunc("F_PercentBase10000",$surprisedChance) + " เกิด Monster ตัวใหญ่";
-	mes "[รางวัล]";
-	mes "• ^3F28FFItem ประเภทที่อยากได้ (โอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + ")^000000";
-	mes "[โทษภายในห้อง]";
+	mes " ";
+	mes "^9D42C0--- [รางวัล] ---^000000";
+	mes "• ^3F28FFItem ประเภทที่อยากได้^000000 (โอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + ") จาก Monster ตัวใหญ่";
+	mes " ";
+	mes "^C04264--- [โทษภายในห้อง] ---^000000";
 	mes "• ^F81717Monster จะไม่ให้ EXP, Item";
 	mes "เมื่อกำจัด Monster";
 	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprisedTiredChance) + " เหนื่อย +" + $surprisedTiredValue;
@@ -86,13 +98,3 @@ OnInit:
 	
 	end;
 }
-
-force_3-3	mapflag	noloot
-force_3-3	mapflag	noexp
-force_3-3	mapflag	novending
-force_3-3	mapflag	nochat
-force_3-3	mapflag	nowarp
-force_3-3	mapflag	nowarpto
-force_3-3	mapflag	nosave
-force_3-3	mapflag	nobranch
-force_3-3	mapflag	notomb

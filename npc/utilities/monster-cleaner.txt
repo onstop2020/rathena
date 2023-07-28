@@ -63,6 +63,6 @@ OnMinute30:
 	killmonsterall "1@infi";
 	killmonsterall "force_3-3";
 	// Special Rooms
-	donpcevent "ห้อง Boss::OnCleanUp";
+	donpcevent "เทรส::OnCleanUp";
 	end;
 }

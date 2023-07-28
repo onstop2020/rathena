@@ -43,8 +43,12 @@ function	script	BossRoomWelcome	{
 	.@rank = getarg(1,0);
 	.@delay = getarg(2,0);
 	
-	mes "โทษภายในห้อง";
+	mes "^0B9552--- [วิธีเล่น] ---^000000";
+	mes "• กำจัด Boss ไปเรื่อย ๆ";
+	mes " ";
+	mes "^C04264--- [โทษภายในห้อง] ---^000000";
 	mes "• ^F81717เป็นห้อง PvP^000000";
+	mes "• ^F81717Teleport ไม่ได้^000000";
 	mes "• ^F81717Debuff " + .@debuff + "%^000000";
 	mes "• ^F81717Monster Rank " + .@rank + "^000000";
 	mes "• ^F81717Cooldown หลังเข้าห้อง " + GetTimerWording(.@delay) + " (ต่อตัวละคร)^000000";
@@ -72,7 +76,7 @@ function	script	BossRoomEnter	{
 	return;
 }
 
-prontera,145,200,3	script	ห้อง Boss	801,{
+prontera,148,283,3	script	เทรส	10386,{
 	menu "ห้องที่ 1 (Rank 3)",L_1
 	,"ห้องที่ 2 (Rank 5)",L_2
 	,"ห้องที่ 3 (Rank 7)",L_3

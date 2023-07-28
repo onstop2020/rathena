@@ -24,7 +24,7 @@ OnPCDieEvent:
 				|| (.@mapName$ == "06guild_01")){
 			if(.@mapName$ == "06guild_01"){
 				announce strcharinfo(0) + " หมดสติ... ผู้เล่นสามารถหมดสติได้อีก " + (4 - $theBox5HeroesDeadCount) + " ครั้ง",bc_map;
-				donpcevent "THE BOX 5 HEROES::OnCleanUp";
+				donpcevent "ฮิมะ::OnCleanUp";
 			}
 			
 			addtimer 1000,strnpcinfo(3) + "::OnWarp";
