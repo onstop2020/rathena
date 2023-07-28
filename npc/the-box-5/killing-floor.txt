@@ -108,7 +108,7 @@ OnBossDead:
 	end;
 	
 OnTimer60000:
-	.@spawnAmount = .monsterAmount - mobcount($surprisedMap$,"");
+	.@spawnAmount = .monsterAmount - mobcount(.mapName$,"");
 	if(.@spawnAmount > 0)
 	callsub L_SpawnMonster,.@spawnAmount;
 
