@@ -24,7 +24,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 	end;
 	
 	L_FoodBuffs:
-	menu "ยืนยัน 'รับการรักษาพิเศษ'",-;
+	menu "ยืนยัน 'รับ Buff อาหาร'",-;
 	
 	if(Zeny < .foodBuffsPrice)
 	{

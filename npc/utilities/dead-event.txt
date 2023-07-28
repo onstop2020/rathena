@@ -21,6 +21,8 @@ OnPCDieEvent:
 				|| (.@mapName$ == "vis_h02")
 				|| (.@mapName$ == "vis_h03")
 				|| (.@mapName$ == "vis_h04")
+				|| (.@mapName$ == "jor_sanct")
+				|| (.@mapName$ == "force_3-3")
 				|| (.@mapName$ == "06guild_01")){
 			if(.@mapName$ == "06guild_01"){
 				announce strcharinfo(0) + " หมดสติ... ผู้เล่นสามารถหมดสติได้อีก " + (4 - $theBox5HeroesDeadCount) + " ครั้ง",bc_map;
