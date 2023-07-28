@@ -118,11 +118,11 @@ OnTimer60000:
 	
 OnInit:
 	.mapName$ = "jor_sanct";
-	.monsterAmount = 25;
+	.monsterAmount = 35;
 
 	.baseKillAmount = 100;
-	.baseDivider = 5;
-	.bossRank = 15;
+	.baseDivider = 7;
+	.bossRank = 25;
 	
 	.enterZenyPrice = 100000;
 	.enterItemId = 10000006;
