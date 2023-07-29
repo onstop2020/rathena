@@ -26,6 +26,14 @@ force_1-3	mapflag	noexp
 force_1-3	mapflag	noloot
 force_1-3	mapflag	nopenalty
 
+force_2-2	mapflag	monster_noteleport
+force_2-2	mapflag	noteleport
+force_2-2	mapflag	nomemo
+force_2-2	mapflag	nosave
+force_2-2	mapflag	noexp
+force_2-2	mapflag	noloot
+force_2-2	mapflag	nopenalty
+
 force_2-3	mapflag	monster_noteleport
 force_2-3	mapflag	noteleport
 force_2-3	mapflag	nomemo
@@ -102,6 +110,7 @@ force_1-2,173,156,5	duplicate(Town Warper)	Town Warper#9	10081
 force_1-3,100,167,5	duplicate(Town Warper)	Town Warper#10	10081
 force_2-3,100,167,5	duplicate(Town Warper)	Town Warper#11	10081
 prontera,155,272,5	duplicate(Town Warper)	Town Warper#12	10081
+force_2-2,175,145,5	duplicate(Town Warper)	Town Warper#13	10081
 
 prontera,234,69,5	script	Warper#D25	10081,{
 	RefreshDebuff(25);
@@ -140,6 +149,16 @@ prontera,240,75,5	script	Warper#D90	10081,{
 	
 OnInit:
 	waitingroom "Zone ทดสอบ Debuff 90%",0;
+	end;
+}
+
+prontera,237,81,5	script	Warper#BD7	10081,{
+	atcommand "@bd 7";
+	warp "force_2-2",175,155;
+	end;
+	
+OnInit:
+	waitingroom "Zone ทดสอบ Bonus หาร 7",0;
 	end;
 }
 

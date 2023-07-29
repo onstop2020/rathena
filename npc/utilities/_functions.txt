@@ -141,6 +141,7 @@ function	script	IsTownMap	{
 	|| (.@mapName$ == "force_1-1")
 	|| (.@mapName$ == "force_1-2")
 	|| (.@mapName$ == "force_1-3")
+	|| (.@mapName$ == "force_2-2")
 	|| (.@mapName$ == "force_2-3")
 	|| (.@mapName$ == "tra_fild")
 	|| (.@mapName$ == "pvp_y_1-1")
