@@ -42,7 +42,7 @@ OnNPCKillEvent:
 			setpcblock PCBLOCK_SKILL,true;
 			setpcblock PCBLOCK_IMMUNE,true;
 			addtimer 3000,strnpcinfo(3) + "::OnMacroStart";
-			announce "อีก 3 วินาทีจะทำการตรวจ Macro..",bc_self;
+			announce "อีก 3 วินาทีจะทำการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
 		}
 		
 		// Surprised Map
@@ -228,7 +228,7 @@ OnMacroStart:
 	macroIdleTimerTarget = 1000 * rand(1,10);
 	atcommand "@monsterignore";
 	addtimer macroIdleTimerTarget,strnpcinfo(3) + "::OnMacro";
-	announce "โปรดอยู่นิ่ง ๆ " + (macroIdleTimerTarget / 1000) + " วินาที..",bc_self;
+	announce "โปรดอยู่นิ่ง ๆ " + (macroIdleTimerTarget / 1000) + " วินาที..",bc_self,0xFF6D6D,FW_BOLD,43;
 	end;
 	
 OnMacro:
@@ -236,12 +236,12 @@ OnMacro:
 	isMacroDetecting = 0;
 	atcommand "@monsterignore";
 	if((checkidle() - macroIdleTimer) < (macroIdleTimerTarget / 1000)){
-		announce "คุณไม่ยอมอยู่นิ่ง ๆ จากการตรวจ Macro..",bc_self;
+		announce "คุณไม่ยอมอยู่นิ่ง ๆ จากการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
 		tired = cap_value(tired + 100,0,100);
 		RefreshDebuff();
 	}
 	else
-	announce "ขอบคุณมาก!",bc_self;
+	announce "ขอบคุณมาก!",bc_self,0xFF6D6D,FW_BOLD,43;
 
 	end;
 	
