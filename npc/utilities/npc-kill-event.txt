@@ -33,19 +33,25 @@ OnNPCKillEvent:
 		end;
 		
 		// Macro Detector
-		macroDetector = cap_value(macroDetector + 1,0,.killAmountMacro);
-		if((macroDetector >= .killAmountMacro)
-				&& !isMacroDetecting){
-			isMacroDetecting = 1;
-			specialeffect2 644;
-			setpcblock PCBLOCK_ATTACK,true;
-			setpcblock PCBLOCK_SKILL,true;
-			setpcblock PCBLOCK_IMMUNE,true;
-			addtimer 3000,strnpcinfo(3) + "::OnMacroStart";
-			announce "อีก 3 วินาทีจะทำการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
+		if(!isMacroDetecting){
+			if(mdt >= max(mdtc,10)){
+				mdtc = rand(10,20);
+				isMacroDetecting = 1;
+				addtimer 3000,strnpcinfo(3) + "::OnMacroStart";
+				announce "อีก 3 วินาทีจะทำการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
+				mdt = 0;
+			}
 		}
-		else
-		addtimer 1,strnpcinfo(3) + "::OnMacroStart2";
+		else if(macroIdleTimer
+				&& mdt){
+			isMacroDetecting = 0;
+			macroIdleTimer = 0;
+			mdt = 0;
+			deltimer strnpcinfo(3) + "::OnMacro";
+			announce "คุณใช้ Skill Teleport ในช่วงเวลาที่ห้ามใช้..",bc_self,0xFF6D6D,FW_BOLD,43;
+			tired = cap_value(tired + 100,0,100);
+			RefreshDebuff();
+		}
 		
 		// Surprised Map
 		if(strcharinfo(3) == $surprisedMap$){
@@ -221,33 +227,17 @@ OnNPCKillEvent:
 
 	end;
 	
-OnMacroStart2:
-	end;
-	
 OnMacroStart:
-	setpcblock PCBLOCK_ATTACK,false;
-	setpcblock PCBLOCK_SKILL,false;
-	setpcblock PCBLOCK_IMMUNE,false;
-	
-	macroIdleTimer = checkidle();
-	macroIdleTimerTarget = 1000 * rand(1,10);
-	atcommand "@monsterignore";
-	addtimer macroIdleTimerTarget,strnpcinfo(3) + "::OnMacro";
-	announce "โปรดอยู่นิ่ง ๆ " + (macroIdleTimerTarget / 1000) + " วินาที..",bc_self,0xFF6D6D,FW_BOLD,43;
+	mdt = 0;
+	macroIdleTimer = 1000 * rand(1,10);
+	addtimer macroIdleTimer,strnpcinfo(3) + "::OnMacro";
+	announce "ห้ามใช้ Skill Teleport " + (macroIdleTimer / 1000) + " เป็นวินาที..",bc_self,0xFF6D6D,FW_BOLD,43;
 	end;
 	
 OnMacro:
-	macroDetector = 0;
+	macroIdleTimer = 0;
 	isMacroDetecting = 0;
-	atcommand "@monsterignore";
-	if((checkidle() - macroIdleTimer) < (macroIdleTimerTarget / 1000)){
-		announce "คุณไม่ยอมอยู่นิ่ง ๆ จากการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
-		tired = cap_value(tired + 100,0,100);
-		RefreshDebuff();
-	}
-	else
-	announce "ขอบคุณมาก!",bc_self,0xFF6D6D,FW_BOLD,43;
-
+	announce "ใช้ Skill Teleport ได้ตามปกติแล้ว",bc_self,0xFF6D6D,FW_BOLD,43;
 	end;
 	
 OnInit:
