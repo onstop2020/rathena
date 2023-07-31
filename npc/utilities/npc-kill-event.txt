@@ -32,27 +32,6 @@ OnNPCKillEvent:
 		if(.@deadMonster[UMOB_MASTERAID] > 0)
 		end;
 		
-		// Macro Detector
-		if(!isMacroDetecting){
-			if(mdt >= max(mdtc,10)){
-				mdtc = rand(10,20);
-				isMacroDetecting = 1;
-				addtimer 3000,strnpcinfo(3) + "::OnMacroStart";
-				announce "อีก 3 วินาทีจะทำการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
-				mdt = 0;
-			}
-		}
-		else if(macroIdleTimer
-				&& mdt){
-			isMacroDetecting = 0;
-			macroIdleTimer = 0;
-			mdt = 0;
-			deltimer strnpcinfo(3) + "::OnMacro";
-			announce "คุณใช้ Skill Teleport ในช่วงเวลาที่ห้ามใช้..",bc_self,0xFF6D6D,FW_BOLD,43;
-			tired = cap_value(tired + 100,0,100);
-			RefreshDebuff();
-		}
-		
 		// Surprised Map
 		if(strcharinfo(3) == $surprisedMap$){
 			SurprisedPlayer();
@@ -81,6 +60,26 @@ OnNPCKillEvent:
 			end;
 		}
 		
+		// Macro Detector
+		if(!isMacroDetecting){
+			if(mdt >= max(mdtc,10)){
+				mdtc = rand(10,20);
+				isMacroDetecting = 1;
+				addtimer 3000,strnpcinfo(3) + "::OnMacroStart";
+				announce "อีก 3 วินาทีจะทำการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
+				mdt = 0;
+			}
+		}
+		else if(macroIdleTimer
+				&& mdt){
+			isMacroDetecting = 0;
+			macroIdleTimer = 0;
+			mdt = 0;
+			deltimer strnpcinfo(3) + "::OnMacro";
+			announce "คุณใช้ Skill Teleport ในช่วงเวลาที่ห้ามใช้..",bc_self,0xFF6D6D,FW_BOLD,43;
+			tired = cap_value(tired + 100,0,100);
+			RefreshDebuff();
+		}
 		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
 		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
 		
