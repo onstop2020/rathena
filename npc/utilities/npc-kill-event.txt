@@ -44,6 +44,8 @@ OnNPCKillEvent:
 			addtimer 3000,strnpcinfo(3) + "::OnMacroStart";
 			announce "�ա 3 �Թҷըзӡ�õ�Ǩ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
 		}
+		else
+		addtimer 1,strnpcinfo(3) + "::OnMacroStart2";
 		
 		// Surprised Map
 		if(strcharinfo(3) == $surprisedMap$){
@@ -217,6 +219,9 @@ OnNPCKillEvent:
 		}
 	}
 
+	end;
+	
+OnMacroStart2:
 	end;
 	
 OnMacroStart:
