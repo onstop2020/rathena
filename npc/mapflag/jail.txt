@@ -20,8 +20,8 @@
 // No Memory
 sec_pri	mapflag	nomemo
 
-// No Save
-sec_pri	mapflag	nosave	SavePoint
+// No Save (Bug?)
+//sec_pri	mapflag	nosave	SavePoint
 
 // No Teleport
 sec_pri	mapflag	noteleport
