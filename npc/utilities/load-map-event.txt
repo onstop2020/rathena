@@ -1,15 +1,10 @@
 prontera	mapflag	loadevent
-sec_pri	mapflag	loadevent
 
 -	script	LoadMapEvent	-1,{
 	end;
 	
 OnPCLoadMapEvent:
-	if(strcharinfo(3) == "sec_pri"){
-		tired = 100;
-		RefreshDebuff();
-	}
-	else if(strcharinfo(3) == "prontera"){
+	if(strcharinfo(3) == "prontera"){
 		RefreshDebuff();
 		
 		// Bug equipment auto unequip

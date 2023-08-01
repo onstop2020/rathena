@@ -4,8 +4,6 @@ OnInit:
 	end;
 	
 OnLoad:
-	if(strcharinfo(3) == "sec_pri")
-	end;
 	if(!IsTownMap())
 	progressbar "000000",3;
 	warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
