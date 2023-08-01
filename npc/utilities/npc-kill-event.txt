@@ -61,25 +61,13 @@ OnNPCKillEvent:
 		}
 		
 		// Macro Detector
-		if(!isMacroDetecting){
-			if(mdt >= max(mdtc,10)){
-				mdtc = rand(10,20);
-				isMacroDetecting = 1;
-				addtimer 3000,strnpcinfo(3) + "::OnMacroStart";
-				announce "อีก 3 วินาทีจะทำการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
-				mdt = 0;
-			}
-		}
-		else if(macroIdleTimer
-				&& mdt){
-			isMacroDetecting = 0;
-			macroIdleTimer = 0;
+		ka++;
+		if((mdt + ka) >= .killAmountMacro){
 			mdt = 0;
-			deltimer strnpcinfo(3) + "::OnMacro";
-			announce "คุณใช้ Skill Teleport ในช่วงเวลาที่ห้ามใช้..",bc_self,0xFF6D6D,FW_BOLD,43;
-			tired = cap_value(tired + 100,0,100);
-			RefreshDebuff();
+			ka = 0;
+			macro_detector();
 		}
+		
 		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
 		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
 		
@@ -188,16 +176,6 @@ OnNPCKillEvent:
 		? (.@calculated + .@monsterLevelBonus)
 		: 0;
 		
-		/*dispbottom "Base: "
-		+ .@baseCalculated
-		+ " | Penalty: "
-		+ (.@currentMapLimitation * .staminaDecrease)
-		+ " | Calculated: "
-		+ .@calculated
-		+ " | Monster Bonus: "
-		+ .@monsterLevelBonus
-		+ " | Finalize: " + .@chance;*/
-		
 		if(.@chance <= 0)
 		end;
 		
@@ -226,22 +204,9 @@ OnNPCKillEvent:
 
 	end;
 	
-OnMacroStart:
-	mdt = 0;
-	macroIdleTimer = 1000 * rand(1,10);
-	addtimer macroIdleTimer,strnpcinfo(3) + "::OnMacro";
-	announce "ห้ามใช้ Skill Teleport " + (macroIdleTimer / 1000) + " เป็นวินาที..",bc_self,0xFF6D6D,FW_BOLD,43;
-	end;
-	
-OnMacro:
-	macroIdleTimer = 0;
-	isMacroDetecting = 0;
-	announce "ใช้ Skill Teleport ได้ตามปกติแล้ว",bc_self,0xFF6D6D,FW_BOLD,43;
-	end;
-	
 OnInit:
 	.killAmountMacro = 100;		// How many killed to start for detecting macro
-
+	
 	.traderSpawnChance = 100;	// 10000 = 100%
 	.baseChance = 100;			// 10000 = 100%
 	.staminaDecrease = 20;		// 10000 = 100%
