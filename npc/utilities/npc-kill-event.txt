@@ -23,6 +23,15 @@ OnSurprisedMonsterKilled:
 	}
 	end;
 	
+OnCheckBotMacro:
+	if(isMacroDetecting){
+		isMacroDetecting = 0;
+		tired = 100;
+		RefreshDebuff();
+		announce "คุณไม่ยอมกด NPC 'ตรวจคนจริง'",bc_self,0xFF6D6D,FW_BOLD,43;
+	}
+	end;
+	
 OnNPCKillEvent:
 	if(!IsTownMap()
 			&& (strcharinfo(3) != "06guild_01")
@@ -65,12 +74,14 @@ OnNPCKillEvent:
 			ka++;
 			if((mdt + ka) >= .killAmountMacro){
 				isMacroDetecting = 1;
-				addtimer 3000,strnpcinfo(3) + "::OnMacroStart";
-				announce "อีก 3 วินาทีจะทำการตรวจ Macro..",bc_self,0xFF6D6D,FW_BOLD,43;
+				addtimer 60000,strnpcinfo(3) + "::OnCheckBotMacro";
+				announce "โปรดกดที่ NPC 'ตรวจคนจริง' ภายใน 60 วินาที",bc_self,0xFF6D6D,FW_BOLD,43;
 				mdt = 0;
 				ka = 0;
+				duplicate_dynamic("ตรวจคนจริง#SELF");
 			}
 		}
+		
 		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
 		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
 		
@@ -207,60 +218,8 @@ OnNPCKillEvent:
 
 	end;
 	
-OnMacroStart:
-	mdt = 0;
-	ka = 0;
-	
-	macroIdleTimer = gettimetick(2);
-	
-	announce "โปรดกรอกข้อความตามภาพ ภายใน 30 วินาที..",bc_self,0xFF6D6D,FW_BOLD,43;
-	
-	.@iHatePlayingGame = rand(0,41);
-	cutin "" + (.@iHatePlayingGame + 1) + "",3;
-	
-	setpcblock PCBLOCK_ATTACK,true;
-	setpcblock PCBLOCK_SKILL,true;
-	setpcblock PCBLOCK_USEITEM,true;
-	setpcblock PCBLOCK_IMMUNE,true;
-	setpcblock PCBLOCK_COMMANDS,true;
-	
-	ignoretimeout 1;
-	
-	input .@s$;
-	
-	if((gettimetick(2) - macroIdleTimer) >= 30){
-		announce "คุณกรอกช้าไป..",bc_self,0xFF6D6D,FW_BOLD,43;
-		tired = cap_value(tired + 100,0,100);
-		RefreshDebuff();
-	}
-	else if(.@s$ == .iCantPlayTheGames$[.@iHatePlayingGame])
-	announce "ขอบคุณมากนะ!!",bc_self,0xFF6D6D,FW_BOLD,43;
-	else{
-		announce "คุณกรอกผิด..",bc_self,0xFF6D6D,FW_BOLD,43;
-		tired = cap_value(tired + 100,0,100);
-		RefreshDebuff();
-	}
-	
-	isMacroDetecting = 0;
-	macroIdleTimer = 0;
-	
-	setpcblock PCBLOCK_ATTACK,false;
-	setpcblock PCBLOCK_SKILL,false;
-	setpcblock PCBLOCK_USEITEM,false;
-	setpcblock PCBLOCK_IMMUNE,false;
-	setpcblock PCBLOCK_COMMANDS,false;
-	
-	ignoretimeout 0;
-	
-	cutin "",255;
-	
-	deltimer strnpcinfo(3) + "::OnMacro";
-	
-	end;
-	
 OnInit:
 	.killAmountMacro = 100;		// How many killed to start for detecting macro
-	setarray .iCantPlayTheGames$[0],"kawkai","hope","money","food","pravit","prayuth","pita","thana","chor","politic","carr","buss","oill","electric","healthy","bott","macro","hack","kakk","badd","hear","ruin","server","free","nooo","random","item","option","enchantment","myyy","ownn","games","pccc","dream","lazada","xxxx","meta","mark","elon","oooo","andd","pcmm";
 	
 	.traderSpawnChance = 100;	// 10000 = 100%
 	.baseChance = 100;			// 10000 = 100%
@@ -268,5 +227,9 @@ OnInit:
 	.monsterLevelDivider = 10;	// Use to increase chance to found THE BOX (Monster Level / n)
 	.sameMapAmount = 3;
 	$maximumMapLimitation = 5;
+	
+	addrid(0);
+	if(isMacroDetecting)
+	isMacroDetecting = 0;
 	end;
 }

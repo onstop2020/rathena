@@ -12,12 +12,10 @@ OnPCLoginEvent:
 	setpcblock PCBLOCK_ALL,false;
 	
 	// Macro
-	if(isMacroDetecting){
-		announce "คุณไม่ตรวจ Macro..",bc_self;
-		tired = cap_value(tired + 100,0,100);
-		macroDetector = 0;
-		isMacroDetecting = 0;
-	}
+	if(isMacroDetecting)
+	tired = 100;
+	
+	isMacroDetecting = 0;
 	
 	// Important loots
 	atcommand "@alootid +10000006";

@@ -1,0 +1,72 @@
+prontera,300,300,0	script	µÃÇ¨¤¹¨ÃÔ§#SELF	566,3,3,{
+	if(!isMacroDetecting)
+	end;
+
+	isMacroDetecting = 0;
+	
+	setarray .@o$[0],"o","O","ð","0";
+	.@myO = rand(getarraysize(.@o$));
+	
+	mes "â»Ã´¡´ " + .@o$[.@myO];
+	next;
+	
+	setpcblock PCBLOCK_ATTACK,true;
+	setpcblock PCBLOCK_SKILL,true;
+	setpcblock PCBLOCK_USEITEM,true;
+	setpcblock PCBLOCK_IMMUNE,true;
+	setpcblock PCBLOCK_COMMANDS,true;
+	
+	.@rand = rand(1,8);
+	if(.@rand = 1)
+	menu "o",L_1,"O",L_2,"ð",L_3,"0",L_4;
+	else if(.@rand = 2)
+	menu "O",L_2,"o",L_1,"ð",L_3,"0",L_4;
+	else if(.@rand = 3)
+	menu "O",L_2,"ð",L_3,"o",L_1,"0",L_4;
+	else if(.@rand = 4)
+	menu "O",L_2,"ð",L_3,"0",L_4,"o",L_1;
+	else if(.@rand = 5)
+	menu "0",L_4,"ð",L_3,"O",L_2,"o",L_1;
+	else if(.@rand = 6)
+	menu "ð",L_3,"0",L_4,"O",L_2,"o",L_1;
+	else if(.@rand = 7)
+	menu "O",L_2,"ð",L_3,"0",L_4,"o",L_1;
+	else if(.@rand = 8)
+	menu "o",L_1,"ð",L_3,"O",L_2,"0",L_4;
+	
+	L_1:
+	if(.@myO == 0) goto L_Correct; else goto L_Wrong;
+	L_2:
+	if(.@myO == 1) goto L_Correct; else goto L_Wrong;
+	L_3:
+	if(.@myO == 2) goto L_Correct; else goto L_Wrong;
+	L_4:
+	if(.@myO == 3) goto L_Correct; else goto L_Wrong;
+	
+	L_Wrong:
+	tired = 100;
+	RefreshDebuff();
+	announce "¤Ø³àÅ×Í¡¼Ô´..",bc_self,0xFF6D6D,FW_BOLD,43;
+	callsub L_TurnOffBlock;
+	end;
+	
+	L_Correct:
+	announce "¢Íº¤Ø³ÁÒ¡!",bc_self,0xFF6D6D,FW_BOLD,43;
+	percentheal 25,25;
+	cloakonnpcself;
+	deltimer "NPCKillEvent::OnCheckBotMacro";
+	callsub L_TurnOffBlock;
+	end;
+	
+	L_TurnOffBlock:
+	setpcblock PCBLOCK_ATTACK,false;
+	setpcblock PCBLOCK_SKILL,false;
+	setpcblock PCBLOCK_USEITEM,false;
+	setpcblock PCBLOCK_IMMUNE,false;
+	setpcblock PCBLOCK_COMMANDS,false;
+	return;
+	
+OnInit:
+	showscript "µÃÇ¨¤¹¨ÃÔ§";
+	end;
+}
