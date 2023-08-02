@@ -227,7 +227,6 @@ OnMacroStart:
 	ignoretimeout 1;
 	
 	input .@s$;
-	next;
 	
 	if((gettimetick(2) - macroIdleTimer) >= 30){
 		announce "คุณกรอกช้าไป..",bc_self,0xFF6D6D,FW_BOLD,43;
