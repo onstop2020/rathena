@@ -11,12 +11,6 @@ OnPCLoginEvent:
 	// Unexpected error
 	setpcblock PCBLOCK_ALL,false;
 	
-	// Macro
-	if(isMacroDetecting)
-	tired = 100;
-	
-	isMacroDetecting = 0;
-	
 	// Important loots
 	atcommand "@alootid +10000006";
 	
