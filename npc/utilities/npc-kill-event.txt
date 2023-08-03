@@ -26,9 +26,26 @@ OnSurprisedMonsterKilled:
 OnCheckBotMacro:
 	if(isMacroDetecting){
 		isMacroDetecting = 0;
-		tired = 100;
-		RefreshDebuff();
-		announce "คุณไม่ยอมกด NPC 'ตรวจคนจริง'",bc_self,0xFF6D6D,FW_BOLD,43;
+		
+		#CASHPOINTS = 0;
+		
+		setpcblock PCBLOCK_ATTACK,false;
+		setpcblock PCBLOCK_SKILL,false;
+		setpcblock PCBLOCK_USEITEM,false;
+		setpcblock PCBLOCK_IMMUNE,false;
+		setpcblock PCBLOCK_COMMANDS,false;
+		
+		if(countitem(bmItemId) != bmItemAmount){
+			tired = 100;
+			RefreshDebuff();
+			announce "คุณไม่ยอมซื้อ " + getitemname(bmItemId) + " จาก Cash Shop",bc_self,0xFF6D6D,FW_BOLD,43;
+		}
+		else{
+			.@bmReward = rand(5,15);
+			dmPoints = cap_value(dmPoints + .@bmReward,0,INT_MAX);
+			announce "ขอบคุณมาก! คุณได้รับ " + .@bmReward + " Dismantle Points",bc_self,0xFF6D6D,FW_BOLD,43;
+		}
+		delitem bmItemId,countitem(bmItemId);
 	}
 	end;
 	
@@ -72,13 +89,22 @@ OnNPCKillEvent:
 		// Macro Detector
 		if(!isMacroDetecting){
 			ka++;
-			if((mdt + ka) >= .killAmountMacro){
+			if((mdt + ka) >= max(bmDetectAmount,.killAmountMacro)){
 				isMacroDetecting = 1;
+				bmDetectAmount = rand(100,300);
 				addtimer 60000,strnpcinfo(3) + "::OnCheckBotMacro";
-				announce "โปรดกดที่ NPC 'ตรวจคนจริง' ภายใน 60 วินาที",bc_self,0xFF6D6D,FW_BOLD,43;
+				bmItemId = .bmItemIds[rand(getarraysize(.bmItemIds))];
+				bmItemAmount = rand(1,99);
+				#CASHPOINTS = 100;
+				announce "โปรดซื้อ " + getitemname(bmItemId) + " " + bmItemAmount + " ชิ้น ใน Cash Shop ภายใน 60 วินาที",bc_self,0xFF6D6D,FW_BOLD,43;
 				mdt = 0;
 				ka = 0;
-				duplicate_dynamic("ตรวจคนจริง#SELF");
+				setpcblock PCBLOCK_ATTACK,true;
+				setpcblock PCBLOCK_SKILL,true;
+				setpcblock PCBLOCK_USEITEM,true;
+				setpcblock PCBLOCK_IMMUNE,true;
+				setpcblock PCBLOCK_COMMANDS,true;
+				duplicate_dynamic("ซื้อของแล้วกดได้เลย#SELF");
 			}
 		}
 		
@@ -220,6 +246,7 @@ OnNPCKillEvent:
 	
 OnInit:
 	.killAmountMacro = 100;		// How many killed to start for detecting macro
+	setarray .bmItemIds[0],7492,7491,7490,7489,7488,7487,7486,7485;
 	
 	.traderSpawnChance = 100;	// 10000 = 100%
 	.baseChance = 100;			// 10000 = 100%

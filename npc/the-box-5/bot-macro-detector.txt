@@ -1,60 +1,27 @@
-prontera,300,300,0	script	ตรวจคนจริง#SELF	566,3,3,{
+prontera,300,300,0	script	ซื้อของแล้วกดได้เลย#SELF	566,{
 	if(!isMacroDetecting)
 	end;
 
 	isMacroDetecting = 0;
 	
-	setarray .@o$[0],"o","O","๐","0";
-	.@myO = rand(getarraysize(.@o$));
+	#CASHPOINTS = 0;
 	
-	mes "โปรดกด " + .@o$[.@myO];
-	next;
-	
-	setpcblock PCBLOCK_ATTACK,true;
-	setpcblock PCBLOCK_SKILL,true;
-	setpcblock PCBLOCK_USEITEM,true;
-	setpcblock PCBLOCK_IMMUNE,true;
-	setpcblock PCBLOCK_COMMANDS,true;
-	
-	.@rand = rand(1,8);
-	if(.@rand = 1)
-	menu "o",L_1,"O",L_2,"๐",L_3,"0",L_4;
-	else if(.@rand = 2)
-	menu "O",L_2,"o",L_1,"๐",L_3,"0",L_4;
-	else if(.@rand = 3)
-	menu "O",L_2,"๐",L_3,"o",L_1,"0",L_4;
-	else if(.@rand = 4)
-	menu "O",L_2,"๐",L_3,"0",L_4,"o",L_1;
-	else if(.@rand = 5)
-	menu "0",L_4,"๐",L_3,"O",L_2,"o",L_1;
-	else if(.@rand = 6)
-	menu "๐",L_3,"0",L_4,"O",L_2,"o",L_1;
-	else if(.@rand = 7)
-	menu "O",L_2,"๐",L_3,"0",L_4,"o",L_1;
-	else if(.@rand = 8)
-	menu "o",L_1,"๐",L_3,"O",L_2,"0",L_4;
-	
-	L_1:
-	if(.@myO == 0) goto L_Correct; else goto L_Wrong;
-	L_2:
-	if(.@myO == 1) goto L_Correct; else goto L_Wrong;
-	L_3:
-	if(.@myO == 2) goto L_Correct; else goto L_Wrong;
-	L_4:
-	if(.@myO == 3) goto L_Correct; else goto L_Wrong;
+	if(countitem(bmItemId) != bmItemAmount)
+	goto L_Wrong;
+	else
+	goto L_Correct;
 	
 	L_Wrong:
 	tired = 100;
 	RefreshDebuff();
-	announce "คุณเลือกผิด..",bc_self,0xFF6D6D,FW_BOLD,43;
+	announce "คุณไม่ได้ซื้อของตามรายการที่กำหนด..",bc_self,0xFF6D6D,FW_BOLD,43;
 	callsub L_TurnOffBlock;
 	end;
 	
 	L_Correct:
-	announce "ขอบคุณมาก!",bc_self,0xFF6D6D,FW_BOLD,43;
-	percentheal 25,25;
-	cloakonnpcself;
-	deltimer "NPCKillEvent::OnCheckBotMacro";
+	.@bmReward = rand(5,15);
+	dmPoints = cap_value(dmPoints + .@bmReward,0,INT_MAX);
+	announce "ขอบคุณมาก! คุณได้รับ " + .@bmReward + " Dismantle Points",bc_self,0xFF6D6D,FW_BOLD,43;
 	callsub L_TurnOffBlock;
 	end;
 	
@@ -64,9 +31,12 @@ prontera,300,300,0	script	ตรวจคนจริง#SELF	566,3,3,{
 	setpcblock PCBLOCK_USEITEM,false;
 	setpcblock PCBLOCK_IMMUNE,false;
 	setpcblock PCBLOCK_COMMANDS,false;
+	cloakonnpcself;
+	deltimer "NPCKillEvent::OnCheckBotMacro";
+	delitem bmItemId,countitem(bmItemId);
 	return;
 	
 OnInit:
-	showscript "ตรวจคนจริง";
+	showscript "ซื้อของแล้วกดได้เลย";
 	end;
 }
