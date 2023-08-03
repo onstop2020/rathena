@@ -23,6 +23,15 @@ OnSurprisedMonsterKilled:
 	}
 	end;
 	
+OnCheckBotMacro:
+	if(isMacroDetecting){
+		isMacroDetecting = 0;
+		tired = 100;
+		RefreshDebuff();
+		announce "คุณไม่ยอมกด NPC 'ตรวจคนจริง'",bc_self,0xFF6D6D,FW_BOLD,43;
+	}
+	end;
+	
 OnNPCKillEvent:
 	if(!IsTownMap()
 			&& (strcharinfo(3) != "06guild_01")
@@ -58,6 +67,19 @@ OnNPCKillEvent:
 			}
 			
 			end;
+		}
+		
+		// Macro Detector
+		if(!isMacroDetecting){
+			ka++;
+			if((mdt + ka) >= .killAmountMacro){
+				isMacroDetecting = 1;
+				addtimer 60000,strnpcinfo(3) + "::OnCheckBotMacro";
+				announce "โปรดกดที่ NPC 'ตรวจคนจริง' ภายใน 60 วินาที",bc_self,0xFF6D6D,FW_BOLD,43;
+				mdt = 0;
+				ka = 0;
+				duplicate_dynamic("ตรวจคนจริง#SELF");
+			}
 		}
 		
 		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
@@ -197,11 +219,17 @@ OnNPCKillEvent:
 	end;
 	
 OnInit:
+	.killAmountMacro = 100;		// How many killed to start for detecting macro
+	
 	.traderSpawnChance = 100;	// 10000 = 100%
 	.baseChance = 100;			// 10000 = 100%
 	.staminaDecrease = 20;		// 10000 = 100%
 	.monsterLevelDivider = 10;	// Use to increase chance to found THE BOX (Monster Level / n)
 	.sameMapAmount = 3;
 	$maximumMapLimitation = 5;
+	
+	addrid(0);
+	if(isMacroDetecting)
+	isMacroDetecting = 0;
 	end;
 }
