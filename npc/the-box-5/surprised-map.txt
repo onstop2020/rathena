@@ -53,7 +53,10 @@ prontera,153,283,3	script	ÎØÃÔ	10460,{
 	.@amount = getarg(0,.monsterAmount);
 	
 	for(.@i = 0; .@i < .@amount; .@i++){
-		monster $surprisedMap$,0,0,"--ja--",$all_mob_ids[rand($all_mob_id_size)],1;
+		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
+		while(callfunc("F_IsDummyMonster",.@monsterId))
+		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
+		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1;
 		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
 	}
 

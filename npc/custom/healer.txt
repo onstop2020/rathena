@@ -142,14 +142,16 @@ prontera,159,193,5	script	แพทย์	10458,{
 	}
 	else{
 		mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า " + callfunc("F_InsertComma",.pointRequired);
-		mes "• ^11B120ท่านจะได้รับ Increase AGI เป็นเวลา 1 วัน^000000";
-		mes "• ^11B120ท่านจะได้รับ Blessing เป็นเวลา 1 วัน^000000";
-		mes "• ^11B120ท่านจะได้รับ Angelus เป็นเวลา 1 วัน^000000";
-		mes "• ^11B120ท่านจะได้รับ Slow Poison เป็นเวลา 1 วัน^000000";
-		mes "• ^11B120ท่านจะได้รับ Impositio เป็นเวลา 1 วัน^000000";
-		mes "• ^11B120ท่านจะได้รับ Suffragium เป็นเวลา 1 วัน^000000";
-		mes "• ^11B120ท่านจะได้รับ Magnificat เป็นเวลา 1 วัน^000000";
-		mes "• ^11B120ท่านจะได้รับ Gloria เป็นเวลา 1 วัน^000000";
+		mes "ท่านจะได้รับ";
+		mes "• ^11B120Increase AGI^000000";
+		mes "• ^11B120Blessing^000000";
+		mes "• ^11B120Angelus^000000";
+		mes "• ^11B120Slow Poison^000000";
+		mes "• ^11B120Impositio^000000";
+		mes "• ^11B120Suffragium^000000";
+		mes "• ^11B120Magnificat^000000";
+		mes "• ^11B120Gloria^000000";
+		mes "^11B120เป็นเวลา 1 วัน^000000";
 		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
 		.@price = .basePrice * BaseLevel;
 		menu "ขอจ่ายด้วย " + callfunc("F_InsertComma",.@price) + "z แทน",-;
