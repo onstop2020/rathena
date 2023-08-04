@@ -1,4 +1,7 @@
 prontera,300,300,0	script	ซื้อของแล้วกดได้เลย#SELF	566,{
+	if(strcharinfo(3) == "prontera")
+	end;
+	
 	if(!isMacroDetecting)
 	end;
 

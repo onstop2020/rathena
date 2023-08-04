@@ -1,4 +1,4 @@
-prontera,164,174,3	script	THE BOX	566,{
+prontera,164,174,3	script	THE BOX	10403,{
 	.@price = callsub(L_Price);
 	
 	menu "สุ่ม (^BA17F8" + F_InsertComma(.@price) + "z^000000)",-

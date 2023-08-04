@@ -1,4 +1,7 @@
-prontera,300,300,0	script	THE BOX#SELF	566,{
+prontera,300,290,0	script	THE BOX#SELF	566,{
+	if(strcharinfo(3) == "prontera")
+		end;
+	
 	// Prevent cheating
 	if(!isReadyToClaimed){
 		message strcharinfo(0),"รับไปแล้ว";

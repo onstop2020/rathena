@@ -1,4 +1,4 @@
-s_atelier,28,124,5	script	สไมล์	10365,{
+prontera,34,164,5	script	สไมล์	10365,{
 	if(getgmlevel())
 	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-
 	,"เปลี่ยนชุด Class 3",L_Class3Suit

@@ -1,4 +1,4 @@
-prt_in,285,170,3	script	¿ÔâÍ«èÒ	918,{
+prontera,89,119,5	script	¿ÔâÍ«èÒ	918,{
 	bpet;
 	end;
 	
@@ -7,7 +7,7 @@ OnInit:
 	end;
 }
 
-prt_in,285,165,3	script	à¡ÇÅÔ¹	919,{
+prontera,86,117,5	script	à¡ÇÅÔ¹	919,{
 	if(getpetinfo(PETINFO_ID) > 0){
 		atcommand "@petfriendly 1000";
 		atcommand "@pethungry 100";
@@ -23,7 +23,7 @@ OnInit:
 	end;
 }
 
-prt_in,287,169,3	script	ÅØ§µÙé	87,{
+prontera,70,114,3	script	ÅØ§µÙé	87,{
 	menu "¦èÒ",-;
 	if(getpetinfo(PETINFO_ID) > 0){
 		atcommand "@petfriendly 0";
@@ -37,7 +37,7 @@ OnInit:
 	end;
 }
 
-prt_in,211,173,5	script	àÇ¨ 	920,{
+prontera,79,114,5	script	àÇ¨ 	920,{
 	if(gethominfo(0) > 0)
 	homevolution;
 	end;
@@ -47,7 +47,7 @@ OnInit:
 	end;
 }
 
-prt_in,212,169,3	script	áÁÃÕè 	915,{
+prontera,77,112,5	script	áÁÃÕè 	915,{
 	if(gethominfo(0) > 0){
 		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
 			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
@@ -88,15 +88,3 @@ OnInit:
 	waitingroom "Hom. S",0;
 	end;
 }
-
--	script	PetShopHint	-1,{
-	message strcharinfo(0),"Ê¶Ò¹·ÕèÊÓËÃÑº Pet & Homunculus";
-	end;
-
-OnInit:
-	waitingroom "ÈÙ¹ÂìÃÑºàÅÕéÂ§",0;
-	end;
-}
-
-prontera,72,94,7	duplicate(PetShopHint)	»éÒÂ#PetShopHint1	837
-prontera,78,88,7	duplicate(PetShopHint)	»éÒÂ#PetShopHint2	837

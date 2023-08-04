@@ -1,4 +1,4 @@
-prt_in,69,93,7	script	เช็คว่ามี Item ไหม	10359,{
+prontera,192,253,5	script	เช็คว่ามี Item ไหม	10359,{
 	mes "โปรดระบุเลข Item ID เพื่อเช็ค";
 	input .@i;
 	if(getiteminfo(.@i,ITEMINFO_TYPE) != -1){
@@ -8,7 +8,7 @@ prt_in,69,93,7	script	เช็คว่ามี Item ไหม	10359,{
 	end;
 }
 
-prt_in,69,91,7	script	ดู Item ทั้งหมด	10359,{
+prontera,190,251,5	script	ดู Item ทั้งหมด	10359,{
 	mes "โปรดระบุเลข 1~" + .max_page + " เพื่อดู";
 	input .@i;
 	if((.@i <= 0)
@@ -29,7 +29,7 @@ OnInit:
 	end;
 }
 
-prt_in,286,162,3	script	ร้านค้า - Pet Eggs	564,{
+prontera,79,106,5	script	ร้านค้า - Pet Eggs	564,{
 	mes "โปรดระบุเลข 1~" + .max_page + " เพื่อเข้าสู่ร้านค้า";
 	mes "*บางตัวยังซื้อไม่ได้นะ ยังไม่มีข้อมูล";
 	message strcharinfo(0),"*บางตัวยังซื้อไม่ได้นะ ยังไม่มีข้อมูล";
@@ -57,7 +57,7 @@ OnInit:
 	end;
 }
 
-prt_in,286,160,3	script	ร้านค้า - Pet Armors	564,{
+prontera,77,104,5	script	ร้านค้า - Pet Armors	564,{
 	mes "โปรดระบุเลข 1~" + .max_page + " เพื่อเข้าสู่ร้านค้า";
 	input .@i;
 	if((.@i <= 0)
@@ -74,7 +74,7 @@ OnInit:
 	end;
 }
 
-prt_in,81,93,3	script	ร้านค้า - Fashion	564,{
+prontera,201,244,3	script	ร้านค้า - Fashion	564,{
 	mes "โปรดระบุเลข 1~" + .max_page + " เพื่อเข้าสู่ร้านค้า";
 	input .@i;
 	if((.@i <= 0)

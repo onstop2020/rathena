@@ -62,16 +62,13 @@ prontera,152,193,5	script	Town Warper	10081,{
 	,"ทดสอบ Damage",L_TrainingGround
 	,"ฟักไข่ Pet และ Homunculus",L_PetHomunculus
 	;
+	
 	L_BackToCenter:
 	warp "prontera",156,191;
 	end;
 	
 	L_Hotel:
-	.@randHotel = rand(0,1);
-	if(.@randHotel == 0)
-	warp "prt_in",240,139;
-	else
-	warp "prt_in",68,134;
+	warp "prontera",270,352;
 	end;
 	
 	L_SpecialRoom:
@@ -79,11 +76,11 @@ prontera,152,193,5	script	Town Warper	10081,{
 	end;
 	
 	L_Character:
-	warp "s_atelier",13,119;
+	warp "prontera",44,164;
 	end;
 	
 	L_Mall:
-	warp "prt_in",80,110;
+	warp "prontera",197,241;
 	end;
 	
 	L_TrainingGround:
@@ -91,7 +88,7 @@ prontera,152,193,5	script	Town Warper	10081,{
 	end;
 	
 	L_PetHomunculus:
-	warp "prt_in",248,170;
+	warp "prontera",81,102;
 	end;
 	
 OnInit:
@@ -99,12 +96,11 @@ OnInit:
 	end;
 }
 
-prt_in,72,133,3	duplicate(Town Warper)	Town Warper#1	10081
-prt_in,233,129,3	duplicate(Town Warper)	Town Warper#2	10081
-s_atelier,12,110,3	duplicate(Town Warper)	Town Warper#4	10081
-prt_in,81,108,3	duplicate(Town Warper)	Town Warper#5	10081
+prontera,50,170,5	duplicate(Town Warper)	Town Warper#1	10081
+prontera,207,255,5	duplicate(Town Warper)	Town Warper#2	10081
+prontera,84,100,5	duplicate(Town Warper)	Town Warper#3	10081
+prontera,266,346,5	duplicate(Town Warper)	Town Warper#4	10081
 prontera,237,62,5	duplicate(Town Warper)	Town Warper#6	10081
-prt_in,244,168,5	duplicate(Town Warper)	Town Warper#7	10081
 force_1-1,100,98,5	duplicate(Town Warper)	Town Warper#8	10081
 force_1-2,173,156,5	duplicate(Town Warper)	Town Warper#9	10081
 force_1-3,100,167,5	duplicate(Town Warper)	Town Warper#10	10081
@@ -161,15 +157,3 @@ OnInit:
 	waitingroom "Zone ทดสอบ Bonus หาร 7",0;
 	end;
 }
-
--	script	HeadQuarterHint	-1,{
-	message strcharinfo(0),"สถานที่สำหรับพัฒนาตัวละคร";
-	end;
-
-OnInit:
-	waitingroom "ศูนย์บัญชาการ",0;
-	end;
-}
-
-prontera,270,112,3	duplicate(HeadQuarterHint)	ป้าย#HeadQuarterHint1	837
-prontera,270,103,3	duplicate(HeadQuarterHint)	ป้าย#HeadQuarterHint2	837

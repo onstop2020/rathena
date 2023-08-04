@@ -1,4 +1,7 @@
-prontera,300,300,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
+prontera,300,280,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
+	if(strcharinfo(3) == "prontera")
+	end;
+	
 	// Setup
 	@monsterLv = getd("$@tml" + strcharinfo(3));
 	@itemId = getd("$@tii" + strcharinfo(3));

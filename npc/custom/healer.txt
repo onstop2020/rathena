@@ -249,6 +249,3 @@ OnInit:
 	
 	end;
 }
-
-prt_in,60,143,5	duplicate(แพทย์)	แพทย์#HotelDoctor1	10458
-prt_in,237,136,5	duplicate(แพทย์)	แพทย์#HotelDoctor2	10458

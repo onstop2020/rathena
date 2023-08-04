@@ -1,12 +1,3 @@
--	script	HotelHint	-1,{
-	message strcharinfo(0),"สถานที่สำหรับรักษาอาการเหนื่อยล้า";
-	end;
-
-OnInit:
-	waitingroom "โรงแรม",0;
-	end;
-}
-
 -	script	HotelStaff	-1,{
 	mes "ท่านสามารถขึ้นชั้นบน ไปนอนหลับพักผ่อนได้เลย";
 	next;
@@ -265,23 +256,18 @@ OnInit:
 	end;
 }
 
-prontera,200,191,3	duplicate(HotelHint)	ป้าย#HotelHint1	837
-prontera,110,216,1	duplicate(HotelHint)	ป้าย#HotelHint2	837
+prontera,285,346,3	duplicate(HotelStaff)	พนักงานโรงแรม#HotelStaff1	10130
 
-prt_in,61,141,5	duplicate(HotelStaff)	พนักงานโรงแรม#HotelStaff1	10130
-prt_in,244,136,3	duplicate(HotelStaff)	พนักงานโรงแรม#HotelStaff2	10130
+prontera,262,354,5	duplicate(Bed)	เตียง#Bed1	10043
+prontera,274,342,5	duplicate(Bed)	เตียง#Bed2	10043
+prontera,249,353,5	duplicate(Bed)	เตียง#Bed3	10043
+prontera,261,341,5	duplicate(Bed)	เตียง#Bed4	10043
+prontera,273,329,5	duplicate(Bed)	เตียง#Bed5	10043
 
-prt_in,71,174,5	duplicate(Bed)	เตียง#Bed1	10043
-prt_in,61,174,5	duplicate(Bed)	เตียง#Bed2	10043
-prt_in,51,174,5	duplicate(Bed)	เตียง#Bed3	10043
-prt_in,258,100,5	duplicate(Bed)	เตียง#Bed4	10043
-prt_in,248,100,5	duplicate(Bed)	เตียง#Bed5	10043
-prt_in,238,100,5	duplicate(Bed)	เตียง#Bed6	10043
-
-prt_in,58,143,5	duplicate(Chef)	คนขายอาหารทั่วไป#5000::1	10003
-prt_in,257,135,3	duplicate(Chef)	คนขายอาหารทั่วไป#3500::2	879
+prontera,270,363,3	duplicate(Chef)	คนขายอาหารทั่วไป#5000::1	10003
+prontera,150,309,5	duplicate(Chef)	คนขายอาหารทั่วไป#3500::2	879
 prontera,254,165,5	duplicate(Chef)	คนขายพิซซ่า#30000::3	830
 prontera,115,109,6	duplicate(Chef)	คนขายพิซซ่า#20000::4	829
-prt_in,42,36,3	duplicate(Chef)	คนขายอาหารดีเยี่ยม#25000::5	878
-prt_in,88,105,3	duplicate(Chef)	คนขายอาหารนักรบหรู#100000::6	654
-prt_in,233,20,3	duplicate(Chef)	คนขายอาหารชั้นเลิศ#300000::7	665
+prontera,61,298,5	duplicate(Chef)	คนขายอาหารดีเยี่ยม#25000::5	878
+prontera,38,213,3	duplicate(Chef)	คนขายอาหารนักรบหรู#100000::6	654
+prontera,251,274,5	duplicate(Chef)	คนขายอาหารชั้นเลิศ#300000::7	665
