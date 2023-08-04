@@ -52,6 +52,7 @@ OnCheckBotMacro:
 OnNPCKillEvent:
 	if(!IsTownMap()
 			&& (strcharinfo(3) != "06guild_01")
+			&& (strcharinfo(3) != "jor_sanct")
 			&& playerattached()){
 		getunitdata(killedgid,.@deadMonster);
 		
