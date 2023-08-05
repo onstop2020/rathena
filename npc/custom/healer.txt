@@ -79,7 +79,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 	mes "^11B120ข้าสามารถรักษาอาการ Debuff จากการหมดสติ ให้ท่านได้ฟรี^000000 แต่ท่านต้องรอ ^F81717" + GetTimerWording(selfCareDebuff - gettimetick(2)) + "^000000";
 	else if(!debuff){
 		if(tired)
-		message strcharinfo(0),"ท่านไม่มีอาการ Debuff แต่ท่านเหนื่อย ลองไปที่โรงแรม หรือหาอะไรกินตามเมืองดู!";
+		message strcharinfo(0),"ท่านไม่มีอาการ Debuff แต่ท่านเหนื่อยล้า.. โปรดกดที่กลางน้ำพุ Prontera เพื่อนั่งพัก";
 		else
 		message strcharinfo(0),"ท่านไม่มีอาการ Debuff";
 		end;
