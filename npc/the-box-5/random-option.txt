@@ -1,4 +1,4 @@
-prontera,40,132,5	script	ทอม	10127,{
+prontera,42,156,5	script	ทอม	10127,{
 	L_Menu:
 	if(locking_option)
 	mes "^FF2929คุณกำลังจะเสียเงินมหาศาล\nเพื่อหา Option ID: " + locking_option + "^000000";
