@@ -46,7 +46,6 @@ prontera,152,193,5	script	Town Warper	10081,{
 	if(atoi(strnpcinfo(2)) > 0)
 	menu
 	"กลับกลางเมือง",L_BackToCenter
-	,"โรงแรม (^109247รักษาอาการเหนื่อยล้า^000000)",L_Hotel
 	,"ฟาร์มของ (^9D42C0ห้องบอส, ห้องพิเศษต่าง ๆ^000000)",L_SpecialRoom
 	,"ไปพัฒนาตัวละคร (^DB2D5Fเปลี่ยนอาชีพ, ทำของ^000000)",L_Character
 	,"ซื้อของใช้จำเป็น (^402DDBของใช้ Skill, ของเริ่มต้น^000000)",L_Mall
@@ -55,8 +54,7 @@ prontera,152,193,5	script	Town Warper	10081,{
 	;
 	else
 	menu
-	"โรงแรม (^109247รักษาอาการเหนื่อยล้า^000000)",L_Hotel
-	,"ฟาร์มของ (^9D42C0ห้องบอส, ห้องพิเศษต่าง ๆ^000000)",L_SpecialRoom
+	"ฟาร์มของ (^9D42C0ห้องบอส, ห้องพิเศษต่าง ๆ^000000)",L_SpecialRoom
 	,"ไปพัฒนาตัวละคร (^DB2D5Fเปลี่ยนอาชีพ, ทำของ^000000)",L_Character
 	,"ซื้อของใช้จำเป็น (^402DDBของใช้ Skill, ของเริ่มต้น^000000)",L_Mall
 	,"ทดสอบ Damage",L_TrainingGround
@@ -99,7 +97,6 @@ OnInit:
 prontera,50,170,5	duplicate(Town Warper)	Town Warper#1	10081
 prontera,207,255,5	duplicate(Town Warper)	Town Warper#2	10081
 prontera,84,100,5	duplicate(Town Warper)	Town Warper#3	10081
-prontera,266,346,5	duplicate(Town Warper)	Town Warper#4	10081
 prontera,237,62,5	duplicate(Town Warper)	Town Warper#6	10081
 force_1-1,100,98,5	duplicate(Town Warper)	Town Warper#8	10081
 force_1-2,173,156,5	duplicate(Town Warper)	Town Warper#9	10081

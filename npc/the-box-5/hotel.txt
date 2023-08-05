@@ -3,7 +3,7 @@
 	next;
 	menu "เปลี่ยน Save Point เป็นที่นี่",L_SavePoint
 	,"ซื้อหมอน หายเหนื่อยไวขึ้น +" + $pillowComfort + " (" + callfunc("F_InsertComma",.pillowPrice)+ "z)",L_Pillow
-	,"ซื้อผ้าห่ม หายเหนื่อยไวขึ้น +" + $blanketComfort + " (" + callfunc("F_InsertComma",.blanketPrice)+ "z)",L_Blanket
+	,"ซื้อเสื่อ หายเหนื่อยไวขึ้น +" + $blanketComfort + " (" + callfunc("F_InsertComma",.blanketPrice)+ "z)",L_Blanket
 	,"ซื้อแอร์พกพา หายเหนื่อยไวขึ้น +" + $portableACComfort + " (" + callfunc("F_InsertComma",.portableACPrice)+ "z)",L_PortableAc
 	;
 	close;
@@ -31,8 +31,8 @@
 	
 	L_Blanket:
 	if(blanketAmount > 0){
-		mes "ผ้าห่มคุณยังดูใช้งานได้อยู่นะ";
-		mes "• ผ้าห่ม ยังใช้ได้อีก " + blanketAmount + " รอบ";
+		mes "เสื่อคุณยังดูใช้งานได้อยู่นะ";
+		mes "• เสื่อ ยังใช้ได้อีก " + blanketAmount + " รอบ";
 		close;
 	}
 	if(Zeny >= .blanketPrice){
@@ -64,7 +64,7 @@
 	}
 	
 OnInit:
-	waitingroom "ซื้อเครื่องนอน",0;
+	waitingroom "ซื้อของใช้นั่งพัก",0;
 	
 	.pillowPrice = 10000;
 	$pillowComfort = 1;
@@ -90,6 +90,7 @@ OnInit:
 	end;
 	
 OnSleep:
+	sc_start SC_STOMACHACHE,10000,10;
 	specialeffect2 549;
 	.@isTired = tired;
 	tired = cap_value(tired - 1,0,100);
@@ -121,12 +122,12 @@ OnSleep:
 	else{
 		@isSleeping = 0;
 		ClearMacro();
-		message strcharinfo(0),"คุณได้หยุดนอนแล้ว";
+		message strcharinfo(0),"คุณได้หยุดพักแล้ว";
 	}
 	end;
 
 OnInit:
-	waitingroom "นอนหลับ",0;
+	waitingroom "นั่งพักเหนื่อย",0;
 	end;
 }
 
@@ -256,15 +257,11 @@ OnInit:
 	end;
 }
 
-prontera,285,346,3	duplicate(HotelStaff)	พนักงานโรงแรม#HotelStaff1	10130
+prontera,163,203,5	duplicate(HotelStaff)	ผู้ดูแลคนนั่งพัก#HotelStaff1	10130
 
-prontera,262,354,5	duplicate(Bed)	เตียง#Bed1	10043
-prontera,274,342,5	duplicate(Bed)	เตียง#Bed2	10043
-prontera,249,353,5	duplicate(Bed)	เตียง#Bed3	10043
-prontera,261,341,5	duplicate(Bed)	เตียง#Bed4	10043
-prontera,273,329,5	duplicate(Bed)	เตียง#Bed5	10043
+prontera,156,203,5	duplicate(Bed)	นั่งพัก#Bed1	10043
 
-prontera,270,363,3	duplicate(Chef)	คนขายอาหารทั่วไป#5000::1	10003
+prontera,147,79,5	duplicate(Chef)	คนขายอาหารทั่วไป#5000::1	10003
 prontera,150,309,5	duplicate(Chef)	คนขายอาหารทั่วไป#3500::2	879
 prontera,254,165,5	duplicate(Chef)	คนขายพิซซ่า#30000::3	830
 prontera,115,109,6	duplicate(Chef)	คนขายพิซซ่า#20000::4	829

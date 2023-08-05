@@ -348,7 +348,7 @@ function	script	SurprisedPlayer	{
 		sc_start SC_CONFUSION,600000,10;
 		sc_start SC_BLIND,600000,10;
 		sc_start SC_DECREASEAGI,5000,10;
-		sc_start SC_STOMACHACHE,5000,10;
+		sc_start SC_STOMACHACHE,10000,10;
 	}
 	
 	.@rand = rand(10000);
