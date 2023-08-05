@@ -64,7 +64,6 @@ OnWarp:
 	input .@i;
 	next;
 	// Check it was equipment or card
-	npctalk getiteminfo(.@i,ITEMINFO_TYPE);
 	if((getiteminfo(.@i,ITEMINFO_TYPE) == IT_CARD)
 			|| (getiteminfo(.@i,ITEMINFO_TYPE) == IT_SHADOWGEAR)
 			|| (getiteminfo(.@i,ITEMINFO_WEAPONLEVEL) > 0)
