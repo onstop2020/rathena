@@ -1,5 +1,5 @@
 -	script	HotelStaff	-1,{
-	mes "ท่านสามารถขึ้นชั้นบน ไปนอนหลับพักผ่อนได้เลย";
+	mes "ท่านสามารถกดที่น้ำพุ เพื่อนักพักผ่อนได้เลย";
 	next;
 	menu "เปลี่ยน Save Point เป็นที่นี่",L_SavePoint
 	,"ซื้อหมอน หายเหนื่อยไวขึ้น +" + $pillowComfort + " (" + callfunc("F_InsertComma",.pillowPrice)+ "z)",L_Pillow
