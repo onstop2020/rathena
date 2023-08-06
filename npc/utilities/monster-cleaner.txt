@@ -1,13 +1,6 @@
 -	script	MonsterCleaner	-1,{
 	end;
 	
-OnMinute10:
-OnMinute20:
-OnMinute40:
-OnMinute50:
-	killmonsterall "force_3-3";
-	end;
-	
 OnMinute30:
 	// Instance
 	killmonsterall "1@ge_st";
@@ -62,6 +55,7 @@ OnMinute30:
 	killmonsterall "new_zone01";
 	killmonsterall "1@infi";
 	killmonsterall "force_3-3";
+	killmonsterall "jor_sanct";
 	// Special Rooms
 	donpcevent "เทรส::OnCleanUp";
 	end;
