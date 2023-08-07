@@ -52,6 +52,7 @@ prontera,153,283,3	script	Œÿ√‘	10460,{
 	L_SpawnMonster:
 	.@amount = getarg(0,.monsterAmount);
 	
+	freeloop(1);
 	for(.@i = 0; .@i < .@amount; .@i++){
 		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
 		while(callfunc("F_IsDummyMonster",.@monsterId))
@@ -59,6 +60,7 @@ prontera,153,283,3	script	Œÿ√‘	10460,{
 		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1;
 		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
 	}
+	freeloop(0);
 
 	return;
 

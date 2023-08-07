@@ -111,6 +111,7 @@ OnMinute50:
 
 	// Get price
 	L_Price:
+	freeloop(1);
 	.@price = .basePrice;
 	.@amount = .amount - getarraysize($market);
 	
@@ -118,7 +119,7 @@ OnMinute50:
 		.@amount -= .tierAmount;
 		.@price *= .priceTierMultiplier;
 	}
-
+	freeloop(0);
 	return cap_value(.@price * ((.@amount > 0) ? (.@amount) : 1),.basePrice,.maximumPrice);
 
 	// Get price wording
