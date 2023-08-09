@@ -50,42 +50,50 @@ OnCheckBotMacro:
 	end;
 	
 OnNPCKillEvent:
+	// Surprised Map
+	if(strcharinfo(3) == $surprisedMap$){
+		SurprisedPlayer();
+		
+		if(rand(10000) <= $surprisedChance){
+			getmapxy(.@tempMap$,.@tempX,.@tempY);
+			getfreecell(.@tempMap$,.@cellX,.@cellY,.@tempX,.@tempY,5,5);
+			monster .@tempMap$,.@cellX,.@cellY,"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled",2;
+			
+			setunitdata $@mobid[0],UMOB_DYNAMIC,rand(1,5000);
+			setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
+			
+			if(rand(10000) <= $surprisedMonsterSpeedChance)
+			setunitdata $@mobid[0],UMOB_SPEED,10;
+			
+			if(rand(10000) <= $surprised500Chance){
+				setunitdata $@mobid[0],UMOB_MAXHP,500000000;
+				setunitdata $@mobid[0],UMOB_HP,500000000;
+			}
+			else if(rand(10000) <= $surprised50Chance){
+				setunitdata $@mobid[0],UMOB_MAXHP,50000000;
+				setunitdata $@mobid[0],UMOB_HP,50000000;
+			}
+		}
+		
+		end;
+	}
+	
 	if(!IsTownMap()
 			&& (strcharinfo(3) != "06guild_01")
 			&& (strcharinfo(3) != "jor_sanct")
 			&& playerattached()){
-		getunitdata(killedgid,.@deadMonster);
+		if(@monsterDeadCooldown
+				&& (@monsterDeadCooldown > gettimetick(2)))
+		.@isSkipGetUnitData = 1;
 		
-		if(.@deadMonster[UMOB_MASTERAID] > 0)
-		end;
-		
-		// Surprised Map
-		if(strcharinfo(3) == $surprisedMap$){
-			SurprisedPlayer();
+		if(!.@isSkipGetUnitData){
+			getunitdata(killedgid,@deadMonster);
 			
-			if(rand(10000) <= $surprisedChance){
-				getmapxy(.@tempMap$,.@tempX,.@tempY);
-				getfreecell(.@tempMap$,.@cellX,.@cellY,.@tempX,.@tempY,5,5);
-				monster .@tempMap$,.@cellX,.@cellY,"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled",2;
-				
-				setunitdata $@mobid[0],UMOB_DYNAMIC,rand(1,5000);
-				setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
-				
-				if(rand(10000) <= $surprisedMonsterSpeedChance)
-				setunitdata $@mobid[0],UMOB_SPEED,10;
-				
-				if(rand(10000) <= $surprised500Chance){
-					setunitdata $@mobid[0],UMOB_MAXHP,500000000;
-					setunitdata $@mobid[0],UMOB_HP,500000000;
-				}
-				else if(rand(10000) <= $surprised50Chance){
-					setunitdata $@mobid[0],UMOB_MAXHP,50000000;
-					setunitdata $@mobid[0],UMOB_HP,50000000;
-				}
-			}
-			
-			end;
+			@monsterDeadCooldown = gettimetick(2) + 3;
 		}
+		
+		if(@deadMonster[UMOB_MASTERAID] > 0)
+		end;
 		
 		// Macro Detector
 		if(!isMacroDetecting){
@@ -109,8 +117,8 @@ OnNPCKillEvent:
 			}
 		}
 		
-		.@monsterLevel = .@deadMonster[UMOB_LEVEL];
-		.@monsterRank = .@deadMonster[UMOB_DYNAMIC];
+		.@monsterLevel = @deadMonster[UMOB_LEVEL];
+		.@monsterRank = @deadMonster[UMOB_DYNAMIC];
 		
 		// Trader
 		// Random chance to spawn (If not spawn yet)
