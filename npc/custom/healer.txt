@@ -90,7 +90,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 	if(!.@free){
 		next;
 		if(Zeny >= .@price)
-		menu "ข้าไม่อยากรอ ข้าจะจ่าย ^BA17F8" + callfunc("F_InsertComma",.@price) + "z^000000",-;
+		menu "ข้าไม่อยากรอ ข้าจะจ่าย (^BA17F8" + callfunc("F_InsertComma",.@price) + "z^000000)",-;
 		else
 		menu "ข้าไม่อยากรอ ข้าจะจ่าย ^BA17F8ด้วย Zeny เท่าที่ข้ามี^000000",-;
 		
@@ -154,7 +154,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 		mes "^11B120เป็นเวลา 1 วัน^000000";
 		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
 		.@price = .basePrice * BaseLevel;
-		menu "ขอจ่ายด้วย " + callfunc("F_InsertComma",.@price) + "z แทน",-;
+		menu "ขอจ่ายด้วย (^BA17F8" + callfunc("F_InsertComma",.@price) + "z^000000) แทน",-;
 		if(Zeny >= .@price){
 			Zeny = cap_value(Zeny - .@price,0,INT_MAX);
 			callsub L_Buff;
@@ -196,6 +196,8 @@ prontera,159,193,5	script	แพทย์	10458,{
 		end;
 	}
 
+	menu "ใช้งานปกติ",-,"จ่าย (^BA17F8" + callfunc("F_InsertComma",.multiplierBuffsPrice) + "z^000000) เพื่อรับ x เต็มทันที",L_FastLaneMultiplier;
+	
 	if($isAB < 1){
 		mes "วิธีใช้งาน: ในทุก ๆ อาทิตย์หาก <URL>แต้ม<INFO>https://playserver.in.th/index.php/Server/THE-BOX-5-91412</INFO></URL> มากกว่า " + callfunc("F_InsertComma",.pointComboRequired);
 		mes "• ^11B120ท่านจะสามารถ ภาวนา ได้ (เพิ่ม x EXP และ x Drop)^000000";
@@ -214,6 +216,17 @@ prontera,159,193,5	script	แพทย์	10458,{
 	@isPraying = 1;
 	deltimer strnpcinfo(3) + "::OnPray";
 	addtimer 3000, strnpcinfo(3) + "::OnPray";
+	end;
+	
+	L_FastLaneMultiplier:
+	if(Zeny >= .multiplierBuffsPrice){
+		Zeny = cap_value(Zeny - .multiplierBuffsPrice,0,INT_MAX);
+		combo = 100;
+		goto L_ChurchBuffExp;
+	}
+	else
+	message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
+	close;
 	end;
 	
 OnPray:
@@ -236,6 +249,7 @@ OnPray:
 	end;
 
 OnInit:
+	.multiplierBuffsPrice = 1000000;
 	.foodBuffsPrice = 1000000;
 	.repairAllPrice = 100000;
 	.clearDebuffPrice = 10000;
