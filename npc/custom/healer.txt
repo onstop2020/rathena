@@ -225,7 +225,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 		goto L_ChurchBuffExp;
 	}
 	else
-	message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
+	message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.multiplierBuffsPrice) + "z";
 	close;
 	end;
 	
