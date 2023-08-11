@@ -32,8 +32,6 @@ prontera,158,283,3	script	ฮิมะ	10434,{
 	menu "เข้า",-
 	,"เพิ่มระดับด้วย " + getitemname(.skipLevelItemId),L_SkipLevel;
 
-	callsub L_Spawn;
-
 	callsub L_Warp;
 	
 	end;
@@ -81,7 +79,7 @@ prontera,158,283,3	script	ฮิมะ	10434,{
 			
 			killmonsterall .mapName$;
 			
-			callsub L_Respawn;
+			callsub L_Respawn; // Skip level
 			
 			callsub L_Warp;
 			
@@ -103,18 +101,22 @@ OnWarp:
 	end;
 	
 OnCleanUp:
+	killmonsterall .mapName$;
+
+	callsub L_Respawn; // Reset the monster to prevent freezing map server (Somehow)
+	
+	end;
+	
+OnPlayerDead:
 	$theBox5HeroesDeadCount++;
 	
 	if($theBox5HeroesDeadCount >= .maxDeadAmount){
 		$theBox5HeroesDeadCount = 0;
 		$theBox5HeroesRank = 0;
 		killmonsterall .mapName$;
+		callsub L_Respawn; // Reset because dead amount reach maximum
 	}
 	
-	end;
-	
-OnTimer3000:
-	callsub L_Respawn;
 	end;
 	
 OnBossDead:
@@ -140,21 +142,19 @@ OnBossDead:
 			$theBox5HeroesLastShot$ = strcharinfo(0);
 		}
 		
-		announce "MvP ทุกตัวถูกกำจัด!! ระดับ " + $theBox5HeroesRank + " จะมาภายใน 3 วินาที",bc_map;
+		announce "MvP ทุกตัวถูกกำจัด!! ระดับถูกเลื่อนขึ้นเป็นระดับ " + callfunc("F_InsertComma",$theBox5HeroesRank),bc_map;
 		
-		initnpctimer;
+		callsub L_Respawn; // Next stage
 	}
 	else
 	announce "MvP เหลือ " + .mvpAmount + " ตัว!",bc_map;
 	
 	end;
 
-	L_Spawn:
+	L_Respawn:
 	if(!$theBox5HeroesRank)
 	$theBox5HeroesRank = 1;
-	else
-	return;
-	L_Respawn:
+
 	.mvpAmount = .spawnAmount;
 	for(.@i = 0; .@i < .spawnAmount; .@i++){
 		monster .mapName$,0,0,"--ja--",$all_boss_ids[rand(0,($all_boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
@@ -174,9 +174,7 @@ OnInit:
 	
 	waitingroom "THE BOX 5 HEROES",0;
 	
-	// Respawn
-	if($theBox5HeroesRank)
-	callsub L_Respawn;
+	callsub L_Respawn; // Initialize
 	
 	end;
 }

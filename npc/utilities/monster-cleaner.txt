@@ -60,5 +60,6 @@ OnMinute45:
 	killmonsterall "jor_sanct";
 	// Special Rooms
 	donpcevent "‡∑√ ::OnCleanUp";
+	donpcevent "Œ‘¡–::OnCleanUp";
 	end;
 }
