@@ -203,7 +203,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 		mes "• ^11B120ท่านจะสามารถ ภาวนา ได้ (เพิ่ม x EXP และ x Drop)^000000";
 		mes "• ^FF2929ทุก ๆ วันศุกร์ประมาณ 22.00-23.00น. พรจะหายไป และจะกลับมาอีกครั้งเมื่อ GM ตื่น และมาเช็คแต้ม^000000";
 		.@price = .baseComboPrice * BaseLevel;
-		menu "ขอจ่ายด้วย " + callfunc("F_InsertComma",.@price) + "z แทน",-;
+		menu "ขอจ่ายด้วย (^BA17F8" + callfunc("F_InsertComma",.@price) + "z^000000) แทน",-;
 		if(Zeny >= .@price)
 		Zeny = cap_value(Zeny - .@price,0,INT_MAX);
 		else{
@@ -226,7 +226,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 	}
 	else
 	message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.multiplierBuffsPrice) + "z";
-	close;
+
 	end;
 	
 OnPray:

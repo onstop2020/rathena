@@ -23,6 +23,7 @@ prontera,152,198,3	script	ลากูน	586,{
 	,"แลก Costume ใช้ ^BA17F8" + callfunc("F_InsertComma",.costumePrice) + " Dismantle Points^000000",L_TradeForCostume
 	,"แลก Card ใช้ ^BA17F8" + callfunc("F_InsertComma",.cardPrice) + " Dismantle Points^000000",L_TradeForCard
 	,"แลก Enchantment ใช้ ^BA17F8" + callfunc("F_InsertComma",.enchantmentPrice) + " Dismantle Points^000000",L_TradeForEnchantment
+	,"แลก Item ที่ต้องการ ใช้ ^BA17F8" + callfunc("F_InsertComma",.selectItemIdPrice) + " Dismantle Points^000000",L_TradeForAnyItem
 	;
 	close;
 
@@ -183,6 +184,35 @@ prontera,152,198,3	script	ลากูน	586,{
 	}
 	close;
 	
+	L_TradeForAnyItem:
+	mes "ระบุ Item ID ที่ต้องการ";
+	input .@i;
+	next;
+	// Check it was equipment or card
+	if((getiteminfo(.@i,ITEMINFO_TYPE) == IT_CARD)
+			|| (getiteminfo(.@i,ITEMINFO_TYPE) == IT_SHADOWGEAR)
+			|| (getiteminfo(.@i,ITEMINFO_WEAPONLEVEL) > 0)
+			|| (getiteminfo(.@i,ITEMINFO_ARMORLEVEL) > 0)){
+		mes "คุณมี ^BA17F8" + F_InsertComma(dmPoints) + " Dismantle Points^000000";
+		mes "ต้องการแลก ^3F28FF" + getitemname(.@i) + " (" + .@i + ")^000000";
+		mes "ด้วย^BA17F8 " + callfunc("F_InsertComma",.selectItemIdPrice) + " Dismantle Points^000000?";
+		next;
+		menu "แลก",-;
+		
+		if(dmPoints >= .selectItemIdPrice){
+			dmPoints = cap_value(dmPoints - .selectItemIdPrice,0,INT_MAX);
+			getitem .@i,1;
+		}
+		else
+		message strcharinfo(0),"ต้องการ " + callfunc("F_InsertComma",.selectItemIdPrice) + " Dismantle Points";
+		
+		close;
+	}
+	else{
+		mes "ไม่พบ Item ดังกล่าว";
+		close;
+	}
+	
 OnInit:
 	// Important items
 	setarray .noSells,10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008;
@@ -201,6 +231,8 @@ OnInit:
 	.costumePrice = 25;
 	.cardPrice = 135;
 	.enchantmentPrice = 250;
+	
+	.selectItemIdPrice = 5555;
 	
 	.itemId = 10000008;
 	
