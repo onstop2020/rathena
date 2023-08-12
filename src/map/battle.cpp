@@ -2816,6 +2816,11 @@ bool is_infinite_defense(struct block_list *target, int flag)
 	if(status_has_mode(tstatus,MD_IGNOREMISC) && flag&(BF_MISC) )
 		return true;*/
 
+	// Deflect
+	mob_data* md = BL_CAST(BL_MOB, target);
+	if (md && md->deflect && (rand() % 100 <= md->deflect))
+		return true;
+
 	return false;
 }
 

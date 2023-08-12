@@ -383,6 +383,7 @@ struct mob_data {
 	uint16 damagetaken;
 
 	int dynamic; // [Start]
+	int deflect; // [Start]
 
 	e_mob_bosstype get_bosstype();
 };

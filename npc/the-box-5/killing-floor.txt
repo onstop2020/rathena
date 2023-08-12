@@ -96,6 +96,7 @@ OnWarp:
 	for(.@i = 0; .@i < .@amount; .@i++){
 		monster .mapName$,0,0,"--ja--",$all_boss_ids[rand($all_boss_id_size)],1,strnpcinfo(0) + "::OnBossDead";
 		setunitdata $@mobid[0],UMOB_DYNAMIC,.bossRank;
+		setunitdata $@mobid[0],UMOB_DEFLECT,50;
 	}
 
 	return;

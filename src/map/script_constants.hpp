@@ -4819,6 +4819,7 @@
 	export_constant(UMOB_MRES);
 	export_constant(UMOB_DAMAGETAKEN);
 	export_constant(UMOB_DYNAMIC); // [Start]
+	export_constant(UMOB_DEFLECT); // [Start]
 
 	/* unit control - homunculus */
 	export_constant(UHOM_SIZE);

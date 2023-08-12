@@ -1164,7 +1164,8 @@ int mob_spawn (struct mob_data *md)
 	md->last_linktime = tick;
 	md->dmgtick = tick - 5000;
 	md->last_pcneartime = 0;
-	md->dynamic = (int)(1 + (rnd() % battle_config.max_monster_dynamic));
+	md->dynamic = (int)(1 + (rnd() % battle_config.max_monster_dynamic)); // [Start] Random monster rank 1~n
+	md->deflect = (md->dynamic > 5) ? cap_value((md->dynamic / 5),1,50) : 0; // [Start] Monster rank > 5 will grant deflect rate by (Rank / 5) (Maximum: 50%)
 
 	t_tick c = tick - MOB_MAX_DELAY;
 
