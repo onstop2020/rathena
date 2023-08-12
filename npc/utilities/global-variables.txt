@@ -1,0 +1,28 @@
+-	script	GlobalVariables	-1,{
+	end;
+	
+OnInit:
+	.@v = 1;
+	if($noSellVersion != .@v){
+		$noSellVersion = .@v;
+		
+		deletearray $noSells[0],getarraysize($noSells);
+		
+		setarray $noSells,10000000
+		,10000001
+		,10000002
+		,10000003
+		,10000004
+		,10000005
+		,10000006
+		,10000007
+		,10000008
+		,10000009
+		,10000010
+		,10000011
+		;
+		
+		$noSellSize = getarraysize($noSells);
+	}
+	end;
+}

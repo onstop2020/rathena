@@ -23,6 +23,8 @@ prontera,158,283,3	script	ฮิมะ	10434,{
 	mes " ";
 	mes "^9D42C0--- [รางวัล] ---^000000";
 	mes "• " + mesitemlink(.rewardItemId) + " (" + F_PercentBase10000(max($theBox5HeroesRank,1)) + ")";
+	mes "• " + mesitemlink(.statusPointsItemId) + " (" + F_PercentBase10000(max($theBox5HeroesRank * 2,1)) + ")";
+	mes "• " + mesitemlink(.skillPointsItemId) + " (" + F_PercentBase10000(max($theBox5HeroesRank / 2,1)) + ")";
 	mes " ";
 	mes "^C04264--- [โทษภายในห้อง] ---^000000";
 	mes "• ^F81717Teleport ไม่ได้^000000";
@@ -123,12 +125,30 @@ OnBossDead:
 	if(!playerattached())
 	end;
 
-	// Reward
+	// Rewards
 	.@rand = rand(10000);
+	.@rand2 = rand(10000);
+	.@rand3 = rand(10000);
 	if(.@rand <= $theBox5HeroesRank)
 	getitem .rewardItemId,1;
-	else
-	dispbottom "ต้องสุ่มได้น้อยกว่าหรือเท่ากับ " + $theBox5HeroesRank + " คุณสุ่มได้ " + .@rand;
+	if(.@rand2 <= ($theBox5HeroesRank * 2))
+	getitem .statusPointsItemId,1;
+	if(.@rand3 <= ($theBox5HeroesRank / 2))
+	getitem .skillPointsItemId,1;
+
+	dispbottom "ต้องสุ่มได้น้อยกว่าหรือเท่ากับ ["
+	+ $theBox5HeroesRank
+	+ " / "
+	+ ($theBox5HeroesRank * 2)
+	+ " / "
+	+ ($theBox5HeroesRank / 2)
+	+ "] คุณสุ่มได้ ["
+	+ .@rand
+	+ " / "
+	+ .@rand2
+	+ " / "
+	+ .@rand3
+	+ "]";
 	
 	// Monster amount update
 	.mvpAmount = cap_value(.mvpAmount - 1,0,.spawnAmount);
@@ -166,6 +186,8 @@ OnBossDead:
 OnInit:
 	.skipLevelItemId = 10000006;
 	.rewardItemId = 10000007;
+	.statusPointsItemId = 10000009;
+	.skillPointsItemId = 10000010;
 	
 	.spawnAmount = 5;
 	.maxDeadAmount = 5;

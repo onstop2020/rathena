@@ -27,7 +27,9 @@ prontera,163,283,3	script	เพล	10279,{
 	mes "• ^F81717Bonus จาก Item ทุกชิ้นหาร " + callfunc("F_InsertComma",.baseDivider) + "^000000";
 	next;
 	menu "เข้า (^AF25AC" + callfunc("F_InsertComma",.enterZenyPrice) + "z และ " + getitemname(.enterItemId) + " " + callfunc("F_InsertComma",.enterItemAmount) + " ชิ้น^000000)",-
-	,"แลกของ (ใช้^AF25ACแต้มอาฆาต " + callfunc("F_InsertComma",.price) + " แต้ม^000000)",L_Trade;
+	,"แลกของ (ใช้^AF25ACแต้มอาฆาต " + callfunc("F_InsertComma",.price) + " แต้ม^000000)",L_Trade
+	,"แลกแต้มอาฆาตเป็น Item แลกเปลี่ยนได้",L_TurnToItem
+	;
 	
 	if((Zeny >= .enterZenyPrice)
 			&& (countitem(.enterItemId) >= .enterItemAmount)){
@@ -117,6 +119,17 @@ OnTimer60000:
 
 	end;
 	
+	L_TurnToItem:
+	.@amount = kfPoints;
+	if((countitem(.itemId) + kfPoints) > 30000)
+	.@amount = 30000 - countitem(.itemId);
+
+	kfPoints = cap_value(kfPoints - .@amount,0,INT_MAX);
+	
+	getitem .itemId,.@amount;
+	
+	end;
+	
 OnInit:
 	.mapName$ = "jor_sanct";
 	.monsterAmount = 35;
@@ -130,6 +143,8 @@ OnInit:
 	.enterItemAmount = 10;
 	
 	.price = 100;
+	
+	.itemId = 10000011;
 	
 	waitingroom "ห้องอาฆาต",0;
 	

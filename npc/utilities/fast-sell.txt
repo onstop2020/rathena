@@ -3,8 +3,8 @@ prontera,166,200,5	script	ซารุย	10389,{
 	mes "• ^F81717จะขาย Item ทุกชิ้นในกระเป๋า^000000";
 	mes "• ^3629FFจะไม่ขาย Item ที่สวมใส่อยู่^000000";
 	mes "• ^3629FFจะไม่ขาย Item ที่ Favourite อยู่^000000";
-	for(.@i = 0; .@i < .noSellSize; .@i++)
-	mes "• ^3629FFจะไม่ขาย " + getitemname(.noSells[.@i]) + "^000000";
+	for(.@i = 0; .@i < $noSellSize; .@i++)
+	mes "• ^3629FFจะไม่ขาย " + getitemname($noSells[.@i]) + "^000000";
 	mes "• ^3629FFSkill 'Overcharge' จะเพิ่มราคาขายได้ตามปกติ^000000";
 	next;
 	menu "ไม่ทำอะไร",-
@@ -37,9 +37,9 @@ prontera,166,200,5	script	ซารุย	10389,{
 		
 		.@isFoundNoSell = 0;
 		
-		for(.@j = 0; .@j < .noSellSize; .@j++)
+		for(.@j = 0; .@j < $noSellSize; .@j++)
 		{
-			if(@inventorylist_id[.@i] == .noSells[.@j])
+			if(@inventorylist_id[.@i] == $noSells[.@j])
 			{
 				.@isFoundNoSell = 1;
 				break;
@@ -70,7 +70,5 @@ prontera,166,200,5	script	ซารุย	10389,{
 	
 OnInit:
 	.max_zeny = 2000000000;
-	setarray .noSells,10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008;
-	.noSellSize = getarraysize(.noSells);
 	end;
 }

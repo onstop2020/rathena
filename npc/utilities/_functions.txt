@@ -301,6 +301,34 @@ function	script	GainDismantlePoints	{
 	return;
 }
 
+// Gaining status points
+function	script	GainStatusPoints	{
+	atcommand "@stpoint 1";
+	stpoints++;
+	
+	return;
+}
+
+// Gaining skill points
+function	script	GainSkillPoints	{
+	atcommand "@skpoint 1";
+	
+	return;
+}
+
+// Gaining killing floor points
+function	script	GainKillingFloorPoints	{
+	.@itemId = 10000011;
+	.@amount = countitem(.@itemId);
+	kfPoints = cap_value(kfPoints + .@amount + 1,0,INT_MAX);
+	delitem .@itemId,.@amount;
+	
+	dispbottom "รับแต้มอาฆาต " + F_InsertComma(.@amount + 1) + " แต้ม";
+	dispbottom "ขณะนี้คุณมีแต้มอาฆาต " + F_InsertComma(kfPoints) + " แต้ม";
+	
+	return;
+}
+
 // Clear macro variables
 function	script	ClearMacro	{
 	@stackMacroDetecting = 0;

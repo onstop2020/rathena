@@ -41,8 +41,9 @@ prontera,37,177,5	script	แซสซี่	10369,{
 		
 		if(trpoint > 0)
 		atcommand "@trpoint +" + trpoint;
+		if(stpoints > 0)
+		atcommand "@stpoint +" + stpoints;
 	}
-	
 	
 	mes "เรียบร้อยแล้ว!";
 	

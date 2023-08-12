@@ -4,8 +4,8 @@ prontera,152,198,3	script	ลากูน	586,{
 	mes "• ^F81717จะบด Item ทุกชิ้นในกระเป๋าตามประเภทที่เลือก^000000";
 	mes "• ^3629FFจะไม่บด Item ที่สวมใส่อยู่^000000";
 	mes "• ^3629FFจะไม่บด Item ที่ Favourite อยู่^000000";
-	for(.@i = 0; .@i < .noSellSize; .@i++)
-	mes "• ^3629FFจะไม่บด " + getitemname(.noSells[.@i]) + "^000000";
+	for(.@i = 0; .@i < $noSellSize; .@i++)
+	mes "• ^3629FFจะไม่บด " + getitemname($noSells[.@i]) + "^000000";
 	next;
 	menu "ไม่ทำอะไร",-
 	,"---",-
@@ -70,9 +70,9 @@ prontera,152,198,3	script	ลากูน	586,{
 		
 		// Skip important items
 		.@isFoundNoSell = 0;
-		for(.@j = 0; .@j < .noSellSize; .@j++)
+		for(.@j = 0; .@j < $noSellSize; .@j++)
 		{
-			if(@inventorylist_id[.@i] == .noSells[.@j])
+			if(@inventorylist_id[.@i] == $noSells[.@j])
 			{
 				.@isFoundNoSell = 1;
 				break;
@@ -214,10 +214,6 @@ prontera,152,198,3	script	ลากูน	586,{
 	}
 	
 OnInit:
-	// Important items
-	setarray .noSells,10000000,10000001,10000002,10000003,10000004,10000005,10000006,10000007,10000008;
-	.noSellSize = getarraysize(.noSells);
-	
 	// Points per dismantle
 	.weapon = 1;
 	.equipment = 1;
