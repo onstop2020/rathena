@@ -146,7 +146,7 @@ OnMonsterDead:
 	
 	areamonster .mapName$,162,161,185,150,"--ja--",.mobIds[rand(.mobIdSize)],1,strnpcinfo(0) + "::OnMonsterDead";
 	setunitdata $@mobid[0],UMOB_DYNAMIC,25;
-	setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(25 / 5,1,50);
+	setunitdata $@mobid[0],UMOB_DEFLECT,50;
 	
 	end;
 	
@@ -154,7 +154,7 @@ OnMonsterDead:
 	for(.@i = 0; .@i < .spawn_amount; .@i++){
 		areamonster .mapName$,162,161,185,150,"--ja--",.mobIds[rand(.mobIdSize)],1,strnpcinfo(0) + "::OnMonsterDead";
 		setunitdata $@mobid[0],UMOB_DYNAMIC,25;
-		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(25 / 5,1,50);
+		setunitdata $@mobid[0],UMOB_DEFLECT,50;
 	}
 	
 	return;
