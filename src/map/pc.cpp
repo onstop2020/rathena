@@ -3041,6 +3041,8 @@ int pc_disguise(map_session_data *sd, int class_)
 #define PC_BONUS_CHK_SIZE(sz,bonus) { if (!CHK_MOBSIZE((sz))) { PC_BONUS_SHOW_ERROR((bonus),Size,(sz)); }}
 /// Check for valid SC, break & show error message if invalid SC
 #define PC_BONUS_CHK_SC(sc,bonus) { if ((sc) <= SC_NONE || (sc) >= SC_MAX) { PC_BONUS_SHOW_ERROR((bonus),Effect,(sc)); }}
+/// Capping value while divide [Start]
+#define CAP_DIVIDER_VALUE(val,divider) { if (val && divider) val = cap_value(val / divider, (val > 0) ? 1 : -1, val); }
 
 /**
  * Add auto spell bonus for player while attacking/attacked
@@ -3649,8 +3651,7 @@ void pc_bonus(map_session_data *sd,int type,int val)
 
 	status = &sd->base_status;
 
-	if (sd->all_bonus_divider)
-		val /= sd->all_bonus_divider;
+	CAP_DIVIDER_VALUE(val, sd->all_bonus_divider);
 
 	switch(type){
 		case SP_STR:
@@ -4405,8 +4406,7 @@ void pc_bonus2(map_session_data *sd,int type,int type2,int val)
 {
 	nullpo_retv(sd);
 
-	if (sd->all_bonus_divider)
-		val /= sd->all_bonus_divider;
+	CAP_DIVIDER_VALUE(val, sd->all_bonus_divider);
 
 	switch(type){
 	case SP_ADDELE: // bonus2 bAddEle,e,x;
@@ -5050,8 +5050,7 @@ void pc_bonus3(map_session_data *sd,int type,int type2,int type3,int val)
 {
 	nullpo_retv(sd);
 
-	if (sd->all_bonus_divider)
-		val /= sd->all_bonus_divider;
+	CAP_DIVIDER_VALUE(val, sd->all_bonus_divider);
 
 	switch(type){
 	case SP_ADD_MONSTER_DROP_ITEM: // bonus3 bAddMonsterDropItem,iid,r,n;
@@ -5194,8 +5193,7 @@ void pc_bonus4(map_session_data *sd,int type,int type2,int type3,int type4,int v
 {
 	nullpo_retv(sd);
 
-	if (sd->all_bonus_divider)
-		val /= sd->all_bonus_divider;
+	CAP_DIVIDER_VALUE(val, sd->all_bonus_divider);
 
 	switch(type){
 	case SP_AUTOSPELL: // bonus4 bAutoSpell,sk,y,n,i;
@@ -5280,8 +5278,7 @@ void pc_bonus5(map_session_data *sd,int type,int type2,int type3,int type4,int t
 {
 	nullpo_retv(sd);
 
-	if (sd->all_bonus_divider)
-		val /= sd->all_bonus_divider;
+	CAP_DIVIDER_VALUE(val, sd->all_bonus_divider);
 
 	switch(type){
 	case SP_AUTOSPELL: // bonus5 bAutoSpell,sk,y,n,bf,i;
