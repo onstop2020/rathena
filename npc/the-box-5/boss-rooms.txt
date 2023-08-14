@@ -163,7 +163,7 @@ OnBossDead9:
 	
 	monster strcharinfo(3),0,0,"--ja--",$all_boss_ids[rand($all_boss_id_size)],1,strnpcinfo(0) + "::OnBossDead" + .@rank;
 	setunitdata $@mobid[0],UMOB_DYNAMIC,.@rank;
-	setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@rank / 5,1,50);
+	setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@rank / 5,0,50);
 	
 	end;
 	
@@ -175,7 +175,7 @@ OnBossDead9:
 	for(.@i = 0; .@i < .spawn_amount; .@i++){
 		monster .@mapName$,0,0,"--ja--",$all_boss_ids[rand($all_boss_id_size)],1,strnpcinfo(0) + "::OnBossDead" + .@rank;
 		setunitdata $@mobid[0],UMOB_DYNAMIC,.@rank;
-		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@rank / 5,1,50);
+		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@rank / 5,0,50);
 	}
 	
 	return;
