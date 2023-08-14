@@ -179,7 +179,7 @@ OnBossDead:
 	for(.@i = 0; .@i < .spawnAmount; .@i++){
 		monster .mapName$,0,0,"--ja--",$all_boss_ids[rand(0,($all_boss_id_size - 1))],1,strnpcinfo(0) + "::OnBossDead";
 		setunitdata $@mobid[0],UMOB_DYNAMIC,$theBox5HeroesRank;
-		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value($theBox5HeroesRank / 5,1,50);
+		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value($theBox5HeroesRank / 5,0,50);
 	}
 	
 	return;

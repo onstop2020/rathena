@@ -61,7 +61,7 @@ OnNPCKillEvent:
 			
 			.@newRank = rand(1,5000);
 			setunitdata $@mobid[0],UMOB_DYNAMIC,.@newRank;
-			setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@newRank / 5,1,50);
+			setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@newRank / 5,0,50);
 			setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
 			
 			if(rand(10000) <= $surprisedMonsterSpeedChance)
