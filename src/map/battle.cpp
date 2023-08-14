@@ -2818,9 +2818,10 @@ bool is_infinite_defense(struct block_list *target, int flag)
 
 	// Deflect
 	mob_data* md = BL_CAST(BL_MOB, target);
-	if (md && md->deflect && (rand() % 100 <= md->deflect))
+	if (md && md->deflect && (rand() % 100 <= md->deflect)) {
+		clif_messagecolor(target, 0xD82C2C, "Deflect!!", true, AREA_CHAT_WOC);
 		return true;
-
+	}
 	return false;
 }
 
