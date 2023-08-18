@@ -59,7 +59,7 @@ OnNPCKillEvent:
 			getfreecell(.@tempMap$,.@cellX,.@cellY,.@tempX,.@tempY,5,5);
 			monster .@tempMap$,.@cellX,.@cellY,"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled",2;
 			
-			.@newRank = rand(1,500);
+			.@newRank = rand(1,5000);
 			setunitdata $@mobid[0],UMOB_DYNAMIC,.@newRank;
 			setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@newRank / 5,0,50);
 			setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
