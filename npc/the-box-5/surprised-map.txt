@@ -9,6 +9,8 @@ force_3-3	mapflag	nobranch
 force_3-3	mapflag	notomb
 
 prontera,153,283,3	script	ฮุริ	10460,{
+	if((surprisedCooldown - gettimetick(2)) >= 0)
+	message strcharinfo(0),"รางวัลสำหรับคุณหมดแล้ว โปรดรอ " + callfunc("GetTimerWording",(surprisedCooldown - gettimetick(2)));
 	mes "^0B9552--- [วิธีเล่น] ---^000000";
 	mes "• เมื่อกำจัด Monster สุ่ม " + callfunc("F_PercentBase10000",$surprisedChance) + " เกิด Monster ตัวใหญ่";
 	mes " ";
@@ -57,7 +59,7 @@ prontera,153,283,3	script	ฮุริ	10460,{
 		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
 		while(callfunc("F_IsDummyMonster",.@monsterId))
 		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
-		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1;
+		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMonsterDead";
 		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
 	}
 	freeloop(0);
@@ -65,36 +67,40 @@ prontera,153,283,3	script	ฮุริ	10460,{
 	return;
 
 OnMonsterDead:
-	// Surprised Map
-	if(strcharinfo(3) == $surprisedMap$){
-		SurprisedPlayer();
+	if(!playerattached())
+	end;
+
+	SurprisedPlayer();
+	
+	if(rand(10000) <= $surprisedChance){
+		getmapxy(.@tempMap$,.@tempX,.@tempY);
+		getfreecell(.@tempMap$,.@cellX,.@cellY,.@tempX,.@tempY,5,5);
+		monster .@tempMap$,.@cellX,.@cellY,"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled",2;
 		
-		if(rand(10000) <= $surprisedChance){
-			getmapxy(.@tempMap$,.@tempX,.@tempY);
-			getfreecell(.@tempMap$,.@cellX,.@cellY,.@tempX,.@tempY,5,5);
-			monster .@tempMap$,.@cellX,.@cellY,"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled",2;
-			
-			.@newRank = rand(1,5000);
-			setunitdata $@mobid[0],UMOB_DYNAMIC,.@newRank;
-			setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@newRank / 5,0,50);
-			setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
-			
-			if(rand(10000) <= $surprisedMonsterSpeedChance)
-			setunitdata $@mobid[0],UMOB_SPEED,10;
-			
-			if(rand(10000) <= $surprised500Chance){
-				setunitdata $@mobid[0],UMOB_MAXHP,500000000;
-				setunitdata $@mobid[0],UMOB_HP,500000000;
-			}
-			else if(rand(10000) <= $surprised50Chance){
-				setunitdata $@mobid[0],UMOB_MAXHP,50000000;
-				setunitdata $@mobid[0],UMOB_HP,50000000;
-			}
+		.@newRank = rand(1,5000);
+		setunitdata $@mobid[0],UMOB_DYNAMIC,.@newRank;
+		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@newRank / 5,0,50);
+		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
+		
+		if(rand(10000) <= $surprisedMonsterSpeedChance)
+		setunitdata $@mobid[0],UMOB_SPEED,10;
+		
+		if(rand(10000) <= $surprised500Chance){
+			setunitdata $@mobid[0],UMOB_MAXHP,500000000;
+			setunitdata $@mobid[0],UMOB_HP,500000000;
+		}
+		else if(rand(10000) <= $surprised50Chance){
+			setunitdata $@mobid[0],UMOB_MAXHP,50000000;
+			setunitdata $@mobid[0],UMOB_HP,50000000;
 		}
 	}
+	
 	end;
 
 OnSurprisedMonsterKilled:
+	if(!playerattached())
+	end;
+
 	if(surprisedRewardCount >= $surprisedRewardPerMap){
 		if((surprisedCooldown - gettimetick(2)) >= 0){
 			dispbottom "รางวัลสำหรับคุณหมดแล้ว โปรดรอ " + callfunc("GetTimerWording",(surprisedCooldown - gettimetick(2)));
