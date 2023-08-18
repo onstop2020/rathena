@@ -9,7 +9,8 @@ force_3-3	mapflag	nobranch
 force_3-3	mapflag	notomb
 
 prontera,153,283,3	script	ฮุริ	10460,{
-	if((surprisedCooldown - gettimetick(2)) >= 0)
+	if((surprisedRewardCount >= $surprisedRewardPerMap)
+			&& ((surprisedCooldown - gettimetick(2)) >= 0))
 	message strcharinfo(0),"รางวัลสำหรับคุณหมดแล้ว โปรดรอ " + callfunc("GetTimerWording",(surprisedCooldown - gettimetick(2)));
 	mes "^0B9552--- [วิธีเล่น] ---^000000";
 	mes "• เมื่อกำจัด Monster สุ่ม " + callfunc("F_PercentBase10000",$surprisedChance) + " เกิด Monster ตัวใหญ่";
