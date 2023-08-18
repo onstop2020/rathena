@@ -1,9 +1,7 @@
 -	script	MonsterCleaner	-1,{
 	end;
 	
-OnMinute15:
 OnMinute30:
-OnMinute45:
 	// Instance
 	killmonsterall "1@ge_st";
 	killmonsterall "1@gef";
