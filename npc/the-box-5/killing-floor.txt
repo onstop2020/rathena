@@ -25,7 +25,6 @@ prontera,163,283,3	script	เพล	10279,{
 	mes "• ^F81717Monster จะไม่ให้ EXP, Item";
 	mes "• ^F81717Monster Rank " + .bossRank + "^000000";
 	mes "• ^F81717Monster Deflect " + .bossRank + "^000000";
-	mes "• ^F81717Monster HP " + callfunc("F_InsertComma",.monsterHp) + "^000000";
 	mes "• ^F81717Bonus จาก Item ทุกชิ้นหาร " + callfunc("F_InsertComma",.baseDivider) + "^000000";
 	next;
 	menu "เข้า (^AF25AC" + callfunc("F_InsertComma",.enterZenyPrice) + "z และ " + getitemname(.enterItemId) + " " + callfunc("F_InsertComma",.enterItemAmount) + " ชิ้น^000000)",-
@@ -98,9 +97,7 @@ OnWarp:
 	for(.@i = 0; .@i < .@amount; .@i++){
 		monster .mapName$,0,0,"--ja--",$all_boss_ids[rand($all_boss_id_size)],1,strnpcinfo(0) + "::OnBossDead";
 		setunitdata $@mobid[0],UMOB_DYNAMIC,.bossRank;
-		setunitdata $@mobid[0],UMOB_DEFLECT,.bossRank;
-		setunitdata $@mobid[0],UMOB_MAXHP,.monsterHp;
-		setunitdata $@mobid[0],UMOB_HP,.monsterHp;
+		setunitdata $@mobid[0],UMOB_DEFLECT,50;
 	}
 
 	return;
@@ -138,7 +135,6 @@ OnTimer60000:
 OnInit:
 	.mapName$ = "jor_sanct";
 	.monsterAmount = 35;
-	.monsterHp = 500000000;
 
 	.baseKillAmount = 100;
 	.baseDivider = 7;
