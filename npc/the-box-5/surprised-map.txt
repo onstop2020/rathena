@@ -9,8 +9,7 @@ force_3-3	mapflag	nobranch
 force_3-3	mapflag	notomb
 
 prontera,153,283,3	script	ฮุริ	10460,{
-	if((surprisedRewardCount >= $surprisedRewardPerMap)
-			&& ((surprisedCooldown - gettimetick(2)) >= 0))
+	if((surprisedRewardCount >= $surprisedRewardPerMap) && ((surprisedCooldown - gettimetick(2)) >= 0))
 	message strcharinfo(0),"รางวัลสำหรับคุณหมดแล้ว โปรดรอ " + callfunc("GetTimerWording",(surprisedCooldown - gettimetick(2)));
 	mes "^0B9552--- [วิธีเล่น] ---^000000";
 	mes "• เมื่อกำจัด Monster สุ่ม " + callfunc("F_PercentBase10000",$surprisedChance) + " เกิด Monster ตัวใหญ่";
@@ -53,7 +52,7 @@ prontera,153,283,3	script	ฮุริ	10460,{
 	end;
 
 	L_SpawnMonster:
-	.@amount = getarg(0,.monsterAmount);
+	.@amount = getarg(0,1);
 	
 	freeloop(1);
 	for(.@i = 0; .@i < .@amount; .@i++){
@@ -124,7 +123,7 @@ OnSurprisedMonsterKilled:
 	end;
 	
 OnTimer60000:
-	.@spawnAmount = .monsterAmount - mobcount($surprisedMap$,"");
+	.@spawnAmount = .monsterAmount - mobcount($surprisedMap$,"all");
 	if(.@spawnAmount > 0)
 	callsub L_SpawnMonster,.@spawnAmount;
 
@@ -156,7 +155,7 @@ OnInit:
 	$surprisedRewardChance = 5000;			// Chance to get reward
 	$surprisedRewardPerMap = 5;				// Reward per map
 	
-	callsub L_SpawnMonster;
+	callsub L_SpawnMonster,.monsterAmount;
 	
 	initnpctimer;
 	

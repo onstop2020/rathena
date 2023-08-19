@@ -113,7 +113,7 @@ OnBossDead:
 	end;
 	
 OnTimer60000:
-	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$,""),0,.monsterAmount);
+	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$,"all"),0,.monsterAmount);
 	if(.@spawnAmount > 0)
 	callsub L_SpawnMonster,.@spawnAmount;
 

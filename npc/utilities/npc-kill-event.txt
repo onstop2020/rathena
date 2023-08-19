@@ -218,7 +218,7 @@ OnCheckBotMacro:
 	end;
 	
 OnInit:
-	.killAmountMacro = 100;		// How many killed to start for detecting macro
+	.killAmountMacro = 100;		// How many killed to start for detecting Bot & Macro
 	setarray .bmItemIds[0],7492,7491,7490,7489,7488,7487,7486,7485;	// List of item for Bot & Macro detection
 	
 	.traderSpawnChance = 100;	// Trader spawn chance 					- 10000 = 100%
