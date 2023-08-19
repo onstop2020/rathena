@@ -135,22 +135,33 @@ function	script	GetGradeName	{
 function	script	IsTownMap	{
 	.@mapName$ = strcharinfo(3);
 	
-	.@isMapError = (
-	(.@mapName$ == "prontera")
-	|| (.@mapName$ == "prt_in")
-	|| (.@mapName$ == "force_1-1")
-	|| (.@mapName$ == "force_1-2")
-	|| (.@mapName$ == "force_1-3")
-	|| (.@mapName$ == "force_2-2")
-	|| (.@mapName$ == "force_2-3")
-	|| (.@mapName$ == "tra_fild")
-	|| (.@mapName$ == "pvp_y_1-1")
-	|| (.@mapName$ == "pvp_y_1-4")
-	|| (.@mapName$ == "prt_church")
-	|| (.@mapName$ == "s_atelier")
+	.@isTownMap = (
+	(.@mapName$ == "prontera")		// Main town
+	|| (.@mapName$ == "force_1-1")	// Training Ground
+	|| (.@mapName$ == "force_1-2")	// Training Ground
+	|| (.@mapName$ == "force_1-3")	// Training Ground
+	|| (.@mapName$ == "force_2-2")	// Training Ground
+	|| (.@mapName$ == "force_2-3")	// Training Ground
+	|| (.@mapName$ == "tra_fild")	// Training Ground
+	|| (.@mapName$ == "pvp_y_1-1")	// PvP
+	|| (.@mapName$ == "pvp_y_1-4")	// PvP
 	)
 	;
-	return .@isMapError;
+	
+	return .@isTownMap;
+}
+
+// Is special map?
+function	script	IsSpecialMap	{
+	.@mapName$ = strcharinfo(3);
+	
+	.@isSpecialMap = (
+	(.@mapName$ == "06guild_01")	// THE BOX 5 HEROES
+	|| (.@mapName$ == "jor_sanct")	// Killing Floor
+	|| (.@mapName$ == "force_3-3")	// Surprised
+	);
+	
+	return .@isSpecialMap;
 }
 
 // Get THE BOX rewards

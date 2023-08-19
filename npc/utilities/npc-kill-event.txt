@@ -2,41 +2,56 @@
 	end;
 	
 OnNPCKillEvent:
-	if(!IsTownMap()
-			&& (strcharinfo(3) != "06guild_01")
-			&& (strcharinfo(3) != "jor_sanct")
-			&& playerattached()){
-		if(@monsterDeadCooldown
-				&& (@monsterDeadCooldown > gettimetick(2)))
-		.@isSkipGetUnitData = 1;
-		
-		if(!.@isSkipGetUnitData){
+	// Is had player data?
+	if(!playerattached())
+	end;
+
+	// Check current map available to use Trader ot THE BOX
+	if(!IsTownMap() && !IsSpecialMap()){
+		// Get unit database if able to
+		if(@monsterDeadCooldown < gettimetick(2)){
 			getunitdata(killedgid,@deadMonster);
 			
 			@monsterDeadCooldown = gettimetick(2) + 3;
 		}
 		
+		// Do not ran skip if it was summon
 		if(@deadMonster[UMOB_MASTERAID] > 0)
 		end;
 		
-		// Macro Detector
+		// Bot & Macro Detector
 		if(!isMacroDetecting){
+			// Kill amount increased
 			ka++;
+			// Check if (Teleport amount + Kill amount) >= Requirement
 			if((mdt + ka) >= max(bmDetectAmount,.killAmountMacro)){
+				// Detecting Bot & Macro now
 				isMacroDetecting = 1;
+				// Random new Bot & Macro detection amount
 				bmDetectAmount = rand(100,300);
+				// Add a timer to players to solve
 				addtimer 60000,strnpcinfo(3) + "::OnCheckBotMacro";
+				// Setup item id to buy
 				bmItemId = .bmItemIds[rand(getarraysize(.bmItemIds))];
+				// Setup item amount to buy
 				bmItemAmount = rand(1,99);
+				// Reset cash points
 				#CASHPOINTS = 100;
+				// Hint players
 				announce "โปรดซื้อ " + getitemname(bmItemId) + " " + bmItemAmount + " ชิ้น ใน Cash Shop ภายใน 60 วินาที",bc_self,0xFF6D6D,FW_BOLD,43;
+				// Reset Telepport amount
 				mdt = 0;
+				// Reset Kill amount
 				ka = 0;
+				
+				// Protect players
 				setpcblock PCBLOCK_ATTACK,true;
 				setpcblock PCBLOCK_SKILL,true;
 				setpcblock PCBLOCK_USEITEM,true;
 				setpcblock PCBLOCK_IMMUNE,true;
 				setpcblock PCBLOCK_COMMANDS,true;
+				
+				// Skip timer if players buy too fast (Tap this NPC to continue play the game) or wait timer ended
 				duplicate_dynamic("ซื้อของแล้วกดได้เลย#SELF");
 			}
 		}
@@ -45,33 +60,26 @@ OnNPCKillEvent:
 		.@monsterRank = @deadMonster[UMOB_DYNAMIC];
 		
 		// Trader
-		// Random chance to spawn (If not spawn yet)
 		.@isTraderHad = getd("$@tit" + strcharinfo(3));
 		.@isTraderFull = getd("$@ttf" + strcharinfo(3));
-		if((!.@isTraderHad || .@isTraderFull)
-				&& (rand(10000) <= .traderSpawnChance)){
-			// Get monster drops
+		// Is not had yet or full
+		if((!.@isTraderHad || .@isTraderFull) && (rand(10000) <= .traderSpawnChance)){
+			// Get monster drop databases
 			getmobdrops(killedrid);
-			
-			// Store random drop item
+			// Store it to temporary variables
 			.@monsterDropItemAmount = $@MobDrop_count;
 			copyarray .@monsterDropItems[0],$@MobDrop_item[0],.@monsterDropItemAmount;
 			copyarray .@monsterDropitemRates[0],$@MobDrop_rate[0],.@monsterDropItemAmount;
-			
 			// Random index
 			.@randomDropIndex = rand(.@monsterDropItemAmount);
-			
-			// Getting item id
+			// Setup item id
 			.@monsterDropItemId = .@monsterDropItems[.@randomDropIndex];
-			// Getting item type
+			// Setup item type
 			.@type = getiteminfo(.@monsterDropItemId,ITEMINFO_TYPE);
-			
-			// Do not use equipment as requirement item id
+			// Do not use equipment
 			.@retry = .@monsterDropItemAmount;
-			while((.@retry > 0)
-			&& ((.@type == 4) || (.@type == 5) || (.@type == 12))){
+			while((.@retry > 0) && ((.@type == 4) || (.@type == 5) || (.@type == 12))){
 				.@retry--;
-				
 				// Random index
 				.@randomDropIndex = rand(.@monsterDropItemAmount);
 				// Getting item id
@@ -79,17 +87,23 @@ OnNPCKillEvent:
 				// Getting item type
 				.@type = getiteminfo(.@monsterDropItemId,ITEMINFO_TYPE);
 			}
-			
+			// Setup item rate
 			.@monsterDropItemRate = cap_value(.@monsterDropitemRates[.@randomDropIndex],1,10000);
-			
+			// Check it wasn't sold in any shop
 			if(!IsSellInShop(.@monsterDropItemId)){
+				// Setup trader item id
 				set getd("$@tii" + strcharinfo(3)),.@monsterDropItemId;
+				// Setup trader item drop rate
 				set getd("$@tia" + strcharinfo(3)),.@monsterDropItemRate;
+				// Setup trader trade amount
 				set getd("$@tta" + strcharinfo(3)),0;
+				// Setup trader monster level
 				set getd("$@tml" + strcharinfo(3)),.@monsterLevel;
+				// Setup trader monster id
 				set getd("$@tmi" + strcharinfo(3)),killedrid;
+				// Setup trader last interact
 				set getd("$@tli" + strcharinfo(3)),gettimetick(2);
-				// Restart trading
+				// Reset trade full status to not full
 				if(getd("$@ttf" + strcharinfo(3))){
 					set getd("$@ttf" + strcharinfo(3)),0;
 					announce "พ่อค้าหน้าเลือด (THE BOX) ได้ Reset รางวัลแล้ว!",bc_map,0xFF6D6D;
@@ -99,6 +113,7 @@ OnNPCKillEvent:
 					set getd("$@tit" + strcharinfo(3)),1;
 					// Random position in current map
 					getfreecell strcharinfo(3),.@x,.@y;
+					// Remember position to whoever enter the map will knew trader location
 					set getd("$@tX" + strcharinfo(3)),.@x;
 					set getd("$@tY" + strcharinfo(3)),.@y;
 					// Spawn now
@@ -110,6 +125,7 @@ OnNPCKillEvent:
 			}
 		}
 		
+		// Combo (Gained EXP & Drop Multiplier when tap THE BOX)
 		if(.@monsterLevel >= BaseLevel)
 		latestCombo = .@monsterRank;
 		else
@@ -131,24 +147,11 @@ OnNPCKillEvent:
 		}
 		
 		// Chance
-		.@monsterLevelBonus = cap_value(
-		(.@monsterLevel / .monsterLevelDivider) * 100
-		,1
-		,INT_MAX);
-		
-		.@mapLimitation = cap_value(
-		.@currentMapLimitation * .staminaDecrease
-		,0
-		,.baseChance);
-		
+		.@monsterLevelBonus = cap_value((.@monsterLevel / .monsterLevelDivider) * 100,1,INT_MAX);
+		.@mapLimitation = cap_value(.@currentMapLimitation * .staminaDecrease,0,.baseChance);
 		.@baseCalculated = (.baseChance * .@monsterRank);
-		
 		.@calculated = (.@baseCalculated - .@mapLimitation);
-		
-		.@chance = ((.baseChance - .@mapLimitation) > 0)
-		? (.@calculated + .@monsterLevelBonus)
-		: 0;
-		
+		.@chance = ((.baseChance - .@mapLimitation) > 0) ? (.@calculated + .@monsterLevelBonus) : 0;
 		if(.@chance <= 0)
 		end;
 		
@@ -159,7 +162,7 @@ OnNPCKillEvent:
 		
 		if(.@rand <= .@chance){
 			if(!.@isFoundSameMap){
-				// Remove first map if amount > Maximum
+				// Remove first map if amount > maximum
 				if(.@lastFoundMapAmount >= .sameMapAmount){
 					deletearray lastFoundTheBoxMap$[0],1;
 					deletearray mapLimitation[0],1;
@@ -177,46 +180,58 @@ OnNPCKillEvent:
 
 	end;
 	
-	
 OnCheckBotMacro:
+	// Is had player data?
+	if(!playerattached())
+	end;
+
 	if(isMacroDetecting){
 		isMacroDetecting = 0;
 		
+		// Clear cash points
 		#CASHPOINTS = 0;
 		
+		// Unprotect players
 		setpcblock PCBLOCK_ATTACK,false;
 		setpcblock PCBLOCK_SKILL,false;
 		setpcblock PCBLOCK_USEITEM,false;
 		setpcblock PCBLOCK_IMMUNE,false;
 		setpcblock PCBLOCK_COMMANDS,false;
 		
-		if(countitem(bmItemId) != bmItemAmount){
+		// Checking now
+		.@boughtAmount = countitem(bmItemId);
+		if(.@boughtAmount != bmItemAmount){
+			// Not pass
 			tired = 100;
 			RefreshDebuff();
 			announce "คุณไม่ยอมซื้อ " + getitemname(bmItemId) + " จาก Cash Shop",bc_self,0xFF6D6D,FW_BOLD,43;
 		}
 		else{
+			// Pass! Rewarded players now!
 			.@bmReward = rand(5,15);
 			dmPoints = cap_value(dmPoints + .@bmReward,0,INT_MAX);
 			announce "ขอบคุณมาก! คุณได้รับ " + .@bmReward + " Dismantle Points",bc_self,0xFF6D6D,FW_BOLD,43;
 		}
-		delitem bmItemId,countitem(bmItemId);
+		if(.@boughtAmount)
+		delitem bmItemId,.@boughtAmount;
 	}
 	end;
 	
 OnInit:
 	.killAmountMacro = 100;		// How many killed to start for detecting macro
-	setarray .bmItemIds[0],7492,7491,7490,7489,7488,7487,7486,7485;
+	setarray .bmItemIds[0],7492,7491,7490,7489,7488,7487,7486,7485;	// List of item for Bot & Macro detection
 	
-	.traderSpawnChance = 100;	// 10000 = 100%
-	.baseChance = 100;			// 10000 = 100%
-	.staminaDecrease = 20;		// 10000 = 100%
-	.monsterLevelDivider = 10;	// Use to increase chance to found THE BOX (Monster Level / n)
-	.sameMapAmount = 3;
-	$maximumMapLimitation = 5;
+	.traderSpawnChance = 100;	// Trader spawn chance 					- 10000 = 100%
+	.baseChance = 100;			// THE BOX base spawn chance			- 10000 = 100%
+	.staminaDecrease = 20;		// THE BOX stamina penalty				- 10000 = 100%
+	.monsterLevelDivider = 10;	// THE BOX additional chance to spawn	- (Monster Level / n)
+	.sameMapAmount = 3;			// THE BOX map rotation
+	$maximumMapLimitation = 5;	// THE BOX rewarded per map
 	
+	// Add all player in server to reset Bot & Macro detection
 	addrid(0);
 	if(isMacroDetecting)
 	isMacroDetecting = 0;
+
 	end;
 }
