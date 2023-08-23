@@ -12,10 +12,10 @@ prontera,153,283,3	script	ฮุริ	10460,{
 	if((surprisedRewardCount >= $surprisedRewardPerMap) && ((surprisedCooldown - gettimetick(2)) >= 0))
 	message strcharinfo(0),"รางวัลสำหรับคุณหมดแล้ว โปรดรอ " + callfunc("GetTimerWording",(surprisedCooldown - gettimetick(2)));
 	mes "^0B9552--- [วิธีเล่น] ---^000000";
-	mes "• เมื่อกำจัด Monster สุ่ม " + callfunc("F_PercentBase10000",$surprisedChance) + " เกิด Monster ตัวใหญ่";
+	mes "• กำจัด Monster";
 	mes " ";
 	mes "^9D42C0--- [รางวัล] ---^000000";
-	mes "• ^3F28FFItem ประเภทที่อยากได้^000000 (โอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + ") จาก Monster ตัวใหญ่";
+	mes "• ^3F28FFItem ประเภทที่อยากได้^000000 (โอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + ")";
 	mes " ";
 	mes "^C04264--- [โทษภายในห้อง] ---^000000";
 	mes "• ^F81717Monster จะไม่ให้ EXP, Item";
@@ -52,30 +52,17 @@ prontera,153,283,3	script	ฮุริ	10460,{
 	end;
 
 	L_SpawnMonster:
-	.@amount = getarg(0,1);
+	.amount = getarg(0,1);
 	
 	freeloop(1);
-	for(.@i = 0; .@i < .@amount; .@i++){
+	for(.@i = 0; .@i < .amount; .@i++){
 		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
 		while(callfunc("F_IsDummyMonster",.@monsterId))
 		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
-		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMonsterDead";
+		
+		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled";
+		
 		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
-	}
-	freeloop(0);
-
-	return;
-
-OnMonsterDead:
-	if(!playerattached())
-	end;
-
-	SurprisedPlayer();
-	
-	if(rand(10000) <= $surprisedChance){
-		getmapxy(.@tempMap$,.@tempX,.@tempY);
-		getfreecell(.@tempMap$,.@cellX,.@cellY,.@tempX,.@tempY,5,5);
-		monster .@tempMap$,.@cellX,.@cellY,"--ja--",killedrid,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled",2;
 		
 		.@newRank = rand(1,5000);
 		setunitdata $@mobid[0],UMOB_DYNAMIC,.@newRank;
@@ -94,12 +81,15 @@ OnMonsterDead:
 			setunitdata $@mobid[0],UMOB_HP,50000000;
 		}
 	}
-	
-	end;
+	freeloop(0);
+
+	return;
 
 OnSurprisedMonsterKilled:
 	if(!playerattached())
 	end;
+
+	SurprisedPlayer();
 
 	if(surprisedRewardCount >= $surprisedRewardPerMap){
 		if((surprisedCooldown - gettimetick(2)) >= 0){
@@ -123,9 +113,9 @@ OnSurprisedMonsterKilled:
 	end;
 	
 OnTimer60000:
-	.@spawnAmount = .monsterAmount - mobcount($surprisedMap$,"all");
-	if(.@spawnAmount > 0)
-	callsub L_SpawnMonster,.@spawnAmount;
+	.spawnAmount = .monsterAmount - mobcount($surprisedMap$,"all");
+	if(.spawnAmount > 0)
+	callsub L_SpawnMonster,.spawnAmount;
 
 	initnpctimer;
 
