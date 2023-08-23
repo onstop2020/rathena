@@ -124,7 +124,7 @@ OnInit:
 
 	$surprisedChance = 1500;				// Chance to surprised!
 	
-	$surprisedRewardChance = 5000;			// Chance to get reward
+	$surprisedRewardChance = 1500;			// Chance to get reward
 	$surprisedRewardPerMap = 5;				// Reward per map
 	
 	callsub L_SpawnMonster,.monsterAmount;
