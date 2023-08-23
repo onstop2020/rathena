@@ -22,9 +22,6 @@ prontera,153,283,3	script	ฮุริ	10460,{
 	mes "เมื่อกำจัด Monster";
 	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprisedTiredChance) + " เหนื่อย +" + $surprisedTiredValue;
 	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprisedDebuffsChance) + " ติด Debuff";
-	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprisedMonsterSpeedChance) + " Monster เคลื่อนที่เร็ว";
-	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprised50Chance) + " Monster HP 50m";
-	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprised500Chance) + " Monster HP 500m";
 	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprisedKillableChance) + " ที่คุณจะตัวใหญ่ และโดนผู้เล่นอื่นโจมตีได้";
 	next;
 	menu "ตั้งค่าประเภทของที่อยากได้" + (surprisedMapType ? (" ^AF25ACคุณอยากได้ (" + .surprisedTypeName$[surprisedMapType] + ")^000000") : ""),L_Setup
@@ -68,18 +65,6 @@ prontera,153,283,3	script	ฮุริ	10460,{
 		setunitdata $@mobid[0],UMOB_DYNAMIC,.@newRank;
 		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@newRank / 5,0,50);
 		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
-		
-		if(rand(10000) <= $surprisedMonsterSpeedChance)
-		setunitdata $@mobid[0],UMOB_SPEED,10;
-		
-		if(rand(10000) <= $surprised500Chance){
-			setunitdata $@mobid[0],UMOB_MAXHP,500000000;
-			setunitdata $@mobid[0],UMOB_HP,500000000;
-		}
-		else if(rand(10000) <= $surprised50Chance){
-			setunitdata $@mobid[0],UMOB_MAXHP,50000000;
-			setunitdata $@mobid[0],UMOB_HP,50000000;
-		}
 	}
 	freeloop(0);
 
@@ -137,10 +122,7 @@ OnInit:
 	$surprisedDebuffChance = 500;			// Freeze debuff{s} to player chance
 	$surprisedKillableChance = 500;			// Player can be hit by another player chance	
 
-	$surprisedChance = 5000;				// Chance to surprised!
-	$surprisedMonsterSpeedChance = 2500;	// Monster ultra speed chance
-	$surprised500Chance = 500;				// Monster 500m HP chance
-	$surprised50Chance = 1500;				// Monster 50m HP chance
+	$surprisedChance = 1500;				// Chance to surprised!
 	
 	$surprisedRewardChance = 5000;			// Chance to get reward
 	$surprisedRewardPerMap = 5;				// Reward per map
