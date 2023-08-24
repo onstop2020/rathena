@@ -1,0 +1,228 @@
+guild_vs1-1	mapflag	noexp
+guild_vs1-1	mapflag	noloot
+guild_vs1-1	mapflag	novending
+guild_vs1-1	mapflag	nochat
+guild_vs1-1	mapflag	noteleport
+guild_vs1-1	mapflag	nowarp
+guild_vs1-1	mapflag	nowarpto
+guild_vs1-1	mapflag	nosave
+guild_vs1-1	mapflag	nobranch
+guild_vs1-1	mapflag	notomb
+
+guild_vs1-2	mapflag	noexp
+guild_vs1-2	mapflag	noloot
+guild_vs1-2	mapflag	novending
+guild_vs1-2	mapflag	nochat
+guild_vs1-2	mapflag	noteleport
+guild_vs1-2	mapflag	nowarp
+guild_vs1-2	mapflag	nowarpto
+guild_vs1-2	mapflag	nosave
+guild_vs1-2	mapflag	nobranch
+guild_vs1-2	mapflag	notomb
+
+guild_vs1-3	mapflag	noexp
+guild_vs1-3	mapflag	noloot
+guild_vs1-3	mapflag	novending
+guild_vs1-3	mapflag	nochat
+guild_vs1-3	mapflag	noteleport
+guild_vs1-3	mapflag	nowarp
+guild_vs1-3	mapflag	nowarpto
+guild_vs1-3	mapflag	nosave
+guild_vs1-3	mapflag	nobranch
+guild_vs1-3	mapflag	notomb
+
+prontera,143,283,3	script	เงิล	984,{
+	mes "^0B9552--- [วิธีเล่น] ---^000000";
+	mes "• กำจัด Monster";
+	mes " ";
+	mes "^9D42C0--- [รางวัล] ---^000000";
+	mes "• ^3F28FFZeny (Monster Lv. x {"
+	+ .zenyFromLvMultiplier[0]
+	+ "/"
+	+ .zenyFromLvMultiplier[1]
+	+ "/"
+	+ .zenyFromLvMultiplier[2]
+	+ "})^000000";
+	mes " ";
+	mes "^C04264--- [โทษภายในห้อง] ---^000000";
+	mes "• ^F81717Teleport ไม่ได้^000000";
+	mes "• ^F81717Monster จะไม่ให้ EXP, Item";
+	mes "• ^F81717Monster Rank {"
+	+ .monsterRank[0]
+	+ "/"
+	+ .monsterRank[1]
+	+ "/"
+	+ .monsterRank[2]
+	+ "}^000000";
+	mes "• ^F81717Bonus จาก Item ทุกชิ้นหาร {"
+	+ .bonusDivider[0]
+	+ "/"
+	+ .bonusDivider[1]
+	+ "/"
+	+ .bonusDivider[2]
+	+ "}^000000";
+	next;
+	.@lv = select(
+	"เข้าระดับ 1 (^AF25AC" + callfunc("F_InsertComma",.enterPrice[0]) + "z^000000):"
+	+ "เข้าระดับ 2 (^AF25AC" + callfunc("F_InsertComma",.enterPrice[1]) + "z^000000):"
+	+ "เข้าระดับ 3 (^AF25AC" + callfunc("F_InsertComma",.enterPrice[2]) + "z^000000)"
+	);
+	
+	.@lv--;
+	
+	.@enterPrice = .enterPrice[.@lv];
+	.@bonusDivider = .bonusDivider[.@lv];
+	.@mapName$ = .mapName$[.@lv];
+	
+	if(Zeny >= .@enterPrice)
+	{
+		Zeny = cap_value(Zeny - .@enterPrice,0,INT_MAX);
+		
+		atcommand "@bd " + .@bonusDivider;
+		
+		setpcblock PCBLOCK_ALL,true;
+		setpcblock PCBLOCK_MOVE,false;
+		
+		addtimer 2000,strnpcinfo(0) + "::OnWarp";
+		
+		warp .@mapName$,0,0;
+		
+		end;
+	}
+	else{
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	
+OnWarp:
+	setpcblock PCBLOCK_ALL,false;
+	end;
+	
+OnSpawnMonster:
+	.@amount = getarg(0,1);
+	.@spawnLv = getarg(1,0);
+	
+	freeloop(1);
+	
+	for(.@i = 0; .@i < .@amount; .@i++){
+		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
+		while(callfunc("F_IsDummyMonster",.@monsterId) || getmonsterinfo(.@monsterId,MOB_LV) > .maxMonsterLv[.@spawnLv])
+		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
+		
+		monster .mapName$[.@spawnLv],0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnMonsterDead" + .@spawnLv;
+		setunitdata $@mobid[0],UMOB_DYNAMIC,.monsterRank[.@spawnLv];
+	}
+	
+	freeloop(0);
+
+	return;
+	
+OnMonsterDead0:
+	if(!playerattached())
+	end;
+
+	getunitdata(killedgid,.@deadMonster);
+	.@zeny = .@deadMonster[UMOB_LEVEL] * .zenyFromLvMultiplier[0];
+	Zeny = cap_value(Zeny + .@zeny,0,INT_MAX);
+	dispbottom "ได้รับ " + callfunc("F_InsertComma",.@zeny) + "z";
+	
+	goto OnMacroBotCheck;
+	
+OnMonsterDead1:
+	if(!playerattached())
+	end;
+
+	getunitdata(killedgid,.@deadMonster);
+	.@zeny = .@deadMonster[UMOB_LEVEL] * .zenyFromLvMultiplier[1];
+	Zeny = cap_value(Zeny + .@zeny,0,INT_MAX);
+	dispbottom "ได้รับ " + callfunc("F_InsertComma",.@zeny) + "z";
+	
+	goto OnMacroBotCheck;
+	
+OnMonsterDead2:
+	if(!playerattached())
+	end;
+
+	getunitdata(killedgid,.@deadMonster);
+	.@zeny = .@deadMonster[UMOB_LEVEL] * .zenyFromLvMultiplier[2];
+	Zeny = cap_value(Zeny + .@zeny,0,INT_MAX);
+	dispbottom "ได้รับ " + callfunc("F_InsertComma",.@zeny) + "z";
+	
+	goto OnMacroBotCheck;
+	
+OnMacroBotCheck:
+	// Bot & Macro Detector
+	if(!isMacroDetecting){
+		// Kill amount increased
+		ka++;
+		// Check if (Teleport amount + Kill amount) >= Requirement
+		if((mdt + ka) >= max(bmDetectAmount,$killAmountMacro)){
+			// Detecting Bot & Macro now
+			isMacroDetecting = 1;
+			// Random new Bot & Macro detection amount
+			bmDetectAmount = rand(100,300);
+			// Add a timer to players to solve
+			addtimer 60000,"NPCKillEvent::OnCheckBotMacro";
+			// Setup item id to buy
+			bmItemId = $bmItemIds[rand(getarraysize($bmItemIds))];
+			// Setup item amount to buy
+			bmItemAmount = rand(1,99);
+			// Reset cash points
+			#CASHPOINTS = 100;
+			// Hint players
+			announce "โปรดซื้อ " + getitemname(bmItemId) + " " + bmItemAmount + " ชิ้น ใน Cash Shop ภายใน 60 วินาที",bc_self,0xFF6D6D,FW_BOLD,43;
+			// Reset Telepport amount
+			mdt = 0;
+			// Reset Kill amount
+			ka = 0;
+			
+			// Protect players
+			setpcblock PCBLOCK_ATTACK,true;
+			setpcblock PCBLOCK_SKILL,true;
+			setpcblock PCBLOCK_USEITEM,true;
+			setpcblock PCBLOCK_IMMUNE,true;
+			setpcblock PCBLOCK_COMMANDS,true;
+			
+			// Skip timer if players buy too fast (Tap this NPC to continue play the game) or wait timer ended
+			duplicate_dynamic("ซื้อของแล้วกดได้เลย#SELF");
+		}
+	}
+	end;
+	
+OnTimer15000:
+	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$[0],"all"),0,.monsterAmount);
+	if(.@spawnAmount > 0)
+	callsub OnSpawnMonster,.@spawnAmount,0;
+
+	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$[1],"all"),0,.monsterAmount);
+	if(.@spawnAmount > 0)
+	callsub OnSpawnMonster,.@spawnAmount,1;
+
+	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$[2],"all"),0,.monsterAmount);
+	if(.@spawnAmount > 0)
+	callsub OnSpawnMonster,.@spawnAmount,2;
+
+	initnpctimer;
+
+	end;
+	
+OnInit:
+	setarray .mapName$[0],"guild_vs1-1","guild_vs1-2","guild_vs1-3";
+	setarray .enterPrice[0],1000,10000,100000;
+	setarray .zenyFromLvMultiplier[0],15,35,150;
+	setarray .bonusDivider[0],2,4,8;
+	setarray .monsterRank[0],5,25,50;
+	setarray .maxMonsterLv[0],50,150,INT_MAX;
+	
+	.monsterAmount = 35;
+	
+	waitingroom "ห้อง Zeny",0;
+	
+	callsub OnSpawnMonster,.monsterAmount,0;
+	callsub OnSpawnMonster,.monsterAmount,1;
+	callsub OnSpawnMonster,.monsterAmount,2;
+	
+	initnpctimer;
+	
+	end;
+}

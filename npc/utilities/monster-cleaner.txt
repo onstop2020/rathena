@@ -58,6 +58,9 @@ OnMinute45:
 	killmonsterall "1@infi";
 	killmonsterall "force_3-3";
 	killmonsterall "jor_sanct";
+	killmonsterall "guild_vs1-1";
+	killmonsterall "guild_vs1-2";
+	killmonsterall "guild_vs1-3";
 	// Special Rooms
 	donpcevent "‡∑√ ::OnCleanUp";
 	donpcevent "Œ‘¡–::OnCleanUp";
