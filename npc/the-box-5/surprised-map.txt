@@ -59,12 +59,9 @@ prontera,153,283,3	script	Œÿ√‘	10460,{
 		
 		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled";
 		
-		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
-		
 		.@newRank = rand(1,5000);
 		setunitdata $@mobid[0],UMOB_DYNAMIC,.@newRank;
 		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@newRank / 5,0,50);
-		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CANATTACK;
 	}
 	freeloop(0);
 
