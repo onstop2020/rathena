@@ -2008,8 +2008,9 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 			if (wink_target != nullptr) {
 				unit_data *wink_ud = unit_bl2ud(src);
 				if (wink_ud != nullptr && wink_ud->walktimer == INVALID_TIMER)
-					unit_walktobl(src, wink_target, 3, 1);
+					unit_walktobl(src, map_id2bl(sc->getSCE(SC_WINKCHARM)->val2), 3, 1);
 				clif_emotion(src, ET_THROB);
+				return false;
 			} else
 				status_change_end(src, SC_WINKCHARM);
 		}
@@ -6413,8 +6414,6 @@ static unsigned short status_calc_str(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		str += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		str += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		str += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
@@ -6500,8 +6499,6 @@ static unsigned short status_calc_agi(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		agi += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		agi += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		agi += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
@@ -6577,8 +6574,6 @@ static unsigned short status_calc_vit(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		vit += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		vit += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		vit += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_CUP_OF_BOZA))
@@ -6671,8 +6666,6 @@ static unsigned short status_calc_int(struct block_list *bl, status_change *sc, 
 	if (sc->getSCE(SC_NIBELUNGEN) && sc->getSCE(SC_NIBELUNGEN)->val2 == RINGNBL_ALLSTAT)
 		int_ += 15;
 #endif
-	if (sc->getSCE(SC_ALMIGHTY))
-		int_ += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		int_ += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
@@ -6760,8 +6753,6 @@ static unsigned short status_calc_dex(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		dex += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		dex += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		dex += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
@@ -6835,8 +6826,6 @@ static unsigned short status_calc_luk(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		luk += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		luk += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		luk += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_MYSTICPOWDER))
@@ -10932,6 +10921,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		case SC_L_LIFEPOTION:
 		case SC_M_LIFEPOTION:
 		case SC_S_MANAPOTION:
+		case SC_G_LIFEPOTION:
 			if( val1 == 0 ) return 0;
 			// val1 = heal percent/amout
 			// val2 = seconds between heals
@@ -14016,6 +14006,7 @@ TIMER_FUNC(status_change_timer){
 	case SC_S_LIFEPOTION:
 	case SC_L_LIFEPOTION:
 	case SC_M_LIFEPOTION:
+	case SC_G_LIFEPOTION:
 		if( --(sce->val4) >= 0 ) {
 			// val1 < 0 = per max% | val1 > 0 = exact amount
 			int hp = 0;
