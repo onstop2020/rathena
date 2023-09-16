@@ -6649,7 +6649,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      callfunc "TheBoxStorage";
+      callfunc "F_CashStore";
   - Id: 12212
     AegisName: Giant_Fly_Wing
     Name: Giant Fly Wing
@@ -13924,7 +13924,6 @@ Body:
     AegisName: Golden_Potion_RG
     Name: RG Golden Potion
     Type: Delayconsume
-    Buy: 0
     Weight: 30
     Delay:
       Duration: 1000
@@ -54523,7 +54522,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      callfunc "TheBoxStorage";
+      callfunc "F_CashStore";
   - Id: 23178
     AegisName: Kafra_Box
     Name: Kafra Box
