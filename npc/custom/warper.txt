@@ -345,7 +345,7 @@ TheBoxInstances:
 
 	L_TBISelection:
 	.@index = select(.@m$);
-	warp .@mapName$[.@index - 1],0,0;
+	Go(.@mapName$[.@index - 1],0,0);
 	end;
 	
 	// ------------------- Functions -------------------
