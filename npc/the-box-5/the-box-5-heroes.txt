@@ -9,7 +9,7 @@
 06guild_01	mapflag	nobranch
 06guild_01	mapflag	notomb
 
-prontera,158,283,3	script	ฮิมะ	10434,{
+prontera,163,283,3	script	ฮิมะ	10434,{
 	mes "• ^F331EDRank ขณะนี้^000000: " + max($theBox5HeroesRank,1);
 	if($highestTheBox5HeroesRank)
 	mes "• ^F331EDRank สูงสุดที่เคยไปถึง^000000: " + $highestTheBox5HeroesRank;

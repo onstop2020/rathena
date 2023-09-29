@@ -1,0 +1,161 @@
+hero_out1	mapflag	noloot
+hero_out1	mapflag	novending
+hero_out1	mapflag	nochat
+hero_out1	mapflag	noteleport
+hero_out1	mapflag	nowarp
+hero_out1	mapflag	nowarpto
+hero_out1	mapflag	nosave
+hero_out1	mapflag	nobranch
+hero_out1	mapflag	notomb
+
+hero_out2	mapflag	noloot
+hero_out2	mapflag	novending
+hero_out2	mapflag	nochat
+hero_out2	mapflag	noteleport
+hero_out2	mapflag	nowarp
+hero_out2	mapflag	nowarpto
+hero_out2	mapflag	nosave
+hero_out2	mapflag	nobranch
+hero_out2	mapflag	notomb
+
+hero_out3	mapflag	noloot
+hero_out3	mapflag	novending
+hero_out3	mapflag	nochat
+hero_out3	mapflag	noteleport
+hero_out3	mapflag	nowarp
+hero_out3	mapflag	nowarpto
+hero_out3	mapflag	nosave
+hero_out3	mapflag	nobranch
+hero_out3	mapflag	notomb
+
+hero_out4	mapflag	noloot
+hero_out4	mapflag	novending
+hero_out4	mapflag	nochat
+hero_out4	mapflag	noteleport
+hero_out4	mapflag	nowarp
+hero_out4	mapflag	nowarpto
+hero_out4	mapflag	nosave
+hero_out4	mapflag	nobranch
+hero_out4	mapflag	notomb
+
+prontera,143,283,3	script	เวลว์	966,{
+	mes "^0B9552--- [วิธีเล่น] ---^000000";
+	mes "• กำจัด Monster";
+	mes " ";
+	mes "^9D42C0--- [รางวัล] ---^000000";
+	mes "• ^3F28FFExp. x "+ .expMultiplier + " เท่า (ทับไม่ได้)^000000";
+	mes " ";
+	mes "^C04264--- [โทษภายในห้อง] ---^000000";
+	mes "• ^F81717Teleport ไม่ได้^000000";
+	mes "• ^F81717Monster จะไม่ให้ Item";
+	mes "• ^F81717Monster Rank " + .monsterRank + "^000000";
+	mes "• ^F81717Bonus จาก Item ทุกชิ้นหาร " + .bonusDivider + "^000000";
+	next;
+	.@lv = select(
+	"เข้าระดับ 1 (^AF25AC" + callfunc("F_InsertComma",.enterPrice[0]) + "z^000000):"
+	+ "เข้าระดับ 2 (^AF25AC" + callfunc("F_InsertComma",.enterPrice[1]) + "z^000000):"
+	+ "เข้าระดับ 3 (^AF25AC" + callfunc("F_InsertComma",.enterPrice[2]) + "z^000000):"
+	+ "เข้าระดับ 4 (^AF25AC" + callfunc("F_InsertComma",.enterPrice[3]) + "z^000000)"
+	);
+	
+	.@lv--;
+	
+	.@enterPrice = .enterPrice[.@lv];
+	.@mapName$ = .mapName$[.@lv];
+	
+	if(Zeny >= .@enterPrice)
+	{
+		Zeny = cap_value(Zeny - .@enterPrice,0,INT_MAX);
+		
+		atcommand "@save";
+		
+		atcommand "@bd " + .bonusDivider;
+		
+		isWentToExpMap = 1;
+		
+		sc_end SC_EXPBOOST;
+		sc_start SC_EXPBOOST,86400000,100 * .expMultiplier;
+		
+		setpcblock PCBLOCK_ALL,true;
+		setpcblock PCBLOCK_MOVE,false;
+		
+		addtimer 2000,strnpcinfo(0) + "::OnWarp";
+		
+		warp .@mapName$,0,0;
+		
+		end;
+	}
+	else{
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	
+OnWarp:
+	setpcblock PCBLOCK_ALL,false;
+	end;
+	
+OnSpawnMonster:
+	.@amount = getarg(0,1);
+	.@spawnLv = getarg(1,0);
+	
+	freeloop(1);
+	
+	for(.@i = 0; .@i < .@amount; .@i++){
+		if(.@spawnLv == 0)
+		.@monsterId = $monsterExpTier1Ids[rand($monsterExpTier1IdSize)];
+		else if(.@spawnLv == 1)
+		.@monsterId = $monsterExpTier2Ids[rand($monsterExpTier2IdSize)];
+		else if(.@spawnLv == 2)
+		.@monsterId = $monsterExpTier3Ids[rand($monsterExpTier3IdSize)];
+		else
+		.@monsterId = $monsterExpTier4Ids[rand($monsterExpTier4IdSize)];
+		
+		monster .mapName$[.@spawnLv],0,0,"--ja--",.@monsterId,1;
+		setunitdata $@mobid[0],UMOB_DYNAMIC,.monsterRank;
+	}
+	
+	freeloop(0);
+
+	return;
+	
+OnTimer15000:
+	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$[0],"all"),0,.monsterAmount);
+	if(.@spawnAmount > 0)
+	callsub OnSpawnMonster,.@spawnAmount,0;
+
+	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$[1],"all"),0,.monsterAmount);
+	if(.@spawnAmount > 0)
+	callsub OnSpawnMonster,.@spawnAmount,1;
+
+	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$[2],"all"),0,.monsterAmount);
+	if(.@spawnAmount > 0)
+	callsub OnSpawnMonster,.@spawnAmount,2;
+
+	.@spawnAmount = cap_value(.monsterAmount - mobcount(.mapName$[3],"all"),0,.monsterAmount);
+	if(.@spawnAmount > 0)
+	callsub OnSpawnMonster,.@spawnAmount,3;
+
+	initnpctimer;
+
+	end;
+	
+OnInit:
+	setarray .mapName$[0],"hero_out1","hero_out2","hero_out3","hero_out4";
+	setarray .enterPrice[0],1000,10000,100000,500000;
+	.expMultiplier = 15;
+	.bonusDivider = 5;
+	.monsterRank = 5;
+	
+	.monsterAmount = 150;
+	
+	waitingroom "ห้อง EXP",0;
+	
+	callsub OnSpawnMonster,.monsterAmount,0;
+	callsub OnSpawnMonster,.monsterAmount,1;
+	callsub OnSpawnMonster,.monsterAmount,2;
+	callsub OnSpawnMonster,.monsterAmount,3;
+	
+	initnpctimer;
+	
+	end;
+}

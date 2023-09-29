@@ -10,7 +10,7 @@ jor_sanct	mapflag	nosave
 jor_sanct	mapflag	nobranch
 jor_sanct	mapflag	notomb
 
-prontera,163,283,3	script	เพล	10279,{
+prontera,168,283,3	script	เพล	10279,{
 	mes "• ^F331EDแต้มอาฆาตของคุณ:^000000 " + callfunc("F_InsertComma",kfPoints) + " แต้ม";
 	mes " ";
 	mes "^0B9552--- [วิธีเล่น] ---^000000";

@@ -7,6 +7,12 @@ OnPCLoadMapEvent:
 	if(strcharinfo(3) == "prontera"){
 		RefreshDebuff();
 		
+		// Revert Exp multiplier to combo
+		if(isWentToExpMap){
+			isWentToExpMap = 0;
+			sc_end SC_EXPBOOST;
+			sc_start SC_EXPBOOST,86400000,combo;
+		}
 		// Bug equipment auto unequip
 		if((getiteminfo(getequipid(EQI_HAND_R),ITEMINFO_SUBTYPE) == 11)
 				&& (getequipid(EQI_HAND_L) > 0)

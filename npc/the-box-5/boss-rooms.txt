@@ -76,7 +76,7 @@ function	script	BossRoomEnter	{
 	return;
 }
 
-prontera,148,283,3	script	เทรส	10386,{
+prontera,153,283,3	script	เทรส	10386,{
 	menu "ห้องที่ 1 (Rank 3)",L_1
 	,"ห้องที่ 2 (Rank 5)",L_2
 	,"ห้องที่ 3 (Rank 7)",L_3

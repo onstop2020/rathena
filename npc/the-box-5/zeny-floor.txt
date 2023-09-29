@@ -31,7 +31,7 @@ guild_vs1-3	mapflag	nosave
 guild_vs1-3	mapflag	nobranch
 guild_vs1-3	mapflag	notomb
 
-prontera,143,283,3	script	‡ß‘≈	984,{
+prontera,148,283,3	script	‡ß‘≈	984,{
 	mes "^0B9552--- [«‘∏’‡≈Ëπ] ---^000000";
 	mes "ï °”®—¥ Monster";
 	mes " ";
