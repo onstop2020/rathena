@@ -4510,7 +4510,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		mob->base_exp = static_cast<t_exp>(cap_value((double)exp * (double)battle_config.base_exp_rate / 100., 0, MAX_EXP));
 	} else {
 		if (!exists)
-			mob->base_exp = static_cast<t_exp>(cap_value((double)(mob->status.max_hp / 5) * (double)battle_config.base_exp_rate / 100., 0, 5000000)); // [Start]
+			mob->base_exp = static_cast<t_exp>(cap_value((double)(mob->status.max_hp / 5) * (double)battle_config.base_exp_rate / 100., 0, 500000)); // [Start]
 	}
 	
 	if (this->nodeExists(node, "JobExp")) {
@@ -4522,7 +4522,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		mob->job_exp = static_cast<t_exp>(cap_value((double)exp * (double)battle_config.job_exp_rate / 100., 0, MAX_EXP));
 	} else {
 		if (!exists)
-			mob->job_exp = static_cast<t_exp>(cap_value((double)(mob->status.max_hp / 10) * (double)battle_config.job_exp_rate / 100., 0, 5000000)); // [Start]
+			mob->job_exp = static_cast<t_exp>(cap_value((double)(mob->status.max_hp / 10) * (double)battle_config.job_exp_rate / 100., 0, 500000)); // [Start]
 	}
 	
 	if (this->nodeExists(node, "MvpExp")) {
