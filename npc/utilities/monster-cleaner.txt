@@ -61,6 +61,10 @@ OnMinute45:
 	killmonsterall "guild_vs1-1";
 	killmonsterall "guild_vs1-2";
 	killmonsterall "guild_vs1-3";
+	killmonsterall "hero_out1";
+	killmonsterall "hero_out2";
+	killmonsterall "hero_out3";
+	killmonsterall "hero_out4";
 	// Special Rooms
 	donpcevent "‡∑√ ::OnCleanUp";
 	donpcevent "Œ‘¡–::OnCleanUp";
