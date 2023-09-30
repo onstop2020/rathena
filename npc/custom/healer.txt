@@ -255,10 +255,10 @@ OnInit:
 	.clearDebuffPrice = 10000;
 	
 	.maxChurch = 2;
-	.pointRequired = 5000;
+	.pointRequired = 500;
 	.basePrice = 10000;
 	
-	.pointComboRequired = 1500;
+	.pointComboRequired = 500;
 	.baseComboPrice = 1000;
 	
 	end;
