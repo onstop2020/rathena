@@ -8,15 +8,6 @@ prontera,300,290,0	script	THE BOX#SELF	566,{
 		end;
 	}
 	
-	// Combo
-	if(latestCombo > 0){
-		combo = cap_value(combo + latestCombo,0,100);
-		sc_end SC_EXPBOOST;
-		sc_start SC_EXPBOOST,1800000,combo;
-		sc_end SC_ITEMBOOST;
-		sc_start SC_ITEMBOOST,1800000,combo;
-	}
-	
 	isReadyToClaimed = 0;
 	
 	// Map Limitation

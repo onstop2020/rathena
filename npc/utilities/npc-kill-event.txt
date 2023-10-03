@@ -125,10 +125,6 @@ OnNPCKillEvent:
 			}
 		}
 		
-		// Combo (Gained EXP & Drop Multiplier when tap THE BOX)
-		if(.@monsterLevel >= BaseLevel)
-		latestCombo = .@monsterRank;
-		else
 		latestCombo = 0;
 		
 		// Map Limitation
