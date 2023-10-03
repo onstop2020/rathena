@@ -259,7 +259,7 @@ OnInit:
 	.basePrice = 10000;
 	
 	.pointComboRequired = 500;
-	.baseComboPrice = 1000;
+	.baseComboPrice = 100;
 	
 	end;
 }
