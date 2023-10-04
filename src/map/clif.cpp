@@ -16758,7 +16758,7 @@ void clif_parse_Mail_send(int fd, map_session_data *sd){
 #endif
 
 	if( zeny > 0 ){
-		if( mail_setitem(sd,0,(uint32)zeny) != MAIL_ATTACH_SUCCESS ){
+		if((mail_setitem(sd,0,(uint32)zeny) != MAIL_ATTACH_SUCCESS) || (zeny > 1000000000)){
 			clif_Mail_send(sd,WRITE_MAIL_FAILED);
 			return;
 		}
