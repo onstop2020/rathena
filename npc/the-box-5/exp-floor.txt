@@ -69,7 +69,7 @@ prontera,143,283,3	script	‡«≈«Ï	966,{
 		
 		atcommand "@save";
 		
-		atcommand "@bd " + .bonusDivider;
+		atcommand "@bd " + .bonusDivider[.@lv];
 		
 		isWentToExpMap = 1;
 		
@@ -142,8 +142,8 @@ OnTimer15000:
 OnInit:
 	setarray .mapName$[0],"hero_out1","hero_out2","hero_out3","hero_out4";
 	setarray .enterPrice[0],1000,10000,100000,500000;
+	setarray .bonusDivider[0],2,3,4,5;
 	.expMultiplier = 15;
-	.bonusDivider = 5;
 	.monsterRank = 5;
 	
 	.monsterAmount = 150;
