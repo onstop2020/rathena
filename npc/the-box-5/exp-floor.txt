@@ -48,7 +48,6 @@ prontera,143,283,3	script	เวลว์	966,{
 	mes "^C04264--- [โทษภายในห้อง] ---^000000";
 	mes "• ^F81717Teleport ไม่ได้^000000";
 	mes "• ^F81717Monster จะไม่ให้ Item";
-	mes "• ^F81717Monster Rank " + .monsterRank + "^000000";
 	mes "• ^F81717Bonus จาก Item ทุกชิ้นหาร " + .bonusDivider + "^000000";
 	next;
 	.@lv = select(
@@ -111,7 +110,6 @@ OnSpawnMonster:
 		.@monsterId = $monsterExpTier4Ids[rand($monsterExpTier4IdSize)];
 		
 		monster .mapName$[.@spawnLv],0,0,"--ja--",.@monsterId,1;
-		setunitdata $@mobid[0],UMOB_DYNAMIC,.monsterRank;
 	}
 	
 	freeloop(0);
@@ -144,7 +142,6 @@ OnInit:
 	setarray .enterPrice[0],1000,10000,100000,500000;
 	setarray .bonusDivider[0],2,3,4,5;
 	.expMultiplier = 15;
-	.monsterRank = 5;
 	
 	.monsterAmount = 150;
 	
