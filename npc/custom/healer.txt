@@ -1,7 +1,7 @@
 prontera,159,193,5	script	แพทย์	10458,{
 	menu "รับ Buff ทั่วไป",L_ChurchBuff
 	,"รับ Buff x EXP และ x Drop",L_ChurchBuffExp
-	,"รับ Buff อาหาร (^BA17F8" + callfunc("F_InsertComma",.foodBuffsPrice) + "z^000000)",L_FoodBuffs
+	,"รับ Buff อาหาร (^BA17F8" + (($isAB => 3) ? "ฟรี" : callfunc("F_InsertComma",.foodBuffsPrice)) + "z^000000)",L_FoodBuffs
 	,"รักษา Debuff จากการหมดสติ (^BA17F8" + ((selfCareDebuff > gettimetick(2)) ? (callfunc("F_InsertComma",.clearDebuffPrice * debuff) + "z^000000)") : "ฟรี^000000)"),L_ClearDebuff
 	,"ซ่อมอุปกรณ์สวมใส่ (^BA17F8" + callfunc("F_InsertComma",.repairAllPrice) + "z^000000)",L_RepairAll
 	;
@@ -24,6 +24,9 @@ prontera,159,193,5	script	แพทย์	10458,{
 	end;
 	
 	L_FoodBuffs:
+	if($isAB >= 3)
+	goto L_GrantFoodBuffs;
+	
 	menu "ยืนยัน 'รับ Buff อาหาร'",-;
 	
 	if(Zeny < .foodBuffsPrice)
@@ -34,6 +37,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 	
 	Zeny = cap_value(Zeny - .foodBuffsPrice,0,INT_MAX);
 	
+	L_GrantFoodBuffs:
 	sc_end SC_POISON;
 	sc_end SC_SILENCE;
 	sc_end SC_BLIND;
@@ -178,7 +182,7 @@ prontera,159,193,5	script	แพทย์	10458,{
 	
 	L_Active:
 	input .@i;
-	.@i = cap_value(.@i,0,.maxChurch);
+	.@i = cap_value(.@i,0,INT_MAX);
 	$isAB = .@i;
 	end;
 	
@@ -254,7 +258,6 @@ OnInit:
 	.repairAllPrice = 100000;
 	.clearDebuffPrice = 10000;
 	
-	.maxChurch = 2;
 	.pointRequired = 500;
 	.basePrice = 10000;
 	
