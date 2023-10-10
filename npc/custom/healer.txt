@@ -1,7 +1,7 @@
 prontera,159,193,5	script	แพทย์	10458,{
 	menu "รับ Buff ทั่วไป",L_ChurchBuff
 	,"รับ Buff x EXP และ x Drop",L_ChurchBuffExp
-	,"รับ Buff อาหาร (^BA17F8" + (($isAB >= 3) ? "ฟรี" : callfunc("F_InsertComma",.foodBuffsPrice)) + "z^000000)",L_FoodBuffs
+	,"รับ Buff อาหาร (^BA17F8" + (($isAB >= 3) ? "ฟรี" : (callfunc("F_InsertComma",.foodBuffsPrice) + "z")) + "^000000)",L_FoodBuffs
 	,"รักษา Debuff จากการหมดสติ (^BA17F8" + ((selfCareDebuff > gettimetick(2)) ? (callfunc("F_InsertComma",.clearDebuffPrice * debuff) + "z^000000)") : "ฟรี^000000)"),L_ClearDebuff
 	,"ซ่อมอุปกรณ์สวมใส่ (^BA17F8" + callfunc("F_InsertComma",.repairAllPrice) + "z^000000)",L_RepairAll
 	;
