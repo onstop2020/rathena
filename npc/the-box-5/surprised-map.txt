@@ -45,6 +45,7 @@ prontera,158,283,3	script	Œÿ√‘	10460,{
 
 	atcommand "@killable";
 	atcommand "@size 2";
+	@isKillable = 1;
 	
 	warp $surprisedMap$,0,0;
 	
