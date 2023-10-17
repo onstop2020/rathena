@@ -19,14 +19,13 @@ prontera,158,283,3	script	ฮุริ	10460,{
 	mes " ";
 	mes "^C04264--- [โทษภายในห้อง] ---^000000";
 	mes "• ^F81717Monster จะไม่ให้ EXP, Item";
+	mes "• ^F81717คุณจะตัวใหญ่ และโดนผู้เล่นอื่นโจมตีได้";
 	mes "เมื่อกำจัด Monster";
-	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprisedTiredChance) + " เหนื่อย +" + $surprisedTiredValue;
-	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprisedDebuffsChance) + " ติด Debuff";
-	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",$surprisedKillableChance) + " ที่คุณจะตัวใหญ่ และโดนผู้เล่นอื่นโจมตีได้";
+	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",.tiredChance) + " เหนื่อย +" + .tiredAmount;
+	mes "• ^F81717หาร Bonus สุ่ม " + .dividerMin + "~" + .dividerMax;
 	next;
 	menu "ตั้งค่าประเภทของที่อยากได้" + (surprisedMapType ? (" ^AF25ACคุณอยากได้ (" + .surprisedTypeName$[surprisedMapType] + ")^000000") : ""),L_Setup
-	,"เข้า",L_Enter
-	;
+	,"เข้า",L_Enter;
 	close;
 	
 	L_Setup:
@@ -44,8 +43,11 @@ prontera,158,283,3	script	ฮุริ	10460,{
 	if(!surprisedMapType)
 	goto L_Setup;
 
-	SurprisedPlayer();
+	atcommand "@killable";
+	atcommand "@size 2";
+	
 	warp $surprisedMap$,0,0;
+	
 	end;
 
 	L_SpawnMonster:
@@ -58,10 +60,6 @@ prontera,158,283,3	script	ฮุริ	10460,{
 		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
 		
 		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled";
-		
-		.@newRank = rand(1,5000);
-		setunitdata $@mobid[0],UMOB_DYNAMIC,.@newRank;
-		setunitdata $@mobid[0],UMOB_DEFLECT,cap_value(.@newRank / 5,0,50);
 	}
 	freeloop(0);
 
@@ -71,7 +69,7 @@ OnSurprisedMonsterKilled:
 	if(!playerattached())
 	end;
 
-	SurprisedPlayer();
+	callsub OnDebuffPlayer;
 
 	if(surprisedRewardCount >= $surprisedRewardPerMap){
 		if((surprisedCooldown - gettimetick(2)) >= 0){
@@ -103,6 +101,18 @@ OnTimer60000:
 
 	end;
 
+OnDebuffPlayer:
+	.@rand = rand(10000);
+	
+	atcommand "@bd " + rand(.dividerMin,.dividerMax);
+	
+	if(.@rand <= .tiredChance){
+		tired = cap_value(tired + .tiredAmount,0,100);
+		RefreshDebuff();
+	}
+	
+	return;
+
 OnInit:
 	waitingroom "Map วุ่นวาย",0;
 
@@ -113,13 +123,11 @@ OnInit:
 
 	setarray .surprisedTypeName$[0],"อาวุธ","อุปกรณ์สวมใส่","Costume","การ์ด","Enchantment";
 	
-	$surprisedTiredChance = 500;			// Chance for player to get tired
-	$surprisedTiredValue = 1;				// How much tired
-	$surprisedDebuffsChance = 500;			// Non freeze debuffs to player chance
-	$surprisedDebuffChance = 500;			// Freeze debuff{s} to player chance
-	$surprisedKillableChance = 500;			// Player can be hit by another player chance	
-
-	$surprisedChance = 1500;				// Chance to surprised!
+	.tiredChance = 500;
+	.tiredAmount = 1;
+	
+	.dividerMin = 1;
+	.dividerMax = 50;
 	
 	$surprisedRewardChance = 1500;			// Chance to get reward
 	$surprisedRewardPerMap = 5;				// Reward per map
