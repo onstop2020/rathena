@@ -151,6 +151,7 @@ OnMonsterDead2:
 	goto OnMacroBotCheck;
 	
 OnMacroBotCheck:
+	end;
 	// Bot & Macro Detector
 	if(!isMacroDetecting){
 		// Kill amount increased
