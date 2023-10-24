@@ -193,7 +193,7 @@ prontera,159,193,5	script	á¾·Âì	10458,{
 
 	L_ChurchBuffExp:
 	if(@isPraying
-			|| (combo >= 100)){
+			|| (combo >= 200)){
 		sc_end SC_EXPBOOST;
 		sc_start SC_EXPBOOST,86400000,combo;
 		sc_end SC_ITEMBOOST;
@@ -226,7 +226,7 @@ prontera,159,193,5	script	á¾·Âì	10458,{
 	L_FastLaneMultiplier:
 	if(Zeny >= .multiplierBuffsPrice){
 		Zeny = cap_value(Zeny - .multiplierBuffsPrice,0,INT_MAX);
-		combo = 100;
+		combo = 200;
 		goto L_ChurchBuffExp;
 	}
 	else
@@ -237,14 +237,14 @@ prontera,159,193,5	script	á¾·Âì	10458,{
 OnPray:
 	specialeffect2 325;
 	percentheal 1,1;
-	combo = cap_value(combo + 1,0,100);
+	combo = cap_value(combo + 10,0,200);
 	sc_end SC_EXPBOOST;
 	sc_start SC_EXPBOOST,86400000,combo;
 	sc_end SC_ITEMBOOST;
 	sc_start SC_ITEMBOOST,86400000,combo;
 	
 	if((strcharinfo(3) == strnpcinfo(4))
-			&& (combo < 100))
+			&& (combo < 200))
 	addtimer 3000, strnpcinfo(3) + "::OnPray";
 	else{
 		@isPraying = 0;
