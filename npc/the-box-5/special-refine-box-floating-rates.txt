@@ -32,8 +32,8 @@ OnTimer60000:
 
 OnInit:
 	// Parameters
-	.minRate = 1;
-	.maxRate = 700;
+	.minRate = 555;
+	.maxRate = 555;
 	
 	initnpctimer;
 	

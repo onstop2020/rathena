@@ -403,7 +403,7 @@ prontera,42,156,5	script	ทอม	10127,{
 OnInit:
 	.min_option_id = 1;
 	.max_option_id = 254;
-	.price = 3000000;
+	.price = 300000;
 	waitingroom "เสริมแกร่งด้วย Random Option",0;
 	end;
 }

@@ -7,21 +7,9 @@ prontera,34,164,5	script	ลิลลี่	643,{
 	mes "• อุปกรณ์สวมใส่จะ^3629FFไม่หาย^000000 ไม่ว่ากรณีใด ๆ ก็ตาม";
 	next;
 	menu "โอกาสสำเร็จ " + .mode1Chance + "% (" + F_InsertComma(.mode1Price) + "z)",L_1
-	,"โอกาสสำเร็จ " + .mode2Chance + "% (" + F_InsertComma(.mode2Price) + "z)",L_2
-	,"โอกาสสำเร็จ " + .mode3Chance + "% (" + F_InsertComma(.mode3Price) + "z)",L_3
-	,"โอกาสสำเร็จ " + .mode4Chance + "% (" + F_InsertComma(.mode4Price) + "z)",L_4
 	,"แก้บัค Card ใส่ผิดรู",L_5;
 	L_1:
 	.@mode = 1;
-	goto L_Select;
-	L_2:
-	.@mode = 2;
-	goto L_Select;
-	L_3:
-	.@mode = 3;
-	goto L_Select;
-	L_4:
-	.@mode = 4;
 	goto L_Select;
 	L_5:
 	.@mode = 5;
@@ -179,14 +167,8 @@ prontera,34,164,5	script	ลิลลี่	643,{
 	close;
 
 OnInit:
-	.mode1Chance = 5;
-	.mode2Chance = 15;
-	.mode3Chance = 30;
-	.mode4Chance = 50;
-	.mode1Price = 100000;
-	.mode2Price = 1000000;
-	.mode3Price = 5000000;
-	.mode4Price = 10000000;
+	.mode1Chance = 100;
+	.mode1Price = 10000000;
 	waitingroom "ถอด Card และ Enchantment",0;
 	end;
 }

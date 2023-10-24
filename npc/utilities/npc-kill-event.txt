@@ -20,6 +20,7 @@ OnNPCKillEvent:
 		end;
 		
 		// Bot & Macro Detector
+		/*
 		if(!isMacroDetecting){
 			// Kill amount increased
 			ka++;
@@ -55,6 +56,7 @@ OnNPCKillEvent:
 				duplicate_dynamic("ซื้อของแล้วกดได้เลย#SELF");
 			}
 		}
+		*/
 		
 		.@monsterLevel = @deadMonster[UMOB_LEVEL];
 		.@monsterRank = @deadMonster[UMOB_DYNAMIC];
@@ -124,8 +126,6 @@ OnNPCKillEvent:
 				}
 			}
 		}
-		
-		latestCombo = 0;
 		
 		// Map Limitation
 		.@lastFoundMapAmount = getarraysize(lastFoundTheBoxMap$);

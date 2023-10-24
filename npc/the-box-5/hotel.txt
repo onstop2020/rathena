@@ -67,13 +67,13 @@ OnInit:
 	waitingroom "ซื้อของใช้นั่งพัก",0;
 	
 	.pillowPrice = 10000;
-	$pillowComfort = 1;
+	$pillowComfort = 10;
 	
 	.blanketPrice = 150000;
-	$blanketComfort = 3;
+	$blanketComfort = 30;
 	
 	.portableACPrice = 500000;
-	$portableACComfort = 5;
+	$portableACComfort = 50;
 	
 	.amountPerBought = 50;
 	

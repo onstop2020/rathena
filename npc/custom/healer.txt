@@ -1,4 +1,5 @@
 prontera,159,193,5	script	แพทย์	10458,{
+	message strcharinfo(0),"Server จะปิดวันที่ 31 ตุลาคม 2023";
 	menu "รับ Buff ทั่วไป",L_ChurchBuff
 	,"รับ Buff x EXP และ x Drop",L_ChurchBuffExp
 	,"รับ Buff อาหาร (^BA17F8" + (($isAB >= 3) ? "ฟรี" : (callfunc("F_InsertComma",.foodBuffsPrice) + "z")) + "^000000)",L_FoodBuffs

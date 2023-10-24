@@ -76,7 +76,7 @@ prontera,42,151,5	script	นิส	10078,{
 	
 OnInit:
 	// Grade D, C, B, A
-	setarray .prices,30000,300000,3000000,30000000;
+	setarray .prices,3000,30000,300000,3000000;
 	
 	// Information
 	waitingroom "เสริมแกร่งด้วย Grade",0;
