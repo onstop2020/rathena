@@ -228,7 +228,7 @@ OnInit:
 	.cardPrice = 135;
 	.enchantmentPrice = 250;
 	
-	.selectItemIdPrice = 5555;
+	.selectItemIdPrice = 2555;
 	
 	.itemId = 10000008;
 	

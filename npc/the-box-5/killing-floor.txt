@@ -144,7 +144,7 @@ OnInit:
 	.enterItemId = 10000006;
 	.enterItemAmount = 10;
 	
-	.price = 100;
+	.price = 50;
 	
 	.itemId = 10000011;
 	
