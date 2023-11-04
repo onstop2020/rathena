@@ -4,26 +4,5 @@ prontera	mapflag	loadevent
 	end;
 	
 OnPCLoadMapEvent:
-	if(strcharinfo(3) == "prontera"){
-		RefreshDebuff();
-		
-		// Revert Exp multiplier to combo
-		if(isWentToExpMap){
-			isWentToExpMap = 0;
-			sc_end SC_EXPBOOST;
-			sc_start SC_EXPBOOST,86400000,combo;
-		}
-		// Bug equipment auto unequip
-		if((getiteminfo(getequipid(EQI_HAND_R),ITEMINFO_SUBTYPE) == 11)
-				&& (getequipid(EQI_HAND_L) > 0)
-				&& (getiteminfo(getequipid(EQI_HAND_L),ITEMINFO_SUBTYPE) != 11)){
-			if(getequipid(EQI_HAND_R) > 0)
-			unequip EQI_HAND_R;
-			
-			if(getequipid(EQI_HAND_L) > 0)
-			unequip EQI_HAND_L;
-		}
-	}
-
 	end;
 }

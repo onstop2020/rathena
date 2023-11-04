@@ -10,8 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-prontera,42,185,5	script	โจชัว	10385,{
-	callfunc "F_GetPlatinumSkills";
+prontera,150,190,5	script	โจชัว	10385,{
 	if (ismounting()) {
 		message strcharinfo(0),"คุณต้องถอดอุปกรณ์เก่าออกก่อน";
 		end;
@@ -38,6 +37,6 @@ prontera,42,185,5	script	โจชัว	10385,{
 	end;
 	
 OnInit:
-	waitingroom "รับอุปกรณ์ & Skill เสริม",0;
+	waitingroom "รับอุปกรณ์",0;
 	end;
 }

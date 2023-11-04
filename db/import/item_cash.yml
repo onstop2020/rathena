@@ -33,35 +33,3 @@ Header:
   Version: 1
 
 Body:
- - Tab: New
-   Items:   
-     - Item: Yellow_Key_Card
-       Price: 1
- - Tab: Hot
-   Items:   
-     - Item: Iron_Box
-       Price: 1
- - Tab: Limited
-   Items:   
-     - Item: Kyll_Hire_Letter
-       Price: 1
- - Tab: Rental
-   Items:   
-     - Item: Villa_Spare_Key
-       Price: 1
- - Tab: Permanent
-   Items:   
-     - Item: Delivery_Box
-       Price: 1
- - Tab: Scrolls
-   Items:   
-     - Item: Tavern_Wine
-       Price: 1
- - Tab: Consumables
-   Items:   
-     - Item: 3rd_Floor_Pass
-       Price: 1
- - Tab: Other
-   Items:   
-     - Item: 2nd_Floor_Pass
-       Price: 1

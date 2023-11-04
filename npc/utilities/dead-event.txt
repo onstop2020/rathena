@@ -2,55 +2,5 @@
 	end;
 	
 OnPCDieEvent:
-	if(@isKillable){
-		atcommand "@killable";
-		atcommand "@size 0";
-		@isKillable = 0;
-	}
-
-	if(IsTownMap())
-	dispbottom "คุณตายใน Map ที่ไม่มีโทษใด ๆ";
-	else{
-		deltimer "NPCKillEvent::OnMacro";
-		@isMacroDetecting = 0;
-		
-		// Auto warp
-		.@mapName$ = strcharinfo(3);
-		
-		if((.@mapName$ == "vis_h01")
-				|| (.@mapName$ == "vis_h02")
-				|| (.@mapName$ == "vis_h03")
-				|| (.@mapName$ == "vis_h04")
-				|| (.@mapName$ == "jor_sanct")
-				|| (.@mapName$ == "force_3-3")
-				|| (.@mapName$ == "06guild_01")){
-			if(.@mapName$ == "06guild_01"){
-				announce strcharinfo(0) + " หมดสติ... ผู้เล่นสามารถหมดสติได้อีก " + (4 - $theBox5HeroesDeadCount) + " ครั้ง",bc_map;
-				donpcevent "ฮิมะ::OnPlayerDead";
-			}
-			
-			addtimer 1000,strnpcinfo(3) + "::OnWarp";
-		}
-		
-		// Debuff here
-		debuff = cap_value(debuff + rand(BaseLevel / 10),1,100);
-		RefreshDebuff();
-		
-		selfCareDebuff = gettimetick(2) + (debuff * .baseDebuffTimer);
-		
-		// Combo ended
-		combo = 0;
-		sc_end SC_EXPBOOST;
-		sc_end SC_ITEMBOOST;
-	}
-	
-	end;
-	
-OnWarp:
-	warp "prontera",156,191;
-	end;
-	
-OnInit:
-	.baseDebuffTimer = 30;
 	end;
 }

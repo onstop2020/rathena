@@ -2,27 +2,7 @@
 	end;
 	
 OnPCLoginEvent:
-	// New character
-	if((BaseLevel == 1)
-			&& (JobLevel == 1)
-			&& (Class == 0))
-	percentheal 100,100;
-	
 	// Unexpected error
 	setpcblock PCBLOCK_ALL,false;
-	
-	// Macro
-	if(isMacroDetecting)
-	tired = 100;
-	
-	isMacroDetecting = 0;
-	
-	// Important loots
-	atcommand "@alootid +10000006";
-	
-	RefreshDebuff();
-	
-	announce "ใช้คำสั่ง @tb เพื่อเช็คค่าต่าง ๆ ที่สำคัญ",bc_self,0x11B120;
-	
 	end;
 }
