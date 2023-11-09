@@ -1,0 +1,22 @@
+force_3-3	mapflag	pvp
+force_3-3	mapflag	novending
+force_3-3	mapflag	nochat
+force_3-3	mapflag	nowarp
+force_3-3	mapflag	nowarpto
+force_3-3	mapflag	nosave
+force_3-3	mapflag	nobranch
+force_3-3	mapflag	notomb
+
+prontera,148,175,5	script	เล่น#1	966,{
+	if(!getd("$play" + strnpcinfo(2)))
+	set getd("$play" + strnpcinfo(2)),BaseLevel;
+
+	delwaitingroom;
+	waitingroom "Level: " + getd("$play" + strnpcinfo(2)),0;
+	
+	end;
+	
+OnInit:
+	waitingroom "Level: " + getd("$play" + strnpcinfo(2)),0;
+	end;
+}
