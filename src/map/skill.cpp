@@ -9187,8 +9187,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		break;
 
 	case AL_TELEPORT:
-	if(sd)
-		pc_setreg2(sd, "mdt", pc_readreg2(sd, "mdt") + 1);
 	case ALL_ODINS_RECALL:
 		if(sd)
 		{

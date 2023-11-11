@@ -21824,10 +21824,10 @@ void clif_parse_private_airship_request( int fd, map_session_data* sd ){
 		return;
 	}
 
-	/*t_itemid item_id = p->ItemID;
+	t_itemid item_id = p->ItemID;
 
 	// Check if the item sent by the client is known to us
-	if (!itemdb_group.item_exists(IG_PRIVATE_AIRSHIP, item_id)) {
+	if( !itemdb_group.item_exists(IG_PRIVATE_AIRSHIP, item_id) ){
 		clif_private_airship_response( sd, PRIVATEAIRSHIP_ITEM_UNAVAILABLE );
 		return;
 	}
@@ -21844,7 +21844,7 @@ void clif_parse_private_airship_request( int fd, map_session_data* sd ){
 	if( pc_delitem( sd, idx, 1, 0, 0, LOG_TYPE_PRIVATE_AIRSHIP ) ){
 		clif_private_airship_response( sd, PRIVATEAIRSHIP_RETRY );
 		return;
-	}*/
+	}
 
 	// Warp the player to a random spot on the destination map
 	pc_setpos( sd, mapindex, 0, 0, CLR_TELEPORT );

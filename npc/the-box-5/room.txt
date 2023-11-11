@@ -7,16 +7,23 @@ force_3-3	mapflag	nosave
 force_3-3	mapflag	nobranch
 force_3-3	mapflag	notomb
 
-prontera,148,175,5	script	เล่น#1	966,{
+prontera,148,175,5	script	เล่น	966,{
+	.@highestLevel = max(1,highestLevel);
+	mes "โปรดระบุระดับ 1~" + .@highestLevel;
+	input .@i;
+	next;
+	if((.@i <= 0)
+			|| (.@i > .@highestLevel))
+	{
+		mes "ระดับที่ระบุผิดพลาด";
+		close;
+	}
 	if(!getd("$play" + strnpcinfo(2)))
 	set getd("$play" + strnpcinfo(2)),BaseLevel;
 
-	delwaitingroom;
-	waitingroom "Level: " + getd("$play" + strnpcinfo(2)),0;
-	
 	end;
 	
 OnInit:
-	waitingroom "Level: " + getd("$play" + strnpcinfo(2)),0;
+	waitingroom "เล่น",0;
 	end;
 }

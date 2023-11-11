@@ -4236,7 +4236,6 @@ ACMD_FUNC(reload) {
 
 		if( prev_config.item_rate_mvp          != battle_config.item_rate_mvp
 		||  prev_config.max_monster_dynamic    != battle_config.max_monster_dynamic
-		||  prev_config.item_rate_special_refine_box   != battle_config.item_rate_special_refine_box
 		||  prev_config.item_rate_common       != battle_config.item_rate_common
 		||  prev_config.item_rate_common_boss  != battle_config.item_rate_common_boss
 		||  prev_config.item_rate_common_mvp   != battle_config.item_rate_common_mvp
@@ -7830,15 +7829,6 @@ ACMD_FUNC(mobinfo)
 				clif_displaymessage(fd, msg_txt(sd,1249)); // This monster has no MVP prizes.
 			else
 				clif_displaymessage(fd, atcmd_output);
-		}
-
-		// [Start]
-		if (mob->get_bosstype() == BOSSTYPE_MVP) {
-			std::shared_ptr<item_data> mvprr = item_db.find(10000006);
-
-			int special_refine_box_rate = mob_getdroprate(&sd->bl, mob, battle_config.item_rate_special_refine_box * (mob->lv / 9), drop_modifier);
-			sprintf(atcmd_output, " - %s  0 ~ %02.02f%%", item_db.create_item_link(mvprr).c_str(), (float)special_refine_box_rate / 100);
-			clif_displaymessage(fd, atcmd_output);
 		}
 	}
 	return 0;

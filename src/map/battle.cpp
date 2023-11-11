@@ -10368,7 +10368,6 @@ static const struct _battle_data {
 	{ "item_drop_treasure_min",             &battle_config.item_drop_treasure_min,          1,      0,      10000,          },
 	{ "item_drop_treasure_max",             &battle_config.item_drop_treasure_max,          10000,  1,      10000,          },
 	{ "item_rate_mvp",                      &battle_config.item_rate_mvp,                   100,    0,      1000000,        },
-	{ "item_rate_special_refine_box",       &battle_config.item_rate_special_refine_box,    100,    0,      1000000,        },
 	{ "item_rate_common",                   &battle_config.item_rate_common,                100,    0,      1000000,        },
 	{ "item_rate_common_boss",              &battle_config.item_rate_common_boss,           100,    0,      1000000,        },
 	{ "item_rate_common_mvp",               &battle_config.item_rate_common_mvp,            100,    0,      1000000,        },
