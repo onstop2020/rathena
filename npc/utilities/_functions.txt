@@ -292,6 +292,7 @@ function	script	Reborn	{
 	// Clear skill point
 	SkillPoint = 0;
 	// Reborn now
+	// Grant random status
 	.@maxRebornStatus = rebornStatus + 10;
 	statusup2 bStr,rand(.@maxRebornStatus);
 	statusup2 bVit,rand(.@maxRebornStatus);
@@ -299,7 +300,30 @@ function	script	Reborn	{
 	statusup2 bAgi,rand(.@maxRebornStatus);
 	statusup2 bDex,rand(.@maxRebornStatus);
 	statusup2 bLuk,rand(.@maxRebornStatus);
+	// Grant random trait
+	.@maxRebornTrait = (rebornStatus / 10) + 1;
+	statusup2 bStr,rand(.@maxRebornTrait);
+	statusup2 bVit,rand(.@maxRebornTrait);
+	statusup2 bInt,rand(.@maxRebornTrait);
+	statusup2 bAgi,rand(.@maxRebornTrait);
+	statusup2 bDex,rand(.@maxRebornTrait);
+	statusup2 bLuk,rand(.@maxRebornTrait);
 	// Grant 3 skills by every 30 level
+	.@skillAmount = max(3,(BaseLevel / 30));
+	freeloop(1);
+	for(.@i = 0; .@i < .@skillAmount; .@i++){
+		.@randomSkillIndex = rand(0,($learnableSkillSize - 1));
+		// Check skill is same
+		for(.@j = 0; .@j < .@skillAmount; .@j++){
+			if(.@randomSkillIndex[.@j] == .@randomSkillIndex){
+				.@j = 0;
+				.@randomSkillIndex = rand(0,($learnableSkillSize - 1));
+			}
+		}
+		// Grant skill now
+		skill $learnableSkills$[.@randomSkillIndex],(1 + rebornSkill),3;
+	}
+	freeloop(0);
 	// Announce in map
 	announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area;
 	return;

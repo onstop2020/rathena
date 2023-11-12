@@ -5,7 +5,8 @@ OnPCLoginEvent:
 	// Unexpected error
 	setpcblock PCBLOCK_ALL,false;
 	// Back to town when login
-	if(strcharinfo(3) != "prontera")
+	if(isPassTutorial
+			&& (strcharinfo(3) != "prontera"))
 	addtimer 1000,strnpcinfo(3) + "::OnBackToTown";
 	end;
 	
