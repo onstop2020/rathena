@@ -283,12 +283,16 @@ function	script	Reborn	{
 	// Decrease level
 	if(BaseLevel > 1)
 	atcommand "@blvl -1";
+	// Wear new suit
+	jobchange $classes[rand(0,($classSize - 1))];
 	// Clear all status and trait
 	resetstatus;
 	// Forgot all skill
 	resetskill;
 	// Clear status point
 	StatusPoint = 0;
+	// Clear trait point
+	TraitPoint = 0;
 	// Clear skill point
 	SkillPoint = 0;
 	// Reborn now
@@ -302,12 +306,12 @@ function	script	Reborn	{
 	statusup2 bLuk,rand(.@maxRebornStatus);
 	// Grant random trait
 	.@maxRebornTrait = (rebornStatus / 10) + 1;
-	statusup2 bStr,rand(.@maxRebornTrait);
-	statusup2 bVit,rand(.@maxRebornTrait);
-	statusup2 bInt,rand(.@maxRebornTrait);
-	statusup2 bAgi,rand(.@maxRebornTrait);
-	statusup2 bDex,rand(.@maxRebornTrait);
-	statusup2 bLuk,rand(.@maxRebornTrait);
+	traitstatusup2 bPow,rand(.@maxRebornTrait);
+	traitstatusup2 bSta,rand(.@maxRebornTrait);
+	traitstatusup2 bWis,rand(.@maxRebornTrait);
+	traitstatusup2 bSpl,rand(.@maxRebornTrait);
+	traitstatusup2 bCon,rand(.@maxRebornTrait);
+	traitstatusup2 bCrt,rand(.@maxRebornTrait);
 	// Grant 3 skills by every 30 level
 	.@skillAmount = max(3,(BaseLevel / 30));
 	freeloop(1);
@@ -325,6 +329,22 @@ function	script	Reborn	{
 	}
 	freeloop(0);
 	// Announce in map
-	announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area;
+	announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area,0xFF2400;
+	// Styles
+	setarray .@maxStyles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
+	// Official cloth color for expanded class was 0~3 ?
+	if((Class == 4239)
+			|| (Class == 4240)
+			|| (Class == 4064))
+	.@maxStyles[1] = .@maxStyles[1] - 1;
+	setarray .@looks[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
+	for(.@s = 1; .@s < 4; .@s++){
+		.@selectedLook = .@s;
+		.@style = rand(0,.@maxStyles[.@selectedLook]);
+		if((.@selectedLook == 2)
+				&& (.@style <= 0))
+		.@style = 1;
+		setlook .@looks[.@selectedLook],.@style;
+	}
 	return;
 }

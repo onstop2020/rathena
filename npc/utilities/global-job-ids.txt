@@ -1,0 +1,12 @@
+-	script	GlobalJobId	-1,{
+	end;
+	
+OnInit:
+	if($globalJobIdVersion != 1){
+		$globalJobIdVersion = 1;
+		deletearray $classes[0],getarraysize($classes);
+		setarray $classes[0],4252,4253,4254,4255,4256,4257,4258,4259,4260,4261,4262,4263,4264,4302,4303,4304,4305,4306,4307,4308;
+		$classSize = getarraysize($classes);
+	}
+	end;
+}

@@ -6,9 +6,7 @@ prontera,154,190,5	script	สไมล์	10365,{
 	,"แก้ตัวละครเด้ง",L_FixClientErrors
 	,"ทดสอบตัวเกม",L_ClientTest;
 	else
-	menu "ตัดผม, ย้อมสีผม, ย้อมสีเสื้อ",-
-	,"เปลี่ยนชุด Class 3",L_Class3Suit
-	,"เปลี่ยน Password",L_ChangePassword
+	menu "เปลี่ยน Password",L_ChangePassword
 	,"แก้ตัวละครเด้ง",L_FixClientErrors;
 
 	setarray .@maxStyles[1],getbattleflag("max_cloth_color")

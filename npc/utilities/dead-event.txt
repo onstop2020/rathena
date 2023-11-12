@@ -3,7 +3,12 @@
 	
 OnPCDieEvent:
 	Reborn();
+	if(!isPassTutorial){
+		isPassTutorial = 1;
+		savepoint "prontera",156,191,5,5;
+	}
 	// Back to town when dead
+	else
 	addtimer 1000,strnpcinfo(3) + "::OnBackToTown";
 	end;	
 	

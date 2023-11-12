@@ -1,0 +1,22 @@
+job_star,165,41,3	script	อ๊อด	10287,{
+	mes "พร้อมจะเข้าสู่โลก Born Born Born รึยัง";
+	next;
+	menu "ไม่",OnCancel,"พร้อม",OnReady;
+	
+OnReady:
+	mes "ก่อนไป ขอให้เจ้าจำไว้แค่ว่า 'การตายจะทำให้เจ้าได้เกิดใหม่'";
+	next;
+	menu "ไม่เข้าใจ",OnCancel,"รับทราบ",OnRogerThat;
+	
+OnRogerThat:
+	warp "valkyrie",48,48;
+	close;
+	
+OnCancel:
+	mes "OK";
+	close;
+	
+OnInit:
+	monster "valkyrie",48,48,"--ja--",1039,1;
+	end;
+}
