@@ -9323,6 +9323,11 @@ int pc_resetskill(map_session_data* sd, int flag)
 		if (lv == 0 || skill_id == 0)
 			continue;
 
+		// [Start]
+		sd->status.skill[idx].lv = 0;
+		sd->status.skill[idx].flag = SKILL_FLAG_PERMANENT;
+		continue;
+
 		if( skill.second->inf2[INF2_ISWEDDING] || skill.second->inf2[INF2_ISSPIRIT] ) //Avoid reseting wedding/linker skills.
 			continue;
 

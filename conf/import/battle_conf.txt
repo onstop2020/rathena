@@ -2,7 +2,3 @@
 // 5 = Damage / 1~5 Damage Reduction
 // 5 = x1~5 Damage (Set on spawn)
 max_monster_dynamic: 1
-
-// Special Refine Box
-// 1 = 0.01 * (0 ~ (Monster Level / 9))%
-item_rate_special_refine_box: 1

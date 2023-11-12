@@ -326,6 +326,8 @@ function	script	Reborn	{
 		}
 		// Grant skill now
 		skill $learnableSkills$[.@randomSkillIndex],(1 + rebornSkill),3;
+		if(getskilllv($learnableSkills$[.@randomSkillIndex]) <= 0)
+		.@i--;
 	}
 	freeloop(0);
 	// Announce in map
