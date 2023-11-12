@@ -2,5 +2,12 @@
 	end;
 	
 OnPCDieEvent:
+	Reborn();
+	// Back to town when dead
+	addtimer 1000,strnpcinfo(3) + "::OnBackToTown";
+	end;	
+	
+OnBackToTown:
+	warp "prontera",156,191;
 	end;
 }

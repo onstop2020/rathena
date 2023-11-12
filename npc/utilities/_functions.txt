@@ -277,3 +277,30 @@ function	script	GainSkillPoints	{
 	
 	return;
 }
+
+// Reborn
+function	script	Reborn	{
+	// Decrease level
+	if(BaseLevel > 1)
+	atcommand "@blvl -1";
+	// Clear all status and trait
+	resetstatus;
+	// Forgot all skill
+	resetskill;
+	// Clear status point
+	StatusPoint = 0;
+	// Clear skill point
+	SkillPoint = 0;
+	// Reborn now
+	.@maxRebornStatus = rebornStatus + 10;
+	statusup2 bStr,rand(.@maxRebornStatus);
+	statusup2 bVit,rand(.@maxRebornStatus);
+	statusup2 bInt,rand(.@maxRebornStatus);
+	statusup2 bAgi,rand(.@maxRebornStatus);
+	statusup2 bDex,rand(.@maxRebornStatus);
+	statusup2 bLuk,rand(.@maxRebornStatus);
+	// Grant 3 skills by every 30 level
+	// Announce in map
+	announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area;
+	return;
+}
