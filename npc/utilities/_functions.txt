@@ -243,7 +243,7 @@ function	script	RefreshDebuff	{
 
 // Gaining dismantle points
 function	script	GainDismantlePoints	{
-	.@itemId = 10000008;
+	.@itemId = 10000007;
 	.@amount = countitem(.@itemId);
 	dmPoints = cap_value(dmPoints + .@amount + 1,0,INT_MAX);
 	delitem .@itemId,.@amount;
@@ -581,6 +581,7 @@ function	script	GradeOrb	{
 
 // Reborn
 function	script	Reborn	{
+	.@isSafeReborn = getarg(0,0);
 	// Mark as safe to return
 	isSafeReturn = 1;
 	// Remember previous values
@@ -588,22 +589,24 @@ function	script	Reborn	{
 	.@previousJobLevel = JobLevel;
 	.@previousRebornStatus = rebornStatus;
 	.@previousRebornSkill = rebornSkill;
-	// Decrease body
-	rebornStatus = cap_value(rebornStatus - 1,0,30000);
-	// Decrease mind
-	rebornSkill = cap_value(rebornSkill - 1,0,100);
-	// Decrease level
-	if(BaseLevel > 1)
-	atcommand "@lvup -1";
-	// Decrease Refine
-	atcommand "@refine 0 -1";
-	// Decrease Grade
-	atcommand "@grade 0 -1";
-	// Wear new suit
-	jobchange $classes[rand(0,($classSize - 1))];
-	// Return job level back
-	if(.@previousJobLevel > 1)
-	atcommand "@joblvup " + (.@previousJobLevel - 1);
+	if(!.@isSafeReborn){
+		// Decrease body
+		rebornStatus = cap_value(rebornStatus - 1,0,30000);
+		// Decrease mind
+		rebornSkill = cap_value(rebornSkill - 1,0,100);
+		// Decrease level
+		if(BaseLevel > 1)
+		atcommand "@lvup -1";
+		// Decrease Refine
+		atcommand "@refine 0 -1";
+		// Decrease Grade
+		atcommand "@grade 0 -1";
+		// Wear new suit
+		jobchange $classes[rand(0,($classSize - 1))];
+		// Return job level back
+		if(.@previousJobLevel > 1)
+		atcommand "@joblvup " + (.@previousJobLevel - 1);
+	}
 	// Clear all status and trait
 	resetstatus;
 	// Forgot all skill
@@ -617,23 +620,20 @@ function	script	Reborn	{
 	// Reborn now
 	// Grant random status
 	.@maxRebornStatus = .@previousRebornStatus + 10;
-	atcommand "@str " + rand(.@maxRebornStatus);
-	atcommand "@agi " + rand(.@maxRebornStatus);
-	atcommand "@vit " + rand(.@maxRebornStatus);
-	atcommand "@int " + rand(.@maxRebornStatus);
-	atcommand "@dex " + rand(.@maxRebornStatus);
-	atcommand "@luk " + rand(.@maxRebornStatus);
+	atcommand "@str " + rand(1,.@maxRebornStatus);
+	atcommand "@agi " + rand(1,.@maxRebornStatus);
+	atcommand "@vit " + rand(1,.@maxRebornStatus);
+	atcommand "@int " + rand(1,.@maxRebornStatus);
+	atcommand "@dex " + rand(1,.@maxRebornStatus);
+	atcommand "@luk " + rand(1,.@maxRebornStatus);
 	// Grant random trait
 	.@maxRebornTrait = cap_value(.@previousRebornStatus + 1,0,100);
-	if((Class != 0)
-			&& (.@maxRebornTrait > 1)){
-		atcommand "@pow " + rand(.@maxRebornTrait);
-		atcommand "@sta " + rand(.@maxRebornTrait);
-		atcommand "@wis " + rand(.@maxRebornTrait);
-		atcommand "@spl " + rand(.@maxRebornTrait);
-		atcommand "@con " + rand(.@maxRebornTrait);
-		atcommand "@crt " + rand(.@maxRebornTrait);
-	}
+	atcommand "@pow " + rand(1,.@maxRebornTrait);
+	atcommand "@sta " + rand(1,.@maxRebornTrait);
+	atcommand "@wis " + rand(1,.@maxRebornTrait);
+	atcommand "@spl " + rand(1,.@maxRebornTrait);
+	atcommand "@con " + rand(1,.@maxRebornTrait);
+	atcommand "@crt " + rand(1,.@maxRebornTrait);
 	// Grant 3 skills by every 30 level
 	.@skillAmount = 3 + ((.@previousLevel + 30) / 30);
 	freeloop(1);
@@ -652,23 +652,56 @@ function	script	Reborn	{
 		.@i--;
 	}
 	freeloop(0);
-	// Announce in map
-	announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area,0xFF2400;
-	// Styles
-	setarray .@maxStyles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
-	// Official cloth color for expanded class was 0~3 ?
-	if((Class == 4239)
-			|| (Class == 4240)
-			|| (Class == 4064))
-	.@maxStyles[1] = .@maxStyles[1] - 1;
-	setarray .@looks[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
-	for(.@s = 1; .@s < 4; .@s++){
-		.@selectedLook = .@s;
-		.@style = rand(0,.@maxStyles[.@selectedLook]);
-		if((.@selectedLook == 2)
-				&& (.@style <= 0))
-		.@style = 1;
-		setlook .@looks[.@selectedLook],.@style;
+	if(!.@isSafeReborn){
+		// Announce in map
+		announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area,0xFF2400;
+		// Styles
+		setarray .@maxStyles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
+		// Official cloth color for expanded class was 0~3 ?
+		if((Class == 4239)
+				|| (Class == 4240)
+				|| (Class == 4064))
+		.@maxStyles[1] = .@maxStyles[1] - 1;
+		setarray .@looks[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
+		for(.@s = 1; .@s < 4; .@s++){
+			.@selectedLook = .@s;
+			.@style = rand(0,.@maxStyles[.@selectedLook]);
+			if((.@selectedLook == 2)
+					&& (.@style <= 0))
+			.@style = 1;
+			setlook .@looks[.@selectedLook],.@style;
+		}
 	}
 	return;
+}
+
+// Random option
+function	script	GetRandomOptionId	{
+	.@optId = rand(1,254);
+	
+	freeloop(1);
+	
+	// Locking option
+	if(getarg(0,0) > 0){
+		while((.@optId == 86)
+		|| (.@optId == 173)
+		|| (.@optId == 174)
+		|| (.@optId == 204)
+		|| (.@optId == 205))
+		.@optId = rand(1,254);
+		
+		freeloop(0);
+		
+		return .@optId;
+	}
+	
+	while(((.@optId >= 76) && (.@optId <= 86))
+	|| ((.@optId >= 173) && (.@optId <= 184))
+	|| (.@optId == 204)
+	|| (.@optId == 205))
+	.@optId = rand(1,254);
+
+	freeloop(0);
+	
+	return .@optId;
 }

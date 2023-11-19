@@ -10,6 +10,8 @@ force_3-3	mapflag	notomb
 prontera,155,180,5	script	เล่น	736,{
 	// Random save position
 	savepoint "prontera",156,191,5,5;
+	// Guild check
+	
 	// Penalty for exploit users
 	if(!isSafeReturn){
 		mes "คุณกลับเมืองด้วยวิธีอื่นที่ไม่ใช่การใช้ @load, Return Orb หรือการตาย คุณต้องตายเดี๋ยวนี้";
@@ -175,6 +177,8 @@ OnBossDead:
 	for(.@i = 0; .@i < 4; .@i++)
 	setarray getd(".monsterType" + @floor + "["+ .@i +"]"),(.@tier == 0) ? $attackableMonsterTier1Ids[rand(0,$attackableMonsterTier1IdSize - 1)] : (.@tier == 1) ? $attackableMonsterTier2Ids[rand(0,$attackableMonsterTier2IdSize - 1)] : (.@tier == 2) ? $attackableMonsterTier3Ids[rand(0,$attackableMonsterTier3IdSize - 1)] : (.@tier == 3) ? $attackableMonsterTier4Ids[rand(0,$attackableMonsterTier4IdSize - 1)] : (.@tier == 4) ? $attackableMonsterTier5Ids[rand(0,$attackableMonsterTier5IdSize - 1)] : $attackableMonsterTier6Ids[rand(0,$attackableMonsterTier6IdSize - 1)];
 	
+	// Get (Floor * 10) Dismantle Points
+	getitem 10000007,(@floor * 10);
 	// Get (Floor * 5) Soul Orb
 	getitem 10000002,(@floor * 5);
 	// Get (Floor * 2) Body Orb

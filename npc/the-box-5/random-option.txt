@@ -407,33 +407,3 @@ OnInit:
 	waitingroom "เสริมแกร่งด้วย Random Option",0;
 	end;
 }
-
-function	script	GetRandomOptionId	{
-	.@optId = rand(1,254);
-	
-	freeloop(1);
-	
-	// Locking option
-	if(getarg(0,0) > 0){
-		while((.@optId == 86)
-		|| (.@optId == 173)
-		|| (.@optId == 174)
-		|| (.@optId == 204)
-		|| (.@optId == 205))
-		.@optId = rand(1,254);
-		
-		freeloop(0);
-		
-		return .@optId;
-	}
-	
-	while(((.@optId >= 76) && (.@optId <= 86))
-	|| ((.@optId >= 173) && (.@optId <= 184))
-	|| (.@optId == 204)
-	|| (.@optId == 205))
-	.@optId = rand(1,254);
-
-	freeloop(0);
-	
-	return .@optId;
-}

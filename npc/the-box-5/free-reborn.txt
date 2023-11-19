@@ -1,0 +1,18 @@
+prontera,155,173,3	script	กองไฟแห่งชีวิต	10252,{
+	menu "มองกองไฟ",-,"ระลึกชาติ (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000)",OnFreeReborn;
+	end;
+	
+OnFreeReborn:
+	// Check cooldown
+	DelayHint(freeRebornCd,0,1);
+	specialeffect2 32;
+	// Cooldown
+	freeRebornCd = gettimetick(2) + .freeRebornCooldown;
+	Reborn(1);
+	end;
+	
+OnInit:
+	waitingroom "ระลึกชาติ",0;
+	.freeRebornCooldown = 600;
+	end;
+}

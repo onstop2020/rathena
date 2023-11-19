@@ -1,4 +1,4 @@
-prontera,148,195,3	script	ปาณหา	864,{
+prontera,168,179,1	script	ปาณหา	864,{
 	menu "ขอ Life Orb",OnLifeOrb,"ขอ Return Orb",OnReturnOrb,"ซ่อมของ",OnRepairAll;
 	
 OnLifeOrb:

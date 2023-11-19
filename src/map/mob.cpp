@@ -4936,12 +4936,15 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	mob->dropitem[2].nameid = 10000004;
 	mob->dropitem[2].rate = 2500;
 	mob->dropitem[2].steal_protected = true;
-	mob->dropitem[3].nameid = 10000005;
-	mob->dropitem[3].rate = 10;
+	mob->dropitem[3].nameid = 10000007;
+	mob->dropitem[3].rate = 100;
 	mob->dropitem[3].steal_protected = true;
-	mob->dropitem[4].nameid = 10000006;
-	mob->dropitem[4].rate = 1;
+	mob->dropitem[4].nameid = 10000005;
+	mob->dropitem[4].rate = 10;
 	mob->dropitem[4].steal_protected = true;
+	mob->dropitem[5].nameid = 10000006;
+	mob->dropitem[5].rate = 1;
+	mob->dropitem[5].steal_protected = true;
 	if (!exists)
 		this->put(mob_id, mob);
 

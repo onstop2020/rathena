@@ -1,7 +1,13 @@
-prontera,164,174,3	script	THE BOX	10403,{
+prontera,147,195,3	script	ลูกแก้วศาสตรา	10308,{
 	.@price = callsub(L_Price);
 	
-	menu "สุ่ม (^BA17F8" + F_InsertComma(.@price) + "z^000000)",-
+	if(getgmlevel())
+	menu "สุ่ม (^BA17F8" + F_InsertComma(.@price) + " " + getitemname(.priceItemId) + "^000000)",-
+	,"ดูของในกล่อง (^F81717เหลือ " + getarraysize($market) + " ชิ้น^000000)",L_View
+	,"อีก ^F81717" + (10 - (gettime(DT_MINUTE) % 10)) + " นาที^000000 ของในกล่องจะเปลี่ยนใหม่หมด",L_End
+	,"Reset รายการของทันที",OnForceReset;
+	else
+	menu "สุ่ม (^BA17F8" + F_InsertComma(.@price) + " " + getitemname(.priceItemId) + "^000000)",-
 	,"ดูของในกล่อง (^F81717เหลือ " + getarraysize($market) + " ชิ้น^000000)",L_View
 	,"อีก ^F81717" + (10 - (gettime(DT_MINUTE) % 10)) + " นาที^000000 ของในกล่องจะเปลี่ยนใหม่หมด",L_End;
 	
@@ -11,8 +17,8 @@ prontera,164,174,3	script	THE BOX	10403,{
 		end;
 	}
 	.@price = callsub(L_Price);
-	if(Zeny < .@price)
-	message strcharinfo(0),"ต้องการ " + F_InsertComma(.@price) + "z";
+	if(countitem(.priceItemId) < .@price)
+	message strcharinfo(0),"ต้องการ " + F_InsertComma(.@price) + " " + getitemname(.priceItemId);
 	else{
 		// Check weight
 		if(!checkweight(6825,1)){
@@ -25,7 +31,7 @@ prontera,164,174,3	script	THE BOX	10403,{
 		.@rewardItemId = $market[.@index];
 		
 		// Trade
-		Zeny = cap_value(Zeny - .@price,0,INT_MAX);
+		delitem .priceItemId,.@price;
 		GetTheBoxItem(.@rewardItemId);
 		
 		// Remove item from list
@@ -60,6 +66,8 @@ OnBuyItem:
 	L_Initial:
 	// Same hours from last time generate
 	if($marketHours == gettime(DT_HOUR)){
+		npcshopdelitem .shopName$,501;
+		
 		// Adding old item list
 		for(.@i = 0; .@i < getarraysize($market); .@i++)
 		npcshopadditem .shopName$,$market[.@i],1;
@@ -69,6 +77,7 @@ OnBuyItem:
 		return;
 	}
 	
+OnForceReset:
 	// Hour was not same with last time
 OnMinute00:
 OnMinute10:
@@ -111,37 +120,19 @@ OnMinute50:
 
 	// Get price
 	L_Price:
-	freeloop(1);
-	.@price = .basePrice;
 	.@amount = .amount - getarraysize($market);
-	
-	while(.@amount >= .tierAmount){
-		.@amount -= .tierAmount;
-		.@price *= .priceTierMultiplier;
-	}
-	freeloop(0);
-	return cap_value(.@price * ((.@amount > 0) ? (.@amount) : 1),.basePrice,.maximumPrice);
-
-	// Get price wording
-	L_PriceString:
-	.@price = getarg(0,0);
-	
-	if(.@price >= 1000000)
-	return (.@price/1000000) + "m";
-	else if(.@price > 1000)
-	return (.@price/1000) + "k";
-	else
-	return .@price;
+	return cap_value(.prices[.@amount / 20],10,1000);
 
 OnInit:
+	waitingroom "สุ่มของ",0;
+	
 	// Parameters
 	.shopName$ = "THE_BOX";
 
-	.amount = 50;
-	.tierAmount = 10;
-	.basePrice = 100000;
-	.maximumPrice = 100000000;
-	.priceTierMultiplier = 10;
+	.priceItemId = 10000002;
+
+	.amount = 100;
+	setarray .prices[0],10,50,100,500,1000;
 	
 	// Shop initialize
 	freeloop(1);

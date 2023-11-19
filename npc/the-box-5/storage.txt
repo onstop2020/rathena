@@ -7,5 +7,4 @@ OnInit:
 	end;
 }
 
-prontera,147,174,5	duplicate(storage)	คลังเก็บของ	10005
-prontera,37,147,5	duplicate(storage)	คลังเก็บของ#2	10005
+prontera,147,174,8	duplicate(storage)	คลังเก็บของ	10250

@@ -13,6 +13,7 @@ pvp_y_1-1	mapflag	nopenalty
 pvp_y_1-1	mapflag	nocommand	99
 
 pvp_y_1-4	mapflag	pvp
+pvp_y_1-4	mapflag	pvp_noguild
 pvp_y_1-4	mapflag	novending
 pvp_y_1-4	mapflag	nochat
 pvp_y_1-4	mapflag	monster_noteleport
@@ -24,3 +25,19 @@ pvp_y_1-4	mapflag	nobranch
 pvp_y_1-4	mapflag	notomb
 pvp_y_1-4	mapflag	nopenalty
 pvp_y_1-4	mapflag	nocommand	99
+
+prontera,174,185,1	script	PvP	10240,{
+	menu "PvP (Solo)",PvpSolo,"PvP (Party)",PvpParty;
+	
+PvpSolo:
+	warp "pvp_y_1-1",rand(145,166),rand(112,124);
+	end;
+	
+PvpParty:
+	warp "pvp_y_1-4",0,0;
+	end;
+	
+OnInit:
+	waitingroom "PvP",0;
+	end;
+}

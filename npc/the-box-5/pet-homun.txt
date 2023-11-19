@@ -1,17 +1,4 @@
-prontera,89,119,5	script	ฟิโอซ่า	918,{
-	bpet;
-	end;
-	
-OnInit:
-	waitingroom "ฟักไข่",0;
-	end;
-}
-
-prontera,86,117,5	script	เกวลิน	919,{
-	if(getpetinfo(PETINFO_ID) > 0){
-		atcommand "@petfriendly 1000";
-		atcommand "@pethungry 100";
-	}
+prontera,143,179,8	script	เกวลิน	919,{
 	if(gethominfo(0) > 0){
 		addhomintimacy 100000;
 		atcommand "@homhungry 100";
@@ -19,35 +6,21 @@ prontera,86,117,5	script	เกวลิน	919,{
 	end;
 	
 OnInit:
-	waitingroom "Pet & Hom. อิ่มสนิท",0;
+	waitingroom "Homunculus อิ่มสนิท",0;
 	end;
 }
 
-prontera,70,114,3	script	ลุงตู้	87,{
-	menu "ฆ่า",-;
-	if(getpetinfo(PETINFO_ID) > 0){
-		atcommand "@petfriendly 0";
-		atcommand "@pethungry 0";
-	}
-	
-	end;
-	
-OnInit:
-	waitingroom "ฆ่า Pet",0;
-	end;
-}
-
-prontera,79,114,5	script	เวจ 	920,{
+prontera,140,182,8	script	เวจ 	920,{
 	if(gethominfo(0) > 0)
 	homevolution;
 	end;
 	
 OnInit:
-	waitingroom "Hom. Evo.",0;
+	waitingroom "Homunculus Evolution",0;
 	end;
 }
 
-prontera,77,112,5	script	แมรี่ 	915,{
+prontera,137,185,8	script	แมรี่ 	915,{
 	if(gethominfo(0) > 0){
 		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
 			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {

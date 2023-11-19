@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-prontera,150,190,5	script	โจชัว	10385,{
+prontera,171,182,1	script	โจชัว	10385,{
 	if (ismounting()) {
 		message strcharinfo(0),"คุณต้องถอดอุปกรณ์เก่าออกก่อน";
 		end;
