@@ -11,8 +11,7 @@ prontera,155,180,5	script	เล่น	736,{
 	// Random save position
 	savepoint "prontera",156,191,5,5;
 	// Penalty for exploit users
-	if(!isSafeReturn)
-	{
+	if(!isSafeReturn){
 		mes "คุณกลับเมืองด้วยวิธีอื่นที่ไม่ใช่การใช้ @load, Return Orb หรือการตาย คุณต้องตายเดี๋ยวนี้";
 		next;
 		menu "โอเค",-;
@@ -28,8 +27,7 @@ prontera,155,180,5	script	เล่น	736,{
 	// Checking players selected floor conditions
 	if((.@floor <= 0)
 			|| (.@floor > .@highestLevel)
-			|| (.@floor > $maximumFloor))
-	{
+			|| (.@floor > $maximumFloor)){
 		mes "ระดับที่ระบุผิดพลาด";
 		close;
 	}
@@ -58,9 +56,9 @@ prontera,155,180,5	script	เล่น	736,{
 	}
 	.@tier = callsub(OnGetTier,.@floor);
 	// Check kill amount
-	if(!.killAmount[.@floor]){
-		setarray .killAmount[.@floor],.maximumKillAmount[.@tier];
-		setarray .spawnedAmount[.@floor],0;
+	if(!.killAmount[(.@floor - 1)]){
+		setarray .killAmount[(.@floor - 1)],.maximumKillAmount[.@tier];
+		setarray .spawnedAmount[(.@floor - 1)],0;
 		// Setup 4 monster types
 		for(.@i = 0; .@i < 4; .@i++)
 		setarray getd(".monsterType" + .@floor + "["+ .@i +"]"),(.@tier == 0) ? $attackableMonsterTier1Ids[rand(0,$attackableMonsterTier1IdSize - 1)] : (.@tier == 1) ? $attackableMonsterTier2Ids[rand(0,$attackableMonsterTier2IdSize - 1)] : (.@tier == 2) ? $attackableMonsterTier3Ids[rand(0,$attackableMonsterTier3IdSize - 1)] : (.@tier == 3) ? $attackableMonsterTier4Ids[rand(0,$attackableMonsterTier4IdSize - 1)] : (.@tier == 4) ? $attackableMonsterTier5Ids[rand(0,$attackableMonsterTier5IdSize - 1)] : $attackableMonsterTier6Ids[rand(0,$attackableMonsterTier6IdSize - 1)];
@@ -68,7 +66,7 @@ prontera,155,180,5	script	เล่น	736,{
 	@floor = .@floor;
 	// Add drop bonus
 	sc_end SC_ITEMBOOST;
-	sc_start SC_ITEMBOOST,86400000,.@floor / 2;
+	sc_start SC_ITEMBOOST,86400000,(.@floor / 2);
 	// Going to play maps
 	isSafeReturn = 0;
 	// Block
@@ -90,15 +88,16 @@ OnSpawnMonster:
 	.@monsterRank = getarg(1,1);
 	.@tier = callsub(OnGetTier,.@floor);
 	// Unexpected error
-	if(.@floor < 0)
+	if(.@floor <= 0)
 	end;
 	// Loop spawn
 	for(.@i = 0; .@i < .maximumSpawnAmount[.@tier]; .@i++){
 		// Already max
-		if(.spawnedAmount[.@floor] >= .maximumSpawnAmount[.@tier])
+		if(.spawnedAmount[(.@floor - 1)] >= .maximumSpawnAmount[.@tier])
 		break;
+		
 		// Spawn
-		monster .playingMaps$[.@floor],0,0,"--ja--",getd(".monsterType" + .@floor + "["+ rand(0,3) +"]"),1,strnpcinfo(0) + "::OnMonsterDead";
+		monster .playingMaps$[(.@floor - 1)],0,0,"--ja--",getd(".monsterType" + .@floor + "[" + rand(0,3) + "]"),1,strnpcinfo(0) + "::OnMonsterDead";
 		// HP ((50 * Floor) * Floor) * Floor (Floor%) * Floor ((Floor / 2)%))
 		.@hp = (50 * .@floor) * .@floor * ((rand(0,100) <= .@floor) ? .@floor : 1) * ((rand(0,100) <= (.@floor / 2)) ? .@floor : 1);
 		// Capping
@@ -109,7 +108,7 @@ OnSpawnMonster:
 		setunitdata $@mobid[0],UMOB_HP,.@hp;
 		setunitdata $@mobid[0],UMOB_MAXHP,.@hp;
 		// Increase spawned amount
-		setarray .spawnedAmount[.@floor],.spawnedAmount[.@floor] + 1;
+		setarray .spawnedAmount[(.@floor - 1)],(.spawnedAmount[(.@floor - 1)] + 1);
 	}
 	
 	end;
@@ -118,37 +117,40 @@ OnMonsterDead:
 	if(!playerattached())
 	end;
 
-	setarray .spawnedAmount[@floor],cap_value(.spawnedAmount[@floor] - 1,0,INT_MAX);
-	setarray .killAmount[@floor],cap_value(.killAmount[@floor] - 1,0,INT_MAX);
+	setarray .spawnedAmount[(@floor - 1)],cap_value(.spawnedAmount[(@floor - 1)] - 1,0,INT_MAX);
+	setarray .killAmount[(@floor - 1)],cap_value(.killAmount[(@floor - 1)] - 1,0,INT_MAX);
 	
-	if(.killAmount[@floor])
-	announce "Boss จะปรากฎเมื่อกำจัด Monster อีก " + .killAmount[@floor] + " ตัว",bc_area,0xE4A827;
-	else if(!.bossSpawn[@floor]){
-		setarray .bossSpawn[@floor],1;
+	if(.killAmount[(@floor - 1)])
+	announce "Boss จะปรากฎเมื่อกำจัด Monster อีก " + .killAmount[(@floor - 1)] + " ตัว",bc_area,0xE4A827;
+	else if(!.bossSpawn[(@floor - 1)]){
+		setarray .bossSpawn[(@floor - 1)],1;
 		// Random position in current map
 		getfreecell strcharinfo(3),.@x,.@y;
 		// Mark on minimap
 		viewpointmap strcharinfo(3),1,.@x,.@y,1,0xFF6D6D;
 		// Spawn boss now
-		monster .playingMaps$[@floor],.@x,.@y,"Boss",getd(".monsterType" + @floor + "["+ rand(0,3) +"]"),1,strnpcinfo(0) + "::OnBossDead",2;
+		monster .playingMaps$[(@floor - 1)],.@x,.@y,"Boss",getd(".monsterType" + @floor + "["+ rand(0,3) +"]"),1,strnpcinfo(0) + "::OnBossDead",2;
 		// HP ((50 * Floor) * Floor) * Floor))
 		.@hp = (50 * @floor) * @floor * @floor;
 		// Capping
 		.@hp = cap_value(.@hp,50,(INT_MAX - 1));
+		// Set mode
+		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CASTSENSORIDLE|MD_CANATTACK|MD_CASTSENSORCHASE|MD_CHANGECHASE|MD_CHANGETARGETMELEE|MD_CHANGETARGETCHASE|MD_RANDOMTARGET|MD_MVP|MD_KNOCKBACKIMMUNE|MD_TELEPORTBLOCK|MD_DETECTOR|MD_STATUSIMMUNE;
 		// Set new damage taken (100 - Floor)
 		setunitdata $@mobid[0],UMOB_DAMAGETAKEN,(100 - @floor);
 		// Set new rank
-		setunitdata $@mobid[0],UMOB_DYNAMIC,5;
+		setunitdata $@mobid[0],UMOB_DYNAMIC,(1 + (@floor / 10));
 		// Set new hp
 		setunitdata $@mobid[0],UMOB_HP,.@hp;
 		setunitdata $@mobid[0],UMOB_MAXHP,.@hp;
+		
 		announce "Boss ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_area,0xE4A827;
 	}
 	// If spawn amount < 5 == Respawn immediately
-	if(.spawnedAmount[@floor] < 5)
+	if(.spawnedAmount[(@floor - 1)] < 5)
 	callsub OnSpawnMonster,@floor;
 	// If spawn amount < 50 == 10% Chance to respawn
-	else if((.spawnedAmount[@floor] < 50)
+	else if((.spawnedAmount[(@floor - 1)] < 50)
 			&& (rand(0,100) < 10))
 	callsub OnSpawnMonster,@floor;
 	end;
@@ -157,6 +159,15 @@ OnBossDead:
 	if(!playerattached())
 	end;
 
+	// Mark boss as dead
+	setarray .bossSpawn[(@floor - 1)],0;
+	// Reset kill amount
+	.@tier = callsub(OnGetTier,@floor);
+	setarray .killAmount[(@floor - 1)],.maximumKillAmount[.@tier];
+	// Random new 4 monster types
+	for(.@i = 0; .@i < 4; .@i++)
+	setarray getd(".monsterType" + @floor + "["+ .@i +"]"),(.@tier == 0) ? $attackableMonsterTier1Ids[rand(0,$attackableMonsterTier1IdSize - 1)] : (.@tier == 1) ? $attackableMonsterTier2Ids[rand(0,$attackableMonsterTier2IdSize - 1)] : (.@tier == 2) ? $attackableMonsterTier3Ids[rand(0,$attackableMonsterTier3IdSize - 1)] : (.@tier == 3) ? $attackableMonsterTier4Ids[rand(0,$attackableMonsterTier4IdSize - 1)] : (.@tier == 4) ? $attackableMonsterTier5Ids[rand(0,$attackableMonsterTier5IdSize - 1)] : $attackableMonsterTier6Ids[rand(0,$attackableMonsterTier6IdSize - 1)];
+	
 	// Get (Floor * 5) Soul Orb
 	getitem 10000002,(@floor * 5);
 	// Get (Floor * 2) Body Orb
