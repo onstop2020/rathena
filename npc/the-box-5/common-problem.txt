@@ -1,0 +1,21 @@
+prontera,148,195,3	script	ปาณหา	864,{
+	menu "ขอ Life Orb",OnLifeOrb,"ขอ Return Orb",OnReturnOrb,"ซ่อมของ",OnRepairAll;
+	
+OnLifeOrb:
+	if(!countitem(10000000))
+	getitem 10000000,1;
+	end;
+
+OnReturnOrb:
+	if(!countitem(10000001))
+	getitem 10000001,1;
+	end;
+
+OnRepairAll:
+	repairall;
+	end;
+	
+OnInit:
+	waitingroom "แก้ปัญหาทั่วไป",0;
+	end;
+}

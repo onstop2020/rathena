@@ -7,7 +7,8 @@ force_3-3	mapflag	nosave
 force_3-3	mapflag	nobranch
 force_3-3	mapflag	notomb
 
-prontera,155,180,5	script	เล่น	966,{
+prontera,155,180,5	script	เล่น	736,{
+	savepoint "prontera",156,191,5,5;
 	if(!isSafeReturn)
 	{
 		mes "คุณกลับเมืองด้วยวิธีอื่นที่ไม่ใช่การใช้ @load, Return Orb หรือการตาย คุณต้องตายเดี๋ยวนี้";
@@ -62,6 +63,9 @@ prontera,155,180,5	script	เล่น	966,{
 		setarray getd(".monsterType" + .@floor + "["+ .@i +"]"),(.@tier == 0) ? $attackableMonsterTier1Ids[rand(0,$attackableMonsterTier1IdSize - 1)] : (.@tier == 1) ? $attackableMonsterTier2Ids[rand(0,$attackableMonsterTier2IdSize - 1)] : (.@tier == 2) ? $attackableMonsterTier3Ids[rand(0,$attackableMonsterTier3IdSize - 1)] : (.@tier == 3) ? $attackableMonsterTier4Ids[rand(0,$attackableMonsterTier4IdSize - 1)] : (.@tier == 4) ? $attackableMonsterTier5Ids[rand(0,$attackableMonsterTier5IdSize - 1)] : $attackableMonsterTier6Ids[rand(0,$attackableMonsterTier6IdSize - 1)];
 	}
 	@floor = .@floor;
+	// Add drop bonus
+	sc_end SC_ITEMBOOST;
+	sc_start SC_ITEMBOOST,86400000,.@floor / 2;
 	// Block
 	setpcblock PCBLOCK_ALL,true;
 	setpcblock PCBLOCK_MOVE,false;

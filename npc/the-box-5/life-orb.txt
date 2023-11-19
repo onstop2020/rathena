@@ -1,0 +1,25 @@
+prontera,153,193,3	script	มิมิ	757,{
+	mes "Cooldown ขณะนี้ " + (10 - lifeOrbUpg) + " วินาที";
+	next;
+	if(lifeOrbUpg >= .maxUpgrade){
+		mes "ลด Cooldown ลงไม่ได้อีกแล้ว";
+		close;
+	}
+	menu "จ่าย " + .prices[lifeOrbUpg] + " " + getitemname(.priceItemId) + " เพื่อลด Cooldown 1 วินาที",-;
+	if(countitem(.priceItemId) >= .prices[lifeOrbUpg]){
+		delitem .priceItemId,.prices[lifeOrbUpg];
+		lifeOrbUpg++;
+		mes "Cooldown ขณะนี้ " + (10 - lifeOrbUpg) + " วินาที";
+		specialeffect2 675;
+	}
+	else
+	mes "ต้องการ " + .prices[lifeOrbUpg] + " " + getitemname(.priceItemId);
+	close;
+	
+OnInit:
+	waitingroom "ลด Cooldown " + getitemname(10000000),0;
+	setarray .prices[0],300,1000,3000,5000,10000,15000,30000;
+	.priceItemId = 10000002;
+	.maxUpgrade = getarraysize(.prices);
+	end;
+}

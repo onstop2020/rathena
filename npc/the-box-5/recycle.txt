@@ -1,4 +1,4 @@
-prontera,145,200,3	script	ลากูน	586,{
+prontera,145,200,3	script	ลากูน	848,{
 	mes "คุณมี ^BA17F8" + F_InsertComma(dmPoints) + " Dismantle Points^000000";
 	mes "ต้องการบดของที่ไม่ได้ใช้แล้วหรือไม่?";
 	mes "• ^F81717จะบด Item ทุกชิ้นในกระเป๋าตามประเภทที่เลือก^000000";
@@ -228,7 +228,7 @@ OnInit:
 	.cardPrice = 135;
 	.enchantmentPrice = 250;
 	
-	.selectItemIdPrice = 2555;
+	.selectItemIdPrice = 5000;
 	
 	.itemId = 10000008;
 	

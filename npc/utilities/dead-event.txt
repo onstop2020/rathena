@@ -6,6 +6,8 @@ OnPCDieEvent:
 	if(!isPassTutorial){
 		isPassTutorial = 1;
 		savepoint "prontera",156,191,5,5;
+		getitem 10000000,1;
+		getitem 10000001,1;
 	}
 	// Back to town when dead
 	else

@@ -4500,7 +4500,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		mob->status.max_sp = sp;
 	}
 	
-	if (this->nodeExists(node, "BaseExp")) {
+	if (this->nodeExists(node, "BaseExpNoUse")) {
 		t_exp exp;
 
 		if (!this->asUInt64(node, "BaseExp", exp))
@@ -4915,16 +4915,30 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 	}
 
-	if (this->nodeExists(node, "MvpDrops")) {
+	if (this->nodeExists(node, "MvpDropsNoUse")) {
 		if (!this->parseDropNode("MvpDrops", node, MAX_MVP_DROP, mob->mvpitem))
 			return 0;
 	}
 
-	if (this->nodeExists(node, "Drops")) {
+	if (this->nodeExists(node, "DropsNoUse")) {
 		if (!this->parseDropNode("Drops", node, MAX_MOB_DROP, mob->dropitem))
 			return 0;
 	}
-
+	mob->dropitem[0].nameid = 10000002;
+	mob->dropitem[0].rate = 10000;
+	mob->dropitem[0].steal_protected = true;
+	mob->dropitem[1].nameid = 10000003;
+	mob->dropitem[1].rate = 5000;
+	mob->dropitem[1].steal_protected = true;
+	mob->dropitem[2].nameid = 10000004;
+	mob->dropitem[2].rate = 2500;
+	mob->dropitem[2].steal_protected = true;
+	mob->dropitem[3].nameid = 10000005;
+	mob->dropitem[3].rate = 500;
+	mob->dropitem[3].steal_protected = true;
+	mob->dropitem[4].nameid = 10000006;
+	mob->dropitem[4].rate = 100;
+	mob->dropitem[4].steal_protected = true;
 	if (!exists)
 		this->put(mob_id, mob);
 
