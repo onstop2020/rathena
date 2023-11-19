@@ -8,7 +8,9 @@ force_3-3	mapflag	nobranch
 force_3-3	mapflag	notomb
 
 prontera,155,180,5	script	เล่น	736,{
+	// Random save position
 	savepoint "prontera",156,191,5,5;
+	// Penalty for exploit users
 	if(!isSafeReturn)
 	{
 		mes "คุณกลับเมืองด้วยวิธีอื่นที่ไม่ใช่การใช้ @load, Return Orb หรือการตาย คุณต้องตายเดี๋ยวนี้";
@@ -66,6 +68,8 @@ prontera,155,180,5	script	เล่น	736,{
 	// Add drop bonus
 	sc_end SC_ITEMBOOST;
 	sc_start SC_ITEMBOOST,86400000,.@floor / 2;
+	// Going to play maps
+	isSafeReturn = 0;
 	// Block
 	setpcblock PCBLOCK_ALL,true;
 	setpcblock PCBLOCK_MOVE,false;

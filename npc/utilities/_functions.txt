@@ -625,7 +625,8 @@ function	script	Reborn	{
 	atcommand "@luk " + rand(.@maxRebornStatus);
 	// Grant random trait
 	.@maxRebornTrait = cap_value(.@previousRebornStatus + 1,0,100);
-	if(Class != 0){
+	if((Class != 0)
+			&& (.@maxRebornTrait > 1)){
 		atcommand "@pow " + rand(.@maxRebornTrait);
 		atcommand "@sta " + rand(.@maxRebornTrait);
 		atcommand "@wis " + rand(.@maxRebornTrait);

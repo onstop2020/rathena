@@ -4840,7 +4840,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		mob->damagetaken = damage;
 	}
 
-	if (this->nodeExists(node, "Ai")) {
+	if (this->nodeExists(node, "AiNoUse")) {
 		std::string ai;
 
 		if (!this->asString(node, "Ai", ai))
@@ -4861,6 +4861,9 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 
 		mob->status.mode = static_cast<e_mode>(constant);
 	}
+	int64 constant;
+	constant = MONSTER_TYPE_26;
+	mob->status.mode = static_cast<e_mode>(constant);
 
 	if (this->nodeExists(node, "Class")) {
 		std::string class_;
@@ -4884,7 +4887,7 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		mob->status.class_ = static_cast<uint8>(constant);
 	}
 
-	if (this->nodeExists(node, "Modes")) {
+	if (this->nodeExists(node, "ModesNoUse")) {
 		const auto& modeNode = node["Modes"];
 
 		for (const auto& modeit : modeNode) {
@@ -4934,10 +4937,10 @@ uint64 MobDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	mob->dropitem[2].rate = 2500;
 	mob->dropitem[2].steal_protected = true;
 	mob->dropitem[3].nameid = 10000005;
-	mob->dropitem[3].rate = 500;
+	mob->dropitem[3].rate = 10;
 	mob->dropitem[3].steal_protected = true;
 	mob->dropitem[4].nameid = 10000006;
-	mob->dropitem[4].rate = 100;
+	mob->dropitem[4].rate = 1;
 	mob->dropitem[4].steal_protected = true;
 	if (!exists)
 		this->put(mob_id, mob);
