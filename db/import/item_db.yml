@@ -118,9 +118,64 @@ Body:
     View: 1
     Script: |
       bonus bMaxHP,1;
-  - Id: 10000007
-    AegisName: Trait_Points
-    Name: Trait Points
+  - Id: 10000000
+    AegisName: Life_Orb
+    Name: Life Orb
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      callfunc("LifeOrb");
+  - Id: 10000001
+    AegisName: Return_Orb
+    Name: Return Orb
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      callfunc("ReturnOrb");
+  - Id: 10000002
+    AegisName: Soul_Orb
+    Name: Soul Orb
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      callfunc("SoulOrb",10000002);
+  - Id: 10000003
+    AegisName: Body_Orb
+    Name: Body Orb
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      callfunc("BodyOrb",10000003);
+  - Id: 10000004
+    AegisName: Mind_Orb
+    Name: Mind Orb
+    Type: DelayConsume
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      callfunc("MindOrb",10000004);
+  - Id: 10000005
+    AegisName: Refine_Orb
+    Name: Refine Orb
     Type: Usable
     Flags:
       BuyingStore: true
@@ -128,8 +183,19 @@ Body:
       Override: 100
       NoSell: true
     Script: |
-      callfunc("GainTraitPoints");
-  - Id: 10000008
+      callfunc("RefineOrb");
+  - Id: 10000006
+    AegisName: Grade_Orb
+    Name: Grade Orb
+    Type: Usable
+    Flags:
+      BuyingStore: true
+    TradeNoUse:
+      Override: 100
+      NoSell: true
+    Script: |
+      callfunc("GradeOrb");
+  - Id: 10000007
     AegisName: Dismantle_Points
     Name: Dismantle Points
     Type: Usable
@@ -140,25 +206,3 @@ Body:
       NoSell: true
     Script: |
       callfunc("GainDismantlePoints");
-  - Id: 10000009
-    AegisName: Status_Points
-    Name: Status Points
-    Type: Usable
-    Flags:
-      BuyingStore: true
-    TradeNoUse:
-      Override: 100
-      NoSell: true
-    Script: |
-      callfunc("GainStatusPoints");
-  - Id: 10000010
-    AegisName: Skill_Points
-    Name: Skill Points
-    Type: Usable
-    Flags:
-      BuyingStore: true
-    TradeNoUse:
-      Override: 100
-      NoSell: true
-    Script: |
-      callfunc("GainSkillPoints");

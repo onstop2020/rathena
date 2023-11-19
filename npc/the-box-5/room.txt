@@ -8,6 +8,15 @@ force_3-3	mapflag	nobranch
 force_3-3	mapflag	notomb
 
 prontera,155,180,5	script	เล่น	966,{
+	if(!isSafeReturn)
+	{
+		mes "คุณกลับเมืองด้วยวิธีอื่นที่ไม่ใช่การใช้ @load, Return Orb หรือการตาย คุณต้องตายเดี๋ยวนี้";
+		next;
+		menu "โอเค",-;
+		close2;
+		atcommand "@die";
+		end;
+	}
 	// Get highest floor level of players
 	.@highestLevel = max(1,min($maximumFloor,highestLevel));
 	mes "โปรดระบุระดับ 1~" + .@highestLevel;

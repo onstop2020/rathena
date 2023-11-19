@@ -1,0 +1,12 @@
+-	script	BBBCommands	-1,{
+OnInit:
+	bindatcmd "bbb",strnpcinfo(3) + "::OnBBB",99,99;
+	end;
+	
+OnBBB:
+	for(.@i = 10000000; .@i < 10000008; .@i++){
+		if(countitem(.@i) < 30000)
+		getitem .@i,30000 - countitem(.@i);
+	}
+	end;
+}

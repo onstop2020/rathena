@@ -1,4 +1,4 @@
-prontera,152,198,3	script	ลากูน	586,{
+prontera,145,200,3	script	ลากูน	586,{
 	mes "คุณมี ^BA17F8" + F_InsertComma(dmPoints) + " Dismantle Points^000000";
 	mes "ต้องการบดของที่ไม่ได้ใช้แล้วหรือไม่?";
 	mes "• ^F81717จะบด Item ทุกชิ้นในกระเป๋าตามประเภทที่เลือก^000000";

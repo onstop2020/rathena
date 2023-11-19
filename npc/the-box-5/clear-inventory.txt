@@ -1,4 +1,4 @@
-prontera,156,190,5	script	อีเลสเซอร์	828,{
+prontera,166,200,5	script	อีเลสเซอร์	828,{
 	mes "ลบ Item ทุกอย่างในกระเป๋า?";
 	next;
 	menu "ไม่ลบ",-

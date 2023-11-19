@@ -62,6 +62,8 @@ Body:
       can_party: true
       attendance: false
       view_equipment: true
+      all_equipment: true
+      skill_unconditional: true
   - Id: 1
     Name: Super Player
     # Can do everything Players can and more
@@ -238,8 +240,6 @@ Body:
       can_party: true
       command_enable: true
       all_skill: false
-      all_equipment: false
-      skill_unconditional: false
       use_check: true
       use_changemaptype: true
       all_commands: true

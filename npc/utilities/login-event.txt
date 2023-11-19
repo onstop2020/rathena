@@ -4,13 +4,6 @@
 OnPCLoginEvent:
 	// Unexpected error
 	setpcblock PCBLOCK_ALL,false;
-	// Back to town when login
-	if(isPassTutorial
-			&& (strcharinfo(3) != "prontera"))
-	addtimer 1000,strnpcinfo(3) + "::OnBackToTown";
-	end;
-	
-OnBackToTown:
-	warp "prontera",156,191;
+	Zeny = 999999999;
 	end;
 }
