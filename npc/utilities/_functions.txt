@@ -620,20 +620,44 @@ function	script	Reborn	{
 	// Reborn now
 	// Grant random status
 	.@maxRebornStatus = .@previousRebornStatus + 10;
-	atcommand "@str " + rand(1,.@maxRebornStatus);
-	atcommand "@agi " + rand(1,.@maxRebornStatus);
-	atcommand "@vit " + rand(1,.@maxRebornStatus);
-	atcommand "@int " + rand(1,.@maxRebornStatus);
-	atcommand "@dex " + rand(1,.@maxRebornStatus);
-	atcommand "@luk " + rand(1,.@maxRebornStatus);
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@str " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@agi " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@vit " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@int " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@dex " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@luk " + .@randomValue;
 	// Grant random trait
-	.@maxRebornTrait = cap_value(.@previousRebornStatus + 1,0,100);
-	atcommand "@pow " + rand(1,.@maxRebornTrait);
-	atcommand "@sta " + rand(1,.@maxRebornTrait);
-	atcommand "@wis " + rand(1,.@maxRebornTrait);
-	atcommand "@spl " + rand(1,.@maxRebornTrait);
-	atcommand "@con " + rand(1,.@maxRebornTrait);
-	atcommand "@crt " + rand(1,.@maxRebornTrait);
+	.@maxRebornTrait = cap_value(((.@previousRebornStatus < 100) ? .@previousRebornStatus : (100 + (.@previousRebornStatus / 100))) + 1,0,100);
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@pow " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@sta " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@wis " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@spl " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@con " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@crt " + .@randomValue;
 	// Grant 3 skills by every 30 level
 	.@skillAmount = 3 + ((.@previousLevel + 30) / 30);
 	freeloop(1);
