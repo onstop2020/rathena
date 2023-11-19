@@ -67,6 +67,9 @@ prontera,155,180,5	script	เล่น	736,{
 	// Add drop bonus
 	sc_end SC_ITEMBOOST;
 	sc_start SC_ITEMBOOST,86400000,(.@floor / 2);
+	// Debuff at floor 97, 98, 99 and 100
+	if(.@floor >= 97)
+	atcommand "@bd " + (5 - (100 - .@floor));
 	// Going to play maps
 	isSafeReturn = 0;
 	// Block
@@ -134,12 +137,16 @@ OnMonsterDead:
 		.@hp = (50 * @floor) * @floor * @floor;
 		// Capping
 		.@hp = cap_value(.@hp,50,(INT_MAX - 1));
+		// Last Boss
+		.@isLastBoss = (@floor >= 100);
+		if(.@isLastBoss)
+		.@hp = 2000000000;
 		// Set mode
 		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CASTSENSORIDLE|MD_CANATTACK|MD_CASTSENSORCHASE|MD_CHANGECHASE|MD_CHANGETARGETMELEE|MD_CHANGETARGETCHASE|MD_RANDOMTARGET|MD_MVP|MD_KNOCKBACKIMMUNE|MD_TELEPORTBLOCK|MD_DETECTOR|MD_STATUSIMMUNE;
 		// Set new damage taken (100 - Floor)
-		setunitdata $@mobid[0],UMOB_DAMAGETAKEN,(100 - @floor);
+		setunitdata $@mobid[0],UMOB_DAMAGETAKEN,(.@isLastBoss ? 1 : (100 - @floor));
 		// Set new rank
-		setunitdata $@mobid[0],UMOB_DYNAMIC,(1 + (@floor / 10));
+		setunitdata $@mobid[0],UMOB_DYNAMIC,(.@isLastBoss ? 100 : (1 + (@floor / 10)));
 		// Set new hp
 		setunitdata $@mobid[0],UMOB_HP,.@hp;
 		setunitdata $@mobid[0],UMOB_MAXHP,.@hp;
