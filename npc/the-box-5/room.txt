@@ -11,7 +11,13 @@ prontera,155,180,5	script	เล่น	736,{
 	// Random save position
 	savepoint "prontera",156,191,5,5;
 	// Guild check
-	
+	if(!getcharid(2)){
+		mes "โปรดสร้าง Guild หรือเข้าร่วม Guild";
+		next;
+		menu "เข้าร่วม Guild",-,"สร้าง Guild",OnGuildMaking;
+		mes "ลองพูดคุยกับผู้เล่นอื่นดู แล้วขอเข้าร่วม Guild";
+		close;
+	}
 	// Penalty for exploit users
 	if(!isSafeReturn){
 		mes "คุณกลับเมืองด้วยวิธีอื่นที่ไม่ใช่การใช้ @load, Return Orb หรือการตาย คุณต้องตายเดี๋ยวนี้";
@@ -82,6 +88,17 @@ prontera,155,180,5	script	เล่น	736,{
 	warp .playingMaps$[(.@floor - 1)],0,0;
 	// Spawn monster if needed
 	callsub OnSpawnMonster,.@floor;
+	end;
+	
+OnGuildMaking:
+	mes "ชื่อ Guild";
+	input .@guildName$;
+	atcommand "@guild " + .@guildName$;
+	addtimer 100,strnpcinfo(3) + "::OnGuildLevelUp";
+	close;
+	
+OnGuildLevelUp:
+	atcommand "@guildlvup 99";
 	end;
 	
 OnWarp:
