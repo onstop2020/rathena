@@ -64,6 +64,7 @@ Body:
       view_equipment: true
       all_equipment: true
       skill_unconditional: true
+      item_unconditional: true
   - Id: 1
     Name: Super Player
     # Can do everything Players can and more
@@ -245,7 +246,6 @@ Body:
       all_commands: true
       channel_admin: true
       can_trade_bounded: true
-      item_unconditional: false
       bypass_stat_onclone: true
       bypass_max_stat: true
       macro_register: true

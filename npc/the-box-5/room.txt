@@ -116,6 +116,7 @@ OnSpawnMonster:
 OnMonsterDead:
 	if(!playerattached())
 	end;
+
 	setarray .spawnedAmount[@floor],.spawnedAmount[@floor] - 1;
 	setarray .killAmount[@floor],.killAmount[@floor] + 1;
 	
