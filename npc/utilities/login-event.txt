@@ -5,5 +5,18 @@ OnPCLoginEvent:
 	// Unexpected error
 	setpcblock PCBLOCK_ALL,false;
 	Zeny = 999999999;
+	// Check tutorial was passed and not stay on town
+	if(isPassTutorial
+			&& (strcharinfo(3) != "prontera")){
+		// Do not mark as safe return because players might use this as system exploit
+		//isSafeReturn = 1;
+		
+		// Back to town
+		addtimer 1000,strnpcinfo(3) + "::OnBackToTown";
+	}
+	end;
+	
+OnBackToTown:
+	warp "prontera",156,191;
 	end;
 }
