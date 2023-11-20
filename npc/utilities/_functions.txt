@@ -639,7 +639,7 @@ function	script	Reborn	{
 	if(.@randomValue)
 	atcommand "@luk " + .@randomValue;
 	// Grant random trait
-	.@maxRebornTrait = cap_value(((.@previousRebornStatus < 100) ? .@previousRebornStatus : (100 + (.@previousRebornStatus / 100))) + 1,0,100);
+	.@maxRebornTrait = cap_value(((.@previousRebornStatus < 100) ? .@previousRebornStatus : (100 + (.@previousRebornStatus / 100))) + 1,0,30000);
 	.@randomValue = rand(.@maxRebornTrait);
 	if(.@randomValue)
 	atcommand "@pow " + .@randomValue;

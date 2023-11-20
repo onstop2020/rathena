@@ -1,4 +1,58 @@
 prontera,155,173,3	script	กองไฟแห่งชีวิต	10252,{
+	freeloop(1);
+	.@currentLevel = BaseLevel;
+	// Get requirement from current level
+	for(.@i = 0; .@i < $soulOrbLvSize; .@i++){
+		if(.@currentLevel < $soulOrbLv[.@i]){
+			if(.@i > 0)
+			.@diff = $soulOrbLv[.@i] - $soulOrbLv[.@i - 1];
+			else
+			.@diff = $soulOrbLv[.@i] - 0;
+			.@remainingLevel = $soulOrbLv[.@i] - .@currentLevel;
+			.@multiplier = max(1,(.@diff - .@remainingLevel));
+			.@soulOrbReq = $soulOrbReq[.@i] * .@multiplier;
+			break;
+		}
+	}
+	.@currentLevel = rebornStatus;
+	// Get requirement from current level
+	for(.@i = 0; .@i < $bodyOrbLvSize; .@i++){
+		if(.@currentLevel < $bodyOrbLv[.@i]){
+			if(.@i > 0)
+			.@diff = $bodyOrbLv[.@i] - $bodyOrbLv[.@i - 1];
+			else
+			.@diff = $bodyOrbLv[.@i] - 0;
+			.@remainingLevel = $bodyOrbLv[.@i] - .@currentLevel;
+			.@multiplier = max(1,(.@diff - .@remainingLevel));
+			.@bodyOrbReq = $bodyOrbReq[.@i] * .@multiplier;
+			break;
+		}
+	}
+	.@currentLevel = rebornSkill;
+	// Get requirement from current level
+	for(.@i = 0; .@i < $mindOrbLvSize; .@i++){
+		if(.@currentLevel < $mindOrbLv[.@i]){
+			if(.@i > 0)
+			.@diff = $mindOrbLv[.@i] - $mindOrbLv[.@i - 1];
+			else
+			.@diff = $mindOrbLv[.@i] - 0;
+			.@remainingLevel = $mindOrbLv[.@i] - .@currentLevel;
+			.@multiplier = max(1,(.@diff - .@remainingLevel));
+			.@mindOrbReq = $mindOrbReq[.@i] * .@multiplier;
+			break;
+		}
+	}
+	mes "ค่าร่างกาย: " + rebornStatus;
+	mes "ค่าความรู้: " + rebornSkill;
+	mes "Soul Orb: " + soulOrb + "/" + .@soulOrbReq;
+	mes "Body Orb: " + bodyOrb + "/" + .@bodyOrbReq;
+	mes "Mind Orb: " + mindOrb + "/" + .@mindOrbReq;
+	mes "---";
+	mes "Status สุ่มสูงสุด: " + (rebornStatus + 10);
+	mes "Trait สุ่มสูงสุด: " + cap_value(((rebornStatus < 100) ? rebornStatus : (100 + (rebornStatus / 100))),0,30000);
+	mes "Skill สูงสุด: " + (3 + ((BaseLevel + 30) / 30));
+	DelayHint(freeRebornCd,1,1);
+	next;
 	menu "มองกองไฟ",-,"ระลึกชาติ (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000)",OnFreeReborn;
 	end;
 	
