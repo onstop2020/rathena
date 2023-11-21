@@ -1,0 +1,14 @@
+-	script	ReloadScriptsEvent	-1,{
+	end;
+	
+OnInit:
+	announce "มีการ Reload Script เกิดขึ้น.. ผู้เล่นที่ไม่ได้อยู่ในเมืองจะถูกพากลับอัตโนมัติ",bc_all,0x77F092;
+	addrid(0);
+	if(!IsTownMap())
+	{
+		isSafeReturn = 1;
+		// Warp now
+		warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
+	}
+	end;
+}

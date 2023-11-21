@@ -1,12 +1,3 @@
-force_3-3	mapflag	pvp
-force_3-3	mapflag	novending
-force_3-3	mapflag	nochat
-force_3-3	mapflag	nowarp
-force_3-3	mapflag	nowarpto
-force_3-3	mapflag	nosave
-force_3-3	mapflag	nobranch
-force_3-3	mapflag	notomb
-
 prontera,155,180,5	script	เล่น	736,{
 	// Random save position
 	savepoint "prontera",156,191,5,5;
@@ -30,6 +21,17 @@ prontera,155,180,5	script	เล่น	736,{
 	// Get highest floor level of players
 	.@highestLevel = max(1,min($maximumFloor,highestLevel));
 	mes "โปรดระบุระดับ 1~" + .@highestLevel;
+	if(.@highestLevel >= 10)
+	mes "^FF4040ภายใน 10 นาทีนี้ Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + " จะเป็น Map GvG^000000";
+	.@minHp = (50 * .@highestLevel) * .@highestLevel;
+	.@minHp = cap_value(.@minHp,50,(INT_MAX - 1));
+	.@medHp = (50 * .@highestLevel) * .@highestLevel * .@highestLevel;
+	.@medHp = cap_value(.@medHp,50,(INT_MAX - 1));
+	.@maxHp = (50 * .@highestLevel) * .@highestLevel * .@highestLevel * .@highestLevel;
+	.@maxHp = cap_value(.@maxHp,50,(INT_MAX - 1));
+	mes "HP ของ Monster ระดับ " + .@highestLevel + " \nคือ ^FF4040" + .@minHp + "^000000 \nหรือ ^FF4040" + .@medHp + "^000000 \nหรือ ^FF4040" + .@maxHp;
+	.@tier = callsub(OnGetTier,.@highestLevel);
+	mes "Monster ระดับ " + .@highestLevel + " จะ Drop ของจำนวน ^3629FF" + $orbDropAmount[.@tier] + "^000000 ชิ้น";
 	// Players floor selection
 	input .@floor;
 	// Checking players selected floor conditions
@@ -46,6 +48,7 @@ prontera,155,180,5	script	เล่น	736,{
 		// Random map
 		.@randomMap$ = .maps$[rand(0,(.mapSize - 1))];
 		setarray .playingMaps$[.@floor - 1],.@randomMap$;
+		setarray .playingMapsFloor[.@floor - 1],.@floor;
 		// Check map is using
 		for(.@i = 0; .@i < .@playingMapSize; .@i++){
 			if(.@i == (.@floor - 1))
@@ -72,6 +75,19 @@ prontera,155,180,5	script	เล่น	736,{
 		setarray getd(".monsterType" + .@floor + "["+ .@i +"]"),(.@tier == 0) ? $attackableMonsterTier1Ids[rand(0,$attackableMonsterTier1IdSize - 1)] : (.@tier == 1) ? $attackableMonsterTier2Ids[rand(0,$attackableMonsterTier2IdSize - 1)] : (.@tier == 2) ? $attackableMonsterTier3Ids[rand(0,$attackableMonsterTier3IdSize - 1)] : (.@tier == 3) ? $attackableMonsterTier4Ids[rand(0,$attackableMonsterTier4IdSize - 1)] : (.@tier == 4) ? $attackableMonsterTier5Ids[rand(0,$attackableMonsterTier5IdSize - 1)] : $attackableMonsterTier6Ids[rand(0,$attackableMonsterTier6IdSize - 1)];
 	}
 	@floor = .@floor;
+	// Set map flag
+	setmapflag .playingMaps$[(.@floor - 1)],MF_NOVENDING;
+	setmapflag .playingMaps$[(.@floor - 1)],MF_NOCHAT;
+	setmapflag .playingMaps$[(.@floor - 1)],MF_NOWARP;
+	setmapflag .playingMaps$[(.@floor - 1)],MF_NOWARPTO;
+	setmapflag .playingMaps$[(.@floor - 1)],MF_NOSAVE;
+	setmapflag .playingMaps$[(.@floor - 1)],MF_NOBRANCH;
+	setmapflag .playingMaps$[(.@floor - 1)],MF_NOTOMB;
+	if((.@floor >= 10)
+			&& ((.@floor % 2) == (.isEvenPvP ? 0 : 1))){
+		setmapflag .playingMaps$[(.@floor - 1)],MF_PVP;
+		setmapflag .playingMaps$[(.@floor - 1)],MF_PVP_NOPARTY;
+	}
 	// Add drop bonus
 	sc_end SC_ITEMBOOST;
 	sc_start SC_ITEMBOOST,86400000,(.@floor / 2);
@@ -236,6 +252,38 @@ OnGetTier:
 	.@floor = getarg(0,1);
 	return (.@floor < 10) ? 0 : (.@floor < 20) ? 1 : (.@floor < 30) ? 2 : (.@floor < 50) ? 3 : (.@floor < 75) ? 4 : 5;
 	
+OnMinute00:
+OnMinute10:
+OnMinute20:
+OnMinute30:
+OnMinute40:
+OnMinute43:
+OnMinute50:
+	freeloop(1);
+	.isEvenPvP = (rand(0,1) == 0);
+	announce "ภายใน 10 นาทีนี้ Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + " จะเป็น Map GvG",bc_all,0xFF4040;
+	// Loop playing map
+	.@playingMapSize = getarraysize(.playingMaps$);
+	for(.@i = 0; .@i < .@playingMapSize; .@i++){
+		if((.playingMaps$[.@i] == "")
+				|| (.playingMaps$[.@i] == " "))
+		continue;
+		
+		removemapflag .playingMaps$[.@i],MF_PVP;
+		removemapflag .playingMaps$[.@i],MF_PVP_NOPARTY;
+		
+		// Below 10th floor cannot PVP
+		if(.playingMapsFloor[.@i] < 10)
+		continue;
+		
+		if((.playingMapsFloor[.@i] % 2) == (.isEvenPvP ? 0 : 1)){
+			setmapflag .playingMaps$[.@i],MF_PVP;
+			setmapflag .playingMaps$[.@i],MF_PVP_NOPARTY;
+		}
+	}
+	freeloop(0);
+	end;
+	
 OnInit:
 	waitingroom "เล่น",0;
 	// Maximum floor
@@ -247,5 +295,6 @@ OnInit:
 	// Available maps
 	setarray .maps$[0],"gef_fild00","gef_fild01","gef_fild02","gef_fild03","gef_fild04","gef_fild05","gef_fild06","gef_fild07","gef_fild08","gef_fild09","gef_fild10","gef_fild11","gef_fild12","gef_fild13","gef_fild14","moc_fild01","moc_fild02","moc_fild03","moc_fild07","moc_fild11","moc_fild12","moc_fild13","moc_fild16","moc_fild17","moc_fild18","moc_fild19","pay_fild01","pay_fild02","pay_fild03","pay_fild04","pay_fild05","pay_fild06","pay_fild07","pay_fild08","pay_fild09","pay_fild10","pay_fild11","prt_fild00","prt_fild01","prt_fild02","prt_fild03","prt_fild04","prt_fild05","prt_fild06","prt_fild07","prt_fild08","prt_fild09","prt_fild10","prt_fild11","xmas_fild01","cmd_fild01","cmd_fild02","cmd_fild03","cmd_fild04","cmd_fild05","cmd_fild06","cmd_fild07","cmd_fild08","cmd_fild09","yuno_fild01","yuno_fild02","yuno_fild03","yuno_fild04","ama_fild01","gon_fild01","um_fild01","um_fild02","um_fild03","um_fild04","nif_fild01","nif_fild02","lou_fild01","ayo_fild01","ayo_fild02","yuno_fild05","yuno_fild07","yuno_fild08","yuno_fild09","yuno_fild11","yuno_fild12","ein_fild06","ein_fild07","ein_fild08","ein_fild09","ein_fild10","ein_fild03","ein_fild04","lhz_fild02","lhz_fild03","lhz_fild01","hu_fild07","hu_fild05","hu_fild04","hu_fild01","yuno_fild06","hu_fild02","hu_fild03","hu_fild06","ein_fild01","ein_fild02","ein_fild05","yuno_fild10","ra_fild01","ra_fild02","ra_fild03","ra_fild04","ra_fild05","ra_fild06","ra_fild07","ra_fild08","ra_fild09","ra_fild10","ra_fild11","ra_fild12","ra_fild13","ve_fild01","ve_fild02","ve_fild03","ve_fild04","ve_fild05","ve_fild07","mosk_fild02","moc_fild20","moc_fild21","moc_fild22","man_fild01","man_fild03","spl_fild02","spl_fild03","moc_fild22b","man_fild02","spl_fild01","bra_fild01","dic_fild01","dic_fild02","bif_fild01","bif_fild02","dew_fild01","ma_fild01","ma_fild02","ecl_fild01","prt_fild08a","prt_fild08b","prt_fild08c","prt_fild08d","lasa_fild01","lasa_fild02","tra_fild","gw_fild01","gw_fild02";
 	.mapSize = getarraysize($maps$);
+	.isEvenPvP = (rand(0,1) == 0);
 	end;
 }
