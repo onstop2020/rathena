@@ -498,6 +498,7 @@ enum unitdata_mobtypes {
 	UMOB_DAMAGETAKEN,
 	UMOB_DYNAMIC, // [Start]
 	UMOB_DEFLECT, // [Start]
+	UMOB_DROP_AMOUNT, // [Start]
 };
 
 enum unitdata_homuntypes {

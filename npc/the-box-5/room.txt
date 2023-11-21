@@ -124,6 +124,8 @@ OnSpawnMonster:
 		.@hp = (50 * .@floor) * .@floor * ((rand(0,100) <= .@floor) ? .@floor : 1) * ((rand(0,100) <= (.@floor / 2)) ? .@floor : 1);
 		// Capping
 		.@hp = cap_value(.@hp,50,(INT_MAX - 1));
+		// Set new drop amount
+		setunitdata $@mobid[0],UMOB_DROP_AMOUNT,$orbDropAmount[.@tier];
 		// Set new rank
 		setunitdata $@mobid[0],UMOB_DYNAMIC,.@monsterRank;
 		// Set new hp
@@ -145,6 +147,7 @@ OnMonsterDead:
 	if(.killAmount[(@floor - 1)])
 	announce "Boss จะปรากฎเมื่อกำจัด Monster อีก " + .killAmount[(@floor - 1)] + " ตัว",bc_area,0xE4A827;
 	else if(!.bossSpawn[(@floor - 1)]){
+		.@tier = callsub(OnGetTier,@floor);
 		setarray .bossSpawn[(@floor - 1)],1;
 		// Random position in current map
 		getfreecell strcharinfo(3),.@x,.@y;
@@ -164,6 +167,8 @@ OnMonsterDead:
 		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CASTSENSORIDLE|MD_CANATTACK|MD_CASTSENSORCHASE|MD_CHANGECHASE|MD_CHANGETARGETMELEE|MD_CHANGETARGETCHASE|MD_RANDOMTARGET|MD_MVP|MD_KNOCKBACKIMMUNE|MD_TELEPORTBLOCK|MD_DETECTOR|MD_STATUSIMMUNE;
 		// Set new damage taken (100 - Floor)
 		setunitdata $@mobid[0],UMOB_DAMAGETAKEN,(.@isLastBoss ? 1 : (100 - @floor));
+		// Set new drop amount
+		setunitdata $@mobid[0],UMOB_DROP_AMOUNT,$orbDropAmount[.@tier];
 		// Set new rank
 		setunitdata $@mobid[0],UMOB_DYNAMIC,(.@isLastBoss ? 100 : (1 + (@floor / 10)));
 		// Set new hp

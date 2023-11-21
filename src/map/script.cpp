@@ -18773,6 +18773,7 @@ BUILDIN_FUNC(getunitdata)
 			getunitdata_sub(UMOB_DAMAGETAKEN, md->damagetaken);
 			getunitdata_sub(UMOB_DYNAMIC, md->dynamic); // [Start]
 			getunitdata_sub(UMOB_DEFLECT, md->deflect); // [Start]
+			getunitdata_sub(UMOB_DROP_AMOUNT, md->dropAmount); // [Start]
 			break;
 
 		case BL_HOM:
@@ -19183,6 +19184,7 @@ BUILDIN_FUNC(setunitdata)
 			case UMOB_DAMAGETAKEN: md->damagetaken = (unsigned short)value; break;
 			case UMOB_DYNAMIC: md->dynamic = value; break; // [Start]
 			case UMOB_DEFLECT: md->deflect = value; break; // [Start]
+			case UMOB_DROP_AMOUNT: md->dropAmount = value; break; // [Start]
 			default:
 				ShowError("buildin_setunitdata: Unknown data identifier %d for BL_MOB.\n", type);
 				return SCRIPT_CMD_FAILURE;

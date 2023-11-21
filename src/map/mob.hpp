@@ -385,6 +385,7 @@ struct mob_data {
 
 	int dynamic; // [Start]
 	int deflect; // [Start]
+	int dropAmount; // [Start]
 
 	e_mob_bosstype get_bosstype();
 };

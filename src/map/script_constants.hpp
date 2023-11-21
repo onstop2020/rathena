@@ -4823,6 +4823,7 @@
 	export_constant(UMOB_DAMAGETAKEN);
 	export_constant(UMOB_DYNAMIC); // [Start]
 	export_constant(UMOB_DEFLECT); // [Start]
+	export_constant(UMOB_DROP_AMOUNT); // [Start]
 
 	/* unit control - homunculus */
 	export_constant(UHOM_SIZE);

@@ -6,17 +6,18 @@ OnPCLoginEvent:
 	setpcblock PCBLOCK_ALL,false;
 	Zeny = 999999999;
 	// Check tutorial was passed and not stay on town
-	if(isPassTutorial
-			&& (strcharinfo(3) != "prontera")){
+	if(!IsTownMap()
+			&& isPassTutorial){
 		// Do not mark as safe return because players might use this as system exploit
 		//isSafeReturn = 1;
-		
+		setpcblock PCBLOCK_ALL,true;
 		// Back to town
 		addtimer 1000,strnpcinfo(3) + "::OnBackToTown";
 	}
 	end;
 	
 OnBackToTown:
+	setpcblock PCBLOCK_ALL,false;
 	warp "prontera",156,191;
 	end;
 }

@@ -309,6 +309,7 @@ function	script	ReturnOrb	{
 	// Wait a bit
 	progressbar "",5;
 	// Mark as safe to return
+	if(!IsTownMap())
 	isSafeReturn = 1;
 	// Warp now
 	warp getsavepoint(0),getsavepoint(1),getsavepoint(2);

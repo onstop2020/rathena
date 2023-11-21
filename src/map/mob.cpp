@@ -2843,7 +2843,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				continue;
 			}
 
-			ditem = mob_setdropitem(&md->db->dropitem[i], 1, md->mob_id);
+			ditem = mob_setdropitem(&md->db->dropitem[i], md->dropAmount, md->mob_id);
 
 			//A Rare Drop Global Announce by Lupus
 			if( mvp_sd && md->db->dropitem[i].rate <= battle_config.rare_drop_announce ) {
