@@ -22,7 +22,8 @@ prontera,155,180,5	script	เล่น	736,{
 	.@highestLevel = max(1,min($maximumFloor,highestLevel));
 	mes "โปรดระบุระดับ 1~" + .@highestLevel;
 	if(.@highestLevel >= 10)
-	mes "^FF4040ภายใน 10 นาทีนี้ Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + " จะเป็น Map GvG^000000";
+	mes "^FF4040ภายใน 10 นาทีนี้ GvG Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + "^000000";
+	mes "---";
 	.@minHp = (50 * .@highestLevel) * .@highestLevel;
 	.@minHp = cap_value(.@minHp,50,(INT_MAX - 1));
 	.@medHp = (50 * .@highestLevel) * .@highestLevel * .@highestLevel;
@@ -31,7 +32,8 @@ prontera,155,180,5	script	เล่น	736,{
 	.@maxHp = cap_value(.@maxHp,50,(INT_MAX - 1));
 	mes "HP ของ Monster ระดับ " + .@highestLevel + " \nคือ ^FF4040" + .@minHp + "^000000 \nหรือ ^FF4040" + .@medHp + "^000000 \nหรือ ^FF4040" + .@maxHp;
 	.@tier = callsub(OnGetTier,.@highestLevel);
-	mes "Monster ระดับ " + .@highestLevel + " จะ Drop ของจำนวน ^3629FF" + $orbDropAmount[.@tier] + "^000000 ชิ้น";
+	mes "---";
+	mes "Monster ระดับ " + .@highestLevel + " จะ Drop ^3629FF" + $orbDropAmount[.@tier] + "^000000 ชิ้น";
 	// Players floor selection
 	input .@floor;
 	// Checking players selected floor conditions
@@ -261,7 +263,7 @@ OnMinute43:
 OnMinute50:
 	freeloop(1);
 	.isEvenPvP = (rand(0,1) == 0);
-	announce "ภายใน 10 นาทีนี้ Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + " จะเป็น Map GvG",bc_all,0xFF4040;
+	announce "ภายใน 10 นาทีนี้ Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + "จะเป็น Map GvG",bc_all,0xFF4040;
 	// Loop playing map
 	.@playingMapSize = getarraysize(.playingMaps$);
 	for(.@i = 0; .@i < .@playingMapSize; .@i++){

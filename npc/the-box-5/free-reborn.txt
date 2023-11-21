@@ -42,15 +42,16 @@ prontera,155,173,3	script	กองไฟแห่งชีวิต	10252,{
 			break;
 		}
 	}
-	mes "ค่าร่างกาย: " + rebornStatus;
-	mes "ค่าความรู้: " + rebornSkill;
-	mes "Soul Orb: " + soulOrb + "/" + .@soulOrbReq;
-	mes "Body Orb: " + bodyOrb + "/" + .@bodyOrbReq;
-	mes "Mind Orb: " + mindOrb + "/" + .@mindOrbReq;
+	mes "ค่าร่างกาย: ^3629FF" + rebornStatus + "^000000";
+	mes "ค่าความรู้: ^3629FF" + rebornSkill + "^000000";
+	mes "Soul Orb: ^3629FF" + soulOrb + "/" + .@soulOrbReq + "^000000";
+	mes "Body Orb: ^3629FF" + bodyOrb + "/" + .@bodyOrbReq + "^000000";
+	mes "Mind Orb: ^3629FF" + mindOrb + "/" + .@mindOrbReq + "^000000";
 	mes "---";
-	mes "Status สุ่มสูงสุด: " + (rebornStatus + 10);
-	mes "Trait สุ่มสูงสุด: " + cap_value(((rebornStatus < 100) ? rebornStatus : (100 + (rebornStatus / 100))),0,30000);
-	mes "Skill สูงสุด: " + (3 + ((BaseLevel + 30) / 30));
+	mes "Status สุ่มสูงสุด: ^3629FF" + (rebornStatus + 10) + "^000000";
+	mes "Trait สุ่มสูงสุด: ^3629FF" + cap_value(((rebornStatus < 100) ? rebornStatus : (100 + (rebornStatus / 100))),0,30000) + "^000000";
+	mes "Skill สูงสุด: ^3629FF" + (3 + ((BaseLevel + 30) / 30)) + "^000000";
+	mes "Skill Level สูงสุด: ^3629FF" + (1 + rebornSkill) + "^000000";
 	DelayHint(freeRebornCd,1,1);
 	next;
 	menu "มองกองไฟ",-,"ระลึกชาติ (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000)",OnFreeReborn;
