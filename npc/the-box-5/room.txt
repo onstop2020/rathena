@@ -449,5 +449,7 @@ OnInit:
 	deletearray $playingMaps$[0],getarraysize($playingMaps$);
 	deletearray $playingMapsFloor[0],getarraysize($playingMapsFloor);
 	deletearray $bossSpawn[0],getarraysize($bossSpawn);
+	deletearray $killAmount[0],getarraysize($killAmount);
+	deletearray $spawnedAmount[0],getarraysize($spawnedAmount);
 	end;
 }
