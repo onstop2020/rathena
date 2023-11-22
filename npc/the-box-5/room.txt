@@ -1,4 +1,6 @@
 prontera,155,180,5	script	เล่น	736,{
+	atcommand "@debuff 0";
+	atcommand "@bd 0";
 	// Random save position
 	savepoint "prontera",156,191,5,5;
 	// Guild check
@@ -111,7 +113,9 @@ prontera,155,180,5	script	เล่น	736,{
 	// Add drop bonus
 	sc_end SC_ITEMBOOST;
 	sc_start SC_ITEMBOOST,86400000,(.@floor / 2);
-	// Debuff at floor 97, 98, 99 and 100
+	// Add debuff a bit
+	atcommand "@debuff " + cap_value((.@floor < 10) ? (.@floor - 1) : (.@floor < 20) ? (.@floor - 10) : (.@floor < 30) ? (.@floor - 20) : (.@floor < 50) ? (.@floor - 30) : (.@floor < 75) ? (.@floor - 50) : (.@floor - 75),0,50);
+	// Bonus divider at floor 97, 98, 99 and 100
 	if(.@floor >= 97)
 	atcommand "@bd " + (5 - (100 - .@floor));
 	// Going to play maps
