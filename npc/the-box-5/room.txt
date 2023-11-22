@@ -49,13 +49,13 @@ prontera,155,180,5	script	เล่น	736,{
 		next;
 		freeloop(1);
 		// Loop playing map
-		.@playingMapSize = getarraysize(.playingMaps$);
+		.@playingMapSize = getarraysize($playingMaps$);
 		for(.@i = 0; .@i < .@playingMapSize; .@i++){
-			if((.playingMaps$[.@i] == "")
-					|| (.playingMaps$[.@i] == " "))
+			if(($playingMaps$[.@i] == "")
+					|| ($playingMaps$[.@i] == " "))
 			continue;
 			
-			mes "ชั้น " + .playingMapsFloor[.@i] + ": " + getmapusers(.playingMaps$[.@i]) + " คน";
+			mes "ชั้น " + $playingMapsFloor[.@i] + ": " + getmapusers($playingMaps$[.@i]) + " คน";
 		}
 		if(!.@playingMapSize)
 		mes "ไม่พบผู้เล่นใด ๆ ในทุกระดับ";
@@ -63,26 +63,26 @@ prontera,155,180,5	script	เล่น	736,{
 		freeloop(0);
 		close;
 	}
-	.@playingMapSize = getarraysize(.playingMaps$);
+	.@playingMapSize = getarraysize($playingMaps$);
 	// Check that floor had map yet?
-	if((.playingMaps$[(.@floor - 1)] == "") || (.playingMaps$[(.@floor - 1)] == " ")){
+	if(($playingMaps$[(.@floor - 1)] == "") || ($playingMaps$[(.@floor - 1)] == " ")){
 		freeloop(1);
 		// Random map
 		.@randomMap$ = .maps$[rand(0,(.mapSize - 1))];
-		setarray .playingMaps$[.@floor - 1],.@randomMap$;
-		setarray .playingMapsFloor[.@floor - 1],.@floor;
+		setarray $playingMaps$[.@floor - 1],.@randomMap$;
+		setarray $playingMapsFloor[.@floor - 1],.@floor;
 		// Check map is using
 		for(.@i = 0; .@i < .@playingMapSize; .@i++){
 			if(.@i == (.@floor - 1))
 			continue;
 			
 			// Hit
-			if(.@randomMap$ == .playingMaps$[.@i]){
+			if(.@randomMap$ == $playingMaps$[.@i]){
 				// Restart checking
 				.@i = 0;
 				// Random map
 				.@randomMap$ = .maps$[rand(0,(.mapSize - 1))];
-				setarray .playingMaps$[(.@floor - 1)],.@randomMap$;
+				setarray $playingMaps$[(.@floor - 1)],.@randomMap$;
 			}
 		}
 		freeloop(0);
@@ -98,17 +98,17 @@ prontera,155,180,5	script	เล่น	736,{
 	}
 	@floor = .@floor;
 	// Set map flag
-	setmapflag .playingMaps$[(.@floor - 1)],MF_NOVENDING;
-	setmapflag .playingMaps$[(.@floor - 1)],MF_NOCHAT;
-	setmapflag .playingMaps$[(.@floor - 1)],MF_NOWARP;
-	setmapflag .playingMaps$[(.@floor - 1)],MF_NOWARPTO;
-	setmapflag .playingMaps$[(.@floor - 1)],MF_NOSAVE;
-	setmapflag .playingMaps$[(.@floor - 1)],MF_NOBRANCH;
-	setmapflag .playingMaps$[(.@floor - 1)],MF_NOTOMB;
+	setmapflag $playingMaps$[(.@floor - 1)],MF_NOVENDING;
+	setmapflag $playingMaps$[(.@floor - 1)],MF_NOCHAT;
+	setmapflag $playingMaps$[(.@floor - 1)],MF_NOWARP;
+	setmapflag $playingMaps$[(.@floor - 1)],MF_NOWARPTO;
+	setmapflag $playingMaps$[(.@floor - 1)],MF_NOSAVE;
+	setmapflag $playingMaps$[(.@floor - 1)],MF_NOBRANCH;
+	setmapflag $playingMaps$[(.@floor - 1)],MF_NOTOMB;
 	if((.@floor >= 10)
 			&& ((.@floor % 2) == (.isEvenPvP ? 0 : 1))){
-		setmapflag .playingMaps$[(.@floor - 1)],MF_GVG;
-		setmapflag .playingMaps$[(.@floor - 1)],MF_GVG_NOPARTY;
+		setmapflag $playingMaps$[(.@floor - 1)],MF_GVG;
+		setmapflag $playingMaps$[(.@floor - 1)],MF_GVG_NOPARTY;
 	}
 	// Add drop bonus
 	sc_end SC_ITEMBOOST;
@@ -125,7 +125,7 @@ prontera,155,180,5	script	เล่น	736,{
 	setpcblock PCBLOCK_MOVE,false;
 	addtimer 2000,strnpcinfo(3) + "::OnWarp";
 	// Warp now
-	warp .playingMaps$[(.@floor - 1)],0,0;
+	warp $playingMaps$[(.@floor - 1)],0,0;
 	// Spawn monster if needed
 	callsub OnSpawnMonster,.@floor;
 	end;
@@ -158,11 +158,11 @@ OnSpawnMonster:
 		if(.spawnedAmount[(.@floor - 1)] >= .maximumSpawnAmount[.@tier])
 		break;
 		// Already max
-		if(mobcount(.playingMaps$[(.@floor - 1)],"all") >= .maximumSpawnAmount[.@tier])
+		if(mobcount($playingMaps$[(.@floor - 1)],"all") >= .maximumSpawnAmount[.@tier])
 		break;
 		
 		// Spawn
-		monster .playingMaps$[(.@floor - 1)],0,0,"--ja--",getd(".monsterType" + .@floor + "[" + rand(0,3) + "]"),1,strnpcinfo(0) + "::OnMonsterDead";
+		monster $playingMaps$[(.@floor - 1)],0,0,"--ja--",getd(".monsterType" + .@floor + "[" + rand(0,3) + "]"),1,strnpcinfo(0) + "::OnMonsterDead";
 		// HP ((50 * Floor) * Floor) * Floor (Floor%) * Floor ((Floor / 2)%))
 		// Capping
 		.@capHp = cap_value(.@floor * 2000000,50,(INT_MAX - 1));
@@ -197,7 +197,7 @@ OnMonsterDead:
 		// Mark on minimap
 		viewpointmap strcharinfo(3),1,.@x,.@y,1,0xFF6D6D;
 		// Spawn boss now
-		monster .playingMaps$[(@floor - 1)],.@x,.@y,"Boss",getd(".monsterType" + @floor + "["+ rand(0,3) +"]"),1,strnpcinfo(0) + "::OnBossDead",2;
+		monster $playingMaps$[(@floor - 1)],.@x,.@y,"Boss",getd(".monsterType" + @floor + "["+ rand(0,3) +"]"),1,strnpcinfo(0) + "::OnBossDead",2;
 		// HP ((50 * Floor) * Floor) * Floor))
 		// Capping
 		.@hp = cap_value(((50 * @floor) * @floor * @floor),50,.maximumHp);
@@ -301,7 +301,7 @@ OnEventBoss:
 	// Mark on minimap
 	viewpointmap strcharinfo(3),1,.@x,.@y,1,0xA86DBB;
 	// Spawn boss now
-	monster .playingMaps$[(@floor - 1)],.@x,.@y,"Event Boss",$attackableMonsterIds[rand($attackableMonsterIdSize)],1,strnpcinfo(0) + "::OnEventBossDead",2;
+	monster $playingMaps$[(@floor - 1)],.@x,.@y,"Event Boss",$attackableMonsterIds[rand($attackableMonsterIdSize)],1,strnpcinfo(0) + "::OnEventBossDead",2;
 	// HP ((50 * Floor) * Floor) * Floor))
 	// Capping
 	.@hp = cap_value(((50 * @floor) * @floor * @floor),50,.maximumHp);
@@ -361,7 +361,7 @@ OnEventArea:
 	freeloop(1);
 	for(.@i = 0; .@i < .eventAreaAmount; .@i++){
 		// Spawn monster now
-		areamonster .playingMaps$[(@floor - 1)],.@x1,.@y1,.@x2,.@y2,"Event Area",$attackableMonsterIds[rand($attackableMonsterIdSize)],1,strnpcinfo(0) + "::OnEventAreaDead",2;
+		areamonster $playingMaps$[(@floor - 1)],.@x1,.@y1,.@x2,.@y2,"Event Area",$attackableMonsterIds[rand($attackableMonsterIdSize)],1,strnpcinfo(0) + "::OnEventAreaDead",2;
 		// HP ((50 * Floor) * Floor) * Floor (Floor%) * Floor ((Floor / 2)%))
 		// Capping
 		.@capHp = cap_value(@floor * 2000000,50,(INT_MAX - 1));
@@ -400,28 +400,28 @@ OnMinute50:
 	.isEvenPvP = (rand(0,1) == 0);
 	announce "ภายใน 10 นาทีนี้ Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + "จะเป็น Map GvG",bc_all,0xFF4040;
 	// Loop playing map
-	.@playingMapSize = getarraysize(.playingMaps$);
+	.@playingMapSize = getarraysize($playingMaps$);
 	for(.@i = 0; .@i < .@playingMapSize; .@i++){
-		if((.playingMaps$[.@i] == "")
-				|| (.playingMaps$[.@i] == " "))
+		if(($playingMaps$[.@i] == "")
+				|| ($playingMaps$[.@i] == " "))
 		continue;
 		
 		// Clean Event Monsters
-		if(getmapusers(.playingMaps$[.@i]) <= 0){
-			killmonster .playingMaps$[.@i],"เล่น::OnEventBossDead";
-			killmonster .playingMaps$[.@i],"เล่น::OnEventAreaDead";
+		if(getmapusers($playingMaps$[.@i]) <= 0){
+			killmonster $playingMaps$[.@i],"เล่น::OnEventBossDead";
+			killmonster $playingMaps$[.@i],"เล่น::OnEventAreaDead";
 		}
 		
-		removemapflag .playingMaps$[.@i],MF_GVG;
-		removemapflag .playingMaps$[.@i],MF_GVG_NOPARTY;
+		removemapflag $playingMaps$[.@i],MF_GVG;
+		removemapflag $playingMaps$[.@i],MF_GVG_NOPARTY;
 		
 		// Below 10th floor cannot PVP
-		if(.playingMapsFloor[.@i] < 10)
+		if($playingMapsFloor[.@i] < 10)
 		continue;
 		
-		if((.playingMapsFloor[.@i] % 2) == (.isEvenPvP ? 0 : 1)){
-			setmapflag .playingMaps$[.@i],MF_GVG;
-			setmapflag .playingMaps$[.@i],MF_GVG_NOPARTY;
+		if(($playingMapsFloor[.@i] % 2) == (.isEvenPvP ? 0 : 1)){
+			setmapflag $playingMaps$[.@i],MF_GVG;
+			setmapflag $playingMaps$[.@i],MF_GVG_NOPARTY;
 		}
 	}
 	freeloop(0);
@@ -446,5 +446,7 @@ OnInit:
 	.maximumHp = 2000000000;
 	// Special reborn skill chance
 	.specialRebornSkillChance = 25;
+	deletearray $playingMaps$[0],getarraysize($playingMaps$);
+	deletearray $playingMapsFloor[0],getarraysize($playingMapsFloor);
 	end;
 }
