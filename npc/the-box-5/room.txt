@@ -20,7 +20,7 @@ prontera,155,180,5	script	เล่น	736,{
 	}
 	// Get highest floor level of players
 	.@highestLevel = max(1,min($maximumFloor,highestLevel));
-	mes "โปรดระบุระดับ 1~" + .@highestLevel;
+	mes "โปรดระบุระดับ 1~" + .@highestLevel + " (ระบุ 0 เช็คคน)";
 	if(.@highestLevel >= 10)
 	mes "^FF4040ภายใน 10 นาทีนี้ GvG Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + "^000000";
 	mes "---";
@@ -45,7 +45,20 @@ prontera,155,180,5	script	เล่น	736,{
 			|| (.@floor > .@highestLevel)
 			|| (.@floor > $maximumFloor)){
 		next;
-		mes "ระดับที่ระบุผิดพลาด";
+		freeloop(1);
+		// Loop playing map
+		.@playingMapSize = getarraysize(.playingMaps$);
+		for(.@i = 0; .@i < .@playingMapSize; .@i++){
+			if((.playingMaps$[.@i] == "")
+					|| (.playingMaps$[.@i] == " "))
+			continue;
+			
+			mes "ชั้น " + .playingMapsFloor[.@i] + ": " + getmapusers(.playingMaps$[.@i]) + " คน";
+		}
+		if(!.@playingMapSize)
+		mes "ไม่พบผู้เล่นใด ๆ ในทุกระดับ";
+		
+		freeloop(0);
 		close;
 	}
 	.@playingMapSize = getarraysize(.playingMaps$);
