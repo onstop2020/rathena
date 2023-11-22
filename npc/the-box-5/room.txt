@@ -157,6 +157,9 @@ OnSpawnMonster:
 		// Already max
 		if(.spawnedAmount[(.@floor - 1)] >= .maximumSpawnAmount[.@tier])
 		break;
+		// Already max
+		if(mobcount(.playingMaps$[(.@floor - 1)],"all") >= .maximumSpawnAmount[.@tier])
+		break;
 		
 		// Spawn
 		monster .playingMaps$[(.@floor - 1)],0,0,"--ja--",getd(".monsterType" + .@floor + "[" + rand(0,3) + "]"),1,strnpcinfo(0) + "::OnMonsterDead";
