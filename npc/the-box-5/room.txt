@@ -177,11 +177,9 @@ OnMonsterDead:
 		monster .playingMaps$[(@floor - 1)],.@x,.@y,"Boss",getd(".monsterType" + @floor + "["+ rand(0,3) +"]"),1,strnpcinfo(0) + "::OnBossDead",2;
 		// HP ((50 * Floor) * Floor) * Floor))
 		// Capping
-		.@hp = cap_value(((50 * @floor) * @floor * @floor),50,(INT_MAX - 1));
+		.@hp = cap_value(((50 * @floor) * @floor * @floor),50,.maximumHp);
 		// Last Boss
 		.@isLastBoss = (@floor >= 100);
-		if(.@isLastBoss)
-		.@hp = 2000000000;
 		// Set mode
 		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CASTSENSORIDLE|MD_CANATTACK|MD_CASTSENSORCHASE|MD_CHANGECHASE|MD_CHANGETARGETMELEE|MD_CHANGETARGETCHASE|MD_RANDOMTARGET|MD_MVP|MD_KNOCKBACKIMMUNE|MD_TELEPORTBLOCK|MD_DETECTOR|MD_STATUSIMMUNE;
 		// Set new damage taken (100 - Floor)
@@ -243,6 +241,16 @@ OnBossDead:
 
 	// Announce
 	announce "Boss ชั้น " + @floor + " ถูกกำจัดโดย " + strcharinfo(0)+ " (ผู้กำจัดจะได้รางวัลพิเศษเพียงคนเดียว) แต่ทุกคนภายในชั้นดังกล่าวจะสามารถไปยังชั้น " + (@floor + 1) + " ได้แล้ว",bc_all,0xF9FF40;
+	
+	if(@floor < 100){
+		// Event Area (25%)
+		if(rand(100) < 25)
+		callsub OnEventArea;
+		// Event Boss (25%)
+		else if(rand(100) < 25)
+		callsub OnEventBoss;
+	}
+	
 	// Store floor to rewarded
 	.rewardFloor = (@floor + 1);
 	addrid(1);
@@ -251,6 +259,98 @@ OnBossDead:
 	specialeffect2 518;
 	end;
 
+OnEventBoss:
+	.@tier = callsub(OnGetTier,@floor);
+	// Random position in current map
+	getfreecell strcharinfo(3),.@x,.@y;
+	// Mark on minimap
+	viewpointmap strcharinfo(3),1,.@x,.@y,1,0xA86DBB;
+	// Spawn boss now
+	monster .playingMaps$[(@floor - 1)],.@x,.@y,"Event Boss",$attackableMonsterIds[rand($attackableMonsterIdSize)],1,strnpcinfo(0) + "::OnEventBossDead",2;
+	// HP ((50 * Floor) * Floor) * Floor))
+	// Capping
+	.@hp = cap_value(((50 * @floor) * @floor * @floor),50,.maximumHp);
+	// Set mode
+	setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CASTSENSORIDLE|MD_CANATTACK|MD_CASTSENSORCHASE|MD_CHANGECHASE|MD_CHANGETARGETMELEE|MD_CHANGETARGETCHASE|MD_RANDOMTARGET|MD_MVP|MD_KNOCKBACKIMMUNE|MD_TELEPORTBLOCK|MD_DETECTOR|MD_STATUSIMMUNE;
+	// Set new damage taken (100 - Floor)
+	setunitdata $@mobid[0],UMOB_DAMAGETAKEN,rand(1,100);
+	// Set new drop amount
+	setunitdata $@mobid[0],UMOB_DROP_AMOUNT,$orbDropAmount[.@tier];
+	// Set new rank
+	setunitdata $@mobid[0],UMOB_DYNAMIC,rand(1,100);
+	// Set new hp
+	setunitdata $@mobid[0],UMOB_HP,.@hp;
+	setunitdata $@mobid[0],UMOB_MAXHP,.@hp;
+	
+	announce "Event Boss ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_area,0xA86DBB;
+	return;
+
+OnEventBossDead:
+	// Get (Floor * 20) Dismantle Points
+	getitem 10000007,(@floor * 20);
+	// Get (Floor * 10) Soul Orb
+	getitem 10000002,(@floor * 10);
+	// Get (Floor * 4) Body Orb
+	getitem 10000003,(@floor * 4);
+	// Get (Floor * 2) Mind Orb
+	getitem 10000004,(@floor * 2);
+	// (0.5 * Floor)% Chance to get 1 Refine Orb
+	.@refineOrbChance = rand(0,1000);
+	.@refineOrbTarget = (@floor * 5);
+	if(.@refineOrbChance < .@refineOrbTarget)
+	getitem 10000005,1;
+	else
+	dispbottom "ต้องสุ่มได้ " + .@refineOrbTarget + " เพื่อที่จะได้รับ 1 " + getitemname(10000005) + " คุณสุ่มได้ " + .@refineOrbChance;
+	// (0.1 * Floor)% Chance to get 1 Grade Orb
+	.@gradeOrbChance = rand(0,1000);
+	.@gradeOrbTarget = @floor;
+	if(.@gradeOrbChance < .@refineOrbTarget)
+	getitem 10000006,1;
+	else
+	dispbottom "ต้องสุ่มได้ " + .@gradeOrbTarget + " เพื่อที่จะได้รับ 1 " + getitemname(10000006) + " คุณสุ่มได้ " + .@gradeOrbChance;
+
+	// Announce
+	announce "Event Boss ชั้น " + @floor + " ถูกกำจัดโดย " + strcharinfo(0)+ " (ผู้กำจัดจะได้รางวัลพิเศษเพียงคนเดียว)",bc_all,0xA86DBB;
+	end;
+
+OnEventArea:
+	.@tier = callsub(OnGetTier,@floor);
+	// Random position in current map
+	getfreecell strcharinfo(3),.@x,.@y;
+	// Mark on minimap
+	viewpointmap strcharinfo(3),1,.@x,.@y,1,0xA86DBB;
+	.@x1 = .@x - 10;
+	.@x2 = .@x + 10;
+	.@y1 = .@y - 10;
+	.@y2 = .@y + 10;
+	freeloop(1);
+	for(.@i = 0; .@i < .eventAreaAmount; .@i++){
+		// Spawn monster now
+		areamonster .playingMaps$[(@floor - 1)],.@x1,.@y1,.@x2,.@y2,"Event Area",$attackableMonsterIds[rand($attackableMonsterIdSize)],1,strnpcinfo(0) + "::OnEventAreaDead",2;
+		// HP ((50 * Floor) * Floor) * Floor (Floor%) * Floor ((Floor / 2)%))
+		// Capping
+		.@capHp = cap_value(@floor * 2000000,50,(INT_MAX - 1));
+		.@hp = cap_value(((50 * @floor) * @floor * ((rand(0,100) <= @floor) ? @floor : 1) * ((rand(0,100) <= (@floor / 2)) ? @floor : 1)),50,.@capHp);
+		// Set mode
+		setunitdata $@mobid[0],UMOB_MODE,MD_CANMOVE|MD_AGGRESSIVE|MD_CASTSENSORIDLE|MD_CANATTACK|MD_CASTSENSORCHASE|MD_CHANGECHASE|MD_CHANGETARGETMELEE|MD_CHANGETARGETCHASE|MD_RANDOMTARGET|MD_MVP|MD_KNOCKBACKIMMUNE|MD_TELEPORTBLOCK|MD_DETECTOR|MD_STATUSIMMUNE;
+		// Set new damage taken
+		setunitdata $@mobid[0],UMOB_DAMAGETAKEN,rand(1,100);
+		// Set new drop amount
+		setunitdata $@mobid[0],UMOB_DROP_AMOUNT,($orbDropAmount[.@tier] * 2);
+		// Set new rank
+		setunitdata $@mobid[0],UMOB_DYNAMIC,rand(1,5);
+		// Set new hp
+		setunitdata $@mobid[0],UMOB_HP,.@hp;
+		setunitdata $@mobid[0],UMOB_MAXHP,.@hp;
+	}
+	freeloop(0);
+	
+	announce "Event Area ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_area,0xA86DBB;
+	return;
+
+OnEventAreaDead:
+	end;
+	
 OnGetTier:
 	.@floor = getarg(0,1);
 	return (.@floor < 10) ? 0 : (.@floor < 20) ? 1 : (.@floor < 30) ? 2 : (.@floor < 50) ? 3 : (.@floor < 75) ? 4 : 5;
@@ -270,6 +370,12 @@ OnMinute50:
 		if((.playingMaps$[.@i] == "")
 				|| (.playingMaps$[.@i] == " "))
 		continue;
+		
+		// Clean Event Monsters
+		if(getmapusers(.playingMaps$[.@i]) <= 0){
+			killmonster .playingMaps$[.@i],"เล่น::OnEventBossDead";
+			killmonster .playingMaps$[.@i],"เล่น::OnEventAreaDead";
+		}
 		
 		removemapflag .playingMaps$[.@i],MF_GVG;
 		removemapflag .playingMaps$[.@i],MF_GVG_NOPARTY;
@@ -297,6 +403,11 @@ OnInit:
 	// Available maps
 	setarray .maps$[0],"gef_fild00","gef_fild01","gef_fild02","gef_fild03","gef_fild04","gef_fild05","gef_fild06","gef_fild07","gef_fild08","gef_fild09","gef_fild10","gef_fild11","gef_fild12","gef_fild13","gef_fild14","moc_fild01","moc_fild02","moc_fild03","moc_fild07","moc_fild11","moc_fild12","moc_fild13","moc_fild16","moc_fild17","moc_fild18","moc_fild19","pay_fild01","pay_fild02","pay_fild03","pay_fild04","pay_fild05","pay_fild06","pay_fild07","pay_fild08","pay_fild09","pay_fild10","pay_fild11","prt_fild00","prt_fild01","prt_fild02","prt_fild03","prt_fild04","prt_fild05","prt_fild06","prt_fild07","prt_fild08","prt_fild09","prt_fild10","prt_fild11","xmas_fild01","cmd_fild01","cmd_fild02","cmd_fild03","cmd_fild04","cmd_fild05","cmd_fild06","cmd_fild07","cmd_fild08","cmd_fild09","yuno_fild01","yuno_fild02","yuno_fild03","yuno_fild04","ama_fild01","gon_fild01","um_fild01","um_fild02","um_fild03","um_fild04","nif_fild01","nif_fild02","lou_fild01","ayo_fild01","ayo_fild02","yuno_fild05","yuno_fild07","yuno_fild08","yuno_fild09","yuno_fild11","yuno_fild12","ein_fild06","ein_fild07","ein_fild08","ein_fild09","ein_fild10","ein_fild03","ein_fild04","lhz_fild02","lhz_fild03","lhz_fild01","hu_fild07","hu_fild05","hu_fild04","hu_fild01","yuno_fild06","hu_fild02","hu_fild03","hu_fild06","ein_fild01","ein_fild02","ein_fild05","yuno_fild10","ra_fild01","ra_fild02","ra_fild03","ra_fild04","ra_fild05","ra_fild06","ra_fild07","ra_fild08","ra_fild09","ra_fild10","ra_fild11","ra_fild12","ra_fild13","ve_fild01","ve_fild02","ve_fild03","ve_fild04","ve_fild05","ve_fild07","mosk_fild02","moc_fild20","moc_fild21","moc_fild22","man_fild01","man_fild03","spl_fild02","spl_fild03","moc_fild22b","man_fild02","spl_fild01","bra_fild01","dic_fild01","dic_fild02","bif_fild01","bif_fild02","dew_fild01","ma_fild01","ma_fild02","ecl_fild01","prt_fild08a","prt_fild08b","prt_fild08c","prt_fild08d","lasa_fild01","lasa_fild02","tra_fild","gw_fild01","gw_fild02";
 	.mapSize = getarraysize($maps$);
+	// Random GvG Maps
 	.isEvenPvP = (rand(0,1) == 0);
+	// Maximum Event Area Monster Amount
+	.eventAreaAmount = 10;
+	// Maximum Monster HP
+	.maximumHp = 2000000000;
 	end;
 }
