@@ -65,7 +65,7 @@ prontera,155,180,5	script	เล่น	736,{
 	}
 	.@playingMapSize = getarraysize(.playingMaps$);
 	// Check that floor had map yet?
-	if(.playingMaps$[(.@floor - 1)] == ""){
+	if((.playingMaps$[(.@floor - 1)] == "") || (.playingMaps$[(.@floor - 1)] == " ")){
 		freeloop(1);
 		// Random map
 		.@randomMap$ = .maps$[rand(0,(.mapSize - 1))];
