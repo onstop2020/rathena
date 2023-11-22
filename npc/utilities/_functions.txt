@@ -660,7 +660,7 @@ function	script	Reborn	{
 	if(.@randomValue)
 	atcommand "@crt " + .@randomValue;
 	// Grant 3 skills by every 30 level
-	.@skillAmount = 3 + ((.@previousLevel + 30) / 30);
+	.@skillAmount = specialRebornSkill + 3 + ((.@previousLevel + 30) / 30);
 	freeloop(1);
 	for(.@i = 0; .@i < .@skillAmount; .@i++){
 		.@randomSkillIndex = rand(0,($learnableSkillSize - 1));

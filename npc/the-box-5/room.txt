@@ -32,6 +32,8 @@ prontera,155,180,5	script	เล่น	736,{
 	.@tier = callsub(OnGetTier,.@highestLevel);
 	mes "---";
 	mes "Monster ระดับ " + .@highestLevel + " จะ Drop ^3629FF" + $orbDropAmount[.@tier] + "^000000 ชิ้น";
+	mes "---";
+	mes "ทุก ๆ การกำจัด Boss ในระดับที่หารด้วย 5 ลงตัวจะมีโอกาส ^3629FF" + .specialRebornSkillChance + "%^000000 ที่จะรับ^3629FFจำนวน Skill พิเศษ^000000 (รับได้รอบเดียวต่อระดับ)";
 	if(.@highestLevel >= 97){
 		mes "---";
 		mes "ระดับ " + .@highestLevel + " ^FF4040คุณจะโดนหาร Bonus จากอุปกรณ์สวมใส่ " + (5 - (100 - .@highestLevel)) + "^000000";
@@ -42,6 +44,7 @@ prontera,155,180,5	script	เล่น	736,{
 	if((.@floor <= 0)
 			|| (.@floor > .@highestLevel)
 			|| (.@floor > $maximumFloor)){
+		next;
 		mes "ระดับที่ระบุผิดพลาด";
 		close;
 	}
@@ -206,6 +209,18 @@ OnMonsterDead:
 OnBossDead:
 	if(!playerattached())
 	end;
+
+	// Every 5 floor there are chance to increase special reborn skill
+	if(((@floor % 5) == 0) && !getd("specialRebornSkill" + @floor)){
+		.@specialRebornSkillRand = rand(0,100);
+		if(.@specialRebornSkillRand <= .specialRebornSkillChance){
+			set getd("specialRebornSkill" + @floor),1;
+			specialRebornSkill++;
+			message strcharinfo(0),"คุณได้รับจำนวน Skill พิเศษ!";
+		}
+		else
+		message strcharinfo(0),"ต้องสุ่มได้ " + .specialRebornSkillChance + " คุณสุ่มได้ " + .@specialRebornSkillRand + " เพื่อรับจำนวน Skill พิเศษ";
+	}
 
 	// Mark boss as dead
 	setarray .bossSpawn[(@floor - 1)],0;
@@ -409,5 +424,7 @@ OnInit:
 	.eventAreaAmount = 10;
 	// Maximum Monster HP
 	.maximumHp = 2000000000;
+	// Special reborn skill chance
+	.specialRebornSkillChance = 25;
 	end;
 }
