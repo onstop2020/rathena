@@ -188,7 +188,7 @@ OnMonsterDead:
 	setarray $killAmount[(@floor - 1)],cap_value($killAmount[(@floor - 1)] - 1,0,INT_MAX);
 	
 	if($killAmount[(@floor - 1)])
-	announce "Boss จะปรากฎเมื่อกำจัด Monster อีก " + $killAmount[(@floor - 1)] + " ตัว",bc_area,0xE4A827;
+	announce "Boss จะปรากฎเมื่อกำจัด Monster อีก " + $killAmount[(@floor - 1)] + " ตัว",bc_map,0xE4A827;
 	else if(!$bossSpawn[(@floor - 1)]){
 		.@tier = callsub(OnGetTier,@floor);
 		setarray $bossSpawn[(@floor - 1)],1;
@@ -215,7 +215,7 @@ OnMonsterDead:
 		setunitdata $@mobid[0],UMOB_HP,.@hp;
 		setunitdata $@mobid[0],UMOB_MAXHP,.@hp;
 		
-		announce "Boss ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_area,0xE4A827;
+		announce "Boss ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_map,0xE4A827;
 	}
 	// If spawn amount < 5 == Respawn immediately
 	if($spawnedAmount[(@floor - 1)] < 5)
@@ -317,7 +317,7 @@ OnEventBoss:
 	setunitdata $@mobid[0],UMOB_HP,.@hp;
 	setunitdata $@mobid[0],UMOB_MAXHP,.@hp;
 	
-	announce "Event Boss ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_area,0xA86DBB;
+	announce "Event Boss ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_map,0xA86DBB;
 	return;
 
 OnEventBossDead:
@@ -380,7 +380,7 @@ OnEventArea:
 	}
 	freeloop(0);
 	
-	announce "Event Area ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_area,0xA86DBB;
+	announce "Event Area ปรากฎแล้ว! (ดูตำแหน่งได้ที่ Minimap)",bc_map,0xA86DBB;
 	return;
 
 OnEventAreaDead:
