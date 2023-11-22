@@ -694,6 +694,10 @@ function	script	Reborn	{
 			if((.@selectedLook == 2)
 					&& (.@style <= 0))
 			.@style = 1;
+			
+			if((Class == 4308) && (.@selectedLook == 2) && (.@style > 10))
+			.@style = rand(1,10);
+			
 			setlook .@looks[.@selectedLook],.@style;
 		}
 	}
