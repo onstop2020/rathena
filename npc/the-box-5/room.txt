@@ -24,16 +24,18 @@ prontera,155,180,5	script	เล่น	736,{
 	if(.@highestLevel >= 10)
 	mes "^FF4040ภายใน 10 นาทีนี้ GvG Map ที่เป็นเลข" + (.isEvenPvP ? "คู่" : "คี่") + "^000000";
 	mes "---";
-	.@minHp = (50 * .@highestLevel) * .@highestLevel;
-	.@minHp = cap_value(.@minHp,50,(INT_MAX - 1));
-	.@medHp = (50 * .@highestLevel) * .@highestLevel * .@highestLevel;
-	.@medHp = cap_value(.@medHp,50,(INT_MAX - 1));
-	.@maxHp = (50 * .@highestLevel) * .@highestLevel * .@highestLevel * .@highestLevel;
-	.@maxHp = cap_value(.@maxHp,50,(INT_MAX - 1));
-	mes "HP ของ Monster ระดับ " + .@highestLevel + " \nคือ ^FF4040" + .@minHp + "^000000 \nหรือ ^FF4040" + .@medHp + "^000000 \nหรือ ^FF4040" + .@maxHp;
+	.@capHp = cap_value(.@highestLevel * 2000000,50,(INT_MAX - 1));
+	.@minHp = cap_value(((50 * .@highestLevel) * .@highestLevel),50,.@capHp);
+	.@medHp = cap_value(((50 * .@highestLevel) * .@highestLevel * .@highestLevel),50,.@capHp);
+	.@maxHp = cap_value(((50 * .@highestLevel) * .@highestLevel * .@highestLevel * .@highestLevel),50,.@capHp);
+	mes "HP ของ Monster ระดับ " + .@highestLevel + " \nคือ ^FF4040" + callfunc("F_InsertComma",.@minHp) + "^000000 \nหรือ ^FF4040" + callfunc("F_InsertComma",.@medHp) + "^000000 \nหรือ ^FF4040" + callfunc("F_InsertComma",.@maxHp);
 	.@tier = callsub(OnGetTier,.@highestLevel);
 	mes "---";
 	mes "Monster ระดับ " + .@highestLevel + " จะ Drop ^3629FF" + $orbDropAmount[.@tier] + "^000000 ชิ้น";
+	if(.@highestLevel >= 97){
+		mes "---";
+		mes "ระดับ " + .@highestLevel + " ^FF4040คุณจะโดนหาร Bonus จากอุปกรณ์สวมใส่ " + (5 - (100 - .@highestLevel)) + "^000000";
+	}
 	// Players floor selection
 	input .@floor;
 	// Checking players selected floor conditions
@@ -87,8 +89,8 @@ prontera,155,180,5	script	เล่น	736,{
 	setmapflag .playingMaps$[(.@floor - 1)],MF_NOTOMB;
 	if((.@floor >= 10)
 			&& ((.@floor % 2) == (.isEvenPvP ? 0 : 1))){
-		setmapflag .playingMaps$[(.@floor - 1)],MF_PVP;
-		setmapflag .playingMaps$[(.@floor - 1)],MF_PVP_NOPARTY;
+		setmapflag .playingMaps$[(.@floor - 1)],MF_GVG;
+		setmapflag .playingMaps$[(.@floor - 1)],MF_GVG_NOPARTY;
 	}
 	// Add drop bonus
 	sc_end SC_ITEMBOOST;
@@ -139,9 +141,9 @@ OnSpawnMonster:
 		// Spawn
 		monster .playingMaps$[(.@floor - 1)],0,0,"--ja--",getd(".monsterType" + .@floor + "[" + rand(0,3) + "]"),1,strnpcinfo(0) + "::OnMonsterDead";
 		// HP ((50 * Floor) * Floor) * Floor (Floor%) * Floor ((Floor / 2)%))
-		.@hp = (50 * .@floor) * .@floor * ((rand(0,100) <= .@floor) ? .@floor : 1) * ((rand(0,100) <= (.@floor / 2)) ? .@floor : 1);
 		// Capping
-		.@hp = cap_value(.@hp,50,(INT_MAX - 1));
+		.@capHp = cap_value(.@floor * 2000000,50,(INT_MAX - 1));
+		.@hp = cap_value(((50 * .@floor) * .@floor * ((rand(0,100) <= .@floor) ? .@floor : 1) * ((rand(0,100) <= (.@floor / 2)) ? .@floor : 1)),50,.@capHp);
 		// Set new drop amount
 		setunitdata $@mobid[0],UMOB_DROP_AMOUNT,$orbDropAmount[.@tier];
 		// Set new rank
@@ -174,9 +176,8 @@ OnMonsterDead:
 		// Spawn boss now
 		monster .playingMaps$[(@floor - 1)],.@x,.@y,"Boss",getd(".monsterType" + @floor + "["+ rand(0,3) +"]"),1,strnpcinfo(0) + "::OnBossDead",2;
 		// HP ((50 * Floor) * Floor) * Floor))
-		.@hp = (50 * @floor) * @floor * @floor;
 		// Capping
-		.@hp = cap_value(.@hp,50,(INT_MAX - 1));
+		.@hp = cap_value(((50 * @floor) * @floor * @floor),50,(INT_MAX - 1));
 		// Last Boss
 		.@isLastBoss = (@floor >= 100);
 		if(.@isLastBoss)
@@ -271,16 +272,16 @@ OnMinute50:
 				|| (.playingMaps$[.@i] == " "))
 		continue;
 		
-		removemapflag .playingMaps$[.@i],MF_PVP;
-		removemapflag .playingMaps$[.@i],MF_PVP_NOPARTY;
+		removemapflag .playingMaps$[.@i],MF_GVG;
+		removemapflag .playingMaps$[.@i],MF_GVG_NOPARTY;
 		
 		// Below 10th floor cannot PVP
 		if(.playingMapsFloor[.@i] < 10)
 		continue;
 		
 		if((.playingMapsFloor[.@i] % 2) == (.isEvenPvP ? 0 : 1)){
-			setmapflag .playingMaps$[.@i],MF_PVP;
-			setmapflag .playingMaps$[.@i],MF_PVP_NOPARTY;
+			setmapflag .playingMaps$[.@i],MF_GVG;
+			setmapflag .playingMaps$[.@i],MF_GVG_NOPARTY;
 		}
 	}
 	freeloop(0);
