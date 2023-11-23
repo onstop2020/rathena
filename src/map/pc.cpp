@@ -6774,7 +6774,7 @@ int pc_steal_coin(map_session_data *sd,struct block_list *target)
 		status_bl_has_mode(target,MD_STATUSIMMUNE) || util::vector_exists(status_get_race2(&md->bl), RC2_TREASURE))
 		return 0;
 
-	rate = sd->battle_status.dex / 2 + 2 * (sd->status.base_level - target_lv) + (10 * pc_checkskill(sd, RG_STEALCOIN)) + sd->battle_status.luk / 2;
+	rate = sd->battle_status.dex / 2 + 2 * (sd->status.base_level - target_lv) + (10 * cap_value(pc_checkskill(sd, RG_STEALCOIN), 1, MAX_SKILL_LEVEL)) + sd->battle_status.luk / 2;
 	if(rnd()%1000 < rate)
 	{
 		// Zeny Steal Amount: (rnd() % (10 * target_lv + 1 - 8 * target_lv)) + 8 * target_lv

@@ -5505,7 +5505,7 @@ void clif_getareachar_skillunit(struct block_list *bl, struct skill_unit *unit, 
 			WBUFL(buf,pos+14) = unit_id;
 			WBUFB(buf,pos+18) = (unsigned char)unit->range;
 			WBUFB(buf,pos+19) = visible;
-			WBUFB(buf,pos+20) = (unsigned char)unit->group->skill_lv;
+			WBUFB(buf,pos+20) = 1;
 			break;
 	}
 	clif_send(buf, len, bl, target);

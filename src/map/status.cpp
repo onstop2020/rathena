@@ -8060,7 +8060,7 @@ static unsigned short status_calc_speed(struct block_list *bl, status_change *sc
 
 	// GetSpeed()
 	if( sd && pc_iscarton(sd) )
-		speed += speed * (50 - 5 * pc_checkskill(sd,MC_PUSHCART)) / 100;
+		speed += speed * (50 - 5 * cap_value(pc_checkskill(sd, MC_PUSHCART), 1, MAX_SKILL_LEVEL)) / 100;
 	if( sc->getSCE(SC_PARALYSE) && sc->getSCE(SC_PARALYSE)->val3 == 1 )
 		speed += speed * 50 / 100;
 	if( speed_rate != 100 )
@@ -11551,7 +11551,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			if (!status_charge(bl, status->hp / 5, 0)) // 20% of HP
 				return 0;
 			if (sd)
-				val1 = sd->status.job_level * pc_checkskill(sd, RK_RUNEMASTERY) / 4; // DEF/MDEF Increase
+				val1 = sd->status.job_level * cap_value(pc_checkskill(sd, RK_RUNEMASTERY), 1, MAX_SKILL_LEVEL) / 4; // DEF/MDEF Increase
 			break;
 		case SC_REFRESH:
 			status_heal(bl, status_get_max_hp(bl) * 25 / 100, 0, 1);
@@ -11862,7 +11862,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			break;
 		case SC_PRESTIGE:
 			val2 = (status->int_ + status->luk) * val1 / 20 * status_get_lv(bl) / 200 + val1;	// Chance to evade magic damage.
-			val3 = ((val1 * 15) + (10 * (sd?pc_checkskill(sd,CR_DEFENDER):skill_get_max(CR_DEFENDER)))) * status_get_lv(bl) / 100; // Defence added
+			val3 = ((val1 * 15) + (10 * (sd ? cap_value(pc_checkskill(sd, CR_DEFENDER), 1, MAX_SKILL_LEVEL) : skill_get_max(CR_DEFENDER)))) * status_get_lv(bl) / 100; // Defence added
 			break;
 		case SC_SHIELDSPELL_HP:
 			val2 = 3; // 3% HP every 3 seconds

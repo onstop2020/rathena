@@ -341,7 +341,7 @@ int skill_get_range2(struct block_list *bl, uint16 skill_id, uint16 skill_lv, bo
 		range = 14; // Server-sided base range can't be above 14
 	}
 
-	std::bitset<INF2_MAX> inf2 = skill_db.find(skill_id)->inf2;
+	/*std::bitset<INF2_MAX> inf2 = skill_db.find(skill_id)->inf2;
 
 	if(inf2[INF2_ALTERRANGEVULTURE] || inf2[INF2_ALTERRANGESNAKEEYE] ){
 		if( bl->type == BL_PC ) {
@@ -361,7 +361,7 @@ int skill_get_range2(struct block_list *bl, uint16 skill_id, uint16 skill_lv, bo
 				range += rt_range[pc_checkskill((TBL_PC*)bl, RA_RESEARCHTRAP)];
 			}
 		}
-	}
+	}*/
 
 	if( !range && bl->type != BL_PC )
 		return 9; // Enable non players to use self skills on others. [Skotlex]
@@ -1377,7 +1377,7 @@ int skill_additional_effect( struct block_list* src, struct block_list *bl, uint
 					if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill = pc_checkskill(sd, WH_HAWKRUSH)) > 0) {
 						int rate = sstatus->con * 10 / 3 + 1;
 
-						rate += rate * (20 * pc_checkskill(sd, WH_NATUREFRIENDLY)) / 100;
+						rate += rate * (20 * cap_value(pc_checkskill(sd, WH_NATUREFRIENDLY), 1, MAX_SKILL_LEVEL)) / 100;
 
 						if (rnd() % 1000 <= rate)
 							skill_castend_damage_id(src, bl, WH_HAWKRUSH, skill, tick, 0);
