@@ -51,7 +51,7 @@ prontera,155,173,3	script	กองไฟแห่งชีวิต	10252,{
 	mes "Status สุ่มสูงสุด: ^3629FF" + (rebornStatus + 10) + "^000000";
 	mes "Trait สุ่มสูงสุด: ^3629FF" + cap_value(((rebornStatus < 100) ? rebornStatus : (100 + (rebornStatus / 100))),0,30000) + "^000000";
 	mes "Skill สูงสุด: ^3629FF" + (3 + ((BaseLevel + 30) / 30)) + " + " + specialRebornSkill + "^000000";
-	mes "Skill Level สูงสุด: ^3629FF" + (1 + rebornSkill) + "^000000";
+	mes "Skill Level สูงสุด: ^3629FF" + max(1,rebornSkill) + "^000000";
 	DelayHint(freeRebornCd,1,1);
 	next;
 	menu "มองกองไฟ",-,"ระลึกชาติ (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000)",OnFreeReborn;
