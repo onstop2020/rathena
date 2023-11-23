@@ -602,12 +602,12 @@ function	script	Reborn	{
 		atcommand "@refine 0 -1";
 		// Decrease Grade
 		atcommand "@grade 0 -1";
-		// Wear new suit
-		jobchange $classes[rand(0,($classSize - 1))];
-		// Return job level back
-		if(.@previousJobLevel > 1)
-		atcommand "@joblvup " + (.@previousJobLevel - 1);
 	}
+	// Wear new suit
+	jobchange $classes[rand(0,($classSize - 1))];
+	// Return job level back
+	if(.@previousJobLevel > 1)
+	atcommand "@joblvup " + (.@previousJobLevel - 1);
 	// Clear all status and trait
 	resetstatus;
 	// Forgot all skill
