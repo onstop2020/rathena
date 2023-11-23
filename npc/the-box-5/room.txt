@@ -277,7 +277,9 @@ OnBossDead:
 	// Announce
 	announce "Boss ชั้น " + @floor + " ถูกกำจัดโดย " + strcharinfo(0)+ " (ผู้กำจัดจะได้รางวัลพิเศษเพียงคนเดียว) แต่ทุกคนภายในชั้นดังกล่าวจะสามารถไปยังชั้น " + (@floor + 1) + " ได้แล้ว",bc_all,0xF9FF40;
 	
-	if(@floor < 100){
+	if((@floor < 100)
+			&& !$eventAreaSpawn[(@floor - 1)]
+			&& !$eventBossSpawn[(@floor - 1)]){
 		// Event Area (25%)
 		if(rand(100) < 25)
 		callsub OnEventArea;
@@ -321,6 +323,11 @@ OnEventBoss:
 	return;
 
 OnEventBossDead:
+	if(!playerattached())
+	end;
+
+	setarray $eventBossSpawn[(@floor - 1)],0;
+
 	// Get (Floor * 20) Dismantle Points
 	getitem 10000007,(@floor * 20);
 	// Get (Floor * 10) Soul Orb
@@ -358,6 +365,7 @@ OnEventArea:
 	.@x2 = .@x + 10;
 	.@y1 = .@y - 10;
 	.@y2 = .@y + 10;
+	$eventAreaSpawn[(@floor - 1)] = $eventAreaAmount;
 	freeloop(1);
 	for(.@i = 0; .@i < $eventAreaAmount; .@i++){
 		// Spawn monster now
@@ -384,6 +392,11 @@ OnEventArea:
 	return;
 
 OnEventAreaDead:
+	if(!playerattached())
+	end;
+
+	setarray $eventAreaSpawn[(@floor - 1)],($eventAreaSpawn[(@floor - 1)] - 1);
+	
 	end;
 	
 OnGetTier:
@@ -451,5 +464,7 @@ OnInit:
 	deletearray $bossSpawn[0],getarraysize($bossSpawn);
 	deletearray $killAmount[0],getarraysize($killAmount);
 	deletearray $spawnedAmount[0],getarraysize($spawnedAmount);
+	deletearray $eventAreaSpawn[0],getarraysize($eventAreaSpawn);
+	deletearray $eventBossSpawn[0],getarraysize($eventBossSpawn);
 	end;
 }
