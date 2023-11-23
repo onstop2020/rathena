@@ -143,6 +143,12 @@ OnGuildLevelUp:
 	
 OnWarp:
 	setpcblock PCBLOCK_ALL,false;
+	
+	// Mark on minimap
+	if($bossSpawnX[(@floor - 1)]
+			&& $bossSpawnY[(@floor - 1)])
+	viewpointmap strcharinfo(3),1,$bossSpawnX[(@floor - 1)],$bossSpawnY[(@floor - 1)],1,0xFF6D6D;
+
 	end;
 	
 OnSpawnMonster:
@@ -194,8 +200,10 @@ OnMonsterDead:
 		setarray $bossSpawn[(@floor - 1)],1;
 		// Random position in current map
 		getfreecell strcharinfo(3),.@x,.@y;
+		setarray $bossSpawnX[(@floor - 1)],.@x;
+		setarray $bossSpawnY[(@floor - 1)],.@y;
 		// Mark on minimap
-		viewpointmap strcharinfo(3),1,.@x,.@y,1,0xFF6D6D;
+		viewpointmap strcharinfo(3),1,$bossSpawnX[(@floor - 1)],$bossSpawnY[(@floor - 1)],1,0xFF6D6D;
 		// Spawn boss now
 		monster $playingMaps$[(@floor - 1)],.@x,.@y,"Boss",getd("$monsterType" + @floor + "["+ rand(0,3) +"]"),1,strnpcinfo(0) + "::OnBossDead",2;
 		// HP ((50 * Floor) * Floor) * Floor))
@@ -466,5 +474,7 @@ OnInit:
 	deletearray $spawnedAmount[0],getarraysize($spawnedAmount);
 	deletearray $eventAreaSpawn[0],getarraysize($eventAreaSpawn);
 	deletearray $eventBossSpawn[0],getarraysize($eventBossSpawn);
+	deletearray $bossSpawnX[0],getarraysize($bossSpawnX);
+	deletearray $bossSpawnY[0],getarraysize($bossSpawnY);
 	end;
 }
