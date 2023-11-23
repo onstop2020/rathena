@@ -679,7 +679,7 @@ function	script	Reborn	{
 	freeloop(0);
 	if(!.@isSafeReborn){
 		// Announce in map
-		announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area,0xFF2400;
+		//announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area,0xFF2400;
 		// Styles
 		setarray .@maxStyles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
 		// Official cloth color for expanded class was 0~3 ?
