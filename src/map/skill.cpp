@@ -834,7 +834,7 @@ bool skill_isNotOk(uint16 skill_id, map_session_data *sd)
 {
 	nullpo_retr(1,sd);
 
-	if (pc_has_permission(sd,PC_PERM_SKILL_UNCONDITIONAL))
+	//if (pc_has_permission(sd,PC_PERM_SKILL_UNCONDITIONAL))
 		return false; // can do any damn thing they want
 
 	if (skill_id == AL_TELEPORT && sd->skillitem == skill_id && sd->skillitemlv > 2)
@@ -8577,28 +8577,22 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 		if (sd == nullptr)
 			break;
 
-		if (!sd->ed || !(sd->ed->elemental.class_ >= ELEMENTALID_DILUVIO && sd->ed->elemental.class_ <= ELEMENTALID_SERPENS)) {
-			clif_skill_fail(sd, skill_id, USESKILL_FAIL_LEVEL, 0);
-			map_freeblock_unlock();
-			return 0;
-		}
-
 		uint16 buster_element;
 
-		switch (sd->ed->elemental.class_) {
-			case ELEMENTALID_ARDOR:
+		switch (rnd() % 5) {
+			case 0:
 				buster_element = EM_ELEMENTAL_BUSTER_FIRE;
 				break;
-			case ELEMENTALID_DILUVIO:
+			case 1:
 				buster_element = EM_ELEMENTAL_BUSTER_WATER;
 				break;
-			case ELEMENTALID_PROCELLA:
+			case 2:
 				buster_element = EM_ELEMENTAL_BUSTER_WIND;
 				break;
-			case ELEMENTALID_TERREMOTUS:
+			case 3:
 				buster_element = EM_ELEMENTAL_BUSTER_GROUND;
 				break;
-			case ELEMENTALID_SERPENS:
+			default:
 				buster_element = EM_ELEMENTAL_BUSTER_POISON;
 				break;
 		}
@@ -12904,14 +12898,14 @@ static int8 skill_castend_id_check(struct block_list *src, struct block_list *ta
 		case IQ_SECOND_FLAME:
 		case IQ_SECOND_FAITH:
 		case IQ_SECOND_JUDGEMENT:
-			if (!tsc || !(tsc->getSCE(SC_FIRST_BRAND) || tsc->getSCE(SC_SECOND_BRAND)))
-				return USESKILL_FAIL_LEVEL;
+			//if (!tsc || !(tsc->getSCE(SC_FIRST_BRAND) || tsc->getSCE(SC_SECOND_BRAND)))
+			//	return USESKILL_FAIL_LEVEL;
 			break;
 		case IQ_THIRD_PUNISH:
 		case IQ_THIRD_FLAME_BOMB:
 		case IQ_THIRD_CONSECRATION:
-			if (!tsc || !tsc->getSCE(SC_SECOND_BRAND))
-				return USESKILL_FAIL_LEVEL;
+			//if (!tsc || !tsc->getSCE(SC_SECOND_BRAND))
+			//	return USESKILL_FAIL_LEVEL;
 			break;
 	}
 
@@ -15088,6 +15082,8 @@ std::shared_ptr<s_skill_unit_group> skill_unitsetting(struct block_list *src, ui
 		break;
 	}
 
+	limit = cap_value(limit, 0, 5000);
+
 	// Init skill unit group
 	group = skill_initunitgroup(src, layout->count, skill_id, skill_lv, (flag & 1 ? skill->unit_id2 : skill->unit_id) + subunt, limit, interval);
 
@@ -16833,7 +16829,7 @@ int skill_check_pc_partner(map_session_data *sd, uint16 skill_id, uint16 *skill_
 	if (!sd)
 		return 0;
 
-	if (!battle_config.player_skill_partner_check || pc_has_permission(sd, PC_PERM_SKILL_UNCONDITIONAL))
+	//if (!battle_config.player_skill_partner_check || pc_has_permission(sd, PC_PERM_SKILL_UNCONDITIONAL))
 		return is_chorus ? MAX_PARTY : 99; //As if there were infinite partners.
 
 	if (cast_flag) {	//Execute the skill on the partners.
@@ -17786,18 +17782,18 @@ bool skill_check_condition_castbegin(map_session_data* sd, uint16 skill_id, uint
 			break;
 		case IQ_SECOND_FAITH:
 		case IQ_THIRD_PUNISH:
-			if (!(sc && (sc->getSCE(SC_FIRST_FAITH_POWER) || sc->getSCE(SC_SECOND_JUDGE) || sc->getSCE(SC_THIRD_EXOR_FLAME))))
-				return false;
+			//if (!(sc && (sc->getSCE(SC_FIRST_FAITH_POWER) || sc->getSCE(SC_SECOND_JUDGE) || sc->getSCE(SC_THIRD_EXOR_FLAME))))
+			//	return false;
 			break;
 		case IQ_SECOND_JUDGEMENT:
 		case IQ_THIRD_CONSECRATION:
-			if (!(sc && (sc->getSCE(SC_SECOND_JUDGE) || sc->getSCE(SC_THIRD_EXOR_FLAME))))
-				return false;
+			//if (!(sc && (sc->getSCE(SC_SECOND_JUDGE) || sc->getSCE(SC_THIRD_EXOR_FLAME))))
+			//	return false;
 			break;
 		case IQ_SECOND_FLAME:
 		case IQ_THIRD_FLAME_BOMB:
-			if (!(sc && sc->getSCE(SC_THIRD_EXOR_FLAME)))
-				return false;
+			//if (!(sc && sc->getSCE(SC_THIRD_EXOR_FLAME)))
+			//	return false;
 			break;
 	}
 
@@ -23996,7 +23992,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 	}
 
-	if (this->nodeExists(node, "Requires")) {
+	if (this->nodeExists(node, "RequiresNoUse")) {
 		const auto& requireNode = node["Requires"];
 
 		if (this->nodeExists(requireNode, "HpCost")) {

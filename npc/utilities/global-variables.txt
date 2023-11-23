@@ -1,3 +1,6 @@
+prontera	mapflag	noexp
+prontera	mapflag	noloot
+
 -	script	GlobalVariables	-1,{
 	end;
 	

@@ -63,7 +63,7 @@ Body:
       attendance: false
       view_equipment: true
       all_equipment: true
-      skill_unconditional: true
+      skill_unconditional: false
       item_unconditional: true
   - Id: 1
     Name: Super Player
