@@ -834,7 +834,7 @@ bool skill_isNotOk(uint16 skill_id, map_session_data *sd)
 {
 	nullpo_retr(1,sd);
 
-	//if (pc_has_permission(sd,PC_PERM_SKILL_UNCONDITIONAL))
+	if (pc_has_permission(sd,PC_PERM_SKILL_UNCONDITIONAL))
 		return false; // can do any damn thing they want
 
 	if (skill_id == AL_TELEPORT && sd->skillitem == skill_id && sd->skillitemlv > 2)
@@ -869,7 +869,7 @@ bool skill_isNotOk(uint16 skill_id, map_session_data *sd)
 
 	uint32 skill_nocast = skill_get_nocast(skill_id);
 	// Check skill restrictions [Celest]
-	if( (skill_nocast&1 && !mapdata_flag_vs2(mapdata)) ||
+	/*if ((skill_nocast & 1 && !mapdata_flag_vs2(mapdata)) ||
 		(skill_nocast&2 && mapdata->getMapFlag(MF_PVP)) ||
 		(skill_nocast&4 && mapdata_flag_gvg2_no_te(mapdata)) ||
 		(skill_nocast&8 && mapdata->getMapFlag(MF_BATTLEGROUND)) ||
@@ -877,7 +877,7 @@ bool skill_isNotOk(uint16 skill_id, map_session_data *sd)
 		(mapdata->zone && skill_nocast&(mapdata->zone) && mapdata->getMapFlag(MF_RESTRICTED)) ){
 			clif_msg(sd, SKILL_CANT_USE_AREA); // This skill cannot be used within this area
 			return true;
-	}
+	}*/
 
 	if( sd->sc.getSCE(SC_ALL_RIDING) )
 		return true; //You can't use skills while in the new mounts (The client doesn't let you, this is to make cheat-safe)
@@ -964,10 +964,10 @@ bool skill_isNotOk(uint16 skill_id, map_session_data *sd)
 			}
 			break;
 		case GC_DARKILLUSION:
-			if( mapdata_flag_gvg2(mapdata) ) {
+			/*if (mapdata_flag_gvg2(mapdata)) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return true;
-			}
+			}*/
 			break;
 		case GD_EMERGENCYCALL:
 		case GD_ITEMEMERGENCYCALL:
@@ -985,10 +985,10 @@ bool skill_isNotOk(uint16 skill_id, map_session_data *sd)
 		case WM_LULLABY_DEEPSLEEP:
 		case WM_GLOOMYDAY:
 		case WM_SATURDAY_NIGHT_FEVER:
-			if( !mapdata_flag_vs(mapdata) ) {
+			/*if (!mapdata_flag_vs(mapdata)) {
 				clif_skill_teleportmessage(sd,2); // This skill uses this msg instead of skill fails.
 				return true;
-			}
+			}*/
 			break;
 
 	}
