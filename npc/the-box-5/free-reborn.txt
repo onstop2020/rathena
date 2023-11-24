@@ -54,20 +54,44 @@ prontera,155,173,3	script	กองไฟแห่งชีวิต	10252,{
 	mes "Skill Level สูงสุด: ^3629FF" + max(1,rebornSkill) + "^000000";
 	DelayHint(freeRebornCd,1,1);
 	next;
-	menu "มองกองไฟ",-,"ระลึกชาติ (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000)",OnFreeReborn;
+	// New pricing
+	if(!forceRebornPrice)
+	forceRebornPrice = rand(.minForceRebornPrice,.maxForceRebornPrice);
+	menu "มองกองไฟ",-
+	,"ระลึกชาติ (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000)",OnFreeReborn
+	,"(ไม่ต้องรอเวลา) ระลึกชาติแบบคนรวย (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000) ด้วย " + forceRebornPrice + " " + getitemname(.priceItemId),OnForceReborn
+	;
 	end;
 	
 OnFreeReborn:
 	// Check cooldown
 	DelayHint(freeRebornCd,0,1);
+	// New pricing
+	forceRebornPrice = rand(.minForceRebornPrice,.maxForceRebornPrice);
 	specialeffect2 32;
 	// Cooldown
 	freeRebornCd = gettimetick(2) + .freeRebornCooldown;
 	Reborn(1);
 	end;
 	
+OnForceReborn:
+	// Trade
+	if(countitem(.priceItemId) < forceRebornPrice){
+		mes"ต้องการ " + F_InsertComma(forceRebornPrice) + " " + getitemname(.priceItemId);
+		close;
+	}
+	delitem .priceItemId,forceRebornPrice;
+	// New pricing
+	forceRebornPrice = rand(.minForceRebornPrice,.maxForceRebornPrice);
+	specialeffect2 32;
+	Reborn(1);
+	end;
+	
 OnInit:
 	waitingroom "ระลึกชาติ",0;
 	.freeRebornCooldown = 600;
+	.minForceRebornPrice = 50;
+	.maxForceRebornPrice = 2500;
+	.priceItemId = 10000002;
 	end;
 }
