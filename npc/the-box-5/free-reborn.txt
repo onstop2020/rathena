@@ -58,8 +58,8 @@ prontera,155,173,3	script	กองไฟแห่งชีวิต	10252,{
 	if(!forceRebornPrice)
 	forceRebornPrice = rand(.minForceRebornPrice,.maxForceRebornPrice);
 	menu "มองกองไฟ",-
-	,"ระลึกชาติ (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000)",OnFreeReborn
-	,"(ไม่ต้องรอเวลา) ระลึกชาติแบบคนรวย (^3F749Dเหมือนเกิดใหม่ แต่ไม่เสียอะไร^000000) ด้วย " + forceRebornPrice + " " + getitemname(.priceItemId),OnForceReborn
+	,"ระลึกชาติ (^3F749Dสุ่ม Status, สุ่ม Skill, สุ่มอาชีพ^000000)",OnFreeReborn
+	,"(ไม่ต้องรอเวลา) ระลึกชาติแบบคนรวย (^3F749Dสุ่ม Status, สุ่ม Skill, สุ่มอาชีพ^000000) ด้วย " + forceRebornPrice + " " + getitemname(.priceItemId),OnForceReborn
 	;
 	end;
 	
