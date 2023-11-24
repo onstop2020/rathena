@@ -2,8 +2,8 @@
 function	script	TheBoxStorage	{
 	if(getcharid(2) > 0)
 	menu "¤ÅÑ§»¡µÔ",-
-	,"¤ÅÑ§ Guild",L_GuildStorage
-	,"¤ÅÑ§»¡µÔ #2",L_Storage2
+	,"¤ÅÑ§ Guild",L_GuildStorage;
+	/*,"¤ÅÑ§»¡µÔ #2",L_Storage2
 	,"¤ÅÑ§»¡µÔ #3",L_Storage3
 	,"¤ÅÑ§»¡µÔ #4",L_Storage4
 	,"¤ÅÑ§»¡µÔ #5",L_Storage5
@@ -11,10 +11,10 @@ function	script	TheBoxStorage	{
 	,"¤ÅÑ§»¡µÔ #7",L_Storage7
 	,"¤ÅÑ§»¡µÔ #8",L_Storage8
 	,"¤ÅÑ§»¡µÔ #9",L_Storage9
-	,"¤ÅÑ§»¡µÔ #10",L_Storage10;
+	,"¤ÅÑ§»¡µÔ #10",L_Storage10;*/
 	else
-	menu "¤ÅÑ§»¡µÔ",-
-	,"¤ÅÑ§»¡µÔ #2",L_Storage2
+	menu "¤ÅÑ§»¡µÔ",-;
+	/*,"¤ÅÑ§»¡µÔ #2",L_Storage2
 	,"¤ÅÑ§»¡µÔ #3",L_Storage3
 	,"¤ÅÑ§»¡µÔ #4",L_Storage4
 	,"¤ÅÑ§»¡µÔ #5",L_Storage5
@@ -22,7 +22,7 @@ function	script	TheBoxStorage	{
 	,"¤ÅÑ§»¡µÔ #7",L_Storage7
 	,"¤ÅÑ§»¡µÔ #8",L_Storage8
 	,"¤ÅÑ§»¡µÔ #9",L_Storage9
-	,"¤ÅÑ§»¡µÔ #10",L_Storage10;
+	,"¤ÅÑ§»¡µÔ #10",L_Storage10;*/
 	openstorage;
 	end;
 	
