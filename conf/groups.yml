@@ -65,6 +65,7 @@ Body:
       all_equipment: true
       skill_unconditional: false
       item_unconditional: true
+      bypass_max_stat: true
   - Id: 1
     Name: Super Player
     # Can do everything Players can and more
