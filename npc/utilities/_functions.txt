@@ -13,7 +13,7 @@ function	script	TheBoxStorage	{
 	,"¤ÅÑ§»¡µÔ #9",L_Storage9
 	,"¤ÅÑ§»¡µÔ #10",L_Storage10;
 	else
-	menu "¤ÅÑ§»¡µÔ",-;
+	menu "¤ÅÑ§»¡µÔ",-
 	,"¤ÅÑ§»¡µÔ #2",L_Storage2
 	,"¤ÅÑ§»¡µÔ #3",L_Storage3
 	,"¤ÅÑ§»¡µÔ #4",L_Storage4
