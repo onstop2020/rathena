@@ -341,17 +341,17 @@ int skill_get_range2(struct block_list *bl, uint16 skill_id, uint16 skill_lv, bo
 		range = 14; // Server-sided base range can't be above 14
 	}
 
-	/*std::bitset<INF2_MAX> inf2 = skill_db.find(skill_id)->inf2;
+	std::bitset<INF2_MAX> inf2 = skill_db.find(skill_id)->inf2;
 
 	if(inf2[INF2_ALTERRANGEVULTURE] || inf2[INF2_ALTERRANGESNAKEEYE] ){
 		if( bl->type == BL_PC ) {
-			if(inf2[INF2_ALTERRANGEVULTURE]) range += pc_checkskill((TBL_PC*)bl, AC_VULTURE);
+			/*if (inf2[INF2_ALTERRANGEVULTURE]) range += pc_checkskill((TBL_PC*)bl, AC_VULTURE);
 			// added to allow GS skills to be effected by the range of Snake Eyes [Reddozen]
-			if(inf2[INF2_ALTERRANGESNAKEEYE]) range += pc_checkskill((TBL_PC*)bl, GS_SNAKEEYE);
+			if(inf2[INF2_ALTERRANGESNAKEEYE]) range += pc_checkskill((TBL_PC*)bl, GS_SNAKEEYE);*/
 		} else
 			range += battle_config.mob_eye_range_bonus;
 	}
-	if(inf2[INF2_ALTERRANGESHADOWJUMP] || inf2[INF2_ALTERRANGERADIUS] || inf2[INF2_ALTERRANGERESEARCHTRAP] ){
+	/*if(inf2[INF2_ALTERRANGESHADOWJUMP] || inf2[INF2_ALTERRANGERADIUS] || inf2[INF2_ALTERRANGERESEARCHTRAP] ){
 		if( bl->type == BL_PC ) {
 			if(inf2[INF2_ALTERRANGESHADOWJUMP]) range = skill_get_range(NJ_SHADOWJUMP,pc_checkskill((TBL_PC*)bl,NJ_SHADOWJUMP));
 			if(inf2[INF2_ALTERRANGERADIUS]) range += pc_checkskill((TBL_PC*)bl, WL_RADIUS);
