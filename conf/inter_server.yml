@@ -42,31 +42,31 @@ Body:
     Table: storage
   - ID: 1
     Name: "Storage 2"
-    Table: storage2
+    Table: storagefix2
   - ID: 2
     Name: "Storage 3"
-    Table: storage3
+    Table: storagefix3
   - ID: 3
     Name: "Storage 4"
-    Table: storage4
+    Table: storagefix4
   - ID: 4
     Name: "Storage 5"
-    Table: storage5
+    Table: storagefix5
   - ID: 5
     Name: "Storage 6"
-    Table: storage6
+    Table: storagefix6
   - ID: 6
     Name: "Storage 7"
-    Table: storage7
+    Table: storagefix7
   - ID: 7
     Name: "Storage 8"
-    Table: storage8
+    Table: storagefix8
   - ID: 8
     Name: "Storage 9"
-    Table: storage9
+    Table: storagefix9
   - ID: 9
     Name: "Storage 10"
-    Table: storage10
+    Table: storagefix10
 
 Footer:
   Imports:
