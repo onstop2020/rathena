@@ -2824,6 +2824,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 		dlist->item = NULL;
 
 		for (i = 0; i < MAX_MOB_DROP_TOTAL; i++) {
+			if (md->dropAmount <= 0)
+				break;
+
 			if (md->db->dropitem[i].nameid == 0)
 				continue;
 
