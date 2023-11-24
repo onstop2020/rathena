@@ -13,9 +13,11 @@ prontera,155,180,5	script	เล่น	736,{
 	}
 	// Penalty for exploit users
 	if(!isSafeReturn){
+		// Check cooldown
+		DelayHint(safeReturnReset,1,0," ^6D98BBเพื่อไม่ต้องตายตามโทษ^000000");
 		mes "คุณกลับเมืองด้วยวิธีอื่นที่ไม่ใช่การใช้ @load, Return Orb หรือการตาย คุณต้องตายเดี๋ยวนี้";
 		next;
-		menu "โอเค",-;
+		menu "ขอพ้นโทษ",OnSafeReturnReset,"โอเค",-;
 		close2;
 		atcommand "@die";
 		end;
@@ -120,6 +122,8 @@ prontera,155,180,5	script	เล่น	736,{
 	atcommand "@bd " + (5 - (100 - .@floor));
 	// Going to play maps
 	isSafeReturn = 0;
+	// Auto safe return
+	safeReturnReset = gettimetick(2) + .safeReturnCooldown;
 	// Block
 	setpcblock PCBLOCK_ALL,true;
 	setpcblock PCBLOCK_MOVE,false;
@@ -129,6 +133,12 @@ prontera,155,180,5	script	เล่น	736,{
 	// Spawn monster if needed
 	callsub OnSpawnMonster,.@floor;
 	end;
+	
+OnSafeReturnReset:
+	// Check cooldown
+	DelayHint(safeReturnReset,0,1," เพื่อไม่ต้องตายตามโทษ");
+	isSafeReturn = 1;
+	close;
 	
 OnGuildMaking:
 	mes "ชื่อ Guild";
@@ -450,6 +460,7 @@ OnMinute50:
 	
 OnInit:
 	waitingroom "เล่น",0;
+	.safeReturnCooldown = 600;
 	// Maximum floor
 	$maximumFloor = 100;
 	// Kill amount per floor to spawn big monster {<10<20<30<50<75<100}

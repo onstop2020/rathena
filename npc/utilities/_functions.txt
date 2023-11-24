@@ -215,15 +215,16 @@ function	script	DelayHint	{
 	.@delay = getarg(0,0);
 	.@isContinueScript = getarg(1,1);
 	.@isSelfMessage = getarg(2,0);
+	.@additionalText$ = getarg(3,"");
 	
 	if (.@delay > gettimetick(2)){
 		if(.@isSelfMessage){
-			message strcharinfo(0),"โปรดรอ " + GetTimerWording(.@delay - gettimetick(2));
+			message strcharinfo(0),"โปรดรอ " + GetTimerWording(.@delay - gettimetick(2)) + .@additionalText$;
 			if(!.@isContinueScript)
 			end;
 		}
 		else{
-			mes "โปรดรอ " + GetTimerWording(.@delay - gettimetick(2));
+			mes "โปรดรอ " + GetTimerWording(.@delay - gettimetick(2)) + .@additionalText$;
 			if(!.@isContinueScript)
 			close;
 		}
