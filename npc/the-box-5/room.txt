@@ -57,9 +57,13 @@ prontera,155,180,5	script	เล่น	736,{
 					|| ($playingMaps$[.@i] == " "))
 			continue;
 			
-			mes "ชั้น " + $playingMapsFloor[.@i] + ": " + getmapusers($playingMaps$[.@i]) + " คน";
+			.@users = getmapusers($playingMaps$[.@i]);
+			if(.@users){
+				.@isFoundPlayers = 1;
+				mes "ชั้น " + $playingMapsFloor[.@i] + ": " + getmapusers($playingMaps$[.@i]) + " คน";
+			}
 		}
-		if(!.@playingMapSize)
+		if(!.@isFoundPlayers)
 		mes "ไม่พบผู้เล่นใด ๆ ในทุกระดับ";
 		
 		freeloop(0);
