@@ -117,7 +117,8 @@ prontera,145,201,3	script	�ҡٹ	848,{
 					
 					.@sumCard += .card * @inventorylist_amount[.@i];
 				}
-				else if((.@dismantleType == 0) || (.@dismantleType == 5))
+				else if(!compare(.@itemAegisName$,"_CARD")
+						&& ((.@dismantleType == 0) || (.@dismantleType == 5)))
 				{
 					.@isDel = 1;
 					
