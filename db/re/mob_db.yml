@@ -52166,10 +52166,6 @@ Body:
     Class: Battlefield
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
   - Id: 2338
     AegisName: MD_MANANANGGAL
     Name: Manananggal
@@ -52376,10 +52372,6 @@ Body:
     Class: Battlefield
     Modes:
       Detector: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
   - Id: 2344
     AegisName: MER_WISH_MAIDEN
     Name: Wish Maiden
@@ -57521,11 +57513,6 @@ Body:
     WalkSpeed: 1000
     Ai: 10
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
   - Id: 2537
     AegisName: HIDDEN_MOB4
     Name: Monster 4
@@ -57553,11 +57540,6 @@ Body:
     WalkSpeed: 1000
     Ai: 10
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
 #  - Id: 2538
 #    AegisName: E_KING_PORING
   - Id: 2539
@@ -57588,11 +57570,6 @@ Body:
     AttackDelay: 3000
     Ai: 10
     Class: Boss
-    Modes:
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
   - Id: 2540
     AegisName: FACEWORM_EGG
     Name: Faceworm Egg
@@ -77211,10 +77188,6 @@ Body:
     Class: Boss
     Modes:
       Aggressive: true
-      IgnoreMagic: true
-      IgnoreMelee: true
-      IgnoreMisc: true
-      IgnoreRanged: true
   - Id: 3039
     AegisName: B_MOROCC_1
 #   Name: Blazing Morocc Reincarnation
