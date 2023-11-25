@@ -406,7 +406,7 @@ function	script	BodyOrb	{
 	.@itemId = getarg(0,0);
 	// Unexpected error
 	if(!.@itemId
-			|| (rebornStatus >= 30000))
+			|| (rebornStatus >= 29990))
 	return;
 	// Information for players
 	.@itemCount = countitem(.@itemId);
@@ -474,7 +474,7 @@ function	script	BodyOrb	{
 	}
 	freeloop(0);
 	if(.@levelGained){
-		rebornStatus = cap_value(rebornStatus + .@levelGained,0,30000);
+		rebornStatus = cap_value(rebornStatus + .@levelGained,0,29990);
 		message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " ค่าร่างกาย สูงขึ้น " + .@levelGained + ((rebornStatus < 30000) ? " ค่าร่างกายต่อไปต้องการอีก " + (.@req - bodyOrb) + " " + getitemname(.@itemId) : "") + " (Lv. " + rebornStatus + "/30000)";
 	}
 	else

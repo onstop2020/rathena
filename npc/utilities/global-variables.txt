@@ -23,7 +23,7 @@ OnInit:
 		
 		$noSellSize = getarraysize($noSells);
 	}
-	.@v = 2;
+	.@v = 3;
 	if($databaseVersion != .@v){
 		$databaseVersion = .@v;
 		
@@ -39,7 +39,7 @@ OnInit:
 		$soulOrbReqSize = getarraysize($soulOrbReq);
 
 		deletearray $bodyOrbLv[0],getarraysize($bodyOrbLv);
-		setarray $bodyOrbLv[0],25,50,75,100,125,30000;
+		setarray $bodyOrbLv[0],25,50,75,100,125,29990;
 		$bodyOrbLvSize = getarraysize($bodyOrbLv);
 
 		deletearray $bodyOrbReq[0],getarraysize($bodyOrbReq);

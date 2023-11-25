@@ -67,7 +67,8 @@ prontera,155,180,5	script	เล่น	736,{
 	}
 	.@tier = callsub(OnGetTier,.@floor);
 	// Check kill amount
-	if(!$killAmount[(.@floor - 1)]){
+	if(!$killAmount[(.@floor - 1)]
+			&& !$bossSpawn[(.@floor - 1)]){
 		setarray $killAmount[(.@floor - 1)],$maximumKillAmount[.@tier];
 		setarray $spawnedAmount[(.@floor - 1)],0;
 		// Setup 4 monster types
@@ -238,6 +239,8 @@ OnBossDead:
 
 	// Mark boss as dead
 	setarray $bossSpawn[(@floor - 1)],0;
+	setarray $bossSpawnX[(@floor - 1)],0;
+	setarray $bossSpawnY[(@floor - 1)],0;
 	// Reset kill amount
 	.@tier = callsub(OnGetTier,@floor);
 	setarray $killAmount[(@floor - 1)],$maximumKillAmount[.@tier];
@@ -460,7 +463,6 @@ OnInit:
 	deletearray $playingMaps$[0],getarraysize($playingMaps$);
 	deletearray $playingMapsFloor[0],getarraysize($playingMapsFloor);
 	deletearray $bossSpawn[0],getarraysize($bossSpawn);
-	deletearray $killAmount[0],getarraysize($killAmount);
 	deletearray $spawnedAmount[0],getarraysize($spawnedAmount);
 	deletearray $eventAreaSpawn[0],getarraysize($eventAreaSpawn);
 	deletearray $eventBossSpawn[0],getarraysize($eventBossSpawn);
