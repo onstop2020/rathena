@@ -474,7 +474,7 @@ function	script	BodyOrb	{
 	}
 	freeloop(0);
 	if(.@levelGained){
-		rebornStatus += .@levelGained;
+		rebornStatus = cap_value(rebornStatus + .@levelGained,0,30000);
 		message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " ค่าร่างกาย สูงขึ้น " + .@levelGained + ((rebornStatus < 30000) ? " ค่าร่างกายต่อไปต้องการอีก " + (.@req - bodyOrb) + " " + getitemname(.@itemId) : "") + " (Lv. " + rebornStatus + "/30000)";
 	}
 	else
@@ -557,7 +557,7 @@ function	script	MindOrb	{
 	}
 	freeloop(0);
 	if(.@levelGained){
-		rebornSkill += .@levelGained;
+		rebornSkill = cap_value(rebornSkill + .@levelGained,0,100);
 		message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " ค่าความรู้ สูงขึ้น " + .@levelGained + ((rebornSkill < 100) ? " ค่าความรู้ต่อไปต้องการอีก " + (.@req - mindOrb) + " " + getitemname(.@itemId) : "") + " (Lv. " + rebornSkill + "/100)";
 	}
 	else
