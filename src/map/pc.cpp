@@ -3866,7 +3866,8 @@ void pc_bonus(map_session_data *sd,int type,int val)
 				sd->aprate += val;
 			break;
 		case SP_SPRATE:
-			if(sd->state.lr_flag != 2)
+			break;
+			if (sd->state.lr_flag != 2)
 				sd->dsprate+=val;
 			break;
 		case SP_ATTACKRANGE:
@@ -4851,6 +4852,7 @@ void pc_bonus2(map_session_data *sd,int type,int type2,int val)
 			sd->indexed_bonus.ignore_def_by_class[type2] += val;
 		break;
 	case SP_SKILL_USE_SP_RATE: // bonus2 bSkillUseSPrate,sk,n;
+		break;
 		if(sd->state.lr_flag == 2)
 			break;
 		if (sd->skillusesprate.size() == MAX_PC_BONUS) {
@@ -4940,6 +4942,7 @@ void pc_bonus2(map_session_data *sd,int type,int type2,int val)
 		break;
 #endif
 	case SP_SKILL_USE_SP: // bonus2 bSkillUseSP,sk,n;
+		break;
 		if(sd->state.lr_flag == 2)
 			break;
 		if (sd->skillusesp.size() == MAX_PC_BONUS) {
