@@ -23423,7 +23423,7 @@ const std::string SkillDatabase::getDefaultLocation() {
 	return std::string(db_path) + "/skill_db.yml";
 }
 
-template<typename T, size_t S> bool SkillDatabase::parseNode(const std::string& nodeName, const std::string& subNodeName, const ryml::NodeRef& node, T (&arr)[S]) {
+template<typename T, size_t S> bool SkillDatabase::parseNode(const std::string& nodeName, const std::string& subNodeName, const ryml::NodeRef& node, T (&arr)[S], bool isSkipIncrement) {
 	int32 value;
 	const auto& skNode = node[c4::to_csubstr(nodeName)];
 	if (!skNode.is_seq()) {
@@ -23457,6 +23457,9 @@ template<typename T, size_t S> bool SkillDatabase::parseNode(const std::string& 
 
 		// Check for linear change with increasing steps until we reach half of the data acquired.
 		for (size_t step = 1; step <= i / 2; step++) {
+			if (isSkipIncrement)
+				break;
+
 			int diff = arr[i - 1] - arr[i - step - 1];
 
 			for (j = i - 1; j >= step; j--) {
@@ -23640,7 +23643,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "Range")) {
-		if (!this->parseNode("Range", "Size", node, skill->range))
+		if (!this->parseNode("Range", "Size", node, skill->range, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23668,7 +23671,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "HitCount")) {
-		if (!this->parseNode("HitCount", "Count", node, skill->num))
+		if (!this->parseNode("HitCount", "Count", node, skill->num, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23734,7 +23737,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "SplashArea")) {
-		if (!this->parseNode("SplashArea", "Area", node, skill->splash))
+		if (!this->parseNode("SplashArea", "Area", node, skill->splash, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23742,7 +23745,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "ActiveInstance")) {
-		if (!this->parseNode("ActiveInstance", "Max", node, skill->maxcount))
+		if (!this->parseNode("ActiveInstance", "Max", node, skill->maxcount, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23750,7 +23753,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "Knockback")) {
-		if (!this->parseNode("Knockback", "Amount", node, skill->blewcount))
+		if (!this->parseNode("Knockback", "Amount", node, skill->blewcount, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23883,7 +23886,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "CastTime")) {
-		if (!this->parseNode("CastTime", "Time", node, skill->cast))
+		if (!this->parseNode("CastTime", "Time", node, skill->cast, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23891,7 +23894,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "AfterCastActDelay")) {
-		if (!this->parseNode("AfterCastActDelay", "Time", node, skill->delay))
+		if (!this->parseNode("AfterCastActDelay", "Time", node, skill->delay, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23899,7 +23902,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "AfterCastWalkDelay")) {
-		if (!this->parseNode("AfterCastWalkDelay", "Time", node, skill->walkdelay))
+		if (!this->parseNode("AfterCastWalkDelay", "Time", node, skill->walkdelay, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23907,7 +23910,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "Duration1")) {
-		if (!this->parseNode("Duration1", "Time", node, skill->upkeep_time))
+		if (!this->parseNode("Duration1", "Time", node, skill->upkeep_time,true))
 			return 0;
 	} else {
 		if (!exists)
@@ -23915,7 +23918,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "Duration2")) {
-		if (!this->parseNode("Duration2", "Time", node, skill->upkeep_time2))
+		if (!this->parseNode("Duration2", "Time", node, skill->upkeep_time2, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23923,7 +23926,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "Cooldown")) {
-		if (!this->parseNode("Cooldown", "Time", node, skill->cooldown))
+		if (!this->parseNode("Cooldown", "Time", node, skill->cooldown, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23932,7 +23935,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 
 #ifdef RENEWAL_CAST
 	if (this->nodeExists(node, "FixedCastTime")) {
-		if (!this->parseNode("FixedCastTime", "Time", node, skill->fixed_cast))
+		if (!this->parseNode("FixedCastTime", "Time", node, skill->fixed_cast, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -23996,7 +23999,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		const auto& requireNode = node["Requires"];
 
 		if (this->nodeExists(requireNode, "HpCost")) {
-			if (!this->parseNode("HpCost", "Amount", requireNode, skill->require.hp))
+			if (!this->parseNode("HpCost", "Amount", requireNode, skill->require.hp, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24004,7 +24007,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(requireNode, "SpCost")) {
-			if (!this->parseNode("SpCost", "Amount", requireNode, skill->require.sp))
+			if (!this->parseNode("SpCost", "Amount", requireNode, skill->require.sp, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24012,7 +24015,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(requireNode, "ApCost")) {
-			if (!this->parseNode("ApCost", "Amount", requireNode, skill->require.ap))
+			if (!this->parseNode("ApCost", "Amount", requireNode, skill->require.ap, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24020,7 +24023,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(requireNode, "HpRateCost")) {
-			if (!this->parseNode("HpRateCost", "Amount", requireNode, skill->require.hp_rate))
+			if (!this->parseNode("HpRateCost", "Amount", requireNode, skill->require.hp_rate, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24028,7 +24031,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(requireNode, "SpRateCost")) {
-			if (!this->parseNode("SpRateCost", "Amount", requireNode, skill->require.sp_rate))
+			if (!this->parseNode("SpRateCost", "Amount", requireNode, skill->require.sp_rate, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24036,7 +24039,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(requireNode, "ApRateCost")) {
-			if (!this->parseNode("ApRateCost", "Amount", requireNode, skill->require.ap_rate))
+			if (!this->parseNode("ApRateCost", "Amount", requireNode, skill->require.ap_rate, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24044,7 +24047,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(requireNode, "MaxHpTrigger")) {
-			if (!this->parseNode("MaxHpTrigger", "Amount", requireNode, skill->require.mhp))
+			if (!this->parseNode("MaxHpTrigger", "Amount", requireNode, skill->require.mhp, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24052,7 +24055,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(requireNode, "ZenyCost")) {
-			if (!this->parseNode("ZenyCost", "Amount", requireNode, skill->require.zeny))
+			if (!this->parseNode("ZenyCost", "Amount", requireNode, skill->require.zeny, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24143,7 +24146,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 				return 0;
 			}
 
-			if (!this->parseNode("AmmoAmount", "Amount", requireNode, skill->require.ammo_qty))
+			if (!this->parseNode("AmmoAmount", "Amount", requireNode, skill->require.ammo_qty, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24196,7 +24199,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(requireNode, "SpiritSphereCost")) {
-			if (!this->parseNode("SpiritSphereCost", "Amount", requireNode, skill->require.spiritball))
+			if (!this->parseNode("SpiritSphereCost", "Amount", requireNode, skill->require.spiritball, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24278,7 +24281,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "GiveAp")) {
-		if (!this->parseNode("GiveAp", "Amount", node, skill->giveap))
+		if (!this->parseNode("GiveAp", "Amount", node, skill->giveap, false))
 			return 0;
 	} else {
 		if (!exists)
@@ -24330,7 +24333,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(unitNode, "Layout")) {
-			if (!this->parseNode("Layout", "Size", unitNode, skill->unit_layout_type))
+			if (!this->parseNode("Layout", "Size", unitNode, skill->unit_layout_type, false))
 				return 0;
 		} else {
 			if (!exists)
@@ -24338,7 +24341,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		}
 
 		if (this->nodeExists(unitNode, "Range")) {
-			if (!this->parseNode("Range", "Size", unitNode, skill->unit_range))
+			if (!this->parseNode("Range", "Size", unitNode, skill->unit_range, false))
 				return 0;
 		} else {
 			if (!exists)
