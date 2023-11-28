@@ -14475,15 +14475,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bStr,1;
       bonus bBaseAtk,3;
@@ -14495,15 +14486,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bStr,2;
       bonus bBaseAtk,6;
@@ -14515,15 +14497,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bStr,4;
       bonus bBaseAtk,12;
@@ -14535,15 +14508,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bInt,1;
       bonus bMatk,3;
@@ -14555,15 +14519,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bInt,2;
       bonus bMatk,6;
@@ -14575,15 +14530,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bInt,4;
       bonus bMatk,12;
@@ -14595,15 +14541,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bAgi,1;
       bonus bFlee,2;
@@ -14615,15 +14552,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bAgi,2;
       bonus bFlee,4;
@@ -14635,15 +14563,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bAgi,4;
       bonus bFlee,8;
@@ -14655,15 +14574,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bVit,1;
       bonus bDef,3;
@@ -14676,15 +14586,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bVit,2;
       bonus bDef,6;
@@ -14697,15 +14598,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bVit,4;
       bonus bDef,12;
@@ -14718,15 +14610,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bDex,1;
       bonus bHit,2;
@@ -14738,15 +14621,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bDex,2;
       bonus bHit,4;
@@ -14758,15 +14632,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bDex,4;
       bonus bHit,8;
@@ -14778,15 +14643,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bLuk,1;
       bonus bCritical,1;
@@ -14798,15 +14654,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bLuk,2;
       bonus bCritical,2;
@@ -14818,15 +14665,6 @@ Body:
     SubType: Enchant
     Buy: 20
     Weight: 10
-    Locations:
-      Head_Low: true
-      Head_Mid: true
-      Head_Top: true
-      Shoes: true
-      Both_Hand: true
-      Armor: true
-      Garment: true
-      Both_Accessory: true
     Script: |
       bonus bLuk,4;
       bonus bCritical,4;
@@ -43515,8 +43353,6 @@ Body:
     Type: Card
     SubType: Enchant
     Buy: 10
-    Locations:
-      Shoes: true
     Script: |
       bonus bStr,1;
   - Id: 29149
@@ -43525,8 +43361,6 @@ Body:
     Type: Card
     SubType: Enchant
     Buy: 10
-    Locations:
-      Shoes: true
     Script: |
       bonus bInt,1;
   - Id: 29150
@@ -43535,8 +43369,6 @@ Body:
     Type: Card
     SubType: Enchant
     Buy: 10
-    Locations:
-      Shoes: true
     Script: |
       bonus bAgi,1;
   - Id: 29151
@@ -43545,8 +43377,6 @@ Body:
     Type: Card
     SubType: Enchant
     Buy: 10
-    Locations:
-      Shoes: true
     Script: |
       bonus bVit,1;
   - Id: 29152
@@ -43555,8 +43385,6 @@ Body:
     Type: Card
     SubType: Enchant
     Buy: 10
-    Locations:
-      Shoes: true
     Script: |
       bonus bDex,1;
   - Id: 29153
@@ -43565,8 +43393,6 @@ Body:
     Type: Card
     SubType: Enchant
     Buy: 10
-    Locations:
-      Shoes: true
     Script: |
       bonus bLuk,1;
   - Id: 29154
@@ -43828,8 +43654,6 @@ Body:
     Type: Card
     SubType: Enchant
     Buy: 10
-    Locations:
-      Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
