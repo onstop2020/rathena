@@ -54,6 +54,10 @@ prontera,155,173,3	script	กองไฟแห่งชีวิต	10252,{
 	mes "Trait สุ่มสูงสุด: ^3629FF" + cap_value(((rebornStatus < 100) ? rebornStatus : (100 + (rebornStatus / 100))),0,30000) + "^000000";
 	mes "Skill สูงสุด: ^3629FF" + (3 + ((BaseLevel + 30) / 30)) + " + " + specialRebornSkill + "^000000";
 	mes "Skill Level สูงสุด: ^3629FF" + max(1,rebornSkill) + "^000000";
+	mes "---";
+	mes "จำนวน Skill พิเศษ";
+	for(.@i = 5; .@i < 101; .@i += 5)
+	mes "ชั้น " + .@i + ": " + (getd("specialRebornSkill" + .@i) ? "ได้แล้ว" : "ยังไม่ได้");
 	DelayHint(freeRebornCd,1,1);
 	next;
 	// New pricing

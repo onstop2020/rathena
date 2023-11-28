@@ -17,7 +17,7 @@ prontera,155,180,5	script	เล่น	736,{
 		DelayHint(safeReturnReset,1,0," ^6D98BBเพื่อไม่ต้องตายตามโทษ^000000");
 		mes "คุณกลับเมืองด้วยวิธีอื่นที่ไม่ใช่การใช้ @load, Return Orb หรือการตาย คุณต้องตายเดี๋ยวนี้";
 		next;
-		menu "ขอพ้นโทษ",OnSafeReturnReset,"โอเค",-;
+		menu "ขอพ้นโทษ (ไม่ต้องตาย)",OnSafeReturnReset,"โอเค (ตาย)",-;
 		close2;
 		atcommand "@die";
 		end;
