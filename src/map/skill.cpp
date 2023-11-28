@@ -23910,7 +23910,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "Duration1")) {
-		if (!this->parseNode("Duration1", "Time", node, skill->upkeep_time,true))
+		if (!this->parseNode("Duration1", "Time", node, skill->upkeep_time, false))
 			return 0;
 	} else {
 		if (!exists)
