@@ -127,6 +127,7 @@ function	script	IsTownMap	{
 	(.@mapName$ == "prontera")		// Main town
 	|| (.@mapName$ == "pvp_y_1-1")	// PvP
 	|| (.@mapName$ == "pvp_y_1-4")	// PvP
+	|| (.@mapName$ == "guild_vs1-1")	// Test
 	)
 	;
 	

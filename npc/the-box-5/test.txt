@@ -1,0 +1,30 @@
+guild_vs1-1	mapflag	novending
+guild_vs1-1	mapflag	nochat
+guild_vs1-1	mapflag	monster_noteleport
+guild_vs1-1	mapflag	noteleport
+guild_vs1-1	mapflag	nowarp
+guild_vs1-1	mapflag	nowarpto
+guild_vs1-1	mapflag	nosave
+guild_vs1-1	mapflag	nobranch
+guild_vs1-1	mapflag	notomb
+guild_vs1-1	mapflag	nopenalty
+guild_vs1-1	mapflag	noexp
+guild_vs1-1	mapflag	noloot
+
+prontera,155,165,3	script	∑¥ Õ∫	843,{
+	warp "guild_vs1-1",0,0;
+	end;
+	
+OnInit:
+	waitingroom "∑¥ Õ∫",0;
+OnTimer60000:
+	killmonster "guild_vs1-1","All";
+	for(.@j = 21064; .@j < 21087; .@j++){
+		for(.@i = 0; .@i < 3; .@i++){
+			monster "guild_vs1-1",0,0,"--ja--",.@j,1;
+			setunitdata $@mobid[0],UMOB_MODE,MD_KNOCKBACKIMMUNE|MD_TELEPORTBLOCK|MD_DETECTOR|MD_STATUSIMMUNE;
+		}
+	}
+	initnpctimer;
+	end;
+}
