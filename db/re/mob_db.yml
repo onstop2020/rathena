@@ -82135,7 +82135,6 @@ Body:
     DamageMotion: 550
     Ai: 01
     Class: Battlefield
-    Modes:
   - Id: 3254
     AegisName: T_W_O
     Name: T_W_O
