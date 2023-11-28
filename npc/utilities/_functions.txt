@@ -736,3 +736,22 @@ function	script	GetRandomOptionId	{
 	
 	return .@optId;
 }
+
+// Gaining Orb
+function	script	GainOrb	{
+	.@targetItemId = getarg(0,0);
+	.@itemId = getarg(1,0);
+	// Unexpected error
+	if(!.@itemId
+			|| !.@targetItemId)
+	return;
+	// Information for players
+	.@itemCount = countitem(.@targetItemId);
+	if(.@itemCount){
+		mes "ห้ามถือ " + getitemname(.@targetItemId) + " เลยสักชิ้น";
+		close;
+	}
+	delitem .@itemId,1;
+	getitem .@targetItemId,30000;
+	return;
+}

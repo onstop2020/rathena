@@ -46,3 +46,28 @@ Header:
   Version: 1
 
 Body:
+  - Name: ร้านค้า - Orb Pack
+    Map: prontera
+    X: 166
+    Y: 206
+    Direction: SouthEast
+    Sprite: 2_VENDING_MACHINE1
+    Items:
+      - Index: 0
+        Item: Soul_Orb_Pack
+        RequiredItems:
+          - Index: 0
+            Item: Soul_Orb
+            Amount: 30000
+      - Index: 1
+        Item: Body_Orb_Pack
+        RequiredItems:
+          - Index: 0
+            Item: Body_Orb
+            Amount: 30000
+      - Index: 2
+        Item: Mind_Orb_Pack
+        RequiredItems:
+          - Index: 0
+            Item: Mind_Orb
+            Amount: 30000
