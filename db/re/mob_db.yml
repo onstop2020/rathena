@@ -51671,7 +51671,6 @@ Body:
     AttackMotion: 720
     DamageMotion: 360
     Ai: 10
-    Class: Battlefield
     Modes:
       Detector: true
   - Id: 2332
@@ -51843,7 +51842,6 @@ Body:
     WalkSpeed: 1000
     AttackMotion: 1000
     Ai: 10
-    Class: Battlefield
     Modes:
       Detector: true
   - Id: 2338
@@ -52049,7 +52047,6 @@ Body:
     WalkSpeed: 1000
     AttackMotion: 2000
     Ai: 10
-    Class: Battlefield
     Modes:
       Detector: true
   - Id: 2344
@@ -74652,7 +74649,6 @@ Body:
     ElementLevel: 4
     WalkSpeed: 1000
     AttackMotion: 1000
-    Class: Battlefield
     Modes:
       Detector: true
 #  - Id: 2944
@@ -75122,7 +75118,6 @@ Body:
     ElementLevel: 4
     WalkSpeed: 1000
     AttackMotion: 1000
-    Class: Battlefield
     Modes:
       Detector: true
   - Id: 2961
@@ -77393,7 +77388,6 @@ Body:
     Race: Formless
     Element: Holy
     ElementLevel: 1
-    Class: Battlefield
     Modes:
       NoRandomWalk: true
       KnockBackImmune: true
@@ -77616,7 +77610,6 @@ Body:
     AttackDelay: 1415
     AttackMotion: 792
     Ai: 24
-    Class: Battlefield
     Modes:
       Aggressive: true
   - Id: 3087
@@ -82134,7 +82127,6 @@ Body:
     AttackMotion: 600
     DamageMotion: 550
     Ai: 01
-    Class: Battlefield
   - Id: 3254
     AegisName: T_W_O
     Name: T_W_O
@@ -99377,7 +99369,6 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Ai: 06
-    Class: Battlefield
     Modes:
       KnockBackImmune: true
   - Id: 20674
@@ -99496,7 +99487,6 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Ai: 06
-    Class: Battlefield
     Modes:
       KnockBackImmune: true
   - Id: 20677
@@ -99601,7 +99591,6 @@ Body:
     AttackMotion: 1
     DamageMotion: 1
     Ai: 06
-    Class: Battlefield
     Modes:
       KnockBackImmune: true
   - Id: 20680
