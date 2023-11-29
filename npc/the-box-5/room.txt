@@ -197,10 +197,8 @@ OnMonsterDead:
 		ka = cap_value(ka + 1,0,.ka);
 		if(ka >= .ka){
 			tired = 100;
-			atcommand "@debuff " + tired;
-			message strcharinfo(0),"โปรดพิมพ์ @load เพื่อกลับเมืองไปนั่งพัก";
-			setpcblock PCBLOCK_ALL,true;
-			setpcblock PCBLOCK_COMMANDS,false;
+			isSafeReturn = 1;
+			warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
 		}
 	}
 	else if(!$bossSpawn[(@floor - 1)]){

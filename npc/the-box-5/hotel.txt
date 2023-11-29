@@ -4,7 +4,7 @@
 
 	@isSleeping = 1;
 	deltimer strnpcinfo(3) + "::OnSleep";
-	addtimer 1000, strnpcinfo(3) + "::OnSleep";
+	addtimer 500, strnpcinfo(3) + "::OnSleep";
 	end;
 	
 OnSleep:
