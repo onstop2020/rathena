@@ -15,7 +15,7 @@ OnSleep:
 	if((strcharinfo(3) == strnpcinfo(4))
 			&& ((tired > 0))){
 		message strcharinfo(0),"เหนื่อย: " + tired;
-		addtimer 1000, strnpcinfo(3) + "::OnSleep";
+		addtimer 500, strnpcinfo(3) + "::OnSleep";
 	}
 	else{
 		ka = 0;

@@ -12366,7 +12366,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 					if (pc_checkskill(sd, SU_SPIRITOFSEA) > 0)
 						val2 *= 2; // Doubles HP
 				}
-				tick_time = 10000 - ((val1 - 1) * 1000);
+				tick_time = 6000;
 				val4 = tick / tick_time;
 			}
 			break;
@@ -13823,7 +13823,7 @@ TIMER_FUNC(status_change_timer){
 			break; // Not enough SP to continue.
 
 		if (!sc->getSCE(SC_CHASEWALK2)) {
-			sc_start(bl,bl, SC_CHASEWALK2,100,1<<(sce->val1-1),
+			sc_start(bl,bl, SC_CHASEWALK2,100, sce->val1,
 				(t_tick)(sc->getSCE(SC_SPIRIT) && sc->getSCE(SC_SPIRIT)->val2 == SL_ROGUE?10:1) // SL bonus -> x10 duration
 				*skill_get_time2(status_db.getSkill(type),sce->val1));
 		}
@@ -14429,7 +14429,7 @@ TIMER_FUNC(status_change_timer){
 
 	case SC_INSPIRATION:
 		if(--(sce->val4) >= 0) {
-			if (!status_charge(bl, status->max_hp * (35 - 5 * sce->val1) / 1000, status->max_sp * (45 - 5 * sce->val1) / 1000))
+			if (!status_charge(bl, status->max_hp / 20, status->max_sp / 20))
 				break;
 
 			sc_timer_next(5000+tick);
@@ -14682,7 +14682,7 @@ TIMER_FUNC(status_change_timer){
 	case SC_FRESHSHRIMP:
 		if (--(sce->val4) >= 0) {
 			status_heal(bl, sce->val2, 0, 0);
-			sc_timer_next((10000 - ((sce->val1 - 1) * 1000)) + tick);
+			sc_timer_next(6000 + tick);
 			return 0;
 		}
 		break;
