@@ -1,6 +1,4 @@
 prontera,155,180,5	script	เล่น	736,{
-	atcommand "@debuff 0";
-	atcommand "@bd 0";
 	// Random save position
 	savepoint "prontera",156,191,5,5;
 	// Guild check
@@ -97,10 +95,19 @@ prontera,155,180,5	script	เล่น	736,{
 	sc_end SC_ITEMBOOST;
 	sc_start SC_ITEMBOOST,86400000,(.@floor / 2);
 	// Add debuff a bit
-	atcommand "@debuff " + cap_value((.@floor < 10) ? (.@floor - 1) : (.@floor < 20) ? (.@floor - 10) : (.@floor < 30) ? (.@floor - 20) : (.@floor < 50) ? (.@floor - 30) : (.@floor < 75) ? (.@floor - 50) : (.@floor - 75),0,50);
+	.@debuff = tired + cap_value((.@floor < 10) ? (.@floor - 1)
+	: (.@floor < 20) ? (.@floor - 10)
+	: (.@floor < 30) ? (.@floor - 20)
+	: (.@floor < 50) ? (.@floor - 30)
+	: (.@floor < 75) ? (.@floor - 50)
+	: (.@floor - 75),0,50);
+	atcommand "@debuff " + .@debuff;
 	// Bonus divider at floor 97, 98, 99 and 100
 	if(.@floor >= 97)
 	atcommand "@bd " + (5 - (100 - .@floor));
+	else
+	atcommand "@bd 0";
+	percentheal 100,100;
 	// Going to play maps
 	isSafeReturn = 0;
 	// Auto safe return
@@ -184,8 +191,18 @@ OnMonsterDead:
 	setarray $spawnedAmount[(@floor - 1)],cap_value($spawnedAmount[(@floor - 1)] - 1,0,INT_MAX);
 	setarray $killAmount[(@floor - 1)],cap_value($killAmount[(@floor - 1)] - 1,0,INT_MAX);
 	
-	if($killAmount[(@floor - 1)])
-	announce "Boss จะปรากฎเมื่อกำจัด Monster อีก " + $killAmount[(@floor - 1)] + " ตัว",bc_map,0xE4A827;
+	if($killAmount[(@floor - 1)]){
+		announce "Boss จะปรากฎเมื่อกำจัด Monster อีก " + $killAmount[(@floor - 1)] + " ตัว",bc_map,0xE4A827;
+		// Kill amount
+		ka = cap_value(ka + 1,0,.ka);
+		if(ka >= .ka){
+			tired = 100;
+			atcommand "@debuff " + tired;
+			message strcharinfo(0),"โปรดพิมพ์ @load เพื่อกลับเมืองไปนั่งพัก";
+			setpcblock PCBLOCK_ALL,true;
+			setpcblock PCBLOCK_COMMANDS,false;
+		}
+	}
 	else if(!$bossSpawn[(@floor - 1)]){
 		.@tier = callsub(OnGetTier,@floor);
 		setarray $bossSpawn[(@floor - 1)],1;
@@ -444,6 +461,8 @@ OnMinute50:
 OnInit:
 	waitingroom "เล่น",0;
 	.safeReturnCooldown = 600;
+	// Kill amount to rest a bit
+	.ka = 1000;
 	// Maximum floor
 	$maximumFloor = 100;
 	// Kill amount per floor to spawn big monster {<10<20<30<50<75<100}

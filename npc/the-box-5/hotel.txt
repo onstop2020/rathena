@@ -1,127 +1,25 @@
--	script	HotelStaff	-1,{
-	mes "ท่านสามารถกดที่น้ำพุ เพื่อนักพักผ่อนได้เลย";
-	next;
-	menu "เปลี่ยน Save Point เป็นที่นี่",L_SavePoint
-	,"ซื้อหมอน หายเหนื่อยไวขึ้น +" + $pillowComfort + " (" + callfunc("F_InsertComma",.pillowPrice)+ "z)",L_Pillow
-	,"ซื้อเสื่อ หายเหนื่อยไวขึ้น +" + $blanketComfort + " (" + callfunc("F_InsertComma",.blanketPrice)+ "z)",L_Blanket
-	,"ซื้อแอร์พกพา หายเหนื่อยไวขึ้น +" + $portableACComfort + " (" + callfunc("F_InsertComma",.portableACPrice)+ "z)",L_PortableAc
-	;
-	close;
-	
-	L_SavePoint:
-	atcommand "@save";
-	close;
-	
-	L_Pillow:
-	if(pillowAmount > 0){
-		mes "หมอนคุณยังดูใช้งานได้อยู่นะ";
-		mes "• หมอน ยังใช้ได้อีก " + pillowAmount + " รอบ";
-		close;
-	}
-	if(Zeny >= .pillowPrice){
-		mes "ขอบคุณมาก! ขอให้มีความสุขในการนอนนะ";
-		Zeny = cap_value(Zeny - .pillowPrice,0,INT_MAX);
-		pillowAmount = .amountPerBought;
-		close;
-	}
-	else{
-		mes "Zeny ไม่เพียงพอ";
-		close;
-	}
-	
-	L_Blanket:
-	if(blanketAmount > 0){
-		mes "เสื่อคุณยังดูใช้งานได้อยู่นะ";
-		mes "• เสื่อ ยังใช้ได้อีก " + blanketAmount + " รอบ";
-		close;
-	}
-	if(Zeny >= .blanketPrice){
-		mes "ขอบคุณมาก! ขอให้มีความสุขในการนอนนะ";
-		Zeny = cap_value(Zeny - .blanketPrice,0,INT_MAX);
-		blanketAmount = .amountPerBought;
-		close;
-	}
-	else{
-		mes "Zeny ไม่เพียงพอ";
-		close;
-	}
-	
-	L_PortableAc:
-	if(portableACAmount > 0){
-		mes "แอร์พกพาคุณยังดูใช้งานได้อยู่นะ";
-		mes "• แอร์พกพา ยังใช้ได้อีก " + portableACAmount + " รอบ";
-		close;
-	}
-	if(Zeny >= .portableACPrice){
-		mes "ขอบคุณมาก! ขอให้มีความสุขในการนอนนะ";
-		Zeny = cap_value(Zeny - .portableACPrice,0,INT_MAX);
-		portableACAmount = .amountPerBought;
-		close;
-	}
-	else{
-		mes "Zeny ไม่เพียงพอ";
-		close;
-	}
-	
-OnInit:
-	waitingroom "ซื้อของใช้นั่งพัก",0;
-	
-	.pillowPrice = 10000;
-	$pillowComfort = 10;
-	
-	.blanketPrice = 150000;
-	$blanketComfort = 30;
-	
-	.portableACPrice = 500000;
-	$portableACComfort = 50;
-	
-	.amountPerBought = 50;
-	
-	end;
-}
-
 -	script	Bed	-1,{
 	if(@isSleeping)
 	end;
 
 	@isSleeping = 1;
 	deltimer strnpcinfo(3) + "::OnSleep";
-	addtimer 3000, strnpcinfo(3) + "::OnSleep";
+	addtimer 1000, strnpcinfo(3) + "::OnSleep";
 	end;
 	
 OnSleep:
-	sc_start SC_STOMACHACHE,10000,10;
 	specialeffect2 549;
 	.@isTired = tired;
 	tired = cap_value(tired - 1,0,100);
-	percentheal 1,1;
-	if((pillowAmount > 0) && ((tired > 0) || (Hp < MaxHp))){
-		pillowAmount--;
-		tired = cap_value(tired - $pillowComfort,0,100);
-		percentheal $pillowComfort,$pillowComfort;
-		specialeffect2 21; // Pillow
-	}
-	if((blanketAmount > 0) && ((tired > 0) || (Hp < MaxHp))){
-		blanketAmount--;
-		tired = cap_value(tired - $blanketComfort,0,100);
-		percentheal $blanketComfort,$blanketComfort;
-		specialeffect2 28; // AC
-	}
-	if((portableACAmount > 0) && ((tired > 0) || (Hp < MaxHp))){
-		portableACAmount--;
-		tired = cap_value(tired - $portableACComfort,0,100);
-		percentheal $portableACComfort,$portableACComfort;
-		specialeffect2 796; // Blanket
-	}
 	
-	if(.@isTired)
-	RefreshDebuff();
 	if((strcharinfo(3) == strnpcinfo(4))
-			&& ((tired > 0) || (Hp < MaxHp)))
-	addtimer 3000, strnpcinfo(3) + "::OnSleep";
+			&& ((tired > 0))){
+		message strcharinfo(0),"เหนื่อย: " + tired;
+		addtimer 1000, strnpcinfo(3) + "::OnSleep";
+	}
 	else{
+		ka = 0;
 		@isSleeping = 0;
-		ClearMacro();
 		message strcharinfo(0),"คุณได้หยุดพักแล้ว";
 	}
 	end;
@@ -131,140 +29,4 @@ OnInit:
 	end;
 }
 
--	script	Chef	-1,{
-	if(tired <= 0){
-		ClearMacro();
-		message strcharinfo(0),"คุณอิ่มแล้ว (ไม่ได้เหนื่อย)";
-		end;
-	}
-	
-	if(foodAmount > 0)
-	menu "กินข้าวที่เหลืออยู่",L_Eating;
-	else
-	mes "กินข้าวไหม?";
-
-	.@price = strnpcinfo(2);
-	
-	.@tier = (.@price >= 300000) ? 5
-	: (.@price >= 100000) ? 4
-	: (.@price >= 50000) ? 3
-	: (.@price >= 10000) ? 2
-	: 1;
-
-	next;
-	menu "กิน " + callfunc("F_InsertComma",.@price) + "z",-;
-	
-	if(Zeny < .@price){
-		mes "ต้องการ " + callfunc("F_InsertComma",.@price) + "z";
-		close;
-	}
-	
-	Zeny = cap_value(Zeny - .@price,0,INT_MAX);
-	
-	tiredHealAmount = (.@tier == 5) ? 25
-	: (.@tier == 4) ? 18
-	: (.@tier == 3) ? 12
-	: (.@tier == 2) ? 7
-	: 3;
-	
-	tiredBuffType = strnpcinfo(3);
-	
-	foodAmount = 4;
-	
-	L_Eating:
-	mes "โปรดเลือก O เพื่อกินข้าว";
-	.@perfectEating = gettimetick(2) + 2;
-	.@goodEating = gettimetick(2) + 3;
-	.@rand = rand(1,4);
-	if(.@rand == 1)
-	menu "O",L_Correct,"o",L_Wrong,"0",L_Wrong,"๐",L_Wrong;
-	else if(.@rand == 2)
-	menu "o",L_Wrong,"O",L_Correct,"0",L_Wrong,"๐",L_Wrong;
-	else if(.@rand == 3)
-	menu "o",L_Wrong,"0",L_Wrong,"O",L_Correct,"๐",L_Wrong;
-	else if(.@rand == 4)
-	menu "o",L_Wrong,"0",L_Wrong,"๐",L_Wrong,"O",L_Correct;
-	
-	L_Correct:
-	specialeffect2 255;
-	foodAmount--;
-	if((.@perfectEating - gettimetick(2)) > 0){
-		.@eatRank = 1;
-		
-		.@healAmount = tiredHealAmount / .@eatRank;
-	}
-	else if((.@goodEating - gettimetick(2)) > 0)
-	{
-		.@eatRank = 2;
-		
-		.@healAmount = tiredHealAmount / .@eatRank;
-	}
-	else{
-		.@eatRank = 3;
-		
-		.@healAmount = tiredHealAmount / .@eatRank;
-	}
-	
-	if(tiredBuffType == 1)
-	sc_start SC_PACKING_ENVELOPE10,86400000,5; // Hit +5
-	else if(tiredBuffType == 2)
-	sc_start SC_PACKING_ENVELOPE9,86400000,5; // Critical Rate +5
-	else if(tiredBuffType == 3)
-	sc_start SC_PACKING_ENVELOPE7,86400000,5; // Def +5
-	else if(tiredBuffType == 4)
-	sc_start SC_PACKING_ENVELOPE8,86400000,5; // MDef +5
-	else if(tiredBuffType == 5)
-	sc_start SC_PACKING_ENVELOPE5,86400000,5; // Flee +5
-	else if(tiredBuffType == 6)
-	sc_start SC_EP16_2_BUFF_SS,86400000,1; // ASPD + 10
-	else if(tiredBuffType == 7)
-	sc_start SC_EP16_2_BUFF_AC,86400000,1; // V.Cast faster by 80%
-	
-	tired = cap_value(tired - .@healAmount,0,100);
-	percentheal .@healAmount,.@healAmount;
-	RefreshDebuff();
-	mes "คุณกินข้าวได้" + ((.@eatRank == 1) ? "เยี่ยม" : (.@eatRank == 2) ? "ดี" : "แย่");
-	mes "เหลือ " + foodAmount + " คำ";
-	next;
-	if(tired <= 0)
-	{
-		ClearMacro();
-		mes "คุณอิ่มแล้ว";
-		close;
-	}
-	if(foodAmount > 0)
-	goto L_Eating;
-	else
-	mes "ข้าวหมดแล้ว";
-	close;
-	
-	L_Wrong:
-	specialeffect2 79;
-	foodAmount--;
-	mes "คุณตักข้าวแล้วหล่นพื้น";
-	mes "เหลือ " + foodAmount + " คำ";
-	next;
-	if(foodAmount > 0)
-	goto L_Eating;
-	else
-	mes "ข้าวหมดแล้ว";
-	close;
-	
-	end;
-
-OnInit:
-	waitingroom "คนขายอาหาร",0;
-	end;
-}
-
-prontera,163,203,5	duplicate(HotelStaff)	ผู้ดูแลคนนั่งพัก#HotelStaff1	10130
-
-prontera,156,203,5	duplicate(Bed)	นั่งพัก#Bed1	10043
-
-prontera,147,79,5	duplicate(Chef)	คนขายอาหารทั่วไป#5000::1	10003
-prontera,150,309,5	duplicate(Chef)	คนขายอาหารทั่วไป#3500::2	879
-prontera,254,165,5	duplicate(Chef)	คนขายพิซซ่า#30000::3	830
-prontera,115,109,6	duplicate(Chef)	คนขายพิซซ่า#20000::4	829
-prontera,61,298,5	duplicate(Chef)	คนขายอาหารดีเยี่ยม#25000::5	878
-prontera,38,213,3	duplicate(Chef)	คนขายอาหารนักรบหรู#100000::6	654
-prontera,251,274,5	duplicate(Chef)	คนขายอาหารชั้นเลิศ#300000::7	665
+prontera,156,198,5	duplicate(Bed)	นั่งพัก#Bed1	10043
