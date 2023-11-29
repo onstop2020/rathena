@@ -310,7 +310,6 @@ function	script	ReturnOrb	{
 	specialeffect2 779;
 	// Wait a bit
 	progressbar "",5;
-	setpcblock PCBLOCK_ALL,false;
 	// Mark as safe to return
 	if(!IsTownMap())
 	isSafeReturn = 1;
