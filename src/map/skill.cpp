@@ -23887,7 +23887,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "CastTime")) {
-		if (!this->parseNode("CastTime", "Time", node, skill->cast, false))
+		if (!this->parseNode("CastTime", "Time", node, skill->cast, true))
 			return 0;
 	} else {
 		if (!exists)
@@ -23895,7 +23895,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "AfterCastActDelay")) {
-		if (!this->parseNode("AfterCastActDelay", "Time", node, skill->delay, false))
+		if (!this->parseNode("AfterCastActDelay", "Time", node, skill->delay, true))
 			return 0;
 	} else {
 		if (!exists)
@@ -23903,7 +23903,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 	}
 
 	if (this->nodeExists(node, "AfterCastWalkDelay")) {
-		if (!this->parseNode("AfterCastWalkDelay", "Time", node, skill->walkdelay, false))
+		if (!this->parseNode("AfterCastWalkDelay", "Time", node, skill->walkdelay, true))
 			return 0;
 	} else {
 		if (!exists)
@@ -23936,7 +23936,7 @@ uint64 SkillDatabase::parseBodyNode(const ryml::NodeRef& node) {
 
 #ifdef RENEWAL_CAST
 	if (this->nodeExists(node, "FixedCastTime")) {
-		if (!this->parseNode("FixedCastTime", "Time", node, skill->fixed_cast, false))
+		if (!this->parseNode("FixedCastTime", "Time", node, skill->fixed_cast, true))
 			return 0;
 	} else {
 		if (!exists)
