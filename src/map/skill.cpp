@@ -2352,7 +2352,9 @@ int skill_additional_effect( struct block_list* src, struct block_list *bl, uint
 				!battle_check_range(bl, tbl, skill_get_range2(src, skill, autospl_skill_lv, true)))
 				continue;
 
-			if (skill == PF_SPIDERWEB) //Special case, due to its nature of coding.
+			if (skill == AS_SONICBLOW)
+				pc_stop_attack(sd); //Special case, Sonic Blow autospell should stop the player attacking.
+			else if (skill == PF_SPIDERWEB) //Special case, due to its nature of coding.
 				type = CAST_GROUND;
 #ifndef RENEWAL
 			else if (skill == AS_SONICBLOW)
